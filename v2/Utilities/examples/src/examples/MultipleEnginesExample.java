@@ -12,8 +12,17 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import com.factset.protobuf.stach.PackageProto.Package.Builder;
 import com.factset.protobuf.stach.PackageProto.Package;
 
+public class FdsApiClient extends ApiClient
+{
+  protected void performAdditionalClientConfiguration(ClientConfig clientConfig) {
+    // uncomment following settings as needed
+    // clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
+    // clientConfig.connectorProvider( new ApacheConnectorProvider() );
+  }
+}
+
 public class MultipleEnginesExample {
-  private static ApiClient apiClient = null;
+  private static FdsApiClient apiClient = null;
   private static final String BASE_PATH = "https://api.factset.com";
   private static final String USERNAME = "<username-serial>";
   private static final String PASSWORD = "<apiKey>";
@@ -218,12 +227,12 @@ public class MultipleEnginesExample {
     return paItem;
   }
 
-  private static ApiClient getApiClient() {
+  private static FdsApiClient getApiClient() {
     if (apiClient != null) {
       return apiClient;
     }
 
-    apiClient = new ApiClient();
+    apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
     apiClient.setBasePath(BASE_PATH);
