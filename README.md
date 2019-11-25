@@ -39,7 +39,7 @@ To customize OpenAPI generator options and generate the library. Please go throu
 * Replace vAPI_VERSION and PACKAGE_VERSION in the below command with the latest values and run it.
 ```
 javac -classpath Utilities/codegen/*; Utilities/codegen/CustomJavaClientCodegen.java
-java -DapiTests=false -DmodelTests=false -classpath Utilities/codegen/;Utilities/codegen/*; org.openapitools.codegen.OpenAPIGenerator generate --generator-name CustomJavaClientCodegen --input-spec Utilities/codegen/openapi-schema.json --output Engines --config Utilities/codegen/openapi-generator-config.json --http-user-agent engines/vAPI_VERSION/PACKAGE_VERSION/java -t Utilities/codegen/templates --skip-validate-spec
+java -DapiTests=false -DmodelTests=false -classpath Utilities/codegen/;Utilities/codegen/*; org.openapitools.codegen.OpenAPIGenerator generate --generator-name CustomJavaClientCodegen --input-spec Utilities/codegen/openapi-schema.json --output Engines --config Utilities/codegen/openapi-generator-config.json --http-user-agent engines-api/vAPI_VERSION/PACKAGE_VERSION/java -t Utilities/codegen/templates --skip-validate-spec
 ```
 * Move to the `analyticsapi-engines-java-sdk/vAPI_VERSION/Engines` location, and run `mvn clean package` which generates the library(engines-java-sdk-v*-\*.\*.\*.jar) and its documentation.
 
