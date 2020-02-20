@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
     <name>engines-sdk</name>
     <version>3.0.0</version>
-    <url></url>
+    <url>https://github.com/factset/analyticsapi-engines-java-sdk</url>
     <description>SDK for FactSet Analytics Engines API</description>
     <scm>
         <connection>scm:git:git://github.com/factset/analyticsapi-engines-java-sdk.git</connection>
