@@ -28,8 +28,8 @@ public class VaultEngineExample {
   private static final String USERNAME = "<username-serial>";
   private static final String PASSWORD = "<apiKey>";
   private static final String VAULT_DEFAULT_DOCUMENT = "PA3_DOCUMENTS:DEFAULT";
-  private static final String VAULT_DEFAULT_ACCOUNT = "<enter_an_account>";
-  private static final String COMPONENT_NAME = "Exposures";
+  private static final String VAULT_DEFAULT_ACCOUNT = "Client:/analytics/data/US_MID_CAP_CORE.ACTM";
+  private static final String COMPONENT_NAME = "Weights";
   private static final String COMPONENT_CATEGORY = "General / Positioning";
 
   public static void main(String[] args) throws InterruptedException {

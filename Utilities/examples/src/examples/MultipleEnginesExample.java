@@ -28,7 +28,7 @@ public class MultipleEnginesExample {
   private static final String PASSWORD = "<apiKey>";
   private static final String PA_DEFAULT_DOCUMENT = "PA_DOCUMENTS:DEFAULT";
   private static final String VAULT_DEFAULT_DOCUMENT = "PA3_DOCUMENTS:DEFAULT";
-  private static final String VAULT_DEFAULT_ACCOUNT = "<enter_an_account>";
+  private static final String VAULT_DEFAULT_ACCOUNT = "Client:/analytics/data/US_MID_CAP_CORE.ACTM";
   private static final String SPAR_DEFAULT_DOCUMENT = "pmw_root:/spar_documents/Factset Default Document";
 
   public static void main(String[] args) throws InterruptedException {

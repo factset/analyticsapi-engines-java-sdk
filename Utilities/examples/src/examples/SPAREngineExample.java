@@ -29,7 +29,7 @@ public class SPAREngineExample {
   private static final String USERNAME = "<username-serial>";
   private static final String PASSWORD = "<apiKey>";
   private static final String SPAR_DEFAULT_DOCUMENT = "pmw_root:/spar_documents/Factset Default Document";
-  private static final String COMPONENT_NAME = "Returns Data";
+  private static final String COMPONENT_NAME = "Returns Table";
   private static final String COMPONENT_CATEGORY = "Raw Data / Returns";
 
   public static void main(String[] args) throws InterruptedException {
