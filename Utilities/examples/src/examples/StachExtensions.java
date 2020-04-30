@@ -14,6 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.factset.protobuf.stach.NullValues;
+import com.factset.protobuf.stach.MetadataItemProto.MetadataItem;
 import com.factset.protobuf.stach.PackageProto.Package;
 import com.factset.protobuf.stach.table.DataTypeProto.DataType;
 import com.factset.protobuf.stach.table.SeriesDataProto.SeriesData;
@@ -61,19 +62,20 @@ public class StachExtensions {
 
     for (SeriesDefinition headerTableseriesDefinition : headerTableSeriesDefinitions) {
       Row headerRow = new Row();
+      headerRow.setHeader(true);
       for (SeriesDefinition primaryTableSeriesDefinition : primaryTableSeriesDefinitions) {
         if (primaryTableSeriesDefinition.getIsDimension()) {
-          headerRow.Cells.add(primaryTableSeriesDefinition.getDescription());
+          headerRow.getCells().add(primaryTableSeriesDefinition.getDescription());
         }
       }
 
       String headerColumnId = headerTableseriesDefinition.getId();
       String nullFormat = headerTableseriesDefinition.getFormat().getNullFormat();
       for (int i = 0; i < headerRowCount; i++) {
-        headerRow.Cells.add(SeriesDataHelper.getValueHelper(headerTableColumns.get(headerColumnId),
+        headerRow.getCells().add(SeriesDataHelper.getValueHelper(headerTableColumns.get(headerColumnId),
             headerTableseriesDefinition.getType(), i, nullFormat).toString());
       }
-      table.Rows.add(headerRow);
+      table.getRows().add(headerRow);
     }
 
     // Construct the column data
@@ -82,10 +84,15 @@ public class StachExtensions {
       for (SeriesDefinition primaryTableSeriesDefinition : primaryTableSeriesDefinitions) {
         String nullFormat = primaryTableSeriesDefinition.getFormat().getNullFormat();
         String primaryTableColumnId = primaryTableSeriesDefinition.getId();
-        dataRow.Cells.add(SeriesDataHelper.getValueHelper(primaryTableColumns.get(primaryTableColumnId),
+        dataRow.getCells().add(SeriesDataHelper.getValueHelper(primaryTableColumns.get(primaryTableColumnId),
             primaryTableSeriesDefinition.getType(), i, nullFormat).toString());
       }
-      table.Rows.add(dataRow);
+      table.getRows().add(dataRow);
+    }
+
+    Map<String, MetadataItem> metadata = primaryTable.getData().getMetadata().getItemsMap();
+    for (Map.Entry<String,MetadataItem> entry : metadata.entrySet()) {
+      table.getMetadata().put(entry.getValue().getName(), entry.getValue().getStringValue());
     }
     return table;
   }
@@ -94,10 +101,10 @@ public class StachExtensions {
     XSSFWorkbook workbook = new XSSFWorkbook();
     XSSFSheet sheet = workbook.createSheet("PA Report");
 
-    int rowsSize = table.Rows.size();
+    int rowsSize = table.getRows().size();
     for (int rowIndex = 0; rowIndex < rowsSize; rowIndex++) {
       XSSFRow xsswRow = sheet.createRow(rowIndex);
-      List<String> cells = table.Rows.get(rowIndex).Cells;
+      List<String> cells = table.getRows().get(rowIndex).getCells();
       for (int cellIndex = 0; cellIndex < cells.size(); cellIndex++) {
         XSSFCell xssfCell = xsswRow.createCell(cellIndex);
         xssfCell.setCellValue(cells.get(cellIndex));
@@ -117,7 +124,8 @@ public class StachExtensions {
 }
 
 class SeriesDataHelper {
-  public static Object getValueHelper(SeriesData seriesData, DataType dataType, int index, String nullFormat) {
+  public static Object getValueHelper(SeriesData seriesData, DataType dataType, int index,
+      String nullFormat) {
     if (dataType == DataType.STRING) {
       String value = seriesData.getStringArray().getValues(index);
       return NullValues.STRING.equals(value) ? nullFormat : value;
@@ -144,21 +152,5 @@ class SeriesDataHelper {
     } else {
       throw new NotImplementedException(dataType + " is not implemented");
     }
-  }
-}
-
-class TableData {
-  List<Row> Rows = new ArrayList<Row>();
-
-  public String toString() {
-    return Rows.toString();
-  }
-}
-
-class Row {
-  List<String> Cells = new ArrayList<String>();
-
-  public String toString() {
-    return Cells.toString();
   }
 }

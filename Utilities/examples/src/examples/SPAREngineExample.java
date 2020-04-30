@@ -12,6 +12,8 @@ import com.google.protobuf.util.JsonFormat;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.factset.protobuf.stach.PackageProto.Package.Builder;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.factset.protobuf.stach.PackageProto.Package;
 
 public class FdsApiClient extends ApiClient
@@ -32,7 +34,7 @@ public class SPAREngineExample {
   private static final String COMPONENT_NAME = "Returns Table";
   private static final String COMPONENT_CATEGORY = "Raw Data / Returns";
 
-  public static void main(String[] args) throws InterruptedException {
+  public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
       // Build SPAR Calculation Parameters List
 
@@ -136,7 +138,9 @@ public class SPAREngineExample {
           Package result = builder.build();
           // To convert result to 2D tables.
           List<TableData> tables = StachExtensions.convertToTableFormat(result);
-          System.out.println(tables.get(0)); // Prints the result in 2D table format.
+          ObjectMapper mapper = new ObjectMapper();
+          String json = mapper.writeValueAsString(tables);
+          System.out.println(json); 
           // Uncomment the following line to generate an Excel file
           // StachExtensions.generateExcel(result);
         }
