@@ -3,6 +3,10 @@ package examples;
 import java.util.List;
 import java.util.Map;
 
+//import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
+//import org.glassfish.jersey.client.ClientConfig;
+//import org.glassfish.jersey.client.ClientProperties;
+
 import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
@@ -16,16 +20,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.factset.protobuf.stach.PackageProto.Package;
 
-public class FdsApiClient extends ApiClient
-{
-  protected void performAdditionalClientConfiguration(ClientConfig clientConfig) {
-    // uncomment following settings as needed
-    // clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
-    // clientConfig.connectorProvider( new ApacheConnectorProvider() );
-  }
-}
-
 public class SPAREngineExample {
+	
   private static FdsApiClient apiClient = null;
   private static final String BASE_PATH = "https://api.factset.com";
   private static final String USERNAME = "<username-serial>";
@@ -118,7 +114,7 @@ public class SPAREngineExample {
         }
       }
 
-      // Get Result of Successful Caculations
+      // Get Result of Successful Calculations
       for (Map.Entry<String, CalculationUnitStatus> calculationParameters : getStatus.getData().getSpar().entrySet()) {
         if (calculationParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
           UtilityApi utilityApiInstance = new UtilityApi(apiClient);
@@ -139,7 +135,7 @@ public class SPAREngineExample {
           // To convert result to 2D tables.
           List<TableData> tables = StachExtensions.convertToTableFormat(result);
           ObjectMapper mapper = new ObjectMapper();
-          String json = mapper.writeValueAsString(tables);
+          String json = mapper.writeValueAsString(tables.get(0));
           System.out.println(json); 
           // Uncomment the following line to generate an Excel file
           // StachExtensions.generateExcel(result);
@@ -149,6 +145,16 @@ public class SPAREngineExample {
       handleException("SPAREngineExample#Main", e);
       return;
     }
+  }
+  
+  private static class FdsApiClient extends ApiClient
+  {
+    // Uncomment the below lines to use a proxy server
+    /*@Override
+    protected void performAdditionalClientConfiguration(ClientConfig clientConfig) {
+	  clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
+	  clientConfig.connectorProvider( new ApacheConnectorProvider() );
+    }*/
   }
 
   private static FdsApiClient getApiClient() {

@@ -59,6 +59,13 @@
       <artifactId>jersey-media-json-jackson</artifactId>
       <version>${jersey-version}</version>
     </dependency>
+    
+    <!-- Uncomment the below lines to use a proxy server -->
+    <!-- <dependency>
+      <groupId>org.glassfish.jersey.connectors</groupId>
+      <artifactId>jersey-apache-connector</artifactId>
+      <version>${jersey-version}</version>
+    </dependency> -->
 
     <!-- JSON processing: jackson -->
     <dependency>
@@ -119,7 +126,7 @@
     <threetenbp-version>2.9.10</threetenbp-version>
     <migbase64-version>2.2</migbase64-version>
     <protobuf-version>3.6.1</protobuf-version>
-    <stach-version>1.1.0</stach-version>
+    <stach-version>1.1.1</stach-version>
     <engines-sdk-version>3.0.0</engines-sdk-version>
     <poi-ooxml-version>4.0.1</poi-ooxml-version>
   </properties>

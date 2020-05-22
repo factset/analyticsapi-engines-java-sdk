@@ -3,6 +3,7 @@ package examples;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -152,5 +153,47 @@ class SeriesDataHelper {
     } else {
       throw new NotImplementedException(dataType + " is not implemented");
     }
+  }
+}
+
+class Row {
+  private boolean isHeader;
+  private List<String> Cells = new ArrayList<String>();
+
+  public boolean isHeader() {
+    return isHeader;
+  }
+
+  public List<String> getCells() {
+    return Cells;
+  }
+
+  public void setCells(List<String> cells) {
+    this.Cells = cells;
+  }
+
+  public void setHeader(boolean isHeader) {
+    this.isHeader = isHeader;
+  }
+}
+
+class TableData {
+  private List<Row> Rows = new ArrayList<Row>();
+  private Map<String, String> metadata = new HashMap<String, String>();
+
+  public List<Row> getRows() {
+    return Rows;
+  }
+
+  public void setRows(List<Row> rows) {
+    this.Rows = rows;
+  }
+
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(Map<String, String> map) {
+    this.metadata = map;
   }
 }

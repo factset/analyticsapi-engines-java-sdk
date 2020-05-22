@@ -106,7 +106,7 @@
         <migbase64-version>2.2</migbase64-version>
         <junit-version>4.12</junit-version>
         <protobuf-version>3.6.1</protobuf-version>
-        <stach-version>1.1.0</stach-version>
+        <stach-version>1.1.1</stach-version>
         <engines-sdk-version>3.0.0</engines-sdk-version>
     </properties>
 </project>

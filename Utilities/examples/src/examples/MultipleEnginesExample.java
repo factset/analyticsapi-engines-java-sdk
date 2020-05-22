@@ -3,6 +3,10 @@ package examples;
 import java.util.List;
 import java.util.Map;
 
+//import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
+//import org.glassfish.jersey.client.ClientConfig;
+//import org.glassfish.jersey.client.ClientProperties;
+
 import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
@@ -10,18 +14,12 @@ import factset.analyticsapi.engines.models.*;
 import com.google.protobuf.util.JsonFormat;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.factset.protobuf.stach.PackageProto.Package.Builder;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.factset.protobuf.stach.PackageProto.Package;
 
-public class FdsApiClient extends ApiClient
-{
-  protected void performAdditionalClientConfiguration(ClientConfig clientConfig) {
-    // uncomment following settings as needed
-    // clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
-    // clientConfig.connectorProvider( new ApacheConnectorProvider() );
-  }
-}
-
 public class MultipleEnginesExample {
+	
   private static FdsApiClient apiClient = null;
   private static final String BASE_PATH = "https://api.factset.com";
   private static final String USERNAME = "<username-serial>";
@@ -31,7 +29,7 @@ public class MultipleEnginesExample {
   private static final String VAULT_DEFAULT_ACCOUNT = "Client:/analytics/data/US_MID_CAP_CORE.ACTM";
   private static final String SPAR_DEFAULT_DOCUMENT = "pmw_root:/spar_documents/Factset Default Document";
 
-  public static void main(String[] args) throws InterruptedException {
+  public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
       Calculation parameters = new Calculation();
 
@@ -120,7 +118,7 @@ public class MultipleEnginesExample {
     }
   }
 
-  private static void printResult(Map.Entry<String, CalculationUnitStatus> calculationParameters) throws ApiException {
+  private static void printResult(Map.Entry<String, CalculationUnitStatus> calculationParameters) throws ApiException, JsonProcessingException {
     if (calculationParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
       UtilityApi utilityApiInstance = new UtilityApi(apiClient);
       ApiResponse<String> resultResponse = utilityApiInstance
@@ -139,7 +137,9 @@ public class MultipleEnginesExample {
       Package result = builder.build();
       // To convert result to 2D tables.
       List<TableData> tables = StachExtensions.convertToTableFormat(result);
-      System.out.println(tables.get(0)); // Prints the result in 2D table format.
+      ObjectMapper mapper = new ObjectMapper();
+      String json = mapper.writeValueAsString(tables.get(0)); 
+      System.out.println(json); // Prints the result in 2D table format.
       // Uncomment the following line to generate an Excel file
       // StachExtensions.generateExcel(result);
     }
@@ -226,7 +226,17 @@ public class MultipleEnginesExample {
 
     return paItem;
   }
-
+  
+  private static class FdsApiClient extends ApiClient
+  {
+    // Uncomment the below lines to use a proxy server
+    /*@Override
+    protected void performAdditionalClientConfiguration(ClientConfig clientConfig) {
+	  clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
+	  clientConfig.connectorProvider( new ApacheConnectorProvider() );
+    }*/
+  }
+  
   private static FdsApiClient getApiClient() {
     if (apiClient != null) {
       return apiClient;
