@@ -53,7 +53,7 @@ public class MultipleEnginesExample {
 
       String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
       String requestId = locationList[locationList.length - 1];
-
+      System.out.println("Calculation Id: "+ requestId);
       // Get Calculation Request Status
       ApiResponse<CalculationStatus> getStatus = null;
 
@@ -75,56 +75,53 @@ public class MultipleEnginesExample {
 
       System.out.println("Calculation Completed!!!");
 
-      // Check for Failed Calculations
-      for (Map.Entry<String, CalculationUnitStatus> calculationParameters : getStatus.getData().getPa().entrySet()) {
-        if (calculationParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.FAILED) {
-          System.out.println("PA Calculation : " + calculationParameters.getKey() + " Failed!!!");
-          System.out.println("Error message : " + calculationParameters.getValue().getError());
-          return;
+      // Check for Calculation Units 
+      for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getPa().entrySet()) {
+        if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS){
+          System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Succeeded!!!");
+          printResult(calculationUnitParameters);
+        }
+        else{
+          System.out.println("Calculation Unit Id: " + calculationUnitParameters.getKey() + " Failed!!!");
+          System.out.println("Error message : " + calculationUnitParameters.getValue().getError());
         }
       }
 
-      for (Map.Entry<String, CalculationUnitStatus> calculationParameters : getStatus.getData().getSpar().entrySet()) {
-        if (calculationParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.FAILED) {
-          System.out.println("SPAR Calculation : " + calculationParameters.getKey() + " Failed!!!");
-          System.out.println("Error message : " + calculationParameters.getValue().getError());
-          return;
+      for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getSpar().entrySet()) {
+        if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS){
+          System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Succeeded!!!");
+          printResult(calculationUnitParameters);
+        } 
+        else{
+          System.out.println("Calculation Unit Id: " + calculationUnitParameters.getKey() + " Failed!!!");
+          System.out.println("Error message : " + calculationUnitParameters.getValue().getError());
         }
       }
 
-      for (Map.Entry<String, CalculationUnitStatus> calculationParameters : getStatus.getData().getVault().entrySet()) {
-        if (calculationParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.FAILED) {
-          System.out.println("Vault Calculation : " + calculationParameters.getKey() + " Failed!!!");
-          System.out.println("Error message : " + calculationParameters.getValue().getError());
-          return;
+      for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getVault().entrySet()) {
+        if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS){
+          System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Succeeded!!!");
+          printResult(calculationUnitParameters);
+        }
+        else{
+          System.out.println("Calculation Unit Id: " + calculationUnitParameters.getKey() + " Failed!!!");
+          System.out.println("Error message : " + calculationUnitParameters.getValue().getError());
         }
       }
 
-      // Get Result of Successful Calculations
-      for (Map.Entry<String, CalculationUnitStatus> calculationParameters : getStatus.getData().getPa().entrySet()) {
-        printResult(calculationParameters);
-      }
-
-      for (Map.Entry<String, CalculationUnitStatus> calculationParameters : getStatus.getData().getSpar().entrySet()) {
-        printResult(calculationParameters);
-      }
-
-      for (Map.Entry<String, CalculationUnitStatus> calculationParameters : getStatus.getData().getVault().entrySet()) {
-        printResult(calculationParameters);
-      }
     } catch (ApiException e) {
       handleException("MultipleEnginesExample#Main", e);
       return;
     }
-  }
+ }
 
-  private static void printResult(Map.Entry<String, CalculationUnitStatus> calculationParameters) throws ApiException, JsonProcessingException {
-    if (calculationParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
+  private static void printResult(Map.Entry<String, CalculationUnitStatus> calculationUnitParameters) throws ApiException, JsonProcessingException {
+    if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
       UtilityApi utilityApiInstance = new UtilityApi(apiClient);
       ApiResponse<String> resultResponse = utilityApiInstance
-          .getByUrlWithHttpInfo(calculationParameters.getValue().getResult());
-      System.out.println("CalculationId : " + calculationParameters.getKey() + " Succeeded!!!");
-      System.out.println("CalculationId : " + calculationParameters.getKey() + " Result");
+        .getByUrlWithHttpInfo(calculationUnitParameters.getValue().getResult());
+      
+      System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Result");
 
       Builder builder = Package.newBuilder();
       try {
@@ -138,7 +135,7 @@ public class MultipleEnginesExample {
       // To convert result to 2D tables.
       List<TableData> tables = StachExtensions.convertToTableFormat(result);
       ObjectMapper mapper = new ObjectMapper();
-      String json = mapper.writeValueAsString(tables.get(0)); 
+      String json = mapper.writeValueAsString(tables.get(0));
       System.out.println(json); // Prints the result in 2D table format.
       // Uncomment the following line to generate an Excel file
       // StachExtensions.generateExcel(result);
@@ -151,7 +148,7 @@ public class MultipleEnginesExample {
     ComponentsApi componentsApi = new ComponentsApi(getApiClient());
     Map<String, ComponentSummary> components = componentsApi.getSPARComponents(SPAR_DEFAULT_DOCUMENT);
     String componentId = components.entrySet().iterator().next().getKey();
-    System.out.println("ComponentID: " + componentId);
+    System.out.println("SPAR Component Id: " + componentId);
     sparItem.setComponentid(componentId);
 
     SPARIdentifier accountIdentifier1 = new SPARIdentifier();
@@ -181,13 +178,12 @@ public class MultipleEnginesExample {
     ComponentsApi componentsApi = new ComponentsApi(getApiClient());
     Map<String, ComponentSummary> components = componentsApi.getVaultComponents(VAULT_DEFAULT_DOCUMENT);
     String componentId = components.entrySet().iterator().next().getKey();
-    System.out.println("ComponentID: " + componentId);
+    System.out.println("Vault Component Id: " + componentId);
     vaultItem.setComponentid(componentId);
 
     ConfigurationsApi configurationsApi = new ConfigurationsApi(getApiClient());
     Map<String, VaultConfigurationSummary> configurationsMap = configurationsApi.getVaultConfigurations(VAULT_DEFAULT_ACCOUNT);
     String configurationId = configurationsMap.entrySet().iterator().next().getKey();
-    System.out.println("Configuration ID: " + configurationId);
     vaultItem.setConfigid(configurationId);
 
     VaultIdentifier account = new VaultIdentifier();
@@ -209,7 +205,7 @@ public class MultipleEnginesExample {
     ComponentsApi componentsApi = new ComponentsApi(getApiClient());
     Map<String, ComponentSummary> components = componentsApi.getPAComponents(PA_DEFAULT_DOCUMENT);
     String componentId = components.entrySet().iterator().next().getKey();
-    System.out.println("ComponentID: " + componentId);
+    System.out.println("PA Component Id: " + componentId);
     paItem.setComponentid(componentId);
 
     PAIdentifier accountPaIdentifier1 = new PAIdentifier();
@@ -253,11 +249,11 @@ public class MultipleEnginesExample {
   }
 
   private static void handleException(String method, ApiException e) {
-    System.err.println("Exception when calling " + method);
-    if (e.getResponseHeaders() != null && e.getResponseHeaders().containsKey("x-datadirect-request-key")) {
-      System.out.println("x-datadirect-request-key: " + e.getResponseHeaders().get("x-datadirect-request-key").get(0));
-    }
+    System.out.println("Calculation Failed!!!");
     System.out.println("Status code: " + e.getCode());
+    if (e.getResponseHeaders() != null && e.getResponseHeaders().containsKey("x-datadirect-request-key")) {
+      System.out.println("Request Key: " + e.getResponseHeaders().get("x-datadirect-request-key").get(0));
+    }
     System.out.println("Reason: " + e.getResponseBody());
     e.printStackTrace();
   }

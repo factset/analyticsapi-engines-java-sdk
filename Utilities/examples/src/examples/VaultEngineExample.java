@@ -47,8 +47,7 @@ public class VaultEngineExample {
       Map<String, VaultConfigurationSummary> configurationsMap = configurationsApi
           .getVaultConfigurations(VAULT_DEFAULT_ACCOUNT);
       String configurationId = configurationsMap.entrySet().iterator().next().getKey();
-      System.out.println("Configuration ID: " + configurationId);
-
+      
       Calculation parameters = new Calculation();
 
       VaultCalculationParameters vaultItem = new VaultCalculationParameters();
@@ -76,7 +75,7 @@ public class VaultEngineExample {
 
       String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
       String requestId = locationList[locationList.length - 1];
-
+      System.out.println("Calculation Id: "+ requestId);
       // Get Calculation Request Status
       ApiResponse<CalculationStatus> getStatus = null;
 
@@ -98,23 +97,15 @@ public class VaultEngineExample {
 
       System.out.println("Calculation Completed!!!");
 
-      // Check for Failed Calculations
-      for (Map.Entry<String, CalculationUnitStatus> calculationParameters : getStatus.getData().getVault().entrySet()) {
-        if (calculationParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.FAILED) {
-          System.out.println("CalculationId : " + calculationParameters.getKey() + " Failed!!!");
-          System.out.println("Error message : " + calculationParameters.getValue().getError());
-          return;
-        }
-      }
-
-      // Get Result of Successful Calculations
-      for (Map.Entry<String, CalculationUnitStatus> calculationParameters : getStatus.getData().getVault().entrySet()) {
-        if (calculationParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
+      // Check for Calculation Units
+      for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getVault().entrySet()) {
+        if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
           UtilityApi utilityApiInstance = new UtilityApi(apiClient);
           ApiResponse<String> resultResponse = utilityApiInstance
-              .getByUrlWithHttpInfo(calculationParameters.getValue().getResult());
-          System.out.println("CalculationId : " + calculationParameters.getKey() + " Succeeded!!!");
-          System.out.println("CalculationId : " + calculationParameters.getKey() + " Result");
+              .getByUrlWithHttpInfo(calculationUnitParameters.getValue().getResult());
+            
+          System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Succeeded!!!");
+          System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Result");
 
           Builder builder = Package.newBuilder();
           try {
@@ -132,6 +123,9 @@ public class VaultEngineExample {
           System.out.println(json); // Prints the result in 2D table format.
           // Uncomment the following line to generate an Excel file
           // StachExtensions.generateExcel(result);
+        } else {
+          System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Failed!!!");
+          System.out.println("Error message : " + calculationUnitParameters.getValue().getError());
         }
       }
     } catch (ApiException e) {
@@ -166,11 +160,11 @@ public class VaultEngineExample {
   }
 
   private static void handleException(String method, ApiException e) {
-    System.err.println("Exception when calling " + method);
-    if (e.getResponseHeaders() != null && e.getResponseHeaders().containsKey("x-datadirect-request-key")) {
-      System.out.println("x-datadirect-request-key: " + e.getResponseHeaders().get("x-datadirect-request-key").get(0));
-    }
+    System.out.println("Calculation Failed!!!");
     System.out.println("Status code: " + e.getCode());
+    if (e.getResponseHeaders() != null && e.getResponseHeaders().containsKey("x-datadirect-request-key")) {
+      System.out.println("Request Key: " + e.getResponseHeaders().get("x-datadirect-request-key").get(0));
+    }
     System.out.println("Reason: " + e.getResponseBody());
     e.printStackTrace();
   }
