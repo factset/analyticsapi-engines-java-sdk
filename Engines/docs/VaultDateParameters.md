@@ -11,4 +11,8 @@ Name | Type | Description | Notes
 **frequency** | **String** | Calculation&#39;s frequency. | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

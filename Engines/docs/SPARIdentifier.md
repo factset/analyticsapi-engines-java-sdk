@@ -11,4 +11,8 @@ Name | Type | Description | Notes
 **prefix** | **String** | Benchmark prefix. |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

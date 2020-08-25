@@ -24,4 +24,8 @@ FAILED | &quot;Failed&quot;
 CANCELLED | &quot;Cancelled&quot;
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

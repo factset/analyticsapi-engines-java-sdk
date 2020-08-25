@@ -11,4 +11,8 @@ Name | Type | Description | Notes
 **category** | **String** | Column Category |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

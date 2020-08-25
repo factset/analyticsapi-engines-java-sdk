@@ -10,4 +10,8 @@ Name | Type | Description | Notes
 **statistics** | **java.util.List&lt;String&gt;** | Column Statistic identifier |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

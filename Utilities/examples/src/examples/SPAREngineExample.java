@@ -10,6 +10,7 @@ import java.util.Map;
 import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.StachExtensions.*;
 import factset.analyticsapi.engines.models.CalculationStatus.StatusEnum;
 
 import com.google.protobuf.util.JsonFormat;
@@ -20,8 +21,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.factset.protobuf.stach.PackageProto.Package;
 
+import static factset.analyticsapi.engines.StachExtensions.convertToTableFormat;
+
 public class SPAREngineExample {
-	
+
   private static FdsApiClient apiClient = null;
   private static final String BASE_PATH = "https://api.factset.com";
   private static final String USERNAME = "<username-serial>";
@@ -38,10 +41,10 @@ public class SPAREngineExample {
       ComponentsApi componentsApi = new ComponentsApi(getApiClient());
       Map<String, ComponentSummary> components = componentsApi.getSPARComponents(SPAR_DEFAULT_DOCUMENT);
       String componentId = components.entrySet().stream().filter(
-          c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
-          .iterator().next().getKey();
+              c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
+              .iterator().next().getKey();
       System.out.println("ID of component with Name '" + COMPONENT_NAME + "' and category '" + COMPONENT_CATEGORY
-          + "' : " + componentId);
+              + "' : " + componentId);
 
       Calculation parameters = new Calculation();
 
@@ -88,7 +91,7 @@ public class SPAREngineExample {
       ApiResponse<CalculationStatus> getStatus = null;
 
       while (getStatus == null || getStatus.getData().getStatus() == StatusEnum.QUEUED
-          || getStatus.getData().getStatus() == StatusEnum.EXECUTING) {
+              || getStatus.getData().getStatus() == StatusEnum.EXECUTING) {
         if (getStatus != null) {
           List<String> cacheControl = getStatus.getHeaders().get("Cache-Control");
           if (cacheControl != null) {
@@ -125,12 +128,10 @@ public class SPAREngineExample {
 
           Package result = builder.build();
           // To convert result to 2D tables.
-          List<TableData> tables = StachExtensions.convertToTableFormat(result);
+          List<TableData> tables = convertToTableFormat(result);
           ObjectMapper mapper = new ObjectMapper();
           String json = mapper.writeValueAsString(tables.get(0));
-          System.out.println(json); 
-          // Uncomment the following line to generate an Excel file
-          // StachExtensions.generateExcel(result);
+          System.out.println(json);
         } else {
           System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Failed!!!");
           System.out.println("Error message : " + calculationUnitParameters.getValue().getError());
@@ -141,14 +142,14 @@ public class SPAREngineExample {
       return;
     }
   }
-  
+
   private static class FdsApiClient extends ApiClient
   {
     // Uncomment the below lines to use a proxy server
     /*@Override
     protected void performAdditionalClientConfiguration(ClientConfig clientConfig) {
-	  clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
-	  clientConfig.connectorProvider( new ApacheConnectorProvider() );
+    clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
+    clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }
 

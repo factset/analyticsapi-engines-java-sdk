@@ -17,7 +17,9 @@ Method | HTTP request | Description
 
 Cancel calculation by id
 
-This is the endpoint to cancel a previously submitted calculation request.  Instead of doing a GET on the getCalculationById URL, cancel the calculation by doing a DELETE.  All individual calculation units within the calculation will be canceled if they have not already finished.
+This is the endpoint to cancel a previously submitted calculation request.
+Instead of doing a GET on the getCalculationById URL, cancel the calculation by doing a DELETE.
+All individual calculation units within the calculation will be canceled if they have not already finished.
 
 ### Example
 
@@ -93,7 +95,8 @@ null (empty response body)
 
 Get calculation status by id
 
-This is the endpoint to check on the progress of a previous calculation request.  Response body contains status information of the entire request and each individual calculation unit.
+This is the endpoint to check on the progress of a previous calculation request.
+Response body contains status information of the entire request and each individual calculation unit.
 
 ### Example
 
@@ -243,7 +246,14 @@ This endpoint does not need any parameter.
 
 Run calculation
 
-This endpoint creates a new calculation and runs the set of calculation units specified in the POST body.  This must be used first before get status or cancelling endpoints with a calculation id.   A successful response will contain the URL to check the status of the calculation request.    Remarks:  â¢ Maximum 25 points allowed per calculation and maximum 500 points allowed across all simultaneous calculations. (Refer API documentation for more information)                â¢ Any settings in POST body will act as a one-time override over the settings saved in the PA/SPAR/Vault template.
+This endpoint creates a new calculation and runs the set of calculation units specified in the POST body.
+This must be used first before get status or cancelling endpoints with a calculation id. 
+A successful response will contain the URL to check the status of the calculation request.
+
+Remarks:
+â¢	Maximum 25 points allowed per calculation and maximum 500 points allowed across all simultaneous calculations. (Refer API documentation for more information)
+            
+â¢	Any settings in POST body will act as a one-time override over the settings saved in the PA/SPAR/Vault template.
 
 ### Example
 

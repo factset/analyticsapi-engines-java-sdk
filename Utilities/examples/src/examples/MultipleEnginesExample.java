@@ -10,6 +10,7 @@ import java.util.Map;
 import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.StachExtensions.*;
 
 import com.google.protobuf.util.JsonFormat;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -18,8 +19,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.factset.protobuf.stach.PackageProto.Package;
 
+import static factset.analyticsapi.engines.StachExtensions.convertToTableFormat;
+
 public class MultipleEnginesExample {
-	
+
   private static FdsApiClient apiClient = null;
   private static final String BASE_PATH = "https://api.factset.com";
   private static final String USERNAME = "<username-serial>";
@@ -58,7 +61,7 @@ public class MultipleEnginesExample {
       ApiResponse<CalculationStatus> getStatus = null;
 
       while (getStatus == null || getStatus.getData().getStatus() == CalculationStatus.StatusEnum.QUEUED
-          || getStatus.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING) {
+              || getStatus.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING) {
         if (getStatus != null) {
           List<String> cacheControl = getStatus.getHeaders().get("Cache-Control");
           if (cacheControl != null) {
@@ -133,12 +136,10 @@ public class MultipleEnginesExample {
 
       Package result = builder.build();
       // To convert result to 2D tables.
-      List<TableData> tables = StachExtensions.convertToTableFormat(result);
+      List<TableData> tables = convertToTableFormat(result);
       ObjectMapper mapper = new ObjectMapper();
       String json = mapper.writeValueAsString(tables.get(0));
       System.out.println(json); // Prints the result in 2D table format.
-      // Uncomment the following line to generate an Excel file
-      // StachExtensions.generateExcel(result);
     }
   }
 
@@ -222,7 +223,7 @@ public class MultipleEnginesExample {
 
     return paItem;
   }
-  
+
   private static class FdsApiClient extends ApiClient
   {
     // Uncomment the below lines to use a proxy server
@@ -232,7 +233,7 @@ public class MultipleEnginesExample {
 	  clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }
-  
+
   private static FdsApiClient getApiClient() {
     if (apiClient != null) {
       return apiClient;

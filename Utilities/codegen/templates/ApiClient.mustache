@@ -1,4 +1,6 @@
-package factset.analyticsapi.engines;
+{{! This file is picked from the v4.3.1 release of openapi-generator(https://github.com/OpenAPITools/openapi-generator/blob/v4.3.1/modules/openapi-generator/src/main/resources/Java/ApiClient.mustache) }}
+{{! Changes made: 1) Set serverIndex to null instead of zero (Remove the file once openapi-schema.json is updated). }}
+package {{invokerPackage}};
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -23,9 +25,15 @@ import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import java.io.IOException;
 import java.io.InputStream;
 
+{{^supportJava6}}
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import org.glassfish.jersey.logging.LoggingFeature;
+{{/supportJava6}}
+{{#supportJava6}}
+import org.apache.commons.io.FileUtils;
+import org.glassfish.jersey.filter.LoggingFilter;
+{{/supportJava6}}
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
@@ -47,27 +55,85 @@ import java.text.DateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import factset.analyticsapi.engines.auth.Authentication;
-import factset.analyticsapi.engines.auth.HttpBasicAuth;
-import factset.analyticsapi.engines.auth.HttpBearerAuth;
-import factset.analyticsapi.engines.auth.ApiKeyAuth;
+import {{invokerPackage}}.auth.Authentication;
+import {{invokerPackage}}.auth.HttpBasicAuth;
+import {{invokerPackage}}.auth.HttpBearerAuth;
+import {{invokerPackage}}.auth.ApiKeyAuth;
 
+{{#hasOAuthMethods}}
+import {{invokerPackage}}.auth.OAuth;
+{{/hasOAuthMethods}}
 
-
+{{>generatedAnnotation}}
 public class ApiClient {
   protected Map<String, String> defaultHeaderMap = new HashMap<String, String>();
   protected Map<String, String> defaultCookieMap = new HashMap<String, String>();
-  protected String basePath = "https://api.factset.com";
-  protected List<ServerConfiguration> servers = new ArrayList<ServerConfiguration>(Arrays.asList(
-    new ServerConfiguration(
-      "https://api.factset.com/",
-      "No description provided",
-      new HashMap<String, ServerVariable>()
-    )
-  ));
+  protected String basePath = "{{{basePath}}}";
+  protected List<ServerConfiguration> servers = new ArrayList<ServerConfiguration>({{#servers}}{{#-first}}Arrays.asList(
+{{/-first}}    new ServerConfiguration(
+      "{{{url}}}",
+      "{{{description}}}{{^description}}No description provided{{/description}}",
+      new HashMap<String, ServerVariable>(){{#variables}}{{#-first}} {{
+{{/-first}}        put("{{{name}}}", new ServerVariable(
+          "{{{description}}}{{^description}}No description provided{{/description}}",
+          "{{{defaultValue}}}",
+          new HashSet<String>(
+          {{#enumValues}}
+          {{#-first}}
+            Arrays.asList(
+          {{/-first}}
+              "{{{.}}}"{{^-last}},{{/-last}}
+          {{#-last}}
+            )
+          {{/-last}}
+          {{/enumValues}}
+          )
+        ));
+      {{#-last}}
+      }}{{/-last}}{{/variables}}
+    ){{^-last}},{{/-last}}
+  {{#-last}}
+  ){{/-last}}{{/servers}});
   protected Integer serverIndex = null;
   protected Map<String, String> serverVariables = null;
   protected Map<String, List<ServerConfiguration>> operationServers = new HashMap<String, List<ServerConfiguration>>() {{
+    {{#apiInfo}}
+    {{#apis}}
+    {{#operations}}
+    {{#operation}}
+    {{#servers}}
+    {{#-first}}
+    put("{{{classname}}}.{{{operationId}}}", new ArrayList<ServerConfiguration>(Arrays.asList(
+    {{/-first}}
+      new ServerConfiguration(
+        "{{{url}}}",
+        "{{{description}}}{{^description}}No description provided{{/description}}",
+        new HashMap<String, ServerVariable>(){{#variables}}{{#-first}} {{
+{{/-first}}          put("{{{name}}}", new ServerVariable(
+            "{{{description}}}{{^description}}No description provided{{/description}}",
+            "{{{defaultValue}}}",
+            new HashSet<String>(
+            {{#enumValues}}
+            {{#-first}}
+              Arrays.asList(
+            {{/-first}}
+                "{{{.}}}"{{^-last}},{{/-last}}
+            {{#-last}}
+              )
+            {{/-last}}
+            {{/enumValues}}
+            )
+          ));
+        {{#-last}}
+        }}{{/-last}}{{/variables}}
+      ){{^-last}},{{/-last}}
+    {{#-last}}
+    )));{{/-last}}
+    {{/servers}}
+    {{/operation}}
+    {{/operations}}
+    {{/apis}}
+    {{/apiInfo}}
   }};
   protected Map<String, Integer> operationServerIndex = new HashMap<String, Integer>();
   protected Map<String, Map<String, String>> operationServerVariables = new HashMap<String, Map<String, String>>();
@@ -91,16 +157,20 @@ public class ApiClient {
     this.dateFormat = new RFC3339DateFormat();
 
     // Set default User-Agent.
-    setUserAgent("engines-api/3.1.0/java");
+    setUserAgent("{{#httpUserAgent}}{{{.}}}{{/httpUserAgent}}{{^httpUserAgent}}OpenAPI-Generator/{{{artifactVersion}}}/java{{/httpUserAgent}}");
 
     // Setup authentications (key: authentication name, value: authentication).
-    authentications = new HashMap<String, Authentication>();
-    authentications.put("Basic", new HttpBasicAuth());
+    authentications = new HashMap<String, Authentication>();{{#authMethods}}{{#isBasic}}{{#isBasicBasic}}
+    authentications.put("{{name}}", new HttpBasicAuth());{{/isBasicBasic}}{{^isBasicBasic}}
+    authentications.put("{{name}}", new HttpBearerAuth("{{scheme}}"));{{/isBasicBasic}}{{/isBasic}}{{#isApiKey}}
+    authentications.put("{{name}}", new ApiKeyAuth({{#isKeyInHeader}}"header"{{/isKeyInHeader}}{{^isKeyInHeader}}"query"{{/isKeyInHeader}}, "{{keyParamName}}"));{{/isApiKey}}{{#isOAuth}}
+    authentications.put("{{name}}", new OAuth());{{/isOAuth}}{{/authMethods}}
     // Prevent the authentications from being modified.
     authentications = Collections.unmodifiableMap(authentications);
 
     // Setup authentication lookup (key: authentication alias, value: authentication name)
-    authenticationLookup = new HashMap<String, String>();
+    authenticationLookup = new HashMap<String, String>();{{#authMethods}}{{#vendorExtensions.x-auth-id-alias}}
+    authenticationLookup.put("{{name}}", "{{.}}");{{/vendorExtensions.x-auth-id-alias}}{{/authMethods}}
   }
 
   /**
@@ -263,6 +333,22 @@ public class ApiClient {
     throw new RuntimeException("No Bearer authentication configured!");
   }
 
+  {{#hasOAuthMethods}}
+  /**
+   * Helper method to set access token for the first OAuth2 authentication.
+   * @param accessToken Access token
+   */
+  public void setAccessToken(String accessToken) {
+    for (Authentication auth : authentications.values()) {
+      if (auth instanceof OAuth) {
+        ((OAuth) auth).setAccessToken(accessToken);
+        return;
+      }
+    }
+    throw new RuntimeException("No OAuth2 authentication configured!");
+  }
+
+  {{/hasOAuthMethods}}
   /**
    * Set the User-Agent header's value (by adding to the default header map).
    * @param userAgent Http user agent
@@ -656,7 +742,13 @@ public class ApiClient {
   public File downloadFileFromResponse(Response response) throws ApiException {
     try {
       File file = prepareDownloadFile(response);
+{{^supportJava6}}
       Files.copy(response.readEntity(InputStream.class), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+{{/supportJava6}}
+{{#supportJava6}}
+      // Java6 falls back to commons.io for file copying
+      FileUtils.copyToFile(response.readEntity(InputStream.class), file);
+{{/supportJava6}}
       return file;
     } catch (IOException e) {
       throw new ApiException(e);
@@ -818,12 +910,12 @@ public class ApiClient {
       Map<String, List<String>> responseHeaders = buildResponseHeaders(response);
 
       if (response.getStatus() == Status.NO_CONTENT.getStatusCode()) {
-        return new ApiResponse<>(statusCode, responseHeaders);
+        return new ApiResponse<{{#supportJava6}}T{{/supportJava6}}>(statusCode, responseHeaders);
       } else if (response.getStatusInfo().getFamily() == Status.Family.SUCCESSFUL) {
         if (returnType == null)
-          return new ApiResponse<>(statusCode, responseHeaders);
+          return new ApiResponse<{{#supportJava6}}T{{/supportJava6}}>(statusCode, responseHeaders);
         else
-          return new ApiResponse<>(statusCode, responseHeaders, deserialize(response, returnType));
+          return new ApiResponse<{{#supportJava6}}T{{/supportJava6}}>(statusCode, responseHeaders, deserialize(response, returnType));
       } else {
         String message = "error";
         String respBody = null;
@@ -872,10 +964,15 @@ public class ApiClient {
     // turn off compliance validation to be able to send payloads with DELETE calls
     clientConfig.property(ClientProperties.SUPPRESS_HTTP_COMPLIANCE_VALIDATION, true);
     if (debugging) {
+{{^supportJava6}}
       clientConfig.register(new LoggingFeature(java.util.logging.Logger.getLogger(LoggingFeature.DEFAULT_LOGGER_NAME), java.util.logging.Level.INFO, LoggingFeature.Verbosity.PAYLOAD_ANY, 1024*50 /* Log payloads up to 50K */));
       clientConfig.property(LoggingFeature.LOGGING_FEATURE_VERBOSITY, LoggingFeature.Verbosity.PAYLOAD_ANY);
       // Set logger to ALL
       java.util.logging.Logger.getLogger(LoggingFeature.DEFAULT_LOGGER_NAME).setLevel(java.util.logging.Level.ALL);
+{{/supportJava6}}
+{{#supportJava6}}
+      clientConfig.register(new LoggingFilter(java.util.logging.Logger.getLogger(LoggingFilter.class.getName()), true));
+{{/supportJava6}}
     } else {
       // suppress warnings for payloads with DELETE calls:
       java.util.logging.Logger.getLogger("org.glassfish.jersey.client").setLevel(java.util.logging.Level.SEVERE);

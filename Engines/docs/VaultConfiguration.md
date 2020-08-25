@@ -10,4 +10,8 @@ Name | Type | Description | Notes
 **accounts** | [**java.util.Map&lt;String, ConfigurationAccount&gt;**](ConfigurationAccount.md) |  |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

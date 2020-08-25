@@ -24,4 +24,8 @@ COMPLETED | &quot;Completed&quot;
 CANCELLED | &quot;Cancelled&quot;
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -10,4 +10,8 @@ Name | Type | Description | Notes
 **enddate** | **String** | End date in YYYYMMDD format. |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

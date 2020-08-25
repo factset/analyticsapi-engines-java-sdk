@@ -10,4 +10,8 @@ Name | Type | Description | Notes
 **directories** | **java.util.List&lt;String&gt;** | List of directories. |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

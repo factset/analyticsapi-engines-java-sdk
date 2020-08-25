@@ -10,6 +10,7 @@ import java.util.Map;
 import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.StachExtensions.*;
 import factset.analyticsapi.engines.models.CalculationStatus.StatusEnum;
 
 import com.google.protobuf.util.JsonFormat;
@@ -19,8 +20,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.factset.protobuf.stach.PackageProto.Package;
 
+import static factset.analyticsapi.engines.StachExtensions.convertToTableFormat;
+
 public class VaultEngineExample {
-	
+
   private static FdsApiClient apiClient = null;
   private static final String BASE_PATH = "https://api.factset.com";
   private static final String USERNAME = "<username-serial>";
@@ -38,16 +41,16 @@ public class VaultEngineExample {
       ComponentsApi componentsApi = new ComponentsApi(getApiClient());
       Map<String, ComponentSummary> components = componentsApi.getVaultComponents(VAULT_DEFAULT_DOCUMENT);
       String componentId = components.entrySet().stream().filter(
-          c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
-          .iterator().next().getKey();
+              c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
+              .iterator().next().getKey();
       System.out.println("ID of component with Name '" + COMPONENT_NAME + "' and category '" + COMPONENT_CATEGORY
-          + "' : " + componentId);
+              + "' : " + componentId);
 
       ConfigurationsApi configurationsApi = new ConfigurationsApi(getApiClient());
       Map<String, VaultConfigurationSummary> configurationsMap = configurationsApi
-          .getVaultConfigurations(VAULT_DEFAULT_ACCOUNT);
+              .getVaultConfigurations(VAULT_DEFAULT_ACCOUNT);
       String configurationId = configurationsMap.entrySet().iterator().next().getKey();
-      
+
       Calculation parameters = new Calculation();
 
       VaultCalculationParameters vaultItem = new VaultCalculationParameters();
@@ -80,7 +83,7 @@ public class VaultEngineExample {
       ApiResponse<CalculationStatus> getStatus = null;
 
       while (getStatus == null || getStatus.getData().getStatus() == StatusEnum.QUEUED
-          || getStatus.getData().getStatus() == StatusEnum.EXECUTING) {
+              || getStatus.getData().getStatus() == StatusEnum.EXECUTING) {
         if (getStatus != null) {
           List<String> cacheControl = getStatus.getHeaders().get("Cache-Control");
           if (cacheControl != null) {
@@ -117,12 +120,10 @@ public class VaultEngineExample {
 
           Package result = (Package) builder.build();
           // To convert result to 2D tables.
-          List<TableData> tables = StachExtensions.convertToTableFormat(result);
+          List<TableData> tables = convertToTableFormat(result);
           ObjectMapper mapper = new ObjectMapper();
           String json = mapper.writeValueAsString(tables.get(0));
           System.out.println(json); // Prints the result in 2D table format.
-          // Uncomment the following line to generate an Excel file
-          // StachExtensions.generateExcel(result);
         } else {
           System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Failed!!!");
           System.out.println("Error message : " + calculationUnitParameters.getValue().getError());
@@ -133,14 +134,14 @@ public class VaultEngineExample {
       return;
     }
   }
-  
+
   private static class FdsApiClient extends ApiClient
   {
     // Uncomment the below lines to use a proxy server
     /*@Override
     protected void performAdditionalClientConfiguration(ClientConfig clientConfig) {
-	  clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
-	  clientConfig.connectorProvider( new ApacheConnectorProvider() );
+    clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
+    clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }
 

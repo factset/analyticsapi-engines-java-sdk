@@ -12,4 +12,8 @@ Name | Type | Description | Notes
 **dates** | [**SPARDateParameters**](SPARDateParameters.md) |  |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

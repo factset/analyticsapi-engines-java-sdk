@@ -11,4 +11,8 @@ Name | Type | Description | Notes
 **holdingsmode** | **String** | Holdings Mode. |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

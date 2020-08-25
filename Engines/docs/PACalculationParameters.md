@@ -15,4 +15,8 @@ Name | Type | Description | Notes
 **columns** | [**java.util.List&lt;PACalculationColumn&gt;**](PACalculationColumn.md) |  |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

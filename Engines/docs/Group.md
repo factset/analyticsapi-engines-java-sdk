@@ -11,4 +11,8 @@ Name | Type | Description | Notes
 **category** | **String** | Group Category |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

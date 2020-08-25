@@ -10,4 +10,8 @@ Name | Type | Description | Notes
 **category** | **String** | Component category. |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

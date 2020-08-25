@@ -14,4 +14,8 @@ Name | Type | Description | Notes
 **name** | **String** | Account name. |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -11,4 +11,8 @@ Name | Type | Description | Notes
 **vault** | [**java.util.Map&lt;String, VaultCalculationParameters&gt;**](VaultCalculationParameters.md) |  |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

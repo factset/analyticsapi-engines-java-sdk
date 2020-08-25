@@ -12,4 +12,8 @@ Name | Type | Description | Notes
 **configid** | **String** | Vault Configuration identifier. | 
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

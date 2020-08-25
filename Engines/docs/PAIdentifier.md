@@ -10,4 +10,8 @@ Name | Type | Description | Notes
 **holdingsmode** | **String** | Holdings Mode can be buyandhold, TBR or OMS. |  [optional]
 
 
+## Implemented Interfaces
+
+* Serializable
+
 
