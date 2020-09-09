@@ -1,7 +1,10 @@
 package examples;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 //import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
 //import org.glassfish.jersey.client.ClientConfig;
@@ -19,6 +22,11 @@ import com.factset.protobuf.stach.PackageProto.Package.Builder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.factset.protobuf.stach.PackageProto.Package;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import static factset.analyticsapi.engines.StachExtensions.convertToTableFormat;
 
@@ -124,6 +132,8 @@ public class VaultEngineExample {
           ObjectMapper mapper = new ObjectMapper();
           String json = mapper.writeValueAsString(tables.get(0));
           System.out.println(json); // Prints the result in 2D table format.
+          // Uncomment the following line to generate an Excel file
+          // generateExcel(result);
         } else {
           System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Failed!!!");
           System.out.println("Error message : " + calculationUnitParameters.getValue().getError());
@@ -132,6 +142,35 @@ public class VaultEngineExample {
     } catch (ApiException e) {
       handleException("VaultEngineExample#Main", e);
       return;
+    }
+  }
+
+  private static void generateExcel(Package packageObj) {
+    for (TableData table : convertToTableFormat(packageObj)) {
+      writeDataToExcel(table, UUID.randomUUID().toString() + ".xlsv");
+    }
+  }
+
+  private static void writeDataToExcel(TableData table, String fileLocation) {
+    XSSFWorkbook workbook = new XSSFWorkbook();
+    XSSFSheet sheet = workbook.createSheet("Calculation Report");
+    int rowsSize = table.getRows().size();
+    for (int rowIndex = 0; rowIndex < rowsSize; rowIndex++) {
+      XSSFRow xsswRow = sheet.createRow(rowIndex);
+      List<String> cells = table.getRows().get(rowIndex).getCells();
+      for (int cellIndex = 0; cellIndex < cells.size(); cellIndex++) {
+        XSSFCell xssfCell = xsswRow.createCell(cellIndex);
+        xssfCell.setCellValue(cells.get(cellIndex));
+      }
+    }
+    try {
+      FileOutputStream fileStream = new FileOutputStream(new File(fileLocation));
+      workbook.write(fileStream);
+      fileStream.close();
+      workbook.close();
+    } catch (Exception e) {
+      System.err.println("Failed to write data to excel");
+      e.printStackTrace();
     }
   }
 
