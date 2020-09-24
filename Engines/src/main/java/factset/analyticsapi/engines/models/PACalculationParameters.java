@@ -1,6 +1,6 @@
 /*
  * Engines API
- * Allow clients to fetch Engines Analytics through APIs.
+ * Allow clients to fetch Analytics through APIs.
  *
  * The version of the OpenAPI document: 2
  * Contact: analytics.api.support@factset.com
@@ -38,7 +38,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   PACalculationParameters.JSON_PROPERTY_DATES,
   PACalculationParameters.JSON_PROPERTY_GROUPS,
   PACalculationParameters.JSON_PROPERTY_CURRENCYISOCODE,
-  PACalculationParameters.JSON_PROPERTY_COLUMNS
+  PACalculationParameters.JSON_PROPERTY_COLUMNS,
+  PACalculationParameters.JSON_PROPERTY_COMPONENTDETAIL
 })
 
 public class PACalculationParameters implements Serializable {
@@ -64,6 +65,9 @@ public class PACalculationParameters implements Serializable {
 
   public static final String JSON_PROPERTY_COLUMNS = "columns";
   private java.util.List<PACalculationColumn> columns = null;
+
+  public static final String JSON_PROPERTY_COMPONENTDETAIL = "componentdetail";
+  private String componentdetail;
 
 
   public PACalculationParameters componentid(String componentid) {
@@ -105,11 +109,11 @@ public class PACalculationParameters implements Serializable {
   }
 
    /**
-   * Get accounts
+   * List of accounts.
    * @return accounts
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of accounts.")
   @JsonProperty(JSON_PROPERTY_ACCOUNTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -138,11 +142,11 @@ public class PACalculationParameters implements Serializable {
   }
 
    /**
-   * Get benchmarks
+   * List of benchmarks.
    * @return benchmarks
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of benchmarks.")
   @JsonProperty(JSON_PROPERTY_BENCHMARKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -196,11 +200,11 @@ public class PACalculationParameters implements Serializable {
   }
 
    /**
-   * Get groups
+   * List of groupings for the PA calculation. This will take precedence over the groupings saved in the PA document.
    * @return groups
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of groupings for the PA calculation. This will take precedence over the groupings saved in the PA document.")
   @JsonProperty(JSON_PROPERTY_GROUPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -254,11 +258,11 @@ public class PACalculationParameters implements Serializable {
   }
 
    /**
-   * Get columns
+   * List of columns for the PA calculation. This will take precedence over the columns saved in the PA document.
    * @return columns
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of columns for the PA calculation. This will take precedence over the columns saved in the PA document.")
   @JsonProperty(JSON_PROPERTY_COLUMNS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -269,6 +273,31 @@ public class PACalculationParameters implements Serializable {
 
   public void setColumns(java.util.List<PACalculationColumn> columns) {
     this.columns = columns;
+  }
+
+
+  public PACalculationParameters componentdetail(String componentdetail) {
+    
+    this.componentdetail = componentdetail;
+    return this;
+  }
+
+   /**
+   * Component detail type for the PA component. It can be GROUPS or TOTALS.
+   * @return componentdetail
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Component detail type for the PA component. It can be GROUPS or TOTALS.")
+  @JsonProperty(JSON_PROPERTY_COMPONENTDETAIL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getComponentdetail() {
+    return componentdetail;
+  }
+
+
+  public void setComponentdetail(String componentdetail) {
+    this.componentdetail = componentdetail;
   }
 
 
@@ -287,12 +316,13 @@ public class PACalculationParameters implements Serializable {
         Objects.equals(this.dates, paCalculationParameters.dates) &&
         Objects.equals(this.groups, paCalculationParameters.groups) &&
         Objects.equals(this.currencyisocode, paCalculationParameters.currencyisocode) &&
-        Objects.equals(this.columns, paCalculationParameters.columns);
+        Objects.equals(this.columns, paCalculationParameters.columns) &&
+        Objects.equals(this.componentdetail, paCalculationParameters.componentdetail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(componentid, accounts, benchmarks, dates, groups, currencyisocode, columns);
+    return Objects.hash(componentid, accounts, benchmarks, dates, groups, currencyisocode, columns, componentdetail);
   }
 
 
@@ -307,6 +337,7 @@ public class PACalculationParameters implements Serializable {
     sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
     sb.append("    currencyisocode: ").append(toIndentedString(currencyisocode)).append("\n");
     sb.append("    columns: ").append(toIndentedString(columns)).append("\n");
+    sb.append("    componentdetail: ").append(toIndentedString(componentdetail)).append("\n");
     sb.append("}");
     return sb.toString();
   }

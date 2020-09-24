@@ -1,6 +1,6 @@
 /*
  * Engines API
- * Allow clients to fetch Engines Analytics through APIs.
+ * Allow clients to fetch Analytics through APIs.
  *
  * The version of the OpenAPI document: 2
  * Contact: analytics.api.support@factset.com
@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.PACalculationParameters;
+import factset.analyticsapi.engines.models.PubCalculationParameters;
 import factset.analyticsapi.engines.models.SPARCalculationParameters;
 import factset.analyticsapi.engines.models.VaultCalculationParameters;
 import io.swagger.annotations.ApiModel;
@@ -33,7 +34,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   Calculation.JSON_PROPERTY_PA,
   Calculation.JSON_PROPERTY_SPAR,
-  Calculation.JSON_PROPERTY_VAULT
+  Calculation.JSON_PROPERTY_VAULT,
+  Calculation.JSON_PROPERTY_PUB
 })
 
 public class Calculation implements Serializable {
@@ -47,6 +49,9 @@ public class Calculation implements Serializable {
 
   public static final String JSON_PROPERTY_VAULT = "vault";
   private java.util.Map<String, VaultCalculationParameters> vault = null;
+
+  public static final String JSON_PROPERTY_PUB = "pub";
+  private java.util.Map<String, PubCalculationParameters> pub = null;
 
 
   public Calculation pa(java.util.Map<String, PACalculationParameters> pa) {
@@ -64,11 +69,11 @@ public class Calculation implements Serializable {
   }
 
    /**
-   * Get pa
+   * List of PA calculation parameters.
    * @return pa
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of PA calculation parameters.")
   @JsonProperty(JSON_PROPERTY_PA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -97,11 +102,11 @@ public class Calculation implements Serializable {
   }
 
    /**
-   * Get spar
+   * List of SPAR calculation parameters.
    * @return spar
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of SPAR calculation parameters.")
   @JsonProperty(JSON_PROPERTY_SPAR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -130,11 +135,11 @@ public class Calculation implements Serializable {
   }
 
    /**
-   * Get vault
+   * List of Vault calculation parameters.
    * @return vault
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of Vault calculation parameters.")
   @JsonProperty(JSON_PROPERTY_VAULT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -145,6 +150,39 @@ public class Calculation implements Serializable {
 
   public void setVault(java.util.Map<String, VaultCalculationParameters> vault) {
     this.vault = vault;
+  }
+
+
+  public Calculation pub(java.util.Map<String, PubCalculationParameters> pub) {
+    
+    this.pub = pub;
+    return this;
+  }
+
+  public Calculation putPubItem(String key, PubCalculationParameters pubItem) {
+    if (this.pub == null) {
+      this.pub = new java.util.HashMap<String, PubCalculationParameters>();
+    }
+    this.pub.put(key, pubItem);
+    return this;
+  }
+
+   /**
+   * List of Publisher calculation parameters.
+   * @return pub
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "List of Publisher calculation parameters.")
+  @JsonProperty(JSON_PROPERTY_PUB)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public java.util.Map<String, PubCalculationParameters> getPub() {
+    return pub;
+  }
+
+
+  public void setPub(java.util.Map<String, PubCalculationParameters> pub) {
+    this.pub = pub;
   }
 
 
@@ -159,12 +197,13 @@ public class Calculation implements Serializable {
     Calculation calculation = (Calculation) o;
     return Objects.equals(this.pa, calculation.pa) &&
         Objects.equals(this.spar, calculation.spar) &&
-        Objects.equals(this.vault, calculation.vault);
+        Objects.equals(this.vault, calculation.vault) &&
+        Objects.equals(this.pub, calculation.pub);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(pa, spar, vault);
+    return Objects.hash(pa, spar, vault, pub);
   }
 
 
@@ -175,6 +214,7 @@ public class Calculation implements Serializable {
     sb.append("    pa: ").append(toIndentedString(pa)).append("\n");
     sb.append("    spar: ").append(toIndentedString(spar)).append("\n");
     sb.append("    vault: ").append(toIndentedString(vault)).append("\n");
+    sb.append("    pub: ").append(toIndentedString(pub)).append("\n");
     sb.append("}");
     return sb.toString();
   }

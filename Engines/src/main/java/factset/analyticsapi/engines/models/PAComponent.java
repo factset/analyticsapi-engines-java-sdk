@@ -1,6 +1,6 @@
 /*
  * Engines API
- * Allow clients to fetch Engines Analytics through APIs.
+ * Allow clients to fetch Analytics through APIs.
  *
  * The version of the OpenAPI document: 2
  * Contact: analytics.api.support@factset.com
@@ -94,11 +94,11 @@ public class PAComponent implements Serializable {
 
 
    /**
-   * Get accounts
+   * List of accounts saved in the PA document.
    * @return accounts
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of accounts saved in the PA document.")
   @JsonProperty(JSON_PROPERTY_ACCOUNTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -110,11 +110,11 @@ public class PAComponent implements Serializable {
 
 
    /**
-   * Get benchmarks
+   * List of benchmarks saved in the PA document.
    * @return benchmarks
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of benchmarks saved in the PA document.")
   @JsonProperty(JSON_PROPERTY_BENCHMARKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -182,11 +182,11 @@ public class PAComponent implements Serializable {
   }
 
    /**
-   * Get snapshot
+   * Is the component type snapshot or subperiod.
    * @return snapshot
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Is the component type snapshot or subperiod.")
   @JsonProperty(JSON_PROPERTY_SNAPSHOT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

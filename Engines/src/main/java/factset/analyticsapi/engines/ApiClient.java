@@ -60,12 +60,12 @@ public class ApiClient {
   protected String basePath = "https://api.factset.com";
   protected List<ServerConfiguration> servers = new ArrayList<ServerConfiguration>(Arrays.asList(
     new ServerConfiguration(
-      "https://api.factset.com/",
+      "https://api.factset.com",
       "No description provided",
       new HashMap<String, ServerVariable>()
     )
   ));
-  protected Integer serverIndex = null;
+  protected Integer serverIndex = 0;
   protected Map<String, String> serverVariables = null;
   protected Map<String, List<ServerConfiguration>> operationServers = new HashMap<String, List<ServerConfiguration>>() {{
   }};
@@ -91,7 +91,7 @@ public class ApiClient {
     this.dateFormat = new RFC3339DateFormat();
 
     // Set default User-Agent.
-    setUserAgent("engines-api/3.1.0/java");
+    setUserAgent("engines-api/4.0.0/java");
 
     // Setup authentications (key: authentication name, value: authentication).
     authentications = new HashMap<String, Authentication>();

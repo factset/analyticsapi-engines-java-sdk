@@ -1,6 +1,6 @@
 /*
  * Engines API
- * Allow clients to fetch Engines Analytics through APIs.
+ * Allow clients to fetch Analytics through APIs.
  *
  * The version of the OpenAPI document: 2
  * Contact: analytics.api.support@factset.com
@@ -33,7 +33,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   VaultCalculationParameters.JSON_PROPERTY_COMPONENTID,
   VaultCalculationParameters.JSON_PROPERTY_ACCOUNT,
   VaultCalculationParameters.JSON_PROPERTY_DATES,
-  VaultCalculationParameters.JSON_PROPERTY_CONFIGID
+  VaultCalculationParameters.JSON_PROPERTY_CONFIGID,
+  VaultCalculationParameters.JSON_PROPERTY_COMPONENTDETAIL
 })
 
 public class VaultCalculationParameters implements Serializable {
@@ -50,6 +51,9 @@ public class VaultCalculationParameters implements Serializable {
 
   public static final String JSON_PROPERTY_CONFIGID = "configid";
   private String configid;
+
+  public static final String JSON_PROPERTY_COMPONENTDETAIL = "componentdetail";
+  private String componentdetail;
 
 
   public VaultCalculationParameters componentid(String componentid) {
@@ -149,6 +153,31 @@ public class VaultCalculationParameters implements Serializable {
   }
 
 
+  public VaultCalculationParameters componentdetail(String componentdetail) {
+    
+    this.componentdetail = componentdetail;
+    return this;
+  }
+
+   /**
+   * Component detail type for the Vault component. It can be GROUPS or TOTALS.
+   * @return componentdetail
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Component detail type for the Vault component. It can be GROUPS or TOTALS.")
+  @JsonProperty(JSON_PROPERTY_COMPONENTDETAIL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getComponentdetail() {
+    return componentdetail;
+  }
+
+
+  public void setComponentdetail(String componentdetail) {
+    this.componentdetail = componentdetail;
+  }
+
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -161,12 +190,13 @@ public class VaultCalculationParameters implements Serializable {
     return Objects.equals(this.componentid, vaultCalculationParameters.componentid) &&
         Objects.equals(this.account, vaultCalculationParameters.account) &&
         Objects.equals(this.dates, vaultCalculationParameters.dates) &&
-        Objects.equals(this.configid, vaultCalculationParameters.configid);
+        Objects.equals(this.configid, vaultCalculationParameters.configid) &&
+        Objects.equals(this.componentdetail, vaultCalculationParameters.componentdetail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(componentid, account, dates, configid);
+    return Objects.hash(componentid, account, dates, configid, componentdetail);
   }
 
 
@@ -178,6 +208,7 @@ public class VaultCalculationParameters implements Serializable {
     sb.append("    account: ").append(toIndentedString(account)).append("\n");
     sb.append("    dates: ").append(toIndentedString(dates)).append("\n");
     sb.append("    configid: ").append(toIndentedString(configid)).append("\n");
+    sb.append("    componentdetail: ").append(toIndentedString(componentdetail)).append("\n");
     sb.append("}");
     return sb.toString();
   }

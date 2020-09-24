@@ -1,6 +1,6 @@
 /*
  * Engines API
- * Allow clients to fetch Engines Analytics through APIs.
+ * Allow clients to fetch Analytics through APIs.
  *
  * The version of the OpenAPI document: 2
  * Contact: analytics.api.support@factset.com
@@ -73,11 +73,11 @@ public class PAIdentifier implements Serializable {
   }
 
    /**
-   * Holdings Mode can be buyandhold, TBR or OMS.
+   * Holdings Mode can be B&amp;H, TBR, OMS or EXT.
    * @return holdingsmode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Holdings Mode can be buyandhold, TBR or OMS.")
+  @ApiModelProperty(value = "Holdings Mode can be B&H, TBR, OMS or EXT.")
   @JsonProperty(JSON_PROPERTY_HOLDINGSMODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

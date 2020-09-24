@@ -1,6 +1,6 @@
 /*
  * Engines API
- * Allow clients to fetch Engines Analytics through APIs.
+ * Allow clients to fetch Analytics through APIs.
  *
  * The version of the OpenAPI document: 2
  * Contact: analytics.api.support@factset.com
@@ -29,16 +29,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   CalculationUnitStatus.JSON_PROPERTY_STATUS,
-  CalculationUnitStatus.JSON_PROPERTY_POINTS,
   CalculationUnitStatus.JSON_PROPERTY_ERROR,
-  CalculationUnitStatus.JSON_PROPERTY_RESULT
+  CalculationUnitStatus.JSON_PROPERTY_RESULT,
+  CalculationUnitStatus.JSON_PROPERTY_PROGRESS
 })
 
 public class CalculationUnitStatus implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /**
-   * Gets or Sets status
+   * The status of calculation unit.
    */
   public enum StatusEnum {
     QUEUED("Queued"),
@@ -81,14 +81,14 @@ public class CalculationUnitStatus implements Serializable {
   public static final String JSON_PROPERTY_STATUS = "status";
   private StatusEnum status;
 
-  public static final String JSON_PROPERTY_POINTS = "points";
-  private Integer points;
-
   public static final String JSON_PROPERTY_ERROR = "error";
   private String error;
 
   public static final String JSON_PROPERTY_RESULT = "result";
   private String result;
+
+  public static final String JSON_PROPERTY_PROGRESS = "progress";
+  private String progress;
 
 
   public CalculationUnitStatus status(StatusEnum status) {
@@ -98,11 +98,11 @@ public class CalculationUnitStatus implements Serializable {
   }
 
    /**
-   * Get status
+   * The status of calculation unit.
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The status of calculation unit.")
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -116,31 +116,6 @@ public class CalculationUnitStatus implements Serializable {
   }
 
 
-  public CalculationUnitStatus points(Integer points) {
-    
-    this.points = points;
-    return this;
-  }
-
-   /**
-   * Get points
-   * @return points
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_POINTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getPoints() {
-    return points;
-  }
-
-
-  public void setPoints(Integer points) {
-    this.points = points;
-  }
-
-
   public CalculationUnitStatus error(String error) {
     
     this.error = error;
@@ -148,11 +123,11 @@ public class CalculationUnitStatus implements Serializable {
   }
 
    /**
-   * Get error
+   * The error in a calculation unit.
    * @return error
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The error in a calculation unit.")
   @JsonProperty(JSON_PROPERTY_ERROR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -173,11 +148,11 @@ public class CalculationUnitStatus implements Serializable {
   }
 
    /**
-   * Get result
+   * The result URL of the calculation.
    * @return result
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The result URL of the calculation.")
   @JsonProperty(JSON_PROPERTY_RESULT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -191,6 +166,31 @@ public class CalculationUnitStatus implements Serializable {
   }
 
 
+  public CalculationUnitStatus progress(String progress) {
+    
+    this.progress = progress;
+    return this;
+  }
+
+   /**
+   * The progress of the calculation unit.
+   * @return progress
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The progress of the calculation unit.")
+  @JsonProperty(JSON_PROPERTY_PROGRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getProgress() {
+    return progress;
+  }
+
+
+  public void setProgress(String progress) {
+    this.progress = progress;
+  }
+
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -201,14 +201,14 @@ public class CalculationUnitStatus implements Serializable {
     }
     CalculationUnitStatus calculationUnitStatus = (CalculationUnitStatus) o;
     return Objects.equals(this.status, calculationUnitStatus.status) &&
-        Objects.equals(this.points, calculationUnitStatus.points) &&
         Objects.equals(this.error, calculationUnitStatus.error) &&
-        Objects.equals(this.result, calculationUnitStatus.result);
+        Objects.equals(this.result, calculationUnitStatus.result) &&
+        Objects.equals(this.progress, calculationUnitStatus.progress);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, points, error, result);
+    return Objects.hash(status, error, result, progress);
   }
 
 
@@ -217,9 +217,9 @@ public class CalculationUnitStatus implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class CalculationUnitStatus {\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    points: ").append(toIndentedString(points)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("    result: ").append(toIndentedString(result)).append("\n");
+    sb.append("    progress: ").append(toIndentedString(progress)).append("\n");
     sb.append("}");
     return sb.toString();
   }

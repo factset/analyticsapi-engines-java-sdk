@@ -7,10 +7,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **status** | [**StatusEnum**](#StatusEnum) |  |  [optional]
-**points** | **Integer** |  |  [optional]
-**pa** | [**java.util.Map&lt;String, CalculationUnitStatus&gt;**](CalculationUnitStatus.md) |  |  [optional]
-**spar** | [**java.util.Map&lt;String, CalculationUnitStatus&gt;**](CalculationUnitStatus.md) |  |  [optional]
-**vault** | [**java.util.Map&lt;String, CalculationUnitStatus&gt;**](CalculationUnitStatus.md) |  |  [optional]
+**units** | **Integer** | Number of calculation units in batch. |  [optional]
+**pa** | [**java.util.Map&lt;String, CalculationUnitStatus&gt;**](CalculationUnitStatus.md) | List of statuses for PA calculation units. |  [optional]
+**spar** | [**java.util.Map&lt;String, CalculationUnitStatus&gt;**](CalculationUnitStatus.md) | List of statuses for SPAR calculation units. |  [optional]
+**vault** | [**java.util.Map&lt;String, CalculationUnitStatus&gt;**](CalculationUnitStatus.md) | List of statuses for Vault calculation units. |  [optional]
+**pub** | [**java.util.Map&lt;String, CalculationUnitStatus&gt;**](CalculationUnitStatus.md) | List of statuses for Publisher calculation units. |  [optional]
 
 
 

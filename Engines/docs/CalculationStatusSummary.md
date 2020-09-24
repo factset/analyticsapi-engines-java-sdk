@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**status** | [**StatusEnum**](#StatusEnum) |  |  [optional]
-**points** | **Integer** | Number of calculation units in batch. |  [optional]
+**status** | [**StatusEnum**](#StatusEnum) | The status of the calculation. |  [optional]
+**units** | **Integer** | Number of calculation units in batch. |  [optional]
 **requestTime** | [**OffsetDateTime**](OffsetDateTime.md) | Request time of calculation. |  [optional]
 **lastPollTime** | [**OffsetDateTime**](OffsetDateTime.md) | Last poll time of calculation. |  [optional]
 

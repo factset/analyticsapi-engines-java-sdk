@@ -1,6 +1,6 @@
 /*
  * Engines API
- * Allow clients to fetch Engines Analytics through APIs.
+ * Allow clients to fetch Analytics through APIs.
  *
  * The version of the OpenAPI document: 2
  * Contact: analytics.api.support@factset.com
@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   CalculationStatusSummary.JSON_PROPERTY_STATUS,
-  CalculationStatusSummary.JSON_PROPERTY_POINTS,
+  CalculationStatusSummary.JSON_PROPERTY_UNITS,
   CalculationStatusSummary.JSON_PROPERTY_REQUEST_TIME,
   CalculationStatusSummary.JSON_PROPERTY_LAST_POLL_TIME
 })
@@ -39,7 +39,7 @@ public class CalculationStatusSummary implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /**
-   * Gets or Sets status
+   * The status of the calculation.
    */
   public enum StatusEnum {
     QUEUED("Queued"),
@@ -80,8 +80,8 @@ public class CalculationStatusSummary implements Serializable {
   public static final String JSON_PROPERTY_STATUS = "status";
   private StatusEnum status;
 
-  public static final String JSON_PROPERTY_POINTS = "points";
-  private Integer points;
+  public static final String JSON_PROPERTY_UNITS = "units";
+  private Integer units;
 
   public static final String JSON_PROPERTY_REQUEST_TIME = "requestTime";
   private OffsetDateTime requestTime;
@@ -97,11 +97,11 @@ public class CalculationStatusSummary implements Serializable {
   }
 
    /**
-   * Get status
+   * The status of the calculation.
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The status of the calculation.")
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -115,28 +115,28 @@ public class CalculationStatusSummary implements Serializable {
   }
 
 
-  public CalculationStatusSummary points(Integer points) {
+  public CalculationStatusSummary units(Integer units) {
     
-    this.points = points;
+    this.units = units;
     return this;
   }
 
    /**
    * Number of calculation units in batch.
-   * @return points
+   * @return units
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Number of calculation units in batch.")
-  @JsonProperty(JSON_PROPERTY_POINTS)
+  @JsonProperty(JSON_PROPERTY_UNITS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Integer getPoints() {
-    return points;
+  public Integer getUnits() {
+    return units;
   }
 
 
-  public void setPoints(Integer points) {
-    this.points = points;
+  public void setUnits(Integer units) {
+    this.units = units;
   }
 
 
@@ -200,14 +200,14 @@ public class CalculationStatusSummary implements Serializable {
     }
     CalculationStatusSummary calculationStatusSummary = (CalculationStatusSummary) o;
     return Objects.equals(this.status, calculationStatusSummary.status) &&
-        Objects.equals(this.points, calculationStatusSummary.points) &&
+        Objects.equals(this.units, calculationStatusSummary.units) &&
         Objects.equals(this.requestTime, calculationStatusSummary.requestTime) &&
         Objects.equals(this.lastPollTime, calculationStatusSummary.lastPollTime);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, points, requestTime, lastPollTime);
+    return Objects.hash(status, units, requestTime, lastPollTime);
   }
 
 
@@ -216,7 +216,7 @@ public class CalculationStatusSummary implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class CalculationStatusSummary {\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    points: ").append(toIndentedString(points)).append("\n");
+    sb.append("    units: ").append(toIndentedString(units)).append("\n");
     sb.append("    requestTime: ").append(toIndentedString(requestTime)).append("\n");
     sb.append("    lastPollTime: ").append(toIndentedString(lastPollTime)).append("\n");
     sb.append("}");

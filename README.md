@@ -11,8 +11,8 @@ API client library to leverage FactSet's PA Engine, SPAR Engine and Vault API in
 * Java 1.7, Java 1.8
 
 #### Current versions
-* API_VERSION - 2
-* ARTIFACT_VERSION - 3.0.0
+* API_VERSION - v2
+* ARTIFACT_VERSION - 4.0.0
 
 ## To install the API client library
 Add this dependency to project's POM.

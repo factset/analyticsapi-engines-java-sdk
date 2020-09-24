@@ -1,6 +1,6 @@
 /*
  * Engines API
- * Allow clients to fetch Engines Analytics through APIs.
+ * Allow clients to fetch Analytics through APIs.
  *
  * The version of the OpenAPI document: 2
  * Contact: analytics.api.support@factset.com
@@ -25,8 +25,9 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * PADateParameters
+ * The date parameters for PA calculation.
  */
+@ApiModel(description = "The date parameters for PA calculation.")
 @JsonPropertyOrder({
   PADateParameters.JSON_PROPERTY_STARTDATE,
   PADateParameters.JSON_PROPERTY_ENDDATE,

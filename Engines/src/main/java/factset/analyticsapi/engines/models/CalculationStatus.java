@@ -1,6 +1,6 @@
 /*
  * Engines API
- * Allow clients to fetch Engines Analytics through APIs.
+ * Allow clients to fetch Analytics through APIs.
  *
  * The version of the OpenAPI document: 2
  * Contact: analytics.api.support@factset.com
@@ -30,10 +30,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   CalculationStatus.JSON_PROPERTY_STATUS,
-  CalculationStatus.JSON_PROPERTY_POINTS,
+  CalculationStatus.JSON_PROPERTY_UNITS,
   CalculationStatus.JSON_PROPERTY_PA,
   CalculationStatus.JSON_PROPERTY_SPAR,
-  CalculationStatus.JSON_PROPERTY_VAULT
+  CalculationStatus.JSON_PROPERTY_VAULT,
+  CalculationStatus.JSON_PROPERTY_PUB
 })
 
 public class CalculationStatus implements Serializable {
@@ -81,8 +82,8 @@ public class CalculationStatus implements Serializable {
   public static final String JSON_PROPERTY_STATUS = "status";
   private StatusEnum status;
 
-  public static final String JSON_PROPERTY_POINTS = "points";
-  private Integer points;
+  public static final String JSON_PROPERTY_UNITS = "units";
+  private Integer units;
 
   public static final String JSON_PROPERTY_PA = "pa";
   private java.util.Map<String, CalculationUnitStatus> pa = null;
@@ -92,6 +93,9 @@ public class CalculationStatus implements Serializable {
 
   public static final String JSON_PROPERTY_VAULT = "vault";
   private java.util.Map<String, CalculationUnitStatus> vault = null;
+
+  public static final String JSON_PROPERTY_PUB = "pub";
+  private java.util.Map<String, CalculationUnitStatus> pub = null;
 
 
   public CalculationStatus status(StatusEnum status) {
@@ -119,28 +123,28 @@ public class CalculationStatus implements Serializable {
   }
 
 
-  public CalculationStatus points(Integer points) {
+  public CalculationStatus units(Integer units) {
     
-    this.points = points;
+    this.units = units;
     return this;
   }
 
    /**
-   * Get points
-   * @return points
+   * Number of calculation units in batch.
+   * @return units
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_POINTS)
+  @ApiModelProperty(value = "Number of calculation units in batch.")
+  @JsonProperty(JSON_PROPERTY_UNITS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Integer getPoints() {
-    return points;
+  public Integer getUnits() {
+    return units;
   }
 
 
-  public void setPoints(Integer points) {
-    this.points = points;
+  public void setUnits(Integer units) {
+    this.units = units;
   }
 
 
@@ -159,11 +163,11 @@ public class CalculationStatus implements Serializable {
   }
 
    /**
-   * Get pa
+   * List of statuses for PA calculation units.
    * @return pa
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of statuses for PA calculation units.")
   @JsonProperty(JSON_PROPERTY_PA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -192,11 +196,11 @@ public class CalculationStatus implements Serializable {
   }
 
    /**
-   * Get spar
+   * List of statuses for SPAR calculation units.
    * @return spar
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of statuses for SPAR calculation units.")
   @JsonProperty(JSON_PROPERTY_SPAR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -225,11 +229,11 @@ public class CalculationStatus implements Serializable {
   }
 
    /**
-   * Get vault
+   * List of statuses for Vault calculation units.
    * @return vault
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of statuses for Vault calculation units.")
   @JsonProperty(JSON_PROPERTY_VAULT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -243,6 +247,39 @@ public class CalculationStatus implements Serializable {
   }
 
 
+  public CalculationStatus pub(java.util.Map<String, CalculationUnitStatus> pub) {
+    
+    this.pub = pub;
+    return this;
+  }
+
+  public CalculationStatus putPubItem(String key, CalculationUnitStatus pubItem) {
+    if (this.pub == null) {
+      this.pub = new java.util.HashMap<String, CalculationUnitStatus>();
+    }
+    this.pub.put(key, pubItem);
+    return this;
+  }
+
+   /**
+   * List of statuses for Publisher calculation units.
+   * @return pub
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "List of statuses for Publisher calculation units.")
+  @JsonProperty(JSON_PROPERTY_PUB)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public java.util.Map<String, CalculationUnitStatus> getPub() {
+    return pub;
+  }
+
+
+  public void setPub(java.util.Map<String, CalculationUnitStatus> pub) {
+    this.pub = pub;
+  }
+
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -253,15 +290,16 @@ public class CalculationStatus implements Serializable {
     }
     CalculationStatus calculationStatus = (CalculationStatus) o;
     return Objects.equals(this.status, calculationStatus.status) &&
-        Objects.equals(this.points, calculationStatus.points) &&
+        Objects.equals(this.units, calculationStatus.units) &&
         Objects.equals(this.pa, calculationStatus.pa) &&
         Objects.equals(this.spar, calculationStatus.spar) &&
-        Objects.equals(this.vault, calculationStatus.vault);
+        Objects.equals(this.vault, calculationStatus.vault) &&
+        Objects.equals(this.pub, calculationStatus.pub);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, points, pa, spar, vault);
+    return Objects.hash(status, units, pa, spar, vault, pub);
   }
 
 
@@ -270,10 +308,11 @@ public class CalculationStatus implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class CalculationStatus {\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    points: ").append(toIndentedString(points)).append("\n");
+    sb.append("    units: ").append(toIndentedString(units)).append("\n");
     sb.append("    pa: ").append(toIndentedString(pa)).append("\n");
     sb.append("    spar: ").append(toIndentedString(spar)).append("\n");
     sb.append("    vault: ").append(toIndentedString(vault)).append("\n");
+    sb.append("    pub: ").append(toIndentedString(pub)).append("\n");
     sb.append("}");
     return sb.toString();
   }

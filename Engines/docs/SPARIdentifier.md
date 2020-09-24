@@ -2,6 +2,7 @@
 
 # SPARIdentifier
 
+The account/benchmark parameter for SPAR calculation.
 ## Properties
 
 Name | Type | Description | Notes

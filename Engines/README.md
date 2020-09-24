@@ -5,7 +5,7 @@ Engines API
 
 - API version: 2
 
-Allow clients to fetch Engines Analytics through APIs.
+Allow clients to fetch Analytics through APIs.
 
   For more information, please visit [https://developer.factset.com/contact](https://developer.factset.com/contact)
 
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.factset.analyticsapi</groupId>
   <artifactId>engines-sdk</artifactId>
-  <version>3.1.0</version>
+  <version>4.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +52,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.factset.analyticsapi:engines-sdk:3.1.0"
+compile "com.factset.analyticsapi:engines-sdk:4.0.0"
 ```
 
 ### Others
@@ -65,7 +65,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/engines-sdk-3.1.0.jar`
+- `target/engines-sdk-4.0.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -91,7 +91,7 @@ public class AccountsApiExample {
         Basic.setPassword("YOUR PASSWORD");
 
         AccountsApi apiInstance = new AccountsApi(defaultClient);
-        String path = "path_example"; // String | The directory to get the accounts and sub-directories in
+        String path = "\"\""; // String | The directory to get the accounts and sub-directories in
         try {
             AccountDirectories result = apiInstance.getAccounts(path);
             System.out.println(result);
@@ -132,12 +132,23 @@ Class | Method | HTTP request | Description
 *DatesApi* | [**convertPADatesToAbsoluteFormat**](docs/DatesApi.md#convertPADatesToAbsoluteFormat) | **GET** /analytics/lookups/v2/engines/pa/dates | Convert PA dates to absolute format
 *DatesApi* | [**convertVaultDatesToAbsoluteFormat**](docs/DatesApi.md#convertVaultDatesToAbsoluteFormat) | **GET** /analytics/lookups/v2/engines/vault/dates | Convert Vault dates to absolute format
 *DocumentsApi* | [**getPA3Documents**](docs/DocumentsApi.md#getPA3Documents) | **GET** /analytics/lookups/v2/engines/pa/documents/{path} | Get PA3 documents and sub-directories in a directory
+*DocumentsApi* | [**getPubDocuments**](docs/DocumentsApi.md#getPubDocuments) | **GET** /analytics/lookups/v2/engines/pub/documents/{path} | Gets Publisher documents and sub-directories in a directory
 *DocumentsApi* | [**getSPAR3Documents**](docs/DocumentsApi.md#getSPAR3Documents) | **GET** /analytics/lookups/v2/engines/spar/documents/{path} | Gets SPAR3 documents and sub-directories in a directory
 *DocumentsApi* | [**getVaultDocuments**](docs/DocumentsApi.md#getVaultDocuments) | **GET** /analytics/lookups/v2/engines/vault/documents/{path} | Get Vault documents and sub-directories in a directory
 *FrequenciesApi* | [**getPAFrequencies**](docs/FrequenciesApi.md#getPAFrequencies) | **GET** /analytics/lookups/v2/engines/pa/frequencies | Get PA frequencies
 *FrequenciesApi* | [**getSPARFrequencies**](docs/FrequenciesApi.md#getSPARFrequencies) | **GET** /analytics/lookups/v2/engines/spar/frequencies | Get SPAR frequencies
 *FrequenciesApi* | [**getVaultFrequencies**](docs/FrequenciesApi.md#getVaultFrequencies) | **GET** /analytics/lookups/v2/engines/vault/frequencies | Get Vault frequencies
 *GroupsApi* | [**getPAGroups**](docs/GroupsApi.md#getPAGroups) | **GET** /analytics/lookups/v2/engines/pa/groups | Get PA groups
+*PaCalculationsApi* | [**cancelPACalculationById**](docs/PaCalculationsApi.md#cancelPACalculationById) | **DELETE** /analytics/engines/pa/v2/calculations/{id} | Cancel PA calculation by id
+*PaCalculationsApi* | [**getPACalculationById**](docs/PaCalculationsApi.md#getPACalculationById) | **GET** /analytics/engines/pa/v2/calculations/{id} | Get PA calculation by id
+*PaCalculationsApi* | [**runPACalculation**](docs/PaCalculationsApi.md#runPACalculation) | **POST** /analytics/engines/pa/v2/calculations | Run PA Calculation
+*SparBenchmarkApi* | [**getSPARBenchmarkById**](docs/SparBenchmarkApi.md#getSPARBenchmarkById) | **GET** /analytics/lookups/v2/engines/spar/benchmarks | Get SPAR benchmark details
+*SparCalculationsApi* | [**cancelSPARCalculationById**](docs/SparCalculationsApi.md#cancelSPARCalculationById) | **DELETE** /analytics/engines/spar/v2/calculations/{id} | Cancel SPAR calculation
+*SparCalculationsApi* | [**getSPARCalculationById**](docs/SparCalculationsApi.md#getSPARCalculationById) | **GET** /analytics/engines/spar/v2/calculations/{id} | Get SPAR calculation by id
+*SparCalculationsApi* | [**runSPARCalculation**](docs/SparCalculationsApi.md#runSPARCalculation) | **POST** /analytics/engines/spar/v2/calculations | Run SPAR Calculation
+*VaultCalculationsApi* | [**cancelVaultCalculationById**](docs/VaultCalculationsApi.md#cancelVaultCalculationById) | **DELETE** /analytics/engines/vault/v2/calculations/{id} | Cancel Vault calculation by id
+*VaultCalculationsApi* | [**getVaultCalculationById**](docs/VaultCalculationsApi.md#getVaultCalculationById) | **GET** /analytics/engines/vault/v2/calculations/{id} | Get Vault calculation by id
+*VaultCalculationsApi* | [**runVaultCalculation**](docs/VaultCalculationsApi.md#runVaultCalculation) | **POST** /analytics/engines/vault/v2/calculations | Run Vault Calculation
 *UtilityApi* | [**getByUrl**](docs/UtilityApi.md#getByUrl) | **GET** {url} | Get by url
 
 ## Documentation for Models
@@ -165,6 +176,10 @@ Class | Method | HTTP request | Description
  - [PAComponent](docs/PAComponent.md)
  - [PADateParameters](docs/PADateParameters.md)
  - [PAIdentifier](docs/PAIdentifier.md)
+ - [PubCalculationParameters](docs/PubCalculationParameters.md)
+ - [PubDateParameters](docs/PubDateParameters.md)
+ - [PubIdentifier](docs/PubIdentifier.md)
+ - [SPARBenchmark](docs/SPARBenchmark.md)
  - [SPARCalculationParameters](docs/SPARCalculationParameters.md)
  - [SPARDateParameters](docs/SPARDateParameters.md)
  - [SPARIdentifier](docs/SPARIdentifier.md)

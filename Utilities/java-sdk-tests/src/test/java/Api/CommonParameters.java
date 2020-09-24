@@ -22,10 +22,12 @@ public class CommonParameters {
   public static final String SPAR_BENCHMARK_RUSSELL_P_R1000 = "RUSSELL_P:R.2000";
   public static final String SPAR_BENCHMARK_RUSSELL_PREFIX = "RUSSELL";
   public static final String SPAR_BENCHMARK_RUSSELL_RETURN = "GTR";
-  public static final String VAULT_DEFAULT_DOCUMENT = "PA3_DOCUMENTS:DEFAULT";
-  public static final String VAULT_DEFAULT_ACCOUNT = "Client:/analytics/data/US_MID_CAP_CORE.ACTM";
-  public static final String VAULT_START_DATE_FIRST = "FIRST_REPOSITORY";
-  public static final String VAULT_END_DATE_FIRST = "LAST_REPOSITORY";
+  public static final String VAULT_DEFAULT_DOCUMENT = "Client:/aapi/VAULT_QA_PI_DEFAULT_LOCKED";
+  public static final String VAULT_DEFAULT_ACCOUNT = "CLIENT:/BISAM/REPOSITORY/QA/SMALL_PORT.ACCT";
+  public static final String VAULT_START_DATE_FIRST = "20180101";
+  public static final String VAULT_END_DATE_FIRST = "20180331";
   public static final String VAULT_FREQUENCY_DATE_MONTHLY = "Monthly";
+  public static final String PUB_DEFAULT_DOCUMENT = "Client:/AAPI/Puma Test Doc.Pub_bridge_pdf";
+  public static final String PUB_DEFAULT_ACCOUNT = "BENCH:SP50";
   public static final String DEFAULT_LOOKUP_DIRECTORY = "client:";
 }

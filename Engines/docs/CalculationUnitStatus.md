@@ -6,10 +6,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**status** | [**StatusEnum**](#StatusEnum) |  |  [optional]
-**points** | **Integer** |  |  [optional]
-**error** | **String** |  |  [optional]
-**result** | **String** |  |  [optional]
+**status** | [**StatusEnum**](#StatusEnum) | The status of calculation unit. |  [optional]
+**error** | **String** | The error in a calculation unit. |  [optional]
+**result** | **String** | The result URL of the calculation. |  [optional]
+**progress** | **String** | The progress of the calculation unit. |  [optional]
 
 
 

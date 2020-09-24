@@ -2,6 +2,7 @@
 
 # PADateParameters
 
+The date parameters for PA calculation.
 ## Properties
 
 Name | Type | Description | Notes
