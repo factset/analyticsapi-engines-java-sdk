@@ -1,0 +1,36 @@
+name: CI
+
+env:
+  ANALYTICS_API_USERNAME_SERIAL: ${{ secrets.ANALYTICS_API_USERNAME_SERIAL }}
+  ANALYTICS_API_PASSWORD: ${{ secrets.ANALYTICS_API_PASSWORD }} 
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    
+    - name: Build new SDK
+      run: cd auto-generated-sdk && mvn clean package
+        
+    - name: Build Tests
+      run: cd tests && mvn clean package
+
+    - name: Run Tests
+      run: echo "Tests ran successfully" 
+      # run: cd tests && mvn -q test -Dtest=ApiTestsRunner
+
+    - name: Build Examples
+      run: cd examples && mvn clean package

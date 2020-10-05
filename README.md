@@ -1,62 +1,74 @@
-# analyticsapi-engines-java-sdk
+<img alt="FactSet" src="https://www.factset.com/hubfs/Assets/images/factset-logo.svg" height="56" width="290">
 
-## Overview
-API client library to leverage FactSet's PA Engine, SPAR Engine and Vault API in Java.
+# Analytics API Engines Java SDK
 
-**`Engines`** - Java library for Engines API. It is developed using [open-api-generator](https://github.com/OpenAPITools/openapi-generator).
+[![build](https://img.shields.io/github/workflow/status/factset/analyticsapi-engines-java-sdk/CI)](https://github.com/factset/analyticsapi-engines-java-sdk/actions?query=workflow%3ACI)
+[![maven](https://img.shields.io/maven-central/v/com.factset.analyticsapi/engines-sdk)](https://mvnrepository.com/artifact/com.factset.analyticsapi)
+![API version](https://img.shields.io/badge/API-v2-blue)
+[![Apache-2 license](https://img.shields.io/badge/license-Apache2-brightgreen.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
-**`Utilities`** - Contains the Engines's OpenAPI schema(openapi-schema.json), configuration file(openapi-generator-config.json), custom OpenAPI templates, examples and End-to-end tests of library. 
+Use this library to integrate with FactSet's Analytics APIs. Below APIs are supported by this SDK.
 
-#### Recommended framework
-* Java 1.7, Java 1.8
+* [PA Engine API](https://developer.factset.com/api-catalog/pa-engine-api)
+* [SPAR Engine API](https://developer.factset.com/api-catalog/spar-engine-api)
+* [Vault API](https://developer.factset.com/api-catalog/vault-api)
 
-#### Current versions
-* API_VERSION - v2
-* ARTIFACT_VERSION - 4.0.0
+## Contents
 
-## To install the API client library
-Add this dependency to project's POM.
+* [auto-generated-sdk](auto-generated-sdk) - Auto-generated code using [Analytics API Engines SDK Generator](https://github.com/factset/analyticsapi-engines-sdk-generator)
+* [examples](examples) - Sample project containing code snippets to quickly get started with the SDK  
+* [tests](tests) - Integration tests
+
+## Requirements
+
+* Java 1.7 or Java 1.8
+* Maven to build and install the SDK
+
+## Installation
+
+* Install the SDK to your local Maven repository:
+
+  ```sh
+  mvn install -DskipTests
+  ```
+
+* Install the client dynamically by adding a dependency to the POM file:
+
+  ```xml
+  <dependency>
+    <groupId>com.factset.analyticsapi</groupId>
+    <artifactId>engines-sdk</artifactId>
+    <version>ARTIFACT_VERSION</version>
+  </dependency>
+  ```
+
+## Usage
+
+Refer [examples](examples) project for sample code snippets to quickly get started with the SDK
+
+## Tests
+
+First, clone the repo locally and `cd` into the directory.
+
+```sh
+git clone https://github.com/factset/analyticsapi-engines-java-sdk.git
+cd tests
 ```
-<dependency>
-  <groupId>com.factset.analyticsapi</groupId>
-  <artifactId>engines-sdk</artifactId>
-  <version>ARTIFACT_VERSION</version>
-</dependency>
+
+Before running the tests, set the below environment variables. Use the [Developer Portal Manage API Keys page](https://developer.factset.com/manage-api-keys) to get these values.
+
+```sh
+export ANALYTICS_API_USERNAME_SERIAL = "username-serial"
+export ANALYTICS_API_PASSWORD = "apikey"
 ```
 
-## Generating the Java library
-To customize OpenAPI generator options and generate the library. Please go through [Open API](https://swagger.io/docs/specification/about/) and [open-api-generator](https://github.com/OpenAPITools/openapi-generator) for more details.
+Run the tests with below command.
 
-### Pre-requisites
-* Install [Java SDK8 64 bit version](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
-* Clone this `analyticsapi-engines-java-sdk` repository.
-* Move into the `analyticsapi-engines-java-sdk/Utilities/codegen` directory and run the `download-codegen.bat` file by double clicking it (for downloading the openapi-generator-cli.jar).
-
-### To update and build the library
-* Move to the `analyticsapi-engines-java-sdk` location.
-* Increment the artifact version in `Utilities/codegen/openapi-generator-config.json`.
-* Delete all the files in the Engines directory excluding `.openapi-generator-ignore` file.
-* Replace ARTIFACT_VERSION in the below command with its latest value and run it.
-```
-javac -classpath Utilities/codegen/*; Utilities/codegen/CustomJavaClientCodegen.java
-java -DapiTests=false -DmodelTests=false -classpath Utilities/codegen/;Utilities/codegen/*; org.openapitools.codegen.OpenAPIGenerator generate --generator-name CustomJavaClientCodegen --input-spec Utilities/codegen/openapi-schema.json --output Engines --config Utilities/codegen/openapi-generator-config.json --http-user-agent engines-api/ARTIFACT_VERSION/java -t Utilities/codegen/templates --skip-validate-spec
-```
-* Move to the `analyticsapi-engines-java-sdk/Engines` location, and run `mvn clean package` which generates the library(engines-sdk-\*.\*.\*.jar) and its documentation.
-
-### Run End-to-end tests
-
-#### Running the Test Cases
-* Move to the `analyticsapi-engines-java-sdk/Engines` location and build the library.
-* Now, move to the `Utilities/java-sdk-tests` location and run the below commands.
-```
-mvn clean package
-```
-* Set the below environment variables.
-```
-ANALYTICS_API_USERNAME_SERIAL = "username-serial" 
-ANALYTICS_API_PASSWORD = "apikey" // Generate using developer portal
-```
-* Now run the test cases using the command below.
-```
+```sh
 mvn -q test -Dtest=ApiTestsRunner
 ```
+
+## Contributing
+
+* Files in [auto-generated-sdk](auto-generated-sdk) directory are auto-generated and should not be manually edited here. Refer [Analytics API Engines SDK Generator](https://github.com/factset/analyticsapi-engines-sdk-generator) for instructions on how to modify these files.
+* Projects [examples](examples) and [tests](tests) are open to enhancements and bug fixes. Please create a pull requests with the proposed changes.
