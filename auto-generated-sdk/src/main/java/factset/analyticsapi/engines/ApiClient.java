@@ -65,7 +65,7 @@ public class ApiClient {
       new HashMap<String, ServerVariable>()
     )
   ));
-  protected Integer serverIndex = 0;
+  protected Integer serverIndex = null;
   protected Map<String, String> serverVariables = null;
   protected Map<String, List<ServerConfiguration>> operationServers = new HashMap<String, List<ServerConfiguration>>() {{
   }};
