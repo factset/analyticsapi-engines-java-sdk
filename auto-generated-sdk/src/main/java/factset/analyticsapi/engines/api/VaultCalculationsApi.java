@@ -108,7 +108,7 @@ public class VaultCalculationsApi {
   }
   /**
    * Get Vault calculation by id
-   * This is the endpoint to check on the progress of a previously requested calculation. If the calculation has finished computing, the body of the response will contain the requested document in JSON.
+   * This is the endpoint to check on the progress of a previously requested calculation.\\nIf the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Run Calculation endpoint (required)
    * @return Object
    * @throws ApiException if fails to make API call
@@ -131,7 +131,7 @@ public class VaultCalculationsApi {
 
   /**
    * Get Vault calculation by id
-   * This is the endpoint to check on the progress of a previously requested calculation. If the calculation has finished computing, the body of the response will contain the requested document in JSON.
+   * This is the endpoint to check on the progress of a previously requested calculation.\\nIf the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Run Calculation endpoint (required)
    * @return ApiResponse&lt;Object&gt;
    * @throws ApiException if fails to make API call
@@ -187,7 +187,7 @@ public class VaultCalculationsApi {
   }
   /**
    * Run Vault Calculation
-   * This endpoint runs the Vault calculation specified in the POST body parameters. It must be used first before polling or cancelling endpoints. A successful response will contain the URL to poll for the result of the calculation.  Remarks:  *   Start and and end date must be within the configuration&#39;s min and max date range
+   * This endpoint runs the Vault calculation specified in the POST body parameters.\\nIt must be used first before polling or cancelling endpoints.\\nA successful response will contain the URL to poll for the result of the calculation.\\n\\nRemarks:\\n\\n*   Start and and end date must be within the configuration&#39;s min and max date range
    * @param vaultCalculationParameters  (optional)
    * @return Object
    * @throws ApiException if fails to make API call
@@ -212,7 +212,7 @@ public class VaultCalculationsApi {
 
   /**
    * Run Vault Calculation
-   * This endpoint runs the Vault calculation specified in the POST body parameters. It must be used first before polling or cancelling endpoints. A successful response will contain the URL to poll for the result of the calculation.  Remarks:  *   Start and and end date must be within the configuration&#39;s min and max date range
+   * This endpoint runs the Vault calculation specified in the POST body parameters.\\nIt must be used first before polling or cancelling endpoints.\\nA successful response will contain the URL to poll for the result of the calculation.\\n\\nRemarks:\\n\\n*   Start and and end date must be within the configuration&#39;s min and max date range
    * @param vaultCalculationParameters  (optional)
    * @return ApiResponse&lt;Object&gt;
    * @throws ApiException if fails to make API call
