@@ -31,4 +31,4 @@ jobs:
       run: mvn -B package --file auto-generated-sdk/pom.xml
       
     - name: Publish to Apache Maven Central
-      run: cd auto-generated-sdk && mvn deploy
+      run: cd auto-generated-sdk && mvn -Psign-artifacts verify deploy
