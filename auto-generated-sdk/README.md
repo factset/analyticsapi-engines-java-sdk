@@ -3,7 +3,7 @@
 
 Engines API
 
-- API version: 2
+- API version: v2:[pa,spar,vault,pub],v1:[fiab,fi,axp,afi,npo,bpm,fpo]
 
 Allow clients to fetch Analytics through APIs.
 
@@ -135,10 +135,19 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**getPubDocuments**](docs/DocumentsApi.md#getPubDocuments) | **GET** /analytics/lookups/v2/engines/pub/documents/{path} | Gets Publisher documents and sub-directories in a directory
 *DocumentsApi* | [**getSPAR3Documents**](docs/DocumentsApi.md#getSPAR3Documents) | **GET** /analytics/lookups/v2/engines/spar/documents/{path} | Gets SPAR3 documents and sub-directories in a directory
 *DocumentsApi* | [**getVaultDocuments**](docs/DocumentsApi.md#getVaultDocuments) | **GET** /analytics/lookups/v2/engines/vault/documents/{path} | Get Vault documents and sub-directories in a directory
+*FiCalculationsApi* | [**cancelFICalculationById**](docs/FiCalculationsApi.md#cancelFICalculationById) | **DELETE** /analytics/engines/fi/v1/calculations/{id} | Cancel FI calculation by id
+*FiCalculationsApi* | [**getFICalculationById**](docs/FiCalculationsApi.md#getFICalculationById) | **GET** /analytics/engines/fi/v1/calculations/{id} | Get FI calculation by id
+*FiCalculationsApi* | [**runFICalculation**](docs/FiCalculationsApi.md#runFICalculation) | **POST** /analytics/engines/fi/v1/calculations | Run FI calculation
+*FiabCalculationsApi* | [**getFIABCalculationById**](docs/FiabCalculationsApi.md#getFIABCalculationById) | **GET** /analytics/engines/fiab/v1/calculations/{id} | Get FIAB calculation by id
+*FiabCalculationsApi* | [**getFIABCalculationStatusSummaries**](docs/FiabCalculationsApi.md#getFIABCalculationStatusSummaries) | **GET** /analytics/engines/fiab/v1/calculations | Get all FIAB calculation summaries
+*FiabCalculationsApi* | [**runFIABCalculation**](docs/FiabCalculationsApi.md#runFIABCalculation) | **POST** /analytics/engines/fiab/v1/calculations | Run FIAB calculation
 *FrequenciesApi* | [**getPAFrequencies**](docs/FrequenciesApi.md#getPAFrequencies) | **GET** /analytics/lookups/v2/engines/pa/frequencies | Get PA frequencies
 *FrequenciesApi* | [**getSPARFrequencies**](docs/FrequenciesApi.md#getSPARFrequencies) | **GET** /analytics/lookups/v2/engines/spar/frequencies | Get SPAR frequencies
 *FrequenciesApi* | [**getVaultFrequencies**](docs/FrequenciesApi.md#getVaultFrequencies) | **GET** /analytics/lookups/v2/engines/vault/frequencies | Get Vault frequencies
 *GroupsApi* | [**getPAGroups**](docs/GroupsApi.md#getPAGroups) | **GET** /analytics/lookups/v2/engines/pa/groups | Get PA groups
+*OptimizationsApi* | [**cancelAxiomaOptimizationById**](docs/OptimizationsApi.md#cancelAxiomaOptimizationById) | **DELETE** /analytics/engines/axp/v1/optimizations/{id} | Cancel Axioma optimization by id
+*OptimizationsApi* | [**getAxiomaOptimizationById**](docs/OptimizationsApi.md#getAxiomaOptimizationById) | **GET** /analytics/engines/axp/v1/optimizations/{id} | Get Axioma optimization by id
+*OptimizationsApi* | [**runAxiomaOptimization**](docs/OptimizationsApi.md#runAxiomaOptimization) | **POST** /analytics/engines/axp/v1/optimizations | Run Axioma optimization
 *PaCalculationsApi* | [**cancelPACalculationById**](docs/PaCalculationsApi.md#cancelPACalculationById) | **DELETE** /analytics/engines/pa/v2/calculations/{id} | Cancel PA calculation by id
 *PaCalculationsApi* | [**getPACalculationById**](docs/PaCalculationsApi.md#getPACalculationById) | **GET** /analytics/engines/pa/v2/calculations/{id} | Get PA calculation by id
 *PaCalculationsApi* | [**runPACalculation**](docs/PaCalculationsApi.md#runPACalculation) | **POST** /analytics/engines/pa/v2/calculations | Run PA Calculation
@@ -146,6 +155,11 @@ Class | Method | HTTP request | Description
 *SparCalculationsApi* | [**cancelSPARCalculationById**](docs/SparCalculationsApi.md#cancelSPARCalculationById) | **DELETE** /analytics/engines/spar/v2/calculations/{id} | Cancel SPAR calculation
 *SparCalculationsApi* | [**getSPARCalculationById**](docs/SparCalculationsApi.md#getSPARCalculationById) | **GET** /analytics/engines/spar/v2/calculations/{id} | Get SPAR calculation by id
 *SparCalculationsApi* | [**runSPARCalculation**](docs/SparCalculationsApi.md#runSPARCalculation) | **POST** /analytics/engines/spar/v2/calculations | Run SPAR Calculation
+*StrategyDocumentsApi* | [**getAxiomaEquityStrategyDocuments**](docs/StrategyDocumentsApi.md#getAxiomaEquityStrategyDocuments) | **GET** /analytics/engines/axp/v1/strategies/{path} | Get Axioma Equity strategy documents and sub-directories in a directory
+*StrategyDocumentsApi* | [**getAxiomaFIStrategyDocuments**](docs/StrategyDocumentsApi.md#getAxiomaFIStrategyDocuments) | **GET** /analytics/engines/afi/v1/strategies/{path} | Get Axioma FI strategy documents and sub-directories in a directory
+*StrategyDocumentsApi* | [**getBarraStrategyDocuments**](docs/StrategyDocumentsApi.md#getBarraStrategyDocuments) | **GET** /analytics/engines/bpm/v1/strategies/{path} | Get Barra strategy documents and sub-directories in a directory
+*StrategyDocumentsApi* | [**getFPOStrategyDocuments**](docs/StrategyDocumentsApi.md#getFPOStrategyDocuments) | **GET** /analytics/engines/fpo/v1/strategies/{path} | Get FactSet Portfolio Optimizer strategy documents and sub-directories in a directory
+*StrategyDocumentsApi* | [**getNorthfieldStrategyDocuments**](docs/StrategyDocumentsApi.md#getNorthfieldStrategyDocuments) | **GET** /analytics/engines/npo/v1/strategies/{path} | Get Northfield strategy documents and sub-directories in a directory
 *VaultCalculationsApi* | [**cancelVaultCalculationById**](docs/VaultCalculationsApi.md#cancelVaultCalculationById) | **DELETE** /analytics/engines/vault/v2/calculations/{id} | Cancel Vault calculation by id
 *VaultCalculationsApi* | [**getVaultCalculationById**](docs/VaultCalculationsApi.md#getVaultCalculationById) | **GET** /analytics/engines/vault/v2/calculations/{id} | Get Vault calculation by id
 *VaultCalculationsApi* | [**runVaultCalculation**](docs/VaultCalculationsApi.md#runVaultCalculation) | **POST** /analytics/engines/vault/v2/calculations | Run Vault Calculation
@@ -153,7 +167,10 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [Account](docs/Account.md)
  - [AccountDirectories](docs/AccountDirectories.md)
+ - [AccountOverrides](docs/AccountOverrides.md)
+ - [AxiomaEquityOptimizationParameters](docs/AxiomaEquityOptimizationParameters.md)
  - [Calculation](docs/Calculation.md)
  - [CalculationStatus](docs/CalculationStatus.md)
  - [CalculationStatusSummary](docs/CalculationStatusSummary.md)
@@ -168,8 +185,20 @@ Class | Method | HTTP request | Description
  - [Currency](docs/Currency.md)
  - [DateParametersSummary](docs/DateParametersSummary.md)
  - [DocumentDirectories](docs/DocumentDirectories.md)
+ - [EventSummary](docs/EventSummary.md)
+ - [FIABCalculationParameters](docs/FIABCalculationParameters.md)
+ - [FIABCalculationStatus](docs/FIABCalculationStatus.md)
+ - [FIABCalculationStatusSummary](docs/FIABCalculationStatusSummary.md)
+ - [FIABDateParameters](docs/FIABDateParameters.md)
+ - [FIABIdentifier](docs/FIABIdentifier.md)
+ - [FICalculationParameters](docs/FICalculationParameters.md)
  - [Frequency](docs/Frequency.md)
  - [Group](docs/Group.md)
+ - [JobSettings](docs/JobSettings.md)
+ - [OptimalHoldings](docs/OptimalHoldings.md)
+ - [OptimalPortfolio](docs/OptimalPortfolio.md)
+ - [Optimization](docs/Optimization.md)
+ - [OutputTypes](docs/OutputTypes.md)
  - [PACalculationColumn](docs/PACalculationColumn.md)
  - [PACalculationGroup](docs/PACalculationGroup.md)
  - [PACalculationParameters](docs/PACalculationParameters.md)
@@ -183,6 +212,10 @@ Class | Method | HTTP request | Description
  - [SPARCalculationParameters](docs/SPARCalculationParameters.md)
  - [SPARDateParameters](docs/SPARDateParameters.md)
  - [SPARIdentifier](docs/SPARIdentifier.md)
+ - [Security](docs/Security.md)
+ - [Strategy](docs/Strategy.md)
+ - [StrategyOverrides](docs/StrategyOverrides.md)
+ - [TradesList](docs/TradesList.md)
  - [VaultCalculationParameters](docs/VaultCalculationParameters.md)
  - [VaultComponent](docs/VaultComponent.md)
  - [VaultConfiguration](docs/VaultConfiguration.md)
