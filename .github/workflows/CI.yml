@@ -29,8 +29,7 @@ jobs:
       run: cd tests && mvn clean package
 
     - name: Run Tests
-      run: echo "Tests ran successfully" 
-      # run: cd tests && mvn -q test -Dtest=ApiTestsRunner
+      run: cd tests && mvn -q test -Dtest=ApiTestsRunner
 
     - name: Build Examples
       run: cd examples && mvn clean package
