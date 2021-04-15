@@ -21,7 +21,7 @@ import java.util.TreeMap;
 /**
  * API Exception
  */
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ApiException extends Exception {
     private int code = 0;
     private Map<String, List<String>> responseHeaders = null;

@@ -2,11 +2,12 @@
 
 # ObjectRoot
 
+
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Object**](.md) |  |  [optional]
+**data** | **Object** |  |  [optional]
 
 
 ## Implemented Interfaces

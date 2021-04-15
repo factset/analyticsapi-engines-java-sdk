@@ -16,7 +16,7 @@ import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.ObjectRoot;
 import factset.analyticsapi.engines.models.SPARCalculationParametersRoot;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class SparCalculationsApi {
   private ApiClient apiClient;
 

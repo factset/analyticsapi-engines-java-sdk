@@ -13,7 +13,7 @@ import java.util.Map;
 
 import factset.analyticsapi.engines.models.SPARBenchmarkRoot;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class BenchmarksApi {
   private ApiClient apiClient;
 

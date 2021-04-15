@@ -13,7 +13,7 @@ import java.util.Map;
 
 import factset.analyticsapi.engines.models.AccountDirectoriesRoot;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class AccountsApi {
   private ApiClient apiClient;
 

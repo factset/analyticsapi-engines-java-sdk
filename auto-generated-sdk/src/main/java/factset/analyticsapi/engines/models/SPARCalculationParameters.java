@@ -15,9 +15,12 @@ package factset.analyticsapi.engines.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.SPARDateParameters;
 import factset.analyticsapi.engines.models.SPARIdentifier;
@@ -25,6 +28,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import factset.analyticsapi.engines.JSON;
+
 
 /**
  * SPARCalculationParameters
@@ -35,7 +40,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   SPARCalculationParameters.JSON_PROPERTY_BENCHMARK,
   SPARCalculationParameters.JSON_PROPERTY_DATES
 })
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class SPARCalculationParameters implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -53,7 +58,6 @@ public class SPARCalculationParameters implements Serializable {
 
 
   public SPARCalculationParameters componentid(String componentid) {
-    
     this.componentid = componentid;
     return this;
   }
@@ -77,7 +81,6 @@ public class SPARCalculationParameters implements Serializable {
 
 
   public SPARCalculationParameters accounts(java.util.List<SPARIdentifier> accounts) {
-    
     this.accounts = accounts;
     return this;
   }
@@ -110,7 +113,6 @@ public class SPARCalculationParameters implements Serializable {
 
 
   public SPARCalculationParameters benchmark(SPARIdentifier benchmark) {
-    
     this.benchmark = benchmark;
     return this;
   }
@@ -135,7 +137,6 @@ public class SPARCalculationParameters implements Serializable {
 
 
   public SPARCalculationParameters dates(SPARDateParameters dates) {
-    
     this.dates = dates;
     return this;
   }
@@ -159,8 +160,11 @@ public class SPARCalculationParameters implements Serializable {
   }
 
 
+  /**
+   * Return true if this SPARCalculationParameters object is equal to o.
+   */
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -179,7 +183,6 @@ public class SPARCalculationParameters implements Serializable {
     return Objects.hash(componentid, accounts, benchmark, dates);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -196,7 +199,7 @@ public class SPARCalculationParameters implements Serializable {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

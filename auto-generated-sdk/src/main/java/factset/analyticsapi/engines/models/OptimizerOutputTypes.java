@@ -15,9 +15,12 @@ package factset.analyticsapi.engines.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.OptimalPortfolio;
 import factset.analyticsapi.engines.models.OptimizerOptimalHoldings;
@@ -26,6 +29,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import factset.analyticsapi.engines.JSON;
+
 
 /**
  * OptimizerOutputTypes
@@ -35,7 +40,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   OptimizerOutputTypes.JSON_PROPERTY_OPTIMAL,
   OptimizerOutputTypes.JSON_PROPERTY_ACCOUNT
 })
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class OptimizerOutputTypes implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -50,7 +55,6 @@ public class OptimizerOutputTypes implements Serializable {
 
 
   public OptimizerOutputTypes trades(OptimizerTradesList trades) {
-    
     this.trades = trades;
     return this;
   }
@@ -75,7 +79,6 @@ public class OptimizerOutputTypes implements Serializable {
 
 
   public OptimizerOutputTypes optimal(OptimizerOptimalHoldings optimal) {
-    
     this.optimal = optimal;
     return this;
   }
@@ -100,7 +103,6 @@ public class OptimizerOutputTypes implements Serializable {
 
 
   public OptimizerOutputTypes account(OptimalPortfolio account) {
-    
     this.account = account;
     return this;
   }
@@ -124,8 +126,11 @@ public class OptimizerOutputTypes implements Serializable {
   }
 
 
+  /**
+   * Return true if this OptimizerOutputTypes object is equal to o.
+   */
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -143,7 +148,6 @@ public class OptimizerOutputTypes implements Serializable {
     return Objects.hash(trades, optimal, account);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -159,7 +163,7 @@ public class OptimizerOutputTypes implements Serializable {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -13,7 +13,7 @@ import java.util.Map;
 
 import factset.analyticsapi.engines.models.CurrencyRoot;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class CurrenciesApi {
   private ApiClient apiClient;
 

@@ -14,15 +14,17 @@
 package factset.analyticsapi.engines.auth;
 
 import factset.analyticsapi.engines.Pair;
+import factset.analyticsapi.engines.ApiException;
 
 import com.migcomponents.migbase64.Base64;
 
+import java.net.URI;
 import java.util.Map;
 import java.util.List;
 
 import java.io.UnsupportedEncodingException;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class HttpBasicAuth implements Authentication {
   private String username;
   private String password;
@@ -44,7 +46,7 @@ public class HttpBasicAuth implements Authentication {
   }
 
   @Override
-  public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams, Map<String, String> cookieParams) {
+  public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams, Map<String, String> cookieParams, String payload, String method, URI uri) throws ApiException {
     if (username == null && password == null) {
       return;
     }

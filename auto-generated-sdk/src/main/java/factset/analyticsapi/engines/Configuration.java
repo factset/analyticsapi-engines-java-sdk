@@ -13,7 +13,7 @@
 
 package factset.analyticsapi.engines;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class Configuration {
     private static ApiClient defaultApiClient = new ApiClient();
 

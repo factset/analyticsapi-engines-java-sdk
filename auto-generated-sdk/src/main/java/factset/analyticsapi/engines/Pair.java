@@ -13,7 +13,7 @@
 
 package factset.analyticsapi.engines;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class Pair {
     private String name = "";
     private String value = "";

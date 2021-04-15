@@ -16,7 +16,7 @@ import factset.analyticsapi.engines.models.CalculationInfoRoot;
 import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.ObjectRoot;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class AxpOptimizerApi {
   private ApiClient apiClient;
 

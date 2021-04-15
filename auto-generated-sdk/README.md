@@ -67,6 +67,31 @@ Then manually install the following JARs:
 - `target/engines-sdk-5.0.0.jar`
 - `target/lib/*.jar`
 
+## Usage
+
+To add a HTTP proxy for the API client, use `ClientConfig`:
+```java
+
+import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.ClientProperties;
+import factset.analyticsapi.engines.*;
+import factset.analyticsapi.engines.api.AccountsApi;
+
+...
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+ClientConfig clientConfig = defaultClient.getClientConfig();
+clientConfig.connectorProvider(new ApacheConnectorProvider());
+clientConfig.property(ClientProperties.PROXY_URI, "http://proxy_url_here");
+clientConfig.property(ClientProperties.PROXY_USERNAME, "proxy_username");
+clientConfig.property(ClientProperties.PROXY_PASSWORD, "proxy_password");
+defaultClient.setClientConfig(clientConfig);
+
+AccountsApi apiInstance = new AccountsApi(defaultClient);
+
+```
+
 ## Getting Started
 
 Please follow the [installation](#installation) instruction and execute the following Java code:
@@ -90,7 +115,7 @@ public class AccountsApiExample {
         Basic.setPassword("YOUR PASSWORD");
 
         AccountsApi apiInstance = new AccountsApi(defaultClient);
-        String path = "\"\""; // String | The directory to get the accounts and sub-directories in
+        String path = ""; // String | The directory to get the accounts and sub-directories in
         try {
             AccountDirectoriesRoot result = apiInstance.getAccounts(path);
             System.out.println(result);

@@ -24,7 +24,7 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.auth.*;
-import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.model.*;
 import factset.analyticsapi.engines.api.AccountsApi;
 
 public class Example {
@@ -38,7 +38,7 @@ public class Example {
         Basic.setPassword("YOUR PASSWORD");
 
         AccountsApi apiInstance = new AccountsApi(defaultClient);
-        String path = "\"\""; // String | The directory to get the accounts and sub-directories in
+        String path = ""; // String | The directory to get the accounts and sub-directories in
         try {
             AccountDirectoriesRoot result = apiInstance.getAccounts(path);
             System.out.println(result);
@@ -58,7 +58,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **path** | **String**| The directory to get the accounts and sub-directories in | [default to &quot;&quot;]
+ **path** | **String**| The directory to get the accounts and sub-directories in | [default to ]
 
 ### Return type
 

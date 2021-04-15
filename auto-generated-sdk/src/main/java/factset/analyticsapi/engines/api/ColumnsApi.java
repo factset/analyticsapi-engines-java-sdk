@@ -14,7 +14,7 @@ import java.util.Map;
 import factset.analyticsapi.engines.models.ColumnRoot;
 import factset.analyticsapi.engines.models.ColumnSummaryRoot;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ColumnsApi {
   private ApiClient apiClient;
 
@@ -134,9 +134,9 @@ public class ColumnsApi {
   /**
    * Get PA columns
    * This endpoint lists all the PA columns that can be applied to a calculation.
-   * @param name Column name (optional, default to &quot;&quot;)
-   * @param category Column category (optional, default to &quot;&quot;)
-   * @param directory The directory to get the columns in (optional, default to &quot;&quot;)
+   * @param name Column name (optional, default to )
+   * @param category Column category (optional, default to )
+   * @param directory The directory to get the columns in (optional, default to )
    * @return ColumnSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
@@ -158,9 +158,9 @@ public class ColumnsApi {
   /**
    * Get PA columns
    * This endpoint lists all the PA columns that can be applied to a calculation.
-   * @param name Column name (optional, default to &quot;&quot;)
-   * @param category Column category (optional, default to &quot;&quot;)
-   * @param directory The directory to get the columns in (optional, default to &quot;&quot;)
+   * @param name Column name (optional, default to )
+   * @param category Column category (optional, default to )
+   * @param directory The directory to get the columns in (optional, default to )
    * @return ApiResponse&lt;ColumnSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details

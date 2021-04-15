@@ -2,6 +2,7 @@
 
 # VaultCalculationParameters
 
+
 ## Properties
 
 Name | Type | Description | Notes

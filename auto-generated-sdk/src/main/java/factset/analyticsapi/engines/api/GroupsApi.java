@@ -13,7 +13,7 @@ import java.util.Map;
 
 import factset.analyticsapi.engines.models.GroupRoot;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class GroupsApi {
   private ApiClient apiClient;
 

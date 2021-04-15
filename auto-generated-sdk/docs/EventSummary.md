@@ -2,12 +2,13 @@
 
 # EventSummary
 
+
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **message** | **String** |  |  [optional]
-**submissiondatetime** | [**java.util.Date**](java.util.Date.md) |  |  [optional]
+**submissiondatetime** | **OffsetDateTime** |  |  [optional]
 **type** | **String** |  |  [optional]
 
 

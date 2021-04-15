@@ -15,14 +15,19 @@ package factset.analyticsapi.engines.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import factset.analyticsapi.engines.JSON;
+
 
 /**
  * OptimizerTradesList
@@ -31,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   OptimizerTradesList.JSON_PROPERTY_IDENTIFIER_TYPE,
   OptimizerTradesList.JSON_PROPERTY_INCLUDE_CASH
 })
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class OptimizerTradesList implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -94,7 +99,6 @@ public class OptimizerTradesList implements Serializable {
 
 
   public OptimizerTradesList identifierType(IdentifierTypeEnum identifierType) {
-    
     this.identifierType = identifierType;
     return this;
   }
@@ -119,7 +123,6 @@ public class OptimizerTradesList implements Serializable {
 
 
   public OptimizerTradesList includeCash(Boolean includeCash) {
-    
     this.includeCash = includeCash;
     return this;
   }
@@ -143,8 +146,11 @@ public class OptimizerTradesList implements Serializable {
   }
 
 
+  /**
+   * Return true if this OptimizerTradesList object is equal to o.
+   */
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -161,7 +167,6 @@ public class OptimizerTradesList implements Serializable {
     return Objects.hash(identifierType, includeCash);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -176,7 +181,7 @@ public class OptimizerTradesList implements Serializable {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

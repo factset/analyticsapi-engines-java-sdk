@@ -16,7 +16,7 @@ import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.ObjectRoot;
 import factset.analyticsapi.engines.models.PACalculationParametersRoot;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class PaCalculationsApi {
   private ApiClient apiClient;
 

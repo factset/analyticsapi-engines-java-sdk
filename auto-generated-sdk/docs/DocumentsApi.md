@@ -27,7 +27,7 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.auth.*;
-import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.model.*;
 import factset.analyticsapi.engines.api.DocumentsApi;
 
 public class Example {
@@ -41,7 +41,7 @@ public class Example {
         Basic.setPassword("YOUR PASSWORD");
 
         DocumentsApi apiInstance = new DocumentsApi(defaultClient);
-        String path = "\"\""; // String | The directory to get the documents and sub-directories in
+        String path = ""; // String | The directory to get the documents and sub-directories in
         try {
             DocumentDirectoriesRoot result = apiInstance.getPA3Documents(path);
             System.out.println(result);
@@ -61,7 +61,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **path** | **String**| The directory to get the documents and sub-directories in | [default to &quot;&quot;]
+ **path** | **String**| The directory to get the documents and sub-directories in | [default to ]
 
 ### Return type
 
@@ -106,7 +106,7 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.auth.*;
-import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.model.*;
 import factset.analyticsapi.engines.api.DocumentsApi;
 
 public class Example {
@@ -120,7 +120,7 @@ public class Example {
         Basic.setPassword("YOUR PASSWORD");
 
         DocumentsApi apiInstance = new DocumentsApi(defaultClient);
-        String path = "\"\""; // String | The directory to get the documents in
+        String path = ""; // String | The directory to get the documents in
         try {
             DocumentDirectoriesRoot result = apiInstance.getPubDocuments(path);
             System.out.println(result);
@@ -140,7 +140,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **path** | **String**| The directory to get the documents in | [default to &quot;&quot;]
+ **path** | **String**| The directory to get the documents in | [default to ]
 
 ### Return type
 
@@ -185,7 +185,7 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.auth.*;
-import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.model.*;
 import factset.analyticsapi.engines.api.DocumentsApi;
 
 public class Example {
@@ -199,7 +199,7 @@ public class Example {
         Basic.setPassword("YOUR PASSWORD");
 
         DocumentsApi apiInstance = new DocumentsApi(defaultClient);
-        String path = "\"\""; // String | The directory to get the documents in
+        String path = ""; // String | The directory to get the documents in
         try {
             DocumentDirectoriesRoot result = apiInstance.getSPAR3Documents(path);
             System.out.println(result);
@@ -219,7 +219,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **path** | **String**| The directory to get the documents in | [default to &quot;&quot;]
+ **path** | **String**| The directory to get the documents in | [default to ]
 
 ### Return type
 
@@ -264,7 +264,7 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.auth.*;
-import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.model.*;
 import factset.analyticsapi.engines.api.DocumentsApi;
 
 public class Example {
@@ -278,7 +278,7 @@ public class Example {
         Basic.setPassword("YOUR PASSWORD");
 
         DocumentsApi apiInstance = new DocumentsApi(defaultClient);
-        String path = "\"\""; // String | The directory to get the documents in
+        String path = ""; // String | The directory to get the documents in
         try {
             DocumentDirectoriesRoot result = apiInstance.getVaultDocuments(path);
             System.out.println(result);
@@ -298,7 +298,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **path** | **String**| The directory to get the documents in | [default to &quot;&quot;]
+ **path** | **String**| The directory to get the documents in | [default to ]
 
 ### Return type
 

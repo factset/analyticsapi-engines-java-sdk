@@ -15,14 +15,19 @@ package factset.analyticsapi.engines.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import factset.analyticsapi.engines.JSON;
+
 
 /**
  * OptimalPortfolio
@@ -34,7 +39,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   OptimalPortfolio.JSON_PROPERTY_IF_ACCT_EXISTS,
   OptimalPortfolio.JSON_PROPERTY_IF_OFDB_DATE_EXISTS
 })
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class OptimalPortfolio implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -129,7 +134,6 @@ public class OptimalPortfolio implements Serializable {
 
 
   public OptimalPortfolio acctName(String acctName) {
-    
     this.acctName = acctName;
     return this;
   }
@@ -154,7 +158,6 @@ public class OptimalPortfolio implements Serializable {
 
 
   public OptimalPortfolio excludeZero(Boolean excludeZero) {
-    
     this.excludeZero = excludeZero;
     return this;
   }
@@ -179,7 +182,6 @@ public class OptimalPortfolio implements Serializable {
 
 
   public OptimalPortfolio archiveDate(String archiveDate) {
-    
     this.archiveDate = archiveDate;
     return this;
   }
@@ -204,7 +206,6 @@ public class OptimalPortfolio implements Serializable {
 
 
   public OptimalPortfolio ifAcctExists(IfAcctExistsEnum ifAcctExists) {
-    
     this.ifAcctExists = ifAcctExists;
     return this;
   }
@@ -229,7 +230,6 @@ public class OptimalPortfolio implements Serializable {
 
 
   public OptimalPortfolio ifOfdbDateExists(IfOfdbDateExistsEnum ifOfdbDateExists) {
-    
     this.ifOfdbDateExists = ifOfdbDateExists;
     return this;
   }
@@ -253,8 +253,11 @@ public class OptimalPortfolio implements Serializable {
   }
 
 
+  /**
+   * Return true if this OptimalPortfolio object is equal to o.
+   */
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -274,7 +277,6 @@ public class OptimalPortfolio implements Serializable {
     return Objects.hash(acctName, excludeZero, archiveDate, ifAcctExists, ifOfdbDateExists);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -292,7 +294,7 @@ public class OptimalPortfolio implements Serializable {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

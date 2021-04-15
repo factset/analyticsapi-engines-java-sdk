@@ -13,7 +13,7 @@ import java.util.Map;
 
 import factset.analyticsapi.engines.models.FrequencyRoot;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class FrequenciesApi {
   private ApiClient apiClient;
 

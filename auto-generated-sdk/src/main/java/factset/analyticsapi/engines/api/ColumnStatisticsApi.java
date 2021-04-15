@@ -13,7 +13,7 @@ import java.util.Map;
 
 import factset.analyticsapi.engines.models.ColumnStatisticRoot;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ColumnStatisticsApi {
   private ApiClient apiClient;
 

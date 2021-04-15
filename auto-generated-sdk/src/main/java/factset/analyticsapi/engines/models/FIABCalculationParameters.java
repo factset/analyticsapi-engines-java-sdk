@@ -15,9 +15,12 @@ package factset.analyticsapi.engines.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.FIABDateParameters;
 import factset.analyticsapi.engines.models.FIABIdentifier;
@@ -25,6 +28,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import factset.analyticsapi.engines.JSON;
+
 
 /**
  * FIABCalculationParameters
@@ -36,7 +41,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   FIABCalculationParameters.JSON_PROPERTY_MSL,
   FIABCalculationParameters.JSON_PROPERTY_FISETTINGSDOCUMENT
 })
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class FIABCalculationParameters implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -57,7 +62,6 @@ public class FIABCalculationParameters implements Serializable {
 
 
   public FIABCalculationParameters fiabdocument(String fiabdocument) {
-    
     this.fiabdocument = fiabdocument;
     return this;
   }
@@ -82,7 +86,6 @@ public class FIABCalculationParameters implements Serializable {
 
 
   public FIABCalculationParameters account(FIABIdentifier account) {
-    
     this.account = account;
     return this;
   }
@@ -106,7 +109,6 @@ public class FIABCalculationParameters implements Serializable {
 
 
   public FIABCalculationParameters dates(FIABDateParameters dates) {
-    
     this.dates = dates;
     return this;
   }
@@ -130,7 +132,6 @@ public class FIABCalculationParameters implements Serializable {
 
 
   public FIABCalculationParameters msl(String msl) {
-    
     this.msl = msl;
     return this;
   }
@@ -155,7 +156,6 @@ public class FIABCalculationParameters implements Serializable {
 
 
   public FIABCalculationParameters fisettingsdocument(String fisettingsdocument) {
-    
     this.fisettingsdocument = fisettingsdocument;
     return this;
   }
@@ -179,8 +179,11 @@ public class FIABCalculationParameters implements Serializable {
   }
 
 
+  /**
+   * Return true if this FIABCalculationParameters object is equal to o.
+   */
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -200,7 +203,6 @@ public class FIABCalculationParameters implements Serializable {
     return Objects.hash(fiabdocument, account, dates, msl, fisettingsdocument);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -218,7 +220,7 @@ public class FIABCalculationParameters implements Serializable {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

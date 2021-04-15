@@ -2,13 +2,14 @@
 
 # CalculationStatus
 
+
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **calculationid** | **String** |  |  [optional]
 **status** | [**StatusEnum**](#StatusEnum) |  |  [optional]
-**units** | [**java.util.Map&lt;String, CalculationUnitStatus&gt;**](CalculationUnitStatus.md) | Number of calculation units in batch. |  [optional]
+**units** | [**Map&lt;String, CalculationUnitStatus&gt;**](CalculationUnitStatus.md) | Number of calculation units in batch. |  [optional]
 
 
 

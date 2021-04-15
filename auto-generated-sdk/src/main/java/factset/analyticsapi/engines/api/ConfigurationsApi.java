@@ -14,7 +14,7 @@ import java.util.Map;
 import factset.analyticsapi.engines.models.VaultConfigurationRoot;
 import factset.analyticsapi.engines.models.VaultConfigurationSummaryRoot;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ConfigurationsApi {
   private ApiClient apiClient;
 

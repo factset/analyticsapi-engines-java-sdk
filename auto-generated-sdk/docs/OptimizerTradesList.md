@@ -2,6 +2,7 @@
 
 # OptimizerTradesList
 
+
 ## Properties
 
 Name | Type | Description | Notes

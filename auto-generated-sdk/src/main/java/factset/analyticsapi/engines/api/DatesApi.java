@@ -13,7 +13,7 @@ import java.util.Map;
 
 import factset.analyticsapi.engines.models.DateParametersSummaryRoot;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class DatesApi {
   private ApiClient apiClient;
 

@@ -2,11 +2,12 @@
 
 # PACalculationParametersRoot
 
+
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**java.util.Map&lt;String, PACalculationParameters&gt;**](PACalculationParameters.md) | List of calculation parameters. |  [optional]
+**data** | [**Map&lt;String, PACalculationParameters&gt;**](PACalculationParameters.md) | List of calculation parameters. |  [optional]
 **meta** | [**CalculationMeta**](CalculationMeta.md) |  |  [optional]
 
 

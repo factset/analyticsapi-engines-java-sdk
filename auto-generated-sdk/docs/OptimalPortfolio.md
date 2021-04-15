@@ -2,6 +2,7 @@
 
 # OptimalPortfolio
 
+
 ## Properties
 
 Name | Type | Description | Notes

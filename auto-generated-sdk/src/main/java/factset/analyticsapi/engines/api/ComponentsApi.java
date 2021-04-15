@@ -15,7 +15,7 @@ import factset.analyticsapi.engines.models.ComponentSummaryRoot;
 import factset.analyticsapi.engines.models.PAComponentRoot;
 import factset.analyticsapi.engines.models.VaultComponentRoot;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ComponentsApi {
   private ApiClient apiClient;
 

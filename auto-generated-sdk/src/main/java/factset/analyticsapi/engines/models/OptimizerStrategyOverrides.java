@@ -15,14 +15,19 @@ package factset.analyticsapi.engines.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import factset.analyticsapi.engines.JSON;
+
 
 /**
  * OptimizerStrategyOverrides
@@ -34,7 +39,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   OptimizerStrategyOverrides.JSON_PROPERTY_ALPHA,
   OptimizerStrategyOverrides.JSON_PROPERTY_TRANSACTION_COST
 })
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class OptimizerStrategyOverrides implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -90,7 +95,6 @@ public class OptimizerStrategyOverrides implements Serializable {
 
 
   public OptimizerStrategyOverrides tax(String tax) {
-    
     this.tax = tax;
     return this;
   }
@@ -115,7 +119,6 @@ public class OptimizerStrategyOverrides implements Serializable {
 
 
   public OptimizerStrategyOverrides objective(String objective) {
-    
     this.objective = objective;
     return this;
   }
@@ -140,7 +143,6 @@ public class OptimizerStrategyOverrides implements Serializable {
 
 
   public OptimizerStrategyOverrides constraints(java.util.Map<String, InnerEnum> constraints) {
-    
     this.constraints = constraints;
     return this;
   }
@@ -173,7 +175,6 @@ public class OptimizerStrategyOverrides implements Serializable {
 
 
   public OptimizerStrategyOverrides alpha(String alpha) {
-    
     this.alpha = alpha;
     return this;
   }
@@ -198,7 +199,6 @@ public class OptimizerStrategyOverrides implements Serializable {
 
 
   public OptimizerStrategyOverrides transactionCost(String transactionCost) {
-    
     this.transactionCost = transactionCost;
     return this;
   }
@@ -222,8 +222,11 @@ public class OptimizerStrategyOverrides implements Serializable {
   }
 
 
+  /**
+   * Return true if this OptimizerStrategyOverrides object is equal to o.
+   */
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -243,7 +246,6 @@ public class OptimizerStrategyOverrides implements Serializable {
     return Objects.hash(tax, objective, constraints, alpha, transactionCost);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -261,7 +263,7 @@ public class OptimizerStrategyOverrides implements Serializable {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

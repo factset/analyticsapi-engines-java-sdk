@@ -15,15 +15,21 @@ package factset.analyticsapi.engines.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.EventSummary;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.threeten.bp.OffsetDateTime;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import factset.analyticsapi.engines.JSON;
+
 
 /**
  * FIABCalculationStatus
@@ -36,7 +42,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   FIABCalculationStatus.JSON_PROPERTY_PROGRESS,
   FIABCalculationStatus.JSON_PROPERTY_BATCHEVENTS
 })
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class FIABCalculationStatus implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -90,10 +96,10 @@ public class FIABCalculationStatus implements Serializable {
   private StatusEnum status;
 
   public static final String JSON_PROPERTY_STARTDATETIME = "startdatetime";
-  private java.util.Date startdatetime;
+  private OffsetDateTime startdatetime;
 
   public static final String JSON_PROPERTY_COMPLETIONDATETIME = "completiondatetime";
-  private java.util.Date completiondatetime;
+  private OffsetDateTime completiondatetime;
 
   public static final String JSON_PROPERTY_PROGRESS = "progress";
   private Integer progress;
@@ -103,7 +109,6 @@ public class FIABCalculationStatus implements Serializable {
 
 
   public FIABCalculationStatus id(String id) {
-    
     this.id = id;
     return this;
   }
@@ -128,7 +133,6 @@ public class FIABCalculationStatus implements Serializable {
 
 
   public FIABCalculationStatus status(StatusEnum status) {
-    
     this.status = status;
     return this;
   }
@@ -152,8 +156,7 @@ public class FIABCalculationStatus implements Serializable {
   }
 
 
-  public FIABCalculationStatus startdatetime(java.util.Date startdatetime) {
-    
+  public FIABCalculationStatus startdatetime(OffsetDateTime startdatetime) {
     this.startdatetime = startdatetime;
     return this;
   }
@@ -167,18 +170,17 @@ public class FIABCalculationStatus implements Serializable {
   @JsonProperty(JSON_PROPERTY_STARTDATETIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public java.util.Date getStartdatetime() {
+  public OffsetDateTime getStartdatetime() {
     return startdatetime;
   }
 
 
-  public void setStartdatetime(java.util.Date startdatetime) {
+  public void setStartdatetime(OffsetDateTime startdatetime) {
     this.startdatetime = startdatetime;
   }
 
 
-  public FIABCalculationStatus completiondatetime(java.util.Date completiondatetime) {
-    
+  public FIABCalculationStatus completiondatetime(OffsetDateTime completiondatetime) {
     this.completiondatetime = completiondatetime;
     return this;
   }
@@ -192,18 +194,17 @@ public class FIABCalculationStatus implements Serializable {
   @JsonProperty(JSON_PROPERTY_COMPLETIONDATETIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public java.util.Date getCompletiondatetime() {
+  public OffsetDateTime getCompletiondatetime() {
     return completiondatetime;
   }
 
 
-  public void setCompletiondatetime(java.util.Date completiondatetime) {
+  public void setCompletiondatetime(OffsetDateTime completiondatetime) {
     this.completiondatetime = completiondatetime;
   }
 
 
   public FIABCalculationStatus progress(Integer progress) {
-    
     this.progress = progress;
     return this;
   }
@@ -228,7 +229,6 @@ public class FIABCalculationStatus implements Serializable {
 
 
   public FIABCalculationStatus batchevents(java.util.List<EventSummary> batchevents) {
-    
     this.batchevents = batchevents;
     return this;
   }
@@ -260,8 +260,11 @@ public class FIABCalculationStatus implements Serializable {
   }
 
 
+  /**
+   * Return true if this FIABCalculationStatus object is equal to o.
+   */
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -282,7 +285,6 @@ public class FIABCalculationStatus implements Serializable {
     return Objects.hash(id, status, startdatetime, completiondatetime, progress, batchevents);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -301,7 +303,7 @@ public class FIABCalculationStatus implements Serializable {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

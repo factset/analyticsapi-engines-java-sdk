@@ -47,6 +47,7 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Date;
+import org.threeten.bp.OffsetDateTime;
 
 import java.net.URLEncoder;
 
@@ -62,8 +63,8 @@ import factset.analyticsapi.engines.auth.HttpBasicAuth;
 import factset.analyticsapi.engines.auth.HttpBearerAuth;
 import factset.analyticsapi.engines.auth.ApiKeyAuth;
 
-
-public class ApiClient {
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
+public class ApiClient extends JavaTimeFormatter {
   protected Map<String, String> defaultHeaderMap = new HashMap<String, String>();
   protected Map<String, String> defaultCookieMap = new HashMap<String, String>();
   protected String basePath = "https://api.factset.com";
@@ -524,6 +525,8 @@ public class ApiClient {
       return "";
     } else if (param instanceof Date) {
       return formatDate((Date) param);
+    } else if (param instanceof OffsetDateTime) {
+      return formatOffsetDateTime((OffsetDateTime) param);
     } else if (param instanceof Collection) {
       StringBuilder b = new StringBuilder();
       for(Object o : (Collection)param) {

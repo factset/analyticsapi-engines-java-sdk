@@ -15,7 +15,7 @@ import factset.analyticsapi.engines.models.FIABCalculationParameters;
 import factset.analyticsapi.engines.models.FIABCalculationStatus;
 import factset.analyticsapi.engines.models.FIABCalculationStatusSummary;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class FiabCalculationsApi {
   private ApiClient apiClient;
 

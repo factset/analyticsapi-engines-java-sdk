@@ -12,4 +12,4 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")

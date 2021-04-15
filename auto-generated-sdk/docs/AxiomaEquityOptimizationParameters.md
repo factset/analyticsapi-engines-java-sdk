@@ -2,6 +2,7 @@
 
 # AxiomaEquityOptimizationParameters
 
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -15,9 +15,12 @@ package factset.analyticsapi.engines.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.FPOAccount;
 import factset.analyticsapi.engines.models.Optimization;
@@ -27,6 +30,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import factset.analyticsapi.engines.JSON;
+
 
 /**
  * FPOOptimizationParameters
@@ -37,7 +42,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   FPOOptimizationParameters.JSON_PROPERTY_OPTIMIZATION,
   FPOOptimizationParameters.JSON_PROPERTY_OUTPUT_TYPES
 })
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class FPOOptimizationParameters implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -55,7 +60,6 @@ public class FPOOptimizationParameters implements Serializable {
 
 
   public FPOOptimizationParameters account(FPOAccount account) {
-    
     this.account = account;
     return this;
   }
@@ -80,7 +84,6 @@ public class FPOOptimizationParameters implements Serializable {
 
 
   public FPOOptimizationParameters strategy(OptimizerStrategy strategy) {
-    
     this.strategy = strategy;
     return this;
   }
@@ -104,7 +107,6 @@ public class FPOOptimizationParameters implements Serializable {
 
 
   public FPOOptimizationParameters optimization(Optimization optimization) {
-    
     this.optimization = optimization;
     return this;
   }
@@ -129,7 +131,6 @@ public class FPOOptimizationParameters implements Serializable {
 
 
   public FPOOptimizationParameters outputTypes(OptimizerOutputTypes outputTypes) {
-    
     this.outputTypes = outputTypes;
     return this;
   }
@@ -152,8 +153,11 @@ public class FPOOptimizationParameters implements Serializable {
   }
 
 
+  /**
+   * Return true if this FPOOptimizationParameters object is equal to o.
+   */
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -172,7 +176,6 @@ public class FPOOptimizationParameters implements Serializable {
     return Objects.hash(account, strategy, optimization, outputTypes);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -189,7 +192,7 @@ public class FPOOptimizationParameters implements Serializable {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

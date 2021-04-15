@@ -15,15 +15,20 @@ package factset.analyticsapi.engines.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.CalculationUnitStatus;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import factset.analyticsapi.engines.JSON;
+
 
 /**
  * CalculationStatus
@@ -33,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   CalculationStatus.JSON_PROPERTY_STATUS,
   CalculationStatus.JSON_PROPERTY_UNITS
 })
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class CalculationStatus implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -87,7 +92,6 @@ public class CalculationStatus implements Serializable {
 
 
   public CalculationStatus calculationid(String calculationid) {
-    
     this.calculationid = calculationid;
     return this;
   }
@@ -112,7 +116,6 @@ public class CalculationStatus implements Serializable {
 
 
   public CalculationStatus status(StatusEnum status) {
-    
     this.status = status;
     return this;
   }
@@ -137,7 +140,6 @@ public class CalculationStatus implements Serializable {
 
 
   public CalculationStatus units(java.util.Map<String, CalculationUnitStatus> units) {
-    
     this.units = units;
     return this;
   }
@@ -169,8 +171,11 @@ public class CalculationStatus implements Serializable {
   }
 
 
+  /**
+   * Return true if this CalculationStatus object is equal to o.
+   */
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -188,7 +193,6 @@ public class CalculationStatus implements Serializable {
     return Objects.hash(calculationid, status, units);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -204,7 +208,7 @@ public class CalculationStatus implements Serializable {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -29,7 +29,7 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.auth.*;
-import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.model.*;
 import factset.analyticsapi.engines.api.SparCalculationsApi;
 
 public class Example {
@@ -105,7 +105,7 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.auth.*;
-import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.model.*;
 import factset.analyticsapi.engines.api.SparCalculationsApi;
 
 public class Example {
@@ -183,7 +183,7 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.auth.*;
-import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.model.*;
 import factset.analyticsapi.engines.api.SparCalculationsApi;
 
 public class Example {
@@ -262,7 +262,7 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.auth.*;
-import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.model.*;
 import factset.analyticsapi.engines.api.SparCalculationsApi;
 
 public class Example {
@@ -348,7 +348,7 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.auth.*;
-import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.model.*;
 import factset.analyticsapi.engines.api.SparCalculationsApi;
 
 public class Example {
@@ -438,7 +438,7 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.auth.*;
-import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.model.*;
 import factset.analyticsapi.engines.api.SparCalculationsApi;
 
 public class Example {

@@ -15,15 +15,20 @@ package factset.analyticsapi.engines.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.Error;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import factset.analyticsapi.engines.JSON;
+
 
 /**
  * ClientErrorResponse
@@ -31,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   ClientErrorResponse.JSON_PROPERTY_ERRORS
 })
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ClientErrorResponse implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -40,7 +45,6 @@ public class ClientErrorResponse implements Serializable {
 
 
   public ClientErrorResponse errors(java.util.List<Error> errors) {
-    
     this.errors = errors;
     return this;
   }
@@ -72,8 +76,11 @@ public class ClientErrorResponse implements Serializable {
   }
 
 
+  /**
+   * Return true if this ClientErrorResponse object is equal to o.
+   */
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -89,7 +96,6 @@ public class ClientErrorResponse implements Serializable {
     return Objects.hash(errors);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -103,7 +109,7 @@ public class ClientErrorResponse implements Serializable {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

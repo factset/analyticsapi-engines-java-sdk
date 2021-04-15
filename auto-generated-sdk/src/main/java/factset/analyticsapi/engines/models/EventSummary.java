@@ -15,14 +15,20 @@ package factset.analyticsapi.engines.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.threeten.bp.OffsetDateTime;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import factset.analyticsapi.engines.JSON;
+
 
 /**
  * EventSummary
@@ -32,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventSummary.JSON_PROPERTY_SUBMISSIONDATETIME,
   EventSummary.JSON_PROPERTY_TYPE
 })
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class EventSummary implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -40,14 +46,13 @@ public class EventSummary implements Serializable {
   private String message;
 
   public static final String JSON_PROPERTY_SUBMISSIONDATETIME = "submissiondatetime";
-  private java.util.Date submissiondatetime;
+  private OffsetDateTime submissiondatetime;
 
   public static final String JSON_PROPERTY_TYPE = "type";
   private String type;
 
 
   public EventSummary message(String message) {
-    
     this.message = message;
     return this;
   }
@@ -71,8 +76,7 @@ public class EventSummary implements Serializable {
   }
 
 
-  public EventSummary submissiondatetime(java.util.Date submissiondatetime) {
-    
+  public EventSummary submissiondatetime(OffsetDateTime submissiondatetime) {
     this.submissiondatetime = submissiondatetime;
     return this;
   }
@@ -86,18 +90,17 @@ public class EventSummary implements Serializable {
   @JsonProperty(JSON_PROPERTY_SUBMISSIONDATETIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public java.util.Date getSubmissiondatetime() {
+  public OffsetDateTime getSubmissiondatetime() {
     return submissiondatetime;
   }
 
 
-  public void setSubmissiondatetime(java.util.Date submissiondatetime) {
+  public void setSubmissiondatetime(OffsetDateTime submissiondatetime) {
     this.submissiondatetime = submissiondatetime;
   }
 
 
   public EventSummary type(String type) {
-    
     this.type = type;
     return this;
   }
@@ -121,8 +124,11 @@ public class EventSummary implements Serializable {
   }
 
 
+  /**
+   * Return true if this EventSummary object is equal to o.
+   */
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -140,7 +146,6 @@ public class EventSummary implements Serializable {
     return Objects.hash(message, submissiondatetime, type);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -156,7 +161,7 @@ public class EventSummary implements Serializable {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

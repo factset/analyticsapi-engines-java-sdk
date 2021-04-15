@@ -16,7 +16,7 @@ import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.ObjectRoot;
 import factset.analyticsapi.engines.models.VaultCalculationParametersRoot;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class VaultCalculationsApi {
   private ApiClient apiClient;
 

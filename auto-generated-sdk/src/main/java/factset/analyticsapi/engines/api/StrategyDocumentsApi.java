@@ -13,7 +13,7 @@ import java.util.Map;
 
 import factset.analyticsapi.engines.models.DocumentDirectoriesRoot;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class StrategyDocumentsApi {
   private ApiClient apiClient;
 

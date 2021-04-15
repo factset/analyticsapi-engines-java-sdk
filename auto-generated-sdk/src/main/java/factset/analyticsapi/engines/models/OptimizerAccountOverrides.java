@@ -15,14 +15,19 @@ package factset.analyticsapi.engines.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import factset.analyticsapi.engines.JSON;
+
 
 /**
  * OptimizerAccountOverrides
@@ -33,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   OptimizerAccountOverrides.JSON_PROPERTY_RISK_MODEL_ID,
   OptimizerAccountOverrides.JSON_PROPERTY_CURRENCY
 })
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class OptimizerAccountOverrides implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -51,7 +56,6 @@ public class OptimizerAccountOverrides implements Serializable {
 
 
   public OptimizerAccountOverrides portfolio(String portfolio) {
-    
     this.portfolio = portfolio;
     return this;
   }
@@ -76,7 +80,6 @@ public class OptimizerAccountOverrides implements Serializable {
 
 
   public OptimizerAccountOverrides benchmark(String benchmark) {
-    
     this.benchmark = benchmark;
     return this;
   }
@@ -101,7 +104,6 @@ public class OptimizerAccountOverrides implements Serializable {
 
 
   public OptimizerAccountOverrides riskModelId(String riskModelId) {
-    
     this.riskModelId = riskModelId;
     return this;
   }
@@ -126,7 +128,6 @@ public class OptimizerAccountOverrides implements Serializable {
 
 
   public OptimizerAccountOverrides currency(String currency) {
-    
     this.currency = currency;
     return this;
   }
@@ -150,8 +151,11 @@ public class OptimizerAccountOverrides implements Serializable {
   }
 
 
+  /**
+   * Return true if this OptimizerAccountOverrides object is equal to o.
+   */
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -170,7 +174,6 @@ public class OptimizerAccountOverrides implements Serializable {
     return Objects.hash(portfolio, benchmark, riskModelId, currency);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -187,7 +190,7 @@ public class OptimizerAccountOverrides implements Serializable {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

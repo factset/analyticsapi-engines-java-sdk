@@ -15,14 +15,19 @@ package factset.analyticsapi.engines.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import factset.analyticsapi.engines.JSON;
+
 
 /**
  * FIJobSettings
@@ -31,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   FIJobSettings.JSON_PROPERTY_AS_OF_DATE,
   FIJobSettings.JSON_PROPERTY_PARTIAL_DURATION_MONTHS
 })
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class FIJobSettings implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -43,7 +48,6 @@ public class FIJobSettings implements Serializable {
 
 
   public FIJobSettings asOfDate(String asOfDate) {
-    
     this.asOfDate = asOfDate;
     return this;
   }
@@ -67,7 +71,6 @@ public class FIJobSettings implements Serializable {
 
 
   public FIJobSettings partialDurationMonths(java.util.List<Integer> partialDurationMonths) {
-    
     this.partialDurationMonths = partialDurationMonths;
     return this;
   }
@@ -99,8 +102,11 @@ public class FIJobSettings implements Serializable {
   }
 
 
+  /**
+   * Return true if this FIJobSettings object is equal to o.
+   */
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -117,7 +123,6 @@ public class FIJobSettings implements Serializable {
     return Objects.hash(asOfDate, partialDurationMonths);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -132,7 +137,7 @@ public class FIJobSettings implements Serializable {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

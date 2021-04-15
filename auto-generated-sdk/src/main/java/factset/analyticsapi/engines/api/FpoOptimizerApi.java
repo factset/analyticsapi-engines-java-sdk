@@ -16,7 +16,7 @@ import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.FPOOptimizationParametersRoot;
 import factset.analyticsapi.engines.models.ObjectRoot;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class FpoOptimizerApi {
   private ApiClient apiClient;
 
