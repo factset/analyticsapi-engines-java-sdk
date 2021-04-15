@@ -100,7 +100,6 @@ ext {
     jackson_databind_nullable_version = "0.2.1"
     jersey_version = "2.27"
     junit_version = "4.13"
-    threetenbp_version = "2.9.10"
 }
 
 dependencies {
@@ -113,7 +112,6 @@ dependencies {
     compile "com.fasterxml.jackson.core:jackson-annotations:$jackson_version"
     compile "com.fasterxml.jackson.core:jackson-databind:$jackson_databind_version"
     compile "org.openapitools:jackson-databind-nullable:$jackson_databind_nullable_version"
-    compile "com.github.joschi.jackson:jackson-datatype-threetenbp:$threetenbp_version"
     compile "com.brsanthu:migbase64:2.2"
     testCompile "junit:junit:$junit_version"
 }

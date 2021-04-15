@@ -21,7 +21,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -37,13 +36,13 @@ public class FIABCalculationStatusSummary implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_REQUESTTIME = "requesttime";
-  private OffsetDateTime requesttime;
+  private java.util.Date requesttime;
 
   public static final String JSON_PROPERTY_LASTPOLLTIME = "lastpolltime";
-  private OffsetDateTime lastpolltime;
+  private java.util.Date lastpolltime;
 
 
-  public FIABCalculationStatusSummary requesttime(OffsetDateTime requesttime) {
+  public FIABCalculationStatusSummary requesttime(java.util.Date requesttime) {
     
     this.requesttime = requesttime;
     return this;
@@ -58,17 +57,17 @@ public class FIABCalculationStatusSummary implements Serializable {
   @JsonProperty(JSON_PROPERTY_REQUESTTIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public OffsetDateTime getRequesttime() {
+  public java.util.Date getRequesttime() {
     return requesttime;
   }
 
 
-  public void setRequesttime(OffsetDateTime requesttime) {
+  public void setRequesttime(java.util.Date requesttime) {
     this.requesttime = requesttime;
   }
 
 
-  public FIABCalculationStatusSummary lastpolltime(OffsetDateTime lastpolltime) {
+  public FIABCalculationStatusSummary lastpolltime(java.util.Date lastpolltime) {
     
     this.lastpolltime = lastpolltime;
     return this;
@@ -83,12 +82,12 @@ public class FIABCalculationStatusSummary implements Serializable {
   @JsonProperty(JSON_PROPERTY_LASTPOLLTIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public OffsetDateTime getLastpolltime() {
+  public java.util.Date getLastpolltime() {
     return lastpolltime;
   }
 
 
-  public void setLastpolltime(OffsetDateTime lastpolltime) {
+  public void setLastpolltime(java.util.Date lastpolltime) {
     this.lastpolltime = lastpolltime;
   }
 

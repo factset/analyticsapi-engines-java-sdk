@@ -21,7 +21,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -41,7 +40,7 @@ public class EventSummary implements Serializable {
   private String message;
 
   public static final String JSON_PROPERTY_SUBMISSIONDATETIME = "submissiondatetime";
-  private OffsetDateTime submissiondatetime;
+  private java.util.Date submissiondatetime;
 
   public static final String JSON_PROPERTY_TYPE = "type";
   private String type;
@@ -72,7 +71,7 @@ public class EventSummary implements Serializable {
   }
 
 
-  public EventSummary submissiondatetime(OffsetDateTime submissiondatetime) {
+  public EventSummary submissiondatetime(java.util.Date submissiondatetime) {
     
     this.submissiondatetime = submissiondatetime;
     return this;
@@ -87,12 +86,12 @@ public class EventSummary implements Serializable {
   @JsonProperty(JSON_PROPERTY_SUBMISSIONDATETIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public OffsetDateTime getSubmissiondatetime() {
+  public java.util.Date getSubmissiondatetime() {
     return submissiondatetime;
   }
 
 
-  public void setSubmissiondatetime(OffsetDateTime submissiondatetime) {
+  public void setSubmissiondatetime(java.util.Date submissiondatetime) {
     this.submissiondatetime = submissiondatetime;
   }
 

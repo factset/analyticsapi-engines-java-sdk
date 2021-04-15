@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.EventSummary;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -91,10 +90,10 @@ public class FIABCalculationStatus implements Serializable {
   private StatusEnum status;
 
   public static final String JSON_PROPERTY_STARTDATETIME = "startdatetime";
-  private OffsetDateTime startdatetime;
+  private java.util.Date startdatetime;
 
   public static final String JSON_PROPERTY_COMPLETIONDATETIME = "completiondatetime";
-  private OffsetDateTime completiondatetime;
+  private java.util.Date completiondatetime;
 
   public static final String JSON_PROPERTY_PROGRESS = "progress";
   private Integer progress;
@@ -153,7 +152,7 @@ public class FIABCalculationStatus implements Serializable {
   }
 
 
-  public FIABCalculationStatus startdatetime(OffsetDateTime startdatetime) {
+  public FIABCalculationStatus startdatetime(java.util.Date startdatetime) {
     
     this.startdatetime = startdatetime;
     return this;
@@ -168,17 +167,17 @@ public class FIABCalculationStatus implements Serializable {
   @JsonProperty(JSON_PROPERTY_STARTDATETIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public OffsetDateTime getStartdatetime() {
+  public java.util.Date getStartdatetime() {
     return startdatetime;
   }
 
 
-  public void setStartdatetime(OffsetDateTime startdatetime) {
+  public void setStartdatetime(java.util.Date startdatetime) {
     this.startdatetime = startdatetime;
   }
 
 
-  public FIABCalculationStatus completiondatetime(OffsetDateTime completiondatetime) {
+  public FIABCalculationStatus completiondatetime(java.util.Date completiondatetime) {
     
     this.completiondatetime = completiondatetime;
     return this;
@@ -193,12 +192,12 @@ public class FIABCalculationStatus implements Serializable {
   @JsonProperty(JSON_PROPERTY_COMPLETIONDATETIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public OffsetDateTime getCompletiondatetime() {
+  public java.util.Date getCompletiondatetime() {
     return completiondatetime;
   }
 
 
-  public void setCompletiondatetime(OffsetDateTime completiondatetime) {
+  public void setCompletiondatetime(java.util.Date completiondatetime) {
     this.completiondatetime = completiondatetime;
   }
 

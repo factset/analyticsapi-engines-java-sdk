@@ -7,7 +7,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **message** | **String** |  |  [optional]
-**submissiondatetime** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
+**submissiondatetime** | [**java.util.Date**](java.util.Date.md) |  |  [optional]
 **type** | **String** |  |  [optional]
 
 
