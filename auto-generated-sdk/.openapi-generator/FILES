@@ -130,7 +130,6 @@ src/main/java/factset/analyticsapi/engines/RFC3339DateFormat.java
 src/main/java/factset/analyticsapi/engines/ServerConfiguration.java
 src/main/java/factset/analyticsapi/engines/ServerVariable.java
 src/main/java/factset/analyticsapi/engines/StringUtil.java
-src/main/java/factset/analyticsapi/engines/api.java
 src/main/java/factset/analyticsapi/engines/api/AccountsApi.java
 src/main/java/factset/analyticsapi/engines/api/AxpOptimizerApi.java
 src/main/java/factset/analyticsapi/engines/api/BenchmarksApi.java
