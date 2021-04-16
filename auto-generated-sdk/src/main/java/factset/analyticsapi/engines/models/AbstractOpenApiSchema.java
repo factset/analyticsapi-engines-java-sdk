@@ -11,7 +11,7 @@
  */
 
 
-package ;
+package factset.analyticsapi.engines.models;
 
 import factset.analyticsapi.engines.ApiException;
 import java.util.Objects;
