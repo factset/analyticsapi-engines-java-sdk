@@ -71,7 +71,7 @@ public class VaultCalculationsApi {
    * Cancel Vault calculation by id
    * This is the endpoint to cancel a previously submitted calculation.
    * @param id from url, provided from the location header in the Create and Run Vault calculation endpoint (required)
-   * @return ApiResponse&lt;Void&gt;
+  * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -132,7 +132,7 @@ public class VaultCalculationsApi {
    * Get Vault calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run Vault calculation endpoint (required)
-   * @return VaultCalculationParametersRoot
+   * @return (200 - VaultCalculationParametersRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -154,7 +154,7 @@ public class VaultCalculationsApi {
    * Get Vault calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run Vault calculation endpoint (required)
-   * @return ApiResponse&lt;VaultCalculationParametersRoot&gt;
+  * @return (200 - ApiResponse&lt;VaultCalculationParametersRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -217,7 +217,7 @@ public class VaultCalculationsApi {
    * Get Vault calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the location header will point to the result url.
    * @param id from url, provided from the location header in the Create and Run Vault calculation endpoint (required)
-   * @return CalculationStatusRoot
+   * @return (200 - CalculationStatusRoot)(202 - CalculationStatusRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -240,7 +240,7 @@ public class VaultCalculationsApi {
    * Get Vault calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the location header will point to the result url.
    * @param id from url, provided from the location header in the Create and Run Vault calculation endpoint (required)
-   * @return ApiResponse&lt;CalculationStatusRoot&gt;
+  * @return (200 - ApiResponse&lt;CalculationStatusRoot&gt;)(202 - ApiResponse&lt;CalculationStatusRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -307,7 +307,7 @@ public class VaultCalculationsApi {
    * @param id from url, provided from the location header in the Get Vault calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get Vault calculation status by id endpoint (required)
    * @param accept Standard HTTP header. Value can be gzip, compress, deflate, br, identity and/or * (optional)
-   * @return ObjectRoot
+   * @return (200 - ObjectRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -331,7 +331,7 @@ public class VaultCalculationsApi {
    * @param id from url, provided from the location header in the Get Vault calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get Vault calculation status by id endpoint (required)
    * @param accept Standard HTTP header. Value can be gzip, compress, deflate, br, identity and/or * (optional)
-   * @return ApiResponse&lt;ObjectRoot&gt;
+  * @return (200 - ApiResponse&lt;ObjectRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -404,7 +404,7 @@ public class VaultCalculationsApi {
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. (optional)
    * @param vaultCalculationParametersRoot Calculation Parameters (optional)
-   * @return CalculationStatusRoot
+   * @return (202 - CalculationStatusRoot)(200 - CalculationStatusRoot)(201 - ObjectRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -432,7 +432,7 @@ public class VaultCalculationsApi {
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. (optional)
    * @param vaultCalculationParametersRoot Calculation Parameters (optional)
-   * @return ApiResponse&lt;CalculationStatusRoot&gt;
+  * @return (202 - ApiResponse&lt;CalculationStatusRoot&gt;)(200 - ApiResponse&lt;CalculationStatusRoot&gt;)(201 - ApiResponse&lt;ObjectRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -502,7 +502,7 @@ if (cacheControl != null)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. (optional)
    * @param vaultCalculationParametersRoot Calculation Parameters (optional)
-   * @return CalculationStatusRoot
+   * @return (202 - CalculationStatusRoot)(200 - CalculationStatusRoot)(201 - ObjectRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -531,7 +531,7 @@ if (cacheControl != null)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. (optional)
    * @param vaultCalculationParametersRoot Calculation Parameters (optional)
-   * @return ApiResponse&lt;CalculationStatusRoot&gt;
+  * @return (202 - ApiResponse&lt;CalculationStatusRoot&gt;)(200 - ApiResponse&lt;CalculationStatusRoot&gt;)(201 - ApiResponse&lt;ObjectRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">

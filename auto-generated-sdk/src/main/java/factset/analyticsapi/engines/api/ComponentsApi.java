@@ -49,7 +49,7 @@ public class ComponentsApi {
    * Get PA component by id
    * This endpoint returns the default settings of a PA component.
    * @param id Unique identifier for a PA component (required)
-   * @return PAComponentRoot
+   * @return (200 - PAComponentRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -73,7 +73,7 @@ public class ComponentsApi {
    * Get PA component by id
    * This endpoint returns the default settings of a PA component.
    * @param id Unique identifier for a PA component (required)
-   * @return ApiResponse&lt;PAComponentRoot&gt;
+  * @return (200 - ApiResponse&lt;PAComponentRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -136,7 +136,7 @@ public class ComponentsApi {
    * Get PA components
    * This endpoint returns the list of PA components in a given PA document.
    * @param document Document Name (required)
-   * @return ComponentSummaryRoot
+   * @return (200 - ComponentSummaryRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -160,7 +160,7 @@ public class ComponentsApi {
    * Get PA components
    * This endpoint returns the list of PA components in a given PA document.
    * @param document Document Name (required)
-   * @return ApiResponse&lt;ComponentSummaryRoot&gt;
+  * @return (200 - ApiResponse&lt;ComponentSummaryRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -223,7 +223,7 @@ public class ComponentsApi {
    * Get SPAR components
    * This endpoint returns the list of SPAR components in a given SPAR document.
    * @param document Document Name (required)
-   * @return ComponentSummaryRoot
+   * @return (200 - ComponentSummaryRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -247,7 +247,7 @@ public class ComponentsApi {
    * Get SPAR components
    * This endpoint returns the list of SPAR components in a given SPAR document.
    * @param document Document Name (required)
-   * @return ApiResponse&lt;ComponentSummaryRoot&gt;
+  * @return (200 - ApiResponse&lt;ComponentSummaryRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -310,7 +310,7 @@ public class ComponentsApi {
    * Get Vault component by id
    * This endpoint returns the default settings of a Vault component.
    * @param id Unique identifier for a vault component (required)
-   * @return VaultComponentRoot
+   * @return (200 - VaultComponentRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -334,7 +334,7 @@ public class ComponentsApi {
    * Get Vault component by id
    * This endpoint returns the default settings of a Vault component.
    * @param id Unique identifier for a vault component (required)
-   * @return ApiResponse&lt;VaultComponentRoot&gt;
+  * @return (200 - ApiResponse&lt;VaultComponentRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -397,7 +397,7 @@ public class ComponentsApi {
    * Get Vault components
    * This endpoint returns the list of Vault components in a given Vault document.
    * @param document Document Name (required)
-   * @return ComponentSummaryRoot
+   * @return (200 - ComponentSummaryRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -421,7 +421,7 @@ public class ComponentsApi {
    * Get Vault components
    * This endpoint returns the list of Vault components in a given Vault document.
    * @param document Document Name (required)
-   * @return ApiResponse&lt;ComponentSummaryRoot&gt;
+  * @return (200 - ApiResponse&lt;ComponentSummaryRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">

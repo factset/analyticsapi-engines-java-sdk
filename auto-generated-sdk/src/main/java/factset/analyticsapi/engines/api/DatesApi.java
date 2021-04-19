@@ -50,7 +50,7 @@ public class DatesApi {
    * @param componentid Component Id (required)
    * @param account Account (required)
    * @param startdate Start Date (optional)
-   * @return DateParametersSummaryRoot
+   * @return (200 - DateParametersSummaryRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -77,7 +77,7 @@ public class DatesApi {
    * @param componentid Component Id (required)
    * @param account Account (required)
    * @param startdate Start Date (optional)
-   * @return ApiResponse&lt;DateParametersSummaryRoot&gt;
+  * @return (200 - ApiResponse&lt;DateParametersSummaryRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -156,7 +156,7 @@ public class DatesApi {
    * @param componentid Vault Component Id (required)
    * @param account Account (required)
    * @param startdate Start Date (optional)
-   * @return DateParametersSummaryRoot
+   * @return (200 - DateParametersSummaryRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -183,7 +183,7 @@ public class DatesApi {
    * @param componentid Vault Component Id (required)
    * @param account Account (required)
    * @param startdate Start Date (optional)
-   * @return ApiResponse&lt;DateParametersSummaryRoot&gt;
+  * @return (200 - ApiResponse&lt;DateParametersSummaryRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">

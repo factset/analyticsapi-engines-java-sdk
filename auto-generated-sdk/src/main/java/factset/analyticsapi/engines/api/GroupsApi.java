@@ -46,7 +46,7 @@ public class GroupsApi {
   /**
    * Get PA groups
    * This endpoint lists all the PA groups that can be applied to a PA calculation.
-   * @return GroupRoot
+   * @return (200 - GroupRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -67,7 +67,7 @@ public class GroupsApi {
   /**
    * Get PA groups
    * This endpoint lists all the PA groups that can be applied to a PA calculation.
-   * @return ApiResponse&lt;GroupRoot&gt;
+  * @return (200 - ApiResponse&lt;GroupRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">

@@ -47,7 +47,7 @@ public class StrategyDocumentsApi {
    * Get Axioma Equity strategy documents and sub-directories in a directory
    * This endpoint looks up all Axioma Equity strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-   * @return DocumentDirectoriesRoot
+   * @return (200 - DocumentDirectoriesRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -71,7 +71,7 @@ public class StrategyDocumentsApi {
    * Get Axioma Equity strategy documents and sub-directories in a directory
    * This endpoint looks up all Axioma Equity strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-   * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
+  * @return (200 - ApiResponse&lt;DocumentDirectoriesRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -134,7 +134,7 @@ public class StrategyDocumentsApi {
    * Get Axioma FI strategy documents and sub-directories in a directory
    * This endpoint looks up all Axioma FI strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-   * @return DocumentDirectoriesRoot
+   * @return (200 - DocumentDirectoriesRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -158,7 +158,7 @@ public class StrategyDocumentsApi {
    * Get Axioma FI strategy documents and sub-directories in a directory
    * This endpoint looks up all Axioma FI strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-   * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
+  * @return (200 - ApiResponse&lt;DocumentDirectoriesRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -221,7 +221,7 @@ public class StrategyDocumentsApi {
    * Get Barra strategy documents and sub-directories in a directory
    * This endpoint looks up all Barra strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-   * @return DocumentDirectoriesRoot
+   * @return (200 - DocumentDirectoriesRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -245,7 +245,7 @@ public class StrategyDocumentsApi {
    * Get Barra strategy documents and sub-directories in a directory
    * This endpoint looks up all Barra strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-   * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
+  * @return (200 - ApiResponse&lt;DocumentDirectoriesRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -308,7 +308,7 @@ public class StrategyDocumentsApi {
    * Get FactSet Portfolio Optimizer strategy documents and sub-directories in a directory
    * This endpoint looks up all FactSet Portfolio Optimizer strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-   * @return DocumentDirectoriesRoot
+   * @return (200 - DocumentDirectoriesRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -332,7 +332,7 @@ public class StrategyDocumentsApi {
    * Get FactSet Portfolio Optimizer strategy documents and sub-directories in a directory
    * This endpoint looks up all FactSet Portfolio Optimizer strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-   * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
+  * @return (200 - ApiResponse&lt;DocumentDirectoriesRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -395,7 +395,7 @@ public class StrategyDocumentsApi {
    * Get Northfield strategy documents and sub-directories in a directory
    * This endpoint looks up all Northfield strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-   * @return DocumentDirectoriesRoot
+   * @return (200 - DocumentDirectoriesRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -419,7 +419,7 @@ public class StrategyDocumentsApi {
    * Get Northfield strategy documents and sub-directories in a directory
    * This endpoint looks up all Northfield strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-   * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
+  * @return (200 - ApiResponse&lt;DocumentDirectoriesRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">

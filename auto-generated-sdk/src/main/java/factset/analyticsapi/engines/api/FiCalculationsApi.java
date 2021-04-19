@@ -71,7 +71,7 @@ public class FiCalculationsApi {
    * Cancel FI calculation by id
    * This is the endpoint to cancel a previously submitted calculation.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
-   * @return ApiResponse&lt;Void&gt;
+  * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -132,7 +132,7 @@ public class FiCalculationsApi {
    * Get FI calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
-   * @return FICalculationParametersRoot
+   * @return (200 - FICalculationParametersRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -154,7 +154,7 @@ public class FiCalculationsApi {
    * Get FI calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
-   * @return ApiResponse&lt;FICalculationParametersRoot&gt;
+  * @return (200 - ApiResponse&lt;FICalculationParametersRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -218,7 +218,7 @@ public class FiCalculationsApi {
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Get FI calculation status by id endpoint (required)
    * @param accept Standard HTTP header. Value can be gzip, compress, deflate, br, identity and/or * (optional)
-   * @return ObjectRoot
+   * @return (200 - ObjectRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -241,7 +241,7 @@ public class FiCalculationsApi {
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Get FI calculation status by id endpoint (required)
    * @param accept Standard HTTP header. Value can be gzip, compress, deflate, br, identity and/or * (optional)
-   * @return ApiResponse&lt;ObjectRoot&gt;
+  * @return (200 - ApiResponse&lt;ObjectRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -306,7 +306,7 @@ public class FiCalculationsApi {
    * Get FI calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.  Otherwise, the calculation is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
-   * @return ObjectRoot
+   * @return (201 - ObjectRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -329,7 +329,7 @@ public class FiCalculationsApi {
    * Get FI calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.  Otherwise, the calculation is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
-   * @return ApiResponse&lt;ObjectRoot&gt;
+  * @return (201 - ApiResponse&lt;ObjectRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -395,7 +395,7 @@ public class FiCalculationsApi {
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. (optional)
    * @param fiCalculationParametersRoot Calculation Parameters (optional)
-   * @return ObjectRoot
+   * @return (202 - CalculationInfoRoot)(201 - ObjectRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -422,7 +422,7 @@ public class FiCalculationsApi {
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. (optional)
    * @param fiCalculationParametersRoot Calculation Parameters (optional)
-   * @return ApiResponse&lt;ObjectRoot&gt;
+  * @return (202 - ApiResponse&lt;CalculationInfoRoot&gt;)(201 - ApiResponse&lt;ObjectRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -490,7 +490,7 @@ if (cacheControl != null)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. (optional)
    * @param fiCalculationParametersRoot Calculation Parameters (optional)
-   * @return ObjectRoot
+   * @return (202 - CalculationInfoRoot)(201 - ObjectRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -518,7 +518,7 @@ if (cacheControl != null)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. (optional)
    * @param fiCalculationParametersRoot Calculation Parameters (optional)
-   * @return ApiResponse&lt;ObjectRoot&gt;
+  * @return (202 - ApiResponse&lt;CalculationInfoRoot&gt;)(201 - ApiResponse&lt;ObjectRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">

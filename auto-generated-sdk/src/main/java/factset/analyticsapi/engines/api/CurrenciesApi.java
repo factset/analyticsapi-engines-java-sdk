@@ -46,7 +46,7 @@ public class CurrenciesApi {
   /**
    * Get currencies
    * This endpoint lists all the currencies that can be applied to any calculation.
-   * @return CurrencyRoot
+   * @return (200 - CurrencyRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -67,7 +67,7 @@ public class CurrenciesApi {
   /**
    * Get currencies
    * This endpoint lists all the currencies that can be applied to any calculation.
-   * @return ApiResponse&lt;CurrencyRoot&gt;
+  * @return (200 - ApiResponse&lt;CurrencyRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">

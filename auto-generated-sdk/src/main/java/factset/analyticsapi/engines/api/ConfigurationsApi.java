@@ -48,7 +48,7 @@ public class ConfigurationsApi {
    * Get Vault configuration by id
    * This endpoint returns details for a Vault configuration as well as a list of accounts it is used in.
    * @param id Vault configuration id to get the details of (required)
-   * @return VaultConfigurationRoot
+   * @return (200 - VaultConfigurationRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -72,7 +72,7 @@ public class ConfigurationsApi {
    * Get Vault configuration by id
    * This endpoint returns details for a Vault configuration as well as a list of accounts it is used in.
    * @param id Vault configuration id to get the details of (required)
-   * @return ApiResponse&lt;VaultConfigurationRoot&gt;
+  * @return (200 - ApiResponse&lt;VaultConfigurationRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -135,7 +135,7 @@ public class ConfigurationsApi {
    * Get Vault configurations
    * This endpoint returns all the Vault configurations saved in the provided account.
    * @param account Required account query parameter to filter configurations for a specific account (required)
-   * @return VaultConfigurationSummaryRoot
+   * @return (200 - VaultConfigurationSummaryRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -159,7 +159,7 @@ public class ConfigurationsApi {
    * Get Vault configurations
    * This endpoint returns all the Vault configurations saved in the provided account.
    * @param account Required account query parameter to filter configurations for a specific account (required)
-   * @return ApiResponse&lt;VaultConfigurationSummaryRoot&gt;
+  * @return (200 - ApiResponse&lt;VaultConfigurationSummaryRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">

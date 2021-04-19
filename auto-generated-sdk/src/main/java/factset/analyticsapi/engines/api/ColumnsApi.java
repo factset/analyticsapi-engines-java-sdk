@@ -48,7 +48,7 @@ public class ColumnsApi {
    * Get PA column settings
    * This endpoint returns the default settings of a PA column.
    * @param id Unique identifier for a column (required)
-   * @return ColumnRoot
+   * @return (200 - ColumnRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -72,7 +72,7 @@ public class ColumnsApi {
    * Get PA column settings
    * This endpoint returns the default settings of a PA column.
    * @param id Unique identifier for a column (required)
-   * @return ApiResponse&lt;ColumnRoot&gt;
+  * @return (200 - ApiResponse&lt;ColumnRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -137,7 +137,7 @@ public class ColumnsApi {
    * @param name Column name (optional, default to )
    * @param category Column category (optional, default to )
    * @param directory The directory to get the columns in (optional, default to )
-   * @return ColumnSummaryRoot
+   * @return (200 - ColumnSummaryRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -161,7 +161,7 @@ public class ColumnsApi {
    * @param name Column name (optional, default to )
    * @param category Column category (optional, default to )
    * @param directory The directory to get the columns in (optional, default to )
-   * @return ApiResponse&lt;ColumnSummaryRoot&gt;
+  * @return (200 - ApiResponse&lt;ColumnSummaryRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">

@@ -46,7 +46,7 @@ public class ColumnStatisticsApi {
   /**
    * Get PA column statistics
    * This endpoint lists all the column statistics that can be applied to a PA column.
-   * @return ColumnStatisticRoot
+   * @return (200 - ColumnStatisticRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -67,7 +67,7 @@ public class ColumnStatisticsApi {
   /**
    * Get PA column statistics
    * This endpoint lists all the column statistics that can be applied to a PA column.
-   * @return ApiResponse&lt;ColumnStatisticRoot&gt;
+  * @return (200 - ApiResponse&lt;ColumnStatisticRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">

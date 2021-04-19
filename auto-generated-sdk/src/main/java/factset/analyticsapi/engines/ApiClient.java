@@ -63,6 +63,9 @@ import factset.analyticsapi.engines.auth.HttpBasicAuth;
 import factset.analyticsapi.engines.auth.HttpBearerAuth;
 import factset.analyticsapi.engines.auth.ApiKeyAuth;
 
+import factset.analyticsapi.engines.models.ClientErrorResponse;
+import factset.analyticsapi.engines.models.Error;
+
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ApiClient extends JavaTimeFormatter {
   protected Map<String, String> defaultHeaderMap = new HashMap<String, String>();
@@ -985,8 +988,28 @@ public class ApiClient extends JavaTimeFormatter {
         // just continue
       }
     }
-  }
-  
+  } 
+     /**
+     * Invoke API by sending HTTP request with the given options.
+     *
+     * @param <T> Type
+     * @param operation The qualified name of the operation
+     * @param path The sub-path of the HTTP URL
+     * @param method The request method, one of "GET", "POST", "PUT", "HEAD" and "DELETE"
+     * @param queryParams The query parameters
+     * @param body The request body object
+     * @param headerParams The header parameters
+     * @param cookieParams The cookie parameters
+     * @param formParams The form parameters
+     * @param accept The request's Accept header
+     * @param contentType The request's Content-Type header
+     * @param authNames The authentications to apply
+     * @param returnTypeMap The return type into which to deserialize the response for a given status code
+     * @param isBodyNullable True if the body is nullable
+     * @return The response body in type of string
+     * @throws ApiException API exception
+     */
+     @SuppressWarnings("unchecked")                                                                      
       public <T> ApiResponse<T> invokeAPIWithReturnMap(
       String operation,
       String path,
@@ -1078,18 +1101,25 @@ public class ApiClient extends JavaTimeFormatter {
       int statusCode = response.getStatusInfo().getStatusCode();
       Map<String, List<String>> responseHeaders = buildResponseHeaders(response);
 
-     // RTH - New deserialization logic based on map of response types
+     // New deserialization logic based on map of response types
       if (response.getStatusInfo() == Status.NO_CONTENT) {
         return new ApiResponse<T>(statusCode, responseHeaders);
       }
 
       if(returnTypeMap.keySet().contains(statusCode)){
 	  
-        if(response.getStatusInfo().getFamily() != Status.Family.SUCCESSFUL){
-          throw new ApiException(response.getStatus(), "Error", buildResponseHeaders(response), "API Error", deserialize(response, returnTypeMap.get(statusCode)));
+        if(response.getStatusInfo().getFamily() != Status.Family.SUCCESSFUL){ 
+          ClientErrorResponse clientErrorResponse = deserialize(response, new GenericType<ClientErrorResponse>() {});
+
+          String reason = "API error";
+          if(!clientErrorResponse.getErrors().isEmpty() && clientErrorResponse.getErrors().get(0).getDetail() != null) {
+              reason = clientErrorResponse.getErrors().get(0).getDetail();
         }
-		
-        return new ApiResponse<T>(statusCode, responseHeaders, (T) deserialize(response, returnTypeMap.get(statusCode)));
+
+        throw new ApiException(response.getStatus(), "error", responseHeaders, reason, clientErrorResponse);
+      }
+
+        return new ApiResponse<T>(statusCode, responseHeaders, deserialize(response, (GenericType<T>) returnTypeMap.get(statusCode)));
       }
 
       if (response.getStatusInfo().getFamily() == Status.Family.SUCCESSFUL) {
@@ -1105,7 +1135,16 @@ public class ApiClient extends JavaTimeFormatter {
             // e.printStackTrace();
           }
         }
-        throw new ApiException(response.getStatus(), message, buildResponseHeaders(response), respBody);
+
+        Error error = new Error();
+        for(Entry<String, List<String>> entry : responseHeaders.entrySet()){
+            if("x-factset-api-request-key".equals(entry.getKey().toLowerCase()) && !entry.getValue().isEmpty()) {
+                error.setId(entry.getValue().get(0));
+            }
+        }
+        error.setDetail(respBody);
+        ClientErrorResponse clientErrorResponse = new ClientErrorResponse().addErrorsItem(error);
+        throw new ApiException(response.getStatus(), message, responseHeaders, respBody, clientErrorResponse);
       }
     } finally {
       try {

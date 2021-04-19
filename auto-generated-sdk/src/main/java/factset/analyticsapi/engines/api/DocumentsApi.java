@@ -47,7 +47,7 @@ public class DocumentsApi {
    * Get PA3 documents and sub-directories in a directory
    * This endpoint looks up all PA3 documents and sub-directories in a given directory.
    * @param path The directory to get the documents and sub-directories in (required)
-   * @return DocumentDirectoriesRoot
+   * @return (200 - DocumentDirectoriesRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -71,7 +71,7 @@ public class DocumentsApi {
    * Get PA3 documents and sub-directories in a directory
    * This endpoint looks up all PA3 documents and sub-directories in a given directory.
    * @param path The directory to get the documents and sub-directories in (required)
-   * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
+  * @return (200 - ApiResponse&lt;DocumentDirectoriesRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -134,7 +134,7 @@ public class DocumentsApi {
    * Gets Publisher documents and sub-directories in a directory
    * This endpoint looks up all Publisher documents and sub-directories in a given directory.
    * @param path The directory to get the documents in (required)
-   * @return DocumentDirectoriesRoot
+   * @return (200 - DocumentDirectoriesRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -158,7 +158,7 @@ public class DocumentsApi {
    * Gets Publisher documents and sub-directories in a directory
    * This endpoint looks up all Publisher documents and sub-directories in a given directory.
    * @param path The directory to get the documents in (required)
-   * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
+  * @return (200 - ApiResponse&lt;DocumentDirectoriesRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -221,7 +221,7 @@ public class DocumentsApi {
    * Gets SPAR3 documents and sub-directories in a directory
    * This endpoint looks up all SPAR3 documents and sub-directories in a given directory.
    * @param path The directory to get the documents in (required)
-   * @return DocumentDirectoriesRoot
+   * @return (200 - DocumentDirectoriesRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -245,7 +245,7 @@ public class DocumentsApi {
    * Gets SPAR3 documents and sub-directories in a directory
    * This endpoint looks up all SPAR3 documents and sub-directories in a given directory.
    * @param path The directory to get the documents in (required)
-   * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
+  * @return (200 - ApiResponse&lt;DocumentDirectoriesRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -308,7 +308,7 @@ public class DocumentsApi {
    * Get Vault documents and sub-directories in a directory
    * This endpoint looks up all Vault documents and sub-directories in a given directory.
    * @param path The directory to get the documents in (required)
-   * @return DocumentDirectoriesRoot
+   * @return (200 - DocumentDirectoriesRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -332,7 +332,7 @@ public class DocumentsApi {
    * Get Vault documents and sub-directories in a directory
    * This endpoint looks up all Vault documents and sub-directories in a given directory.
    * @param path The directory to get the documents in (required)
-   * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
+  * @return (200 - ApiResponse&lt;DocumentDirectoriesRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">

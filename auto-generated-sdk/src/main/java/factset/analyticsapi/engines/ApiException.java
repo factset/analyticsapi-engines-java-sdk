@@ -17,7 +17,9 @@ import java.util.Map;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeMap;
+
 import factset.analyticsapi.engines.models.ClientErrorResponse;
+
 /**
  * API Exception
  */
@@ -26,7 +28,7 @@ public class ApiException extends Exception {
     private int code = 0;
     private Map<String, List<String>> responseHeaders = null;
     private String responseBody = null;
-    private Object clientErrorResponse = null;
+    private ClientErrorResponse clientErrorResponse = null;
 
     public ApiException() {}
 
@@ -76,7 +78,7 @@ public class ApiException extends Exception {
         this.responseBody = responseBody;
     }
 	
-    public ApiException(int code, String message, Map<String, List<String>> responseHeaders, String responseBody, Object clientErrorResponse) {
+    public ApiException(int code, String message, Map<String, List<String>> responseHeaders, String responseBody, ClientErrorResponse clientErrorResponse) {
         this(code, message, responseHeaders, responseBody);
         this.clientErrorResponse = clientErrorResponse;
     }
@@ -109,14 +111,11 @@ public class ApiException extends Exception {
     }
 
     /**
-     * Get the error response object.
+     * Get the detailed client error response. This can contain multiple error reasons.
      *
-     * @return error in the form of ClientErrorResponse object
+     * @return ClientErrorResponse
      */
-    public ClientErrorResponse getErrorObject() {
-        if(clientErrorResponse instanceof ClientErrorResponse){
-            return (ClientErrorResponse)clientErrorResponse;
-        }
-        return null;
+     public ClientErrorResponse getClientErrorResponse() {
+         return clientErrorResponse;
     }
 }

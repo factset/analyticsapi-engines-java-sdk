@@ -49,7 +49,7 @@ public class FiabCalculationsApi {
    * Get FIAB calculation by id
    * This is the endpoint to check on the progress of a previously requested calculation.
    * @param id from url, provided from the location header in the Run FIAB Calculation endpoint (required)
-   * @return FIABCalculationStatus
+   * @return (200 - FIABCalculationStatus)(202 - FIABCalculationStatus)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -72,7 +72,7 @@ public class FiabCalculationsApi {
    * Get FIAB calculation by id
    * This is the endpoint to check on the progress of a previously requested calculation.
    * @param id from url, provided from the location header in the Run FIAB Calculation endpoint (required)
-   * @return ApiResponse&lt;FIABCalculationStatus&gt;
+  * @return (200 - ApiResponse&lt;FIABCalculationStatus&gt;)(202 - ApiResponse&lt;FIABCalculationStatus&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -134,7 +134,7 @@ public class FiabCalculationsApi {
   /**
    * Get all FIAB calculation summaries
    * This endpoints returns all FIAB calculation requests.
-   * @return java.util.Map&lt;String, FIABCalculationStatusSummary&gt;
+   * @return (200 - java.util.Map<String, FIABCalculationStatusSummary>)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -155,7 +155,7 @@ public class FiabCalculationsApi {
   /**
    * Get all FIAB calculation summaries
    * This endpoints returns all FIAB calculation requests.
-   * @return ApiResponse&lt;java.util.Map&lt;String, FIABCalculationStatusSummary&gt;&gt;
+  * @return (200 - ApiResponse&lt;java.util.Map<String, FIABCalculationStatusSummary>&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -232,7 +232,7 @@ public class FiabCalculationsApi {
    * Run FIAB calculation
    * This endpoint creates a new FIAB calculation.  This must be used first before get status or cancelling endpoints with a calculation id.  A successful response will contain the URL to check the status of the calculation request.    Remarks:  * Any settings in POST body will act as a one-time override over the settings saved in the FIAB template.
    * @param fiABCalculationParameters  (optional)
-   * @return ApiResponse&lt;Void&gt;
+  * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">

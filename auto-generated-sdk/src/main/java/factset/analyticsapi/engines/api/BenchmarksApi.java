@@ -47,7 +47,7 @@ public class BenchmarksApi {
    * Get SPAR benchmark details
    * This endpoint returns the details of a given SPAR benchmark identifier.
    * @param id Benchmark Identifier (required)
-   * @return SPARBenchmarkRoot
+   * @return (200 - SPARBenchmarkRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -71,7 +71,7 @@ public class BenchmarksApi {
    * Get SPAR benchmark details
    * This endpoint returns the details of a given SPAR benchmark identifier.
    * @param id Benchmark Identifier (required)
-   * @return ApiResponse&lt;SPARBenchmarkRoot&gt;
+  * @return (200 - ApiResponse&lt;SPARBenchmarkRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">

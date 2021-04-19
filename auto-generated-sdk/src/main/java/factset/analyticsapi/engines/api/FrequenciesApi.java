@@ -46,7 +46,7 @@ public class FrequenciesApi {
   /**
    * Get PA frequencies
    * This endpoint lists all the frequencies that can be applied to a PA calculation.
-   * @return FrequencyRoot
+   * @return (200 - FrequencyRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -67,7 +67,7 @@ public class FrequenciesApi {
   /**
    * Get PA frequencies
    * This endpoint lists all the frequencies that can be applied to a PA calculation.
-   * @return ApiResponse&lt;FrequencyRoot&gt;
+  * @return (200 - ApiResponse&lt;FrequencyRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -121,7 +121,7 @@ public class FrequenciesApi {
   /**
    * Get SPAR frequencies
    * This endpoint lists all the frequencies that can be applied to a SPAR calculation.
-   * @return FrequencyRoot
+   * @return (200 - FrequencyRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -142,7 +142,7 @@ public class FrequenciesApi {
   /**
    * Get SPAR frequencies
    * This endpoint lists all the frequencies that can be applied to a SPAR calculation.
-   * @return ApiResponse&lt;FrequencyRoot&gt;
+  * @return (200 - ApiResponse&lt;FrequencyRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -196,7 +196,7 @@ public class FrequenciesApi {
   /**
    * Get Vault frequencies
    * This endpoint lists all the frequencies that can be applied to a Vault calculation.
-   * @return FrequencyRoot
+   * @return (200 - FrequencyRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -217,7 +217,7 @@ public class FrequenciesApi {
   /**
    * Get Vault frequencies
    * This endpoint lists all the frequencies that can be applied to a Vault calculation.
-   * @return ApiResponse&lt;FrequencyRoot&gt;
+  * @return (200 - ApiResponse&lt;FrequencyRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
