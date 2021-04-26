@@ -1,3 +1,4 @@
+
 # engines-sdk
 
 Engines API
@@ -122,7 +123,7 @@ public class AccountsApiExample {
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountsApi#getAccounts");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -145,6 +146,12 @@ Class | Method | HTTP request | Description
 *AxpOptimizerApi* | [**postAndOptimize**](docs/AxpOptimizerApi.md#postAndOptimize) | **POST** /analytics/engines/axp/v3/optimizations | Create and Run Axioma optimization
 *AxpOptimizerApi* | [**putAndOptimize**](docs/AxpOptimizerApi.md#putAndOptimize) | **PUT** /analytics/engines/axp/v3/optimizations/{id} | Create or Update Axioma optimization and run it.
 *BenchmarksApi* | [**getSPARBenchmarkById**](docs/BenchmarksApi.md#getSPARBenchmarkById) | **GET** /analytics/engines/spar/v3/benchmarks | Get SPAR benchmark details
+*BpmOptimizerApi* | [**cancelOptimizationById**](docs/BpmOptimizerApi.md#cancelOptimizationById) | **DELETE** /analytics/engines/bpm/v3/optimizations/{id} | Cancel BPM optimization by id
+*BpmOptimizerApi* | [**getOptimizationParameters**](docs/BpmOptimizerApi.md#getOptimizationParameters) | **GET** /analytics/engines/bpm/v3/optimizations/{id} | Get BPM optimization parameters by id
+*BpmOptimizerApi* | [**getOptimizationResult**](docs/BpmOptimizerApi.md#getOptimizationResult) | **GET** /analytics/engines/bpm/v3/optimizations/{id}/result | Get BPM optimization result by id
+*BpmOptimizerApi* | [**getOptimizationStatusById**](docs/BpmOptimizerApi.md#getOptimizationStatusById) | **GET** /analytics/engines/bpm/v3/optimizations/{id}/status | Get BPM optimization status by id
+*BpmOptimizerApi* | [**postAndOptimize**](docs/BpmOptimizerApi.md#postAndOptimize) | **POST** /analytics/engines/bpm/v3/optimizations | Create and Run BPM optimization
+*BpmOptimizerApi* | [**putAndOptimize**](docs/BpmOptimizerApi.md#putAndOptimize) | **PUT** /analytics/engines/bpm/v3/optimizations/{id} | Create or Update BPM optimization and run it.
 *ColumnStatisticsApi* | [**getPAColumnStatistics**](docs/ColumnStatisticsApi.md#getPAColumnStatistics) | **GET** /analytics/engines/pa/v3/columnstatistics | Get PA column statistics
 *ColumnsApi* | [**getPAColumnById**](docs/ColumnsApi.md#getPAColumnById) | **GET** /analytics/engines/pa/v3/columns/{id} | Get PA column settings
 *ColumnsApi* | [**getPAColumns**](docs/ColumnsApi.md#getPAColumns) | **GET** /analytics/engines/pa/v3/columns | Get PA columns
@@ -218,6 +225,14 @@ Class | Method | HTTP request | Description
  - [AccountDirectoriesRoot](docs/AccountDirectoriesRoot.md)
  - [AxiomaEquityOptimizationParameters](docs/AxiomaEquityOptimizationParameters.md)
  - [AxiomaEquityOptimizationParametersRoot](docs/AxiomaEquityOptimizationParametersRoot.md)
+ - [AxiomaEquityOptimizerStrategy](docs/AxiomaEquityOptimizerStrategy.md)
+ - [AxiomaEquityOptimizerStrategyOverrides](docs/AxiomaEquityOptimizerStrategyOverrides.md)
+ - [BPMOptimization](docs/BPMOptimization.md)
+ - [BPMOptimizationParameters](docs/BPMOptimizationParameters.md)
+ - [BPMOptimizationParametersRoot](docs/BPMOptimizationParametersRoot.md)
+ - [BPMOptimizerStrategy](docs/BPMOptimizerStrategy.md)
+ - [BPMOptimizerStrategyAlphaOverride](docs/BPMOptimizerStrategyAlphaOverride.md)
+ - [BPMOptimizerStrategyOverrides](docs/BPMOptimizerStrategyOverrides.md)
  - [CalculationInfo](docs/CalculationInfo.md)
  - [CalculationInfoRoot](docs/CalculationInfoRoot.md)
  - [CalculationMeta](docs/CalculationMeta.md)
@@ -234,6 +249,7 @@ Class | Method | HTTP request | Description
  - [ComponentSummary](docs/ComponentSummary.md)
  - [ComponentSummaryRoot](docs/ComponentSummaryRoot.md)
  - [ConfigurationAccount](docs/ConfigurationAccount.md)
+ - [ConstraintAction](docs/ConstraintAction.md)
  - [Currency](docs/Currency.md)
  - [CurrencyRoot](docs/CurrencyRoot.md)
  - [DateParametersSummary](docs/DateParametersSummary.md)
@@ -316,4 +332,3 @@ It's recommended to create an instance of `ApiClient` per thread in a multithrea
 ## Author
 
 analytics.api.support@factset.com
-

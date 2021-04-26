@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | **Object** |  |  [optional]
+**data** | **Object** |  | 
 
 
 ## Implemented Interfaces

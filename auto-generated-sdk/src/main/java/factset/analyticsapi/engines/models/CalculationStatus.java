@@ -46,7 +46,7 @@ public class CalculationStatus implements Serializable {
   private String calculationid;
 
   /**
-   * Gets or Sets status
+   * Calculation&#39;s status
    */
   public enum StatusEnum {
     QUEUED("Queued"),
@@ -97,11 +97,11 @@ public class CalculationStatus implements Serializable {
   }
 
    /**
-   * Get calculationid
+   * Calculation&#39;s identifier
    * @return calculationid
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Calculation's identifier")
   @JsonProperty(JSON_PROPERTY_CALCULATIONID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -121,11 +121,11 @@ public class CalculationStatus implements Serializable {
   }
 
    /**
-   * Get status
+   * Calculation&#39;s status
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Calculation's status")
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

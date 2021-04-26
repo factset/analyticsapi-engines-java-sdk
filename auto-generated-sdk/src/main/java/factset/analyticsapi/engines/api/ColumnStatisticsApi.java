@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines.api;
 
 import factset.analyticsapi.engines.ApiException;
@@ -46,7 +47,7 @@ public class ColumnStatisticsApi {
   /**
    * Get PA column statistics
    * This endpoint lists all the column statistics that can be applied to a PA column.
-   * @return (200 - ColumnStatisticRoot)
+    @return ColumnStatisticRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -60,14 +61,14 @@ public class ColumnStatisticsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public Object getPAColumnStatistics() throws ApiException {
+  public ColumnStatisticRoot getPAColumnStatistics() throws ApiException {
     return getPAColumnStatisticsWithHttpInfo().getData();
   }
 
   /**
    * Get PA column statistics
    * This endpoint lists all the column statistics that can be applied to a PA column.
-  * @return (200 - ApiResponse&lt;ColumnStatisticRoot&gt;)
+   * @return ApiResponse&lt;ColumnStatisticRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -81,7 +82,7 @@ public class ColumnStatisticsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getPAColumnStatisticsWithHttpInfo() throws ApiException {
+  public ApiResponse<ColumnStatisticRoot> getPAColumnStatisticsWithHttpInfo() throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -114,7 +115,7 @@ public class ColumnStatisticsApi {
 	 Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
 	 returnTypeMap.put(200, new GenericType<ColumnStatisticRoot>(){});
 	
-    return apiClient.<Object>invokeAPIWithReturnMap("ColumnStatisticsApi.getPAColumnStatistics", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+    return apiClient.<ColumnStatisticRoot>invokeAPIWithReturnMap("ColumnStatisticsApi.getPAColumnStatistics", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

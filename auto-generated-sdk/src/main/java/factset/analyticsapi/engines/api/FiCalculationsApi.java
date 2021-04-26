@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines.api;
 
 import factset.analyticsapi.engines.ApiException;
@@ -71,7 +72,7 @@ public class FiCalculationsApi {
    * Cancel FI calculation by id
    * This is the endpoint to cancel a previously submitted calculation.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
-  * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -132,7 +133,7 @@ public class FiCalculationsApi {
    * Get FI calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
-   * @return (200 - FICalculationParametersRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
+    @return FICalculationParametersRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -146,7 +147,7 @@ public class FiCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public Object getCalculationParameters(String id) throws ApiException {
+  public FICalculationParametersRoot getCalculationParameters(String id) throws ApiException {
     return getCalculationParametersWithHttpInfo(id).getData();
   }
 
@@ -154,7 +155,7 @@ public class FiCalculationsApi {
    * Get FI calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
-  * @return (200 - ApiResponse&lt;FICalculationParametersRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
+   * @return ApiResponse&lt;FICalculationParametersRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -168,7 +169,7 @@ public class FiCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getCalculationParametersWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<FICalculationParametersRoot> getCalculationParametersWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -209,7 +210,7 @@ public class FiCalculationsApi {
 	 returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
 	 returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-    return apiClient.<Object>invokeAPIWithReturnMap("FiCalculationsApi.getCalculationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+    return apiClient.<FICalculationParametersRoot>invokeAPIWithReturnMap("FiCalculationsApi.getCalculationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -217,8 +218,7 @@ public class FiCalculationsApi {
    * Get FI calculation result by id
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Get FI calculation status by id endpoint (required)
-   * @param accept Standard HTTP header. Value can be gzip, compress, deflate, br, identity and/or * (optional)
-   * @return (200 - ObjectRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
+    @return ObjectRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -232,16 +232,15 @@ public class FiCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public Object getCalculationResult(String id, String accept) throws ApiException {
-    return getCalculationResultWithHttpInfo(id, accept).getData();
+  public ObjectRoot getCalculationResult(String id) throws ApiException {
+    return getCalculationResultWithHttpInfo(id).getData();
   }
 
   /**
    * Get FI calculation result by id
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Get FI calculation status by id endpoint (required)
-   * @param accept Standard HTTP header. Value can be gzip, compress, deflate, br, identity and/or * (optional)
-  * @return (200 - ApiResponse&lt;ObjectRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
+   * @return ApiResponse&lt;ObjectRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -255,7 +254,7 @@ public class FiCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getCalculationResultWithHttpInfo(String id, String accept) throws ApiException {
+  public ApiResponse<ObjectRoot> getCalculationResultWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -274,9 +273,7 @@ public class FiCalculationsApi {
     java.util.Map<String, Object> localVarFormParams = new java.util.HashMap<String, Object>();
 
 
-    if (accept != null)
-      localVarHeaderParams.put("Accept", apiClient.parameterToString(accept));
-
+    
     
     
     final String[] localVarAccepts = {
@@ -298,7 +295,7 @@ public class FiCalculationsApi {
 	 returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
 	 returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-    return apiClient.<Object>invokeAPIWithReturnMap("FiCalculationsApi.getCalculationResult", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+    return apiClient.<ObjectRoot>invokeAPIWithReturnMap("FiCalculationsApi.getCalculationResult", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -306,7 +303,7 @@ public class FiCalculationsApi {
    * Get FI calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.  Otherwise, the calculation is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
-   * @return (201 - ObjectRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
+    @return (For 201 status - ObjectRoot)(For 202 status - Void)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -329,7 +326,7 @@ public class FiCalculationsApi {
    * Get FI calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.  Otherwise, the calculation is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
-  * @return (201 - ApiResponse&lt;ObjectRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
+   * @return (For 201 status - ApiResponse&lt;ObjectRoot&gt;)(For 202 status - ApiResponse&lt;Void&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -393,9 +390,9 @@ public class FiCalculationsApi {
    * Create and Run FI calculation
    * This endpoint creates and runs a new FI calculation specified in the post body.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param fiCalculationParametersRoot Calculation Parameters (optional)
-   * @return (202 - CalculationInfoRoot)(201 - ObjectRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
+    @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -420,9 +417,9 @@ public class FiCalculationsApi {
    * Create and Run FI calculation
    * This endpoint creates and runs a new FI calculation specified in the post body.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param fiCalculationParametersRoot Calculation Parameters (optional)
-  * @return (202 - ApiResponse&lt;CalculationInfoRoot&gt;)(201 - ApiResponse&lt;ObjectRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
+   * @return (For 202 status - ApiResponse&lt;CalculationInfoRoot&gt;)(For 201 status - ApiResponse&lt;ObjectRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -488,9 +485,9 @@ if (cacheControl != null)
    * This endpoint updates and run the FI optimization specified in the PUT body parameters. It also allows the creation of new FI optimization with custom id.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param fiCalculationParametersRoot Calculation Parameters (optional)
-   * @return (202 - CalculationInfoRoot)(201 - ObjectRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
+    @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -499,6 +496,7 @@ if (cacheControl != null)
        <tr><td> 201 </td><td> Expected response if calculation is completed in a short span, returns JSON in the format specified in the Calculation parameters. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 400 </td><td> Invalid Calculation Parameters. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 404 </td><td> One or more calculation settings were unavailable. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 409 </td><td> Duplicate calculation exists with same parameters. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 401 </td><td> Missing or invalid authentication. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
        <tr><td> 403 </td><td> User is forbidden with current credentials </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 415 </td><td> Missing/Invalid Content-Type header. Header needs to be set to application/json. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
@@ -516,9 +514,9 @@ if (cacheControl != null)
    * This endpoint updates and run the FI optimization specified in the PUT body parameters. It also allows the creation of new FI optimization with custom id.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param fiCalculationParametersRoot Calculation Parameters (optional)
-  * @return (202 - ApiResponse&lt;CalculationInfoRoot&gt;)(201 - ApiResponse&lt;ObjectRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
+   * @return (For 202 status - ApiResponse&lt;CalculationInfoRoot&gt;)(For 201 status - ApiResponse&lt;ObjectRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -527,6 +525,7 @@ if (cacheControl != null)
        <tr><td> 201 </td><td> Expected response if calculation is completed in a short span, returns JSON in the format specified in the Calculation parameters. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 400 </td><td> Invalid Calculation Parameters. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 404 </td><td> One or more calculation settings were unavailable. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 409 </td><td> Duplicate calculation exists with same parameters. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 401 </td><td> Missing or invalid authentication. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
        <tr><td> 403 </td><td> User is forbidden with current credentials </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 415 </td><td> Missing/Invalid Content-Type header. Header needs to be set to application/json. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
@@ -580,6 +579,7 @@ if (cacheControl != null)
 	 returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
 	 returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
 	 returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	 returnTypeMap.put(409, new GenericType<ClientErrorResponse>(){});
 	
     return apiClient.<Object>invokeAPIWithReturnMap("FiCalculationsApi.putAndCalculate", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,

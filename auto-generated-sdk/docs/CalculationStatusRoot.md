@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**CalculationStatus**](CalculationStatus.md) |  |  [optional]
+**data** | [**CalculationStatus**](CalculationStatus.md) |  | 
 
 
 ## Implemented Interfaces

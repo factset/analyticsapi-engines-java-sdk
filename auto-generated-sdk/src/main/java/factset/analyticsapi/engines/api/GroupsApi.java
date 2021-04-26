@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines.api;
 
 import factset.analyticsapi.engines.ApiException;
@@ -46,7 +47,7 @@ public class GroupsApi {
   /**
    * Get PA groups
    * This endpoint lists all the PA groups that can be applied to a PA calculation.
-   * @return (200 - GroupRoot)
+    @return GroupRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -60,14 +61,14 @@ public class GroupsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public Object getPAGroups() throws ApiException {
+  public GroupRoot getPAGroups() throws ApiException {
     return getPAGroupsWithHttpInfo().getData();
   }
 
   /**
    * Get PA groups
    * This endpoint lists all the PA groups that can be applied to a PA calculation.
-  * @return (200 - ApiResponse&lt;GroupRoot&gt;)
+   * @return ApiResponse&lt;GroupRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -81,7 +82,7 @@ public class GroupsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getPAGroupsWithHttpInfo() throws ApiException {
+  public ApiResponse<GroupRoot> getPAGroupsWithHttpInfo() throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -114,7 +115,7 @@ public class GroupsApi {
 	 Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
 	 returnTypeMap.put(200, new GenericType<GroupRoot>(){});
 	
-    return apiClient.<Object>invokeAPIWithReturnMap("GroupsApi.getPAGroups", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+    return apiClient.<GroupRoot>invokeAPIWithReturnMap("GroupsApi.getPAGroups", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

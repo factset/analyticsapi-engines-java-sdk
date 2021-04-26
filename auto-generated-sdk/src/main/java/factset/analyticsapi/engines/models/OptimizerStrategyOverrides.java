@@ -34,7 +34,6 @@ import factset.analyticsapi.engines.JSON;
  */
 @JsonPropertyOrder({
   OptimizerStrategyOverrides.JSON_PROPERTY_TAX,
-  OptimizerStrategyOverrides.JSON_PROPERTY_OBJECTIVE,
   OptimizerStrategyOverrides.JSON_PROPERTY_CONSTRAINTS,
   OptimizerStrategyOverrides.JSON_PROPERTY_ALPHA,
   OptimizerStrategyOverrides.JSON_PROPERTY_TRANSACTION_COST
@@ -45,9 +44,6 @@ public class OptimizerStrategyOverrides implements Serializable {
 
   public static final String JSON_PROPERTY_TAX = "tax";
   private String tax;
-
-  public static final String JSON_PROPERTY_OBJECTIVE = "objective";
-  private String objective;
 
   /**
    * Gets or Sets inner
@@ -115,30 +111,6 @@ public class OptimizerStrategyOverrides implements Serializable {
 
   public void setTax(String tax) {
     this.tax = tax;
-  }
-
-
-  public OptimizerStrategyOverrides objective(String objective) {
-    this.objective = objective;
-    return this;
-  }
-
-   /**
-   * Objective
-   * @return objective
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Objective")
-  @JsonProperty(JSON_PROPERTY_OBJECTIVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getObjective() {
-    return objective;
-  }
-
-
-  public void setObjective(String objective) {
-    this.objective = objective;
   }
 
 
@@ -235,7 +207,6 @@ public class OptimizerStrategyOverrides implements Serializable {
     }
     OptimizerStrategyOverrides optimizerStrategyOverrides = (OptimizerStrategyOverrides) o;
     return Objects.equals(this.tax, optimizerStrategyOverrides.tax) &&
-        Objects.equals(this.objective, optimizerStrategyOverrides.objective) &&
         Objects.equals(this.constraints, optimizerStrategyOverrides.constraints) &&
         Objects.equals(this.alpha, optimizerStrategyOverrides.alpha) &&
         Objects.equals(this.transactionCost, optimizerStrategyOverrides.transactionCost);
@@ -243,7 +214,7 @@ public class OptimizerStrategyOverrides implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(tax, objective, constraints, alpha, transactionCost);
+    return Objects.hash(tax, constraints, alpha, transactionCost);
   }
 
   @Override
@@ -251,7 +222,6 @@ public class OptimizerStrategyOverrides implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class OptimizerStrategyOverrides {\n");
     sb.append("    tax: ").append(toIndentedString(tax)).append("\n");
-    sb.append("    objective: ").append(toIndentedString(objective)).append("\n");
     sb.append("    constraints: ").append(toIndentedString(constraints)).append("\n");
     sb.append("    alpha: ").append(toIndentedString(alpha)).append("\n");
     sb.append("    transactionCost: ").append(toIndentedString(transactionCost)).append("\n");

@@ -41,7 +41,7 @@ public class CurrencyRoot implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_DATA = "data";
-  private java.util.Map<String, Currency> data = null;
+  private java.util.Map<String, Currency> data = new java.util.HashMap<String, Currency>();
 
 
   public CurrencyRoot data(java.util.Map<String, Currency> data) {
@@ -50,9 +50,6 @@ public class CurrencyRoot implements Serializable {
   }
 
   public CurrencyRoot putDataItem(String key, Currency dataItem) {
-    if (this.data == null) {
-      this.data = new java.util.HashMap<String, Currency>();
-    }
     this.data.put(key, dataItem);
     return this;
   }
@@ -61,10 +58,9 @@ public class CurrencyRoot implements Serializable {
    * Get data
    * @return data
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public java.util.Map<String, Currency> getData() {
     return data;

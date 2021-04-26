@@ -49,11 +49,11 @@ public class CalculationInfo implements Serializable {
   }
 
    /**
-   * Get id
+   * Calculation identifier
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Calculation identifier")
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines.api;
 
 import factset.analyticsapi.engines.ApiException;
@@ -46,7 +47,7 @@ public class FrequenciesApi {
   /**
    * Get PA frequencies
    * This endpoint lists all the frequencies that can be applied to a PA calculation.
-   * @return (200 - FrequencyRoot)
+    @return FrequencyRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -60,14 +61,14 @@ public class FrequenciesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public Object getPAFrequencies() throws ApiException {
+  public FrequencyRoot getPAFrequencies() throws ApiException {
     return getPAFrequenciesWithHttpInfo().getData();
   }
 
   /**
    * Get PA frequencies
    * This endpoint lists all the frequencies that can be applied to a PA calculation.
-  * @return (200 - ApiResponse&lt;FrequencyRoot&gt;)
+   * @return ApiResponse&lt;FrequencyRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -81,7 +82,7 @@ public class FrequenciesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getPAFrequenciesWithHttpInfo() throws ApiException {
+  public ApiResponse<FrequencyRoot> getPAFrequenciesWithHttpInfo() throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -114,14 +115,14 @@ public class FrequenciesApi {
 	 Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
 	 returnTypeMap.put(200, new GenericType<FrequencyRoot>(){});
 	
-    return apiClient.<Object>invokeAPIWithReturnMap("FrequenciesApi.getPAFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+    return apiClient.<FrequencyRoot>invokeAPIWithReturnMap("FrequenciesApi.getPAFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get SPAR frequencies
    * This endpoint lists all the frequencies that can be applied to a SPAR calculation.
-   * @return (200 - FrequencyRoot)
+    @return FrequencyRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -135,14 +136,14 @@ public class FrequenciesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public Object getSPARFrequencies() throws ApiException {
+  public FrequencyRoot getSPARFrequencies() throws ApiException {
     return getSPARFrequenciesWithHttpInfo().getData();
   }
 
   /**
    * Get SPAR frequencies
    * This endpoint lists all the frequencies that can be applied to a SPAR calculation.
-  * @return (200 - ApiResponse&lt;FrequencyRoot&gt;)
+   * @return ApiResponse&lt;FrequencyRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -156,7 +157,7 @@ public class FrequenciesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getSPARFrequenciesWithHttpInfo() throws ApiException {
+  public ApiResponse<FrequencyRoot> getSPARFrequenciesWithHttpInfo() throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -189,14 +190,14 @@ public class FrequenciesApi {
 	 Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
 	 returnTypeMap.put(200, new GenericType<FrequencyRoot>(){});
 	
-    return apiClient.<Object>invokeAPIWithReturnMap("FrequenciesApi.getSPARFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+    return apiClient.<FrequencyRoot>invokeAPIWithReturnMap("FrequenciesApi.getSPARFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get Vault frequencies
    * This endpoint lists all the frequencies that can be applied to a Vault calculation.
-   * @return (200 - FrequencyRoot)
+    @return FrequencyRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -210,14 +211,14 @@ public class FrequenciesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public Object getVaultFrequencies() throws ApiException {
+  public FrequencyRoot getVaultFrequencies() throws ApiException {
     return getVaultFrequenciesWithHttpInfo().getData();
   }
 
   /**
    * Get Vault frequencies
    * This endpoint lists all the frequencies that can be applied to a Vault calculation.
-  * @return (200 - ApiResponse&lt;FrequencyRoot&gt;)
+   * @return ApiResponse&lt;FrequencyRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -231,7 +232,7 @@ public class FrequenciesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getVaultFrequenciesWithHttpInfo() throws ApiException {
+  public ApiResponse<FrequencyRoot> getVaultFrequenciesWithHttpInfo() throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -264,7 +265,7 @@ public class FrequenciesApi {
 	 Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
 	 returnTypeMap.put(200, new GenericType<FrequencyRoot>(){});
 	
-    return apiClient.<Object>invokeAPIWithReturnMap("FrequenciesApi.getVaultFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+    return apiClient.<FrequencyRoot>invokeAPIWithReturnMap("FrequenciesApi.getVaultFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

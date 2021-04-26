@@ -1,3 +1,4 @@
+
 # FpoOptimizerApi
 
 All URIs are relative to *https://api.factset.com*
@@ -49,7 +50,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling FpoOptimizerApi#cancelOptimizationById");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -66,6 +67,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
+null (empty response body)
 null (empty response body)
 
 ### Authorization
@@ -95,7 +97,7 @@ null (empty response body)
 
 Get FPO optimization parameters by id
 
-This is the endpoint that returns the optimization parameters passed for a calculation.
+This is the endpoint that returns the optimization parameters passed for an optimization.
 
 ### Example
 
@@ -126,7 +128,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling FpoOptimizerApi#getOptimizationParameters");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -143,6 +145,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
+[**FPOOptimizationParametersRoot**](FPOOptimizationParametersRoot.md)
 [**FPOOptimizationParametersRoot**](FPOOptimizationParametersRoot.md)
 
 ### Authorization
@@ -205,7 +208,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling FpoOptimizerApi#getOptimizationResult");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -223,6 +226,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
+[**ObjectRoot**](ObjectRoot.md)
 [**ObjectRoot**](ObjectRoot.md)
 
 ### Authorization
@@ -280,12 +284,12 @@ public class Example {
         FpoOptimizerApi apiInstance = new FpoOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run FPO optimization endpoint
         try {
-            ObjectRoot result = apiInstance.getOptimizationStatusById(id);
+            Object result = apiInstance.getOptimizationStatusById(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FpoOptimizerApi#getOptimizationStatusById");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -303,6 +307,7 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ObjectRoot**](ObjectRoot.md)
+(For 201 status - [**ObjectRoot**](ObjectRoot.md))(For 202 status - null (empty response body))
 
 ### Authorization
 
@@ -361,15 +366,15 @@ public class Example {
 
         FpoOptimizerApi apiInstance = new FpoOptimizerApi(defaultClient);
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
-        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale.
-        FPOOptimizationParametersRoot fpOOptimizationParametersRoot = new FPOOptimizationParametersRoot(); // FPOOptimizationParametersRoot | Calculation Parameters
+        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
+        FPOOptimizationParametersRoot fpOOptimizationParametersRoot = new FPOOptimizationParametersRoot(); // FPOOptimizationParametersRoot | Optimization Parameters
         try {
-            ObjectRoot result = apiInstance.postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, fpOOptimizationParametersRoot);
+            Object result = apiInstance.postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, fpOOptimizationParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FpoOptimizerApi#postAndOptimize");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -383,12 +388,13 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
- **cacheControl** | **String**| Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. | [optional]
- **fpOOptimizationParametersRoot** | [**FPOOptimizationParametersRoot**](FPOOptimizationParametersRoot.md)| Calculation Parameters | [optional]
+ **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
+ **fpOOptimizationParametersRoot** | [**FPOOptimizationParametersRoot**](FPOOptimizationParametersRoot.md)| Optimization Parameters | [optional]
 
 ### Return type
 
 [**ObjectRoot**](ObjectRoot.md)
+(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
 
@@ -446,15 +452,15 @@ public class Example {
         FpoOptimizerApi apiInstance = new FpoOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run FPO optimization endpoint
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
-        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale.
-        FPOOptimizationParametersRoot fpOOptimizationParametersRoot = new FPOOptimizationParametersRoot(); // FPOOptimizationParametersRoot | Calculation Parameters
+        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
+        FPOOptimizationParametersRoot fpOOptimizationParametersRoot = new FPOOptimizationParametersRoot(); // FPOOptimizationParametersRoot | Optimization Parameters
         try {
-            ObjectRoot result = apiInstance.putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, fpOOptimizationParametersRoot);
+            Object result = apiInstance.putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, fpOOptimizationParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FpoOptimizerApi#putAndOptimize");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -469,12 +475,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| from url, provided from the location header in the Create and Run FPO optimization endpoint |
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
- **cacheControl** | **String**| Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. | [optional]
- **fpOOptimizationParametersRoot** | [**FPOOptimizationParametersRoot**](FPOOptimizationParametersRoot.md)| Calculation Parameters | [optional]
+ **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
+ **fpOOptimizationParametersRoot** | [**FPOOptimizationParametersRoot**](FPOOptimizationParametersRoot.md)| Optimization Parameters | [optional]
 
 ### Return type
 
 [**ObjectRoot**](ObjectRoot.md)
+(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
 
@@ -488,10 +495,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **202** | Expected response, contains the poll URL in the Location header. |  * Location - URL to poll for the resulting calculation <br>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
+| **202** | Expected response, contains the poll URL in the Location header. |  * Location - URL to poll for the resulting optimization <br>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
 | **201** | Expected response, returns json if optimization is completed in a short span. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
 | **400** | Invalid Optimization Parameters. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
 | **404** | One or more optimization settings were unavailable. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
+| **409** | Duplicate optimization exists with same parameters. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
 | **401** | Missing or invalid authentication. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  |
 | **403** | User is forbidden with current credentials |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
 | **415** | Missing/Invalid Content-Type header. Header needs to be set to application/json. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |

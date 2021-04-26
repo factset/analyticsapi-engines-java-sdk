@@ -50,7 +50,7 @@ public class FIABCalculationStatus implements Serializable {
   private String id;
 
   /**
-   * FIAB service batch status integer definitions.  See https://pages.github.factset.com/FactSet/fipa-inf-docs/service/fiab_batch_api.html#lt-uuid-gt.
+   * Calculation&#39;s status
    */
   public enum StatusEnum {
     PENDING("Pending"),
@@ -114,11 +114,11 @@ public class FIABCalculationStatus implements Serializable {
   }
 
    /**
-   * Get id
+   * Calculation&#39;s identifier
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Calculation's identifier")
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -138,11 +138,11 @@ public class FIABCalculationStatus implements Serializable {
   }
 
    /**
-   * FIAB service batch status integer definitions.  See https://pages.github.factset.com/FactSet/fipa-inf-docs/service/fiab_batch_api.html#lt-uuid-gt.
+   * Calculation&#39;s status
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "FIAB service batch status integer definitions.  See https://pages.github.factset.com/FactSet/fipa-inf-docs/service/fiab_batch_api.html#lt-uuid-gt.")
+  @ApiModelProperty(value = "Calculation's status")
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -162,11 +162,11 @@ public class FIABCalculationStatus implements Serializable {
   }
 
    /**
-   * Get startdatetime
+   * Start time
    * @return startdatetime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Start time")
   @JsonProperty(JSON_PROPERTY_STARTDATETIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -186,11 +186,11 @@ public class FIABCalculationStatus implements Serializable {
   }
 
    /**
-   * Get completiondatetime
+   * Completion time
    * @return completiondatetime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Completion time")
   @JsonProperty(JSON_PROPERTY_COMPLETIONDATETIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -210,11 +210,11 @@ public class FIABCalculationStatus implements Serializable {
   }
 
    /**
-   * Get progress
+   * Calculation&#39;s progress
    * @return progress
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Calculation's progress")
   @JsonProperty(JSON_PROPERTY_PROGRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -242,11 +242,11 @@ public class FIABCalculationStatus implements Serializable {
   }
 
    /**
-   * Get batchevents
+   * List of batch events
    * @return batchevents
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of batch events")
   @JsonProperty(JSON_PROPERTY_BATCHEVENTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

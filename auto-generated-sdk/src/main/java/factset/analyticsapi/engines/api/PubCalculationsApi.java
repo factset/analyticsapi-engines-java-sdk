@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines.api;
 
 import factset.analyticsapi.engines.ApiException;
@@ -71,7 +72,7 @@ public class PubCalculationsApi {
    * Cancel Pub calculation by id
    * This is the endpoint to cancel a previously submitted calculation.
    * @param id from url, provided from the location header in the Create and Run Pub calculation endpoint (required)
-  * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -132,7 +133,7 @@ public class PubCalculationsApi {
    * Get Pub calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run Pub calculation endpoint (required)
-   * @return (200 - PubCalculationParametersRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
+    @return PubCalculationParametersRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -146,7 +147,7 @@ public class PubCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public Object getCalculationParameters(String id) throws ApiException {
+  public PubCalculationParametersRoot getCalculationParameters(String id) throws ApiException {
     return getCalculationParametersWithHttpInfo(id).getData();
   }
 
@@ -154,7 +155,7 @@ public class PubCalculationsApi {
    * Get Pub calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run Pub calculation endpoint (required)
-  * @return (200 - ApiResponse&lt;PubCalculationParametersRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
+   * @return ApiResponse&lt;PubCalculationParametersRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -168,7 +169,7 @@ public class PubCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getCalculationParametersWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<PubCalculationParametersRoot> getCalculationParametersWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -209,7 +210,7 @@ public class PubCalculationsApi {
 	 returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
 	 returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-    return apiClient.<Object>invokeAPIWithReturnMap("PubCalculationsApi.getCalculationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+    return apiClient.<PubCalculationParametersRoot>invokeAPIWithReturnMap("PubCalculationsApi.getCalculationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -217,7 +218,7 @@ public class PubCalculationsApi {
    * Get Pub calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the location header will point to the result url.
    * @param id from url, provided from the location header in the Create and Run Pub calculation endpoint (required)
-   * @return (200 - CalculationStatusRoot)(202 - CalculationStatusRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
+    @return CalculationStatusRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -232,7 +233,7 @@ public class PubCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public Object getCalculationStatusById(String id) throws ApiException {
+  public CalculationStatusRoot getCalculationStatusById(String id) throws ApiException {
     return getCalculationStatusByIdWithHttpInfo(id).getData();
   }
 
@@ -240,7 +241,7 @@ public class PubCalculationsApi {
    * Get Pub calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the location header will point to the result url.
    * @param id from url, provided from the location header in the Create and Run Pub calculation endpoint (required)
-  * @return (200 - ApiResponse&lt;CalculationStatusRoot&gt;)(202 - ApiResponse&lt;CalculationStatusRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
+   * @return ApiResponse&lt;CalculationStatusRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -255,7 +256,7 @@ public class PubCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getCalculationStatusByIdWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<CalculationStatusRoot> getCalculationStatusByIdWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -297,7 +298,7 @@ public class PubCalculationsApi {
 	 returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
 	 returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-    return apiClient.<Object>invokeAPIWithReturnMap("PubCalculationsApi.getCalculationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+    return apiClient.<CalculationStatusRoot>invokeAPIWithReturnMap("PubCalculationsApi.getCalculationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -306,8 +307,7 @@ public class PubCalculationsApi {
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in the specified format.
    * @param id from url, provided from the location header in the Get Pub calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get Pub calculation status by id endpoint (required)
-   * @param accept Standard HTTP header. Value can be gzip, compress, deflate, br, identity and/or * (optional)
-   * @return (200 - ObjectRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
+    @return ObjectRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -321,8 +321,8 @@ public class PubCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public Object getCalculationUnitResultById(String id, String unitId, String accept) throws ApiException {
-    return getCalculationUnitResultByIdWithHttpInfo(id, unitId, accept).getData();
+  public ObjectRoot getCalculationUnitResultById(String id, String unitId) throws ApiException {
+    return getCalculationUnitResultByIdWithHttpInfo(id, unitId).getData();
   }
 
   /**
@@ -330,8 +330,7 @@ public class PubCalculationsApi {
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in the specified format.
    * @param id from url, provided from the location header in the Get Pub calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get Pub calculation status by id endpoint (required)
-   * @param accept Standard HTTP header. Value can be gzip, compress, deflate, br, identity and/or * (optional)
-  * @return (200 - ApiResponse&lt;ObjectRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
+   * @return ApiResponse&lt;ObjectRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -345,7 +344,7 @@ public class PubCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getCalculationUnitResultByIdWithHttpInfo(String id, String unitId, String accept) throws ApiException {
+  public ApiResponse<ObjectRoot> getCalculationUnitResultByIdWithHttpInfo(String id, String unitId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -370,9 +369,7 @@ public class PubCalculationsApi {
     java.util.Map<String, Object> localVarFormParams = new java.util.HashMap<String, Object>();
 
 
-    if (accept != null)
-      localVarHeaderParams.put("Accept", apiClient.parameterToString(accept));
-
+    
     
     
     final String[] localVarAccepts = {
@@ -394,7 +391,7 @@ public class PubCalculationsApi {
 	 returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
 	 returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-    return apiClient.<Object>invokeAPIWithReturnMap("PubCalculationsApi.getCalculationUnitResultById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+    return apiClient.<ObjectRoot>invokeAPIWithReturnMap("PubCalculationsApi.getCalculationUnitResultById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -402,9 +399,9 @@ public class PubCalculationsApi {
    * Create and Run Pub calculation
    * This endpoint runs the Pub calculation specified in the POST body parameters.  It can take one or more units as input.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param pubCalculationParametersRoot Calculation Parameters (optional)
-   * @return (202 - CalculationStatusRoot)(200 - CalculationStatusRoot)(201 - ObjectRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
+    @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -430,9 +427,9 @@ public class PubCalculationsApi {
    * Create and Run Pub calculation
    * This endpoint runs the Pub calculation specified in the POST body parameters.  It can take one or more units as input.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param pubCalculationParametersRoot Calculation Parameters (optional)
-  * @return (202 - ApiResponse&lt;CalculationStatusRoot&gt;)(200 - ApiResponse&lt;CalculationStatusRoot&gt;)(201 - ApiResponse&lt;ObjectRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
+   * @return (For 202 status - ApiResponse&lt;CalculationStatusRoot&gt;)(For 200 status - ApiResponse&lt;CalculationStatusRoot&gt;)(For 201 status - ApiResponse&lt;ObjectRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -500,9 +497,9 @@ if (cacheControl != null)
    * This endpoint updates and run the Pub calculation specified in the PUT body parameters. This also allows creating new Pub calculations with custom ids.  It can take one or more units as input.    Remarks:    *   Start and and end date must be within the configuration&#39;s min and max date range
    * @param id from url, provided from the location header in the Create and Run Pub calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param pubCalculationParametersRoot Calculation Parameters (optional)
-   * @return (202 - CalculationStatusRoot)(200 - CalculationStatusRoot)(201 - ObjectRoot)(400 - ClientErrorResponse)(404 - ClientErrorResponse)
+    @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -512,6 +509,7 @@ if (cacheControl != null)
        <tr><td> 201 </td><td> Expected response if the calculation has one unit and is completed in a short span, returns JSON in the format specified in the Calculation parameters. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 400 </td><td> Invalid Calculation Parameters. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 404 </td><td> One or more calculation settings were unavailable. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 409 </td><td> Duplicate calculation exists with same parameters. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 401 </td><td> Missing or invalid authentication. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  </td></tr>
        <tr><td> 403 </td><td> User is forbidden with current credentials </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 415 </td><td> Missing/Invalid Content-Type header. Header needs to be set to application/json. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
@@ -529,9 +527,9 @@ if (cacheControl != null)
    * This endpoint updates and run the Pub calculation specified in the PUT body parameters. This also allows creating new Pub calculations with custom ids.  It can take one or more units as input.    Remarks:    *   Start and and end date must be within the configuration&#39;s min and max date range
    * @param id from url, provided from the location header in the Create and Run Pub calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param pubCalculationParametersRoot Calculation Parameters (optional)
-  * @return (202 - ApiResponse&lt;CalculationStatusRoot&gt;)(200 - ApiResponse&lt;CalculationStatusRoot&gt;)(201 - ApiResponse&lt;ObjectRoot&gt;)(400 - ApiResponse&lt;ClientErrorResponse&gt;)(404 - ApiResponse&lt;ClientErrorResponse&gt;)
+   * @return (For 202 status - ApiResponse&lt;CalculationStatusRoot&gt;)(For 200 status - ApiResponse&lt;CalculationStatusRoot&gt;)(For 201 status - ApiResponse&lt;ObjectRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -541,6 +539,7 @@ if (cacheControl != null)
        <tr><td> 201 </td><td> Expected response if the calculation has one unit and is completed in a short span, returns JSON in the format specified in the Calculation parameters. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 400 </td><td> Invalid Calculation Parameters. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 404 </td><td> One or more calculation settings were unavailable. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 409 </td><td> Duplicate calculation exists with same parameters. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 401 </td><td> Missing or invalid authentication. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  </td></tr>
        <tr><td> 403 </td><td> User is forbidden with current credentials </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 415 </td><td> Missing/Invalid Content-Type header. Header needs to be set to application/json. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
@@ -595,6 +594,7 @@ if (cacheControl != null)
 	 returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
 	 returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
 	 returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	 returnTypeMap.put(409, new GenericType<ClientErrorResponse>(){});
 	
     return apiClient.<Object>invokeAPIWithReturnMap("PubCalculationsApi.putAndCalculate", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,

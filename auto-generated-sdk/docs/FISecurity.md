@@ -7,13 +7,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**settlement** | **String** |  |  [optional]
-**calcFromMethod** | **String** |  | 
-**calcFromValue** | **Double** |  | 
-**face** | **Double** |  |  [optional]
-**faceType** | [**FaceTypeEnum**](#FaceTypeEnum) |  |  [optional]
-**symbol** | **String** |  | 
-**discountCurve** | **String** |  |  [optional]
+**settlement** | **String** | Settlement date |  [optional]
+**calcFromMethod** | **String** | Calculation from method | 
+**calcFromValue** | **Double** | Calculation from value | 
+**face** | **Double** | Face |  [optional]
+**faceType** | [**FaceTypeEnum**](#FaceTypeEnum) | Face type |  [optional]
+**symbol** | **String** | Symbol | 
+**discountCurve** | **String** | Discount curve |  [optional]
 
 
 

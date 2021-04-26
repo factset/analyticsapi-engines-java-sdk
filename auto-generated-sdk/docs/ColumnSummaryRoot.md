@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Map&lt;String, ColumnSummary&gt;**](ColumnSummary.md) |  |  [optional]
+**data** | [**Map&lt;String, ColumnSummary&gt;**](ColumnSummary.md) |  | 
 
 
 ## Implemented Interfaces

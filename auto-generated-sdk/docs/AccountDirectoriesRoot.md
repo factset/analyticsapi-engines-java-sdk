@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**AccountDirectories**](AccountDirectories.md) |  |  [optional]
+**data** | [**AccountDirectories**](AccountDirectories.md) |  | 
 
 
 ## Implemented Interfaces

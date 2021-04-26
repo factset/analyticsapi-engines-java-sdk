@@ -58,11 +58,11 @@ public class EventSummary implements Serializable {
   }
 
    /**
-   * Get message
+   * Event&#39;s message
    * @return message
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Event's message")
   @JsonProperty(JSON_PROPERTY_MESSAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -82,11 +82,11 @@ public class EventSummary implements Serializable {
   }
 
    /**
-   * Get submissiondatetime
+   * Event&#39;s submission time
    * @return submissiondatetime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Event's submission time")
   @JsonProperty(JSON_PROPERTY_SUBMISSIONDATETIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -106,11 +106,11 @@ public class EventSummary implements Serializable {
   }
 
    /**
-   * Get type
+   * Event&#39;s type
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Event's type")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

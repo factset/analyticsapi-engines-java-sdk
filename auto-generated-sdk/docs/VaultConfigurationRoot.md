@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**VaultConfiguration**](VaultConfiguration.md) |  |  [optional]
+**data** | [**VaultConfiguration**](VaultConfiguration.md) |  | 
 
 
 ## Implemented Interfaces

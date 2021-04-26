@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Column**](Column.md) |  |  [optional]
+**data** | [**Column**](Column.md) |  | 
 
 
 ## Implemented Interfaces

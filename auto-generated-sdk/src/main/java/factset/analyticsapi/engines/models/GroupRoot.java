@@ -41,7 +41,7 @@ public class GroupRoot implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_DATA = "data";
-  private java.util.Map<String, Group> data = null;
+  private java.util.Map<String, Group> data = new java.util.HashMap<String, Group>();
 
 
   public GroupRoot data(java.util.Map<String, Group> data) {
@@ -50,9 +50,6 @@ public class GroupRoot implements Serializable {
   }
 
   public GroupRoot putDataItem(String key, Group dataItem) {
-    if (this.data == null) {
-      this.data = new java.util.HashMap<String, Group>();
-    }
     this.data.put(key, dataItem);
     return this;
   }
@@ -61,10 +58,9 @@ public class GroupRoot implements Serializable {
    * Get data
    * @return data
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public java.util.Map<String, Group> getData() {
     return data;

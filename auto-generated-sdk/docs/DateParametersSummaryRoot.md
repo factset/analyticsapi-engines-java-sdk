@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**DateParametersSummary**](DateParametersSummary.md) |  |  [optional]
+**data** | [**DateParametersSummary**](DateParametersSummary.md) |  | 
 
 
 ## Implemented Interfaces

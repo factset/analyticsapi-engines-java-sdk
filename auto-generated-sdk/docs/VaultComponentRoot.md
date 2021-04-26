@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**VaultComponent**](VaultComponent.md) |  |  [optional]
+**data** | [**VaultComponent**](VaultComponent.md) |  | 
 
 
 ## Implemented Interfaces

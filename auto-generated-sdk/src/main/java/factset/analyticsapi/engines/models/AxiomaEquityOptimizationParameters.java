@@ -22,10 +22,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.AxiomaEquityOptimizerStrategy;
 import factset.analyticsapi.engines.models.Optimization;
 import factset.analyticsapi.engines.models.OptimizerAccount;
 import factset.analyticsapi.engines.models.OptimizerOutputTypes;
-import factset.analyticsapi.engines.models.OptimizerStrategy;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -47,7 +47,7 @@ public class AxiomaEquityOptimizationParameters implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_STRATEGY = "strategy";
-  private OptimizerStrategy strategy;
+  private AxiomaEquityOptimizerStrategy strategy;
 
   public static final String JSON_PROPERTY_ACCOUNT = "account";
   private OptimizerAccount account;
@@ -59,7 +59,7 @@ public class AxiomaEquityOptimizationParameters implements Serializable {
   private OptimizerOutputTypes outputTypes;
 
 
-  public AxiomaEquityOptimizationParameters strategy(OptimizerStrategy strategy) {
+  public AxiomaEquityOptimizationParameters strategy(AxiomaEquityOptimizerStrategy strategy) {
     this.strategy = strategy;
     return this;
   }
@@ -72,12 +72,12 @@ public class AxiomaEquityOptimizationParameters implements Serializable {
   @JsonProperty(JSON_PROPERTY_STRATEGY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public OptimizerStrategy getStrategy() {
+  public AxiomaEquityOptimizerStrategy getStrategy() {
     return strategy;
   }
 
 
-  public void setStrategy(OptimizerStrategy strategy) {
+  public void setStrategy(AxiomaEquityOptimizerStrategy strategy) {
     this.strategy = strategy;
   }
 

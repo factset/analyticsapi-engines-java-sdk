@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**PAComponent**](PAComponent.md) |  |  [optional]
+**data** | [**PAComponent**](PAComponent.md) |  | 
 
 
 ## Implemented Interfaces

@@ -79,11 +79,11 @@ public class VaultComponent implements Serializable {
   }
 
    /**
-   * Get id
+   * Vault component identifier
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Vault component identifier")
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -151,11 +151,11 @@ public class VaultComponent implements Serializable {
   }
 
    /**
-   * Get currencyisocode
+   * Currency iso code saved in the document
    * @return currencyisocode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Currency iso code saved in the document")
   @JsonProperty(JSON_PROPERTY_CURRENCYISOCODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -199,11 +199,11 @@ public class VaultComponent implements Serializable {
   }
 
    /**
-   * Get snapshot
+   * Snapshot
    * @return snapshot
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Snapshot")
   @JsonProperty(JSON_PROPERTY_SNAPSHOT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

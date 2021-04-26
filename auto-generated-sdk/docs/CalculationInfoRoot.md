@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**CalculationInfo**](CalculationInfo.md) |  |  [optional]
+**data** | [**CalculationInfo**](CalculationInfo.md) |  | 
 
 
 ## Implemented Interfaces

@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Map&lt;String, ColumnStatistic&gt;**](ColumnStatistic.md) |  |  [optional]
+**data** | [**Map&lt;String, ColumnStatistic&gt;**](ColumnStatistic.md) |  | 
 
 
 ## Implemented Interfaces

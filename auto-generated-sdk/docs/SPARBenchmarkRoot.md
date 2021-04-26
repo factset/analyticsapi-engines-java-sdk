@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**SPARBenchmark**](SPARBenchmark.md) |  |  [optional]
+**data** | [**SPARBenchmark**](SPARBenchmark.md) |  | 
 
 
 ## Implemented Interfaces

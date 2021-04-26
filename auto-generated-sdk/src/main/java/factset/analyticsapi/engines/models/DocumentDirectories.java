@@ -61,11 +61,11 @@ public class DocumentDirectories implements Serializable {
   }
 
    /**
-   * Get documents
+   * List of documents
    * @return documents
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of documents")
   @JsonProperty(JSON_PROPERTY_DOCUMENTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

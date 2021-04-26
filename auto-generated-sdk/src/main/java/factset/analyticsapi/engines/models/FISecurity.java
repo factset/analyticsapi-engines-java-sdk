@@ -58,7 +58,7 @@ public class FISecurity implements Serializable {
   private Double face = 1d;
 
   /**
-   * Gets or Sets faceType
+   * Face type
    */
   public enum FaceTypeEnum {
     CURRENT("Current"),
@@ -108,11 +108,11 @@ public class FISecurity implements Serializable {
   }
 
    /**
-   * Get settlement
+   * Settlement date
    * @return settlement
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Settlement date")
   @JsonProperty(JSON_PROPERTY_SETTLEMENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -132,10 +132,10 @@ public class FISecurity implements Serializable {
   }
 
    /**
-   * Get calcFromMethod
+   * Calculation from method
    * @return calcFromMethod
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Calculation from method")
   @JsonProperty(JSON_PROPERTY_CALC_FROM_METHOD)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -155,10 +155,10 @@ public class FISecurity implements Serializable {
   }
 
    /**
-   * Get calcFromValue
+   * Calculation from value
    * @return calcFromValue
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Calculation from value")
   @JsonProperty(JSON_PROPERTY_CALC_FROM_VALUE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -178,11 +178,11 @@ public class FISecurity implements Serializable {
   }
 
    /**
-   * Get face
+   * Face
    * @return face
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Face")
   @JsonProperty(JSON_PROPERTY_FACE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -202,11 +202,11 @@ public class FISecurity implements Serializable {
   }
 
    /**
-   * Get faceType
+   * Face type
    * @return faceType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Face type")
   @JsonProperty(JSON_PROPERTY_FACE_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -226,10 +226,10 @@ public class FISecurity implements Serializable {
   }
 
    /**
-   * Get symbol
+   * Symbol
    * @return symbol
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Symbol")
   @JsonProperty(JSON_PROPERTY_SYMBOL)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -249,11 +249,11 @@ public class FISecurity implements Serializable {
   }
 
    /**
-   * Get discountCurve
+   * Discount curve
    * @return discountCurve
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Discount curve")
   @JsonProperty(JSON_PROPERTY_DISCOUNT_CURVE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

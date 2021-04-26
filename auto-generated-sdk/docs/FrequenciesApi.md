@@ -1,3 +1,4 @@
+
 # FrequenciesApi
 
 All URIs are relative to *https://api.factset.com*
@@ -46,7 +47,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling FrequenciesApi#getPAFrequencies");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -60,6 +61,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
+[**FrequencyRoot**](FrequencyRoot.md)
 [**FrequencyRoot**](FrequencyRoot.md)
 
 ### Authorization
@@ -119,7 +121,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling FrequenciesApi#getSPARFrequencies");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -133,6 +135,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
+[**FrequencyRoot**](FrequencyRoot.md)
 [**FrequencyRoot**](FrequencyRoot.md)
 
 ### Authorization
@@ -192,7 +195,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling FrequenciesApi#getVaultFrequencies");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -206,6 +209,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
+[**FrequencyRoot**](FrequencyRoot.md)
 [**FrequencyRoot**](FrequencyRoot.md)
 
 ### Authorization

@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines;
 
 import javax.ws.rs.client.Client;
@@ -1138,8 +1139,8 @@ public class ApiClient extends JavaTimeFormatter {
 
         Error error = new Error();
         for(Entry<String, List<String>> entry : responseHeaders.entrySet()){
-            if("x-factset-api-request-key".equals(entry.getKey().toLowerCase()) && !entry.getValue().isEmpty()) {
-                error.setId(entry.getValue().get(0));
+            if("x-factset-api-request-key".equals(entry.getKey().toLowerCase())) {
+            	error.setId(entry.getValue().toString());
             }
         }
         error.setDetail(respBody);

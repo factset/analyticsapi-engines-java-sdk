@@ -10,8 +10,17 @@ docs/AccountDirectoriesRoot.md
 docs/AccountsApi.md
 docs/AxiomaEquityOptimizationParameters.md
 docs/AxiomaEquityOptimizationParametersRoot.md
+docs/AxiomaEquityOptimizerStrategy.md
+docs/AxiomaEquityOptimizerStrategyOverrides.md
 docs/AxpOptimizerApi.md
+docs/BPMOptimization.md
+docs/BPMOptimizationParameters.md
+docs/BPMOptimizationParametersRoot.md
+docs/BPMOptimizerStrategy.md
+docs/BPMOptimizerStrategyAlphaOverride.md
+docs/BPMOptimizerStrategyOverrides.md
 docs/BenchmarksApi.md
+docs/BpmOptimizerApi.md
 docs/CalculationInfo.md
 docs/CalculationInfoRoot.md
 docs/CalculationMeta.md
@@ -32,6 +41,7 @@ docs/ComponentSummaryRoot.md
 docs/ComponentsApi.md
 docs/ConfigurationAccount.md
 docs/ConfigurationsApi.md
+docs/ConstraintAction.md
 docs/CurrenciesApi.md
 docs/Currency.md
 docs/CurrencyRoot.md
@@ -133,6 +143,7 @@ src/main/java/factset/analyticsapi/engines/StringUtil.java
 src/main/java/factset/analyticsapi/engines/api/AccountsApi.java
 src/main/java/factset/analyticsapi/engines/api/AxpOptimizerApi.java
 src/main/java/factset/analyticsapi/engines/api/BenchmarksApi.java
+src/main/java/factset/analyticsapi/engines/api/BpmOptimizerApi.java
 src/main/java/factset/analyticsapi/engines/api/ColumnStatisticsApi.java
 src/main/java/factset/analyticsapi/engines/api/ColumnsApi.java
 src/main/java/factset/analyticsapi/engines/api/ComponentsApi.java
@@ -159,6 +170,14 @@ src/main/java/factset/analyticsapi/engines/models/AccountDirectories.java
 src/main/java/factset/analyticsapi/engines/models/AccountDirectoriesRoot.java
 src/main/java/factset/analyticsapi/engines/models/AxiomaEquityOptimizationParameters.java
 src/main/java/factset/analyticsapi/engines/models/AxiomaEquityOptimizationParametersRoot.java
+src/main/java/factset/analyticsapi/engines/models/AxiomaEquityOptimizerStrategy.java
+src/main/java/factset/analyticsapi/engines/models/AxiomaEquityOptimizerStrategyOverrides.java
+src/main/java/factset/analyticsapi/engines/models/BPMOptimization.java
+src/main/java/factset/analyticsapi/engines/models/BPMOptimizationParameters.java
+src/main/java/factset/analyticsapi/engines/models/BPMOptimizationParametersRoot.java
+src/main/java/factset/analyticsapi/engines/models/BPMOptimizerStrategy.java
+src/main/java/factset/analyticsapi/engines/models/BPMOptimizerStrategyAlphaOverride.java
+src/main/java/factset/analyticsapi/engines/models/BPMOptimizerStrategyOverrides.java
 src/main/java/factset/analyticsapi/engines/models/CalculationInfo.java
 src/main/java/factset/analyticsapi/engines/models/CalculationInfoRoot.java
 src/main/java/factset/analyticsapi/engines/models/CalculationMeta.java
@@ -175,6 +194,7 @@ src/main/java/factset/analyticsapi/engines/models/ColumnSummaryRoot.java
 src/main/java/factset/analyticsapi/engines/models/ComponentSummary.java
 src/main/java/factset/analyticsapi/engines/models/ComponentSummaryRoot.java
 src/main/java/factset/analyticsapi/engines/models/ConfigurationAccount.java
+src/main/java/factset/analyticsapi/engines/models/ConstraintAction.java
 src/main/java/factset/analyticsapi/engines/models/Currency.java
 src/main/java/factset/analyticsapi/engines/models/CurrencyRoot.java
 src/main/java/factset/analyticsapi/engines/models/DateParametersSummary.java

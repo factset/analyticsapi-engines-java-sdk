@@ -53,10 +53,10 @@ public class FIJobSettings implements Serializable {
   }
 
    /**
-   * Get asOfDate
+   * As of date
    * @return asOfDate
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "As of date")
   @JsonProperty(JSON_PROPERTY_AS_OF_DATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -84,11 +84,11 @@ public class FIJobSettings implements Serializable {
   }
 
    /**
-   * Get partialDurationMonths
+   * Partial duration months
    * @return partialDurationMonths
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Partial duration months")
   @JsonProperty(JSON_PROPERTY_PARTIAL_DURATION_MONTHS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

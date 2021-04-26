@@ -1,3 +1,4 @@
+
 # FiCalculationsApi
 
 All URIs are relative to *https://api.factset.com*
@@ -49,7 +50,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#cancelCalculationById");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -66,6 +67,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
+null (empty response body)
 null (empty response body)
 
 ### Authorization
@@ -126,7 +128,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#getCalculationParameters");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -143,6 +145,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
+[**FICalculationParametersRoot**](FICalculationParametersRoot.md)
 [**FICalculationParametersRoot**](FICalculationParametersRoot.md)
 
 ### Authorization
@@ -168,7 +171,7 @@ Name | Type | Description  | Notes
 
 ## getCalculationResult
 
-> ObjectRoot getCalculationResult(id, accept)
+> ObjectRoot getCalculationResult(id)
 
 Get FI calculation result by id
 
@@ -198,14 +201,13 @@ public class Example {
 
         FiCalculationsApi apiInstance = new FiCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Get FI calculation status by id endpoint
-        String accept = "accept_example"; // String | Standard HTTP header. Value can be gzip, compress, deflate, br, identity and/or *
         try {
-            ObjectRoot result = apiInstance.getCalculationResult(id, accept);
+            ObjectRoot result = apiInstance.getCalculationResult(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#getCalculationResult");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -219,10 +221,10 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| from url, provided from the location header in the Get FI calculation status by id endpoint |
- **accept** | **String**| Standard HTTP header. Value can be gzip, compress, deflate, br, identity and/or * | [optional]
 
 ### Return type
 
+[**ObjectRoot**](ObjectRoot.md)
 [**ObjectRoot**](ObjectRoot.md)
 
 ### Authorization
@@ -280,12 +282,12 @@ public class Example {
         FiCalculationsApi apiInstance = new FiCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run FI calculation endpoint
         try {
-            ObjectRoot result = apiInstance.getCalculationStatusById(id);
+            Object result = apiInstance.getCalculationStatusById(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#getCalculationStatusById");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -303,6 +305,7 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ObjectRoot**](ObjectRoot.md)
+(For 201 status - [**ObjectRoot**](ObjectRoot.md))(For 202 status - null (empty response body))
 
 ### Authorization
 
@@ -357,15 +360,15 @@ public class Example {
 
         FiCalculationsApi apiInstance = new FiCalculationsApi(defaultClient);
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
-        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale.
+        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
         FICalculationParametersRoot fiCalculationParametersRoot = new FICalculationParametersRoot(); // FICalculationParametersRoot | Calculation Parameters
         try {
-            ObjectRoot result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot);
+            Object result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#postAndCalculate");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -379,12 +382,13 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
- **cacheControl** | **String**| Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. | [optional]
+ **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
  **fiCalculationParametersRoot** | [**FICalculationParametersRoot**](FICalculationParametersRoot.md)| Calculation Parameters | [optional]
 
 ### Return type
 
 [**ObjectRoot**](ObjectRoot.md)
+(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
 
@@ -442,15 +446,15 @@ public class Example {
         FiCalculationsApi apiInstance = new FiCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run FI calculation endpoint
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
-        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale.
+        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
         FICalculationParametersRoot fiCalculationParametersRoot = new FICalculationParametersRoot(); // FICalculationParametersRoot | Calculation Parameters
         try {
-            ObjectRoot result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot);
+            Object result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#putAndCalculate");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -465,12 +469,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| from url, provided from the location header in the Create and Run FI calculation endpoint |
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
- **cacheControl** | **String**| Standard HTTP header.  Accepts no-cache, no-store, max-age, max-stale. | [optional]
+ **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
  **fiCalculationParametersRoot** | [**FICalculationParametersRoot**](FICalculationParametersRoot.md)| Calculation Parameters | [optional]
 
 ### Return type
 
 [**ObjectRoot**](ObjectRoot.md)
+(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
 
@@ -488,6 +493,7 @@ Name | Type | Description  | Notes
 | **201** | Expected response if calculation is completed in a short span, returns JSON in the format specified in the Calculation parameters. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
 | **400** | Invalid Calculation Parameters. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
 | **404** | One or more calculation settings were unavailable. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
+| **409** | Duplicate calculation exists with same parameters. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
 | **401** | Missing or invalid authentication. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  |
 | **403** | User is forbidden with current credentials |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
 | **415** | Missing/Invalid Content-Type header. Header needs to be set to application/json. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
