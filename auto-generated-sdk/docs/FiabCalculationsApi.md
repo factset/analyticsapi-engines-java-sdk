@@ -66,7 +66,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**FIABCalculationStatus**](FIABCalculationStatus.md)
-[**FIABCalculationStatus**](FIABCalculationStatus.md)
 
 ### Authorization
 
@@ -140,7 +139,6 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**java.util.Map&lt;String, FIABCalculationStatusSummary&gt;**](FIABCalculationStatusSummary.md)
 [**java.util.Map&lt;String, FIABCalculationStatusSummary&gt;**](java.util.Map&lt;String, FIABCalculationStatusSummary&gt;.md)
 
 ### Authorization
@@ -222,7 +220,6 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
 null (empty response body)
 
 ### Authorization

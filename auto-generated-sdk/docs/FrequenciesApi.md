@@ -62,7 +62,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**FrequencyRoot**](FrequencyRoot.md)
-[**FrequencyRoot**](FrequencyRoot.md)
 
 ### Authorization
 
@@ -136,7 +135,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**FrequencyRoot**](FrequencyRoot.md)
-[**FrequencyRoot**](FrequencyRoot.md)
 
 ### Authorization
 
@@ -209,7 +207,6 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**FrequencyRoot**](FrequencyRoot.md)
 [**FrequencyRoot**](FrequencyRoot.md)
 
 ### Authorization

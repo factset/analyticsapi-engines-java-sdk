@@ -60,7 +60,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**GroupRoot**](GroupRoot.md)
-[**GroupRoot**](GroupRoot.md)
 
 ### Authorization
 

@@ -105,7 +105,6 @@ import factset.analyticsapi.engines.models.*;
 import factset.analyticsapi.engines.api.AccountsApi;
 
 public class AccountsApiExample {
-
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.factset.com");

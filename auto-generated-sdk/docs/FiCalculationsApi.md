@@ -68,7 +68,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 null (empty response body)
-null (empty response body)
 
 ### Authorization
 
@@ -145,7 +144,6 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FICalculationParametersRoot**](FICalculationParametersRoot.md)
 [**FICalculationParametersRoot**](FICalculationParametersRoot.md)
 
 ### Authorization
@@ -225,7 +223,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ObjectRoot**](ObjectRoot.md)
-[**ObjectRoot**](ObjectRoot.md)
 
 ### Authorization
 
@@ -304,7 +301,6 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectRoot**](ObjectRoot.md)
 (For 201 status - [**ObjectRoot**](ObjectRoot.md))(For 202 status - null (empty response body))
 
 ### Authorization
@@ -387,7 +383,6 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectRoot**](ObjectRoot.md)
 (For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
@@ -474,7 +469,6 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectRoot**](ObjectRoot.md)
 (For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization

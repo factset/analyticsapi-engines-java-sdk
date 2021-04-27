@@ -65,7 +65,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ColumnRoot**](ColumnRoot.md)
-[**ColumnRoot**](ColumnRoot.md)
 
 ### Authorization
 
@@ -148,7 +147,6 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ColumnSummaryRoot**](ColumnSummaryRoot.md)
 [**ColumnSummaryRoot**](ColumnSummaryRoot.md)
 
 ### Authorization

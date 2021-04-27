@@ -64,7 +64,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SPARBenchmarkRoot**](SPARBenchmarkRoot.md)
-[**SPARBenchmarkRoot**](SPARBenchmarkRoot.md)
 
 ### Authorization
 

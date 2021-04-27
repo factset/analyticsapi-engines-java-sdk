@@ -64,7 +64,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AccountDirectoriesRoot**](AccountDirectoriesRoot.md)
-[**AccountDirectoriesRoot**](AccountDirectoriesRoot.md)
 
 ### Authorization
 

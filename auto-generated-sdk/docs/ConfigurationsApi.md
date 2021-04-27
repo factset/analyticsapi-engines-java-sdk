@@ -65,7 +65,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**VaultConfigurationRoot**](VaultConfigurationRoot.md)
-[**VaultConfigurationRoot**](VaultConfigurationRoot.md)
 
 ### Authorization
 
@@ -144,7 +143,6 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VaultConfigurationSummaryRoot**](VaultConfigurationSummaryRoot.md)
 [**VaultConfigurationSummaryRoot**](VaultConfigurationSummaryRoot.md)
 
 ### Authorization

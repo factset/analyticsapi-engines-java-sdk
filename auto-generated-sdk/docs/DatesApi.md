@@ -71,7 +71,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DateParametersSummaryRoot**](DateParametersSummaryRoot.md)
-[**DateParametersSummaryRoot**](DateParametersSummaryRoot.md)
 
 ### Authorization
 
@@ -156,7 +155,6 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DateParametersSummaryRoot**](DateParametersSummaryRoot.md)
 [**DateParametersSummaryRoot**](DateParametersSummaryRoot.md)
 
 ### Authorization

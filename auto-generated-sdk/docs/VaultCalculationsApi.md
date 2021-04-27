@@ -68,7 +68,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 null (empty response body)
-null (empty response body)
 
 ### Authorization
 
@@ -145,7 +144,6 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VaultCalculationParametersRoot**](VaultCalculationParametersRoot.md)
 [**VaultCalculationParametersRoot**](VaultCalculationParametersRoot.md)
 
 ### Authorization
@@ -224,7 +222,6 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CalculationStatusRoot**](CalculationStatusRoot.md)
 [**CalculationStatusRoot**](CalculationStatusRoot.md)
 
 ### Authorization
@@ -306,7 +303,6 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectRoot**](ObjectRoot.md)
 [**ObjectRoot**](ObjectRoot.md)
 
 ### Authorization
@@ -393,7 +389,6 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CalculationStatusRoot**](CalculationStatusRoot.md)
 (For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
@@ -486,7 +481,6 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CalculationStatusRoot**](CalculationStatusRoot.md)
 (For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization

@@ -68,7 +68,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
-[**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
 
 ### Authorization
 
@@ -147,7 +146,6 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
 [**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
 
 ### Authorization
@@ -228,7 +226,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
-[**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
 
 ### Authorization
 
@@ -308,7 +305,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
-[**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
 
 ### Authorization
 
@@ -387,7 +383,6 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
 [**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
 
 ### Authorization

@@ -60,7 +60,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ColumnStatisticRoot**](ColumnStatisticRoot.md)
-[**ColumnStatisticRoot**](ColumnStatisticRoot.md)
 
 ### Authorization
 
