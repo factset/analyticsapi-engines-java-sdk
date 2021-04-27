@@ -10,8 +10,7 @@ import javax.ws.rs.core.GenericType;
 
 import factset.analyticsapi.engines.models.SPARBenchmark;
 
-
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class SparBenchmarkApi {
   private ApiClient apiClient;
 
@@ -23,13 +22,24 @@ public class SparBenchmarkApi {
     this.apiClient = apiClient;
   }
 
+  /**
+   * Get the API cilent
+   *
+   * @return API client
+   */
   public ApiClient getApiClient() {
     return apiClient;
   }
 
+  /**
+   * Set the API cilent
+   *
+   * @param apiClient an instance of API client
+   */
   public void setApiClient(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
+
   /**
    * Get SPAR benchmark details
    * This endpoint returns the details of a given SPAR benchmark identifier.
@@ -109,6 +119,9 @@ public class SparBenchmarkApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<SPARBenchmark> localVarReturnType = new GenericType<SPARBenchmark>() {};
-    return apiClient.invokeAPI("SparBenchmarkApi.getSPARBenchmarkById", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("SparBenchmarkApi.getSPARBenchmarkById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
 }

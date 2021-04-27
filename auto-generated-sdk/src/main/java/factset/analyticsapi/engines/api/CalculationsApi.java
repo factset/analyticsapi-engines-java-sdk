@@ -12,8 +12,7 @@ import factset.analyticsapi.engines.models.Calculation;
 import factset.analyticsapi.engines.models.CalculationStatus;
 import factset.analyticsapi.engines.models.CalculationStatusSummary;
 
-
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class CalculationsApi {
   private ApiClient apiClient;
 
@@ -25,13 +24,24 @@ public class CalculationsApi {
     this.apiClient = apiClient;
   }
 
+  /**
+   * Get the API cilent
+   *
+   * @return API client
+   */
   public ApiClient getApiClient() {
     return apiClient;
   }
 
+  /**
+   * Set the API cilent
+   *
+   * @param apiClient an instance of API client
+   */
   public void setApiClient(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
+
   /**
    * Cancel calculation by id
    * This is the endpoint to cancel a previously submitted calculation request.  Instead of doing a GET on the getCalculationById URL, cancel the calculation by doing a DELETE.  All individual calculation units within the calculation will be canceled if they have not already finished.
@@ -107,8 +117,9 @@ public class CalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic" };
 
-    
-    return apiClient.invokeAPI("CalculationsApi.cancelCalculationById", localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+    return apiClient.invokeAPI("CalculationsApi.cancelCalculationById", localVarPath, "DELETE", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, null, false);
   }
   /**
    * Get calculation status by id
@@ -189,7 +200,10 @@ public class CalculationsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<CalculationStatus> localVarReturnType = new GenericType<CalculationStatus>() {};
-    return apiClient.invokeAPI("CalculationsApi.getCalculationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("CalculationsApi.getCalculationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
   /**
    * Get all calculation statuses
@@ -258,7 +272,10 @@ public class CalculationsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<java.util.Map<String, CalculationStatusSummary>> localVarReturnType = new GenericType<java.util.Map<String, CalculationStatusSummary>>() {};
-    return apiClient.invokeAPI("CalculationsApi.getCalculationStatusSummaries", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("CalculationsApi.getCalculationStatusSummaries", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
   /**
    * Run calculation
@@ -329,7 +346,8 @@ public class CalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic" };
 
-    
-    return apiClient.invokeAPI("CalculationsApi.runCalculation", localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+    return apiClient.invokeAPI("CalculationsApi.runCalculation", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, null, false);
   }
 }

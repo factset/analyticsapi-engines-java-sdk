@@ -10,8 +10,7 @@ import javax.ws.rs.core.GenericType;
 
 import factset.analyticsapi.engines.models.AccountDirectories;
 
-
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class AccountsApi {
   private ApiClient apiClient;
 
@@ -23,13 +22,24 @@ public class AccountsApi {
     this.apiClient = apiClient;
   }
 
+  /**
+   * Get the API cilent
+   *
+   * @return API client
+   */
   public ApiClient getApiClient() {
     return apiClient;
   }
 
+  /**
+   * Set the API cilent
+   *
+   * @param apiClient an instance of API client
+   */
   public void setApiClient(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
+
   /**
    * Get accounts and sub-directories in a directory
    * This endpoint looks up all ACCT and ACTM files and sub-directories in a given directory.
@@ -109,6 +119,9 @@ public class AccountsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<AccountDirectories> localVarReturnType = new GenericType<AccountDirectories>() {};
-    return apiClient.invokeAPI("AccountsApi.getAccounts", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("AccountsApi.getAccounts", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
 }

@@ -15,14 +15,19 @@ package factset.analyticsapi.engines.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import factset.analyticsapi.engines.JSON;
+
 
 /**
  * The date parameters for SPAR calculation.
@@ -33,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   SPARDateParameters.JSON_PROPERTY_ENDDATE,
   SPARDateParameters.JSON_PROPERTY_FREQUENCY
 })
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class SPARDateParameters implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -48,7 +53,6 @@ public class SPARDateParameters implements Serializable {
 
 
   public SPARDateParameters startdate(String startdate) {
-    
     this.startdate = startdate;
     return this;
   }
@@ -72,7 +76,6 @@ public class SPARDateParameters implements Serializable {
 
 
   public SPARDateParameters enddate(String enddate) {
-    
     this.enddate = enddate;
     return this;
   }
@@ -96,7 +99,6 @@ public class SPARDateParameters implements Serializable {
 
 
   public SPARDateParameters frequency(String frequency) {
-    
     this.frequency = frequency;
     return this;
   }
@@ -119,8 +121,11 @@ public class SPARDateParameters implements Serializable {
   }
 
 
+  /**
+   * Return true if this SPARDateParameters object is equal to o.
+   */
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -138,7 +143,6 @@ public class SPARDateParameters implements Serializable {
     return Objects.hash(startdate, enddate, frequency);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -154,7 +158,7 @@ public class SPARDateParameters implements Serializable {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

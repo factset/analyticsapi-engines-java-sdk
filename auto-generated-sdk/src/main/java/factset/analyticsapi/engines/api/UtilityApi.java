@@ -12,7 +12,7 @@ import javax.ws.rs.core.GenericType;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class UtilityApi {
   private ApiClient apiClient;
 

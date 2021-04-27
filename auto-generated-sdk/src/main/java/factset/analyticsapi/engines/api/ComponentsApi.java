@@ -12,8 +12,7 @@ import factset.analyticsapi.engines.models.ComponentSummary;
 import factset.analyticsapi.engines.models.PAComponent;
 import factset.analyticsapi.engines.models.VaultComponent;
 
-
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ComponentsApi {
   private ApiClient apiClient;
 
@@ -25,13 +24,24 @@ public class ComponentsApi {
     this.apiClient = apiClient;
   }
 
+  /**
+   * Get the API cilent
+   *
+   * @return API client
+   */
   public ApiClient getApiClient() {
     return apiClient;
   }
 
+  /**
+   * Set the API cilent
+   *
+   * @param apiClient an instance of API client
+   */
   public void setApiClient(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
+
   /**
    * Get PA component by id
    * This endpoint returns the default settings of a PA component.
@@ -111,7 +121,10 @@ public class ComponentsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<PAComponent> localVarReturnType = new GenericType<PAComponent>() {};
-    return apiClient.invokeAPI("ComponentsApi.getPAComponentById", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("ComponentsApi.getPAComponentById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
   /**
    * Get PA components
@@ -192,7 +205,10 @@ public class ComponentsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<java.util.Map<String, ComponentSummary>> localVarReturnType = new GenericType<java.util.Map<String, ComponentSummary>>() {};
-    return apiClient.invokeAPI("ComponentsApi.getPAComponents", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("ComponentsApi.getPAComponents", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
   /**
    * Get SPAR components
@@ -273,7 +289,10 @@ public class ComponentsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<java.util.Map<String, ComponentSummary>> localVarReturnType = new GenericType<java.util.Map<String, ComponentSummary>>() {};
-    return apiClient.invokeAPI("ComponentsApi.getSPARComponents", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("ComponentsApi.getSPARComponents", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
   /**
    * Get Vault component by id
@@ -354,7 +373,10 @@ public class ComponentsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<VaultComponent> localVarReturnType = new GenericType<VaultComponent>() {};
-    return apiClient.invokeAPI("ComponentsApi.getVaultComponentById", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("ComponentsApi.getVaultComponentById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
   /**
    * Get Vault components
@@ -435,6 +457,9 @@ public class ComponentsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<java.util.Map<String, ComponentSummary>> localVarReturnType = new GenericType<java.util.Map<String, ComponentSummary>>() {};
-    return apiClient.invokeAPI("ComponentsApi.getVaultComponents", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("ComponentsApi.getVaultComponents", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
 }

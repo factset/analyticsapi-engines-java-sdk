@@ -15,9 +15,12 @@ package factset.analyticsapi.engines.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.PACalculationColumn;
 import factset.analyticsapi.engines.models.PACalculationGroup;
@@ -27,6 +30,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import factset.analyticsapi.engines.JSON;
+
 
 /**
  * PACalculationParameters
@@ -41,7 +46,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   PACalculationParameters.JSON_PROPERTY_COLUMNS,
   PACalculationParameters.JSON_PROPERTY_COMPONENTDETAIL
 })
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class PACalculationParameters implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -71,7 +76,6 @@ public class PACalculationParameters implements Serializable {
 
 
   public PACalculationParameters componentid(String componentid) {
-    
     this.componentid = componentid;
     return this;
   }
@@ -95,7 +99,6 @@ public class PACalculationParameters implements Serializable {
 
 
   public PACalculationParameters accounts(java.util.List<PAIdentifier> accounts) {
-    
     this.accounts = accounts;
     return this;
   }
@@ -128,7 +131,6 @@ public class PACalculationParameters implements Serializable {
 
 
   public PACalculationParameters benchmarks(java.util.List<PAIdentifier> benchmarks) {
-    
     this.benchmarks = benchmarks;
     return this;
   }
@@ -161,7 +163,6 @@ public class PACalculationParameters implements Serializable {
 
 
   public PACalculationParameters dates(PADateParameters dates) {
-    
     this.dates = dates;
     return this;
   }
@@ -186,7 +187,6 @@ public class PACalculationParameters implements Serializable {
 
 
   public PACalculationParameters groups(java.util.List<PACalculationGroup> groups) {
-    
     this.groups = groups;
     return this;
   }
@@ -219,7 +219,6 @@ public class PACalculationParameters implements Serializable {
 
 
   public PACalculationParameters currencyisocode(String currencyisocode) {
-    
     this.currencyisocode = currencyisocode;
     return this;
   }
@@ -244,7 +243,6 @@ public class PACalculationParameters implements Serializable {
 
 
   public PACalculationParameters columns(java.util.List<PACalculationColumn> columns) {
-    
     this.columns = columns;
     return this;
   }
@@ -277,7 +275,6 @@ public class PACalculationParameters implements Serializable {
 
 
   public PACalculationParameters componentdetail(String componentdetail) {
-    
     this.componentdetail = componentdetail;
     return this;
   }
@@ -301,8 +298,11 @@ public class PACalculationParameters implements Serializable {
   }
 
 
+  /**
+   * Return true if this PACalculationParameters object is equal to o.
+   */
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -325,7 +325,6 @@ public class PACalculationParameters implements Serializable {
     return Objects.hash(componentid, accounts, benchmarks, dates, groups, currencyisocode, columns, componentdetail);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -346,7 +345,7 @@ public class PACalculationParameters implements Serializable {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

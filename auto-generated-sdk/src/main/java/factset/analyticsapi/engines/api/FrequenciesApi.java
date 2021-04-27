@@ -10,8 +10,7 @@ import javax.ws.rs.core.GenericType;
 
 import factset.analyticsapi.engines.models.Frequency;
 
-
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class FrequenciesApi {
   private ApiClient apiClient;
 
@@ -23,13 +22,24 @@ public class FrequenciesApi {
     this.apiClient = apiClient;
   }
 
+  /**
+   * Get the API cilent
+   *
+   * @return API client
+   */
   public ApiClient getApiClient() {
     return apiClient;
   }
 
+  /**
+   * Set the API cilent
+   *
+   * @param apiClient an instance of API client
+   */
   public void setApiClient(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
+
   /**
    * Get PA frequencies
    * This endpoint lists all the frequencies that can be applied to a PA calculation.
@@ -97,7 +107,10 @@ public class FrequenciesApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<java.util.Map<String, Frequency>> localVarReturnType = new GenericType<java.util.Map<String, Frequency>>() {};
-    return apiClient.invokeAPI("FrequenciesApi.getPAFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("FrequenciesApi.getPAFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
   /**
    * Get SPAR frequencies
@@ -166,7 +179,10 @@ public class FrequenciesApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<java.util.Map<String, Frequency>> localVarReturnType = new GenericType<java.util.Map<String, Frequency>>() {};
-    return apiClient.invokeAPI("FrequenciesApi.getSPARFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("FrequenciesApi.getSPARFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
   /**
    * Get Vault frequencies
@@ -235,6 +251,9 @@ public class FrequenciesApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<java.util.Map<String, Frequency>> localVarReturnType = new GenericType<java.util.Map<String, Frequency>>() {};
-    return apiClient.invokeAPI("FrequenciesApi.getVaultFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("FrequenciesApi.getVaultFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
 }
