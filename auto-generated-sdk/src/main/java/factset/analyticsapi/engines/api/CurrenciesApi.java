@@ -10,8 +10,7 @@ import javax.ws.rs.core.GenericType;
 
 import factset.analyticsapi.engines.models.Currency;
 
-
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class CurrenciesApi {
   private ApiClient apiClient;
 
@@ -23,13 +22,24 @@ public class CurrenciesApi {
     this.apiClient = apiClient;
   }
 
+  /**
+   * Get the API cilent
+   *
+   * @return API client
+   */
   public ApiClient getApiClient() {
     return apiClient;
   }
 
+  /**
+   * Set the API cilent
+   *
+   * @param apiClient an instance of API client
+   */
   public void setApiClient(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
+
   /**
    * Get PA currencies
    * This endpoint lists all the PA currencies that can be applied to a calculation.
@@ -97,6 +107,9 @@ public class CurrenciesApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<java.util.Map<String, Currency>> localVarReturnType = new GenericType<java.util.Map<String, Currency>>() {};
-    return apiClient.invokeAPI("CurrenciesApi.getPACurrencies", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("CurrenciesApi.getPACurrencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
 }

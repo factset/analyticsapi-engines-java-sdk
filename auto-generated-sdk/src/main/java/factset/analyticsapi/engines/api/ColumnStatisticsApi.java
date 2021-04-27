@@ -10,8 +10,7 @@ import javax.ws.rs.core.GenericType;
 
 import factset.analyticsapi.engines.models.ColumnStatistic;
 
-
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ColumnStatisticsApi {
   private ApiClient apiClient;
 
@@ -23,13 +22,24 @@ public class ColumnStatisticsApi {
     this.apiClient = apiClient;
   }
 
+  /**
+   * Get the API cilent
+   *
+   * @return API client
+   */
   public ApiClient getApiClient() {
     return apiClient;
   }
 
+  /**
+   * Set the API cilent
+   *
+   * @param apiClient an instance of API client
+   */
   public void setApiClient(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
+
   /**
    * Get PA column statistics
    * This endpoint lists all the column statistics that can be applied to a PA column.
@@ -97,6 +107,9 @@ public class ColumnStatisticsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<java.util.Map<String, ColumnStatistic>> localVarReturnType = new GenericType<java.util.Map<String, ColumnStatistic>>() {};
-    return apiClient.invokeAPI("ColumnStatisticsApi.getPAColumnStatistics", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("ColumnStatisticsApi.getPAColumnStatistics", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
 }

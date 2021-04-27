@@ -10,8 +10,7 @@ import javax.ws.rs.core.GenericType;
 
 import factset.analyticsapi.engines.models.VaultCalculationParameters;
 
-
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class VaultCalculationsApi {
   private ApiClient apiClient;
 
@@ -23,13 +22,24 @@ public class VaultCalculationsApi {
     this.apiClient = apiClient;
   }
 
+  /**
+   * Get the API cilent
+   *
+   * @return API client
+   */
   public ApiClient getApiClient() {
     return apiClient;
   }
 
+  /**
+   * Set the API cilent
+   *
+   * @param apiClient an instance of API client
+   */
   public void setApiClient(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
+
   /**
    * Cancel Vault calculation by id
    * This is the endpoint to cancel a previously submitted calculation.  Instead of doing a GET on the polling URL, cancel the request by doing a DELETE.
@@ -103,8 +113,9 @@ public class VaultCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic" };
 
-    
-    return apiClient.invokeAPI("VaultCalculationsApi.cancelVaultCalculationById", localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+    return apiClient.invokeAPI("VaultCalculationsApi.cancelVaultCalculationById", localVarPath, "DELETE", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, null, false);
   }
   /**
    * Get Vault calculation by id
@@ -183,7 +194,10 @@ public class VaultCalculationsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<Object> localVarReturnType = new GenericType<Object>() {};
-    return apiClient.invokeAPI("VaultCalculationsApi.getVaultCalculationById", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("VaultCalculationsApi.getVaultCalculationById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
   /**
    * Run Vault Calculation
@@ -260,6 +274,9 @@ public class VaultCalculationsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<Object> localVarReturnType = new GenericType<Object>() {};
-    return apiClient.invokeAPI("VaultCalculationsApi.runVaultCalculation", localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("VaultCalculationsApi.runVaultCalculation", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
 }

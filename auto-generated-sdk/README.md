@@ -91,7 +91,7 @@ public class AccountsApiExample {
         Basic.setPassword("YOUR PASSWORD");
 
         AccountsApi apiInstance = new AccountsApi(defaultClient);
-        String path = "\"\""; // String | The directory to get the accounts and sub-directories in
+        String path = ""; // String | The directory to get the accounts and sub-directories in
         try {
             AccountDirectories result = apiInstance.getAccounts(path);
             System.out.println(result);
@@ -206,4 +206,18 @@ It's recommended to create an instance of `ApiClient` per thread in a multithrea
 
 ## Author
 
+analytics.api.support@factset.com
+analytics.api.support@factset.com
+analytics.api.support@factset.com
+analytics.api.support@factset.com
+analytics.api.support@factset.com
+analytics.api.support@factset.com
+analytics.api.support@factset.com
+analytics.api.support@factset.com
+analytics.api.support@factset.com
+analytics.api.support@factset.com
+analytics.api.support@factset.com
+analytics.api.support@factset.com
+analytics.api.support@factset.com
+analytics.api.support@factset.com
 analytics.api.support@factset.com

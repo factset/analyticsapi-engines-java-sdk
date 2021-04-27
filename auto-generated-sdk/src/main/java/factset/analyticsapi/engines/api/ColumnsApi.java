@@ -11,8 +11,7 @@ import javax.ws.rs.core.GenericType;
 import factset.analyticsapi.engines.models.Column;
 import factset.analyticsapi.engines.models.ColumnSummary;
 
-
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ColumnsApi {
   private ApiClient apiClient;
 
@@ -24,13 +23,24 @@ public class ColumnsApi {
     this.apiClient = apiClient;
   }
 
+  /**
+   * Get the API cilent
+   *
+   * @return API client
+   */
   public ApiClient getApiClient() {
     return apiClient;
   }
 
+  /**
+   * Set the API cilent
+   *
+   * @param apiClient an instance of API client
+   */
   public void setApiClient(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
+
   /**
    * Get PA column settings
    * This endpoint returns the default settings of a PA column.
@@ -110,14 +120,17 @@ public class ColumnsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<Column> localVarReturnType = new GenericType<Column>() {};
-    return apiClient.invokeAPI("ColumnsApi.getPAColumnById", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("ColumnsApi.getPAColumnById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
   /**
    * Get PA columns
    * This endpoint lists all the PA columns that can be applied to a calculation.
-   * @param name Column name (optional, default to &quot;&quot;)
-   * @param category Column category (optional, default to &quot;&quot;)
-   * @param directory The directory to get the columns in (optional, default to &quot;&quot;)
+   * @param name Column name (optional, default to )
+   * @param category Column category (optional, default to )
+   * @param directory The directory to get the columns in (optional, default to )
    * @return java.util.Map&lt;String, ColumnSummary&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
@@ -139,9 +152,9 @@ public class ColumnsApi {
   /**
    * Get PA columns
    * This endpoint lists all the PA columns that can be applied to a calculation.
-   * @param name Column name (optional, default to &quot;&quot;)
-   * @param category Column category (optional, default to &quot;&quot;)
-   * @param directory The directory to get the columns in (optional, default to &quot;&quot;)
+   * @param name Column name (optional, default to )
+   * @param category Column category (optional, default to )
+   * @param directory The directory to get the columns in (optional, default to )
    * @return ApiResponse&lt;java.util.Map&lt;String, ColumnSummary&gt;&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
@@ -188,6 +201,9 @@ public class ColumnsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<java.util.Map<String, ColumnSummary>> localVarReturnType = new GenericType<java.util.Map<String, ColumnSummary>>() {};
-    return apiClient.invokeAPI("ColumnsApi.getPAColumns", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("ColumnsApi.getPAColumns", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
 }

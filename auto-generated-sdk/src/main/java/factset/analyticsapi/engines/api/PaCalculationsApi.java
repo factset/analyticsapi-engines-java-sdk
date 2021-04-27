@@ -10,8 +10,7 @@ import javax.ws.rs.core.GenericType;
 
 import factset.analyticsapi.engines.models.PACalculationParameters;
 
-
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class PaCalculationsApi {
   private ApiClient apiClient;
 
@@ -23,13 +22,24 @@ public class PaCalculationsApi {
     this.apiClient = apiClient;
   }
 
+  /**
+   * Get the API cilent
+   *
+   * @return API client
+   */
   public ApiClient getApiClient() {
     return apiClient;
   }
 
+  /**
+   * Set the API cilent
+   *
+   * @param apiClient an instance of API client
+   */
   public void setApiClient(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
+
   /**
    * Cancel PA calculation by id
    * This is the endpoint to cancel a previously submitted calculation.  Instead of doing a GET on the polling URL, cancel the request by doing a DELETE.
@@ -103,8 +113,9 @@ public class PaCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic" };
 
-    
-    return apiClient.invokeAPI("PaCalculationsApi.cancelPACalculationById", localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+    return apiClient.invokeAPI("PaCalculationsApi.cancelPACalculationById", localVarPath, "DELETE", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, null, false);
   }
   /**
    * Get PA calculation by id
@@ -183,7 +194,10 @@ public class PaCalculationsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<Object> localVarReturnType = new GenericType<Object>() {};
-    return apiClient.invokeAPI("PaCalculationsApi.getPACalculationById", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("PaCalculationsApi.getPACalculationById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
   /**
    * Run PA Calculation
@@ -260,6 +274,9 @@ public class PaCalculationsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<Object> localVarReturnType = new GenericType<Object>() {};
-    return apiClient.invokeAPI("PaCalculationsApi.runPACalculation", localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("PaCalculationsApi.runPACalculation", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
 }

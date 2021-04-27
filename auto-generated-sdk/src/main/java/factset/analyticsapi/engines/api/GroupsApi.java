@@ -10,8 +10,7 @@ import javax.ws.rs.core.GenericType;
 
 import factset.analyticsapi.engines.models.Group;
 
-
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class GroupsApi {
   private ApiClient apiClient;
 
@@ -23,13 +22,24 @@ public class GroupsApi {
     this.apiClient = apiClient;
   }
 
+  /**
+   * Get the API cilent
+   *
+   * @return API client
+   */
   public ApiClient getApiClient() {
     return apiClient;
   }
 
+  /**
+   * Set the API cilent
+   *
+   * @param apiClient an instance of API client
+   */
   public void setApiClient(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
+
   /**
    * Get PA groups
    * This endpoint lists all the PA groups that can be applied to a PA calculation.
@@ -97,6 +107,9 @@ public class GroupsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<java.util.Map<String, Group>> localVarReturnType = new GenericType<java.util.Map<String, Group>>() {};
-    return apiClient.invokeAPI("GroupsApi.getPAGroups", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("GroupsApi.getPAGroups", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
 }

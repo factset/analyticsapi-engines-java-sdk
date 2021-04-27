@@ -25,7 +25,7 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.auth.*;
-import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.model.*;
 import factset.analyticsapi.engines.api.ColumnsApi;
 
 public class Example {
@@ -104,7 +104,7 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.auth.*;
-import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.model.*;
 import factset.analyticsapi.engines.api.ColumnsApi;
 
 public class Example {
@@ -118,9 +118,9 @@ public class Example {
         Basic.setPassword("YOUR PASSWORD");
 
         ColumnsApi apiInstance = new ColumnsApi(defaultClient);
-        String name = "\"\""; // String | Column name
-        String category = "\"\""; // String | Column category
-        String directory = "\"\""; // String | The directory to get the columns in
+        String name = ""; // String | Column name
+        String category = ""; // String | Column category
+        String directory = ""; // String | The directory to get the columns in
         try {
             java.util.Map<String, ColumnSummary> result = apiInstance.getPAColumns(name, category, directory);
             System.out.println(result);
@@ -140,9 +140,9 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Column name | [optional] [default to &quot;&quot;]
- **category** | **String**| Column category | [optional] [default to &quot;&quot;]
- **directory** | **String**| The directory to get the columns in | [optional] [default to &quot;&quot;]
+ **name** | **String**| Column name | [optional] [default to ]
+ **category** | **String**| Column category | [optional] [default to ]
+ **directory** | **String**| The directory to get the columns in | [optional] [default to ]
 
 ### Return type
 

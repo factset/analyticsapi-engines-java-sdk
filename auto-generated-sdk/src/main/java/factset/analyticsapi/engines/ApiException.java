@@ -15,10 +15,13 @@ package factset.analyticsapi.engines;
 
 import java.util.Map;
 import java.util.List;
-import java.util.Map.Entry;		
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
-
+/**
+ * API Exception
+ */
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ApiException extends Exception {
     private int code = 0;
     private Map<String, List<String>> responseHeaders = null;
@@ -39,7 +42,7 @@ public class ApiException extends Exception {
         this.code = code;
         Map<String, List<String>> headers = new TreeMap<String, List<String>>(String.CASE_INSENSITIVE_ORDER);
         for(Entry<String, List<String>> entry : responseHeaders.entrySet()){
-        	headers.put(entry.getKey().toLowerCase(), entry.getValue());
+            headers.put(entry.getKey().toLowerCase(), entry.getValue());
         }
         this.responseHeaders = headers;
         this.responseBody = responseBody;
@@ -66,7 +69,7 @@ public class ApiException extends Exception {
         this(code, message);
         Map<String, List<String>> headers = new TreeMap<String, List<String>>(String.CASE_INSENSITIVE_ORDER);
         for(Entry<String, List<String>> entry : responseHeaders.entrySet()){
-        	headers.put(entry.getKey().toLowerCase(), entry.getValue());
+            headers.put(entry.getKey().toLowerCase(), entry.getValue());
         }
         this.responseHeaders = headers;
         this.responseBody = responseBody;

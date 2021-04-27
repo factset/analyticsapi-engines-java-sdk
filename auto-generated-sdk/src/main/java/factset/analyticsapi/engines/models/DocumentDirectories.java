@@ -15,14 +15,19 @@ package factset.analyticsapi.engines.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import factset.analyticsapi.engines.JSON;
+
 
 /**
  * DocumentDirectories
@@ -31,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   DocumentDirectories.JSON_PROPERTY_DOCUMENTS,
   DocumentDirectories.JSON_PROPERTY_DIRECTORIES
 })
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class DocumentDirectories implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -43,7 +48,6 @@ public class DocumentDirectories implements Serializable {
 
 
   public DocumentDirectories documents(java.util.List<String> documents) {
-    
     this.documents = documents;
     return this;
   }
@@ -76,7 +80,6 @@ public class DocumentDirectories implements Serializable {
 
 
   public DocumentDirectories directories(java.util.List<String> directories) {
-    
     this.directories = directories;
     return this;
   }
@@ -108,8 +111,11 @@ public class DocumentDirectories implements Serializable {
   }
 
 
+  /**
+   * Return true if this DocumentDirectories object is equal to o.
+   */
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -126,7 +132,6 @@ public class DocumentDirectories implements Serializable {
     return Objects.hash(documents, directories);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -141,7 +146,7 @@ public class DocumentDirectories implements Serializable {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
