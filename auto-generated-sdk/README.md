@@ -3,7 +3,7 @@
 
 Engines API
 
-- API version: 2
+- API version: v3:[pa,spar,vault,pub,fi,axp,afi,npo,bpm,fpo,others],v1:[fiab]
 
 Allow clients to fetch Analytics through APIs.
 
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.factset.analyticsapi</groupId>
   <artifactId>engines-sdk</artifactId>
-  <version>4.0.0</version>
+  <version>5.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +52,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.factset.analyticsapi:engines-sdk:4.0.0"
+compile "com.factset.analyticsapi:engines-sdk:5.0.0"
 ```
 
 ### Others
@@ -65,8 +65,33 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/engines-sdk-4.0.0.jar`
+- `target/engines-sdk-5.0.0.jar`
 - `target/lib/*.jar`
+
+## Usage
+
+To add a HTTP proxy for the API client, use `ClientConfig`:
+```java
+
+import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.ClientProperties;
+import factset.analyticsapi.engines.*;
+import factset.analyticsapi.engines.api.AccountsApi;
+
+...
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+ClientConfig clientConfig = defaultClient.getClientConfig();
+clientConfig.connectorProvider(new ApacheConnectorProvider());
+clientConfig.property(ClientProperties.PROXY_URI, "http://proxy_url_here");
+clientConfig.property(ClientProperties.PROXY_USERNAME, "proxy_username");
+clientConfig.property(ClientProperties.PROXY_PASSWORD, "proxy_password");
+defaultClient.setClientConfig(clientConfig);
+
+AccountsApi apiInstance = new AccountsApi(defaultClient);
+
+```
 
 ## Getting Started
 
@@ -80,7 +105,6 @@ import factset.analyticsapi.engines.models.*;
 import factset.analyticsapi.engines.api.AccountsApi;
 
 public class AccountsApiExample {
-
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.factset.com");
@@ -91,14 +115,14 @@ public class AccountsApiExample {
         Basic.setPassword("YOUR PASSWORD");
 
         AccountsApi apiInstance = new AccountsApi(defaultClient);
-        String path = "\"\""; // String | The directory to get the accounts and sub-directories in
+        String path = ""; // String | The directory to get the accounts and sub-directories in
         try {
-            AccountDirectories result = apiInstance.getAccounts(path);
+            AccountDirectoriesRoot result = apiInstance.getAccounts(path);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountsApi#getAccounts");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -113,80 +137,180 @@ All URIs are relative to *https://api.factset.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AccountsApi* | [**getAccounts**](docs/AccountsApi.md#getAccounts) | **GET** /analytics/lookups/v2/accounts/{path} | Get accounts and sub-directories in a directory
-*CalculationsApi* | [**cancelCalculationById**](docs/CalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/v2/calculations/{id} | Cancel calculation by id
-*CalculationsApi* | [**getCalculationStatusById**](docs/CalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/v2/calculations/{id} | Get calculation status by id
-*CalculationsApi* | [**getCalculationStatusSummaries**](docs/CalculationsApi.md#getCalculationStatusSummaries) | **GET** /analytics/engines/v2/calculations | Get all calculation statuses
-*CalculationsApi* | [**runCalculation**](docs/CalculationsApi.md#runCalculation) | **POST** /analytics/engines/v2/calculations | Run calculation
-*ColumnStatisticsApi* | [**getPAColumnStatistics**](docs/ColumnStatisticsApi.md#getPAColumnStatistics) | **GET** /analytics/lookups/v2/engines/pa/columnstatistics | Get PA column statistics
-*ColumnsApi* | [**getPAColumnById**](docs/ColumnsApi.md#getPAColumnById) | **GET** /analytics/lookups/v2/engines/pa/columns/{id} | Get PA column settings
-*ColumnsApi* | [**getPAColumns**](docs/ColumnsApi.md#getPAColumns) | **GET** /analytics/lookups/v2/engines/pa/columns | Get PA columns
-*ComponentsApi* | [**getPAComponentById**](docs/ComponentsApi.md#getPAComponentById) | **GET** /analytics/lookups/v2/engines/pa/components/{id} | Get PA component by id
-*ComponentsApi* | [**getPAComponents**](docs/ComponentsApi.md#getPAComponents) | **GET** /analytics/lookups/v2/engines/pa/components | Get PA components
-*ComponentsApi* | [**getSPARComponents**](docs/ComponentsApi.md#getSPARComponents) | **GET** /analytics/lookups/v2/engines/spar/components | Get SPAR components
-*ComponentsApi* | [**getVaultComponentById**](docs/ComponentsApi.md#getVaultComponentById) | **GET** /analytics/lookups/v2/engines/vault/components/{id} | Get Vault component by id
-*ComponentsApi* | [**getVaultComponents**](docs/ComponentsApi.md#getVaultComponents) | **GET** /analytics/lookups/v2/engines/vault/components | Get Vault components
-*ConfigurationsApi* | [**getVaultConfigurationById**](docs/ConfigurationsApi.md#getVaultConfigurationById) | **GET** /analytics/lookups/v2/engines/vault/configurations/{id} | Get Vault configuration by id
-*ConfigurationsApi* | [**getVaultConfigurations**](docs/ConfigurationsApi.md#getVaultConfigurations) | **GET** /analytics/lookups/v2/engines/vault/configurations | Get Vault configurations
-*CurrenciesApi* | [**getPACurrencies**](docs/CurrenciesApi.md#getPACurrencies) | **GET** /analytics/lookups/v2/engines/pa/currencies | Get PA currencies
-*DatesApi* | [**convertPADatesToAbsoluteFormat**](docs/DatesApi.md#convertPADatesToAbsoluteFormat) | **GET** /analytics/lookups/v2/engines/pa/dates | Convert PA dates to absolute format
-*DatesApi* | [**convertVaultDatesToAbsoluteFormat**](docs/DatesApi.md#convertVaultDatesToAbsoluteFormat) | **GET** /analytics/lookups/v2/engines/vault/dates | Convert Vault dates to absolute format
-*DocumentsApi* | [**getPA3Documents**](docs/DocumentsApi.md#getPA3Documents) | **GET** /analytics/lookups/v2/engines/pa/documents/{path} | Get PA3 documents and sub-directories in a directory
-*DocumentsApi* | [**getPubDocuments**](docs/DocumentsApi.md#getPubDocuments) | **GET** /analytics/lookups/v2/engines/pub/documents/{path} | Gets Publisher documents and sub-directories in a directory
-*DocumentsApi* | [**getSPAR3Documents**](docs/DocumentsApi.md#getSPAR3Documents) | **GET** /analytics/lookups/v2/engines/spar/documents/{path} | Gets SPAR3 documents and sub-directories in a directory
-*DocumentsApi* | [**getVaultDocuments**](docs/DocumentsApi.md#getVaultDocuments) | **GET** /analytics/lookups/v2/engines/vault/documents/{path} | Get Vault documents and sub-directories in a directory
-*FrequenciesApi* | [**getPAFrequencies**](docs/FrequenciesApi.md#getPAFrequencies) | **GET** /analytics/lookups/v2/engines/pa/frequencies | Get PA frequencies
-*FrequenciesApi* | [**getSPARFrequencies**](docs/FrequenciesApi.md#getSPARFrequencies) | **GET** /analytics/lookups/v2/engines/spar/frequencies | Get SPAR frequencies
-*FrequenciesApi* | [**getVaultFrequencies**](docs/FrequenciesApi.md#getVaultFrequencies) | **GET** /analytics/lookups/v2/engines/vault/frequencies | Get Vault frequencies
-*GroupsApi* | [**getPAGroups**](docs/GroupsApi.md#getPAGroups) | **GET** /analytics/lookups/v2/engines/pa/groups | Get PA groups
-*PaCalculationsApi* | [**cancelPACalculationById**](docs/PaCalculationsApi.md#cancelPACalculationById) | **DELETE** /analytics/engines/pa/v2/calculations/{id} | Cancel PA calculation by id
-*PaCalculationsApi* | [**getPACalculationById**](docs/PaCalculationsApi.md#getPACalculationById) | **GET** /analytics/engines/pa/v2/calculations/{id} | Get PA calculation by id
-*PaCalculationsApi* | [**runPACalculation**](docs/PaCalculationsApi.md#runPACalculation) | **POST** /analytics/engines/pa/v2/calculations | Run PA Calculation
-*SparBenchmarkApi* | [**getSPARBenchmarkById**](docs/SparBenchmarkApi.md#getSPARBenchmarkById) | **GET** /analytics/lookups/v2/engines/spar/benchmarks | Get SPAR benchmark details
-*SparCalculationsApi* | [**cancelSPARCalculationById**](docs/SparCalculationsApi.md#cancelSPARCalculationById) | **DELETE** /analytics/engines/spar/v2/calculations/{id} | Cancel SPAR calculation
-*SparCalculationsApi* | [**getSPARCalculationById**](docs/SparCalculationsApi.md#getSPARCalculationById) | **GET** /analytics/engines/spar/v2/calculations/{id} | Get SPAR calculation by id
-*SparCalculationsApi* | [**runSPARCalculation**](docs/SparCalculationsApi.md#runSPARCalculation) | **POST** /analytics/engines/spar/v2/calculations | Run SPAR Calculation
-*VaultCalculationsApi* | [**cancelVaultCalculationById**](docs/VaultCalculationsApi.md#cancelVaultCalculationById) | **DELETE** /analytics/engines/vault/v2/calculations/{id} | Cancel Vault calculation by id
-*VaultCalculationsApi* | [**getVaultCalculationById**](docs/VaultCalculationsApi.md#getVaultCalculationById) | **GET** /analytics/engines/vault/v2/calculations/{id} | Get Vault calculation by id
-*VaultCalculationsApi* | [**runVaultCalculation**](docs/VaultCalculationsApi.md#runVaultCalculation) | **POST** /analytics/engines/vault/v2/calculations | Run Vault Calculation
-*UtilityApi* | [**getByUrl**](docs/UtilityApi.md#getByUrl) | **GET** {url} | Get by url
+*AccountsApi* | [**getAccounts**](docs/AccountsApi.md#getAccounts) | **GET** /analytics/lookups/v3/accounts/{path} | Get accounts and sub-directories in a directory
+*AxpOptimizerApi* | [**cancelOptimizationById**](docs/AxpOptimizerApi.md#cancelOptimizationById) | **DELETE** /analytics/engines/axp/v3/optimizations/{id} | Cancel Axioma optimization by id
+*AxpOptimizerApi* | [**getOptimizationParameters**](docs/AxpOptimizerApi.md#getOptimizationParameters) | **GET** /analytics/engines/axp/v3/optimizations/{id} | Get Axioma optimization parameters by id
+*AxpOptimizerApi* | [**getOptimizationResult**](docs/AxpOptimizerApi.md#getOptimizationResult) | **GET** /analytics/engines/axp/v3/optimizations/{id}/result | Get Axioma optimization result by id
+*AxpOptimizerApi* | [**getOptimizationStatusById**](docs/AxpOptimizerApi.md#getOptimizationStatusById) | **GET** /analytics/engines/axp/v3/optimizations/{id}/status | Get Axioma optimization status by id
+*AxpOptimizerApi* | [**postAndOptimize**](docs/AxpOptimizerApi.md#postAndOptimize) | **POST** /analytics/engines/axp/v3/optimizations | Create and Run Axioma optimization
+*AxpOptimizerApi* | [**putAndOptimize**](docs/AxpOptimizerApi.md#putAndOptimize) | **PUT** /analytics/engines/axp/v3/optimizations/{id} | Create or Update Axioma optimization and run it.
+*BenchmarksApi* | [**getSPARBenchmarkById**](docs/BenchmarksApi.md#getSPARBenchmarkById) | **GET** /analytics/engines/spar/v3/benchmarks | Get SPAR benchmark details
+*BpmOptimizerApi* | [**cancelOptimizationById**](docs/BpmOptimizerApi.md#cancelOptimizationById) | **DELETE** /analytics/engines/bpm/v3/optimizations/{id} | Cancel BPM optimization by id
+*BpmOptimizerApi* | [**getOptimizationParameters**](docs/BpmOptimizerApi.md#getOptimizationParameters) | **GET** /analytics/engines/bpm/v3/optimizations/{id} | Get BPM optimization parameters by id
+*BpmOptimizerApi* | [**getOptimizationResult**](docs/BpmOptimizerApi.md#getOptimizationResult) | **GET** /analytics/engines/bpm/v3/optimizations/{id}/result | Get BPM optimization result by id
+*BpmOptimizerApi* | [**getOptimizationStatusById**](docs/BpmOptimizerApi.md#getOptimizationStatusById) | **GET** /analytics/engines/bpm/v3/optimizations/{id}/status | Get BPM optimization status by id
+*BpmOptimizerApi* | [**postAndOptimize**](docs/BpmOptimizerApi.md#postAndOptimize) | **POST** /analytics/engines/bpm/v3/optimizations | Create and Run BPM optimization
+*BpmOptimizerApi* | [**putAndOptimize**](docs/BpmOptimizerApi.md#putAndOptimize) | **PUT** /analytics/engines/bpm/v3/optimizations/{id} | Create or Update BPM optimization and run it.
+*ColumnStatisticsApi* | [**getPAColumnStatistics**](docs/ColumnStatisticsApi.md#getPAColumnStatistics) | **GET** /analytics/engines/pa/v3/columnstatistics | Get PA column statistics
+*ColumnsApi* | [**getPAColumnById**](docs/ColumnsApi.md#getPAColumnById) | **GET** /analytics/engines/pa/v3/columns/{id} | Get PA column settings
+*ColumnsApi* | [**getPAColumns**](docs/ColumnsApi.md#getPAColumns) | **GET** /analytics/engines/pa/v3/columns | Get PA columns
+*ComponentsApi* | [**getPAComponentById**](docs/ComponentsApi.md#getPAComponentById) | **GET** /analytics/engines/pa/v3/components/{id} | Get PA component by id
+*ComponentsApi* | [**getPAComponents**](docs/ComponentsApi.md#getPAComponents) | **GET** /analytics/engines/pa/v3/components | Get PA components
+*ComponentsApi* | [**getSPARComponents**](docs/ComponentsApi.md#getSPARComponents) | **GET** /analytics/engines/spar/v3/components | Get SPAR components
+*ComponentsApi* | [**getVaultComponentById**](docs/ComponentsApi.md#getVaultComponentById) | **GET** /analytics/engines/vault/v3/components/{id} | Get Vault component by id
+*ComponentsApi* | [**getVaultComponents**](docs/ComponentsApi.md#getVaultComponents) | **GET** /analytics/engines/vault/v3/components | Get Vault components
+*ConfigurationsApi* | [**getVaultConfigurationById**](docs/ConfigurationsApi.md#getVaultConfigurationById) | **GET** /analytics/engines/vault/v3/configurations/{id} | Get Vault configuration by id
+*ConfigurationsApi* | [**getVaultConfigurations**](docs/ConfigurationsApi.md#getVaultConfigurations) | **GET** /analytics/engines/vault/v3/configurations | Get Vault configurations
+*CurrenciesApi* | [**getCurrencies**](docs/CurrenciesApi.md#getCurrencies) | **GET** /analytics/lookups/v3/currencies | Get currencies
+*DatesApi* | [**convertPADatesToAbsoluteFormat**](docs/DatesApi.md#convertPADatesToAbsoluteFormat) | **GET** /analytics/engines/pa/v3/dates | Convert PA dates to absolute format
+*DatesApi* | [**convertVaultDatesToAbsoluteFormat**](docs/DatesApi.md#convertVaultDatesToAbsoluteFormat) | **GET** /analytics/engines/vault/v3/dates | Convert Vault dates to absolute format
+*DocumentsApi* | [**getPA3Documents**](docs/DocumentsApi.md#getPA3Documents) | **GET** /analytics/engines/pa/v3/documents/{path} | Get PA3 documents and sub-directories in a directory
+*DocumentsApi* | [**getPubDocuments**](docs/DocumentsApi.md#getPubDocuments) | **GET** /analytics/engines/pub/v3/documents/{path} | Gets Publisher documents and sub-directories in a directory
+*DocumentsApi* | [**getSPAR3Documents**](docs/DocumentsApi.md#getSPAR3Documents) | **GET** /analytics/engines/spar/v3/documents/{path} | Gets SPAR3 documents and sub-directories in a directory
+*DocumentsApi* | [**getVaultDocuments**](docs/DocumentsApi.md#getVaultDocuments) | **GET** /analytics/engines/vault/v3/documents/{path} | Get Vault documents and sub-directories in a directory
+*FiCalculationsApi* | [**cancelCalculationById**](docs/FiCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/fi/v3/calculations/{id} | Cancel FI calculation by id
+*FiCalculationsApi* | [**getCalculationParameters**](docs/FiCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/fi/v3/calculations/{id} | Get FI calculation parameters by id
+*FiCalculationsApi* | [**getCalculationResult**](docs/FiCalculationsApi.md#getCalculationResult) | **GET** /analytics/engines/fi/v3/calculations/{id}/result | Get FI calculation result by id
+*FiCalculationsApi* | [**getCalculationStatusById**](docs/FiCalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/fi/v3/calculations/{id}/status | Get FI calculation status by id
+*FiCalculationsApi* | [**postAndCalculate**](docs/FiCalculationsApi.md#postAndCalculate) | **POST** /analytics/engines/fi/v3/calculations | Create and Run FI calculation
+*FiCalculationsApi* | [**putAndCalculate**](docs/FiCalculationsApi.md#putAndCalculate) | **PUT** /analytics/engines/fi/v3/calculations/{id} | Create or Update FI calculation and run it.
+*FiabCalculationsApi* | [**getCalculationById**](docs/FiabCalculationsApi.md#getCalculationById) | **GET** /analytics/engines/fiab/v1/calculations/{id} | Get FIAB calculation by id
+*FiabCalculationsApi* | [**getCalculationStatusSummaries**](docs/FiabCalculationsApi.md#getCalculationStatusSummaries) | **GET** /analytics/engines/fiab/v1/calculations | Get all FIAB calculation summaries
+*FiabCalculationsApi* | [**runCalculation**](docs/FiabCalculationsApi.md#runCalculation) | **POST** /analytics/engines/fiab/v1/calculations | Run FIAB calculation
+*FpoOptimizerApi* | [**cancelOptimizationById**](docs/FpoOptimizerApi.md#cancelOptimizationById) | **DELETE** /analytics/engines/fpo/v3/optimizations/{id} | Cancel FPO optimization by id
+*FpoOptimizerApi* | [**getOptimizationParameters**](docs/FpoOptimizerApi.md#getOptimizationParameters) | **GET** /analytics/engines/fpo/v3/optimizations/{id} | Get FPO optimization parameters by id
+*FpoOptimizerApi* | [**getOptimizationResult**](docs/FpoOptimizerApi.md#getOptimizationResult) | **GET** /analytics/engines/fpo/v3/optimizations/{id}/result | Get FPO optimization result by id
+*FpoOptimizerApi* | [**getOptimizationStatusById**](docs/FpoOptimizerApi.md#getOptimizationStatusById) | **GET** /analytics/engines/fpo/v3/optimizations/{id}/status | Get FPO optimization status by id
+*FpoOptimizerApi* | [**postAndOptimize**](docs/FpoOptimizerApi.md#postAndOptimize) | **POST** /analytics/engines/fpo/v3/optimizations | Create and Run FPO optimization
+*FpoOptimizerApi* | [**putAndOptimize**](docs/FpoOptimizerApi.md#putAndOptimize) | **PUT** /analytics/engines/fpo/v3/optimizations/{id} | Create or Update FPO optimization and run it.
+*FrequenciesApi* | [**getPAFrequencies**](docs/FrequenciesApi.md#getPAFrequencies) | **GET** /analytics/engines/pa/v3/frequencies | Get PA frequencies
+*FrequenciesApi* | [**getSPARFrequencies**](docs/FrequenciesApi.md#getSPARFrequencies) | **GET** /analytics/engines/spar/v3/frequencies | Get SPAR frequencies
+*FrequenciesApi* | [**getVaultFrequencies**](docs/FrequenciesApi.md#getVaultFrequencies) | **GET** /analytics/engines/vault/v3/frequencies | Get Vault frequencies
+*GroupsApi* | [**getPAGroups**](docs/GroupsApi.md#getPAGroups) | **GET** /analytics/engines/pa/v3/groups | Get PA groups
+*PaCalculationsApi* | [**cancelCalculationById**](docs/PaCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/pa/v3/calculations/{id} | Cancel PA calculation by id
+*PaCalculationsApi* | [**getCalculationParameters**](docs/PaCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/pa/v3/calculations/{id} | Get PA calculation parameters by id
+*PaCalculationsApi* | [**getCalculationStatusById**](docs/PaCalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/pa/v3/calculations/{id}/status | Get PA calculation status by id
+*PaCalculationsApi* | [**getCalculationUnitResultById**](docs/PaCalculationsApi.md#getCalculationUnitResultById) | **GET** /analytics/engines/pa/v3/calculations/{id}/units/{unitId}/result | Get PA calculation result by id
+*PaCalculationsApi* | [**postAndCalculate**](docs/PaCalculationsApi.md#postAndCalculate) | **POST** /analytics/engines/pa/v3/calculations | Create and Run PA calculation
+*PaCalculationsApi* | [**putAndCalculate**](docs/PaCalculationsApi.md#putAndCalculate) | **PUT** /analytics/engines/pa/v3/calculations/{id} | Create or Update PA calculation and run it.
+*PubCalculationsApi* | [**cancelCalculationById**](docs/PubCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/pub/v3/calculations/{id} | Cancel Pub calculation by id
+*PubCalculationsApi* | [**getCalculationParameters**](docs/PubCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/pub/v3/calculations/{id} | Get Pub calculation parameters by id
+*PubCalculationsApi* | [**getCalculationStatusById**](docs/PubCalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/pub/v3/calculations/{id}/status | Get Pub calculation status by id
+*PubCalculationsApi* | [**getCalculationUnitResultById**](docs/PubCalculationsApi.md#getCalculationUnitResultById) | **GET** /analytics/engines/pub/v3/calculations/{id}/units/{unitId}/result | Get Pub calculation result by id
+*PubCalculationsApi* | [**postAndCalculate**](docs/PubCalculationsApi.md#postAndCalculate) | **POST** /analytics/engines/pub/v3/calculations | Create and Run Pub calculation
+*PubCalculationsApi* | [**putAndCalculate**](docs/PubCalculationsApi.md#putAndCalculate) | **PUT** /analytics/engines/pub/v3/calculations/{id} | Create or Update Pub calculation and run it.
+*SparCalculationsApi* | [**cancelCalculationById**](docs/SparCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/spar/v3/calculations/{id} | Cancel SPAR calculation
+*SparCalculationsApi* | [**getCalculationParameters**](docs/SparCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/spar/v3/calculations/{id} | Get SPAR calculation parameters by id
+*SparCalculationsApi* | [**getCalculationStatusById**](docs/SparCalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/spar/v3/calculations/{id}/status | Get SPAR calculation status by id
+*SparCalculationsApi* | [**getCalculationUnitResultById**](docs/SparCalculationsApi.md#getCalculationUnitResultById) | **GET** /analytics/engines/spar/v3/calculations/{id}/units/{unitId}/result | Get SPAR calculation result by id
+*SparCalculationsApi* | [**postAndCalculate**](docs/SparCalculationsApi.md#postAndCalculate) | **POST** /analytics/engines/spar/v3/calculations | Create and Run SPAR calculation
+*SparCalculationsApi* | [**putAndCalculate**](docs/SparCalculationsApi.md#putAndCalculate) | **PUT** /analytics/engines/spar/v3/calculations/{id} | Create or Update SPAR calculation and run it.
+*StrategyDocumentsApi* | [**getAxiomaEquityStrategyDocuments**](docs/StrategyDocumentsApi.md#getAxiomaEquityStrategyDocuments) | **GET** /analytics/engines/axp/v3/strategies/{path} | Get Axioma Equity strategy documents and sub-directories in a directory
+*StrategyDocumentsApi* | [**getAxiomaFIStrategyDocuments**](docs/StrategyDocumentsApi.md#getAxiomaFIStrategyDocuments) | **GET** /analytics/engines/afi/v3/strategies/{path} | Get Axioma FI strategy documents and sub-directories in a directory
+*StrategyDocumentsApi* | [**getBarraStrategyDocuments**](docs/StrategyDocumentsApi.md#getBarraStrategyDocuments) | **GET** /analytics/engines/bpm/v3/strategies/{path} | Get Barra strategy documents and sub-directories in a directory
+*StrategyDocumentsApi* | [**getFPOStrategyDocuments**](docs/StrategyDocumentsApi.md#getFPOStrategyDocuments) | **GET** /analytics/engines/fpo/v3/strategies/{path} | Get FactSet Portfolio Optimizer strategy documents and sub-directories in a directory
+*StrategyDocumentsApi* | [**getNorthfieldStrategyDocuments**](docs/StrategyDocumentsApi.md#getNorthfieldStrategyDocuments) | **GET** /analytics/engines/npo/v3/strategies/{path} | Get Northfield strategy documents and sub-directories in a directory
+*VaultCalculationsApi* | [**cancelCalculationById**](docs/VaultCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/vault/v3/calculations/{id} | Cancel Vault calculation by id
+*VaultCalculationsApi* | [**getCalculationParameters**](docs/VaultCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/vault/v3/calculations/{id} | Get Vault calculation parameters by id
+*VaultCalculationsApi* | [**getCalculationStatusById**](docs/VaultCalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/vault/v3/calculations/{id}/status | Get Vault calculation status by id
+*VaultCalculationsApi* | [**getCalculationUnitResultById**](docs/VaultCalculationsApi.md#getCalculationUnitResultById) | **GET** /analytics/engines/vault/v3/calculations/{id}/units/{unitId}/result | Get Vault calculation result by id
+*VaultCalculationsApi* | [**postAndCalculate**](docs/VaultCalculationsApi.md#postAndCalculate) | **POST** /analytics/engines/vault/v3/calculations | Create and Run Vault calculation
+*VaultCalculationsApi* | [**putAndCalculate**](docs/VaultCalculationsApi.md#putAndCalculate) | **PUT** /analytics/engines/vault/v3/calculations/{id} | Create or Update Vault calculation and run it.
+
 
 ## Documentation for Models
 
  - [AccountDirectories](docs/AccountDirectories.md)
- - [Calculation](docs/Calculation.md)
+ - [AccountDirectoriesRoot](docs/AccountDirectoriesRoot.md)
+ - [AxiomaEquityOptimizationParameters](docs/AxiomaEquityOptimizationParameters.md)
+ - [AxiomaEquityOptimizationParametersRoot](docs/AxiomaEquityOptimizationParametersRoot.md)
+ - [AxiomaEquityOptimizerStrategy](docs/AxiomaEquityOptimizerStrategy.md)
+ - [AxiomaEquityOptimizerStrategyOverrides](docs/AxiomaEquityOptimizerStrategyOverrides.md)
+ - [BPMOptimization](docs/BPMOptimization.md)
+ - [BPMOptimizationParameters](docs/BPMOptimizationParameters.md)
+ - [BPMOptimizationParametersRoot](docs/BPMOptimizationParametersRoot.md)
+ - [BPMOptimizerStrategy](docs/BPMOptimizerStrategy.md)
+ - [BPMOptimizerStrategyAlphaOverride](docs/BPMOptimizerStrategyAlphaOverride.md)
+ - [BPMOptimizerStrategyOverrides](docs/BPMOptimizerStrategyOverrides.md)
+ - [CalculationInfo](docs/CalculationInfo.md)
+ - [CalculationInfoRoot](docs/CalculationInfoRoot.md)
+ - [CalculationMeta](docs/CalculationMeta.md)
  - [CalculationStatus](docs/CalculationStatus.md)
- - [CalculationStatusSummary](docs/CalculationStatusSummary.md)
+ - [CalculationStatusRoot](docs/CalculationStatusRoot.md)
  - [CalculationUnitStatus](docs/CalculationUnitStatus.md)
+ - [ClientErrorResponse](docs/ClientErrorResponse.md)
  - [Column](docs/Column.md)
+ - [ColumnRoot](docs/ColumnRoot.md)
  - [ColumnStatistic](docs/ColumnStatistic.md)
+ - [ColumnStatisticRoot](docs/ColumnStatisticRoot.md)
  - [ColumnSummary](docs/ColumnSummary.md)
- - [ComponentAccount](docs/ComponentAccount.md)
- - [ComponentBenchmark](docs/ComponentBenchmark.md)
+ - [ColumnSummaryRoot](docs/ColumnSummaryRoot.md)
  - [ComponentSummary](docs/ComponentSummary.md)
+ - [ComponentSummaryRoot](docs/ComponentSummaryRoot.md)
  - [ConfigurationAccount](docs/ConfigurationAccount.md)
+ - [ConstraintAction](docs/ConstraintAction.md)
  - [Currency](docs/Currency.md)
+ - [CurrencyRoot](docs/CurrencyRoot.md)
  - [DateParametersSummary](docs/DateParametersSummary.md)
+ - [DateParametersSummaryRoot](docs/DateParametersSummaryRoot.md)
  - [DocumentDirectories](docs/DocumentDirectories.md)
+ - [DocumentDirectoriesRoot](docs/DocumentDirectoriesRoot.md)
+ - [Error](docs/Error.md)
+ - [ErrorSource](docs/ErrorSource.md)
+ - [EventSummary](docs/EventSummary.md)
+ - [FIABCalculationParameters](docs/FIABCalculationParameters.md)
+ - [FIABCalculationStatus](docs/FIABCalculationStatus.md)
+ - [FIABCalculationStatusSummary](docs/FIABCalculationStatusSummary.md)
+ - [FIABDateParameters](docs/FIABDateParameters.md)
+ - [FIABIdentifier](docs/FIABIdentifier.md)
+ - [FICalculationParameters](docs/FICalculationParameters.md)
+ - [FICalculationParametersRoot](docs/FICalculationParametersRoot.md)
+ - [FIJobSettings](docs/FIJobSettings.md)
+ - [FISecurity](docs/FISecurity.md)
+ - [FPOAccount](docs/FPOAccount.md)
+ - [FPOOptimizationParameters](docs/FPOOptimizationParameters.md)
+ - [FPOOptimizationParametersRoot](docs/FPOOptimizationParametersRoot.md)
  - [Frequency](docs/Frequency.md)
+ - [FrequencyRoot](docs/FrequencyRoot.md)
  - [Group](docs/Group.md)
+ - [GroupRoot](docs/GroupRoot.md)
+ - [OptimalPortfolio](docs/OptimalPortfolio.md)
+ - [Optimization](docs/Optimization.md)
+ - [OptimizerAccount](docs/OptimizerAccount.md)
+ - [OptimizerAccountOverrides](docs/OptimizerAccountOverrides.md)
+ - [OptimizerOptimalHoldings](docs/OptimizerOptimalHoldings.md)
+ - [OptimizerOutputTypes](docs/OptimizerOutputTypes.md)
+ - [OptimizerStrategy](docs/OptimizerStrategy.md)
+ - [OptimizerStrategyOverrides](docs/OptimizerStrategyOverrides.md)
+ - [OptimizerTradesList](docs/OptimizerTradesList.md)
  - [PACalculationColumn](docs/PACalculationColumn.md)
  - [PACalculationGroup](docs/PACalculationGroup.md)
  - [PACalculationParameters](docs/PACalculationParameters.md)
+ - [PACalculationParametersRoot](docs/PACalculationParametersRoot.md)
  - [PAComponent](docs/PAComponent.md)
+ - [PAComponentRoot](docs/PAComponentRoot.md)
  - [PADateParameters](docs/PADateParameters.md)
  - [PAIdentifier](docs/PAIdentifier.md)
+ - [PaDoc](docs/PaDoc.md)
  - [PubCalculationParameters](docs/PubCalculationParameters.md)
+ - [PubCalculationParametersRoot](docs/PubCalculationParametersRoot.md)
  - [PubDateParameters](docs/PubDateParameters.md)
  - [PubIdentifier](docs/PubIdentifier.md)
  - [SPARBenchmark](docs/SPARBenchmark.md)
+ - [SPARBenchmarkRoot](docs/SPARBenchmarkRoot.md)
  - [SPARCalculationParameters](docs/SPARCalculationParameters.md)
+ - [SPARCalculationParametersRoot](docs/SPARCalculationParametersRoot.md)
  - [SPARDateParameters](docs/SPARDateParameters.md)
  - [SPARIdentifier](docs/SPARIdentifier.md)
+ - [StringRoot](docs/StringRoot.md)
  - [VaultCalculationParameters](docs/VaultCalculationParameters.md)
+ - [VaultCalculationParametersRoot](docs/VaultCalculationParametersRoot.md)
  - [VaultComponent](docs/VaultComponent.md)
+ - [VaultComponentRoot](docs/VaultComponentRoot.md)
  - [VaultConfiguration](docs/VaultConfiguration.md)
+ - [VaultConfigurationRoot](docs/VaultConfigurationRoot.md)
  - [VaultConfigurationSummary](docs/VaultConfigurationSummary.md)
+ - [VaultConfigurationSummaryRoot](docs/VaultConfigurationSummaryRoot.md)
  - [VaultDateParameters](docs/VaultDateParameters.md)
  - [VaultIdentifier](docs/VaultIdentifier.md)
 
