@@ -18,7 +18,7 @@ public class ConfigurationsApiTests {
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
+    apiClient = CommonFunctions.buildApiClient(Engine.Vault);
   }
 
   @Before
@@ -28,7 +28,7 @@ public class ConfigurationsApiTests {
 
   @Test
   public void getAllConfigurationsSuccess() throws ApiException {
-    ApiResponse<Map<String, VaultConfigurationSummary>> getAllConfigurationsResponse = null;
+    ApiResponse<VaultConfigurationSummaryRoot> getAllConfigurationsResponse = null;
 
     try {
       getAllConfigurationsResponse = apiInstance
@@ -43,7 +43,7 @@ public class ConfigurationsApiTests {
 
   @Test
   public void getVaultConfigurationsByIdSuccess() throws ApiException {
-    ApiResponse<Map<String, VaultConfigurationSummary>> getAllConfigurationsResponse = null;
+    ApiResponse<VaultConfigurationSummaryRoot> getAllConfigurationsResponse = null;
 
     try {
       getAllConfigurationsResponse = apiInstance
@@ -55,11 +55,11 @@ public class ConfigurationsApiTests {
       CommonFunctions.handleException("VaultConfigurationsApi#getVaultConfigurationsWithHttpInfo", e);
     }
 
-    ApiResponse<VaultConfiguration> getConfigurationDetailsResponse = null;
+    ApiResponse<VaultConfigurationRoot> getConfigurationDetailsResponse = null;
 
     try {
       getConfigurationDetailsResponse = apiInstance.getVaultConfigurationByIdWithHttpInfo(
-          getAllConfigurationsResponse.getData().entrySet().iterator().next().getKey());
+          getAllConfigurationsResponse.getData().getData().entrySet().iterator().next().getKey());
 
       Assert.assertTrue("Response should be 200 - Success", getConfigurationDetailsResponse.getStatusCode() == 200);
       Assert.assertTrue("Response data should not be null.", getConfigurationDetailsResponse.getData() != null);

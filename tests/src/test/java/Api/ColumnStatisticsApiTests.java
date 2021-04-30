@@ -12,6 +12,7 @@ import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.ApiResponse;
 import factset.analyticsapi.engines.api.ColumnStatisticsApi;
 import factset.analyticsapi.engines.models.ColumnStatistic;
+import factset.analyticsapi.engines.models.ColumnStatisticRoot;
 
 public class ColumnStatisticsApiTests {
   public static ApiClient apiClient;
@@ -19,7 +20,7 @@ public class ColumnStatisticsApiTests {
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
+    apiClient = CommonFunctions.buildApiClient(Engine.PA);
   }
 
   @Before
@@ -29,7 +30,7 @@ public class ColumnStatisticsApiTests {
 
   @Test
   public void getAllPAColumnStatistics() throws ApiException {
-    ApiResponse<Map<String, ColumnStatistic>> getPAColumnStatisticsResponse = null;
+    ApiResponse<ColumnStatisticRoot> getPAColumnStatisticsResponse = null;
 
     try {
       getPAColumnStatisticsResponse = apiInstance.getPAColumnStatisticsWithHttpInfo();

@@ -12,10 +12,13 @@ import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
 
-import com.factset.protobuf.stach.PackageProto.Package.Builder;
+import com.factset.protobuf.stach.v2.PackageProto.Package.Builder;
+import com.factset.protobuf.stach.v2.RowOrganizedProto.RowOrganizedPackage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.factset.protobuf.stach.PackageProto.Package;
+import com.factset.protobuf.stach.v2.PackageProto;
+import com.factset.protobuf.stach.v2.RowOrganizedProto;
+import com.factset.protobuf.stach.v2.PackageProto.Package;
 import com.google.protobuf.util.JsonFormat;
 import com.google.protobuf.InvalidProtocolBufferException;
 
@@ -26,7 +29,7 @@ public class SPAREngineInteractiveApiTests {
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
+    apiClient = CommonFunctions.buildApiClient(Engine.SPAR);
   }
 
   @Before
@@ -38,8 +41,8 @@ public class SPAREngineInteractiveApiTests {
     final SPARCalculationParameters parameters = new SPARCalculationParameters();
 
     final ComponentsApi componentsApi = new ComponentsApi(apiClient);
-    final Map<String, ComponentSummary> components = componentsApi
-        .getSPARComponents(CommonParameters.SPAR_DEFAULT_DOCUMENT);
+    final Map<String, ComponentSummary> components = ((ComponentSummaryRoot)componentsApi
+        .getSPARComponents(CommonParameters.SPAR_DEFAULT_DOCUMENT)).getData();
     final String componentId = components.entrySet().stream().findFirst().get().getKey();
     parameters.setComponentid(componentId);
 
@@ -60,58 +63,105 @@ public class SPAREngineInteractiveApiTests {
     benchmarkIdentifier.setPrefix(CommonParameters.SPAR_BENCHMARK_RUSSELL_PREFIX);
     benchmarkIdentifier.setReturntype(CommonParameters.SPAR_BENCHMARK_RUSSELL_RETURN);
     parameters.setBenchmark(benchmarkIdentifier);
-
-    return apiInstance.runSPARCalculationWithHttpInfo(parameters);
+    SPARCalculationParametersRoot sparCalcParam = new SPARCalculationParametersRoot();
+    sparCalcParam.putDataItem("1", parameters);
+    return apiInstance.postAndCalculateWithHttpInfo(null, null, sparCalcParam);
   }
 
   @Test
   public void enginesApiGetCalculationSuccess() throws ApiException, JsonProcessingException, InterruptedException {
     ApiResponse<Object> response = null;
-
+    CalculationStatusRoot resultStatus = null;
+    Map<String, List<String>> headers = null;
     try {
       response = runCalculation();
+      headers = response.getHeaders();
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#runCalculation", e);
     }
 
-    Assert.assertTrue("Create response status code should be 201 or 202",
-        response.getStatusCode() == 201 || response.getStatusCode() == 202);
+    Assert.assertTrue("Create response status code should be 201 or 202 or 200",
+        response.getStatusCode() == 201 || response.getStatusCode() == 202 || response.getStatusCode() == 200);
 
-    if (response.getStatusCode() == 202) {
-      String[] locationList = response.getHeaders().get("Location").get(0).split("/");
-      String requestId = locationList[locationList.length - 1];
+    ApiResponse<StringRoot> resultResponse = null;
+    Object resultObject = null;
 
-      // Get Calculation Request Status
+    if(response.getStatusCode() == 200) {
+      resultObject = response.getData();
+      headers = response.getHeaders();
+    }
+    else if(response.getStatusCode() == 201) {
+      String[] location = headers.get("Location").get(0).split("/");
+      resultResponse = GetCalculationResult(location);
+      resultObject = ((StringRoot)resultResponse.getData()).getData();
+    }
+    else if((response.getStatusCode() == 202)) { 
+    	//while (response.getStatusCode() == 202) {
+          String[] locationList = headers.get("Location").get(0).split("/");
+          String requestId = locationList[locationList.length - 2];
 
-      while (response == null || response.getStatusCode() == 202) {
-        if (response != null) {
-          List<String> cacheControl = response.getHeaders().get("Cache-Control");
-          if (cacheControl != null) {
-            int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
-            System.out.println("Sleeping for: " + maxAge + " seconds");
-            Thread.sleep(maxAge * 1000L);
-          } else {
-            System.out.println("Sleeping for: 2 seconds");
-            Thread.sleep(2 * 1000L);
+          // Get Calculation Request Status
+          ApiResponse<CalculationStatusRoot> resultStatusResponse =null;
+          while (resultStatusResponse == null || resultStatusResponse.getStatusCode() == 202) {
+            if (resultStatusResponse != null) {
+              List<String> cacheControl = headers.get("Cache-Control");
+            if (cacheControl != null) {
+              int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
+              System.out.println("Sleeping for: " + maxAge + " seconds");
+              Thread.sleep(maxAge * 1000L);
+            } else {
+              System.out.println("Sleeping for: 2 seconds");
+              Thread.sleep(2 * 1000L);
+            }
+            }
+            resultStatusResponse = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+            headers = resultStatusResponse.getHeaders();
+            resultStatus = (CalculationStatusRoot)resultStatusResponse.getData();
+            Assert.assertTrue("Get status response status code should be 200 or 202",
+            		resultStatusResponse.getStatusCode() == 200 || resultStatusResponse.getStatusCode() == 202);
           }
-        }
-        response = apiInstance.getSPARCalculationByIdWithHttpInfo(requestId);
-        Assert.assertTrue("Get status response status code should be 200 or 202",
-            response.getStatusCode() == 200 || response.getStatusCode() == 202);
-      }
+        //}
+        for(CalculationUnitStatus unitStatus : resultStatus.getData().getUnits().values()) {
+          try {
+      	    String[] location = unitStatus.getResult().split("/");
+      	    resultResponse = GetCalculationResult(location);
+      	    headers = resultResponse.getHeaders();
+            resultObject = ((StringRoot)resultResponse.getData()).getData();
+          } catch (ApiException e) {
+      	      CommonFunctions.handleException("EngineApi#getByUrlWithHttpInfo", e);
+      	  }      
+       }
     }
-
-    Builder builder = Package.newBuilder();
     try {
-      ObjectMapper objMapper = new ObjectMapper();
-      String jsonStr = objMapper.writeValueAsString(response.getData());
-      JsonFormat.parser().ignoringUnknownFields().merge(jsonStr, builder);
+      //ObjectMapper objMapper = new ObjectMapper();
+      //String jsonStr = objMapper.writeValueAsString(resultObject);
+      if(headers.get("content-type").get(0).toLowerCase().contains("row")) {
+        RowOrganizedProto.RowOrganizedPackage.Builder builder = RowOrganizedProto.RowOrganizedPackage.newBuilder();
+        JsonFormat.parser().ignoringUnknownFields().merge(resultObject.toString(), builder);
+        RowOrganizedPackage result = builder.build();
+        Assert.assertTrue("Response should be of RowOrganizedPackage type.", result instanceof RowOrganizedPackage);
+      }
+     else {
+       PackageProto.Package.Builder builder = PackageProto.Package.newBuilder();
+       JsonFormat.parser().ignoringUnknownFields().merge(resultObject.toString(), builder);
+       PackageProto.Package result = (builder).build();
+       Assert.assertTrue("Response should be of ColumnDataPackage type.", result instanceof PackageProto.Package);
+     }
     } catch (InvalidProtocolBufferException e) {
-      System.out.println("Error while deserializing the response");
-      e.printStackTrace();
+       System.out.println("Error while deserializing the response");
+       e.printStackTrace();
     }
-    Package result = (Package) builder.build();
-    Assert.assertTrue("Response should be of Package type.", result instanceof Package);
   }
-
+  
+  public ApiResponse<StringRoot> GetCalculationResult(String[] location) throws ApiException {
+	ApiResponse<StringRoot> resultResponse = null;
+	try {	  
+      String calcId = location[location.length-4];
+	  String unitId = location[location.length-2];        	  
+	  resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(calcId, unitId);      
+    } catch (ApiException e) {
+		CommonFunctions.handleException("EngineApi#getByUrlWithHttpInfo", e);
+	}
+	return resultResponse;  
+  }
 }

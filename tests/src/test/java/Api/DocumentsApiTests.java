@@ -14,7 +14,7 @@ public class DocumentsApiTests {
   public static ApiClient apiClient;
   public static DocumentsApi apiInstance;
 
-  @BeforeClass
+  /*@BeforeClass
   public static void beforeClass() throws ApiException {
     apiClient = CommonFunctions.buildApiClient();
   }
@@ -22,12 +22,13 @@ public class DocumentsApiTests {
   @Before
   public void before() {
     apiInstance = new DocumentsApi(apiClient);
-  }
+  }*/
 
   @Test
   public void getPA3DocumentListSuccess() throws ApiException {
-    ApiResponse<DocumentDirectories> getDocumentListResponse = null;
-
+    ApiResponse<DocumentDirectoriesRoot> getDocumentListResponse = null;
+    apiClient = CommonFunctions.buildApiClient(Engine.PA);
+    apiInstance = new DocumentsApi(apiClient);
     try {
       getDocumentListResponse = apiInstance.getPA3DocumentsWithHttpInfo(CommonParameters.DEFAULT_LOOKUP_DIRECTORY);
 
@@ -40,8 +41,9 @@ public class DocumentsApiTests {
 
   @Test
   public void getVaultDocumentListSuccess() throws ApiException {
-    ApiResponse<DocumentDirectories> getDocumentListResponse = null;
-
+    ApiResponse<DocumentDirectoriesRoot> getDocumentListResponse = null;
+    apiClient = CommonFunctions.buildApiClient(Engine.Vault);
+    apiInstance = new DocumentsApi(apiClient);
     try {
       getDocumentListResponse = apiInstance.getVaultDocumentsWithHttpInfo(CommonParameters.DEFAULT_LOOKUP_DIRECTORY);
 
@@ -54,8 +56,9 @@ public class DocumentsApiTests {
 
   @Test
   public void getSPARDocumentListSuccess() throws ApiException {
-    ApiResponse<DocumentDirectories> getDocumentListResponse = null;
-
+    ApiResponse<DocumentDirectoriesRoot> getDocumentListResponse = null;
+    apiClient = CommonFunctions.buildApiClient(Engine.SPAR);
+    apiInstance = new DocumentsApi(apiClient);
     try {
       getDocumentListResponse = apiInstance.getSPAR3DocumentsWithHttpInfo(CommonParameters.DEFAULT_LOOKUP_DIRECTORY);
 

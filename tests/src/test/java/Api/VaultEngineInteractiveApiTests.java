@@ -12,10 +12,13 @@ import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
 
-import com.factset.protobuf.stach.PackageProto.Package.Builder;
+import com.factset.protobuf.stach.v2.PackageProto.Package.Builder;
+import com.factset.protobuf.stach.v2.PackageProto;
+import com.factset.protobuf.stach.v2.RowOrganizedProto;
+import com.factset.protobuf.stach.v2.RowOrganizedProto.RowOrganizedPackage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.factset.protobuf.stach.PackageProto.Package;
+import com.factset.protobuf.stach.v2.PackageProto.Package;
 import com.google.protobuf.util.JsonFormat;
 import com.google.protobuf.InvalidProtocolBufferException;
 
@@ -26,7 +29,7 @@ public class VaultEngineInteractiveApiTests {
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
+    apiClient = CommonFunctions.buildApiClient(Engine.Vault);
   }
 
   @Before
@@ -38,14 +41,14 @@ public class VaultEngineInteractiveApiTests {
     VaultCalculationParameters parameters = new VaultCalculationParameters();
 
     ComponentsApi componentsApi = new ComponentsApi(apiClient);
-    Map<String, ComponentSummary> components = componentsApi
-        .getVaultComponents(CommonParameters.VAULT_DEFAULT_DOCUMENT);
+    Map<String, ComponentSummary> components = ((ComponentSummaryRoot)componentsApi
+        .getVaultComponents(CommonParameters.VAULT_DEFAULT_DOCUMENT)).getData();
     String componentId = components.entrySet().stream().findFirst().get().getKey();
     parameters.setComponentid(componentId);
 
     ConfigurationsApi configurationsApi = new ConfigurationsApi(apiClient);
-    Map<String, VaultConfigurationSummary> configurationsMap = configurationsApi
-        .getVaultConfigurations(CommonParameters.VAULT_DEFAULT_ACCOUNT);
+    Map<String, VaultConfigurationSummary> configurationsMap = ((VaultConfigurationSummaryRoot)configurationsApi
+        .getVaultConfigurations(CommonParameters.VAULT_DEFAULT_ACCOUNT)).getData();
     String configurationId = configurationsMap.entrySet().stream().findFirst().get().getKey();
     parameters.setConfigid(configurationId);
 
@@ -59,31 +62,47 @@ public class VaultEngineInteractiveApiTests {
     dateParameters.setFrequency(CommonParameters.VAULT_FREQUENCY_DATE_MONTHLY);
     parameters.setDates(dateParameters);
 
-    return apiInstance.runVaultCalculationWithHttpInfo(parameters);
+    VaultCalculationParametersRoot vaultCalcParam = new VaultCalculationParametersRoot();
+    vaultCalcParam.putDataItem("1", parameters);
+    return apiInstance.postAndCalculateWithHttpInfo(null, null, vaultCalcParam);
   }
 
   @Test
   public void enginesApiGetCalculationSuccess() throws ApiException, InterruptedException, JsonProcessingException {
     ApiResponse<Object> response = null;
-
+    CalculationStatusRoot resultStatus = null;
+    Map<String, List<String>> headers = null;
     try {
       response = runCalculation();
+      headers = response.getHeaders();
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#runCalculation", e);
     }
 
-    Assert.assertTrue("Create response status code should be 201 or 202",
-        response.getStatusCode() == 201 || response.getStatusCode() == 202);
+    Assert.assertTrue("Create response status code should be 201 or 202 or 200",
+        response.getStatusCode() == 201 || response.getStatusCode() == 202 || response.getStatusCode() == 200);
+    
+    ApiResponse<StringRoot> resultResponse = null;
+    Object resultObject = null;
 
-    if (response.getStatusCode() == 202) {
-      String[] locationList = response.getHeaders().get("Location").get(0).split("/");
-      String requestId = locationList[locationList.length - 1];
+    if(response.getStatusCode() == 200) {
+      headers = response.getHeaders();
+      resultObject = response.getData();
+    }
+    else if(response.getStatusCode() == 201) {
+      String[] location = headers.get("Location").get(0).split("/");
+      resultResponse = GetCalculationResult(location);
+      resultObject = ((StringRoot)resultResponse.getData()).getData();
+    }
+    else if (response.getStatusCode() == 202) {
+      String[] locationList = headers.get("Location").get(0).split("/");
+      String requestId = locationList[locationList.length - 2];
 
       // Get Calculation Request Status
-
-      while (response == null || response.getStatusCode() == 202) {
-        if (response != null) {
-          List<String> cacheControl = response.getHeaders().get("Cache-Control");
+      ApiResponse<CalculationStatusRoot> resultStatusResponse =null;
+      while (resultStatusResponse == null || resultStatusResponse.getStatusCode() == 202) {
+        if (resultStatusResponse != null) {
+          List<String> cacheControl = headers.get("Cache-Control");
           if (cacheControl != null) {
             int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
             System.out.println("Sleeping for: " + maxAge + " seconds");
@@ -93,23 +112,55 @@ public class VaultEngineInteractiveApiTests {
             Thread.sleep(2 * 1000L);
           }
         }
-        response = apiInstance.getVaultCalculationByIdWithHttpInfo(requestId);
+        resultStatusResponse = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+        headers = resultStatusResponse.getHeaders();
+        resultStatus = (CalculationStatusRoot)resultStatusResponse.getData();
         Assert.assertTrue("Get status response status code should be 200 or 202",
-            response.getStatusCode() == 200 || response.getStatusCode() == 202);
+        		resultStatusResponse.getStatusCode() == 200 || resultStatusResponse.getStatusCode() == 202);
       }
-    }
+      for(CalculationUnitStatus unitStatus : resultStatus.getData().getUnits().values()) {
+        try {
+          String[] location = unitStatus.getResult().split("/");
+          resultResponse = GetCalculationResult(location);
+          headers = resultResponse.getHeaders();
+          resultObject = ((StringRoot)resultResponse.getData()).getData();
+        } catch (ApiException e) {
+          CommonFunctions.handleException("EngineApi#getByUrlWithHttpInfo", e);
+        }      
+      } 
+    }    
 
-    Builder builder = Package.newBuilder();
     try {
       ObjectMapper objMapper = new ObjectMapper();
-      String jsonStr = objMapper.writeValueAsString(response.getData());
-      JsonFormat.parser().ignoringUnknownFields().merge(jsonStr, builder);
+      String jsonStr = objMapper.writeValueAsString(resultObject);
+      if(resultResponse.getHeaders().get("content-type").get(0).toLowerCase().contains("row")) {
+        RowOrganizedProto.RowOrganizedPackage.Builder builder = RowOrganizedProto.RowOrganizedPackage.newBuilder();
+        JsonFormat.parser().ignoringUnknownFields().merge(jsonStr, builder);
+        RowOrganizedPackage result = builder.build();
+        Assert.assertTrue("Response should be of RowOrganizedPackage type.", result instanceof RowOrganizedPackage);
+      }
+      else {
+        PackageProto.Package.Builder builder = PackageProto.Package.newBuilder();
+        JsonFormat.parser().ignoringUnknownFields().merge(jsonStr, builder);
+        PackageProto.Package result = (builder).build();
+        Assert.assertTrue("Response should be of ColumnDataPackage type.", result instanceof PackageProto.Package);
+      }
     } catch (InvalidProtocolBufferException e) {
       System.out.println("Error while deserializing the response");
       e.printStackTrace();
     }
-    Package result = (Package) builder.build();
-    Assert.assertTrue("Response should be of Package type.", result instanceof Package);
   }
+  
+  public ApiResponse<StringRoot> GetCalculationResult(String[] location) throws ApiException {
+	ApiResponse<StringRoot> resultResponse = null;
+	try {	  
+	  String calcId = location[location.length-4];
+	  String unitId = location[location.length-2];        	  
+	  resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(calcId, unitId);      
+	} catch (ApiException e) {
+	  CommonFunctions.handleException("EngineApi#getByUrlWithHttpInfo", e);
+	}
+	return resultResponse;  
+ }
 
 }

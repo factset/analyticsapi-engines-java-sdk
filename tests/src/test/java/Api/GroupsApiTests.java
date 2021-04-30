@@ -18,7 +18,7 @@ public class GroupsApiTests {
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
+    apiClient = CommonFunctions.buildApiClient(Engine.PA);
   }
 
   @Before
@@ -28,7 +28,7 @@ public class GroupsApiTests {
 
   @Test
   public void getAllGroupsSuccess() throws ApiException {
-    ApiResponse<Map<String, Group>> getAllGroupsResponse = null;
+    ApiResponse<GroupRoot> getAllGroupsResponse = null;
 
     try {
       getAllGroupsResponse = apiInstance.getPAGroupsWithHttpInfo();

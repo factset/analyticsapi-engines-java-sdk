@@ -1,5 +1,7 @@
 package Api;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -12,33 +14,40 @@ import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
 
-import com.factset.protobuf.stach.PackageProto.Package.Builder;
-import com.factset.protobuf.stach.PackageProto.Package;
+import com.factset.protobuf.stach.v2.PackageProto.Package.Builder;
+import com.factset.protobuf.stach.v2.RowOrganizedProto;
+import com.factset.protobuf.stach.v2.RowOrganizedProto.RowOrganizedPackage;
+import com.factset.protobuf.stach.v2.table.ColumnDataProto;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.factset.protobuf.stach.v2.PackageProto;
+import com.factset.protobuf.stach.v2.PackageProto.Package;
 import com.google.protobuf.util.JsonFormat;
+
 import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.MessageOrBuilder;
+
 
 public class PAEngineApiTests {
 
   public static ApiClient apiClient;
-  public CalculationsApi apiInstance;
-  public UtilityApi utilityApiInstance;
-
+  public PaCalculationsApi paCalculations;
+  public Class<ApiResponse<StringRoot>> resultCast;
+  
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
+    apiClient = CommonFunctions.buildApiClient(Engine.PA);
   }
 
   @Before
   public void before() {
-    apiInstance = new CalculationsApi(apiClient);
-    utilityApiInstance = new UtilityApi(apiClient);
+    paCalculations = new PaCalculationsApi(apiClient);
   }
 
-  public ApiResponse<Void> runCalculation() throws ApiException {
+  public ApiResponse<Object> runCalculation() throws ApiException {
     PACalculationParameters paItem = new PACalculationParameters();
 
     ComponentsApi componentsApi = new ComponentsApi(apiClient);
-    Map<String, ComponentSummary> components = componentsApi.getPAComponents(CommonParameters.PA_DEFAULT_DOCUMENT);
+    Map<String, ComponentSummary> components = componentsApi.getPAComponents(CommonParameters.PA_DEFAULT_DOCUMENT).getData();
     String componentId = components.entrySet().stream().findFirst().get().getKey();
     paItem.setComponentid(componentId);
 
@@ -54,15 +63,15 @@ public class PAEngineApiTests {
     benchmarkPaIdentifier.setId(CommonParameters.PA_BENCHMARK_R1000);
     paItem.addBenchmarksItem(benchmarkPaIdentifier);
 
-    Calculation parameters = new Calculation();
-    parameters.putPaItem("1", paItem);
-
-    return apiInstance.runCalculationWithHttpInfo(parameters);
+    PACalculationParametersRoot paCalcParamRoot = new PACalculationParametersRoot();
+    paCalcParamRoot.putDataItem("1", paItem);
+    paCalcParamRoot.putDataItem("2", paItem);
+    return paCalculations.postAndCalculateWithHttpInfo(null, null, paCalcParamRoot);
   }
 
   @Test
   public void enginesApiGetCalculationSuccess() throws ApiException {
-    ApiResponse<Void> createResponse = null;
+    ApiResponse<Object> createResponse = null;
 
     try {
       createResponse = runCalculation();
@@ -73,25 +82,25 @@ public class PAEngineApiTests {
     Assert.assertTrue("Create response status code should be 202 - Created.", createResponse.getStatusCode() == 202);
 
     String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-    String id = locationList[locationList.length - 1];
+    String id = locationList[locationList.length - 2];
 
     Assert.assertTrue("Create response calculation id should be present.", id != null && id.trim().length() > 0);
 
-    ApiResponse<CalculationStatus> getStatus = null;
-
-    while (getStatus == null || getStatus.getData().getStatus() == CalculationStatus.StatusEnum.QUEUED
-        || getStatus.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING) {
+    ApiResponse<CalculationStatusRoot> getStatus = null;
+    CalculationStatusRoot status = null;
+    
+    while (getStatus == null || getStatus.getStatusCode() == 202){
       if (getStatus != null) {
-        Assert.assertTrue("Response Data should not be null.", getStatus != null);
+    	Assert.assertTrue("Response Data should not be null.", getStatus != null);
         Assert.assertTrue("Response Data should have calculation status as executing or queued.",
-            getStatus.getData().getStatus() == CalculationStatus.StatusEnum.QUEUED
-                || getStatus.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING);
+            status.getData().getStatus() == CalculationStatus.StatusEnum.QUEUED
+                || status.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING);
         Assert.assertTrue("Response Data should have at least one calculation status as executing or queued.",
-            getStatus.getData().getPa().values().stream().filter(f -> f.getStatus() == CalculationUnitStatus.StatusEnum.EXECUTING
+        		status.getData().getUnits().values().stream().filter(f -> f.getStatus() == CalculationUnitStatus.StatusEnum.EXECUTING
                 || f.getStatus() == CalculationUnitStatus.StatusEnum.QUEUED).count() > 0);
 
         Assert.assertTrue("Response Data should not have all calculation results.",
-            getStatus.getData().getPa().values().stream().filter(f -> f.getResult() == null).count() > 0);
+        		status.getData().getUnits().values().stream().filter(f -> f.getResult() == null).count() > 0);
 
         if (getStatus.getHeaders().containsKey("cache-control")) {
           int maxAge = Integer.parseInt(getStatus.getHeaders().get("cache-control").get(0).split("=")[1]);
@@ -112,46 +121,69 @@ public class PAEngineApiTests {
         }
       }
       try {
-        getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(id);
+          getStatus = paCalculations.getCalculationStatusByIdWithHttpInfo(id);
+          status = getStatus.getData();
       } catch (ApiException e) {
         CommonFunctions.handleException("EngineApi#getCalculationStatusByIdWithHttpInfo", e);
-      }
+      } 
     }
 
     Assert.assertTrue("Response Data should have calculation status as completed.",
-        getStatus.getData().getStatus() == CalculationStatus.StatusEnum.COMPLETED);
-    Assert.assertTrue("Response Data should have all calculations status as succeeded.", getStatus.getData().getPa()
+    		status.getData().getStatus() == CalculationStatus.StatusEnum.COMPLETED);
+    Assert.assertTrue("Response Data should have all calculations status as succeeded.", status.getData().getUnits()
         .values().stream().filter(f -> f.getStatus() != CalculationUnitStatus.StatusEnum.SUCCESS).count() == 0);
     Assert.assertTrue("Response Data should have all calculation results.",
-        getStatus.getData().getPa().values().stream().filter(f -> f.getResult() == null).count() == 0);
+    		status.getData().getUnits().values().stream().filter(f -> f.getResult() == null).count() == 0);
 
-    ApiResponse<String> resultResponse = null;
+    ApiResponse<StringRoot> resultResponse = null;
+    Object result = null;
 
-    for (CalculationUnitStatus calculationParameters : getStatus.getData().getPa().values()) {
+    for (CalculationUnitStatus calculationParameters : status.getData().getUnits().values()) {
       try {
-        resultResponse = utilityApiInstance.getByUrlWithHttpInfo(calculationParameters.getResult());
+    	  /*String[] location = getStatus.getHeaders().get("Location").get(0).split("/");
+    	  String calcId = location[location.length-4];
+    	  String unitId = location[location.length-2];*/ //for interactive it'll work
+    	  String[] location = calculationParameters.getResult().split("/");
+    	  String calcId = location[location.length-4];
+    	  String unitId = location[location.length-2];
+    	  
+    	  resultResponse = paCalculations.getCalculationUnitResultByIdWithHttpInfo(calcId, unitId);
+    	  result = resultResponse.getData();//.getData();
       } catch (ApiException e) {
         CommonFunctions.handleException("EngineApi#getByUrlWithHttpInfo", e);
       }
-
       Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
       Assert.assertTrue("Result response data should not be null.", resultResponse.getData() != null);
 
-      Builder builder = Package.newBuilder();
       try {
-        JsonFormat.parser().ignoringUnknownFields().merge(resultResponse.getData(), builder);
+    	ObjectMapper mapper = new ObjectMapper();   	
+    	String jsonString = mapper.writeValueAsString(result);
+
+    	if(resultResponse.getHeaders().get("content-type").get(0).toLowerCase().contains("row")) {
+      	  RowOrganizedProto.RowOrganizedPackage.Builder builder = RowOrganizedProto.RowOrganizedPackage.newBuilder();
+      	  JsonFormat.parser().ignoringUnknownFields().merge(jsonString, builder);
+      	  RowOrganizedPackage resultBuilder = builder.build();
+          Assert.assertTrue("Response should be of RowOrganizedPackage type.", resultBuilder instanceof RowOrganizedPackage);
+        }
+    	else {
+    	  PackageProto.Package.Builder builder = PackageProto.Package.newBuilder();
+     	  JsonFormat.parser().ignoringUnknownFields().merge(jsonString, builder);
+     	  PackageProto.Package resultBuilder = (builder).build();
+          Assert.assertTrue("Response should be of ColumnDataPackage type.", resultBuilder instanceof PackageProto.Package);
+       }        
       } catch (InvalidProtocolBufferException e) {
         System.out.println("Error while deserializing the response");
         e.printStackTrace();
+      } catch(Exception e) {
+    	  System.out.println(e.getMessage());
+    	  e.printStackTrace();
       }
-      Package result = (Package) builder.build();
-      Assert.assertTrue("Response should be of Package type.", result instanceof Package);
     }
   }
 
-  @Test
+ /* @Test
   public void enginesApiDeleteCalculationSuccess() throws ApiException {
-    ApiResponse<Void> createResponse = null;
+    ApiResponse<Object> createResponse = null;
 
     try {
       createResponse = runCalculation();
@@ -162,25 +194,25 @@ public class PAEngineApiTests {
     Assert.assertTrue("Create response status code should be 202 - Created.", createResponse.getStatusCode() == 202);
 
     String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-    String id = locationList[locationList.length - 1];
+    String id = locationList[locationList.length - 2];
 
     Assert.assertTrue("Create response calculation id should be present.", id != null && id.trim().length() > 0);
 
     ApiResponse<Void> deleteResponse = null;
 
     try {
-      deleteResponse = apiInstance.cancelCalculationByIdWithHttpInfo(id);
+      deleteResponse = paCalculations.cancelCalculationByIdWithHttpInfo(id);
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#cancelCalculationByIdWithHttpInfo", e);
     }
 
     Assert.assertTrue("Delete response status code should be 204 - No Content.", deleteResponse.getStatusCode() == 204);
     Assert.assertTrue("Response data should be null.", deleteResponse.getData() == null);
-  }
-
+  }*/
+ /*
   @Test
   public void getAllOutStandingRequestsSuccess() throws ApiException {
-    ApiResponse<Void> createResponse = null;
+    ApiResponse<Object> createResponse = null;
 
     try {
       createResponse = runCalculation();
@@ -198,7 +230,7 @@ public class PAEngineApiTests {
     ApiResponse<Map<String, CalculationStatusSummary>> getAllOutstandingRequestsResponse = null;
 
     try {
-      getAllOutstandingRequestsResponse = apiInstance.getCalculationStatusSummariesWithHttpInfo();
+      getAllOutstandingRequestsResponse = paCalculations.getCalculationStatusSummariesWithHttpInfo();
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#getCalculationStatusSummariesWithHttpInfo", e);
     }
@@ -211,12 +243,12 @@ public class PAEngineApiTests {
     ApiResponse<Void> deleteResponse = null;
 
     try {
-      deleteResponse = apiInstance.cancelCalculationByIdWithHttpInfo(id);
+      deleteResponse = paCalculations.cancelCalculationByIdWithHttpInfo(id);
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#cancelCalculationByIdWithHttpInfo", e);
     }
 
     Assert.assertTrue("Delete response status code should be 204 - No Content.", deleteResponse.getStatusCode() == 204);
     Assert.assertTrue("Response data should be null.", deleteResponse.getData() == null);
-  }
+  }*/
 }

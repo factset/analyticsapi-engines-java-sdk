@@ -16,7 +16,7 @@ public class FrequenciesApiTests {
     public static ApiClient apiClient;
     public FrequenciesApi apiInstance;
     
-    @BeforeClass
+    /*@BeforeClass
     public static void beforeClass() throws ApiException {
       apiClient = CommonFunctions.buildApiClient();
     }
@@ -24,12 +24,13 @@ public class FrequenciesApiTests {
     @Before
     public void before() {
       apiInstance = new FrequenciesApi(apiClient);
-    }    
+    }    */
     
     @Test
     public void getPAFrequencies() throws ApiException {
-        ApiResponse<Map<String, Frequency>> getPAFrequenciesResponse = null;
-        
+        ApiResponse<FrequencyRoot> getPAFrequenciesResponse = null;
+        apiClient = CommonFunctions.buildApiClient(Engine.PA);
+        apiInstance = new FrequenciesApi(apiClient);
         try {
           getPAFrequenciesResponse = apiInstance.getPAFrequenciesWithHttpInfo();
           
@@ -42,8 +43,9 @@ public class FrequenciesApiTests {
     
     @Test
     public void getVaultFrequencies() throws ApiException {
-        ApiResponse<Map<String, Frequency>> getVaultFrequenciesResponse = null;
-        
+        ApiResponse<FrequencyRoot> getVaultFrequenciesResponse = null;
+        apiClient = CommonFunctions.buildApiClient(Engine.Vault);
+        apiInstance = new FrequenciesApi(apiClient);
         try {
           getVaultFrequenciesResponse = apiInstance.getVaultFrequenciesWithHttpInfo();
           
@@ -56,8 +58,9 @@ public class FrequenciesApiTests {
     
     @Test
     public void getSPARFrequencies() throws ApiException {
-        ApiResponse<Map<String, Frequency>> getSPARFrequenciesResponse = null;
-        
+        ApiResponse<FrequencyRoot> getSPARFrequenciesResponse = null;
+        apiClient = CommonFunctions.buildApiClient(Engine.SPAR);
+        apiInstance = new FrequenciesApi(apiClient);
         try {
           getSPARFrequenciesResponse = apiInstance.getSPARFrequenciesWithHttpInfo();
           

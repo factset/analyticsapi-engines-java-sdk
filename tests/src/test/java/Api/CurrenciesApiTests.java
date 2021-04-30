@@ -18,7 +18,7 @@ public class CurrenciesApiTests {
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
+    apiClient = CommonFunctions.buildApiClient(Engine.PA);
   }
 
   @Before
@@ -28,10 +28,10 @@ public class CurrenciesApiTests {
 
   @Test
   public void getAllPACurrenciesSuccess() throws ApiException {
-    ApiResponse<Map<String, Currency>> getAllCurrenciesResponse = null;
+    ApiResponse<CurrencyRoot> getAllCurrenciesResponse = null;
 
     try {
-      getAllCurrenciesResponse = apiInstance.getPACurrenciesWithHttpInfo();
+      getAllCurrenciesResponse = apiInstance.getCurrenciesWithHttpInfo();
 
       Assert.assertTrue("Response should be 200 - Success", getAllCurrenciesResponse.getStatusCode() == 200);
       Assert.assertTrue("Response data should not be null.", getAllCurrenciesResponse.getData() != null);
