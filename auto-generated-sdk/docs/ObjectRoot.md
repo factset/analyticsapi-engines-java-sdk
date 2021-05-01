@@ -1,13 +1,13 @@
 
 
-# StringRoot
+# ObjectRoot
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | **String** |  | 
+**data** | **Object** |  | 
 
 
 ## Implemented Interfaces

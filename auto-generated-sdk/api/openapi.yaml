@@ -405,7 +405,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response, returns json if optimization is completed
             in a short span.
           headers:
@@ -711,7 +711,7 @@ paths:
       - status-code: "202"
         response-type: CalculationInfoRoot
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/axp/v3/optimizations/{id}:
@@ -1325,7 +1325,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response, returns json if optimization is completed
             in a short span.
           headers:
@@ -1672,7 +1672,7 @@ paths:
       - status-code: "202"
         response-type: CalculationInfoRoot
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/axp/v3/optimizations/{id}/status:
@@ -1700,7 +1700,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once optimization is completed, returns JSON.
           headers:
             X-DataDirect-Request-Key:
@@ -1975,7 +1975,7 @@ paths:
       x-are-multiple-success-responses-different: true
       x-success-response-types:
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       - status-code: "202"
       x-accepts: application/json
   /analytics/engines/axp/v3/optimizations/{id}/result:
@@ -2000,7 +2000,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once optimization is completed, returns JSON.
           headers:
             Content-Encoding:
@@ -2246,7 +2246,7 @@ paths:
       x-are-multiple-success-responses-different: false
       x-success-response-types:
       - status-code: "200"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-accepts: application/json
   /analytics/engines/spar/v3/benchmarks:
     get:
@@ -2637,7 +2637,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response, returns json if optimization is completed
             in a short span.
           headers:
@@ -2943,7 +2943,7 @@ paths:
       - status-code: "202"
         response-type: CalculationInfoRoot
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/bpm/v3/optimizations/{id}:
@@ -3557,7 +3557,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response, returns json if optimization is completed
             in a short span.
           headers:
@@ -3904,7 +3904,7 @@ paths:
       - status-code: "202"
         response-type: CalculationInfoRoot
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/bpm/v3/optimizations/{id}/status:
@@ -3932,7 +3932,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once optimization is completed, returns JSON.
           headers:
             X-DataDirect-Request-Key:
@@ -4207,7 +4207,7 @@ paths:
       x-are-multiple-success-responses-different: true
       x-success-response-types:
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       - status-code: "202"
       x-accepts: application/json
   /analytics/engines/bpm/v3/optimizations/{id}/result:
@@ -4232,7 +4232,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once optimization is completed, returns JSON.
           headers:
             Content-Encoding:
@@ -4478,7 +4478,7 @@ paths:
       x-are-multiple-success-responses-different: false
       x-success-response-types:
       - status-code: "200"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-accepts: application/json
   /analytics/engines/pa/v3/columns:
     get:
@@ -10598,10 +10598,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if calculation is completed in a short span,
             returns JSON in the format specified in the Calculation parameters.
           headers:
@@ -11039,7 +11039,7 @@ paths:
       - status-code: "202"
         response-type: CalculationInfoRoot
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/fi/v3/calculations/{id}:
@@ -11656,10 +11656,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if calculation is completed in a short span,
             returns JSON in the format specified in the Calculation parameters.
           headers:
@@ -12015,7 +12015,7 @@ paths:
       - status-code: "202"
         response-type: CalculationInfoRoot
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/fi/v3/calculations/{id}/status:
@@ -12043,10 +12043,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once calculation is completed, returns JSON
             in the format specified in the Calculation parameters.
           headers:
@@ -12328,7 +12328,7 @@ paths:
       x-are-multiple-success-responses-different: true
       x-success-response-types:
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       - status-code: "202"
       x-accepts: application/json
   /analytics/engines/fi/v3/calculations/{id}/result:
@@ -12354,10 +12354,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once calculation is completed, returns JSON
             in the format specified in the Calculation parameters.
           headers:
@@ -12610,7 +12610,7 @@ paths:
       x-are-multiple-success-responses-different: false
       x-success-response-types:
       - status-code: "200"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-accepts: application/json
   /analytics/engines/fpo/v3/optimizations:
     post:
@@ -12695,7 +12695,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response, returns json if optimization is completed
             in a short span.
           headers:
@@ -13001,7 +13001,7 @@ paths:
       - status-code: "202"
         response-type: CalculationInfoRoot
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/fpo/v3/optimizations/{id}:
@@ -13615,7 +13615,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response, returns json if optimization is completed
             in a short span.
           headers:
@@ -13962,7 +13962,7 @@ paths:
       - status-code: "202"
         response-type: CalculationInfoRoot
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/fpo/v3/optimizations/{id}/status:
@@ -13990,7 +13990,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once optimization is completed, returns JSON.
           headers:
             X-DataDirect-Request-Key:
@@ -14265,7 +14265,7 @@ paths:
       x-are-multiple-success-responses-different: true
       x-success-response-types:
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       - status-code: "202"
       x-accepts: application/json
   /analytics/engines/fpo/v3/optimizations/{id}/result:
@@ -14300,7 +14300,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once optimization is completed, returns JSON.
           headers:
             Content-Encoding:
@@ -14546,7 +14546,7 @@ paths:
       x-are-multiple-success-responses-different: false
       x-success-response-types:
       - status-code: "200"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-accepts: application/json
   /analytics/engines/pa/v3/frequencies:
     get:
@@ -15500,10 +15500,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if the calculation has one unit and is completed
             in a short span, returns JSON in the format specified in the Calculation
             parameters.
@@ -15861,7 +15861,7 @@ paths:
       - status-code: "202"
         response-type: CalculationStatusRoot
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       - status-code: "200"
         response-type: CalculationStatusRoot
       x-contentType: application/json
@@ -16528,10 +16528,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if the calculation has one unit and is completed
             in a short span, returns JSON in the format specified in the Calculation
             parameters.
@@ -16890,7 +16890,7 @@ paths:
       - status-code: "200"
         response-type: CalculationStatusRoot
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/pa/v3/calculations/{id}/status:
@@ -17260,10 +17260,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once calculation is completed, returns JSON
             in the format specified in the Calculation parameters.
           headers:
@@ -17516,7 +17516,7 @@ paths:
       x-are-multiple-success-responses-different: false
       x-success-response-types:
       - status-code: "200"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-accepts: application/json
   /analytics/engines/pub/v3/calculations:
     post:
@@ -19906,10 +19906,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if the calculation has one unit and is completed
             in a short span, returns JSON in the format specified in the Calculation
             parameters.
@@ -20224,7 +20224,7 @@ paths:
       - status-code: "200"
         response-type: CalculationStatusRoot
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/spar/v3/calculations/{id}:
@@ -20889,10 +20889,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if the calculation has one unit and is completed
             in a short span, returns JSON in the format specified in the Calculation
             parameters.
@@ -21251,7 +21251,7 @@ paths:
       - status-code: "200"
         response-type: CalculationStatusRoot
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/spar/v3/calculations/{id}/status:
@@ -21618,10 +21618,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once calculation is completed, returns JSON
             in the format specified in the Calculation parameters.
           headers:
@@ -21874,7 +21874,7 @@ paths:
       x-are-multiple-success-responses-different: false
       x-success-response-types:
       - status-code: "200"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-accepts: application/json
   /analytics/engines/axp/v3/strategies/{path}:
     get:
@@ -23559,10 +23559,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if the calculation has one unit and is completed
             in a short span, returns JSON in the format specified in the Calculation
             parameters.
@@ -23877,7 +23877,7 @@ paths:
       - status-code: "200"
         response-type: CalculationStatusRoot
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/vault/v3/calculations/{id}:
@@ -24542,10 +24542,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if the calculation has one unit and is completed
             in a short span, returns JSON in the format specified in the Calculation
             parameters.
@@ -24904,7 +24904,7 @@ paths:
       - status-code: "200"
         response-type: CalculationStatusRoot
       - status-code: "201"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/vault/v3/calculations/{id}/status:
@@ -25271,10 +25271,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/StringRoot'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once calculation is completed, returns JSON
             in the format specified in the Calculation parameters.
           headers:
@@ -25527,7 +25527,7 @@ paths:
       x-are-multiple-success-responses-different: false
       x-success-response-types:
       - status-code: "200"
-        response-type: StringRoot
+        response-type: ObjectRoot
       x-accepts: application/json
 components:
   schemas:
@@ -25911,12 +25911,12 @@ components:
       required:
       - data
       type: object
-    StringRoot:
+    ObjectRoot:
       example:
-        data: data
+        data: '{}'
       properties:
         data:
-          type: string
+          type: object
       required:
       - data
       type: object

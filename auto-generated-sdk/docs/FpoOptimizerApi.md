@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## getOptimizationResult
 
-> StringRoot getOptimizationResult(id, accept)
+> ObjectRoot getOptimizationResult(id, accept)
 
 Get FPO optimization result by id
 
@@ -201,7 +201,7 @@ public class Example {
         String id = "id_example"; // String | from url, provided from the location header in the Get FPO optimization status by id endpoint
         String accept = "accept_example"; // String | Standard HTTP header. Value can be gzip, compress, deflate, br, identity and/or *
         try {
-            StringRoot result = apiInstance.getOptimizationResult(id, accept);
+            ObjectRoot result = apiInstance.getOptimizationResult(id, accept);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FpoOptimizerApi#getOptimizationResult");
@@ -224,7 +224,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StringRoot**](StringRoot.md)
+[**ObjectRoot**](ObjectRoot.md)
 
 ### Authorization
 
@@ -249,7 +249,7 @@ Name | Type | Description  | Notes
 
 ## getOptimizationStatusById
 
-> StringRoot getOptimizationStatusById(id)
+> ObjectRoot getOptimizationStatusById(id)
 
 Get FPO optimization status by id
 
@@ -303,7 +303,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-(For 201 status - [**StringRoot**](StringRoot.md))(For 202 status - null (empty response body))
+(For 201 status - [**ObjectRoot**](ObjectRoot.md))(For 202 status - null (empty response body))
 
 ### Authorization
 
@@ -329,7 +329,7 @@ Name | Type | Description  | Notes
 
 ## postAndOptimize
 
-> StringRoot postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, fpOOptimizationParametersRoot)
+> ObjectRoot postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, fpOOptimizationParametersRoot)
 
 Create and Run FPO optimization
 
@@ -389,7 +389,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**StringRoot**](StringRoot.md))
+(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
 
@@ -417,7 +417,7 @@ Name | Type | Description  | Notes
 
 ## putAndOptimize
 
-> StringRoot putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, fpOOptimizationParametersRoot)
+> ObjectRoot putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, fpOOptimizationParametersRoot)
 
 Create or Update FPO optimization and run it.
 
@@ -475,7 +475,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**StringRoot**](StringRoot.md))
+(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
 

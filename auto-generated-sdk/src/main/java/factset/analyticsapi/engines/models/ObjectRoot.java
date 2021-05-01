@@ -30,20 +30,20 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * StringRoot
+ * ObjectRoot
  */
 @JsonPropertyOrder({
-  StringRoot.JSON_PROPERTY_DATA
+  ObjectRoot.JSON_PROPERTY_DATA
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class StringRoot implements Serializable {
+public class ObjectRoot implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_DATA = "data";
-  private String data;
+  private Object data;
 
 
-  public StringRoot data(String data) {
+  public ObjectRoot data(Object data) {
     this.data = data;
     return this;
   }
@@ -56,18 +56,18 @@ public class StringRoot implements Serializable {
   @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getData() {
+  public Object getData() {
     return data;
   }
 
 
-  public void setData(String data) {
+  public void setData(Object data) {
     this.data = data;
   }
 
 
   /**
-   * Return true if this StringRoot object is equal to o.
+   * Return true if this ObjectRoot object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -77,8 +77,8 @@ public class StringRoot implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    StringRoot stringRoot = (StringRoot) o;
-    return Objects.equals(this.data, stringRoot.data);
+    ObjectRoot objectRoot = (ObjectRoot) o;
+    return Objects.equals(this.data, objectRoot.data);
   }
 
   @Override
@@ -89,7 +89,7 @@ public class StringRoot implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class StringRoot {\n");
+    sb.append("class ObjectRoot {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();

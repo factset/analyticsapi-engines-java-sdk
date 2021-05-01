@@ -75,6 +75,7 @@ docs/FrequencyRoot.md
 docs/Group.md
 docs/GroupRoot.md
 docs/GroupsApi.md
+docs/ObjectRoot.md
 docs/OptimalPortfolio.md
 docs/Optimization.md
 docs/OptimizerAccount.md
@@ -107,7 +108,6 @@ docs/SPARDateParameters.md
 docs/SPARIdentifier.md
 docs/SparCalculationsApi.md
 docs/StrategyDocumentsApi.md
-docs/StringRoot.md
 docs/VaultCalculationParameters.md
 docs/VaultCalculationParametersRoot.md
 docs/VaultCalculationsApi.md
@@ -220,6 +220,7 @@ src/main/java/factset/analyticsapi/engines/models/Frequency.java
 src/main/java/factset/analyticsapi/engines/models/FrequencyRoot.java
 src/main/java/factset/analyticsapi/engines/models/Group.java
 src/main/java/factset/analyticsapi/engines/models/GroupRoot.java
+src/main/java/factset/analyticsapi/engines/models/ObjectRoot.java
 src/main/java/factset/analyticsapi/engines/models/OptimalPortfolio.java
 src/main/java/factset/analyticsapi/engines/models/Optimization.java
 src/main/java/factset/analyticsapi/engines/models/OptimizerAccount.java
@@ -248,7 +249,6 @@ src/main/java/factset/analyticsapi/engines/models/SPARCalculationParameters.java
 src/main/java/factset/analyticsapi/engines/models/SPARCalculationParametersRoot.java
 src/main/java/factset/analyticsapi/engines/models/SPARDateParameters.java
 src/main/java/factset/analyticsapi/engines/models/SPARIdentifier.java
-src/main/java/factset/analyticsapi/engines/models/StringRoot.java
 src/main/java/factset/analyticsapi/engines/models/VaultCalculationParameters.java
 src/main/java/factset/analyticsapi/engines/models/VaultCalculationParametersRoot.java
 src/main/java/factset/analyticsapi/engines/models/VaultComponent.java
