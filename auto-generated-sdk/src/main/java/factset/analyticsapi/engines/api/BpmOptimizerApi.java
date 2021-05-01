@@ -15,7 +15,7 @@ import java.util.Map;
 import factset.analyticsapi.engines.models.BPMOptimizationParametersRoot;
 import factset.analyticsapi.engines.models.CalculationInfoRoot;
 import factset.analyticsapi.engines.models.ClientErrorResponse;
-import factset.analyticsapi.engines.models.StringRoot;
+import factset.analyticsapi.engines.models.ObjectRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class BpmOptimizerApi {
@@ -216,7 +216,7 @@ public class BpmOptimizerApi {
    * Get BPM optimization result by id
    * This is the endpoint to get the result of a previously requested optimization.
    * @param id from url, provided from the location header in the Get BPM optimization status by id endpoint (required)
-    @return StringRoot
+    @return ObjectRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -230,7 +230,7 @@ public class BpmOptimizerApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public StringRoot getOptimizationResult(String id) throws ApiException {
+ public ObjectRoot getOptimizationResult(String id) throws ApiException {
     return getOptimizationResultWithHttpInfo(id).getData();
   }
 
@@ -238,7 +238,7 @@ public class BpmOptimizerApi {
    * Get BPM optimization result by id
    * This is the endpoint to get the result of a previously requested optimization.
    * @param id from url, provided from the location header in the Get BPM optimization status by id endpoint (required)
-    * @return ApiResponse&lt;StringRoot&gt;
+    * @return ApiResponse&lt;ObjectRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -252,7 +252,7 @@ public class BpmOptimizerApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<StringRoot> getOptimizationResultWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<ObjectRoot> getOptimizationResultWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -286,14 +286,14 @@ public class BpmOptimizerApi {
 
     String[] localVarAuthNames = new String[] { "Basic" };
 
-    GenericType<StringRoot> localVarReturnType = new GenericType<StringRoot>() {};
+    GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<StringRoot>(){});
+        returnTypeMap.put(200, new GenericType<ObjectRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<StringRoot>invokeAPIWithReturnMap("BpmOptimizerApi.getOptimizationResult", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<ObjectRoot>invokeAPIWithReturnMap("BpmOptimizerApi.getOptimizationResult", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -301,7 +301,7 @@ public class BpmOptimizerApi {
    * Get BPM optimization status by id
    * This is the endpoint to check on the progress of a previously requested optimization.  If the optimization has finished computing, the body of the response will contain result in JSON.  Otherwise, the optimization is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run BPM optimization endpoint (required)
-    @return (For 201 status - StringRoot)(For 202 status - Void)
+    @return (For 201 status - ObjectRoot)(For 202 status - Void)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -324,7 +324,7 @@ public class BpmOptimizerApi {
    * Get BPM optimization status by id
    * This is the endpoint to check on the progress of a previously requested optimization.  If the optimization has finished computing, the body of the response will contain result in JSON.  Otherwise, the optimization is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run BPM optimization endpoint (required)
-    * @return (For 201 status - ApiResponse&lt;StringRoot&gt;)(For 202 status - ApiResponse&lt;Void&gt;)
+    * @return (For 201 status - ApiResponse&lt;ObjectRoot&gt;)(For 202 status - ApiResponse&lt;Void&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -373,10 +373,10 @@ public class BpmOptimizerApi {
 
     String[] localVarAuthNames = new String[] { "Basic" };
 
-    GenericType<StringRoot> localVarReturnType = new GenericType<StringRoot>() {};
+    GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(201, new GenericType<StringRoot>(){});
+        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
@@ -390,7 +390,7 @@ public class BpmOptimizerApi {
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param bpMOptimizationParametersRoot Optimization Parameters (optional)
-    @return (For 202 status - CalculationInfoRoot)(For 201 status - StringRoot)
+    @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -417,7 +417,7 @@ public class BpmOptimizerApi {
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param bpMOptimizationParametersRoot Optimization Parameters (optional)
-    * @return (For 202 status - ApiResponse&lt;CalculationInfoRoot&gt;)(For 201 status - ApiResponse&lt;StringRoot&gt;)
+    * @return (For 202 status - ApiResponse&lt;CalculationInfoRoot&gt;)(For 201 status - ApiResponse&lt;ObjectRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -466,11 +466,11 @@ if (cacheControl != null)
 
     String[] localVarAuthNames = new String[] { "Basic" };
 
-    GenericType<StringRoot> localVarReturnType = new GenericType<StringRoot>() {};
+    GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
         returnTypeMap.put(202, new GenericType<CalculationInfoRoot>(){});
-        returnTypeMap.put(201, new GenericType<StringRoot>(){});
+        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
@@ -485,7 +485,7 @@ if (cacheControl != null)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param bpMOptimizationParametersRoot Optimization Parameters (optional)
-    @return (For 202 status - CalculationInfoRoot)(For 201 status - StringRoot)
+    @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -514,7 +514,7 @@ if (cacheControl != null)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param bpMOptimizationParametersRoot Optimization Parameters (optional)
-    * @return (For 202 status - ApiResponse&lt;CalculationInfoRoot&gt;)(For 201 status - ApiResponse&lt;StringRoot&gt;)
+    * @return (For 202 status - ApiResponse&lt;CalculationInfoRoot&gt;)(For 201 status - ApiResponse&lt;ObjectRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -570,11 +570,11 @@ if (cacheControl != null)
 
     String[] localVarAuthNames = new String[] { "Basic" };
 
-    GenericType<StringRoot> localVarReturnType = new GenericType<StringRoot>() {};
+    GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
         returnTypeMap.put(202, new GenericType<CalculationInfoRoot>(){});
-        returnTypeMap.put(201, new GenericType<StringRoot>(){});
+        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(409, new GenericType<ClientErrorResponse>(){});

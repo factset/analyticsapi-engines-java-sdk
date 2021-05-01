@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## getCalculationResult
 
-> StringRoot getCalculationResult(id)
+> ObjectRoot getCalculationResult(id)
 
 Get FI calculation result by id
 
@@ -200,7 +200,7 @@ public class Example {
         FiCalculationsApi apiInstance = new FiCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Get FI calculation status by id endpoint
         try {
-            StringRoot result = apiInstance.getCalculationResult(id);
+            ObjectRoot result = apiInstance.getCalculationResult(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#getCalculationResult");
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StringRoot**](StringRoot.md)
+[**ObjectRoot**](ObjectRoot.md)
 
 ### Authorization
 
@@ -247,7 +247,7 @@ Name | Type | Description  | Notes
 
 ## getCalculationStatusById
 
-> StringRoot getCalculationStatusById(id)
+> ObjectRoot getCalculationStatusById(id)
 
 Get FI calculation status by id
 
@@ -301,7 +301,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-(For 201 status - [**StringRoot**](StringRoot.md))(For 202 status - null (empty response body))
+(For 201 status - [**ObjectRoot**](ObjectRoot.md))(For 202 status - null (empty response body))
 
 ### Authorization
 
@@ -327,7 +327,7 @@ Name | Type | Description  | Notes
 
 ## postAndCalculate
 
-> StringRoot postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot)
+> ObjectRoot postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot)
 
 Create and Run FI calculation
 
@@ -383,7 +383,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**StringRoot**](StringRoot.md))
+(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
 
@@ -411,7 +411,7 @@ Name | Type | Description  | Notes
 
 ## putAndCalculate
 
-> StringRoot putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot)
+> ObjectRoot putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot)
 
 Create or Update FI calculation and run it.
 
@@ -469,7 +469,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**StringRoot**](StringRoot.md))
+(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
 

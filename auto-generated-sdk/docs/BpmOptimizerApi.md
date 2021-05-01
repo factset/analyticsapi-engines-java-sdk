@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## getOptimizationResult
 
-> StringRoot getOptimizationResult(id)
+> ObjectRoot getOptimizationResult(id)
 
 Get BPM optimization result by id
 
@@ -199,7 +199,7 @@ public class Example {
         BpmOptimizerApi apiInstance = new BpmOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Get BPM optimization status by id endpoint
         try {
-            StringRoot result = apiInstance.getOptimizationResult(id);
+            ObjectRoot result = apiInstance.getOptimizationResult(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BpmOptimizerApi#getOptimizationResult");
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StringRoot**](StringRoot.md)
+[**ObjectRoot**](ObjectRoot.md)
 
 ### Authorization
 
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ## getOptimizationStatusById
 
-> StringRoot getOptimizationStatusById(id)
+> ObjectRoot getOptimizationStatusById(id)
 
 Get BPM optimization status by id
 
@@ -300,7 +300,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-(For 201 status - [**StringRoot**](StringRoot.md))(For 202 status - null (empty response body))
+(For 201 status - [**ObjectRoot**](ObjectRoot.md))(For 202 status - null (empty response body))
 
 ### Authorization
 
@@ -326,7 +326,7 @@ Name | Type | Description  | Notes
 
 ## postAndOptimize
 
-> StringRoot postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, bpMOptimizationParametersRoot)
+> ObjectRoot postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, bpMOptimizationParametersRoot)
 
 Create and Run BPM optimization
 
@@ -386,7 +386,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**StringRoot**](StringRoot.md))
+(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
 
@@ -414,7 +414,7 @@ Name | Type | Description  | Notes
 
 ## putAndOptimize
 
-> StringRoot putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, bpMOptimizationParametersRoot)
+> ObjectRoot putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, bpMOptimizationParametersRoot)
 
 Create or Update BPM optimization and run it.
 
@@ -472,7 +472,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**StringRoot**](StringRoot.md))
+(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
 

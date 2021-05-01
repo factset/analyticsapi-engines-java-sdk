@@ -14,8 +14,8 @@ import java.util.Map;
 
 import factset.analyticsapi.engines.models.CalculationStatusRoot;
 import factset.analyticsapi.engines.models.ClientErrorResponse;
+import factset.analyticsapi.engines.models.ObjectRoot;
 import factset.analyticsapi.engines.models.PACalculationParametersRoot;
-import factset.analyticsapi.engines.models.StringRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class PaCalculationsApi {
@@ -305,7 +305,7 @@ public class PaCalculationsApi {
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Get PA calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get PA calculation status by id endpoint (required)
-    @return StringRoot
+    @return ObjectRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -319,7 +319,7 @@ public class PaCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public StringRoot getCalculationUnitResultById(String id, String unitId) throws ApiException {
+ public ObjectRoot getCalculationUnitResultById(String id, String unitId) throws ApiException {
     return getCalculationUnitResultByIdWithHttpInfo(id, unitId).getData();
   }
 
@@ -328,7 +328,7 @@ public class PaCalculationsApi {
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Get PA calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get PA calculation status by id endpoint (required)
-    * @return ApiResponse&lt;StringRoot&gt;
+    * @return ApiResponse&lt;ObjectRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -342,7 +342,7 @@ public class PaCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<StringRoot> getCalculationUnitResultByIdWithHttpInfo(String id, String unitId) throws ApiException {
+  public ApiResponse<ObjectRoot> getCalculationUnitResultByIdWithHttpInfo(String id, String unitId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -382,14 +382,14 @@ public class PaCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic" };
 
-    GenericType<StringRoot> localVarReturnType = new GenericType<StringRoot>() {};
+    GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<StringRoot>(){});
+        returnTypeMap.put(200, new GenericType<ObjectRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<StringRoot>invokeAPIWithReturnMap("PaCalculationsApi.getCalculationUnitResultById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<ObjectRoot>invokeAPIWithReturnMap("PaCalculationsApi.getCalculationUnitResultById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -399,7 +399,7 @@ public class PaCalculationsApi {
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param paCalculationParametersRoot Calculation Parameters (optional)
-    @return (For 202 status - CalculationStatusRoot)(For 201 status - StringRoot)(For 200 status - CalculationStatusRoot)
+    @return (For 202 status - CalculationStatusRoot)(For 201 status - ObjectRoot)(For 200 status - CalculationStatusRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -427,7 +427,7 @@ public class PaCalculationsApi {
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param paCalculationParametersRoot Calculation Parameters (optional)
-    * @return (For 202 status - ApiResponse&lt;CalculationStatusRoot&gt;)(For 201 status - ApiResponse&lt;StringRoot&gt;)(For 200 status - ApiResponse&lt;CalculationStatusRoot&gt;)
+    * @return (For 202 status - ApiResponse&lt;CalculationStatusRoot&gt;)(For 201 status - ApiResponse&lt;ObjectRoot&gt;)(For 200 status - ApiResponse&lt;CalculationStatusRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -481,7 +481,7 @@ if (cacheControl != null)
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
         returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
-        returnTypeMap.put(201, new GenericType<StringRoot>(){});
+        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
         returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
@@ -497,7 +497,7 @@ if (cacheControl != null)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param paCalculationParametersRoot Calculation Parameters (optional)
-    @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - StringRoot)
+    @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -527,7 +527,7 @@ if (cacheControl != null)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param paCalculationParametersRoot Calculation Parameters (optional)
-    * @return (For 202 status - ApiResponse&lt;CalculationStatusRoot&gt;)(For 200 status - ApiResponse&lt;CalculationStatusRoot&gt;)(For 201 status - ApiResponse&lt;StringRoot&gt;)
+    * @return (For 202 status - ApiResponse&lt;CalculationStatusRoot&gt;)(For 200 status - ApiResponse&lt;CalculationStatusRoot&gt;)(For 201 status - ApiResponse&lt;ObjectRoot&gt;)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -589,7 +589,7 @@ if (cacheControl != null)
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
         returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
         returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
-        returnTypeMap.put(201, new GenericType<StringRoot>(){});
+        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(409, new GenericType<ClientErrorResponse>(){});

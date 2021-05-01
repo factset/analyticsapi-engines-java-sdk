@@ -249,7 +249,7 @@ Name | Type | Description  | Notes
 
 ## getCalculationUnitResultById
 
-> StringRoot getCalculationUnitResultById(id, unitId)
+> ObjectRoot getCalculationUnitResultById(id, unitId)
 
 Get PA calculation result by id
 
@@ -281,7 +281,7 @@ public class Example {
         String id = "id_example"; // String | from url, provided from the location header in the Get PA calculation status by id endpoint
         String unitId = "unitId_example"; // String | from url, provided from the location header in the Get PA calculation status by id endpoint
         try {
-            StringRoot result = apiInstance.getCalculationUnitResultById(id, unitId);
+            ObjectRoot result = apiInstance.getCalculationUnitResultById(id, unitId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PaCalculationsApi#getCalculationUnitResultById");
@@ -304,7 +304,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StringRoot**](StringRoot.md)
+[**ObjectRoot**](ObjectRoot.md)
 
 ### Authorization
 
@@ -390,7 +390,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status - [**StringRoot**](StringRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))
+(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))
 
 ### Authorization
 
@@ -482,7 +482,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status - [**StringRoot**](StringRoot.md))
+(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
 
