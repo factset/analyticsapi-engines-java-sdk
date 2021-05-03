@@ -248,7 +248,7 @@ Name | Type | Description  | Notes
 
 ## getCalculationUnitResultById
 
-> String getCalculationUnitResultById(id, unitId)
+> File getCalculationUnitResultById(id, unitId)
 
 Get Pub calculation result by id
 
@@ -280,7 +280,7 @@ public class Example {
         String id = "id_example"; // String | from url, provided from the location header in the Get Pub calculation status by id endpoint
         String unitId = "unitId_example"; // String | from url, provided from the location header in the Get Pub calculation status by id endpoint
         try {
-            String result = apiInstance.getCalculationUnitResultById(id, unitId);
+            File result = apiInstance.getCalculationUnitResultById(id, unitId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PubCalculationsApi#getCalculationUnitResultById");
@@ -303,7 +303,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**String**](String.md)
+[**File**](File.md)
 
 ### Authorization
 
@@ -385,7 +385,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status - null (empty response body))
+(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status -  File )
 
 ### Authorization
 
@@ -477,7 +477,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status - null (empty response body))
+(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status -  File )
 
 ### Authorization
 

@@ -12,6 +12,8 @@ import javax.ws.rs.core.GenericType;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.io.File;
+
 import factset.analyticsapi.engines.models.CalculationStatusRoot;
 import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.ObjectRoot;
@@ -427,7 +429,7 @@ public class PaCalculationsApi {
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param paCalculationParametersRoot Calculation Parameters (optional)
-    * @return (For 202 status - ApiResponse&lt;CalculationStatusRoot&gt;)(For 201 status - ApiResponse&lt;ObjectRoot&gt;)(For 200 status - ApiResponse&lt;CalculationStatusRoot&gt;)
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 201 status - ObjectRoot)(For 200 status - CalculationStatusRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -527,7 +529,7 @@ if (cacheControl != null)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param paCalculationParametersRoot Calculation Parameters (optional)
-    * @return (For 202 status - ApiResponse&lt;CalculationStatusRoot&gt;)(For 200 status - ApiResponse&lt;CalculationStatusRoot&gt;)(For 201 status - ApiResponse&lt;ObjectRoot&gt;)
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">

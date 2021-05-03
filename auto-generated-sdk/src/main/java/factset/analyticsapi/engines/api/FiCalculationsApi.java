@@ -12,6 +12,8 @@ import javax.ws.rs.core.GenericType;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.io.File;
+
 import factset.analyticsapi.engines.models.CalculationInfoRoot;
 import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.FICalculationParametersRoot;
@@ -301,7 +303,7 @@ public class FiCalculationsApi {
    * Get FI calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.  Otherwise, the calculation is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
-    @return (For 201 status - ObjectRoot)(For 202 status - Void)
+    @return (For 201 status - ObjectRoot)(For 202 status - null)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -324,7 +326,7 @@ public class FiCalculationsApi {
    * Get FI calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.  Otherwise, the calculation is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
-    * @return (For 201 status - ApiResponse&lt;ObjectRoot&gt;)(For 202 status - ApiResponse&lt;Void&gt;)
+    * @return ApiResponse&lt;Object&gt;(For 201 status - ObjectRoot)(For 202 status - null)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -417,7 +419,7 @@ public class FiCalculationsApi {
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param fiCalculationParametersRoot Calculation Parameters (optional)
-    * @return (For 202 status - ApiResponse&lt;CalculationInfoRoot&gt;)(For 201 status - ApiResponse&lt;ObjectRoot&gt;)
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -514,7 +516,7 @@ if (cacheControl != null)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param fiCalculationParametersRoot Calculation Parameters (optional)
-    * @return (For 202 status - ApiResponse&lt;CalculationInfoRoot&gt;)(For 201 status - ApiResponse&lt;ObjectRoot&gt;)
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">

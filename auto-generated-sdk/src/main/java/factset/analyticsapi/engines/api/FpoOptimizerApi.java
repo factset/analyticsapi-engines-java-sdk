@@ -12,6 +12,8 @@ import javax.ws.rs.core.GenericType;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.io.File;
+
 import factset.analyticsapi.engines.models.CalculationInfoRoot;
 import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.FPOOptimizationParametersRoot;
@@ -305,7 +307,7 @@ public class FpoOptimizerApi {
    * Get FPO optimization status by id
    * This is the endpoint to check on the progress of a previously requested optimization.  If the optimization has finished computing, the body of the response will contain result in JSON.  Otherwise, the optimization is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run FPO optimization endpoint (required)
-    @return (For 201 status - ObjectRoot)(For 202 status - Void)
+    @return (For 201 status - ObjectRoot)(For 202 status - null)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -328,7 +330,7 @@ public class FpoOptimizerApi {
    * Get FPO optimization status by id
    * This is the endpoint to check on the progress of a previously requested optimization.  If the optimization has finished computing, the body of the response will contain result in JSON.  Otherwise, the optimization is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run FPO optimization endpoint (required)
-    * @return (For 201 status - ApiResponse&lt;ObjectRoot&gt;)(For 202 status - ApiResponse&lt;Void&gt;)
+    * @return ApiResponse&lt;Object&gt;(For 201 status - ObjectRoot)(For 202 status - null)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -421,7 +423,7 @@ public class FpoOptimizerApi {
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param fpOOptimizationParametersRoot Optimization Parameters (optional)
-    * @return (For 202 status - ApiResponse&lt;CalculationInfoRoot&gt;)(For 201 status - ApiResponse&lt;ObjectRoot&gt;)
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -518,7 +520,7 @@ if (cacheControl != null)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param fpOOptimizationParametersRoot Optimization Parameters (optional)
-    * @return (For 202 status - ApiResponse&lt;CalculationInfoRoot&gt;)(For 201 status - ApiResponse&lt;ObjectRoot&gt;)
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">

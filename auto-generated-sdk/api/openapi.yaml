@@ -17648,9 +17648,11 @@ paths:
           content:
             application/pdf:
               schema:
+                format: binary
                 type: string
             application/vnd.openxmlformats-officedocument.presentationml.presentation:
               schema:
+                format: binary
                 type: string
           description: Expected response if the calculation has one unit and is completed
             in a short span, returns JSON in the format specified in the Calculation
@@ -17966,6 +17968,7 @@ paths:
       - status-code: "200"
         response-type: CalculationStatusRoot
       - status-code: "201"
+        is-file: true
       x-contentType: application/json
       x-accepts: application/pdf,application/vnd.openxmlformats-officedocument.presentationml.presentation
   /analytics/engines/pub/v3/calculations/{id}:
@@ -18652,6 +18655,7 @@ paths:
           content:
             application/pdf:
               schema:
+                format: binary
                 type: string
           description: Expected response if the calculation has one unit and is completed
             in a short span, returns JSON in the format specified in the Calculation
@@ -19142,6 +19146,7 @@ paths:
       - status-code: "200"
         response-type: CalculationStatusRoot
       - status-code: "201"
+        is-file: true
       x-contentType: application/json
       x-accepts: application/pdf
   /analytics/engines/pub/v3/calculations/{id}/status:
@@ -19508,12 +19513,15 @@ paths:
           content:
             application/json:
               schema:
+                format: binary
                 type: string
             application/x-protobuf:
               schema:
+                format: binary
                 type: string
             application/pdf:
               schema:
+                format: binary
                 type: string
           description: Expected response once calculation is completed, returns result
             in the format specified in the Calculation parameters.
@@ -19773,6 +19781,7 @@ paths:
       x-are-multiple-success-responses-different: false
       x-success-response-types:
       - status-code: "200"
+        is-file: true
       x-accepts: application/json
   /analytics/engines/spar/v3/calculations:
     post:

@@ -12,8 +12,11 @@ import javax.ws.rs.core.GenericType;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.io.File;
+
 import factset.analyticsapi.engines.models.CalculationStatusRoot;
 import factset.analyticsapi.engines.models.ClientErrorResponse;
+import java.io.File;
 import factset.analyticsapi.engines.models.PubCalculationParametersRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
@@ -304,7 +307,7 @@ public class PubCalculationsApi {
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in the specified format.
    * @param id from url, provided from the location header in the Get Pub calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get Pub calculation status by id endpoint (required)
-    @return String
+    @return File
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -318,7 +321,7 @@ public class PubCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public String getCalculationUnitResultById(String id, String unitId) throws ApiException {
+ public File getCalculationUnitResultById(String id, String unitId) throws ApiException {
     return getCalculationUnitResultByIdWithHttpInfo(id, unitId).getData();
   }
 
@@ -327,7 +330,7 @@ public class PubCalculationsApi {
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in the specified format.
    * @param id from url, provided from the location header in the Get Pub calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get Pub calculation status by id endpoint (required)
-    * @return ApiResponse&lt;String&gt;
+    * @return ApiResponse&lt;File&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -341,7 +344,7 @@ public class PubCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<String> getCalculationUnitResultByIdWithHttpInfo(String id, String unitId) throws ApiException {
+  public ApiResponse<File> getCalculationUnitResultByIdWithHttpInfo(String id, String unitId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -381,14 +384,14 @@ public class PubCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic" };
 
-    GenericType<String> localVarReturnType = new GenericType<String>() {};
+    GenericType<File> localVarReturnType = new GenericType<File>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<String>(){});
+        returnTypeMap.put(200, new GenericType<File>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<String>invokeAPIWithReturnMap("PubCalculationsApi.getCalculationUnitResultById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<File>invokeAPIWithReturnMap("PubCalculationsApi.getCalculationUnitResultById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -398,7 +401,7 @@ public class PubCalculationsApi {
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param pubCalculationParametersRoot Calculation Parameters (optional)
-    @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - Void)
+    @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - File)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -426,7 +429,7 @@ public class PubCalculationsApi {
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param pubCalculationParametersRoot Calculation Parameters (optional)
-    * @return (For 202 status - ApiResponse&lt;CalculationStatusRoot&gt;)(For 200 status - ApiResponse&lt;CalculationStatusRoot&gt;)(For 201 status - ApiResponse&lt;Void&gt;)
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - File)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -481,7 +484,7 @@ if (cacheControl != null)
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
         returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
         returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
-        returnTypeMap.put(201, new GenericType<String>(){});
+        returnTypeMap.put(201, new GenericType<File>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
@@ -496,7 +499,7 @@ if (cacheControl != null)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param pubCalculationParametersRoot Calculation Parameters (optional)
-    @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - Void)
+    @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - File)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -526,7 +529,7 @@ if (cacheControl != null)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param pubCalculationParametersRoot Calculation Parameters (optional)
-    * @return (For 202 status - ApiResponse&lt;CalculationStatusRoot&gt;)(For 200 status - ApiResponse&lt;CalculationStatusRoot&gt;)(For 201 status - ApiResponse&lt;Void&gt;)
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - File)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -588,7 +591,7 @@ if (cacheControl != null)
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
         returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
         returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
-        returnTypeMap.put(201, new GenericType<String>(){});
+        returnTypeMap.put(201, new GenericType<File>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(409, new GenericType<ClientErrorResponse>(){});
