@@ -1,10 +1,6 @@
 package Api;
 
-import java.util.Map;
-
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import factset.analyticsapi.engines.*;
@@ -19,21 +15,10 @@ public class DatesApiTests {
   String startdate = "-1M";
   String account = "CLIENT:Analytics_api/test_account_do_not_delete.acct";
 
- /* @BeforeClass
-  public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
-  }
-
-  @Before
-  public void before() {
-    datesApiInstance = new DatesApi(apiClient);
-    componentsApiInstance = new ComponentsApi(apiClient);
-  }*/
-
   @Test
   public void convertPADateSuccess() throws ApiException {
     ApiResponse<ComponentSummaryRoot> getAllComponentsResponse = null;
-    apiClient = CommonFunctions.buildApiClient(Engine.PA);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
     datesApiInstance = new DatesApi(apiClient);
     componentsApiInstance = new ComponentsApi(apiClient);
 
@@ -63,7 +48,7 @@ public class DatesApiTests {
   @Test
   public void convertVaultDateSuccess() throws ApiException {
     ApiResponse<ComponentSummaryRoot> getAllComponentsResponse = null;
-    apiClient = CommonFunctions.buildApiClient(Engine.Vault);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.VaultPubUsername, CommonParameters.VaultPubPassword);
     datesApiInstance = new DatesApi(apiClient);
     componentsApiInstance = new ComponentsApi(apiClient);
 

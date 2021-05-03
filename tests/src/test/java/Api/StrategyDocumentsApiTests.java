@@ -16,7 +16,7 @@ public class StrategyDocumentsApiTests {
   @Test
   public void getAxiomaEquityStrategyDocumentsListSuccess() throws ApiException{
 	ApiResponse<DocumentDirectoriesRoot> getAxiomaEquityStrategyDocumentListResponse = null;
-	apiClient = CommonFunctions.buildApiClient(Engine.AXP);
+	apiClient = CommonFunctions.buildApiClient(CommonParameters.OptimizerUsername, CommonParameters.OptimizerPassword);
 	apiInstance = new StrategyDocumentsApi(apiClient);
 	  
 	try {
@@ -31,7 +31,7 @@ public class StrategyDocumentsApiTests {
   @Test
   public void getAxiomaFIStrategyDocumentsListSuccess() throws ApiException{
 	ApiResponse<DocumentDirectoriesRoot> getAxiomaFIStrategyDocumentsListResponse = null;
-	apiClient = CommonFunctions.buildApiClient(Engine.AFI);
+	apiClient = CommonFunctions.buildApiClient(CommonParameters.OptimizerUsername, CommonParameters.OptimizerPassword);
 	apiInstance = new StrategyDocumentsApi(apiClient);
 	  
 	try {
@@ -46,7 +46,7 @@ public class StrategyDocumentsApiTests {
   @Test
   public void getBarraStrategyDocumentsListSuccess() throws ApiException{
 	ApiResponse<DocumentDirectoriesRoot> getBarraStrategyDocumentsListResponse = null;
-	apiClient = CommonFunctions.buildApiClient(Engine.BPM);
+	apiClient = CommonFunctions.buildApiClient(CommonParameters.VaultPubUsername, CommonParameters.VaultPubPassword);
 	apiInstance = new StrategyDocumentsApi(apiClient);
 	  
 	try {
@@ -61,7 +61,7 @@ public class StrategyDocumentsApiTests {
   @Test
   public void getFPOStrategyDocumentsListSuccess() throws ApiException{
 	ApiResponse<DocumentDirectoriesRoot> getFPOStrategyDocumentsListResponse = null;
-	apiClient = CommonFunctions.buildApiClient(Engine.FPO);
+	apiClient = CommonFunctions.buildApiClient(CommonParameters.OptimizerUsername, CommonParameters.OptimizerPassword);
 	apiInstance = new StrategyDocumentsApi(apiClient);
 	  
 	try {
@@ -76,7 +76,7 @@ public class StrategyDocumentsApiTests {
   @Test
   public void getNorthfieldStrategyDocumentsListSuccess() throws ApiException{
 	ApiResponse<DocumentDirectoriesRoot> getNorthfieldStrategyDocumentsListResponse = null;
-	apiClient = CommonFunctions.buildApiClient(Engine.NPO);
+	apiClient = CommonFunctions.buildApiClient(CommonParameters.OptimizerUsername, CommonParameters.OptimizerPassword);
 	apiInstance = new StrategyDocumentsApi(apiClient);
 	  
 	try {

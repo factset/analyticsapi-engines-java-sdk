@@ -12,15 +12,7 @@ import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
 
-import com.factset.protobuf.stach.v2.PackageProto.Package.Builder;
-import com.factset.protobuf.stach.v2.RowOrganizedProto.RowOrganizedPackage;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.factset.protobuf.stach.v2.PackageProto;
-import com.factset.protobuf.stach.v2.RowOrganizedProto;
-import com.factset.protobuf.stach.v2.PackageProto.Package;
-import com.google.protobuf.util.JsonFormat;
-import com.google.protobuf.InvalidProtocolBufferException;
 
 public class SPAREngineInteractiveApiTests {
 
@@ -29,7 +21,7 @@ public class SPAREngineInteractiveApiTests {
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient(Engine.SPAR);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
   }
 
   @Before
@@ -37,35 +29,35 @@ public class SPAREngineInteractiveApiTests {
     apiInstance = new SparCalculationsApi(apiClient);
   }
 
-  public ApiResponse<Object> runCalculation() throws ApiException {
-    final SPARCalculationParameters parameters = new SPARCalculationParameters();
+  public String getComponentId() throws ApiException {
+	ComponentsApi componentsApi = new ComponentsApi(apiClient);
+	Map<String, ComponentSummary> components = ((ComponentSummaryRoot)componentsApi
+	     .getSPARComponents(CommonParameters.SPAR_DEFAULT_DOCUMENT)).getData();
+	String componentId = components.entrySet().stream().findFirst().get().getKey();
+	return componentId;
+  }
+		  
+  public SPARCalculationParameters createCalculationUnit(String componentId) {
+	SPARCalculationParameters sparItem = new SPARCalculationParameters();
+	sparItem.setComponentid(componentId);
+	SPARIdentifier accountIdentifier1 = new SPARIdentifier();
+	accountIdentifier1.setId(CommonParameters.SPAR_BENCHMARK_R1000);
+	accountIdentifier1.setPrefix(CommonParameters.SPAR_BENCHMARK_RUSSELL_PREFIX);
+	accountIdentifier1.setReturntype(CommonParameters.SPAR_BENCHMARK_RUSSELL_RETURN);
+	sparItem.addAccountsItem(accountIdentifier1);
 
-    final ComponentsApi componentsApi = new ComponentsApi(apiClient);
-    final Map<String, ComponentSummary> components = ((ComponentSummaryRoot)componentsApi
-        .getSPARComponents(CommonParameters.SPAR_DEFAULT_DOCUMENT)).getData();
-    final String componentId = components.entrySet().stream().findFirst().get().getKey();
-    parameters.setComponentid(componentId);
+	SPARIdentifier accountIdentifier2 = new SPARIdentifier();
+	accountIdentifier2.setId(CommonParameters.SPAR_BENCHMARK_RUSSELL_P_R1000);
+	accountIdentifier2.setPrefix(CommonParameters.SPAR_BENCHMARK_RUSSELL_PREFIX);
+	accountIdentifier2.setReturntype(CommonParameters.SPAR_BENCHMARK_RUSSELL_RETURN);
+	sparItem.addAccountsItem(accountIdentifier2);
 
-    final SPARIdentifier accountIdentifier1 = new SPARIdentifier();
-    accountIdentifier1.setId(CommonParameters.SPAR_BENCHMARK_R1000);
-    accountIdentifier1.setPrefix(CommonParameters.SPAR_BENCHMARK_RUSSELL_PREFIX);
-    accountIdentifier1.setReturntype(CommonParameters.SPAR_BENCHMARK_RUSSELL_RETURN);
-    parameters.addAccountsItem(accountIdentifier1);
-
-    final SPARIdentifier accountIdentifier2 = new SPARIdentifier();
-    accountIdentifier2.setId(CommonParameters.SPAR_BENCHMARK_RUSSELL_P_R1000);
-    accountIdentifier2.setPrefix(CommonParameters.SPAR_BENCHMARK_RUSSELL_PREFIX);
-    accountIdentifier2.setReturntype(CommonParameters.SPAR_BENCHMARK_RUSSELL_RETURN);
-    parameters.addAccountsItem(accountIdentifier2);
-
-    final SPARIdentifier benchmarkIdentifier = new SPARIdentifier();
-    benchmarkIdentifier.setId(CommonParameters.SPAR_BENCHMARK_R2000);
-    benchmarkIdentifier.setPrefix(CommonParameters.SPAR_BENCHMARK_RUSSELL_PREFIX);
-    benchmarkIdentifier.setReturntype(CommonParameters.SPAR_BENCHMARK_RUSSELL_RETURN);
-    parameters.setBenchmark(benchmarkIdentifier);
-    SPARCalculationParametersRoot sparCalcParam = new SPARCalculationParametersRoot();
-    sparCalcParam.putDataItem("1", parameters);
-    return apiInstance.postAndCalculateWithHttpInfo(null, null, sparCalcParam);
+	SPARIdentifier benchmarkIdentifier = new SPARIdentifier();
+	benchmarkIdentifier.setId(CommonParameters.SPAR_BENCHMARK_R2000);
+	benchmarkIdentifier.setPrefix(CommonParameters.SPAR_BENCHMARK_RUSSELL_PREFIX);
+	benchmarkIdentifier.setReturntype(CommonParameters.SPAR_BENCHMARK_RUSSELL_RETURN);
+	sparItem.setBenchmark(benchmarkIdentifier);
+	return sparItem;
   }
 
   @Test
@@ -73,8 +65,13 @@ public class SPAREngineInteractiveApiTests {
     ApiResponse<Object> response = null;
     CalculationStatusRoot resultStatus = null;
     Map<String, List<String>> headers = null;
+    SPARCalculationParameters unit1 = null;
+    SPARCalculationParametersRoot sparCalcParamRoot = new SPARCalculationParametersRoot();
     try {
-      response = runCalculation();
+      String id = getComponentId();
+      unit1 = createCalculationUnit(id);      
+      sparCalcParamRoot.putDataItem("1", unit1);
+      response = apiInstance.postAndCalculateWithHttpInfo(CommonParameters.DEADLINE_HEADER_VALUE, null, sparCalcParamRoot);
       headers = response.getHeaders();
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#runCalculation", e);
@@ -83,78 +80,54 @@ public class SPAREngineInteractiveApiTests {
     Assert.assertTrue("Create response status code should be 201 or 202 or 200",
         response.getStatusCode() == 201 || response.getStatusCode() == 202 || response.getStatusCode() == 200);
 
-    ApiResponse<StringRoot> resultResponse = null;
+    ApiResponse<ObjectRoot> resultResponse = null;
     Object resultObject = null;
 
-    if(response.getStatusCode() == 200) {
+    switch(response.getStatusCode()) {
+    case 200:
+      resultObject = response.getData();
+      String errorMessage = ((ClientErrorResponse)resultObject).getErrors().get(0).getDetail();
+      Assert.fail(errorMessage);
+      break;
+    case 201:
       resultObject = response.getData();
       headers = response.getHeaders();
-    }
-    else if(response.getStatusCode() == 201) {
-      String[] location = headers.get("Location").get(0).split("/");
-      resultResponse = GetCalculationResult(location);
-      resultObject = ((StringRoot)resultResponse.getData()).getData();
-    }
-    else if((response.getStatusCode() == 202)) { 
-    	//while (response.getStatusCode() == 202) {
-          String[] locationList = headers.get("Location").get(0).split("/");
-          String requestId = locationList[locationList.length - 2];
-
-          // Get Calculation Request Status
-          ApiResponse<CalculationStatusRoot> resultStatusResponse =null;
-          while (resultStatusResponse == null || resultStatusResponse.getStatusCode() == 202) {
-            if (resultStatusResponse != null) {
-              List<String> cacheControl = headers.get("Cache-Control");
-            if (cacheControl != null) {
-              int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
-              System.out.println("Sleeping for: " + maxAge + " seconds");
-              Thread.sleep(maxAge * 1000L);
-            } else {
-              System.out.println("Sleeping for: 2 seconds");
-              Thread.sleep(2 * 1000L);
-            }
-            }
-            resultStatusResponse = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
-            headers = resultStatusResponse.getHeaders();
-            resultStatus = (CalculationStatusRoot)resultStatusResponse.getData();
-            Assert.assertTrue("Get status response status code should be 200 or 202",
-            		resultStatusResponse.getStatusCode() == 200 || resultStatusResponse.getStatusCode() == 202);
-          }
-        //}
-        for(CalculationUnitStatus unitStatus : resultStatus.getData().getUnits().values()) {
-          try {
-      	    String[] location = unitStatus.getResult().split("/");
-      	    resultResponse = GetCalculationResult(location);
-      	    headers = resultResponse.getHeaders();
-            resultObject = ((StringRoot)resultResponse.getData()).getData();
-          } catch (ApiException e) {
-      	      CommonFunctions.handleException("EngineApi#getByUrlWithHttpInfo", e);
-      	  }      
-       }
-    }
-    try {
-      //ObjectMapper objMapper = new ObjectMapper();
-      //String jsonStr = objMapper.writeValueAsString(resultObject);
-      if(headers.get("content-type").get(0).toLowerCase().contains("row")) {
-        RowOrganizedProto.RowOrganizedPackage.Builder builder = RowOrganizedProto.RowOrganizedPackage.newBuilder();
-        JsonFormat.parser().ignoringUnknownFields().merge(resultObject.toString(), builder);
-        RowOrganizedPackage result = builder.build();
-        Assert.assertTrue("Response should be of RowOrganizedPackage type.", result instanceof RowOrganizedPackage);
+      CommonFunctions.checkResult(headers, resultObject);
+      break;
+    case 202:
+      String[] locationList = headers.get("Location").get(0).split("/");
+      String requestId = locationList[locationList.length - 2];
+      // Get Calculation Request Status
+      ApiResponse<CalculationStatusRoot> resultStatusResponse =null;
+      do {
+    	resultStatusResponse = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+        headers = resultStatusResponse.getHeaders();
+        resultStatus = (CalculationStatusRoot)resultStatusResponse.getData();
+        Assert.assertTrue("Get status response status code should be 200 or 202",
+        	resultStatusResponse.getStatusCode() == 200 || resultStatusResponse.getStatusCode() == 202);
+        List<String> cacheControl = headers.get("Cache-Control");
+        if (cacheControl != null) {
+          int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
+          System.out.println("Sleeping for: " + maxAge + " seconds");
+          Thread.sleep(maxAge * 1000L);
+        } else {
+          System.out.println("Sleeping for: 2 seconds");
+          Thread.sleep(2 * 1000L);
+        }
+      } while(resultStatusResponse.getStatusCode() == 202);
+      for(CalculationUnitStatus unitStatus : resultStatus.getData().getUnits().values()) {
+        String[] location = unitStatus.getResult().split("/");
+      	resultResponse = GetCalculationResult(location);
+      	headers = resultResponse.getHeaders();
+        resultObject = ((ObjectRoot)resultResponse.getData()).getData();
       }
-     else {
-       PackageProto.Package.Builder builder = PackageProto.Package.newBuilder();
-       JsonFormat.parser().ignoringUnknownFields().merge(resultObject.toString(), builder);
-       PackageProto.Package result = (builder).build();
-       Assert.assertTrue("Response should be of ColumnDataPackage type.", result instanceof PackageProto.Package);
-     }
-    } catch (InvalidProtocolBufferException e) {
-       System.out.println("Error while deserializing the response");
-       e.printStackTrace();
+      CommonFunctions.checkResult(headers, resultObject);
+      break;
     }
   }
   
-  public ApiResponse<StringRoot> GetCalculationResult(String[] location) throws ApiException {
-	ApiResponse<StringRoot> resultResponse = null;
+  public ApiResponse<ObjectRoot> GetCalculationResult(String[] location) throws ApiException {
+	ApiResponse<ObjectRoot> resultResponse = null;
 	try {	  
       String calcId = location[location.length-4];
 	  String unitId = location[location.length-2];        	  

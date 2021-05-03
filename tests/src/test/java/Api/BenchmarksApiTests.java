@@ -17,7 +17,7 @@ public class BenchmarksApiTests {
 	
 	@BeforeClass
 	public static void beforeClass() throws ApiException {
-	  apiClient = CommonFunctions.buildApiClient(Engine.SPAR);
+	  apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
 	}
 
 	@Before

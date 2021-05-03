@@ -1,7 +1,5 @@
 package Api;
 
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -11,7 +9,6 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.ApiResponse;
 import factset.analyticsapi.engines.api.ColumnStatisticsApi;
-import factset.analyticsapi.engines.models.ColumnStatistic;
 import factset.analyticsapi.engines.models.ColumnStatisticRoot;
 
 public class ColumnStatisticsApiTests {
@@ -20,7 +17,7 @@ public class ColumnStatisticsApiTests {
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient(Engine.PA);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
   }
 
   @Before

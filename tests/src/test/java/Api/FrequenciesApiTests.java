@@ -1,10 +1,6 @@
 package Api;
 
-import java.util.Map;
-
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import factset.analyticsapi.engines.*;
@@ -15,21 +11,11 @@ public class FrequenciesApiTests {
     
     public static ApiClient apiClient;
     public FrequenciesApi apiInstance;
-    
-    /*@BeforeClass
-    public static void beforeClass() throws ApiException {
-      apiClient = CommonFunctions.buildApiClient();
-    }
-
-    @Before
-    public void before() {
-      apiInstance = new FrequenciesApi(apiClient);
-    }    */
-    
+       
     @Test
     public void getPAFrequencies() throws ApiException {
         ApiResponse<FrequencyRoot> getPAFrequenciesResponse = null;
-        apiClient = CommonFunctions.buildApiClient(Engine.PA);
+        apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
         apiInstance = new FrequenciesApi(apiClient);
         try {
           getPAFrequenciesResponse = apiInstance.getPAFrequenciesWithHttpInfo();
@@ -44,7 +30,7 @@ public class FrequenciesApiTests {
     @Test
     public void getVaultFrequencies() throws ApiException {
         ApiResponse<FrequencyRoot> getVaultFrequenciesResponse = null;
-        apiClient = CommonFunctions.buildApiClient(Engine.Vault);
+        apiClient = CommonFunctions.buildApiClient(CommonParameters.VaultPubUsername, CommonParameters.VaultPubPassword);
         apiInstance = new FrequenciesApi(apiClient);
         try {
           getVaultFrequenciesResponse = apiInstance.getVaultFrequenciesWithHttpInfo();
@@ -59,7 +45,7 @@ public class FrequenciesApiTests {
     @Test
     public void getSPARFrequencies() throws ApiException {
         ApiResponse<FrequencyRoot> getSPARFrequenciesResponse = null;
-        apiClient = CommonFunctions.buildApiClient(Engine.SPAR);
+        apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
         apiInstance = new FrequenciesApi(apiClient);
         try {
           getSPARFrequenciesResponse = apiInstance.getSPARFrequenciesWithHttpInfo();

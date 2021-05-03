@@ -1,10 +1,6 @@
 package Api;
 
-import java.util.Map;
-
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import factset.analyticsapi.engines.*;
@@ -15,16 +11,6 @@ public class ComponentsApiTests {
   public static ApiClient apiClient;
   public ComponentsApi apiInstance;
 
-  @BeforeClass
-  public static void beforeClass() throws ApiException {
-    //apiClient = CommonFunctions.buildApiClient();
-  }
-
-  @Before
-  public void before() {
-    //apiInstance = new ComponentsApi(apiClient);
-  }
-
   /*************************************************************************/
   /********************* PA Components Test Cases ***********************/
   /*************************************************************************/
@@ -32,7 +18,7 @@ public class ComponentsApiTests {
   @Test
   public void getAllPAComponentsSuccess() throws ApiException {
     ApiResponse<ComponentSummaryRoot> getAllComponentsResponse = null;
-    apiClient = CommonFunctions.buildApiClient(Engine.PA);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
     apiInstance = new ComponentsApi(apiClient);
 
     try {
@@ -48,7 +34,7 @@ public class ComponentsApiTests {
   @Test
   public void getPAComponentByIdSuccess() throws ApiException {
     ApiResponse<ComponentSummaryRoot> getAllComponentsResponse = null;
-    apiClient = CommonFunctions.buildApiClient(Engine.PA);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
     apiInstance = new ComponentsApi(apiClient);
 
     try {
@@ -80,7 +66,7 @@ public class ComponentsApiTests {
   @Test
   public void getAllVaultComponentsSuccess() throws ApiException {
     ApiResponse<ComponentSummaryRoot> getVaultComponentsResponse = null;
-    apiClient = CommonFunctions.buildApiClient(Engine.Vault);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.VaultPubUsername, CommonParameters.VaultPubPassword);
     apiInstance = new ComponentsApi(apiClient);
 
     try {
@@ -97,7 +83,7 @@ public class ComponentsApiTests {
   @Test
   public void getByVaultComponentIdSuccess() throws ApiException {
     ApiResponse<ComponentSummaryRoot> getVaultComponentsResponse = null;
-    apiClient = CommonFunctions.buildApiClient(Engine.Vault);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.VaultPubUsername, CommonParameters.VaultPubPassword);
     apiInstance = new ComponentsApi(apiClient);
 
     try {
@@ -130,7 +116,7 @@ public class ComponentsApiTests {
   @Test
   public void getAllSPARComponentsSuccess() throws ApiException {
     ApiResponse<ComponentSummaryRoot> getSPARComponentsResponse = null;
-    apiClient = CommonFunctions.buildApiClient(Engine.SPAR);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
     apiInstance = new ComponentsApi(apiClient);
 
     try {

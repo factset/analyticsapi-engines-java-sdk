@@ -1,27 +1,36 @@
 package Api;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.ws.rs.client.ClientBuilder;
 
 import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
 import org.glassfish.jersey.client.ClientProperties;
+import org.junit.Assert;
+
+import com.factset.protobuf.stach.v2.PackageProto;
+import com.factset.protobuf.stach.v2.RowOrganizedProto;
+import com.factset.protobuf.stach.v2.RowOrganizedProto.RowOrganizedPackage;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.protobuf.util.JsonFormat;
 
 import factset.analyticsapi.engines.*;
 
 public class CommonFunctions {
 
-  public static ApiClient buildApiClient(Engine engine) throws ApiException {
-    ApiClient apiClient = null;
-    CommonParameters.fillCredentials();
-    String userName = CommonParameters.Credentials.get(engine).getKey();
-    String password = CommonParameters.Credentials.get(engine).getValue();
+  public static ApiClient buildApiClient(String userserial, String apikey) throws ApiException {
+    FdsApiClient apiClient = null;
+    String userName = userserial;
+    String password = apikey;
     
     if(userName != null && !userName.isEmpty() && password != null && !password.isEmpty()) {
-      apiClient = new ApiClient();
+      apiClient = new FdsApiClient();
       apiClient.setConnectTimeout(30000);
       apiClient.setReadTimeout(30000);
       apiClient.setBasePath(CommonParameters.BASEPATH);
-      apiClient.setUsername(userName);//(CommonParameters.USERNAME);
-      apiClient.setPassword(password);//(CommonParameters.PASSWORD);
+      apiClient.setUsername(userName);
+      apiClient.setPassword(password);
 
     } else {
       throw new ApiException(
@@ -33,23 +42,48 @@ public class CommonFunctions {
 
   public static void handleException(String method, ApiException e) throws ApiException {
     System.err.println("Exception when calling " + method);
-    if (e.getResponseHeaders() != null && e.getResponseHeaders().containsKey("x-factset-api-request-key")) {
+    if (e.getResponseHeaders() != null && e.getResponseHeaders().containsKey("x-factset-api-request-key") && 
+    		e.getResponseHeaders().containsKey("x-datadirect-request-key")) {
       System.out.println("Request Id: " + e.getResponseHeaders().get("x-factset-api-request-key").get(0));
+      System.out.println("Data-Direct Key: " + e.getResponseHeaders().get("x-datadirect-request-key").get(0));
     }
     System.out.println("Status code: " + e.getCode());
     System.out.println("Reason: " + e.getClientErrorResponse());
     e.printStackTrace();
     throw e;
   }
+  
+  public static void checkResult(Map<String, List<String>> headers, Object resultObject) {
+	try {
+	  ObjectMapper mapper = new ObjectMapper();   	
+  	  String jsonString = mapper.writeValueAsString(resultObject);
+
+  	  if(headers.get("content-type").get(0).toLowerCase().contains("row")) {
+    	RowOrganizedProto.RowOrganizedPackage.Builder builder = RowOrganizedProto.RowOrganizedPackage.newBuilder();
+    	JsonFormat.parser().ignoringUnknownFields().merge(jsonString, builder);
+    	RowOrganizedPackage resultBuilder = builder.build();
+        Assert.assertTrue("Response should be of RowOrganizedPackage type.", resultBuilder instanceof RowOrganizedPackage);
+      }
+  	  else {
+  	    PackageProto.Package.Builder builder = PackageProto.Package.newBuilder();
+   	    JsonFormat.parser().ignoringUnknownFields().merge(jsonString, builder);
+   	    PackageProto.Package resultBuilder = (builder).build();
+        Assert.assertTrue("Response should be of ColumnDataPackage type.", resultBuilder instanceof PackageProto.Package);
+      }        
+    } catch(Exception e) {
+	  System.out.println(e.getMessage());
+	  e.getStackTrace();
+    }
+  }
 }
 
 class FdsApiClient extends ApiClient
 {
-   @Override
+   /*@Override
    protected void customizeClientBuilder(ClientBuilder clientBuilder) {
     // uncomment following settings as needed
-     clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
+	 clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
      clientConfig.property(ClientProperties.REQUEST_ENTITY_PROCESSING, "BUFFERED");
      clientConfig.connectorProvider( new ApacheConnectorProvider() );
-  }
+  }*/
 }

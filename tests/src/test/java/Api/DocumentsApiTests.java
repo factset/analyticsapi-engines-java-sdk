@@ -1,8 +1,6 @@
 package Api;
 
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import factset.analyticsapi.engines.*;
@@ -14,20 +12,10 @@ public class DocumentsApiTests {
   public static ApiClient apiClient;
   public static DocumentsApi apiInstance;
 
-  /*@BeforeClass
-  public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
-  }
-
-  @Before
-  public void before() {
-    apiInstance = new DocumentsApi(apiClient);
-  }*/
-
   @Test
   public void getPA3DocumentListSuccess() throws ApiException {
     ApiResponse<DocumentDirectoriesRoot> getDocumentListResponse = null;
-    apiClient = CommonFunctions.buildApiClient(Engine.PA);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
     apiInstance = new DocumentsApi(apiClient);
     try {
       getDocumentListResponse = apiInstance.getPA3DocumentsWithHttpInfo(CommonParameters.DEFAULT_LOOKUP_DIRECTORY);
@@ -42,7 +30,7 @@ public class DocumentsApiTests {
   @Test
   public void getVaultDocumentListSuccess() throws ApiException {
     ApiResponse<DocumentDirectoriesRoot> getDocumentListResponse = null;
-    apiClient = CommonFunctions.buildApiClient(Engine.Vault);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.VaultPubUsername, CommonParameters.VaultPubPassword);
     apiInstance = new DocumentsApi(apiClient);
     try {
       getDocumentListResponse = apiInstance.getVaultDocumentsWithHttpInfo(CommonParameters.DEFAULT_LOOKUP_DIRECTORY);
@@ -57,7 +45,7 @@ public class DocumentsApiTests {
   @Test
   public void getSPARDocumentListSuccess() throws ApiException {
     ApiResponse<DocumentDirectoriesRoot> getDocumentListResponse = null;
-    apiClient = CommonFunctions.buildApiClient(Engine.SPAR);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
     apiInstance = new DocumentsApi(apiClient);
     try {
       getDocumentListResponse = apiInstance.getSPAR3DocumentsWithHttpInfo(CommonParameters.DEFAULT_LOOKUP_DIRECTORY);
