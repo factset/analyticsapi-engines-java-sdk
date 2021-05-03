@@ -300,7 +300,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-(For 201 status - [**ObjectRoot**](ObjectRoot.md))(For 202 status - null (empty response body))
+(For 201 status - [**ObjectRoot**](ObjectRoot.md))(For 202 status -  null (empty response body) )
 
 ### Authorization
 

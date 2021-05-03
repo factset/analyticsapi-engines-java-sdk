@@ -12,6 +12,8 @@ import javax.ws.rs.core.GenericType;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.io.File;
+
 import factset.analyticsapi.engines.models.FIABCalculationParameters;
 import factset.analyticsapi.engines.models.FIABCalculationStatus;
 import factset.analyticsapi.engines.models.FIABCalculationStatusSummary;
