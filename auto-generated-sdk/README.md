@@ -1,9 +1,8 @@
-
 # engines-sdk
 
 Engines API
 
-- API version: 2
+- API version: v2:[pa,spar,vault,pub],v1:[fiab,fi,axp,afi,npo,bpm,fpo]
 
 Allow clients to fetch Analytics through APIs.
 
@@ -42,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.factset.analyticsapi</groupId>
   <artifactId>engines-sdk</artifactId>
-  <version>4.0.0</version>
+  <version>4.1.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.factset.analyticsapi:engines-sdk:4.0.0"
+compile "com.factset.analyticsapi:engines-sdk:4.1.0"
 ```
 
 ### Others
@@ -65,8 +64,33 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/engines-sdk-4.0.0.jar`
+- `target/engines-sdk-4.1.0.jar`
 - `target/lib/*.jar`
+
+## Usage
+
+To add a HTTP proxy for the API client, use `ClientConfig`:
+```java
+
+import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.ClientProperties;
+import factset.analyticsapi.engines.*;
+import factset.analyticsapi.engines.api.AccountsApi;
+
+...
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+ClientConfig clientConfig = defaultClient.getClientConfig();
+clientConfig.connectorProvider(new ApacheConnectorProvider());
+clientConfig.property(ClientProperties.PROXY_URI, "http://proxy_url_here");
+clientConfig.property(ClientProperties.PROXY_USERNAME, "proxy_username");
+clientConfig.property(ClientProperties.PROXY_PASSWORD, "proxy_password");
+defaultClient.setClientConfig(clientConfig);
+
+AccountsApi apiInstance = new AccountsApi(defaultClient);
+
+```
 
 ## Getting Started
 
@@ -80,7 +104,6 @@ import factset.analyticsapi.engines.models.*;
 import factset.analyticsapi.engines.api.AccountsApi;
 
 public class AccountsApiExample {
-
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.factset.com");
@@ -91,7 +114,7 @@ public class AccountsApiExample {
         Basic.setPassword("YOUR PASSWORD");
 
         AccountsApi apiInstance = new AccountsApi(defaultClient);
-        String path = "\"\""; // String | The directory to get the accounts and sub-directories in
+        String path = ""; // String | The directory to get the accounts and sub-directories in
         try {
             AccountDirectories result = apiInstance.getAccounts(path);
             System.out.println(result);
@@ -135,10 +158,19 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**getPubDocuments**](docs/DocumentsApi.md#getPubDocuments) | **GET** /analytics/lookups/v2/engines/pub/documents/{path} | Gets Publisher documents and sub-directories in a directory
 *DocumentsApi* | [**getSPAR3Documents**](docs/DocumentsApi.md#getSPAR3Documents) | **GET** /analytics/lookups/v2/engines/spar/documents/{path} | Gets SPAR3 documents and sub-directories in a directory
 *DocumentsApi* | [**getVaultDocuments**](docs/DocumentsApi.md#getVaultDocuments) | **GET** /analytics/lookups/v2/engines/vault/documents/{path} | Get Vault documents and sub-directories in a directory
+*FiCalculationsApi* | [**cancelFICalculationById**](docs/FiCalculationsApi.md#cancelFICalculationById) | **DELETE** /analytics/engines/fi/v1/calculations/{id} | Cancel FI calculation by id
+*FiCalculationsApi* | [**getFICalculationById**](docs/FiCalculationsApi.md#getFICalculationById) | **GET** /analytics/engines/fi/v1/calculations/{id} | Get FI calculation by id
+*FiCalculationsApi* | [**runFICalculation**](docs/FiCalculationsApi.md#runFICalculation) | **POST** /analytics/engines/fi/v1/calculations | Run FI calculation
+*FiabCalculationsApi* | [**getFIABCalculationById**](docs/FiabCalculationsApi.md#getFIABCalculationById) | **GET** /analytics/engines/fiab/v1/calculations/{id} | Get FIAB calculation by id
+*FiabCalculationsApi* | [**getFIABCalculationStatusSummaries**](docs/FiabCalculationsApi.md#getFIABCalculationStatusSummaries) | **GET** /analytics/engines/fiab/v1/calculations | Get all FIAB calculation summaries
+*FiabCalculationsApi* | [**runFIABCalculation**](docs/FiabCalculationsApi.md#runFIABCalculation) | **POST** /analytics/engines/fiab/v1/calculations | Run FIAB calculation
 *FrequenciesApi* | [**getPAFrequencies**](docs/FrequenciesApi.md#getPAFrequencies) | **GET** /analytics/lookups/v2/engines/pa/frequencies | Get PA frequencies
 *FrequenciesApi* | [**getSPARFrequencies**](docs/FrequenciesApi.md#getSPARFrequencies) | **GET** /analytics/lookups/v2/engines/spar/frequencies | Get SPAR frequencies
 *FrequenciesApi* | [**getVaultFrequencies**](docs/FrequenciesApi.md#getVaultFrequencies) | **GET** /analytics/lookups/v2/engines/vault/frequencies | Get Vault frequencies
 *GroupsApi* | [**getPAGroups**](docs/GroupsApi.md#getPAGroups) | **GET** /analytics/lookups/v2/engines/pa/groups | Get PA groups
+*OptimizationsApi* | [**cancelAxiomaOptimizationById**](docs/OptimizationsApi.md#cancelAxiomaOptimizationById) | **DELETE** /analytics/engines/axp/v1/optimizations/{id} | Cancel Axioma optimization by id
+*OptimizationsApi* | [**getAxiomaOptimizationById**](docs/OptimizationsApi.md#getAxiomaOptimizationById) | **GET** /analytics/engines/axp/v1/optimizations/{id} | Get Axioma optimization by id
+*OptimizationsApi* | [**runAxiomaOptimization**](docs/OptimizationsApi.md#runAxiomaOptimization) | **POST** /analytics/engines/axp/v1/optimizations | Run Axioma optimization
 *PaCalculationsApi* | [**cancelPACalculationById**](docs/PaCalculationsApi.md#cancelPACalculationById) | **DELETE** /analytics/engines/pa/v2/calculations/{id} | Cancel PA calculation by id
 *PaCalculationsApi* | [**getPACalculationById**](docs/PaCalculationsApi.md#getPACalculationById) | **GET** /analytics/engines/pa/v2/calculations/{id} | Get PA calculation by id
 *PaCalculationsApi* | [**runPACalculation**](docs/PaCalculationsApi.md#runPACalculation) | **POST** /analytics/engines/pa/v2/calculations | Run PA Calculation
@@ -146,14 +178,20 @@ Class | Method | HTTP request | Description
 *SparCalculationsApi* | [**cancelSPARCalculationById**](docs/SparCalculationsApi.md#cancelSPARCalculationById) | **DELETE** /analytics/engines/spar/v2/calculations/{id} | Cancel SPAR calculation
 *SparCalculationsApi* | [**getSPARCalculationById**](docs/SparCalculationsApi.md#getSPARCalculationById) | **GET** /analytics/engines/spar/v2/calculations/{id} | Get SPAR calculation by id
 *SparCalculationsApi* | [**runSPARCalculation**](docs/SparCalculationsApi.md#runSPARCalculation) | **POST** /analytics/engines/spar/v2/calculations | Run SPAR Calculation
+*StrategyDocumentsApi* | [**getAxiomaEquityStrategyDocuments**](docs/StrategyDocumentsApi.md#getAxiomaEquityStrategyDocuments) | **GET** /analytics/engines/axp/v1/strategies/{path} | Get Axioma Equity strategy documents and sub-directories in a directory
+*StrategyDocumentsApi* | [**getAxiomaFIStrategyDocuments**](docs/StrategyDocumentsApi.md#getAxiomaFIStrategyDocuments) | **GET** /analytics/engines/afi/v1/strategies/{path} | Get Axioma FI strategy documents and sub-directories in a directory
+*StrategyDocumentsApi* | [**getBarraStrategyDocuments**](docs/StrategyDocumentsApi.md#getBarraStrategyDocuments) | **GET** /analytics/engines/bpm/v1/strategies/{path} | Get Barra strategy documents and sub-directories in a directory
+*StrategyDocumentsApi* | [**getFPOStrategyDocuments**](docs/StrategyDocumentsApi.md#getFPOStrategyDocuments) | **GET** /analytics/engines/fpo/v1/strategies/{path} | Get FactSet Portfolio Optimizer strategy documents and sub-directories in a directory
+*StrategyDocumentsApi* | [**getNorthfieldStrategyDocuments**](docs/StrategyDocumentsApi.md#getNorthfieldStrategyDocuments) | **GET** /analytics/engines/npo/v1/strategies/{path} | Get Northfield strategy documents and sub-directories in a directory
 *VaultCalculationsApi* | [**cancelVaultCalculationById**](docs/VaultCalculationsApi.md#cancelVaultCalculationById) | **DELETE** /analytics/engines/vault/v2/calculations/{id} | Cancel Vault calculation by id
 *VaultCalculationsApi* | [**getVaultCalculationById**](docs/VaultCalculationsApi.md#getVaultCalculationById) | **GET** /analytics/engines/vault/v2/calculations/{id} | Get Vault calculation by id
 *VaultCalculationsApi* | [**runVaultCalculation**](docs/VaultCalculationsApi.md#runVaultCalculation) | **POST** /analytics/engines/vault/v2/calculations | Run Vault Calculation
-*UtilityApi* | [**getByUrl**](docs/UtilityApi.md#getByUrl) | **GET** {url} | Get by url
+
 
 ## Documentation for Models
 
  - [AccountDirectories](docs/AccountDirectories.md)
+ - [AxiomaEquityOptimizationParameters](docs/AxiomaEquityOptimizationParameters.md)
  - [Calculation](docs/Calculation.md)
  - [CalculationStatus](docs/CalculationStatus.md)
  - [CalculationStatusSummary](docs/CalculationStatusSummary.md)
@@ -168,8 +206,26 @@ Class | Method | HTTP request | Description
  - [Currency](docs/Currency.md)
  - [DateParametersSummary](docs/DateParametersSummary.md)
  - [DocumentDirectories](docs/DocumentDirectories.md)
+ - [EventSummary](docs/EventSummary.md)
+ - [FIABCalculationParameters](docs/FIABCalculationParameters.md)
+ - [FIABCalculationStatus](docs/FIABCalculationStatus.md)
+ - [FIABCalculationStatusSummary](docs/FIABCalculationStatusSummary.md)
+ - [FIABDateParameters](docs/FIABDateParameters.md)
+ - [FIABIdentifier](docs/FIABIdentifier.md)
+ - [FICalculationParameters](docs/FICalculationParameters.md)
+ - [FIJobSettings](docs/FIJobSettings.md)
+ - [FISecurity](docs/FISecurity.md)
  - [Frequency](docs/Frequency.md)
  - [Group](docs/Group.md)
+ - [OptimalPortfolio](docs/OptimalPortfolio.md)
+ - [Optimization](docs/Optimization.md)
+ - [OptimizerAccount](docs/OptimizerAccount.md)
+ - [OptimizerAccountOverrides](docs/OptimizerAccountOverrides.md)
+ - [OptimizerOptimalHoldings](docs/OptimizerOptimalHoldings.md)
+ - [OptimizerOutputTypes](docs/OptimizerOutputTypes.md)
+ - [OptimizerStrategy](docs/OptimizerStrategy.md)
+ - [OptimizerStrategyOverrides](docs/OptimizerStrategyOverrides.md)
+ - [OptimizerTradesList](docs/OptimizerTradesList.md)
  - [PACalculationColumn](docs/PACalculationColumn.md)
  - [PACalculationGroup](docs/PACalculationGroup.md)
  - [PACalculationParameters](docs/PACalculationParameters.md)

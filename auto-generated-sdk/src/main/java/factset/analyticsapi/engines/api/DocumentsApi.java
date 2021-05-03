@@ -10,11 +10,9 @@ import javax.ws.rs.core.GenericType;
 
 import factset.analyticsapi.engines.models.DocumentDirectories;
 
-
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class DocumentsApi {
   private ApiClient apiClient;
-
   public DocumentsApi() {
     this(Configuration.getDefaultApiClient());
   }
@@ -23,13 +21,24 @@ public class DocumentsApi {
     this.apiClient = apiClient;
   }
 
+  /**
+   * Get the API cilent
+   *
+   * @return API client
+   */
   public ApiClient getApiClient() {
     return apiClient;
   }
 
+  /**
+   * Set the API cilent
+   *
+   * @param apiClient an instance of API client
+   */
   public void setApiClient(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
+
   /**
    * Get PA3 documents and sub-directories in a directory
    * This endpoint looks up all PA3 documents and sub-directories in a given directory.
@@ -109,7 +118,10 @@ public class DocumentsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<DocumentDirectories> localVarReturnType = new GenericType<DocumentDirectories>() {};
-    return apiClient.invokeAPI("DocumentsApi.getPA3Documents", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("DocumentsApi.getPA3Documents", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
   /**
    * Gets Publisher documents and sub-directories in a directory
@@ -190,7 +202,10 @@ public class DocumentsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<DocumentDirectories> localVarReturnType = new GenericType<DocumentDirectories>() {};
-    return apiClient.invokeAPI("DocumentsApi.getPubDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("DocumentsApi.getPubDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
   /**
    * Gets SPAR3 documents and sub-directories in a directory
@@ -271,7 +286,10 @@ public class DocumentsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<DocumentDirectories> localVarReturnType = new GenericType<DocumentDirectories>() {};
-    return apiClient.invokeAPI("DocumentsApi.getSPAR3Documents", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("DocumentsApi.getSPAR3Documents", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
   /**
    * Get Vault documents and sub-directories in a directory
@@ -352,6 +370,9 @@ public class DocumentsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<DocumentDirectories> localVarReturnType = new GenericType<DocumentDirectories>() {};
-    return apiClient.invokeAPI("DocumentsApi.getVaultDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("DocumentsApi.getVaultDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
 }
