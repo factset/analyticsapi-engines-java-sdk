@@ -8,8 +8,8 @@ import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
 
 public class ComponentsApiTests {
-  public static ApiClient apiClient;
-  public ComponentsApi apiInstance;
+  private static ApiClient apiClient;
+  private ComponentsApi apiInstance;
 
   /*************************************************************************/
   /********************* PA Components Test Cases ***********************/

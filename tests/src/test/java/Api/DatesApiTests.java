@@ -8,9 +8,9 @@ import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
 
 public class DatesApiTests {
-  public static ApiClient apiClient;
-  public DatesApi datesApiInstance;
-  public ComponentsApi componentsApiInstance;
+  private static ApiClient apiClient;
+  private DatesApi datesApiInstance;
+  private ComponentsApi componentsApiInstance;
   String enddate = "-1d";
   String startdate = "-1M";
   String account = "CLIENT:Analytics_api/test_account_do_not_delete.acct";

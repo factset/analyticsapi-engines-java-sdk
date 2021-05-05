@@ -1,19 +1,9 @@
 package Api;
 
-import java.util.List;
-import java.util.Map;
-
 import javax.ws.rs.client.ClientBuilder;
 
 import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
 import org.glassfish.jersey.client.ClientProperties;
-import org.junit.Assert;
-
-import com.factset.protobuf.stach.v2.PackageProto;
-import com.factset.protobuf.stach.v2.RowOrganizedProto;
-import com.factset.protobuf.stach.v2.RowOrganizedProto.RowOrganizedPackage;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.protobuf.util.JsonFormat;
 
 import factset.analyticsapi.engines.*;
 
@@ -23,7 +13,7 @@ public class CommonFunctions {
     FdsApiClient apiClient = null;
     String userName = userserial;
     String password = apikey;
-    
+
     if(userName != null && !userName.isEmpty() && password != null && !password.isEmpty()) {
       apiClient = new FdsApiClient();
       apiClient.setConnectTimeout(30000);
@@ -43,7 +33,7 @@ public class CommonFunctions {
   public static void handleException(String method, ApiException e) throws ApiException {
     System.err.println("Exception when calling " + method);
     if (e.getResponseHeaders() != null && e.getResponseHeaders().containsKey("x-factset-api-request-key") && 
-    		e.getResponseHeaders().containsKey("x-datadirect-request-key")) {
+        e.getResponseHeaders().containsKey("x-datadirect-request-key")) {
       System.out.println("Request Id: " + e.getResponseHeaders().get("x-factset-api-request-key").get(0));
       System.out.println("Data-Direct Key: " + e.getResponseHeaders().get("x-datadirect-request-key").get(0));
     }
@@ -52,38 +42,15 @@ public class CommonFunctions {
     e.printStackTrace();
     throw e;
   }
-  
-  public static void checkResult(Map<String, List<String>> headers, Object resultObject) {
-	try {
-	  ObjectMapper mapper = new ObjectMapper();   	
-  	  String jsonString = mapper.writeValueAsString(resultObject);
-
-  	  if(headers.get("content-type").get(0).toLowerCase().contains("row")) {
-    	RowOrganizedProto.RowOrganizedPackage.Builder builder = RowOrganizedProto.RowOrganizedPackage.newBuilder();
-    	JsonFormat.parser().ignoringUnknownFields().merge(jsonString, builder);
-    	RowOrganizedPackage resultBuilder = builder.build();
-        Assert.assertTrue("Response should be of RowOrganizedPackage type.", resultBuilder instanceof RowOrganizedPackage);
-      }
-  	  else {
-  	    PackageProto.Package.Builder builder = PackageProto.Package.newBuilder();
-   	    JsonFormat.parser().ignoringUnknownFields().merge(jsonString, builder);
-   	    PackageProto.Package resultBuilder = (builder).build();
-        Assert.assertTrue("Response should be of ColumnDataPackage type.", resultBuilder instanceof PackageProto.Package);
-      }        
-    } catch(Exception e) {
-	  System.out.println(e.getMessage());
-	  e.getStackTrace();
-    }
-  }
 }
 
 class FdsApiClient extends ApiClient
 {
-   /*@Override
-   protected void customizeClientBuilder(ClientBuilder clientBuilder) {
-    // uncomment following settings as needed
-	 clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
-     clientConfig.property(ClientProperties.REQUEST_ENTITY_PROCESSING, "BUFFERED");
-     clientConfig.connectorProvider( new ApacheConnectorProvider() );
+  /*@Override
+  protected void customizeClientBuilder(ClientBuilder clientBuilder) {
+    // uncomment following settings when you want to use a proxy
+    clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
+    clientConfig.property(ClientProperties.REQUEST_ENTITY_PROCESSING, "BUFFERED");
+    clientConfig.connectorProvider( new ApacheConnectorProvider() );
   }*/
 }

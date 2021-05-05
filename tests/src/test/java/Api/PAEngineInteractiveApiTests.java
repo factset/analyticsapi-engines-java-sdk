@@ -16,8 +16,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 public class PAEngineInteractiveApiTests {
 
-  public static ApiClient apiClient;
-  public PaCalculationsApi apiInstance;
+  private static ApiClient apiClient;
+  private PaCalculationsApi apiInstance;
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
@@ -30,16 +30,16 @@ public class PAEngineInteractiveApiTests {
   }
 
   public String getComponentId() throws ApiException {
-	ComponentsApi componentsApi = new ComponentsApi(apiClient);
-	Map<String, ComponentSummary> components = componentsApi.getPAComponents(CommonParameters.PA_DEFAULT_DOCUMENT).getData();	
-	String componentId = components.entrySet().stream().findFirst().get().getKey();
-	return componentId;
- }
-	  
+    ComponentsApi componentsApi = new ComponentsApi(apiClient);
+    Map<String, ComponentSummary> components = componentsApi.getPAComponents(CommonParameters.PA_DEFAULT_DOCUMENT).getData();	
+    String componentId = components.entrySet().stream().findFirst().get().getKey();
+    return componentId;
+  }
+
   public PACalculationParameters createCalculationUnit(String componentId) {
-	PACalculationParameters paItem = new PACalculationParameters();
-	paItem.setComponentid(componentId);
-	PAIdentifier accountPaIdentifier1 = new PAIdentifier();
+    PACalculationParameters paItem = new PACalculationParameters();
+    paItem.setComponentid(componentId);
+    PAIdentifier accountPaIdentifier1 = new PAIdentifier();
     accountPaIdentifier1.setId(CommonParameters.PA_BENCHMARK_SP500);
     paItem.addAccountsItem(accountPaIdentifier1);
 
@@ -57,81 +57,73 @@ public class PAEngineInteractiveApiTests {
   public void enginesApiGetCalculationSuccess() throws ApiException, JsonProcessingException, InterruptedException {
     ApiResponse<Object> response = null;
     CalculationStatusRoot resultStatus = null;
-    Map<String, List<String>> headers = null;
-    PACalculationParameters unit1 = null;
-    PACalculationParametersRoot paCalcParamRoot = new PACalculationParametersRoot();
-    
+    Map<String, List<String>> headers = null;    
+
     try {
       String id = getComponentId();
-      unit1 = createCalculationUnit(id);
-      paCalcParamRoot.putDataItem("1", unit1);
+      PACalculationParameters calculationUnit = createCalculationUnit(id);
+      PACalculationParametersRoot paCalcParamRoot = new PACalculationParametersRoot();
+      paCalcParamRoot.putDataItem("1", calculationUnit);
       response = apiInstance.postAndCalculateWithHttpInfo(CommonParameters.DEADLINE_HEADER_VALUE, null, paCalcParamRoot);
       headers = response.getHeaders();
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#runCalculation", e);
     }
 
-    Assert.assertTrue("Create response status code should be 201 or 202 or 200",
-          response.getStatusCode() == 201 || response.getStatusCode() == 202 || response.getStatusCode() == 200);
+    Assert.assertTrue("Create response status code should be 201 or 202",
+        response.getStatusCode() == 201 || response.getStatusCode() == 202);
 
     ApiResponse<ObjectRoot> resultResponse = null;
     Object result = null;
 
     switch(response.getStatusCode()) {
-    case 200:
-      result = response.getData();
-      String errorMessage = ((ClientErrorResponse)result).getErrors().get(0).getDetail();
-      Assert.fail(errorMessage);
-      break;
-    case 201:
-      result = response.getData();
-      headers = response.getHeaders();
-      CommonFunctions.checkResult(headers, result);
-      break;
-    case 202:
-      String[] locationList = headers.get("Location").get(0).split("/");
-      String requestId = locationList[locationList.length - 2];
-      // Get Calculation Request Status
-      ApiResponse<CalculationStatusRoot> resultStatusResponse = null;
-      do {
-        resultStatusResponse = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
-        headers = resultStatusResponse.getHeaders();
-        resultStatus = (CalculationStatusRoot)resultStatusResponse.getData();
-        Assert.assertTrue("Get status response status code should be 200 or 202",
-       		 resultStatusResponse.getStatusCode() == 200 || resultStatusResponse.getStatusCode() == 202);
-        if(resultStatusResponse.getStatusCode() == 201)
-        	break;
-        List<String> cacheControl = headers.get("Cache-Control");
-        if (cacheControl != null) {
-          int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
-          System.out.println("Sleeping for: " + maxAge + " seconds");
-          Thread.sleep(maxAge * 1000L);
-        } else {
+      case 201:// Calculation completed
+        result = ((ObjectRoot)response.getData()).getData();
+        headers = response.getHeaders();
+        CalculationsHelper.validateCalculationResponse(headers, result);
+        break;
+      case 202:
+        String[] locationList = headers.get("Location").get(0).split("/");
+        String requestId = locationList[locationList.length - 2];
+        // Get Calculation Request Status
+        ApiResponse<CalculationStatusRoot> resultStatusResponse = null;
+        do {
+          resultStatusResponse = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+          headers = resultStatusResponse.getHeaders();
+          resultStatus = (CalculationStatusRoot)resultStatusResponse.getData();
+          Assert.assertTrue("Get status response status code should be 200 or 202",
+              resultStatusResponse.getStatusCode() == 200 || resultStatusResponse.getStatusCode() == 202);
+          List<String> cacheControl = headers.get("Cache-Control");
+          if (cacheControl != null) {
+            int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
+            System.out.println("Sleeping for: " + maxAge + " seconds");
+            Thread.sleep(maxAge * 1000L);
+          } else {
             System.out.println("Sleeping for: 2 seconds");
             Thread.sleep(2 * 1000L);
           }
-      } while(resultStatusResponse.getStatusCode() == 202);
-      
-      for(CalculationUnitStatus unitStatus : resultStatus.getData().getUnits().values()) {
-        String[] location = unitStatus.getResult().split("/");
-        resultResponse = GetCalculationResult(location);
-        headers = resultResponse.getHeaders();
-        result = ((ObjectRoot)resultResponse.getData()).getData();
-      }
-      CommonFunctions.checkResult(headers, result);
-      break;
+        } while(resultStatusResponse.getStatusCode() == 202);
+
+        for(CalculationUnitStatus unitStatus : resultStatus.getData().getUnits().values()) {
+          String[] location = unitStatus.getResult().split("/");
+          resultResponse = GetCalculationResult(location);
+          headers = resultResponse.getHeaders();
+          result = ((ObjectRoot)resultResponse.getData()).getData();
+        }
+        CalculationsHelper.validateCalculationResponse(headers, result);
+        break;
     }
   }
-  
+
   public ApiResponse<ObjectRoot> GetCalculationResult(String[] location) throws ApiException {
-	ApiResponse<ObjectRoot> resultResponse = null;
-	try {	  
-	  String calcId = location[location.length-4];
+    ApiResponse<ObjectRoot> resultResponse = null;
+    try {	  
+      String calcId = location[location.length-4];
       String unitId = location[location.length-2];        	  
       resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(calcId, unitId);      
-	} catch (ApiException e) {
-	    CommonFunctions.handleException("EngineApi#getByUrlWithHttpInfo", e);
-	}
+    } catch (ApiException e) {
+      CommonFunctions.handleException("EngineApi#getByUrlWithHttpInfo", e);
+    }
     return resultResponse;  
   }
 }

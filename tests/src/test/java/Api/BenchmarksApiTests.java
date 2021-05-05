@@ -12,30 +12,30 @@ import factset.analyticsapi.engines.api.BenchmarksApi;
 import factset.analyticsapi.engines.models.SPARBenchmarkRoot;
 
 public class BenchmarksApiTests {
-	public static ApiClient apiClient;
-	public BenchmarksApi apiInstance;
-	
-	@BeforeClass
-	public static void beforeClass() throws ApiException {
-	  apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
-	}
+  private static ApiClient apiClient;
+  private BenchmarksApi apiInstance;
 
-	@Before
-	public void before() {
-	  apiInstance = new BenchmarksApi(apiClient);
-	}
-	
-	@Test
-	public void getSPARBenchmarksByIdSuccess() throws ApiException{
-	  ApiResponse<SPARBenchmarkRoot> getSparBenchmarkByIdInfo = null;
-	  try {
-		getSparBenchmarkByIdInfo = apiInstance.getSPARBenchmarkByIdWithHttpInfo(CommonParameters.SPAR_BENCHMARK_R1000);
-		  
-		Assert.assertTrue("Response should be 200 - Success", getSparBenchmarkByIdInfo.getStatusCode() == 200);
-	    Assert.assertTrue("Response data should not be null.", getSparBenchmarkByIdInfo.getData() != null);
-	  }
-	  catch(ApiException e) {
-		  CommonFunctions.handleException("BenchmarksApi#getSPARBenchmarkByIdWithHttpInfo", e);
-	  }
-	}
+  @BeforeClass
+  public static void beforeClass() throws ApiException {
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
+  }
+
+  @Before
+  public void before() {
+    apiInstance = new BenchmarksApi(apiClient);
+  }
+
+  @Test
+  public void getSPARBenchmarksByIdSuccess() throws ApiException{
+    ApiResponse<SPARBenchmarkRoot> getSparBenchmarkByIdInfo = null;
+    try {
+      getSparBenchmarkByIdInfo = apiInstance.getSPARBenchmarkByIdWithHttpInfo(CommonParameters.SPAR_BENCHMARK_R1000);
+
+      Assert.assertTrue("Response should be 200 - Success", getSparBenchmarkByIdInfo.getStatusCode() == 200);
+      Assert.assertTrue("Response data should not be null.", getSparBenchmarkByIdInfo.getData() != null);
+    }
+    catch(ApiException e) {
+      CommonFunctions.handleException("BenchmarksApi#getSPARBenchmarkByIdWithHttpInfo", e);
+    }
+  }
 }

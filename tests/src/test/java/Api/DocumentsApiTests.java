@@ -9,8 +9,8 @@ import factset.analyticsapi.engines.models.*;
 
 public class DocumentsApiTests {
 
-  public static ApiClient apiClient;
-  public static DocumentsApi apiInstance;
+  private static ApiClient apiClient;
+  private static DocumentsApi apiInstance;
 
   @Test
   public void getPA3DocumentListSuccess() throws ApiException {

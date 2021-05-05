@@ -12,8 +12,8 @@ import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
 
 public class ColumnsApiTests {
-  public static ApiClient apiClient;
-  public ColumnsApi apiInstance;
+  private static ApiClient apiClient;
+  private ColumnsApi apiInstance;
 
   @BeforeClass
   public static void beforeClass() throws ApiException {

@@ -11,8 +11,8 @@ import factset.analyticsapi.engines.models.*;
 
 public class CurrenciesApiTests {
 
-  public static ApiClient apiClient;
-  public CurrenciesApi apiInstance;
+  private static ApiClient apiClient;
+  private CurrenciesApi apiInstance;
 
   @BeforeClass
   public static void beforeClass() throws ApiException {

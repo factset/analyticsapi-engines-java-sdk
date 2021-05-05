@@ -23,115 +23,115 @@ import factset.analyticsapi.engines.models.OptimizerTradesList;
 
 
 public class BpmInteractiveOptimizerEngineApiTests {
-  public static ApiClient apiClient;
-  public BpmOptimizerApi apiInstance;
-		
+  private static ApiClient apiClient;
+  private BpmOptimizerApi apiInstance;
+
   @BeforeClass
   public static void beforeClass() throws ApiException {
-  apiClient = CommonFunctions.buildApiClient(CommonParameters.VaultPubUsername, CommonParameters.VaultPubPassword);
- }
-	  
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.VaultPubUsername, CommonParameters.VaultPubPassword);
+  }
+
   @Before
   public void before() {
-	apiInstance = new BpmOptimizerApi(apiClient);
+    apiInstance = new BpmOptimizerApi(apiClient);
   }
-  
+
   public BPMOptimizationParameters createUnitOptimization() throws ApiException {
-	BPMOptimizationParameters bpmItem = new BPMOptimizationParameters();
-	BPMOptimizerStrategy strategy = new BPMOptimizerStrategy();
-	strategy.setId(CommonParameters.BpmStrategyId);
-	OptimizerOutputTypes optOutputTypes = new OptimizerOutputTypes();
-	OptimizerTradesList tradesList = new OptimizerTradesList();
-	tradesList.setIdentifierType(CommonParameters.TradesIdType);
-	tradesList.setIncludeCash(CommonParameters.IncudeCash);
-	optOutputTypes.setTrades(tradesList);
-		  
-	bpmItem.setStrategy(strategy);
-	bpmItem.setOutputTypes(optOutputTypes);
-	
-	return bpmItem;
+    BPMOptimizationParameters bpmItem = new BPMOptimizationParameters();
+    BPMOptimizerStrategy strategy = new BPMOptimizerStrategy();
+    strategy.setId(CommonParameters.BpmStrategyId);
+    OptimizerOutputTypes optOutputTypes = new OptimizerOutputTypes();
+    OptimizerTradesList tradesList = new OptimizerTradesList();
+    tradesList.setIdentifierType(CommonParameters.TradesIdType);
+    tradesList.setIncludeCash(CommonParameters.IncudeCash);
+    optOutputTypes.setTrades(tradesList);
+
+    bpmItem.setStrategy(strategy);
+    bpmItem.setOutputTypes(optOutputTypes);
+
+    return bpmItem;
   }
-  
+
   @Test
   public void enginesApiGetOptimizationSuccess() throws ApiException, JsonProcessingException, InterruptedException{
-	ApiResponse<Object> response = null;
-	Map<String, List<String>> headers = null;
-	BPMOptimizationParameters unit1 = null;
-	BPMOptimizationParametersRoot bpmOptimizerParam = new BPMOptimizationParametersRoot();  
-	try {
-	  unit1 = createUnitOptimization();
-	  bpmOptimizerParam.setData(unit1);
-	  response = apiInstance.postAndOptimizeWithHttpInfo(CommonParameters.DEADLINE_HEADER_VALUE, null, bpmOptimizerParam); ;
-	  headers = response.getHeaders();
-	} catch (ApiException e) {
-	  CommonFunctions.handleException("EngineApi#runCalculation", e);
-	}
-	  
-	Assert.assertTrue("Create response status code should be 201 or 202",
-	        response.getStatusCode() == 201 || response.getStatusCode() == 202);
-	  
-	Object resultObject = null;
-	switch(response.getStatusCode()) {
-	  case 201:
-		resultObject = response;
-		headers = response.getHeaders();
-		break;
-	  case 202:
-		String[] locationList = headers.get("Location").get(0).split("/");
-		String requestId = locationList[locationList.length - 2];
-		do {
-		  response = apiInstance.getOptimizationStatusByIdWithHttpInfo(requestId);
-		  headers = response.getHeaders();
-		  Assert.assertTrue("Get status response status code should be 201 or 202",
-		      	response.getStatusCode() == 201 || response.getStatusCode() == 202);
-		  List<String> cacheControl = headers.get("Cache-Control");
-	      if (cacheControl != null) {
-	        int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
-	        System.out.println("Sleeping for: " + maxAge + " seconds");
-	        Thread.sleep(maxAge * 1000L);
-	      } else {
-	        System.out.println("Sleeping for: 2 seconds");
-	        Thread.sleep(2 * 1000L);
-	      }
-		} while(response.getStatusCode() == 202);
-		break;
-	} 
-	String[] location = headers.get("Location").get(0).split("/");
-	String calcId = location[location.length-2];
-	ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(calcId);
-	headers = resultResponse.getHeaders();
-	resultObject = resultResponse.getData();
-	CommonFunctions.checkResult(headers, resultObject);
+    ApiResponse<Object> response = null;
+    Map<String, List<String>> headers = null;
+      
+    try {
+      BPMOptimizationParametersRoot bpmOptimizerParam = new BPMOptimizationParametersRoot();
+      BPMOptimizationParameters optimizationUnit = createUnitOptimization();
+      bpmOptimizerParam.setData(optimizationUnit);
+      response = apiInstance.postAndOptimizeWithHttpInfo(CommonParameters.DEADLINE_HEADER_VALUE, null, bpmOptimizerParam); ;
+      headers = response.getHeaders();
+    } catch (ApiException e) {
+      CommonFunctions.handleException("EngineApi#runCalculation", e);
+    }
+
+    Assert.assertTrue("Create response status code should be 201 or 202",
+        response.getStatusCode() == 201 || response.getStatusCode() == 202);
+
+    Object resultObject = null;
+    switch(response.getStatusCode()) {
+      case 201:
+        resultObject = response;
+        headers = response.getHeaders();
+        break;
+      case 202:
+        String[] locationList = headers.get("Location").get(0).split("/");
+        String requestId = locationList[locationList.length - 2];
+        do {
+          response = apiInstance.getOptimizationStatusByIdWithHttpInfo(requestId);
+          headers = response.getHeaders();
+          Assert.assertTrue("Get status response status code should be 201 or 202",
+              response.getStatusCode() == 201 || response.getStatusCode() == 202);
+          List<String> cacheControl = headers.get("Cache-Control");
+          if (cacheControl != null) {
+            int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
+            System.out.println("Sleeping for: " + maxAge + " seconds");
+            Thread.sleep(maxAge * 1000L);
+          } else {
+            System.out.println("Sleeping for: 2 seconds");
+            Thread.sleep(2 * 1000L);
+          }
+        } while(response.getStatusCode() == 202);
+        break;
+    } 
+    String[] location = headers.get("Location").get(0).split("/");
+    String calcId = location[location.length-2];
+    ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(calcId);
+    headers = resultResponse.getHeaders();
+    resultObject = resultResponse.getData();
+    Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
+    Assert.assertTrue("Result response data should not be null.", resultObject != null);
   }
-  
+
   @Test
-	public void enginesApiDeleteOptimizationSuccess() throws ApiException{
-	  ApiResponse<Object> response = null;
-	  BPMOptimizationParameters unit1 = null;
-	  BPMOptimizationParametersRoot bpmOptimizerParam = new BPMOptimizationParametersRoot();
-	  try {
-		unit1 = createUnitOptimization();
-		BPMOptimizerStrategy strategy = new BPMOptimizerStrategy();
-		strategy.setId(CommonParameters.BpmSecondaryStrategyId);
-		bpmOptimizerParam.setData(unit1);
-		response = apiInstance.postAndOptimizeWithHttpInfo(CommonParameters.DEADLINE_HEADER_VALUE, null, bpmOptimizerParam);
-	  } catch (ApiException e) {
-	    CommonFunctions.handleException("EngineApi#runOptimization", e);
-	  }
-	  Assert.assertTrue("Create response status code should be 202 - Created.", response.getStatusCode() == 202);
-	  String[] locationList = response.getHeaders().get("Location").get(0).split("/");
-	  String id = locationList[locationList.length - 2];
+  public void enginesApiDeleteOptimizationSuccess() throws ApiException{
+    ApiResponse<Object> response = null;    
+    try {
+      BPMOptimizationParameters optimizationUnit = createUnitOptimization();
+      BPMOptimizationParametersRoot bpmOptimizerParam = new BPMOptimizationParametersRoot();
+      BPMOptimizerStrategy strategy = new BPMOptimizerStrategy();
+      strategy.setId(CommonParameters.BpmSecondaryStrategyId);
+      bpmOptimizerParam.setData(optimizationUnit);
+      response = apiInstance.postAndOptimizeWithHttpInfo(CommonParameters.ZERO_DEADLINE_HEADER_VALUE, null, bpmOptimizerParam);
+    } catch (ApiException e) {
+      CommonFunctions.handleException("EngineApi#runOptimization", e);
+    }
+    Assert.assertTrue("Create response status code should be 202 - Created.", response.getStatusCode() == 202);
+    String[] locationList = response.getHeaders().get("Location").get(0).split("/");
+    String id = locationList[locationList.length - 2];
 
-	  Assert.assertTrue("Create response optimization id should be present.", id != null && id.trim().length() > 0);
+    Assert.assertTrue("Create response optimization id should be present.", id != null && id.trim().length() > 0);
 
-	  ApiResponse<Void> deleteResponse = null;
-	  try {
-	    deleteResponse = apiInstance.cancelOptimizationByIdWithHttpInfo(id);
-	  } catch (ApiException e) {
-	    CommonFunctions.handleException("EngineApi#cancelOptimizationByIdWithHttpInfo", e);
-	  }
+    ApiResponse<Void> deleteResponse = null;
+    try {
+      deleteResponse = apiInstance.cancelOptimizationByIdWithHttpInfo(id);
+    } catch (ApiException e) {
+      CommonFunctions.handleException("EngineApi#cancelOptimizationByIdWithHttpInfo", e);
+    }
 
-	  Assert.assertTrue("Delete response status code should be 204 - No Content.", deleteResponse.getStatusCode() == 204);
-	  Assert.assertTrue("Response data should be null.", deleteResponse.getData() == null);	  
-	}
+    Assert.assertTrue("Delete response status code should be 204 - No Content.", deleteResponse.getStatusCode() == 204);
+    Assert.assertTrue("Response data should be null.", deleteResponse.getData() == null);	  
+  }
 }

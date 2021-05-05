@@ -14,8 +14,8 @@ import factset.analyticsapi.engines.models.*;
 
 public class PubEngineApiTests {
 
-  public static ApiClient apiClient;
-  public PubCalculationsApi apiInstance;
+  private static ApiClient apiClient;
+  private PubCalculationsApi apiInstance;
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
@@ -29,9 +29,9 @@ public class PubEngineApiTests {
 
   public PubCalculationParameters createUnitCalculation() throws ApiException {
     PubCalculationParameters pubItem = new PubCalculationParameters();
-    
+
     pubItem.setDocument(CommonParameters.PUB_DEFAULT_DOCUMENT);
-    
+
     PubIdentifier accountIdentifier = new PubIdentifier();
     accountIdentifier.setId(CommonParameters.PUB_DEFAULT_ACCOUNT);
     pubItem.setAccount(accountIdentifier);
@@ -40,19 +40,17 @@ public class PubEngineApiTests {
     dateParameters.setStartdate("-1M");
     dateParameters.setEnddate("0M");
     pubItem.setDates(dateParameters);
-   
+
     return pubItem;
   }
 
   @Test
   public void enginesApiGetCalculationSuccess() throws ApiException {
-    ApiResponse<Object> createResponse = null;
-    PubCalculationParameters unit1 = null;
-    PubCalculationParameters unit2 = null;
-    PubCalculationParametersRoot parameters = new PubCalculationParametersRoot();
+    ApiResponse<Object> createResponse = null;    
     try {
-      unit1 = createUnitCalculation();
-      unit2 = createUnitCalculation();
+      PubCalculationParameters unit1 = createUnitCalculation();
+      PubCalculationParameters unit2 = createUnitCalculation();
+      PubCalculationParametersRoot parameters = new PubCalculationParametersRoot();
       parameters.putDataItem("1", unit1);
       parameters.putDataItem("2", unit2);
       createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, parameters);
@@ -72,20 +70,18 @@ public class PubEngineApiTests {
 
     try {
       do {
-    	getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(id);
+        getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(id);
         resultStatus = (CalculationStatusRoot) getStatus.getData();
         if(getStatus.getStatusCode() == 200)
-        	break;
+          break;
         Assert.assertTrue("Response Data should not be null.", getStatus != null);
         Assert.assertTrue("Response Data should have calculation status as executing or queued.",
-        		resultStatus.getData().getStatus() == CalculationStatus.StatusEnum.QUEUED
-                || resultStatus.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING);
-        Assert.assertTrue("Response Data should have at least one calculation status as executing or queued.",
-        		resultStatus.getData().getUnits().values().stream().filter(f -> f.getStatus() == CalculationUnitStatus.StatusEnum.EXECUTING
-                || f.getStatus() == CalculationUnitStatus.StatusEnum.QUEUED).count() > 0);
-
-        Assert.assertTrue("Response Data should not have all calculation results.",
-        		resultStatus.getData().getUnits().values().stream().filter(f -> f.getResult() == null).count() > 0);
+            resultStatus.getData().getStatus() == CalculationStatus.StatusEnum.QUEUED
+            || resultStatus.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING);
+        Assert.assertTrue("Response Data should have at least one calculation status as executing or queued or success.",
+            resultStatus.getData().getUnits().values().stream().filter(f -> f.getStatus() == CalculationUnitStatus.StatusEnum.EXECUTING
+            || f.getStatus() == CalculationUnitStatus.StatusEnum.QUEUED
+            || f.getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS).count() > 0);
 
         if (getStatus.getHeaders().containsKey("cache-control")) {
           int maxAge = Integer.parseInt(getStatus.getHeaders().get("cache-control").get(0).split("=")[1]);
@@ -110,22 +106,22 @@ public class PubEngineApiTests {
     }
 
     Assert.assertTrue("Response Data should have calculation status as completed.",
-    		resultStatus.getData().getStatus() == CalculationStatus.StatusEnum.COMPLETED);
+        resultStatus.getData().getStatus() == CalculationStatus.StatusEnum.COMPLETED);
     Assert.assertTrue("Response Data should have all calculations status as succeeded.", resultStatus.getData().getUnits()
         .values().stream().filter(f -> f.getStatus() != CalculationUnitStatus.StatusEnum.SUCCESS).count() == 0);
     Assert.assertTrue("Response Data should have all calculation results.",
-    		resultStatus.getData().getUnits().values().stream().filter(f -> f.getResult() == null).count() == 0);
+        resultStatus.getData().getUnits().values().stream().filter(f -> f.getResult() == null).count() == 0);
 
     ApiResponse<File> resultResponse = null;
     File result = null;
 
     for (CalculationUnitStatus calculationParameters : resultStatus.getData().getUnits().values()) {
       try {
-    	String[] location = calculationParameters.getResult().split("/");
-      	String calcId = location[location.length-4];
-      	String unitId = location[location.length-2];
+        String[] location = calculationParameters.getResult().split("/");
+        String calcId = location[location.length-4];
+        String unitId = location[location.length-2];
 
-      	resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(calcId, unitId);
+        resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(calcId, unitId);
         result = (resultResponse.getData());
       } catch (ApiException e) {
         CommonFunctions.handleException("EngineApi#getByUrlWithHttpInfo", e);
@@ -139,12 +135,10 @@ public class PubEngineApiTests {
   @Test
   public void enginesApiDeleteCalculationSuccess() throws ApiException {
     ApiResponse<Object> createResponse = null;
-    PubCalculationParameters unit1 = null;
-    PubCalculationParameters unit2 = null;
-    PubCalculationParametersRoot parameters = new PubCalculationParametersRoot();
     try {
-      unit1 = createUnitCalculation();
-      unit2 = createUnitCalculation();
+      PubCalculationParameters unit1 = createUnitCalculation();
+      PubCalculationParameters unit2 = createUnitCalculation();
+      PubCalculationParametersRoot parameters = new PubCalculationParametersRoot();
       PubDateParameters dateParameters = new PubDateParameters();
       dateParameters.setStartdate("-2M");
       dateParameters.setEnddate("0M");

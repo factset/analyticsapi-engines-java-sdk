@@ -14,8 +14,8 @@ import factset.analyticsapi.engines.models.*;
 
 public class VaultEngineApiTests {
 
-  public static ApiClient apiClient;
-  public VaultCalculationsApi vaultCalculations;
+  private static ApiClient apiClient;
+  private VaultCalculationsApi vaultCalculations;
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
@@ -24,22 +24,22 @@ public class VaultEngineApiTests {
 
   @Before
   public void before() {
-	  vaultCalculations = new VaultCalculationsApi(apiClient);
+    vaultCalculations = new VaultCalculationsApi(apiClient);
   }
 
   public String getComponentId() throws ApiException {
-	ComponentsApi componentsApi = new ComponentsApi(apiClient);
-	Map<String, ComponentSummary> components = ((ComponentSummaryRoot)componentsApi
-	    .getVaultComponents(CommonParameters.VAULT_DEFAULT_DOCUMENT)).getData();
-	String componentId = components.entrySet().stream().findFirst().get().getKey();
-	return componentId;
+    ComponentsApi componentsApi = new ComponentsApi(apiClient);
+    Map<String, ComponentSummary> components = ((ComponentSummaryRoot)componentsApi
+        .getVaultComponents(CommonParameters.VAULT_DEFAULT_DOCUMENT)).getData();
+    String componentId = components.entrySet().stream().findFirst().get().getKey();
+    return componentId;
   }
   public String getConfigurationId() throws ApiException {
-	ConfigurationsApi configurationsApi = new ConfigurationsApi(apiClient);
-	Map<String, VaultConfigurationSummary> configurationsMap = ((VaultConfigurationSummaryRoot)configurationsApi
-	    .getVaultConfigurations(CommonParameters.VAULT_DEFAULT_ACCOUNT)).getData();
-	String configurationId = configurationsMap.entrySet().stream().findFirst().get().getKey();
-	return configurationId;
+    ConfigurationsApi configurationsApi = new ConfigurationsApi(apiClient);
+    Map<String, VaultConfigurationSummary> configurationsMap = ((VaultConfigurationSummaryRoot)configurationsApi
+        .getVaultConfigurations(CommonParameters.VAULT_DEFAULT_ACCOUNT)).getData();
+    String configurationId = configurationsMap.entrySet().stream().findFirst().get().getKey();
+    return configurationId;
   }
   public VaultCalculationParameters createCalculationUnit(String compId, String configId) throws ApiException {
     VaultCalculationParameters vaultItem = new VaultCalculationParameters();
@@ -60,15 +60,13 @@ public class VaultEngineApiTests {
 
   @Test
   public void enginesApiGetCalculationSuccess() throws ApiException {
-    ApiResponse<Object> createResponse = null;
-    VaultCalculationParameters unit1 = null;
-    VaultCalculationParameters unit2 = null;
-    VaultCalculationParametersRoot vaultCalcParamRoot = new VaultCalculationParametersRoot();
+    ApiResponse<Object> createResponse = null;    
     try {
       String id = getComponentId();
       String configId = getConfigurationId();
-      unit1 = createCalculationUnit(id, configId);
-      unit2 = createCalculationUnit(id, configId);      
+      VaultCalculationParameters unit1 = createCalculationUnit(id, configId);
+      VaultCalculationParameters unit2 = createCalculationUnit(id, configId);
+      VaultCalculationParametersRoot vaultCalcParamRoot = new VaultCalculationParametersRoot();
       vaultCalcParamRoot.putDataItem("1", unit1);
       vaultCalcParamRoot.putDataItem("2", unit2);
       createResponse = vaultCalculations.postAndCalculateWithHttpInfo(null, null, vaultCalcParamRoot);
@@ -88,22 +86,20 @@ public class VaultEngineApiTests {
 
     try {
       do {
-    	getStatus = vaultCalculations.getCalculationStatusByIdWithHttpInfo(id);
+        getStatus = vaultCalculations.getCalculationStatusByIdWithHttpInfo(id);
         status = (CalculationStatusRoot)getStatus.getData();
         if(getStatus.getStatusCode() == 200)
-        	break;
+          break;
         Assert.assertTrue("Response Data should not be null.", getStatus != null);
         Assert.assertTrue("Response Data should have calculation status as executing or queued.",
-        		status.getData().getStatus() == CalculationStatus.StatusEnum.QUEUED
-                || status.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING);
-        /*Assert.assertTrue("Response Data should have at least one calculation status as executing or queued.",
+            status.getData().getStatus() == CalculationStatus.StatusEnum.QUEUED
+            || status.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING);
+        Assert.assertTrue("Response Data should have at least one calculation status as executing or queued or success.",
         		status.getData().getUnits().values().stream()
                 .filter(f -> f.getStatus() == CalculationUnitStatus.StatusEnum.EXECUTING
-                    || f.getStatus() == CalculationUnitStatus.StatusEnum.QUEUED)
-                .count() > 0);*/
-
-        Assert.assertTrue("Response Data should not have all calculation results.",
-        		status.getData().getUnits().values().stream().filter(f -> f.getResult() == null).count() > 0);
+                    || f.getStatus() == CalculationUnitStatus.StatusEnum.QUEUED 
+                    || f.getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS)
+                .count() > 0);
 
         if (getStatus.getHeaders().containsKey("cache-control")) {
           int maxAge = Integer.parseInt(getStatus.getHeaders().get("cache-control").get(0).split("=")[1]);
@@ -123,50 +119,48 @@ public class VaultEngineApiTests {
           }
         }
       } while(getStatus.getStatusCode() == 202);
-      
+
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#getCalculationStatusByIdWithHttpInfo", e);
     }
 
     Assert.assertTrue("Response Data should have calculation status as completed.",
-    		status.getData().getStatus() == CalculationStatus.StatusEnum.COMPLETED);
+        status.getData().getStatus() == CalculationStatus.StatusEnum.COMPLETED);
     Assert.assertTrue("Response Data should have all calculations status as succeeded.", status.getData().getUnits()
         .values().stream().filter(f -> f.getStatus() != CalculationUnitStatus.StatusEnum.SUCCESS).count() == 0);
     Assert.assertTrue("Response Data should have all calculation results.",
-    		status.getData().getUnits().values().stream().filter(f -> f.getResult() == null).count() == 0);
+        status.getData().getUnits().values().stream().filter(f -> f.getResult() == null).count() == 0);
 
     ApiResponse<ObjectRoot> resultResponse = null;
     Object result = null;
 
     for (CalculationUnitStatus calculationParameters : status.getData().getUnits().values()) {
       try {
-    	  String[] location = calculationParameters.getResult().split("/");
-    	  String calcId = location[location.length-4];
-    	  String unitId = location[location.length-2];
-    	  
-    	  resultResponse = vaultCalculations.getCalculationUnitResultByIdWithHttpInfo(calcId, unitId);
-    	  result = ((ObjectRoot)resultResponse.getData()).getData();
+        String[] location = calculationParameters.getResult().split("/");
+        String calcId = location[location.length-4];
+        String unitId = location[location.length-2];
+
+        resultResponse = vaultCalculations.getCalculationUnitResultByIdWithHttpInfo(calcId, unitId);
+        result = ((ObjectRoot)resultResponse.getData()).getData();
       } catch (ApiException e) {
         CommonFunctions.handleException("EngineApi#getByUrlWithHttpInfo", e);
       }
 
       Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
       Assert.assertTrue("Result response data should not be null.", resultResponse.getData() != null);
-      CommonFunctions.checkResult(resultResponse.getHeaders(), result);
+      CalculationsHelper.validateCalculationResponse(resultResponse.getHeaders(), result);
     }
   }
 
   @Test
   public void enginesApiDeleteCalculationSuccess() throws ApiException {
     ApiResponse<Object> createResponse = null;
-    VaultCalculationParameters unit1 = null;
-    VaultCalculationParameters unit2 = null;
-    VaultCalculationParametersRoot vaultCalcParamRoot = new VaultCalculationParametersRoot();
     try {
       String id = getComponentId();
       String configId = getConfigurationId();
-      unit1 = createCalculationUnit(id, configId);
-      unit2 = createCalculationUnit(id, configId);
+      VaultCalculationParameters unit1 = createCalculationUnit(id, configId);
+      VaultCalculationParameters unit2 = createCalculationUnit(id, configId);
+      VaultCalculationParametersRoot vaultCalcParamRoot = new VaultCalculationParametersRoot();
       VaultIdentifier accountId = new VaultIdentifier();
       accountId.setId(CommonParameters.VAULT_SECONDARY_ACCOUNT);
       unit2.setAccount(accountId);

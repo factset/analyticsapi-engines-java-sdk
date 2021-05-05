@@ -24,66 +24,65 @@ import factset.analyticsapi.engines.models.OptimizerOutputTypes;
 import factset.analyticsapi.engines.models.OptimizerTradesList;
 
 public class AxpInteractiveOptimizerEngineApiTests {
-	public static ApiClient apiClient;
-	public AxpOptimizerApi apiInstance;
-	
-	@BeforeClass
-	public static void beforeClass() throws ApiException {
-	  apiClient = CommonFunctions.buildApiClient(CommonParameters.OptimizerUsername, CommonParameters.OptimizerPassword);
-	}
+  private static ApiClient apiClient;
+  private AxpOptimizerApi apiInstance;
 
-	@Before
-	public void before() {
-		apiInstance = new AxpOptimizerApi(apiClient);
-	}
-	
-	public AxiomaEquityOptimizationParameters createUnitOptimization() throws ApiException {
-	  AxiomaEquityOptimizationParameters axpItem = new AxiomaEquityOptimizationParameters();
-	  OptimizerAccount accountId = new OptimizerAccount();
-	  accountId.setId(CommonParameters.AxiomaAccountId);
-	  
-	  Optimization optimization = new Optimization();
-	  optimization.setBacktestDate(CommonParameters.OptimizationDate);
-	  optimization.setRiskModelDate(CommonParameters.OptimizationDate);
-	  optimization.setCashflow(CommonParameters.OptimizationCashflow);
-	  
-	  AxiomaEquityOptimizerStrategy strategy = new AxiomaEquityOptimizerStrategy();
-	  strategy.setId(CommonParameters.SecondaryStrategyId);
-	  
-	  OptimizerOutputTypes optOutputTypes = new OptimizerOutputTypes();
-	  OptimizerTradesList tradesList = new OptimizerTradesList();
-	  tradesList.setIdentifierType(CommonParameters.TradesIdType);
-	  tradesList.setIncludeCash(CommonParameters.IncudeCash);
-	  optOutputTypes.setTrades(tradesList);
-	  
-	  axpItem.setAccount(accountId);
-	  axpItem.setOptimization(optimization);
-	  axpItem.setStrategy(strategy);
-	  axpItem.setOutputTypes(optOutputTypes);
-	  
-	  return axpItem;
-	}
-	
-	@Test
+  @BeforeClass
+  public static void beforeClass() throws ApiException {
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.OptimizerUsername, CommonParameters.OptimizerPassword);
+  }
+
+  @Before
+  public void before() {
+    apiInstance = new AxpOptimizerApi(apiClient);
+  }
+
+  public AxiomaEquityOptimizationParameters createUnitOptimization() throws ApiException {
+    AxiomaEquityOptimizationParameters axpItem = new AxiomaEquityOptimizationParameters();
+    OptimizerAccount accountId = new OptimizerAccount();
+    accountId.setId(CommonParameters.AxiomaAccountId);
+
+    Optimization optimization = new Optimization();
+    optimization.setBacktestDate(CommonParameters.OptimizationDate);
+    optimization.setRiskModelDate(CommonParameters.OptimizationDate);
+    optimization.setCashflow(CommonParameters.OptimizationCashflow);
+
+    AxiomaEquityOptimizerStrategy strategy = new AxiomaEquityOptimizerStrategy();
+    strategy.setId(CommonParameters.SecondaryStrategyId);
+
+    OptimizerOutputTypes optOutputTypes = new OptimizerOutputTypes();
+    OptimizerTradesList tradesList = new OptimizerTradesList();
+    tradesList.setIdentifierType(CommonParameters.TradesIdType);
+    tradesList.setIncludeCash(CommonParameters.IncudeCash);
+    optOutputTypes.setTrades(tradesList);
+
+    axpItem.setAccount(accountId);
+    axpItem.setOptimization(optimization);
+    axpItem.setStrategy(strategy);
+    axpItem.setOutputTypes(optOutputTypes);
+
+    return axpItem;
+  }
+
+  @Test
 	public void enginesApiGetOptimizationSuccess() throws ApiException, JsonProcessingException, InterruptedException{
 	  ApiResponse<Object> response = null;
-	  Map<String, List<String>> headers = null;
-	  AxiomaEquityOptimizationParameters unit1 = null;
-	  AxiomaEquityOptimizationParametersRoot axpOptimizerParam = new AxiomaEquityOptimizationParametersRoot();
+	  Map<String, List<String>> headers = null;	  
 	  try {
-		unit1 = createUnitOptimization();
-		axpOptimizerParam.setData(unit1);
+		AxiomaEquityOptimizationParameters optimizationUnit = createUnitOptimization();
+		AxiomaEquityOptimizationParametersRoot axpOptimizerParam = new AxiomaEquityOptimizationParametersRoot();
+		axpOptimizerParam.setData(optimizationUnit);
 		response = apiInstance.postAndOptimizeWithHttpInfo(CommonParameters.DEADLINE_HEADER_VALUE, null, axpOptimizerParam);
 		headers = response.getHeaders();
 	  } catch (ApiException e) {
 	      CommonFunctions.handleException("EngineApi#runCalculation", e);
 	  }
-	  
+
 	  Assert.assertTrue("Create response status code should be 201 or 202",
 	          response.getStatusCode() == 201 || response.getStatusCode() == 202);
-	  
+
 	  Object resultObject = null;
-	  
+	  // switch case on post response code
 	  switch(response.getStatusCode()) {
 	  case 201:
 		resultObject = response;
@@ -114,38 +113,37 @@ public class AxpInteractiveOptimizerEngineApiTests {
 	  ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id);
 	  headers = resultResponse.getHeaders();
 	  resultObject = resultResponse.getData();
-	  CommonFunctions.checkResult(headers, resultObject);
+	  Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
+    Assert.assertTrue("Result response data should not be null.", resultObject != null);
 	}
-	
-	@Test
-	public void enginesApiDeleteOptimizationSuccess() throws ApiException{
-	  ApiResponse<Object> response = null;
-	  AxiomaEquityOptimizationParameters unit1 = null;
-	  AxiomaEquityOptimizationParametersRoot axpOptimizerParam = new AxiomaEquityOptimizationParametersRoot();
-	  try {
-		unit1 = createUnitOptimization();
-		AxiomaEquityOptimizerStrategy strategy = new AxiomaEquityOptimizerStrategy();
-		strategy.setId(CommonParameters.SecondaryStrategyId);
-		unit1.setStrategy(strategy);
-		axpOptimizerParam.setData(unit1);
-		response = apiInstance.postAndOptimizeWithHttpInfo(CommonParameters.DEADLINE_HEADER_VALUE, null, axpOptimizerParam);
-	  } catch (ApiException e) {
-	    CommonFunctions.handleException("EngineApi#runOptimization", e);
-	  }
-	  Assert.assertTrue("Create response status code should be 202 - Created.", response.getStatusCode() == 202);
-	  String[] locationList = response.getHeaders().get("Location").get(0).split("/");
-	  String id = locationList[locationList.length - 2];
 
-	  Assert.assertTrue("Create response optimization id should be present.", id != null && id.trim().length() > 0);
+  @Test
+  public void enginesApiDeleteOptimizationSuccess() throws ApiException{
+    ApiResponse<Object> response = null;    
+    try {
+      AxiomaEquityOptimizationParameters optimizationUnit = createUnitOptimization();
+      AxiomaEquityOptimizationParametersRoot axpOptimizerParam = new AxiomaEquityOptimizationParametersRoot();
+      AxiomaEquityOptimizerStrategy strategy = new AxiomaEquityOptimizerStrategy();
+      strategy.setId(CommonParameters.SecondaryStrategyId);
+      optimizationUnit.setStrategy(strategy);
+      axpOptimizerParam.setData(optimizationUnit);
+      response = apiInstance.postAndOptimizeWithHttpInfo(CommonParameters.ZERO_DEADLINE_HEADER_VALUE, null, axpOptimizerParam);
+    } catch (ApiException e) {
+      CommonFunctions.handleException("EngineApi#runOptimization", e);
+    }
+    Assert.assertTrue("Create response status code should be 202 - Created.", response.getStatusCode() == 202);
+    String[] locationList = response.getHeaders().get("Location").get(0).split("/");
+    String id = locationList[locationList.length - 2];
 
-	  ApiResponse<Void> deleteResponse = null;
-	  try {
-	    deleteResponse = apiInstance.cancelOptimizationByIdWithHttpInfo(id);
-	  } catch (ApiException e) {
-	    CommonFunctions.handleException("EngineApi#cancelOptimizationByIdWithHttpInfo", e);
-	  }
+    Assert.assertTrue("Create response optimization id should be present.", id != null && id.trim().length() > 0);
 
-	  Assert.assertTrue("Delete response status code should be 204 - No Content.", deleteResponse.getStatusCode() == 204);
-	  Assert.assertTrue("Response data should be null.", deleteResponse.getData() == null);	  
-	}
+    ApiResponse<Void> deleteResponse = null;
+    try {
+      deleteResponse = apiInstance.cancelOptimizationByIdWithHttpInfo(id);
+    } catch (ApiException e) {
+      CommonFunctions.handleException("EngineApi#cancelOptimizationByIdWithHttpInfo", e);
+    }
+    Assert.assertTrue("Delete response status code should be 204 - No Content.", deleteResponse.getStatusCode() == 204);
+    Assert.assertTrue("Response data should be null.", deleteResponse.getData() == null);	  
+  }
 }
