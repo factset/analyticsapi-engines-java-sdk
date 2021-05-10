@@ -33,7 +33,7 @@ public class CalculationsHelper {
       }        
     } catch(Exception e) {
       System.out.println(e.getMessage());
-      e.getStackTrace();
+      e.printStackTrace();
     }
   }
 }
