@@ -7,8 +7,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**securities** | [**java.util.List&lt;FISecurity&gt;**](FISecurity.md) |  | 
-**calculations** | **java.util.List&lt;String&gt;** |  | 
+**securities** | [**java.util.List&lt;FISecurity&gt;**](FISecurity.md) | List of securities | 
+**calculations** | **java.util.List&lt;String&gt;** | List of calculations | 
 **jobSettings** | [**FIJobSettings**](FIJobSettings.md) |  | 
 
 

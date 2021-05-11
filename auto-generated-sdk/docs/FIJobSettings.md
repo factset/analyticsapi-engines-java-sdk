@@ -7,8 +7,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**yieldCurveDate** | **String** |  | 
-**partialDurationMonths** | **java.util.List&lt;Integer&gt;** |  |  [optional]
+**asOfDate** | **String** | As of date | 
+**partialDurationMonths** | **java.util.List&lt;Integer&gt;** | Partial duration months |  [optional]
 
 
 ## Implemented Interfaces

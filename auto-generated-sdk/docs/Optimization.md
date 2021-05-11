@@ -7,8 +7,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**riskmodeldate** | **String** | Risk model date |  [optional]
-**backtestdate** | **String** | Backtest date |  [optional]
+**riskModelDate** | **String** | Risk model date |  [optional]
+**backtestDate** | **String** | Backtest date |  [optional]
 **cashflow** | **String** | Cash flow |  [optional]
 
 

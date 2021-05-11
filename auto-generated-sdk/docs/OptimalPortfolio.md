@@ -7,20 +7,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**acctname** | **String** | Account path |  [optional]
-**excludezero** | **Boolean** | Exclude zero |  [optional]
-**archivedate** | **String** | Archive date |  [optional]
-**ifexists** | [**IfexistsEnum**](#IfexistsEnum) | Archive action if account exists |  [optional]
+**acctName** | **String** | Account path |  [optional]
+**excludeZero** | **Boolean** | Exclude zero |  [optional]
+**archiveDate** | **String** | Archive date |  [optional]
+**ifAcctExists** | [**IfAcctExistsEnum**](#IfAcctExistsEnum) | Archive action if account exists |  [optional]
+**ifOfdbDateExists** | [**IfOfdbDateExistsEnum**](#IfOfdbDateExistsEnum) | Action if ofdb date exists |  [optional]
 
 
 
-## Enum: IfexistsEnum
+## Enum: IfAcctExistsEnum
 
 Name | Value
 ---- | -----
-OVERWRITE | &quot;Overwrite&quot;
-APPENDDATE | &quot;Appenddate&quot;
-FAIL | &quot;Fail&quot;
+ABORT | &quot;abort&quot;
+OVERWRITE | &quot;overwrite&quot;
+APPENDDATE | &quot;appendDate&quot;
+
+
+
+## Enum: IfOfdbDateExistsEnum
+
+Name | Value
+---- | -----
+ABORT | &quot;abort&quot;
+REPLACEDATE | &quot;replaceDate&quot;
+APPENDSECURITIES | &quot;appendSecurities&quot;
 
 
 ## Implemented Interfaces

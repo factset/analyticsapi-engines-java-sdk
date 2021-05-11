@@ -7,13 +7,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**identifiertype** | [**IdentifiertypeEnum**](#IdentifiertypeEnum) | Identifier type |  [optional]
-**includecash** | **Boolean** | Include cash |  [optional]
-**excludezero** | **Boolean** | Exclude zero |  [optional]
+**identifierType** | [**IdentifierTypeEnum**](#IdentifierTypeEnum) | Identifier type |  [optional]
+**includeCash** | **Boolean** | Include cash |  [optional]
+**excludeZero** | **Boolean** | Exclude zero |  [optional]
 
 
 
-## Enum: IdentifiertypeEnum
+## Enum: IdentifierTypeEnum
 
 Name | Value
 ---- | -----

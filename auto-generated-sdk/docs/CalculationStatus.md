@@ -7,12 +7,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**status** | [**StatusEnum**](#StatusEnum) |  |  [optional]
-**units** | **Integer** | Number of calculation units in batch. |  [optional]
-**pa** | [**Map&lt;String, CalculationUnitStatus&gt;**](CalculationUnitStatus.md) | List of statuses for PA calculation units. |  [optional]
-**spar** | [**Map&lt;String, CalculationUnitStatus&gt;**](CalculationUnitStatus.md) | List of statuses for SPAR calculation units. |  [optional]
-**vault** | [**Map&lt;String, CalculationUnitStatus&gt;**](CalculationUnitStatus.md) | List of statuses for Vault calculation units. |  [optional]
-**pub** | [**Map&lt;String, CalculationUnitStatus&gt;**](CalculationUnitStatus.md) | List of statuses for Publisher calculation units. |  [optional]
+**calculationid** | **String** | Calculation&#39;s identifier |  [optional]
+**status** | [**StatusEnum**](#StatusEnum) | Calculation&#39;s status |  [optional]
+**units** | [**Map&lt;String, CalculationUnitStatus&gt;**](CalculationUnitStatus.md) | Number of calculation units in batch. |  [optional]
 
 
 
