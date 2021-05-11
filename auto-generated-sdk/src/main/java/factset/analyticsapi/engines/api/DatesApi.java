@@ -10,11 +10,9 @@ import javax.ws.rs.core.GenericType;
 
 import factset.analyticsapi.engines.models.DateParametersSummary;
 
-
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class DatesApi {
   private ApiClient apiClient;
-
   public DatesApi() {
     this(Configuration.getDefaultApiClient());
   }
@@ -23,13 +21,24 @@ public class DatesApi {
     this.apiClient = apiClient;
   }
 
+  /**
+   * Get the API cilent
+   *
+   * @return API client
+   */
   public ApiClient getApiClient() {
     return apiClient;
   }
 
+  /**
+   * Set the API cilent
+   *
+   * @param apiClient an instance of API client
+   */
   public void setApiClient(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
+
   /**
    * Convert PA dates to absolute format
    * This endpoint converts the given start and end dates in FactSet date format to yyyymmdd format for a PA calculation. For more information on FactSet date format, please refer to the PA Engine API documentation under the &#39;API Documentation&#39; section in the developer portal.
@@ -128,7 +137,10 @@ public class DatesApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<DateParametersSummary> localVarReturnType = new GenericType<DateParametersSummary>() {};
-    return apiClient.invokeAPI("DatesApi.convertPADatesToAbsoluteFormat", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("DatesApi.convertPADatesToAbsoluteFormat", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
   /**
    * Convert Vault dates to absolute format
@@ -228,6 +240,9 @@ public class DatesApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<DateParametersSummary> localVarReturnType = new GenericType<DateParametersSummary>() {};
-    return apiClient.invokeAPI("DatesApi.convertVaultDatesToAbsoluteFormat", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("DatesApi.convertVaultDatesToAbsoluteFormat", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
 }

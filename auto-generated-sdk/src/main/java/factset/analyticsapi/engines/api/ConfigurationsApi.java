@@ -11,11 +11,9 @@ import javax.ws.rs.core.GenericType;
 import factset.analyticsapi.engines.models.VaultConfiguration;
 import factset.analyticsapi.engines.models.VaultConfigurationSummary;
 
-
-
+@javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ConfigurationsApi {
   private ApiClient apiClient;
-
   public ConfigurationsApi() {
     this(Configuration.getDefaultApiClient());
   }
@@ -24,13 +22,24 @@ public class ConfigurationsApi {
     this.apiClient = apiClient;
   }
 
+  /**
+   * Get the API cilent
+   *
+   * @return API client
+   */
   public ApiClient getApiClient() {
     return apiClient;
   }
 
+  /**
+   * Set the API cilent
+   *
+   * @param apiClient an instance of API client
+   */
   public void setApiClient(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
+
   /**
    * Get Vault configuration by id
    * This endpoint returns details for a Vault configuration as well as a list of accounts it is used in.
@@ -110,7 +119,10 @@ public class ConfigurationsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<VaultConfiguration> localVarReturnType = new GenericType<VaultConfiguration>() {};
-    return apiClient.invokeAPI("ConfigurationsApi.getVaultConfigurationById", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("ConfigurationsApi.getVaultConfigurationById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
   /**
    * Get Vault configurations
@@ -191,6 +203,9 @@ public class ConfigurationsApi {
     String[] localVarAuthNames = new String[] { "Basic" };
 
     GenericType<java.util.Map<String, VaultConfigurationSummary>> localVarReturnType = new GenericType<java.util.Map<String, VaultConfigurationSummary>>() {};
-    return apiClient.invokeAPI("ConfigurationsApi.getVaultConfigurations", localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+
+    return apiClient.invokeAPI("ConfigurationsApi.getVaultConfigurations", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
   }
 }
