@@ -2,13 +2,14 @@
 
 # PAComponent
 
+
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | Component identifier. |  [optional]
-**accounts** | [**java.util.List&lt;PAIdentifier&gt;**](PAIdentifier.md) | List of accounts saved in the PA document. |  [optional] [readonly]
-**benchmarks** | [**java.util.List&lt;PAIdentifier&gt;**](PAIdentifier.md) | List of benchmarks saved in the PA document. |  [optional] [readonly]
+**accounts** | [**java.util.List&lt;PAIdentifier&gt;**](PAIdentifier.md) | List of accounts saved in the PA document. |  [optional]
+**benchmarks** | [**java.util.List&lt;PAIdentifier&gt;**](PAIdentifier.md) | List of benchmarks saved in the PA document. |  [optional]
 **currencyisocode** | **String** |  |  [optional]
 **dates** | [**PADateParameters**](PADateParameters.md) |  |  [optional]
 **snapshot** | **Boolean** | Is the component type snapshot or subperiod. |  [optional]
