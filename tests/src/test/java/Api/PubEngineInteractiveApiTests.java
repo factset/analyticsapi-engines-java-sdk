@@ -37,7 +37,7 @@ public class PubEngineInteractiveApiTests {
     apiInstance = new PubCalculationsApi(apiClient);
   }
 
-  public PubCalculationParameters createUnitCalculation() throws ApiException {
+  private PubCalculationParameters createUnitCalculation() throws ApiException {
     PubCalculationParameters pubItem = new PubCalculationParameters();
 
     pubItem.setDocument(CommonParameters.PUB_DEFAULT_DOCUMENT);
@@ -118,7 +118,7 @@ public class PubEngineInteractiveApiTests {
     }
   }
 
-  public ApiResponse<File> GetCalculationResult(String[] location) throws ApiException {
+  private ApiResponse<File> GetCalculationResult(String[] location) throws ApiException {
     ApiResponse<File> resultResponse = null;
     try {	  
       String calcId = location[location.length-4];

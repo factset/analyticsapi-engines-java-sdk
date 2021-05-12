@@ -27,7 +27,7 @@ public class PubEngineApiTests {
     apiInstance = new PubCalculationsApi(apiClient);
   }
 
-  public PubCalculationParameters createUnitCalculation() throws ApiException {
+  private PubCalculationParameters createUnitCalculation() throws ApiException {
     PubCalculationParameters pubItem = new PubCalculationParameters();
 
     pubItem.setDocument(CommonParameters.PUB_DEFAULT_DOCUMENT);

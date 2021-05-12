@@ -34,7 +34,7 @@ public class FiabInteractiveEngineApiTests {
     apiInstance = new FiabCalculationsApi(apiClient);
   }
 
-  public ApiResponse<Void> runCalculation() throws ApiException {
+  private ApiResponse<Void> runCalculation() throws ApiException {
     final FIABCalculationParameters parameters = new FIABCalculationParameters();
 
     final FIABIdentifier fiabID = new FIABIdentifier();
@@ -110,7 +110,7 @@ public class FiabInteractiveEngineApiTests {
     }
 
     Assert.assertTrue("Response should be 200 - Success.", getFIABCalculationStatusSummary.getStatusCode() == 200);
-    Assert.assertTrue("Respose data should not be null.", getFIABCalculationStatusSummary.getData() != null);
+    Assert.assertTrue("Response data should not be null.", getFIABCalculationStatusSummary.getData() != null);
     Assert.assertTrue("Response data does not include the created calculation.",
         getFIABCalculationStatusSummary.getData().containsKey(id));	  
   }*/

@@ -30,7 +30,7 @@ public class SPAREngineInteractiveApiTests {
     apiInstance = new SparCalculationsApi(apiClient);
   }
 
-  public String getComponentId() throws ApiException {
+  private String getComponentId() throws ApiException {
     ComponentsApi componentsApi = new ComponentsApi(apiClient);
     Map<String, ComponentSummary> components = ((ComponentSummaryRoot)componentsApi
         .getSPARComponents(CommonParameters.SPAR_DEFAULT_DOCUMENT)).getData();
@@ -38,7 +38,7 @@ public class SPAREngineInteractiveApiTests {
     return componentId;
   }
 
-  public SPARCalculationParameters createCalculationUnit(String componentId) {
+  private SPARCalculationParameters createCalculationUnit(String componentId) {
     SPARCalculationParameters sparItem = new SPARCalculationParameters();
     sparItem.setComponentid(componentId);
     SPARIdentifier accountIdentifier1 = new SPARIdentifier();
@@ -121,7 +121,7 @@ public class SPAREngineInteractiveApiTests {
     }
   }
 
-  public ApiResponse<ObjectRoot> GetCalculationResult(String[] location) throws ApiException {
+  private ApiResponse<ObjectRoot> GetCalculationResult(String[] location) throws ApiException {
     ApiResponse<ObjectRoot> resultResponse = null;
     try {	  
       String calcId = location[location.length-4];

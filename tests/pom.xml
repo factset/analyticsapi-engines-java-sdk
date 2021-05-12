@@ -20,6 +20,11 @@
             <artifactId>stach.v2</artifactId>
             <version>${stach-version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.factset.protobuf</groupId>
+            <artifactId>stachextensions</artifactId>
+            <version>${stach-extension-version}</version>
+        </dependency>
         <!-- @Nullable annotation -->
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
@@ -118,6 +123,7 @@
         <junit-version>4.13.1</junit-version>
         <protobuf-version>3.12.2</protobuf-version>
         <stach-version>1.0.0</stach-version>
+        <stach-extension-version>1.0.0</stach-extension-version>
         <engines-sdk-version>5.0.0</engines-sdk-version>
         <poi-ooxml-version>4.0.1</poi-ooxml-version>
     </properties>

@@ -29,14 +29,14 @@ public class PAEngineInteractiveApiTests {
     apiInstance = new PaCalculationsApi(apiClient);
   }
 
-  public String getComponentId() throws ApiException {
+  private String getComponentId() throws ApiException {
     ComponentsApi componentsApi = new ComponentsApi(apiClient);
     Map<String, ComponentSummary> components = componentsApi.getPAComponents(CommonParameters.PA_DEFAULT_DOCUMENT).getData();	
     String componentId = components.entrySet().stream().findFirst().get().getKey();
     return componentId;
   }
 
-  public PACalculationParameters createCalculationUnit(String componentId) {
+  private PACalculationParameters createCalculationUnit(String componentId) {
     PACalculationParameters paItem = new PACalculationParameters();
     paItem.setComponentid(componentId);
     PAIdentifier accountPaIdentifier1 = new PAIdentifier();
@@ -115,7 +115,7 @@ public class PAEngineInteractiveApiTests {
     }
   }
 
-  public ApiResponse<ObjectRoot> GetCalculationResult(String[] location) throws ApiException {
+  private ApiResponse<ObjectRoot> GetCalculationResult(String[] location) throws ApiException {
     ApiResponse<ObjectRoot> resultResponse = null;
     try {	  
       String calcId = location[location.length-4];

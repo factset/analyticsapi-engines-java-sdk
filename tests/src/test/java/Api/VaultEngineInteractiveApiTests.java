@@ -29,21 +29,21 @@ public class VaultEngineInteractiveApiTests {
     apiInstance = new VaultCalculationsApi(apiClient);
   }
 
-  public String getComponentId() throws ApiException {
+  private String getComponentId() throws ApiException {
     ComponentsApi componentsApi = new ComponentsApi(apiClient);
     Map<String, ComponentSummary> components = ((ComponentSummaryRoot)componentsApi
         .getVaultComponents(CommonParameters.VAULT_DEFAULT_DOCUMENT)).getData();
     String componentId = components.entrySet().stream().findFirst().get().getKey();
     return componentId;
   }
-  public String getConfigurationId() throws ApiException {
+  private String getConfigurationId() throws ApiException {
     ConfigurationsApi configurationsApi = new ConfigurationsApi(apiClient);
     Map<String, VaultConfigurationSummary> configurationsMap = ((VaultConfigurationSummaryRoot)configurationsApi
         .getVaultConfigurations(CommonParameters.VAULT_DEFAULT_ACCOUNT)).getData();
     String configurationId = configurationsMap.entrySet().stream().findFirst().get().getKey();
     return configurationId;
   }
-  public VaultCalculationParameters createCalculationUnit(String compId, String configId) throws ApiException {
+  private VaultCalculationParameters createCalculationUnit(String compId, String configId) throws ApiException {
     VaultCalculationParameters vaultItem = new VaultCalculationParameters();
     vaultItem.setConfigid(configId);
     vaultItem.setComponentid(compId);
@@ -121,7 +121,7 @@ public class VaultEngineInteractiveApiTests {
     }
   }
 
-  public ApiResponse<ObjectRoot> GetCalculationResult(String[] location) throws ApiException {
+  private ApiResponse<ObjectRoot> GetCalculationResult(String[] location) throws ApiException {
     ApiResponse<ObjectRoot> resultResponse = null;
     try {	  
       String calcId = location[location.length-4];
