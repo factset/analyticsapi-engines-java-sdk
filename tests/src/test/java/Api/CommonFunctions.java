@@ -24,7 +24,7 @@ public class CommonFunctions {
 
     } else {
       throw new ApiException(
-          "Please set ANALYTICS_API_DEFAULT_USERNAME_SERIAL and ANALYTICS_API_DEFAULT_PASSWORD environment variables.");
+          "Please set the neccessary username-serial and password environment variables.");
     }
 
     return apiClient;

@@ -2,7 +2,13 @@ name: CI
 
 env:
   ANALYTICS_API_USERNAME_SERIAL: ${{ secrets.ANALYTICS_API_USERNAME_SERIAL }}
-  ANALYTICS_API_PASSWORD: ${{ secrets.ANALYTICS_API_PASSWORD }} 
+  ANALYTICS_API_PASSWORD: ${{ secrets.ANALYTICS_API_PASSWORD }}
+  ANALYTICS_API_DEFAULT_USERNAME_SERIAL: ${{ secrets.ANALYTICS_API_DEFAULT_USERNAME_SERIAL }}
+  ANALYTICS_API_DEFAULT_PASSWORD: ${{ secrets.ANALYTICS_API_DEFAULT_PASSWORD }}
+  ANALYTICS_API_VAULT_PUB_USERNAME_SERIAL: ${{ secrets.ANALYTICS_API_VAULT_PUB_USERNAME_SERIAL }}
+  ANALYTICS_API_VAULT_PUB_PASSWORD: ${{ secrets.ANALYTICS_API_VAULT_PUB_PASSWORD }}
+  ANALYTICS_API_OPTIMIZER_USERNAME_SERIAL: ${{ secrets.ANALYTICS_API_OPTIMIZER_USERNAME_SERIAL }}
+  ANALYTICS_API_OPTIMIZER_PASSWORD: ${{ secrets.ANALYTICS_API_OPTIMIZER_PASSWORD }}
 
 on:
   push:
@@ -31,5 +37,5 @@ jobs:
     - name: Run Tests
       run: cd tests && mvn -q test -Dtest=ApiTestsRunner
 
-    - name: Build Examples
-      run: cd examples && mvn clean package
+    #- name: Build Examples
+    #  run: cd examples && mvn clean package
