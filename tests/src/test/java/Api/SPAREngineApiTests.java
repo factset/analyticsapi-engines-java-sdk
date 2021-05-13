@@ -12,37 +12,32 @@ import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
 
-import com.factset.protobuf.stach.PackageProto.Package.Builder;
-import com.factset.protobuf.stach.PackageProto.Package;
-import com.google.protobuf.util.JsonFormat;
-import com.google.protobuf.InvalidProtocolBufferException;
-
 public class SPAREngineApiTests {
 
-  public static ApiClient apiClient;
-  public CalculationsApi apiInstance;
-  public UtilityApi utilityApiInstance;
+  private static ApiClient apiClient;
+  private SparCalculationsApi sparCalculations;
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
   }
 
   @Before
   public void before() {
-    apiInstance = new CalculationsApi(apiClient);
-    utilityApiInstance = new UtilityApi(apiClient);
+    sparCalculations = new SparCalculationsApi(apiClient);
   }
 
-  public ApiResponse<Void> runCalculation() throws ApiException {
-    SPARCalculationParameters sparItem = new SPARCalculationParameters();
-
+  private String getComponentId() throws ApiException {
     ComponentsApi componentsApi = new ComponentsApi(apiClient);
-    Map<String, ComponentSummary> components = componentsApi
-        .getSPARComponents(CommonParameters.SPAR_DEFAULT_DOCUMENT);
+    Map<String, ComponentSummary> components = ((ComponentSummaryRoot)componentsApi
+        .getSPARComponents(CommonParameters.SPAR_DEFAULT_DOCUMENT)).getData();
     String componentId = components.entrySet().stream().findFirst().get().getKey();
-    sparItem.setComponentid(componentId);
+    return componentId;
+  }
 
+  private SPARCalculationParameters createCalculationUnit(String componentId) {
+    SPARCalculationParameters sparItem = new SPARCalculationParameters();
+    sparItem.setComponentid(componentId);
     SPARIdentifier accountIdentifier1 = new SPARIdentifier();
     accountIdentifier1.setId(CommonParameters.SPAR_BENCHMARK_R1000);
     accountIdentifier1.setPrefix(CommonParameters.SPAR_BENCHMARK_RUSSELL_PREFIX);
@@ -60,19 +55,21 @@ public class SPAREngineApiTests {
     benchmarkIdentifier.setPrefix(CommonParameters.SPAR_BENCHMARK_RUSSELL_PREFIX);
     benchmarkIdentifier.setReturntype(CommonParameters.SPAR_BENCHMARK_RUSSELL_RETURN);
     sparItem.setBenchmark(benchmarkIdentifier);
-
-    Calculation parameters = new Calculation();
-    parameters.putSparItem("1", sparItem);
-
-    return apiInstance.runCalculationWithHttpInfo(parameters);
+    return sparItem;
   }
 
   @Test
   public void enginesApiGetCalculationSuccess() throws ApiException {
-    ApiResponse<Void> createResponse = null;
-
+    ApiResponse<Object> createResponse = null;
+    
     try {
-      createResponse = runCalculation();
+      String id = getComponentId();
+      SPARCalculationParameters unit1 = createCalculationUnit(id);
+      SPARCalculationParameters unit2 = createCalculationUnit(id);
+      SPARCalculationParametersRoot sparCalcParamRoot = new SPARCalculationParametersRoot();
+      sparCalcParamRoot.putDataItem("1", unit1);
+      sparCalcParamRoot.putDataItem("2", unit2);
+      createResponse = sparCalculations.postAndCalculateWithHttpInfo(null, null, sparCalcParamRoot);
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#createWithHttpInfo", e);
     }
@@ -80,27 +77,29 @@ public class SPAREngineApiTests {
     Assert.assertTrue("Create response status code should be 202 - Created.", createResponse.getStatusCode() == 202);
 
     String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-    String id = locationList[locationList.length - 1];
+    String id = locationList[locationList.length - 2];
 
     Assert.assertTrue("Create response calculation id should be present.", id != null && id.trim().length() > 0);
 
-    ApiResponse<CalculationStatus> getStatus = null;
+    ApiResponse<CalculationStatusRoot> getStatus = null;
+    CalculationStatusRoot resultStatus = null;
 
-    while (getStatus == null || getStatus.getData().getStatus() == CalculationStatus.StatusEnum.QUEUED
-        || getStatus.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING) {
-      if (getStatus != null) {
+    try {
+      do {
+        getStatus = sparCalculations.getCalculationStatusByIdWithHttpInfo(id);
+        resultStatus = (CalculationStatusRoot)getStatus.getData();
+        if(getStatus.getStatusCode() == 200)
+          break;
         Assert.assertTrue("Response Data should not be null.", getStatus != null);
         Assert.assertTrue("Response Data should have calculation status as executing or queued.",
-            getStatus.getData().getStatus() == CalculationStatus.StatusEnum.QUEUED
-                || getStatus.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING);
-        Assert.assertTrue("Response Data should have at least one calculation status as executing or queued.",
-            getStatus.getData().getSpar().values().stream()
-                .filter(f -> f.getStatus() == CalculationUnitStatus.StatusEnum.EXECUTING
-                    || f.getStatus() == CalculationUnitStatus.StatusEnum.QUEUED)
-                .count() > 0);
-
-        Assert.assertTrue("Response Data should not have all calculation results.",
-            getStatus.getData().getSpar().values().stream().filter(f -> f.getResult() == null).count() > 0);
+            resultStatus.getData().getStatus() == CalculationStatus.StatusEnum.QUEUED
+            || resultStatus.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING);
+        Assert.assertTrue("Response Data should have at least one calculation status as executing or queued or success.",
+            resultStatus.getData().getUnits().values().stream()
+            .filter(f -> f.getStatus() == CalculationUnitStatus.StatusEnum.EXECUTING
+            || f.getStatus() == CalculationUnitStatus.StatusEnum.QUEUED
+            || f.getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS)
+            .count() > 0);
 
         if (getStatus.getHeaders().containsKey("cache-control")) {
           int maxAge = Integer.parseInt(getStatus.getHeaders().get("cache-control").get(0).split("=")[1]);
@@ -119,26 +118,28 @@ public class SPAREngineApiTests {
             Thread.currentThread().interrupt();
           }
         }
-      }
-      try {
-        getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(id);
-      } catch (ApiException e) {
-        CommonFunctions.handleException("EngineApi#getCalculationStatusByIdWithHttpInfo", e);
-      }
+      } while(getStatus.getStatusCode() == 202);
+    } catch (ApiException e) {
+      CommonFunctions.handleException("EngineApi#getCalculationStatusByIdWithHttpInfo", e);
     }
 
     Assert.assertTrue("Response Data should have calculation status as completed.",
-        getStatus.getData().getStatus() == CalculationStatus.StatusEnum.COMPLETED);
-    Assert.assertTrue("Response Data should have all calculations status as succeeded.", getStatus.getData().getSpar()
+        resultStatus.getData().getStatus() == CalculationStatus.StatusEnum.COMPLETED);
+    Assert.assertTrue("Response Data should have all calculations status as succeeded.", resultStatus.getData().getUnits()
         .values().stream().filter(f -> f.getStatus() != CalculationUnitStatus.StatusEnum.SUCCESS).count() == 0);
     Assert.assertTrue("Response Data should have all calculation results.",
-        getStatus.getData().getSpar().values().stream().filter(f -> f.getResult() == null).count() == 0);
+        resultStatus.getData().getUnits().values().stream().filter(f -> f.getResult() == null).count() == 0);
 
-    ApiResponse<String> resultResponse = null;
+    ApiResponse<ObjectRoot> resultResponse = null;
+    Object result = null;
 
-    for (CalculationUnitStatus calculationParameters : getStatus.getData().getSpar().values()) {
+    for (CalculationUnitStatus calculationParameters : resultStatus.getData().getUnits().values()) {
       try {
-        resultResponse = utilityApiInstance.getByUrlWithHttpInfo(calculationParameters.getResult());
+        String[] location = calculationParameters.getResult().split("/");
+        String calcId = location[location.length-4];
+        String unitId = location[location.length-2];
+        resultResponse = sparCalculations.getCalculationUnitResultByIdWithHttpInfo(calcId, unitId);
+        result = ((ObjectRoot)resultResponse.getData()).getData();
       } catch (ApiException e) {
         CommonFunctions.handleException("EngineApi#getByUrlWithHttpInfo", e);
       }
@@ -146,24 +147,26 @@ public class SPAREngineApiTests {
       Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
       Assert.assertTrue("Result response data should not be null.", resultResponse.getData() != null);
 
-      Builder builder = Package.newBuilder();
-      try {
-        JsonFormat.parser().ignoringUnknownFields().merge(resultResponse.getData(), builder);
-      } catch (InvalidProtocolBufferException e) {
-        System.out.println("Error while deserializing the response");
-        e.printStackTrace();
-      }
-      Package result = (Package) builder.build();
-      Assert.assertTrue("Response should be of Package type.", result instanceof Package);
+      CalculationsHelper.validateCalculationResponse(resultResponse.getHeaders(), result);
     }
   }
 
   @Test
   public void enginesApiDeleteCalculationSuccess() throws ApiException {
-    ApiResponse<Void> createResponse = null;
-
+    ApiResponse<Object> createResponse = null;    
     try {
-      createResponse = runCalculation();
+      String id = getComponentId();
+      SPARCalculationParameters unit1 = createCalculationUnit(id);
+      SPARCalculationParameters unit2 = createCalculationUnit(id);
+      SPARCalculationParametersRoot sparCalcParamRoot = new SPARCalculationParametersRoot();
+      SPARDateParameters dates = new SPARDateParameters();
+      dates.setStartdate(CommonParameters.PA_START_DATE);
+      dates.setEnddate(CommonParameters.PA_END_DATE);
+      dates.setFrequency(CommonParameters.PA_FREQUENCY);
+      unit2.setDates(dates);
+      sparCalcParamRoot.putDataItem("1", unit1);
+      sparCalcParamRoot.putDataItem("2", unit2);
+      createResponse = sparCalculations.postAndCalculateWithHttpInfo(null, null, sparCalcParamRoot);
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#createWithHttpInfo", e);
     }
@@ -171,56 +174,14 @@ public class SPAREngineApiTests {
     Assert.assertTrue("Create response status code should be 202 - Created.", createResponse.getStatusCode() == 202);
 
     String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-    String id = locationList[locationList.length - 1];
+    String id = locationList[locationList.length - 2];
 
     Assert.assertTrue("Create response calculation id should be present.", id != null && id.trim().length() > 0);
 
     ApiResponse<Void> deleteResponse = null;
 
     try {
-      deleteResponse = apiInstance.cancelCalculationByIdWithHttpInfo(id);
-    } catch (ApiException e) {
-      CommonFunctions.handleException("EngineApi#cancelCalculationByIdWithHttpInfo", e);
-    }
-
-    Assert.assertTrue("Delete response status code should be 204 - No Content.", deleteResponse.getStatusCode() == 204);
-    Assert.assertTrue("Response data should be null.", deleteResponse.getData() == null);
-  }
-
-  @Test
-  public void getAllOutStandingRequestsSuccess() throws ApiException {
-    ApiResponse<Void> createResponse = null;
-
-    try {
-      createResponse = runCalculation();
-    } catch (ApiException e) {
-      CommonFunctions.handleException("EngineApi#createWithHttpInfo", e);
-    }
-
-    Assert.assertTrue("Create response status code should be 202 - Created.", createResponse.getStatusCode() == 202);
-
-    String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-    String id = locationList[locationList.length - 1];
-
-    Assert.assertTrue("Create response calculation id should be present.", id != null && id.trim().length() > 0);
-
-    ApiResponse<Map<String, CalculationStatusSummary>> getAllOutstandingRequestsResponse = null;
-
-    try {
-      getAllOutstandingRequestsResponse = apiInstance.getCalculationStatusSummariesWithHttpInfo();
-    } catch (ApiException e) {
-      CommonFunctions.handleException("EngineApi#getCalculationStatusSummariesWithHttpInfo", e);
-    }
-
-    Assert.assertTrue("Response should be 200 - Success.", getAllOutstandingRequestsResponse.getStatusCode() == 200);
-    Assert.assertTrue("Respose data should not be null.", getAllOutstandingRequestsResponse.getData() != null);
-    Assert.assertTrue("Response data does not include the created calculation.",
-        getAllOutstandingRequestsResponse.getData().containsKey(id));
-
-    ApiResponse<Void> deleteResponse = null;
-
-    try {
-      deleteResponse = apiInstance.cancelCalculationByIdWithHttpInfo(id);
+      deleteResponse = sparCalculations.cancelCalculationByIdWithHttpInfo(id);
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#cancelCalculationByIdWithHttpInfo", e);
     }

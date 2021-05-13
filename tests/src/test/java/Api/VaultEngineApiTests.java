@@ -12,43 +12,39 @@ import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
 
-import com.factset.protobuf.stach.PackageProto.Package.Builder;
-import com.factset.protobuf.stach.PackageProto.Package;
-import com.google.protobuf.util.JsonFormat;
-import com.google.protobuf.InvalidProtocolBufferException;
-
 public class VaultEngineApiTests {
 
-  public static ApiClient apiClient;
-  public CalculationsApi apiInstance;
-  public UtilityApi utilityApiInstance;
+  private static ApiClient apiClient;
+  private VaultCalculationsApi vaultCalculations;
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.VaultPubUsername, CommonParameters.VaultPubPassword);
   }
 
   @Before
   public void before() {
-    apiInstance = new CalculationsApi(apiClient);
-    utilityApiInstance = new UtilityApi(apiClient);
+    vaultCalculations = new VaultCalculationsApi(apiClient);
   }
 
-  public ApiResponse<Void> runCalculation() throws ApiException {
-    VaultCalculationParameters vaultItem = new VaultCalculationParameters();
-
+  private String getComponentId() throws ApiException {
     ComponentsApi componentsApi = new ComponentsApi(apiClient);
-    Map<String, ComponentSummary> components = componentsApi
-        .getVaultComponents(CommonParameters.VAULT_DEFAULT_DOCUMENT);
+    Map<String, ComponentSummary> components = ((ComponentSummaryRoot)componentsApi
+        .getVaultComponents(CommonParameters.VAULT_DEFAULT_DOCUMENT)).getData();
     String componentId = components.entrySet().stream().findFirst().get().getKey();
-    vaultItem.setComponentid(componentId);
-
+    return componentId;
+  }
+  private String getConfigurationId() throws ApiException {
     ConfigurationsApi configurationsApi = new ConfigurationsApi(apiClient);
-    Map<String, VaultConfigurationSummary> configurationsMap = configurationsApi
-        .getVaultConfigurations(CommonParameters.VAULT_DEFAULT_ACCOUNT);
+    Map<String, VaultConfigurationSummary> configurationsMap = ((VaultConfigurationSummaryRoot)configurationsApi
+        .getVaultConfigurations(CommonParameters.VAULT_DEFAULT_ACCOUNT)).getData();
     String configurationId = configurationsMap.entrySet().stream().findFirst().get().getKey();
-    vaultItem.setConfigid(configurationId);
-
+    return configurationId;
+  }
+  private VaultCalculationParameters createCalculationUnit(String compId, String configId) throws ApiException {
+    VaultCalculationParameters vaultItem = new VaultCalculationParameters();
+    vaultItem.setConfigid(configId);
+    vaultItem.setComponentid(compId);
     VaultIdentifier account = new VaultIdentifier();
     account.setId(CommonParameters.VAULT_DEFAULT_ACCOUNT);
     vaultItem.setAccount(account);
@@ -59,18 +55,21 @@ public class VaultEngineApiTests {
     dateParameters.setFrequency(CommonParameters.VAULT_FREQUENCY_DATE_MONTHLY);
     vaultItem.setDates(dateParameters);
 
-    Calculation parameters = new Calculation();
-    parameters.putVaultItem("1", vaultItem);
-
-    return apiInstance.runCalculationWithHttpInfo(parameters);
+    return vaultItem;
   }
 
   @Test
   public void enginesApiGetCalculationSuccess() throws ApiException {
-    ApiResponse<Void> createResponse = null;
-
+    ApiResponse<Object> createResponse = null;    
     try {
-      createResponse = runCalculation();
+      String id = getComponentId();
+      String configId = getConfigurationId();
+      VaultCalculationParameters unit1 = createCalculationUnit(id, configId);
+      VaultCalculationParameters unit2 = createCalculationUnit(id, configId);
+      VaultCalculationParametersRoot vaultCalcParamRoot = new VaultCalculationParametersRoot();
+      vaultCalcParamRoot.putDataItem("1", unit1);
+      vaultCalcParamRoot.putDataItem("2", unit2);
+      createResponse = vaultCalculations.postAndCalculateWithHttpInfo(null, null, vaultCalcParamRoot);
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#createWithHttpInfo", e);
     }
@@ -78,27 +77,29 @@ public class VaultEngineApiTests {
     Assert.assertTrue("Create response status code should be 202 - Created.", createResponse.getStatusCode() == 202);
 
     String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-    String id = locationList[locationList.length - 1];
+    String id = locationList[locationList.length - 2];
 
     Assert.assertTrue("Create response calculation id should be present.", id != null && id.trim().length() > 0);
 
-    ApiResponse<CalculationStatus> getStatus = null;
+    ApiResponse<CalculationStatusRoot> getStatus = null;
+    CalculationStatusRoot status = null;
 
-    while (getStatus == null || getStatus.getData().getStatus() == CalculationStatus.StatusEnum.QUEUED
-        || getStatus.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING) {
-      if (getStatus != null) {
+    try {
+      do {
+        getStatus = vaultCalculations.getCalculationStatusByIdWithHttpInfo(id);
+        status = (CalculationStatusRoot)getStatus.getData();
+        if(getStatus.getStatusCode() == 200)
+          break;
         Assert.assertTrue("Response Data should not be null.", getStatus != null);
         Assert.assertTrue("Response Data should have calculation status as executing or queued.",
-            getStatus.getData().getStatus() == CalculationStatus.StatusEnum.QUEUED
-                || getStatus.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING);
-        Assert.assertTrue("Response Data should have at least one calculation status as executing or queued.",
-            getStatus.getData().getVault().values().stream()
+            status.getData().getStatus() == CalculationStatus.StatusEnum.QUEUED
+            || status.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING);
+        Assert.assertTrue("Response Data should have at least one calculation status as executing or queued or success.",
+        		status.getData().getUnits().values().stream()
                 .filter(f -> f.getStatus() == CalculationUnitStatus.StatusEnum.EXECUTING
-                    || f.getStatus() == CalculationUnitStatus.StatusEnum.QUEUED)
+                    || f.getStatus() == CalculationUnitStatus.StatusEnum.QUEUED 
+                    || f.getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS)
                 .count() > 0);
-
-        Assert.assertTrue("Response Data should not have all calculation results.",
-            getStatus.getData().getVault().values().stream().filter(f -> f.getResult() == null).count() > 0);
 
         if (getStatus.getHeaders().containsKey("cache-control")) {
           int maxAge = Integer.parseInt(getStatus.getHeaders().get("cache-control").get(0).split("=")[1]);
@@ -117,51 +118,55 @@ public class VaultEngineApiTests {
             Thread.currentThread().interrupt();
           }
         }
-      }
-      try {
-        getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(id);
-      } catch (ApiException e) {
-        CommonFunctions.handleException("EngineApi#getCalculationStatusByIdWithHttpInfo", e);
-      }
+      } while(getStatus.getStatusCode() == 202);
+
+    } catch (ApiException e) {
+      CommonFunctions.handleException("EngineApi#getCalculationStatusByIdWithHttpInfo", e);
     }
 
     Assert.assertTrue("Response Data should have calculation status as completed.",
-        getStatus.getData().getStatus() == CalculationStatus.StatusEnum.COMPLETED);
-    Assert.assertTrue("Response Data should have all calculations status as succeeded.", getStatus.getData().getVault()
+        status.getData().getStatus() == CalculationStatus.StatusEnum.COMPLETED);
+    Assert.assertTrue("Response Data should have all calculations status as succeeded.", status.getData().getUnits()
         .values().stream().filter(f -> f.getStatus() != CalculationUnitStatus.StatusEnum.SUCCESS).count() == 0);
     Assert.assertTrue("Response Data should have all calculation results.",
-        getStatus.getData().getVault().values().stream().filter(f -> f.getResult() == null).count() == 0);
+        status.getData().getUnits().values().stream().filter(f -> f.getResult() == null).count() == 0);
 
-    ApiResponse<String> resultResponse = null;
+    ApiResponse<ObjectRoot> resultResponse = null;
+    Object result = null;
 
-    for (CalculationUnitStatus calculationParameters : getStatus.getData().getVault().values()) {
+    for (CalculationUnitStatus calculationParameters : status.getData().getUnits().values()) {
       try {
-        resultResponse = utilityApiInstance.getByUrlWithHttpInfo(calculationParameters.getResult());
+        String[] location = calculationParameters.getResult().split("/");
+        String calcId = location[location.length-4];
+        String unitId = location[location.length-2];
+
+        resultResponse = vaultCalculations.getCalculationUnitResultByIdWithHttpInfo(calcId, unitId);
+        result = ((ObjectRoot)resultResponse.getData()).getData();
       } catch (ApiException e) {
         CommonFunctions.handleException("EngineApi#getByUrlWithHttpInfo", e);
       }
 
       Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
       Assert.assertTrue("Result response data should not be null.", resultResponse.getData() != null);
-
-      Builder builder = Package.newBuilder();
-      try {
-        JsonFormat.parser().ignoringUnknownFields().merge(resultResponse.getData(), builder);
-      } catch (InvalidProtocolBufferException e) {
-        System.out.println("Error while deserializing the response");
-        e.printStackTrace();
-      }
-      Package result = (Package) builder.build();
-      Assert.assertTrue("Response should be of Package type.", result instanceof Package);
+      CalculationsHelper.validateCalculationResponse(resultResponse.getHeaders(), result);
     }
   }
 
   @Test
   public void enginesApiDeleteCalculationSuccess() throws ApiException {
-    ApiResponse<Void> createResponse = null;
-
+    ApiResponse<Object> createResponse = null;
     try {
-      createResponse = runCalculation();
+      String id = getComponentId();
+      String configId = getConfigurationId();
+      VaultCalculationParameters unit1 = createCalculationUnit(id, configId);
+      VaultCalculationParameters unit2 = createCalculationUnit(id, configId);
+      VaultCalculationParametersRoot vaultCalcParamRoot = new VaultCalculationParametersRoot();
+      VaultIdentifier accountId = new VaultIdentifier();
+      accountId.setId(CommonParameters.VAULT_SECONDARY_ACCOUNT);
+      unit2.setAccount(accountId);
+      vaultCalcParamRoot.putDataItem("1", unit1);
+      vaultCalcParamRoot.putDataItem("2", unit2);
+      createResponse = vaultCalculations.postAndCalculateWithHttpInfo(null, null, vaultCalcParamRoot);
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#createWithHttpInfo", e);
     }
@@ -169,56 +174,14 @@ public class VaultEngineApiTests {
     Assert.assertTrue("Create response status code should be 202 - Created.", createResponse.getStatusCode() == 202);
 
     String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-    String id = locationList[locationList.length - 1];
+    String id = locationList[locationList.length - 2];
 
     Assert.assertTrue("Create response calculation id should be present.", id != null && id.trim().length() > 0);
 
     ApiResponse<Void> deleteResponse = null;
 
     try {
-      deleteResponse = apiInstance.cancelCalculationByIdWithHttpInfo(id);
-    } catch (ApiException e) {
-      CommonFunctions.handleException("EngineApi#cancelCalculationByIdWithHttpInfo", e);
-    }
-
-    Assert.assertTrue("Delete response status code should be 204 - No Content.", deleteResponse.getStatusCode() == 204);
-    Assert.assertTrue("Response data should be null.", deleteResponse.getData() == null);
-  }
-
-  @Test
-  public void getAllOutStandingRequestsSuccess() throws ApiException {
-    ApiResponse<Void> createResponse = null;
-
-    try {
-      createResponse = runCalculation();
-    } catch (ApiException e) {
-      CommonFunctions.handleException("EngineApi#createWithHttpInfo", e);
-    }
-
-    Assert.assertTrue("Create response status code should be 202 - Created.", createResponse.getStatusCode() == 202);
-
-    String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-    String id = locationList[locationList.length - 1];
-
-    Assert.assertTrue("Create response calculation id should be present.", id != null && id.trim().length() > 0);
-
-    ApiResponse<Map<String, CalculationStatusSummary>> getAllOutstandingRequestsResponse = null;
-
-    try {
-      getAllOutstandingRequestsResponse = apiInstance.getCalculationStatusSummariesWithHttpInfo();
-    } catch (ApiException e) {
-      CommonFunctions.handleException("EngineApi#getCalculationStatusSummariesWithHttpInfo", e);
-    }
-
-    Assert.assertTrue("Response should be 200 - Success.", getAllOutstandingRequestsResponse.getStatusCode() == 200);
-    Assert.assertTrue("Respose data should not be null.", getAllOutstandingRequestsResponse.getData() != null);
-    Assert.assertTrue("Response data does not include the created calculation.",
-        getAllOutstandingRequestsResponse.getData().containsKey(id));
-
-    ApiResponse<Void> deleteResponse = null;
-
-    try {
-      deleteResponse = apiInstance.cancelCalculationByIdWithHttpInfo(id);
+      deleteResponse = vaultCalculations.cancelCalculationByIdWithHttpInfo(id);
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#cancelCalculationByIdWithHttpInfo", e);
     }

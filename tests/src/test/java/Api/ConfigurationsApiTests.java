@@ -1,7 +1,5 @@
 package Api;
 
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -13,12 +11,12 @@ import factset.analyticsapi.engines.models.*;
 
 public class ConfigurationsApiTests {
 
-  public static ApiClient apiClient;
-  public ConfigurationsApi apiInstance;
+  private static ApiClient apiClient;
+  private ConfigurationsApi apiInstance;
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.VaultPubUsername, CommonParameters.VaultPubPassword);
   }
 
   @Before
@@ -28,7 +26,7 @@ public class ConfigurationsApiTests {
 
   @Test
   public void getAllConfigurationsSuccess() throws ApiException {
-    ApiResponse<Map<String, VaultConfigurationSummary>> getAllConfigurationsResponse = null;
+    ApiResponse<VaultConfigurationSummaryRoot> getAllConfigurationsResponse = null;
 
     try {
       getAllConfigurationsResponse = apiInstance
@@ -43,7 +41,7 @@ public class ConfigurationsApiTests {
 
   @Test
   public void getVaultConfigurationsByIdSuccess() throws ApiException {
-    ApiResponse<Map<String, VaultConfigurationSummary>> getAllConfigurationsResponse = null;
+    ApiResponse<VaultConfigurationSummaryRoot> getAllConfigurationsResponse = null;
 
     try {
       getAllConfigurationsResponse = apiInstance
@@ -55,11 +53,11 @@ public class ConfigurationsApiTests {
       CommonFunctions.handleException("VaultConfigurationsApi#getVaultConfigurationsWithHttpInfo", e);
     }
 
-    ApiResponse<VaultConfiguration> getConfigurationDetailsResponse = null;
+    ApiResponse<VaultConfigurationRoot> getConfigurationDetailsResponse = null;
 
     try {
       getConfigurationDetailsResponse = apiInstance.getVaultConfigurationByIdWithHttpInfo(
-          getAllConfigurationsResponse.getData().entrySet().iterator().next().getKey());
+          getAllConfigurationsResponse.getData().getData().entrySet().iterator().next().getKey());
 
       Assert.assertTrue("Response should be 200 - Success", getConfigurationDetailsResponse.getStatusCode() == 200);
       Assert.assertTrue("Response data should not be null.", getConfigurationDetailsResponse.getData() != null);

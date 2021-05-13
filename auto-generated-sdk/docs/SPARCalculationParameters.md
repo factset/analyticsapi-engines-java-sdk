@@ -2,6 +2,7 @@
 
 # SPARCalculationParameters
 
+
 ## Properties
 
 Name | Type | Description | Notes

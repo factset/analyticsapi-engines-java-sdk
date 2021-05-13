@@ -1,7 +1,5 @@
 package Api;
 
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -11,15 +9,15 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.ApiResponse;
 import factset.analyticsapi.engines.api.ColumnStatisticsApi;
-import factset.analyticsapi.engines.models.ColumnStatistic;
+import factset.analyticsapi.engines.models.ColumnStatisticRoot;
 
 public class ColumnStatisticsApiTests {
-  public static ApiClient apiClient;
-  public ColumnStatisticsApi apiInstance;
+  private static ApiClient apiClient;
+  private ColumnStatisticsApi apiInstance;
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
   }
 
   @Before
@@ -29,7 +27,7 @@ public class ColumnStatisticsApiTests {
 
   @Test
   public void getAllPAColumnStatistics() throws ApiException {
-    ApiResponse<Map<String, ColumnStatistic>> getPAColumnStatisticsResponse = null;
+    ApiResponse<ColumnStatisticRoot> getPAColumnStatisticsResponse = null;
 
     try {
       getPAColumnStatisticsResponse = apiInstance.getPAColumnStatisticsWithHttpInfo();

@@ -12,12 +12,12 @@ import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
 
 public class ColumnsApiTests {
-  public static ApiClient apiClient;
-  public ColumnsApi apiInstance;
+  private static ApiClient apiClient;
+  private ColumnsApi apiInstance;
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
   }
 
   @Before
@@ -27,7 +27,7 @@ public class ColumnsApiTests {
 
   @Test
   public void getPAColumns() throws ApiException {
-    ApiResponse<Map<String, ColumnSummary>> getPAColumnsResponse = null;
+    ApiResponse<ColumnSummaryRoot> getPAColumnsResponse = null;
 
     try {
       getPAColumnsResponse = apiInstance.getPAColumnsWithHttpInfo(null, null, null);
@@ -41,22 +41,23 @@ public class ColumnsApiTests {
 
   @Test
   public void getPAColumnById() throws ApiException {
-    ApiResponse<Map<String, ColumnSummary>> getPAColumnsResponse = null;
+    ApiResponse<ColumnSummaryRoot> getPAColumnsResponse = null;
+    Map<String, ColumnSummary> paColumnData = null;
 
     try {
       getPAColumnsResponse = apiInstance.getPAColumnsWithHttpInfo(null, null, null);
-
+      paColumnData = ((ColumnSummaryRoot)getPAColumnsResponse.getData()).getData();
       Assert.assertTrue("Response should be 200 - Success", getPAColumnsResponse.getStatusCode() == 200);
       Assert.assertTrue("Response data should not be null.", getPAColumnsResponse.getData() != null);
     } catch (ApiException e) {
       CommonFunctions.handleException("ColumnsApi#getPAColumnsWithHttpInfo", e);
     }
 
-    ApiResponse<Column> getPAColumnByIdResponse = null;
+    ApiResponse<ColumnRoot> getPAColumnByIdResponse = null;
 
     try {
       getPAColumnByIdResponse = apiInstance
-          .getPAColumnByIdWithHttpInfo(getPAColumnsResponse.getData().entrySet().iterator().next().getKey());
+          .getPAColumnByIdWithHttpInfo(paColumnData.entrySet().iterator().next().getKey());
 
       Assert.assertTrue("Response should be 200 - Success", getPAColumnByIdResponse.getStatusCode() == 200);
       Assert.assertTrue("Response data should not be null.", getPAColumnByIdResponse.getData() != null);

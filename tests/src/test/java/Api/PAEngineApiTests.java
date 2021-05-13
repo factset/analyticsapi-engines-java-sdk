@@ -12,36 +12,31 @@ import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
 
-import com.factset.protobuf.stach.PackageProto.Package.Builder;
-import com.factset.protobuf.stach.PackageProto.Package;
-import com.google.protobuf.util.JsonFormat;
-import com.google.protobuf.InvalidProtocolBufferException;
-
 public class PAEngineApiTests {
 
-  public static ApiClient apiClient;
-  public CalculationsApi apiInstance;
-  public UtilityApi utilityApiInstance;
+  private static ApiClient apiClient;
+  private PaCalculationsApi paCalculations;
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
   }
 
   @Before
   public void before() {
-    apiInstance = new CalculationsApi(apiClient);
-    utilityApiInstance = new UtilityApi(apiClient);
+    paCalculations = new PaCalculationsApi(apiClient);
   }
 
-  public ApiResponse<Void> runCalculation() throws ApiException {
-    PACalculationParameters paItem = new PACalculationParameters();
-
+  private String getComponentId() throws ApiException {
     ComponentsApi componentsApi = new ComponentsApi(apiClient);
-    Map<String, ComponentSummary> components = componentsApi.getPAComponents(CommonParameters.PA_DEFAULT_DOCUMENT);
+    Map<String, ComponentSummary> components = componentsApi.getPAComponents(CommonParameters.PA_DEFAULT_DOCUMENT).getData();	
     String componentId = components.entrySet().stream().findFirst().get().getKey();
-    paItem.setComponentid(componentId);
+    return componentId;
+  }
 
+  private PACalculationParameters createCalculationUnit(String componentId) {
+    PACalculationParameters paItem = new PACalculationParameters();
+    paItem.setComponentid(componentId);
     PAIdentifier accountPaIdentifier1 = new PAIdentifier();
     accountPaIdentifier1.setId(CommonParameters.PA_BENCHMARK_SP500);
     paItem.addAccountsItem(accountPaIdentifier1);
@@ -53,19 +48,20 @@ public class PAEngineApiTests {
     PAIdentifier benchmarkPaIdentifier = new PAIdentifier();
     benchmarkPaIdentifier.setId(CommonParameters.PA_BENCHMARK_R1000);
     paItem.addBenchmarksItem(benchmarkPaIdentifier);
-
-    Calculation parameters = new Calculation();
-    parameters.putPaItem("1", paItem);
-
-    return apiInstance.runCalculationWithHttpInfo(parameters);
+    return paItem;
   }
 
   @Test
   public void enginesApiGetCalculationSuccess() throws ApiException {
-    ApiResponse<Void> createResponse = null;
-
+    ApiResponse<Object> createResponse = null;    
     try {
-      createResponse = runCalculation();
+      String id = getComponentId();
+      PACalculationParameters unit1 = createCalculationUnit(id);
+      PACalculationParameters unit2 = createCalculationUnit(id);
+      PACalculationParametersRoot paCalcParamRoot = new PACalculationParametersRoot();
+      paCalcParamRoot.putDataItem("1", unit1);
+      paCalcParamRoot.putDataItem("2", unit2);
+      createResponse = paCalculations.postAndCalculateWithHttpInfo(null, null, paCalcParamRoot);
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#runCalculation", e);
     }
@@ -73,25 +69,27 @@ public class PAEngineApiTests {
     Assert.assertTrue("Create response status code should be 202 - Created.", createResponse.getStatusCode() == 202);
 
     String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-    String id = locationList[locationList.length - 1];
+    String id = locationList[locationList.length - 2];
 
     Assert.assertTrue("Create response calculation id should be present.", id != null && id.trim().length() > 0);
 
-    ApiResponse<CalculationStatus> getStatus = null;
+    ApiResponse<CalculationStatusRoot> getStatus = null;
+    CalculationStatusRoot status = null;
 
-    while (getStatus == null || getStatus.getData().getStatus() == CalculationStatus.StatusEnum.QUEUED
-        || getStatus.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING) {
-      if (getStatus != null) {
+    try {        
+      do {
+        getStatus = paCalculations.getCalculationStatusByIdWithHttpInfo(id);
+        status = getStatus.getData();
+        if(getStatus.getStatusCode() == 200)// indicates calculation completion
+          break;
         Assert.assertTrue("Response Data should not be null.", getStatus != null);
         Assert.assertTrue("Response Data should have calculation status as executing or queued.",
-            getStatus.getData().getStatus() == CalculationStatus.StatusEnum.QUEUED
-                || getStatus.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING);
-        Assert.assertTrue("Response Data should have at least one calculation status as executing or queued.",
-            getStatus.getData().getPa().values().stream().filter(f -> f.getStatus() == CalculationUnitStatus.StatusEnum.EXECUTING
-                || f.getStatus() == CalculationUnitStatus.StatusEnum.QUEUED).count() > 0);
-
-        Assert.assertTrue("Response Data should not have all calculation results.",
-            getStatus.getData().getPa().values().stream().filter(f -> f.getResult() == null).count() > 0);
+            status.getData().getStatus() == CalculationStatus.StatusEnum.QUEUED
+            || status.getData().getStatus() == CalculationStatus.StatusEnum.EXECUTING);
+        Assert.assertTrue("Response Data should have at least one calculation status as executing or queued or success.",
+            status.getData().getUnits().values().stream().filter(f -> f.getStatus() == CalculationUnitStatus.StatusEnum.EXECUTING
+            || f.getStatus() == CalculationUnitStatus.StatusEnum.QUEUED
+            || f.getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS).count() > 0);
 
         if (getStatus.getHeaders().containsKey("cache-control")) {
           int maxAge = Integer.parseInt(getStatus.getHeaders().get("cache-control").get(0).split("=")[1]);
@@ -110,51 +108,55 @@ public class PAEngineApiTests {
             Thread.currentThread().interrupt();
           }
         }
-      }
-      try {
-        getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(id);
-      } catch (ApiException e) {
-        CommonFunctions.handleException("EngineApi#getCalculationStatusByIdWithHttpInfo", e);
-      }
+      } while(getStatus.getStatusCode() == 202);
+    } catch (ApiException e) {
+      CommonFunctions.handleException("EngineApi#getCalculationStatusByIdWithHttpInfo", e);
     }
 
     Assert.assertTrue("Response Data should have calculation status as completed.",
-        getStatus.getData().getStatus() == CalculationStatus.StatusEnum.COMPLETED);
-    Assert.assertTrue("Response Data should have all calculations status as succeeded.", getStatus.getData().getPa()
+        status.getData().getStatus() == CalculationStatus.StatusEnum.COMPLETED);
+    Assert.assertTrue("Response Data should have all calculations status as succeeded.", status.getData().getUnits()
         .values().stream().filter(f -> f.getStatus() != CalculationUnitStatus.StatusEnum.SUCCESS).count() == 0);
     Assert.assertTrue("Response Data should have all calculation results.",
-        getStatus.getData().getPa().values().stream().filter(f -> f.getResult() == null).count() == 0);
+        status.getData().getUnits().values().stream().filter(f -> f.getResult() == null).count() == 0);
 
-    ApiResponse<String> resultResponse = null;
-
-    for (CalculationUnitStatus calculationParameters : getStatus.getData().getPa().values()) {
+    ApiResponse<ObjectRoot> resultResponse = null;
+    Object result = null;
+    //Get Calculation Unit Result
+    for (CalculationUnitStatus calculationParameters : status.getData().getUnits().values()) {
       try {
-        resultResponse = utilityApiInstance.getByUrlWithHttpInfo(calculationParameters.getResult());
+        String[] location = calculationParameters.getResult().split("/");
+        String calcId = location[location.length-4];
+        String unitId = location[location.length-2];
+
+        resultResponse = paCalculations.getCalculationUnitResultByIdWithHttpInfo(calcId, unitId);
+        result = resultResponse.getData().getData();
       } catch (ApiException e) {
         CommonFunctions.handleException("EngineApi#getByUrlWithHttpInfo", e);
       }
-
       Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
       Assert.assertTrue("Result response data should not be null.", resultResponse.getData() != null);
 
-      Builder builder = Package.newBuilder();
-      try {
-        JsonFormat.parser().ignoringUnknownFields().merge(resultResponse.getData(), builder);
-      } catch (InvalidProtocolBufferException e) {
-        System.out.println("Error while deserializing the response");
-        e.printStackTrace();
-      }
-      Package result = (Package) builder.build();
-      Assert.assertTrue("Response should be of Package type.", result instanceof Package);
+      CalculationsHelper.validateCalculationResponse(resultResponse.getHeaders(), result);
     }
   }
 
   @Test
   public void enginesApiDeleteCalculationSuccess() throws ApiException {
-    ApiResponse<Void> createResponse = null;
-
+    ApiResponse<Object> createResponse = null;    
     try {
-      createResponse = runCalculation();
+      String id = getComponentId();
+      PACalculationParameters unit1 = createCalculationUnit(id);
+      PACalculationParameters unit2 = createCalculationUnit(id);
+      PACalculationParametersRoot paCalcParamRoot = new PACalculationParametersRoot();
+      PADateParameters dates = new PADateParameters();
+      dates.setStartdate(CommonParameters.PA_START_DATE);
+      dates.setEnddate(CommonParameters.PA_END_DATE);
+      dates.setFrequency(CommonParameters.PA_FREQUENCY);
+      unit2.setDates(dates);
+      paCalcParamRoot.putDataItem("1", unit1);
+      paCalcParamRoot.putDataItem("2", unit2);
+      createResponse = paCalculations.postAndCalculateWithHttpInfo(null, null, paCalcParamRoot);
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#runCalculation", e);
     }
@@ -162,56 +164,14 @@ public class PAEngineApiTests {
     Assert.assertTrue("Create response status code should be 202 - Created.", createResponse.getStatusCode() == 202);
 
     String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-    String id = locationList[locationList.length - 1];
+    String id = locationList[locationList.length - 2];
 
     Assert.assertTrue("Create response calculation id should be present.", id != null && id.trim().length() > 0);
 
     ApiResponse<Void> deleteResponse = null;
 
     try {
-      deleteResponse = apiInstance.cancelCalculationByIdWithHttpInfo(id);
-    } catch (ApiException e) {
-      CommonFunctions.handleException("EngineApi#cancelCalculationByIdWithHttpInfo", e);
-    }
-
-    Assert.assertTrue("Delete response status code should be 204 - No Content.", deleteResponse.getStatusCode() == 204);
-    Assert.assertTrue("Response data should be null.", deleteResponse.getData() == null);
-  }
-
-  @Test
-  public void getAllOutStandingRequestsSuccess() throws ApiException {
-    ApiResponse<Void> createResponse = null;
-
-    try {
-      createResponse = runCalculation();
-    } catch (ApiException e) {
-      CommonFunctions.handleException("EngineApi#runCalculation", e);
-    }
-
-    Assert.assertTrue("Create response status code should be 202 - Created.", createResponse.getStatusCode() == 202);
-
-    String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-    String id = locationList[locationList.length - 1];
-
-    Assert.assertTrue("Create response calculation id should be present.", id != null && id.trim().length() > 0);
-
-    ApiResponse<Map<String, CalculationStatusSummary>> getAllOutstandingRequestsResponse = null;
-
-    try {
-      getAllOutstandingRequestsResponse = apiInstance.getCalculationStatusSummariesWithHttpInfo();
-    } catch (ApiException e) {
-      CommonFunctions.handleException("EngineApi#getCalculationStatusSummariesWithHttpInfo", e);
-    }
-
-    Assert.assertTrue("Response should be 200 - Success.", getAllOutstandingRequestsResponse.getStatusCode() == 200);
-    Assert.assertTrue("Respose data should not be null.", getAllOutstandingRequestsResponse.getData() != null);
-    Assert.assertTrue("Response data does not include the created calculation.",
-        getAllOutstandingRequestsResponse.getData().containsKey(id));
-
-    ApiResponse<Void> deleteResponse = null;
-
-    try {
-      deleteResponse = apiInstance.cancelCalculationByIdWithHttpInfo(id);
+      deleteResponse = paCalculations.cancelCalculationByIdWithHttpInfo(id);
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#cancelCalculationByIdWithHttpInfo", e);
     }

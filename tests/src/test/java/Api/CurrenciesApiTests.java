@@ -1,7 +1,5 @@
 package Api;
 
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -13,12 +11,12 @@ import factset.analyticsapi.engines.models.*;
 
 public class CurrenciesApiTests {
 
-  public static ApiClient apiClient;
-  public CurrenciesApi apiInstance;
+  private static ApiClient apiClient;
+  private CurrenciesApi apiInstance;
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
   }
 
   @Before
@@ -28,10 +26,10 @@ public class CurrenciesApiTests {
 
   @Test
   public void getAllPACurrenciesSuccess() throws ApiException {
-    ApiResponse<Map<String, Currency>> getAllCurrenciesResponse = null;
+    ApiResponse<CurrencyRoot> getAllCurrenciesResponse = null;
 
     try {
-      getAllCurrenciesResponse = apiInstance.getPACurrenciesWithHttpInfo();
+      getAllCurrenciesResponse = apiInstance.getCurrenciesWithHttpInfo();
 
       Assert.assertTrue("Response should be 200 - Success", getAllCurrenciesResponse.getStatusCode() == 200);
       Assert.assertTrue("Response data should not be null.", getAllCurrenciesResponse.getData() != null);
