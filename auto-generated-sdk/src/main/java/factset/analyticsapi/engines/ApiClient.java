@@ -1123,10 +1123,6 @@ public class ApiClient extends JavaTimeFormatter {
             clientErrorResponse = new ClientErrorResponse().addErrorsItem(error);
           }
 
-          if(reason.isEmpty()) {
-            reason = "API error";
-          }
-
           throw new ApiException(response.getStatus(), "error", responseHeaders, reason, clientErrorResponse);
         }
 
