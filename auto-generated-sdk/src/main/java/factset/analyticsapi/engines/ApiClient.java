@@ -1113,7 +1113,7 @@ public class ApiClient extends JavaTimeFormatter {
             }
           }
 
-          if(clientErrorResponse == null) {
+          if(clientErrorResponse == null  && responseHeaders != null) {
             Error error = new Error();
             for(Entry<String, List<String>> entry : responseHeaders.entrySet()){
               if("x-factset-api-request-key".equals(entry.getKey().toLowerCase())) {
