@@ -118,7 +118,7 @@ public class FpoInteractiveOptimizerEngineApiTests {
     Assert.assertTrue("Result response data should not be null.", resultObject != null);
   }
 
-  @Test
+  /*@Test
   public void enginesApiDeleteOptimizationSuccess() throws ApiException{
     ApiResponse<Object> response = null;    
     try {
@@ -149,5 +149,5 @@ public class FpoInteractiveOptimizerEngineApiTests {
 
     //Assert.assertTrue("Delete response status code should be 204 - No Content.", deleteResponse.getStatusCode() == 204);
     //Assert.assertTrue("Response data should be null.", deleteResponse.getData() == null);	  
-  }
+  }*/
 }
