@@ -11,25 +11,25 @@ import factset.analyticsapi.engines.models.*;
 
 public class AccountsApiTests {
 
-  public static ApiClient apiClient;
-  public AccountsApi apiInstance;
+  private static ApiClient apiClient;
+  private AccountsApi apiInstance;
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
   }
 
   @Before
   public void before() {
-    apiInstance = new AccountsApi(apiClient);
+    apiInstance = new AccountsApi(apiClient);    
   }
 
   @Test
   public void getAccountListSuccess() throws ApiException {
-    ApiResponse<AccountDirectories> getAccountListResponse = null;
+    ApiResponse<AccountDirectoriesRoot> getAccountListResponse = null;
 
     try {
-      getAccountListResponse = apiInstance.getAccountsWithHttpInfo(CommonParameters.DEFAULT_LOOKUP_DIRECTORY);
+      getAccountListResponse = apiInstance.getAccountsWithHttpInfo(CommonParameters.DEFAULT_LOOKUP_DIRECTORY); 	
 
       Assert.assertTrue("Response should be 200 - Success", getAccountListResponse.getStatusCode() == 200);
       Assert.assertTrue("Response data should not be null.", getAccountListResponse.getData() != null);

@@ -1,7 +1,5 @@
 package Api;
 
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -13,12 +11,12 @@ import factset.analyticsapi.engines.models.*;
 
 public class GroupsApiTests {
 
-  public static ApiClient apiClient;
-  public GroupsApi apiInstance;
+  private static ApiClient apiClient;
+  private GroupsApi apiInstance;
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
   }
 
   @Before
@@ -28,7 +26,7 @@ public class GroupsApiTests {
 
   @Test
   public void getAllGroupsSuccess() throws ApiException {
-    ApiResponse<Map<String, Group>> getAllGroupsResponse = null;
+    ApiResponse<GroupRoot> getAllGroupsResponse = null;
 
     try {
       getAllGroupsResponse = apiInstance.getPAGroupsWithHttpInfo();

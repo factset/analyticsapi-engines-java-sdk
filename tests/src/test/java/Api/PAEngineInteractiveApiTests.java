@@ -12,21 +12,16 @@ import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
 
-import com.factset.protobuf.stach.PackageProto.Package.Builder;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.factset.protobuf.stach.PackageProto.Package;
-import com.google.protobuf.util.JsonFormat;
-import com.google.protobuf.InvalidProtocolBufferException;
 
 public class PAEngineInteractiveApiTests {
 
-  public static ApiClient apiClient;
-  public PaCalculationsApi apiInstance;
+  private static ApiClient apiClient;
+  private PaCalculationsApi apiInstance;
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient();
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
   }
 
   @Before
@@ -34,14 +29,16 @@ public class PAEngineInteractiveApiTests {
     apiInstance = new PaCalculationsApi(apiClient);
   }
 
-  public ApiResponse<Object> runCalculation() throws ApiException {
-    PACalculationParameters paItem = new PACalculationParameters();
-
+  private String getComponentId() throws ApiException {
     ComponentsApi componentsApi = new ComponentsApi(apiClient);
-    Map<String, ComponentSummary> components = componentsApi.getPAComponents(CommonParameters.PA_DEFAULT_DOCUMENT);
+    Map<String, ComponentSummary> components = componentsApi.getPAComponents(CommonParameters.PA_DEFAULT_DOCUMENT).getData();	
     String componentId = components.entrySet().stream().findFirst().get().getKey();
-    paItem.setComponentid(componentId);
+    return componentId;
+  }
 
+  private PACalculationParameters createCalculationUnit(String componentId) {
+    PACalculationParameters paItem = new PACalculationParameters();
+    paItem.setComponentid(componentId);
     PAIdentifier accountPaIdentifier1 = new PAIdentifier();
     accountPaIdentifier1.setId(CommonParameters.PA_BENCHMARK_SP500);
     paItem.addAccountsItem(accountPaIdentifier1);
@@ -53,16 +50,22 @@ public class PAEngineInteractiveApiTests {
     PAIdentifier benchmarkPaIdentifier = new PAIdentifier();
     benchmarkPaIdentifier.setId(CommonParameters.PA_BENCHMARK_R1000);
     paItem.addBenchmarksItem(benchmarkPaIdentifier);
-
-    return apiInstance.runPACalculationWithHttpInfo(paItem);
+    return paItem;
   }
 
   @Test
   public void enginesApiGetCalculationSuccess() throws ApiException, JsonProcessingException, InterruptedException {
     ApiResponse<Object> response = null;
+    CalculationStatusRoot resultStatus = null;
+    Map<String, List<String>> headers = null;    
 
     try {
-      response = runCalculation();
+      String id = getComponentId();
+      PACalculationParameters calculationUnit = createCalculationUnit(id);
+      PACalculationParametersRoot paCalcParamRoot = new PACalculationParametersRoot();
+      paCalcParamRoot.putDataItem("1", calculationUnit);
+      response = apiInstance.postAndCalculateWithHttpInfo(CommonParameters.DEADLINE_HEADER_VALUE, null, paCalcParamRoot);
+      headers = response.getHeaders();
     } catch (ApiException e) {
       CommonFunctions.handleException("EngineApi#runCalculation", e);
     }
@@ -70,15 +73,27 @@ public class PAEngineInteractiveApiTests {
     Assert.assertTrue("Create response status code should be 201 or 202",
         response.getStatusCode() == 201 || response.getStatusCode() == 202);
 
-    if (response.getStatusCode() == 202) {
-      String[] locationList = response.getHeaders().get("Location").get(0).split("/");
-      String requestId = locationList[locationList.length - 1];
+    ApiResponse<ObjectRoot> resultResponse = null;
+    Object result = null;
 
-      // Get Calculation Request Status
-
-      while (response == null || response.getStatusCode() == 202) {
-        if (response != null) {
-          List<String> cacheControl = response.getHeaders().get("Cache-Control");
+    switch(response.getStatusCode()) {
+      case 201:// Calculation completed
+        result = ((ObjectRoot)response.getData()).getData();
+        headers = response.getHeaders();
+        CalculationsHelper.validateCalculationResponse(headers, result);
+        break;
+      case 202:
+        String[] locationList = headers.get("Location").get(0).split("/");
+        String requestId = locationList[locationList.length - 2];
+        // Get Calculation Request Status
+        ApiResponse<CalculationStatusRoot> resultStatusResponse = null;
+        do {
+          resultStatusResponse = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+          headers = resultStatusResponse.getHeaders();
+          resultStatus = (CalculationStatusRoot)resultStatusResponse.getData();
+          Assert.assertTrue("Get status response status code should be 200 or 202",
+              resultStatusResponse.getStatusCode() == 200 || resultStatusResponse.getStatusCode() == 202);
+          List<String> cacheControl = headers.get("Cache-Control");
           if (cacheControl != null) {
             int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
             System.out.println("Sleeping for: " + maxAge + " seconds");
@@ -87,23 +102,28 @@ public class PAEngineInteractiveApiTests {
             System.out.println("Sleeping for: 2 seconds");
             Thread.sleep(2 * 1000L);
           }
-        }
-        response = apiInstance.getPACalculationByIdWithHttpInfo(requestId);
-        Assert.assertTrue("Get status response status code should be 200 or 202",
-            response.getStatusCode() == 200 || response.getStatusCode() == 202);
-      }
-    }
+        } while(resultStatusResponse.getStatusCode() == 202);
 
-    Builder builder = Package.newBuilder();
-    try {
-      ObjectMapper objMapper = new ObjectMapper();
-      String jsonStr = objMapper.writeValueAsString(response.getData());
-      JsonFormat.parser().ignoringUnknownFields().merge(jsonStr, builder);
-    } catch (InvalidProtocolBufferException e) {
-      System.out.println("Error while deserializing the response");
-      e.printStackTrace();
+        for(CalculationUnitStatus unitStatus : resultStatus.getData().getUnits().values()) {
+          String[] location = unitStatus.getResult().split("/");
+          resultResponse = GetCalculationResult(location);
+          headers = resultResponse.getHeaders();
+          result = ((ObjectRoot)resultResponse.getData()).getData();
+        }
+        CalculationsHelper.validateCalculationResponse(headers, result);
+        break;
     }
-    Package result = (Package) builder.build();
-    Assert.assertTrue("Response should be of Package type.", result instanceof Package);
+  }
+
+  private ApiResponse<ObjectRoot> GetCalculationResult(String[] location) throws ApiException {
+    ApiResponse<ObjectRoot> resultResponse = null;
+    try {	  
+      String calcId = location[location.length-4];
+      String unitId = location[location.length-2];        	  
+      resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(calcId, unitId);      
+    } catch (ApiException e) {
+      CommonFunctions.handleException("EngineApi#getByUrlWithHttpInfo", e);
+    }
+    return resultResponse;  
   }
 }
