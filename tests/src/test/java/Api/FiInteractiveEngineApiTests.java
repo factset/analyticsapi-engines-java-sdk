@@ -112,7 +112,7 @@ public class FiInteractiveEngineApiTests {
     CalculationsHelper.validateCalculationResponse(headers, resultObject);
   }
 
-  @Test
+  /*@Test
   public void enginesApiDeleteCalculationSuccess() throws ApiException{
     ApiResponse<Object> response = null;    
     try {
@@ -141,5 +141,5 @@ public class FiInteractiveEngineApiTests {
 
     //Assert.assertTrue("Delete response status code should be 204 - No Content.", deleteResponse.getStatusCode() == 204);
     //Assert.assertTrue("Response data should be null.", deleteResponse.getData() == null);	  
-  }
+  }*/
 }

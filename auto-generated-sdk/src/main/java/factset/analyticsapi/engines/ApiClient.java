@@ -1098,22 +1098,29 @@ public class ApiClient extends JavaTimeFormatter {
       }
 
       if(returnTypeMap.keySet().contains(statusCode)){
-	  
+
         if(response.getStatusInfo().getFamily() != Status.Family.SUCCESSFUL){ 
           ClientErrorResponse clientErrorResponse = deserialize(response, new GenericType<ClientErrorResponse>() {});
 
           String reason = "";
-          if(!clientErrorResponse.getErrors().isEmpty() && clientErrorResponse.getErrors().get(0).getDetail() != null) {
-          	  List<Error> errors = clientErrorResponse.getErrors();
-              reason = errors.get(0).getDetail();
-              
-              for(int i = 1; i < errors.size(); i++) {
-                if(errors.get(i).getDetail() != null)
-                  reason = reason + " ||| " + errors.get(i).getDetail();
+          if(clientErrorResponse != null && !clientErrorResponse.getErrors().isEmpty() && clientErrorResponse.getErrors().get(0).getDetail() != null) {
+            List<Error> errors = clientErrorResponse.getErrors();
+            reason = errors.get(0).getDetail();
+
+            for(int i = 1; i < errors.size(); i++) {
+              if(errors.get(i).getDetail() != null)
+                reason = reason + " ||| " + errors.get(i).getDetail();
+            }
+          }
+
+          if(clientErrorResponse == null  && responseHeaders != null) {
+            Error error = new Error();
+            for(Entry<String, List<String>> entry : responseHeaders.entrySet()){
+              if("x-factset-api-request-key".equals(entry.getKey().toLowerCase())) {
+                error.setId(entry.getValue().toString());
               }
-            }        
-          if(reason.isEmpty()) {
-            reason = "API error";
+            }
+            clientErrorResponse = new ClientErrorResponse().addErrorsItem(error);
           }
 
           throw new ApiException(response.getStatus(), "error", responseHeaders, reason, clientErrorResponse);
