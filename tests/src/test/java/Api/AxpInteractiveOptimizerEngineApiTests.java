@@ -65,57 +65,57 @@ public class AxpInteractiveOptimizerEngineApiTests {
   }
 
   @Test
-	public void enginesApiGetOptimizationSuccess() throws ApiException, JsonProcessingException, InterruptedException{
-	  ApiResponse<Object> response = null;
-	  Map<String, List<String>> headers = null;	  
-	  try {
-		AxiomaEquityOptimizationParameters optimizationUnit = createUnitOptimization();
-		AxiomaEquityOptimizationParametersRoot axpOptimizerParam = new AxiomaEquityOptimizationParametersRoot();
-		axpOptimizerParam.setData(optimizationUnit);
-		response = apiInstance.postAndOptimizeWithHttpInfo(CommonParameters.DEADLINE_HEADER_VALUE, null, axpOptimizerParam);
-		headers = response.getHeaders();
-	  } catch (ApiException e) {
-	      CommonFunctions.handleException("EngineApi#runCalculation", e);
-	  }
+  public void enginesApiGetOptimizationSuccess() throws ApiException, JsonProcessingException, InterruptedException{
+    ApiResponse<Object> response = null;
+    Map<String, List<String>> headers = null;	  
+    try {
+      AxiomaEquityOptimizationParameters optimizationUnit = createUnitOptimization();
+      AxiomaEquityOptimizationParametersRoot axpOptimizerParam = new AxiomaEquityOptimizationParametersRoot();
+      axpOptimizerParam.setData(optimizationUnit);
+      response = apiInstance.postAndOptimizeWithHttpInfo(CommonParameters.DEADLINE_HEADER_VALUE, null, axpOptimizerParam);
+      headers = response.getHeaders();
+    } catch (ApiException e) {
+      CommonFunctions.handleException("EngineApi#runCalculation", e);
+    }
 
-	  Assert.assertTrue("Create response status code should be 201 or 202",
-	          response.getStatusCode() == 201 || response.getStatusCode() == 202);
+    Assert.assertTrue("Create response status code should be 201 or 202",
+        response.getStatusCode() == 201 || response.getStatusCode() == 202);
 
-	  Object resultObject = null;
-	  // switch case on post response code
-	  switch(response.getStatusCode()) {
-	  case 201:
-		resultObject = response;
-		headers = response.getHeaders();
-		break;
-	  case 202:
-		String[] locationList = headers.get("Location").get(0).split("/");
-		String requestId = locationList[locationList.length - 2];
-		do {
-		  response = apiInstance.getOptimizationStatusByIdWithHttpInfo(requestId);
-		  headers = response.getHeaders();
-		  Assert.assertTrue("Get status response status code should be 201 or 202",
-		      	response.getStatusCode() == 201 || response.getStatusCode() == 202);
-		  List<String> cacheControl = headers.get("Cache-Control");
-	      if (cacheControl != null) {
-	        int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
-	        System.out.println("Sleeping for: " + maxAge + " seconds");
-	        Thread.sleep(maxAge * 1000L);
-	      } else {
-	        System.out.println("Sleeping for: 2 seconds");
-	        Thread.sleep(2 * 1000L);
-	      }
-		} while(response.getStatusCode() == 202);
-		break;
-	  }
-	  String[] location = headers.get("Location").get(0).split("/");
-	  String id = location[location.length - 2];
-	  ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id);
-	  headers = resultResponse.getHeaders();
-	  resultObject = resultResponse.getData();
-	  Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
+    Object resultObject = null;
+    // switch case on post response code
+    switch(response.getStatusCode()) {
+      case 201:
+        resultObject = response;
+        headers = response.getHeaders();
+        break;
+      case 202:
+        String[] locationList = headers.get("Location").get(0).split("/");
+        String requestId = locationList[locationList.length - 2];
+        do {
+          response = apiInstance.getOptimizationStatusByIdWithHttpInfo(requestId);
+          headers = response.getHeaders();
+          Assert.assertTrue("Get status response status code should be 201 or 202",
+              response.getStatusCode() == 201 || response.getStatusCode() == 202);
+          List<String> cacheControl = headers.get("Cache-Control");
+          if (cacheControl != null) {
+            int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
+            System.out.println("Sleeping for: " + maxAge + " seconds");
+            Thread.sleep(maxAge * 1000L);
+          } else {
+            System.out.println("Sleeping for: 2 seconds");
+            Thread.sleep(2 * 1000L);
+          }
+        } while(response.getStatusCode() == 202);
+        break;
+    }
+    String[] location = headers.get("Location").get(0).split("/");
+    String id = location[location.length - 2];
+    ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id);
+    headers = resultResponse.getHeaders();
+    resultObject = resultResponse.getData();
+    Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
     Assert.assertTrue("Result response data should not be null.", resultObject != null);
-	}
+  }
 
   @Test
   public void enginesApiDeleteOptimizationSuccess() throws ApiException{

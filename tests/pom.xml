@@ -103,10 +103,10 @@
             <version>#{engines-sdk-version}</version>
         </dependency>
         <dependency>
-			<groupId>org.glassfish.jersey.connectors</groupId>
-			<artifactId>jersey-apache-connector</artifactId>
-			<version>${jersey-version}</version>
-		</dependency>
+            <groupId>org.glassfish.jersey.connectors</groupId>
+            <artifactId>jersey-apache-connector</artifactId>
+            <version>${jersey-version}</version>
+        </dependency>
     </dependencies>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
