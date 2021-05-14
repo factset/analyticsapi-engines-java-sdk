@@ -1098,7 +1098,7 @@ public class ApiClient extends JavaTimeFormatter {
       }
 
       if(returnTypeMap.keySet().contains(statusCode)){
-
+	  
         if(response.getStatusInfo().getFamily() != Status.Family.SUCCESSFUL){ 
           ClientErrorResponse clientErrorResponse = deserialize(response, new GenericType<ClientErrorResponse>() {});
 
