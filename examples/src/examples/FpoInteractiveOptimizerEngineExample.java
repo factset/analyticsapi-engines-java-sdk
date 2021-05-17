@@ -6,110 +6,106 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.ws.rs.client.ClientBuilder;
-
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
-import org.glassfish.jersey.client.ClientProperties;
 
-//import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
-//import org.glassfish.jersey.client.ClientConfig;
-//import org.glassfish.jersey.client.ClientProperties;
-
-import factset.analyticsapi.engines.*;
-import factset.analyticsapi.engines.api.*;
-import factset.analyticsapi.engines.models.*;
-//import factset.analyticsapi.engines.StachExtensions.*;
-
-
-import com.google.protobuf.util.JsonFormat;
-import com.google.protobuf.InvalidProtocolBufferException;
 import com.factset.protobuf.stach.extensions.ColumnStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.RowStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.StachExtensionFactory;
 import com.factset.protobuf.stach.extensions.StachExtensions;
 import com.factset.protobuf.stach.extensions.models.StachVersion;
 import com.factset.protobuf.stach.extensions.models.TableData;
-//import com.factset.protobuf.stach.PackageProto.Package.Builder;
 import com.factset.protobuf.stach.v2.PackageProto;
 import com.factset.protobuf.stach.v2.RowOrganizedProto;
 import com.factset.protobuf.stach.v2.RowOrganizedProto.RowOrganizedPackage;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.factset.protobuf.stach.PackageProto.Package;
+import com.google.protobuf.util.JsonFormat;
 
-//import static factset.analyticsapi.engines.StachExtensions.convertToTableFormat;
+import factset.analyticsapi.engines.ApiClient;
+import factset.analyticsapi.engines.ApiException;
+import factset.analyticsapi.engines.ApiResponse;
+import factset.analyticsapi.engines.api.FpoOptimizerApi;
+import factset.analyticsapi.engines.models.CalculationStatusRoot;
+import factset.analyticsapi.engines.models.FPOAccount;
+import factset.analyticsapi.engines.models.FPOOptimizationParameters;
+import factset.analyticsapi.engines.models.FPOOptimizationParametersRoot;
+import factset.analyticsapi.engines.models.ObjectRoot;
+import factset.analyticsapi.engines.models.Optimization;
+import factset.analyticsapi.engines.models.OptimizerOutputTypes;
+import factset.analyticsapi.engines.models.OptimizerStrategy;
+import factset.analyticsapi.engines.models.OptimizerTradesList;
+import factset.analyticsapi.engines.models.PaDoc;
+import factset.analyticsapi.engines.models.OptimizerTradesList.IdentifierTypeEnum;
 
-public class VaultEngineInteractiveExample {
-
+public class FpoInteractiveOptimizerEngineExample {
   private static FdsApiClient apiClient = null;
-  private static final String BASE_PATH = "http://api.inhouse-cauth.factset.com";//"https://api.factset.com";
+  private static final String BASE_PATH = "https://api.factset.com";
   private static final String USERNAME = "<username-serial>";
   private static final String PASSWORD = "<apiKey>";
-  private static final String VAULT_DEFAULT_DOCUMENT = "Client:/aapi/VAULT_QA_PI_DEFAULT_LOCKED";
-  private static final String VAULT_DEFAULT_ACCOUNT = "CLIENT:/BISAM/REPOSITORY/QA/SMALL_PORT.ACCT";
-  private static final String COMPONENT_NAME = "Average\r\nWeight";
-  private static final String COMPONENT_CATEGORY = "Performance / 4 Tiles Calculate";
+  private static final String FpoAccountId = "CLIENT:/FPO/1K_MAC_AMZN_AAPL.ACCT";
+  private static final String FpoPaDocName = "CLIENT:/FPO/FPO_MASTER";
+  private static final String FpoOptimizationDate = "0M";
+  private static final String StrategyId = "Client:/analytics_api/dbui_simple_strategy";
+  private static final IdentifierTypeEnum TradesIdType = IdentifierTypeEnum.ASSET;
+  private static final Boolean IncudeCash = false;
+  private static final String OptimizationCashflow = "0";
+  private static final Integer DEADLINE_HEADER_VALUE = 20;
+  public static final String ACCEPT_HEADER_VALUE = "gzip";
+  private static FpoOptimizerApi apiInstance = new FpoOptimizerApi(getApiClient());
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
-      // Build Vault Calculation Parameters List
+      FPOOptimizationParameters fpoItem = new FPOOptimizationParameters();
+      FPOAccount accountId = new FPOAccount();
+      accountId.setId(FpoAccountId);
+      PaDoc padoc = new PaDoc();
+      padoc.setId(FpoPaDocName);
+      accountId.setPaDocument(padoc);
+      Optimization optimization = new Optimization();
+      optimization.setBacktestDate(FpoOptimizationDate);
+      optimization.setRiskModelDate(FpoOptimizationDate);
+      optimization.setCashflow(OptimizationCashflow);
+      OptimizerStrategy strategy = new OptimizerStrategy();
+      strategy.setId(StrategyId);
+      OptimizerOutputTypes optOutputTypes = new OptimizerOutputTypes();
+      OptimizerTradesList tradesList = new OptimizerTradesList();
+      tradesList.setIdentifierType(TradesIdType);
+      tradesList.setIncludeCash(IncudeCash);
+      optOutputTypes.setTrades(tradesList);
 
-      // Get all component from VAULT_DEFAULT_DOCUMENT with Name COMPONENT_NAME & category COMPONENT_CATEGORY
-      ComponentsApi componentsApi = new ComponentsApi(getApiClient());
-      Map<String, ComponentSummary> components = componentsApi.getVaultComponents(VAULT_DEFAULT_DOCUMENT).getData();
-      String componentId = components.entrySet().stream().filter(
-              c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
-              .iterator().next().getKey();
-      System.out.println("ID of component with Name '" + COMPONENT_NAME + "' and category '" + COMPONENT_CATEGORY
-              + "' : " + componentId);
+      fpoItem.setAccount(accountId);
+      fpoItem.setOptimization(optimization);
+      fpoItem.setStrategy(strategy);
+      fpoItem.setOutputTypes(optOutputTypes);
+      FPOOptimizationParametersRoot fpoOptimizerParam = new FPOOptimizationParametersRoot();
+      fpoOptimizerParam.setData(fpoItem);
 
-      ConfigurationsApi configurationsApi = new ConfigurationsApi(getApiClient());
-      Map<String, VaultConfigurationSummary> configurationsMap = configurationsApi
-              .getVaultConfigurations(VAULT_DEFAULT_ACCOUNT).getData();
-      String configurationId = configurationsMap.entrySet().iterator().next().getKey();
-
-      VaultCalculationParameters vaultItem = new VaultCalculationParameters();
-      VaultCalculationParametersRoot parameters = new VaultCalculationParametersRoot();
-
-      vaultItem.setComponentid(componentId);
-      vaultItem.setConfigid(configurationId);
-
-      VaultIdentifier account = new VaultIdentifier();
-      account.setId(VAULT_DEFAULT_ACCOUNT);
-      vaultItem.setAccount(account);
-
-      VaultDateParameters dateParameters = new VaultDateParameters();
-      dateParameters.setStartdate("20180101");
-      dateParameters.setEnddate("20180331");
-      dateParameters.setFrequency("Monthly");
-      vaultItem.setDates(dateParameters);
-      vaultItem.setComponentdetail("Groups");
-      
-      parameters.putDataItem("1", vaultItem);
-      // Run Calculation Request
-      VaultCalculationsApi apiInstance = new VaultCalculationsApi(getApiClient());
       ApiResponse<Object> response = null;
       Map<String, List<String>> headers = null;
-      
-      response = apiInstance.postAndCalculateWithHttpInfo(null, null, parameters);
+      response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, null, fpoOptimizerParam);
       headers = response.getHeaders();
 
       ApiResponse<CalculationStatusRoot> getStatus = null;
       ApiResponse<ObjectRoot> resultResponse = null;
       Object result = null;
-      if (response.getStatusCode() == 202) {
-        String[] locationList = response.getHeaders().get("Location").get(0).split("/");
-        String requestId = locationList[locationList.length - 2];
 
-        // Get Calculation Request Status
+      switch(response.getStatusCode()) {
+        case 201: // Calculation completed
+          result = ((ObjectRoot)response.getData()).getData();
+          headers = response.getHeaders();
+          break;
+        case 202:
+          String[] locationList = headers.get("Location").get(0).split("/");
+          String requestId = locationList[locationList.length - 2];
+          do {
+            response = apiInstance.getOptimizationStatusByIdWithHttpInfo(requestId);
+            headers = response.getHeaders();
 
-        while (getStatus == null || getStatus.getStatusCode() == 202) {
-          if (getStatus != null) {
-            List<String> cacheControl = getStatus.getHeaders().get("Cache-Control");
+            List<String> cacheControl = headers.get("Cache-Control");
             if (cacheControl != null) {
               int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
               System.out.println("Sleeping for: " + maxAge + " seconds");
@@ -118,33 +114,28 @@ public class VaultEngineInteractiveExample {
               System.out.println("Sleeping for: 2 seconds");
               Thread.sleep(2 * 1000L);
             }
-          }
-          getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
-          headers = getStatus.getHeaders();
-        }
-        for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
-          if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS)
-          {
-            String[] location = calculationUnitParameters.getValue().getResult().split("/");
-            String id = location[location.length - 4];
-            String unitId = location[location.length - 2];
-            resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
-            result = resultResponse.getData().getData();
-            headers = resultResponse.getHeaders();
-          }}
+          } while(response.getStatusCode() == 202);
+          break;
       }
-      else if(response.getStatusCode() == 201) {
-        result = ((ObjectRoot)response.getData()).getData();
-        headers = response.getHeaders();
-      }
+
+   // Get Calculation Result
+      String[] location = headers.get("Location").get(0).split("/");
+      String id = location[location.length - 2];
+      resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id, ACCEPT_HEADER_VALUE);
+      headers = resultResponse.getHeaders();
+      result = resultResponse.getData().getData();
 
       System.out.println("Calculation Completed!!!");
       List<TableData> tableDataList = null;
+      String jsonString = "";
       try {
         ObjectMapper mapper = new ObjectMapper();     
-        String jsonString = mapper.writeValueAsString(result);
-
-        if(headers.get("content-type").get(0).toLowerCase().contains("row")) {
+        jsonString = mapper.writeValueAsString(result);
+        JsonNode jsonObject = mapper.readTree(jsonString);
+        RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
+        stachExtensionBuilder.addTable("data", jsonObject.get("trades"));//a)limited to only one case
+        tableDataList = stachExtensionBuilder.build().convertToTable();
+        /*if(headers.get("content-type").get(0).toLowerCase().contains("row")) {
           RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
           StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
           tableDataList = stachExtension.convertToTable();              
@@ -152,22 +143,21 @@ public class VaultEngineInteractiveExample {
         else {
           ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
           StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-          tableDataList = stachExtension.convertToTable();              
-        }        
+          tableDataList = stachExtension.convertToTable();             
+        }*/   
       } catch(Exception e) {
         System.out.println(e.getMessage());
         e.getStackTrace();
       }
-      
+
       ObjectMapper mapper = new ObjectMapper();
-      String json = mapper.writeValueAsString(tableDataList);
+      String json = mapper.writeValueAsString(tableDataList);//mapper.writeValueAsString(tableDataList);
       System.out.println(json); // Prints the result in 2D table format.
       // Uncomment the following line to generate an Excel file
       // generateExcel(tableDataList); //my change
-      
+
     } catch (ApiException e) {
-      handleException("VaultEngineExample#Main", e);
-      return;
+      handleException("FpoOptimizerEngineExample#Main", e);
     }
   }
 
@@ -199,7 +189,7 @@ public class VaultEngineInteractiveExample {
       e.printStackTrace();
     }
   }
-  
+
   private static class FdsApiClient extends ApiClient
   {
  // Uncomment the below lines to use a proxy server
@@ -208,12 +198,12 @@ public class VaultEngineInteractiveExample {
     //clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
     //clientConfig.connectorProvider( new ApacheConnectorProvider() );
     //}
-    protected void customizeClientBuilder(ClientBuilder clientBuilder) {
+   /* protected void customizeClientBuilder(ClientBuilder clientBuilder) {
       // uncomment following settings when you want to use a proxy
       clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
       clientConfig.property(ClientProperties.REQUEST_ENTITY_PROCESSING, "BUFFERED");
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
-    }
+    }*/
   }
 
   private static FdsApiClient getApiClient() {
@@ -232,11 +222,11 @@ public class VaultEngineInteractiveExample {
   }
 
   private static void handleException(String method, ApiException e) {
-    System.out.println("Calculation Failed!!!");
-    System.out.println("Status code: " + e.getCode());
+    System.err.println("Exception when calling " + method);
     if (e.getResponseHeaders() != null && e.getResponseHeaders().containsKey("x-datadirect-request-key")) {
-      System.out.println("Request Key: " + e.getResponseHeaders().get("x-datadirect-request-key").get(0));
+      System.out.println("x-datadirect-request-key: " + e.getResponseHeaders().get("x-datadirect-request-key").get(0));
     }
+    System.out.println("Status code: " + e.getCode());
     System.out.println("Reason: " + e.getClientErrorResponse());
     e.printStackTrace();
   }

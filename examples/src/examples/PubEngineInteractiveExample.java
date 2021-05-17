@@ -10,22 +10,25 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
-//import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
-//import org.glassfish.jersey.client.ClientConfig;
-//import org.glassfish.jersey.client.ClientProperties;
-
-import factset.analyticsapi.engines.*;
-import factset.analyticsapi.engines.api.*;
-import factset.analyticsapi.engines.models.*;
-import factset.analyticsapi.engines.models.CalculationStatus.StatusEnum;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.compress.utils.IOUtils;
 
-public class PubEngineExample {
+import com.fasterxml.jackson.core.JsonProcessingException;
 
+import factset.analyticsapi.engines.ApiClient;
+import factset.analyticsapi.engines.ApiException;
+import factset.analyticsapi.engines.ApiResponse;
+import factset.analyticsapi.engines.api.PubCalculationsApi;
+import factset.analyticsapi.engines.models.CalculationStatusRoot;
+import factset.analyticsapi.engines.models.CalculationUnitStatus;
+import factset.analyticsapi.engines.models.ObjectRoot;
+import factset.analyticsapi.engines.models.PubCalculationParameters;
+import factset.analyticsapi.engines.models.PubCalculationParametersRoot;
+import factset.analyticsapi.engines.models.PubDateParameters;
+import factset.analyticsapi.engines.models.PubIdentifier;
+import factset.analyticsapi.engines.models.CalculationStatus.StatusEnum;
+
+public class PubEngineInteractiveExample {
   private static FdsApiClient apiClient = null;
   private static final String BASE_PATH = "https://api.factset.com";
   private static final String USERNAME = "<username-serial>";
@@ -40,7 +43,7 @@ public class PubEngineExample {
       final PubCalculationParametersRoot parameters = new PubCalculationParametersRoot();
 
       final PubCalculationParameters pubItem = new PubCalculationParameters();
-
+      Map<String, List<String>> headers = null;
       pubItem.setDocument(PUB_DEFAULT_DOCUMENT);
 
       final PubIdentifier account = new PubIdentifier();
@@ -53,7 +56,6 @@ public class PubEngineExample {
       pubItem.setDates(dateParameters);
 
       parameters.putDataItem("1", pubItem);
-      parameters.putDataItem("2", pubItem);
 
       // Run Calculation Request
       final PubCalculationsApi apiInstance = new PubCalculationsApi(getApiClient());
@@ -61,26 +63,47 @@ public class PubEngineExample {
 
       createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, parameters);
 
-      final String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-      final String requestId = locationList[locationList.length - 2];
-      System.out.println("Calculation Id: " + requestId);
+
       // Get Calculation Request Status
       ApiResponse<CalculationStatusRoot> getStatus = null;
 
-      while (getStatus == null || getStatus.getData().getData().getStatus() == StatusEnum.QUEUED
-          || getStatus.getData().getData().getStatus() == StatusEnum.EXECUTING) {
-        if (getStatus != null) {
-          final List<String> cacheControl = getStatus.getHeaders().get("Cache-Control");
-          if (cacheControl != null) {
-            final int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
-            System.out.println("Sleeping for: " + maxAge + " seconds");
-            Thread.sleep(maxAge * 1000L);
-          } else {
-            System.out.println("Sleeping for: 2 seconds");
-            Thread.sleep(2 * 1000L);
+      ApiResponse<File> resultResponse = null;
+      Object result = null;
+      if(createResponse.getStatusCode() == 202) {
+        String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
+        String requestId = locationList[locationList.length - 2];
+        System.out.println("Calculation Id: " + requestId);
+        // Get Calculation Request Status
+
+        while (getStatus == null || getStatus.getStatusCode() == 202) {
+          if (getStatus != null) {
+            List<String> cacheControl = getStatus.getHeaders().get("Cache-Control");
+            if (cacheControl != null) {
+              int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
+              System.out.println("Sleeping for: " + maxAge + " seconds");
+              Thread.sleep(maxAge * 1000L);
+            } else {
+              System.out.println("Sleeping for: 2 seconds");
+              Thread.sleep(2 * 1000L);
+            }
           }
+          getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+          headers = getStatus.getHeaders();
         }
-        getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+        for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
+          if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS)
+          {
+            String[] location = calculationUnitParameters.getValue().getResult().split("/");
+            String id = location[location.length - 4];
+            String unitId = location[location.length - 2];
+            resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
+            result = resultResponse.getData();
+            headers = resultResponse.getHeaders();
+          }}
+      }
+      else if(createResponse.getStatusCode() == 201) {
+        result = ((ObjectRoot)createResponse.getData()).getData();
+        headers = createResponse.getHeaders();
       }
 
       System.out.println("Calculation Completed!!!");
@@ -91,13 +114,13 @@ public class PubEngineExample {
         if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
           final Client httpClient = apiClient.getHttpClient();
           final WebTarget target = httpClient.target(calculationUnitParameters.getValue().getResult());
-          final Response resultResponse = target.request().accept("application/pdf")
+          final Response response = target.request().accept("application/pdf")
               .header("Authorization",
                   "Basic " + new String(Base64.encodeBase64((USERNAME + ":" + PASSWORD).getBytes())))
               .get(Response.class);
 
-          if (resultResponse.getStatus() == Response.Status.OK.getStatusCode()) {
-            InputStream inputStream = resultResponse.readEntity(InputStream.class);
+          if (response.getStatus() == Response.Status.OK.getStatusCode()) {
+            InputStream inputStream = response.readEntity(InputStream.class);
             File outputPDF = new File("output.pdf");
             try {
 

@@ -53,7 +53,7 @@ public class AxpInteractiveOptimizerEngineApiTests {
     OptimizerOutputTypes optOutputTypes = new OptimizerOutputTypes();
     OptimizerTradesList tradesList = new OptimizerTradesList();
     tradesList.setIdentifierType(CommonParameters.TradesIdType);
-    tradesList.setIncludeCash(CommonParameters.IncudeCash);
+    tradesList.setIncludeCash(CommonParameters.IncludeCash);
     optOutputTypes.setTrades(tradesList);
 
     axpItem.setAccount(accountId);
