@@ -6,47 +6,46 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.ws.rs.client.ClientBuilder;
+
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-//import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
-//import org.glassfish.jersey.client.ClientConfig;
-//import org.glassfish.jersey.client.ClientProperties;
+import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
+import org.glassfish.jersey.client.ClientProperties;
 
 import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
-//import factset.analyticsapi.engines.StachExtensions.*;
+import factset.analyticsapi.engines.models.CalculationMeta.ContentorganizationEnum;
+import factset.analyticsapi.engines.models.CalculationMeta.ContenttypeEnum;
 
-import com.google.protobuf.util.JsonFormat;
-import com.google.protobuf.InvalidProtocolBufferException;
 import com.factset.protobuf.stach.extensions.ColumnStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.RowStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.StachExtensionFactory;
 import com.factset.protobuf.stach.extensions.StachExtensions;
 import com.factset.protobuf.stach.extensions.models.StachVersion;
 import com.factset.protobuf.stach.extensions.models.TableData;
-import com.factset.protobuf.stach.v2.PackageProto;
-import com.factset.protobuf.stach.v2.RowOrganizedProto;
-import com.factset.protobuf.stach.v2.RowOrganizedProto.RowOrganizedPackage;
-//import com.factset.protobuf.stach.PackageProto.Package.Builder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.factset.protobuf.stach.PackageProto.Package;
-
-//import static factset.analyticsapi.engines.StachExtensions.convertToTableFormat;
 
 public class PAEngineInteractiveExample {
 
   private static FdsApiClient apiClient = null;
-  private static final String BASE_PATH = "http://api.inhouse-cauth.factset.com";//"https://api.factset.com";
-  private static final String USERNAME = "<username-serial>";
-  private static final String PASSWORD = "<apiKey>";
-  private static final String PA_DEFAULT_DOCUMENT = "PA_DOCUMENTS:DEFAULT";
-  private static final String COMPONENT_NAME = "Weights";
-  private static final String COMPONENT_CATEGORY = "Weights / Exposures";
+  private static String BASE_PATH = "https://api.factset.com";
+  private static String USERNAME = "<username-serial>";
+  private static String PASSWORD = "<apiKey>";
+  private static String PA_DEFAULT_DOCUMENT = "PA_DOCUMENTS:DEFAULT";
+  private static String COMPONENT_NAME = "Weights";
+  private static String COMPONENT_CATEGORY = "Weights / Exposures";
+  private static String COLUMN_NAME = "Ending Duration";
+  private static String COLUMN_CATEGORY = "DDS";
+  private static String COULMN_DIRECTORY = "Client";
+  private static String GROUP_NAME = "Average Life";
+  private static String GROUP_CATEGORY = "Average Life";
+  private static String GROUP_DIRECTORY = "Factset";
+  private static Integer DEADLINE_HEADER_VALUE = 20;
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
@@ -79,16 +78,28 @@ public class PAEngineInteractiveExample {
       dateParameters.setEnddate("20181231");
       dateParameters.setFrequency("Monthly");
       paItem.setDates(dateParameters);
-      PACalculationParametersRoot parameters = new PACalculationParametersRoot();
-      parameters.putDataItem("1", paItem);
+
+      PACalculationColumn column = new PACalculationColumn();
+      column.setId(getColumnId(COLUMN_NAME, COLUMN_CATEGORY, COULMN_DIRECTORY));
+      paItem.addColumnsItem(column);
+
+      PACalculationGroup group = new PACalculationGroup();
+      group.setId(getGroupId(GROUP_NAME, GROUP_CATEGORY, GROUP_DIRECTORY));
+      paItem.addGroupsItem(group);
+
+      PACalculationParametersRoot calcParameters = new PACalculationParametersRoot();
+      calcParameters.putDataItem("1", paItem);
+
+      CalculationMeta meta = new CalculationMeta();
+      meta.contentorganization(ContentorganizationEnum.COLUMN);
+      meta.contenttype(ContenttypeEnum.JSON);
+      calcParameters.setMeta(meta);
 
       // Run Calculation Request
       PaCalculationsApi apiInstance = new PaCalculationsApi(getApiClient());
-      ApiResponse<Object> response = null;
-      Map<String, List<String>> headers = null;
 
-      response = apiInstance.postAndCalculateWithHttpInfo(null, null, parameters);
-      headers = response.getHeaders();
+      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=3600", calcParameters);
+      Map<String, List<String>> headers = response.getHeaders();
       ApiResponse<CalculationStatusRoot> getStatus = null;
       ApiResponse<ObjectRoot> resultResponse = null;
       Object result = null;
@@ -146,7 +157,7 @@ public class PAEngineInteractiveExample {
         System.out.println(e.getMessage());
         e.getStackTrace();
       }
-      
+
       ObjectMapper mapper = new ObjectMapper();
       String json = mapper.writeValueAsString(tableDataList);
       System.out.println(json); // Prints the result in 2D table format.
@@ -163,7 +174,7 @@ public class PAEngineInteractiveExample {
       writeDataToExcel(table, UUID.randomUUID().toString() + ".xlsv");
     }      
   }
-  
+
   private static void writeDataToExcel(TableData table, String fileLocation) {
     XSSFWorkbook workbook = new XSSFWorkbook();
     XSSFSheet sheet = workbook.createSheet("Calculation Report");
@@ -186,19 +197,33 @@ public class PAEngineInteractiveExample {
       e.printStackTrace();
     }
   }
-  
+
+  private static String getColumnId(String columnName, String columnCategory, String directory) throws ApiException {
+    ColumnsApi apiInstance = new ColumnsApi(getApiClient());
+    ColumnSummaryRoot columns = apiInstance.getPAColumnsWithHttpInfo(columnName, columnCategory, directory).getData();
+    String columnId = columns.getData().entrySet().stream()
+        .filter(c -> c.getValue().getName().equals(columnName) && c.getValue().getCategory().equals(columnCategory) &&
+            c.getValue().getDirectory().equals(directory))
+        .iterator().next().getKey();
+    return columnId;
+  }
+
+  private static String getGroupId(String groupName, String groupCategory, String groupDirectory) throws ApiException {
+    GroupsApi apiInstance = new GroupsApi(getApiClient());
+    GroupRoot groups = apiInstance.getPAGroupsWithHttpInfo().getData();
+    String groupId = groups.getData().entrySet().stream()
+        .filter(c -> c.getValue().getName().equals(groupName) && c.getValue().getCategory().equals(groupCategory) &&
+            c.getValue().getDirectory().equals(groupDirectory))
+        .iterator().next().getKey();
+    return groupId;
+  }
+
   private static class FdsApiClient extends ApiClient
   {
- // Uncomment the below lines to use a proxy server
-    //@Override
-    //protected void performAdditionalClientConfiguration(ClientConfig clientConfig) {
-    //clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
-    //clientConfig.connectorProvider( new ApacheConnectorProvider() );
-    //}
-   /* protected void customizeClientBuilder(ClientBuilder clientBuilder) {
-      // uncomment following settings when you want to use a proxy
+    // Uncomment the below lines to use a proxy server
+    /*@Override
+    protected void customizeClientBuilder(ClientBuilder clientBuilder) {
       clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
-      clientConfig.property(ClientProperties.REQUEST_ENTITY_PROCESSING, "BUFFERED");
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }

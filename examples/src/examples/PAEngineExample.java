@@ -9,12 +9,13 @@ import java.util.UUID;
 import javax.ws.rs.client.ClientBuilder;
 
 import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
-import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.ClientProperties;
 
 import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.models.CalculationMeta.ContentorganizationEnum;
+import factset.analyticsapi.engines.models.CalculationMeta.ContenttypeEnum;
 import factset.analyticsapi.engines.models.CalculationStatus.StatusEnum;
 
 import com.factset.protobuf.stach.extensions.ColumnStachExtensionBuilder;
@@ -34,12 +35,18 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class PAEngineExample {
 
   private static FdsApiClient apiClient = null;
-  private static final String BASE_PATH = "http://api.inhouse-cauth.factset.com";//"https://api.factset.com";
-  private static final String USERNAME = "<username-serial>";
-  private static final String PASSWORD = "<apiKey>";
-  private static final String PA_DEFAULT_DOCUMENT = "PA_DOCUMENTS:DEFAULT";
-  private static final String COMPONENT_NAME = "Weights";
-  private static final String COMPONENT_CATEGORY = "Weights / Exposures";
+  private static String BASE_PATH = "https://api.factset.com";
+  private static String USERNAME = "<username-serial>";
+  private static String PASSWORD = "<apiKey>";
+  private static String PA_DEFAULT_DOCUMENT = "PA_DOCUMENTS:DEFAULT";
+  private static String COMPONENT_NAME = "Weights";
+  private static String COMPONENT_CATEGORY = "Weights / Exposures";
+  private static String COLUMN_NAME = "Ending Duration";
+  private static String COLUMN_CATEGORY = "DDS";
+  private static String COULMN_DIRECTORY = "Client";
+  private static String GROUP_NAME = "Average Life";
+  private static String GROUP_CATEGORY = "Average Life";
+  private static String GROUP_DIRECTORY = "Factset";
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
@@ -54,7 +61,7 @@ public class PAEngineExample {
       System.out.println(
           "ID of component with Name '" + COMPONENT_NAME + "' and category '" + COMPONENT_CATEGORY + "' : " + componentId);
 
-      PACalculationParametersRoot parameters = new PACalculationParametersRoot();
+      PACalculationParametersRoot calcParameters = new PACalculationParametersRoot();
 
       PACalculationParameters paItem = new PACalculationParameters();
 
@@ -78,14 +85,27 @@ public class PAEngineExample {
       dateParameters.setFrequency("Monthly");
       paItem.setDates(dateParameters);
 
-      parameters.putDataItem("1", paItem);
-      parameters.putDataItem("2", paItem);
+      PACalculationColumn column = new PACalculationColumn();
+      column.setId(getColumnId(COLUMN_NAME, COLUMN_CATEGORY, COULMN_DIRECTORY));
+      paItem.addColumnsItem(column);
+
+      PACalculationGroup group = new PACalculationGroup();
+      group.setId(getGroupId(GROUP_NAME, GROUP_CATEGORY, GROUP_DIRECTORY));
+      paItem.addGroupsItem(group);
+
+      calcParameters.putDataItem("1", paItem);
+      calcParameters.putDataItem("2", paItem);
+
+      CalculationMeta meta = new CalculationMeta();
+      meta.contentorganization(ContentorganizationEnum.ROW);
+      meta.contenttype(ContenttypeEnum.JSON);
+      calcParameters.setMeta(meta);
 
       // Run Calculation Request
       PaCalculationsApi apiInstance = new PaCalculationsApi(getApiClient());
       ApiResponse<Object> createResponse = null;
 
-      createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, parameters);
+      createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
 
       String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
       String requestId = locationList[locationList.length - 2];
@@ -119,14 +139,14 @@ public class PAEngineExample {
           String id = location[location.length - 4];
           String unitId = location[location.length - 2];
           ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
-          
+
           System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Succeeded!!!");
           System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Result");
           List<TableData> tableDataList = null;
           try {
             ObjectMapper mapper = new ObjectMapper();     
             String jsonString = mapper.writeValueAsString(resultResponse.getData().getData());
-            
+
             if(resultResponse.getHeaders().get("content-type").get(0).toLowerCase().contains("row")) {
               RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
               StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
@@ -141,12 +161,12 @@ public class PAEngineExample {
             System.out.println(e.getMessage());
             e.getStackTrace();
           }
-          
+
           ObjectMapper mapper = new ObjectMapper();
           String json = mapper.writeValueAsString(tableDataList);
           System.out.println(json); // Prints the result in 2D table format.
           // Uncomment the following line to generate an Excel file
-          // generateExcel(tableDataList); //my change
+          // generateExcel(tableDataList);
         }
         else{
           System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Failed!!!");
@@ -156,6 +176,26 @@ public class PAEngineExample {
     } catch (ApiException e) {
       handleException("PAEngineExample#Main", e);
     }
+  }
+
+  private static String getColumnId(String columnName, String columnCategory, String directory) throws ApiException {
+    ColumnsApi apiInstance = new ColumnsApi(getApiClient());
+    ColumnSummaryRoot columns = apiInstance.getPAColumnsWithHttpInfo(columnName, columnCategory, directory).getData();
+    String columnId = columns.getData().entrySet().stream()
+        .filter(c -> c.getValue().getName().equals(columnName) && c.getValue().getCategory().equals(columnCategory) &&
+            c.getValue().getDirectory().equals(directory))
+        .iterator().next().getKey();
+    return columnId;
+  }
+
+  private static String getGroupId(String groupName, String groupCategory, String groupDirectory) throws ApiException {
+    GroupsApi apiInstance = new GroupsApi(getApiClient());
+    GroupRoot groups = apiInstance.getPAGroupsWithHttpInfo().getData();
+    String groupId = groups.getData().entrySet().stream()
+        .filter(c -> c.getValue().getName().equals(groupName) && c.getValue().getCategory().equals(groupCategory) &&
+            c.getValue().getDirectory().equals(groupDirectory))
+        .iterator().next().getKey();
+    return groupId;
   }
 
   private static void generateExcel(List<TableData> tableList) {
@@ -190,17 +230,11 @@ public class PAEngineExample {
   private static class FdsApiClient extends ApiClient
   {
     // Uncomment the below lines to use a proxy server
-    //@Override
-    //protected void performAdditionalClientConfiguration(ClientConfig clientConfig) {
-    //clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
-    //clientConfig.connectorProvider( new ApacheConnectorProvider() );
-    //}
+    /*@Override
     protected void customizeClientBuilder(ClientBuilder clientBuilder) {
-      // uncomment following settings when you want to use a proxy
       clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
-      clientConfig.property(ClientProperties.REQUEST_ENTITY_PROCESSING, "BUFFERED");
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
-    }
+    }*/
   }
 
   private static FdsApiClient getApiClient() {

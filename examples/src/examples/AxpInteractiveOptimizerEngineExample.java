@@ -6,23 +6,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.ws.rs.client.ClientBuilder;
+
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
+import org.glassfish.jersey.client.ClientProperties;
 
 import com.factset.protobuf.stach.extensions.RowStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.StachExtensionFactory;
-import com.factset.protobuf.stach.extensions.StachExtensions;
 import com.factset.protobuf.stach.extensions.models.StachVersion;
 import com.factset.protobuf.stach.extensions.models.TableData;
-import com.factset.protobuf.stach.v2.PackageProto;
-import com.factset.protobuf.stach.v2.RowOrganizedProto;
-import com.factset.protobuf.stach.v2.RowOrganizedProto.RowOrganizedPackage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.protobuf.util.JsonFormat;
 
 import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
@@ -31,7 +30,6 @@ import factset.analyticsapi.engines.api.AxpOptimizerApi;
 import factset.analyticsapi.engines.models.AxiomaEquityOptimizationParameters;
 import factset.analyticsapi.engines.models.AxiomaEquityOptimizationParametersRoot;
 import factset.analyticsapi.engines.models.AxiomaEquityOptimizerStrategy;
-import factset.analyticsapi.engines.models.CalculationStatusRoot;
 import factset.analyticsapi.engines.models.ObjectRoot;
 import factset.analyticsapi.engines.models.Optimization;
 import factset.analyticsapi.engines.models.OptimizerAccount;
@@ -41,37 +39,36 @@ import factset.analyticsapi.engines.models.OptimizerTradesList.IdentifierTypeEnu
 
 public class AxpInteractiveOptimizerEngineExample {
   private static FdsApiClient apiClient = null;
-  private static final String BASE_PATH = "https://api.factset.com";
-  private static final String USERNAME = "<username-serial>";
-  private static final String PASSWORD = "<apiKey>";
-  private static final String AxiomaAccountId = "CLIENT:/OPTIMIZER/IBM.ACCT";
-  private static final String OptimizationDate = "09/01/2020";
-  private static final String OptimizationCashflow = "0";
-  private static final String StrategyId = "Client:/analytics_api/dbui_simple_strategy";
-  private static final String SecondaryStrategyId = "Client:/Optimizer/CN_TEST";
-  private static final IdentifierTypeEnum TradesIdType = IdentifierTypeEnum.ASSET;
-  private static final Boolean IncudeCash = false;
-  private static final Integer DEADLINE_HEADER_VALUE = 20;
+  private static String BASE_PATH = "https://api.factset.com";
+  private static String USERNAME = "<username-serial>";
+  private static String PASSWORD = "<apiKey>";
+  private static String AXIOMA_ACCOUNT_ID = "CLIENT:/OPTIMIZER/IBM.ACCT";
+  private static String OPTIMIZATION_DATE = "09/01/2020";
+  private static String OPTIMIZATION_CASHFLOW = "0";
+  private static String STRATEGY_ID = "Client:/Optimizer/CN_TEST";
+  private static IdentifierTypeEnum TRADES_ID_TYPE = IdentifierTypeEnum.ASSET;
+  private static Boolean INCLUDE_CASH = false;
+  private static Integer DEADLINE_HEADER_VALUE = 20;
   private static AxpOptimizerApi apiInstance = new AxpOptimizerApi(getApiClient());
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {    
     try{
       AxiomaEquityOptimizationParameters axpItem = new AxiomaEquityOptimizationParameters();
       OptimizerAccount accountId = new OptimizerAccount();
-      accountId.setId(AxiomaAccountId);
+      accountId.setId(AXIOMA_ACCOUNT_ID);
 
       Optimization optimization = new Optimization();
-      optimization.setBacktestDate(OptimizationDate);
-      optimization.setRiskModelDate(OptimizationDate);
-      optimization.setCashflow(OptimizationCashflow);
+      optimization.setBacktestDate(OPTIMIZATION_DATE);
+      optimization.setRiskModelDate(OPTIMIZATION_DATE);
+      optimization.setCashflow(OPTIMIZATION_CASHFLOW);
 
       AxiomaEquityOptimizerStrategy strategy = new AxiomaEquityOptimizerStrategy();
-      strategy.setId(SecondaryStrategyId);
+      strategy.setId(STRATEGY_ID);
 
       OptimizerOutputTypes optOutputTypes = new OptimizerOutputTypes();
       OptimizerTradesList tradesList = new OptimizerTradesList();
-      tradesList.setIdentifierType(TradesIdType);
-      tradesList.setIncludeCash(IncudeCash);
+      tradesList.setIdentifierType(TRADES_ID_TYPE);
+      tradesList.setIncludeCash(INCLUDE_CASH);
       optOutputTypes.setTrades(tradesList);
 
       axpItem.setAccount(accountId);
@@ -81,14 +78,9 @@ public class AxpInteractiveOptimizerEngineExample {
       AxiomaEquityOptimizationParametersRoot axpOptimizerParam = new AxiomaEquityOptimizationParametersRoot();
       axpOptimizerParam.setData(axpItem);
 
-      ApiResponse<Object> response = null;
-      Map<String, List<String>> headers = null;
+      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=3600", axpOptimizerParam);
+      Map<String, List<String>> headers = response.getHeaders();
 
-      response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, null, axpOptimizerParam);
-      headers = response.getHeaders();
-
-      ApiResponse<CalculationStatusRoot> getStatus = null;
-      ApiResponse<ObjectRoot> resultResponse = null;
       Object result = null;
 
       switch(response.getStatusCode()) {
@@ -116,10 +108,10 @@ public class AxpInteractiveOptimizerEngineExample {
           break;
       }
 
-   // Get Calculation Result
+      // Get Calculation Result
       String[] location = headers.get("Location").get(0).split("/");
       String id = location[location.length - 2];
-      resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id);
+      ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id);
       headers = resultResponse.getHeaders();
       result = resultResponse.getData().getData();
 
@@ -130,7 +122,6 @@ public class AxpInteractiveOptimizerEngineExample {
         String jsonString = mapper.writeValueAsString(result);
         JsonNode jsonObject = mapper.readTree(jsonString);
         RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
-        //StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
 
         stachExtensionBuilder.addTable("data", jsonObject.get("trades"));//a)limited to only one case
         tableDataList = stachExtensionBuilder.build().convertToTable();
@@ -180,16 +171,10 @@ public class AxpInteractiveOptimizerEngineExample {
 
   private static class FdsApiClient extends ApiClient
   {
- // Uncomment the below lines to use a proxy server
-    //@Override
-    //protected void performAdditionalClientConfiguration(ClientConfig clientConfig) {
-    //clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
-    //clientConfig.connectorProvider( new ApacheConnectorProvider() );
-    //}
-   /* protected void customizeClientBuilder(ClientBuilder clientBuilder) {
-      // uncomment following settings when you want to use a proxy
+    // Uncomment the below lines to use a proxy server
+    /*@Override
+    protected void customizeClientBuilder(ClientBuilder clientBuilder) {
       clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
-      clientConfig.property(ClientProperties.REQUEST_ENTITY_PROCESSING, "BUFFERED");
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }

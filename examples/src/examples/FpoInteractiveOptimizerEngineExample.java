@@ -6,30 +6,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.ws.rs.client.ClientBuilder;
+
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
+import org.glassfish.jersey.client.ClientProperties;
 
-import com.factset.protobuf.stach.extensions.ColumnStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.RowStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.StachExtensionFactory;
-import com.factset.protobuf.stach.extensions.StachExtensions;
 import com.factset.protobuf.stach.extensions.models.StachVersion;
 import com.factset.protobuf.stach.extensions.models.TableData;
-import com.factset.protobuf.stach.v2.PackageProto;
-import com.factset.protobuf.stach.v2.RowOrganizedProto;
-import com.factset.protobuf.stach.v2.RowOrganizedProto.RowOrganizedPackage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.protobuf.util.JsonFormat;
 
 import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.ApiResponse;
 import factset.analyticsapi.engines.api.FpoOptimizerApi;
-import factset.analyticsapi.engines.models.CalculationStatusRoot;
 import factset.analyticsapi.engines.models.FPOAccount;
 import factset.analyticsapi.engines.models.FPOOptimizationParameters;
 import factset.analyticsapi.engines.models.FPOOptimizationParametersRoot;
@@ -43,38 +40,38 @@ import factset.analyticsapi.engines.models.OptimizerTradesList.IdentifierTypeEnu
 
 public class FpoInteractiveOptimizerEngineExample {
   private static FdsApiClient apiClient = null;
-  private static final String BASE_PATH = "https://api.factset.com";
-  private static final String USERNAME = "<username-serial>";
-  private static final String PASSWORD = "<apiKey>";
-  private static final String FpoAccountId = "CLIENT:/FPO/1K_MAC_AMZN_AAPL.ACCT";
-  private static final String FpoPaDocName = "CLIENT:/FPO/FPO_MASTER";
-  private static final String FpoOptimizationDate = "0M";
-  private static final String StrategyId = "Client:/analytics_api/dbui_simple_strategy";
-  private static final IdentifierTypeEnum TradesIdType = IdentifierTypeEnum.ASSET;
-  private static final Boolean IncudeCash = false;
-  private static final String OptimizationCashflow = "0";
-  private static final Integer DEADLINE_HEADER_VALUE = 20;
-  public static final String ACCEPT_HEADER_VALUE = "gzip";
+  private static String BASE_PATH = "https://api.factset.com";
+  private static String USERNAME = "<username-serial>";
+  private static String PASSWORD = "<apiKey>";
+  private static String FPO_ACCOUNT_ID = "CLIENT:/FPO/1K_MAC_AMZN_AAPL.ACCT";
+  private static String FPO_PA_DOC_NAME = "CLIENT:/FPO/FPO_MASTER";
+  private static String FPO_OPTIMIZATION_DATE = "0M";
+  private static String STRATEGY_ID = "Client:/analytics_api/dbui_simple_strategy";
+  private static IdentifierTypeEnum TRADES_ID_TYPE = IdentifierTypeEnum.ASSET;
+  private static Boolean INCLUDE_CASH = false;
+  private static String OPTIMIZATION_CASHFLOW = "0";
+  private static Integer DEADLINE_HEADER_VALUE = 20;
+  public static String ACCEPT_HEADER_VALUE = "gzip";
   private static FpoOptimizerApi apiInstance = new FpoOptimizerApi(getApiClient());
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
       FPOOptimizationParameters fpoItem = new FPOOptimizationParameters();
       FPOAccount accountId = new FPOAccount();
-      accountId.setId(FpoAccountId);
+      accountId.setId(FPO_ACCOUNT_ID);
       PaDoc padoc = new PaDoc();
-      padoc.setId(FpoPaDocName);
+      padoc.setId(FPO_PA_DOC_NAME);
       accountId.setPaDocument(padoc);
       Optimization optimization = new Optimization();
-      optimization.setBacktestDate(FpoOptimizationDate);
-      optimization.setRiskModelDate(FpoOptimizationDate);
-      optimization.setCashflow(OptimizationCashflow);
+      optimization.setBacktestDate(FPO_OPTIMIZATION_DATE);
+      optimization.setRiskModelDate(FPO_OPTIMIZATION_DATE);
+      optimization.setCashflow(OPTIMIZATION_CASHFLOW);
       OptimizerStrategy strategy = new OptimizerStrategy();
-      strategy.setId(StrategyId);
+      strategy.setId(STRATEGY_ID);
       OptimizerOutputTypes optOutputTypes = new OptimizerOutputTypes();
       OptimizerTradesList tradesList = new OptimizerTradesList();
-      tradesList.setIdentifierType(TradesIdType);
-      tradesList.setIncludeCash(IncudeCash);
+      tradesList.setIdentifierType(TRADES_ID_TYPE);
+      tradesList.setIncludeCash(INCLUDE_CASH);
       optOutputTypes.setTrades(tradesList);
 
       fpoItem.setAccount(accountId);
@@ -84,13 +81,9 @@ public class FpoInteractiveOptimizerEngineExample {
       FPOOptimizationParametersRoot fpoOptimizerParam = new FPOOptimizationParametersRoot();
       fpoOptimizerParam.setData(fpoItem);
 
-      ApiResponse<Object> response = null;
-      Map<String, List<String>> headers = null;
-      response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, null, fpoOptimizerParam);
-      headers = response.getHeaders();
+      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=3600", fpoOptimizerParam);
+      Map<String, List<String>> headers = response.getHeaders();
 
-      ApiResponse<CalculationStatusRoot> getStatus = null;
-      ApiResponse<ObjectRoot> resultResponse = null;
       Object result = null;
 
       switch(response.getStatusCode()) {
@@ -118,43 +111,32 @@ public class FpoInteractiveOptimizerEngineExample {
           break;
       }
 
-   // Get Calculation Result
+      // Get Calculation Result
       String[] location = headers.get("Location").get(0).split("/");
       String id = location[location.length - 2];
-      resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id, ACCEPT_HEADER_VALUE);
+      ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id, ACCEPT_HEADER_VALUE);
       headers = resultResponse.getHeaders();
       result = resultResponse.getData().getData();
 
       System.out.println("Calculation Completed!!!");
       List<TableData> tableDataList = null;
-      String jsonString = "";
       try {
         ObjectMapper mapper = new ObjectMapper();     
-        jsonString = mapper.writeValueAsString(result);
+        String jsonString = mapper.writeValueAsString(result);
         JsonNode jsonObject = mapper.readTree(jsonString);
         RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
         stachExtensionBuilder.addTable("data", jsonObject.get("trades"));//a)limited to only one case
         tableDataList = stachExtensionBuilder.build().convertToTable();
-        /*if(headers.get("content-type").get(0).toLowerCase().contains("row")) {
-          RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
-          StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-          tableDataList = stachExtension.convertToTable();              
-        }
-        else {
-          ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
-          StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-          tableDataList = stachExtension.convertToTable();             
-        }*/   
       } catch(Exception e) {
         System.out.println(e.getMessage());
         e.getStackTrace();
       }
 
       ObjectMapper mapper = new ObjectMapper();
-      String json = mapper.writeValueAsString(tableDataList);//mapper.writeValueAsString(tableDataList);
+      String json = mapper.writeValueAsString(tableDataList);
       System.out.println(json); // Prints the result in 2D table format.
       // Uncomment the following line to generate an Excel file
-      // generateExcel(tableDataList); //my change
+      // generateExcel(tableDataList);
 
     } catch (ApiException e) {
       handleException("FpoOptimizerEngineExample#Main", e);
@@ -192,16 +174,10 @@ public class FpoInteractiveOptimizerEngineExample {
 
   private static class FdsApiClient extends ApiClient
   {
- // Uncomment the below lines to use a proxy server
-    //@Override
-    //protected void performAdditionalClientConfiguration(ClientConfig clientConfig) {
-    //clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
-    //clientConfig.connectorProvider( new ApacheConnectorProvider() );
-    //}
-   /* protected void customizeClientBuilder(ClientBuilder clientBuilder) {
-      // uncomment following settings when you want to use a proxy
+    // Uncomment the below lines to use a proxy server
+    /*@Override
+    protected void customizeClientBuilder(ClientBuilder clientBuilder) {
       clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
-      clientConfig.property(ClientProperties.REQUEST_ENTITY_PROCESSING, "BUFFERED");
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }

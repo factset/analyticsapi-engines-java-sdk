@@ -7,10 +7,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.ws.rs.client.ClientBuilder;
+
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
+import org.glassfish.jersey.client.ClientProperties;
 
 import com.factset.protobuf.stach.extensions.ColumnStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.RowStachExtensionBuilder;
@@ -18,70 +22,83 @@ import com.factset.protobuf.stach.extensions.StachExtensionFactory;
 import com.factset.protobuf.stach.extensions.StachExtensions;
 import com.factset.protobuf.stach.extensions.models.StachVersion;
 import com.factset.protobuf.stach.extensions.models.TableData;
-import com.factset.protobuf.stach.v2.PackageProto;
-import com.factset.protobuf.stach.v2.RowOrganizedProto;
-import com.factset.protobuf.stach.v2.RowOrganizedProto.RowOrganizedPackage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.protobuf.util.JsonFormat;
 
 import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.ApiResponse;
 import factset.analyticsapi.engines.api.FiCalculationsApi;
-import factset.analyticsapi.engines.models.CalculationStatusRoot;
+import factset.analyticsapi.engines.models.CalculationMeta;
 import factset.analyticsapi.engines.models.FICalculationParameters;
 import factset.analyticsapi.engines.models.FICalculationParametersRoot;
 import factset.analyticsapi.engines.models.FIJobSettings;
 import factset.analyticsapi.engines.models.FISecurity;
 import factset.analyticsapi.engines.models.ObjectRoot;
+import factset.analyticsapi.engines.models.CalculationMeta.ContentorganizationEnum;
+import factset.analyticsapi.engines.models.CalculationMeta.ContenttypeEnum;
 
 public class FiInteractiveEngineExample {
   private static FdsApiClient apiClient = null;
-  private static final String BASE_PATH = "https://api.factset.com";
-  private static final String USERNAME = "<username-serial>";
-  private static final String PASSWORD = "<apiKey>";
-  private static final String FICalcFromMethod = "Price";
-  private static final Double FICalcFromValue = 108.40299;
-  private static final Double FIFaceValue = (double) 100; 
-  private static final String FISymbol = "3140JQHD";
-  private static final String FISettlement = "20200922";
-  private static final String FIDiscountCurve = "Government";
-  private static final String FIAsOfDate = "20200922";
-  private static final String FICalculations = "Effective Duration";
-  private static final Integer DEADLINE_HEADER_VALUE = 20;
+  private static String BASE_PATH = "https://api.factset.com";
+  private static String USERNAME = "<username-serial>";
+  private static String PASSWORD = "<apiKey>";
+  private static String FI_CALC_FROM_METHOD = "Price";
+  private static Double FI_CALC_FROM_VALUE = 108.40299;
+  private static Double FI_CALC_FROM_VALUE_2 = 100.285;
+  private static Double FI_FACE_VALUE = (double) 100;
+  private static Double FI_FACE_VALUE_2 = 10000.0;
+  private static String FI_SYMBOL = "3140JQHD";
+  private static String FI_SYMBOL_2 = "912828ZG8";
+  private static String FI_SETTLEMENT = "20200922";
+  private static String FI_SETTLEMENT_2 = "20201202";
+  private static String FI_DISCOUNT_CURVE = "Government";
+  private static String FI_DISCOUNT_CURVE_2 = "UST";
+  private static String FI_AS_OF_DATE = "20200922";
+  private static String[] FI_CALCULATIONS = {"Effective Duration", "Partial Duration", "Security Type", "Effective Convexity", "CF Coupon"};
+  private static Integer DEADLINE_HEADER_VALUE = 20;
   private static FiCalculationsApi apiInstance = new FiCalculationsApi(getApiClient());
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {    
     try{
-      final FICalculationParameters parameters = new FICalculationParameters();
-      final FISecurity securities = new FISecurity();
-      securities.setCalcFromMethod(FICalcFromMethod);
-      securities.setCalcFromValue(FICalcFromValue);
-      securities.setFace(FIFaceValue);
-      securities.setSettlement(FISettlement);
-      securities.setDiscountCurve(FIDiscountCurve);
-      securities.setSymbol(FISymbol);
-      parameters.addSecuritiesItem(securities);
+      FICalculationParameters calcParameters = new FICalculationParameters();
+      FISecurity security1 = new FISecurity();
+      security1.setCalcFromMethod(FI_CALC_FROM_METHOD);
+      security1.setCalcFromValue(FI_CALC_FROM_VALUE);
+      security1.setFace(FI_FACE_VALUE);
+      security1.setSettlement(FI_SETTLEMENT);
+      security1.setDiscountCurve(FI_DISCOUNT_CURVE);
+      security1.setSymbol(FI_SYMBOL);
+      calcParameters.addSecuritiesItem(security1);
+
+      FISecurity security2 = new FISecurity();
+      security2.setCalcFromMethod(FI_CALC_FROM_METHOD);
+      security2.setCalcFromValue(FI_CALC_FROM_VALUE_2);
+      security2.setFace(FI_FACE_VALUE_2);
+      security2.setSettlement(FI_SETTLEMENT_2);
+      security2.setDiscountCurve(FI_DISCOUNT_CURVE_2);
+      security2.setSymbol(FI_SYMBOL_2);
+      calcParameters.addSecuritiesItem(security2);
 
       ArrayList<String> calc = new ArrayList<String>();
-      calc.add(FICalculations);
-      parameters.setCalculations(calc);
+      for(int i = 0; i < FI_CALCULATIONS.length ; i++)
+        calc.add(FI_CALCULATIONS[i]);
+      calcParameters.setCalculations(calc);
 
-      final FIJobSettings jobSettings = new FIJobSettings();
-      jobSettings.setAsOfDate(FIAsOfDate);
-      parameters.setJobSettings(jobSettings);
+      FIJobSettings jobSettings = new FIJobSettings();
+      jobSettings.setAsOfDate(FI_AS_OF_DATE);
+      calcParameters.setJobSettings(jobSettings);
 
       FICalculationParametersRoot fiCalcParam = new FICalculationParametersRoot();
-      fiCalcParam.data(parameters);
+      fiCalcParam.data(calcParameters);
+      CalculationMeta meta = new CalculationMeta();
+      meta.contentorganization(ContentorganizationEnum.SIMPLIFIEDROW);
+      meta.contenttype(ContenttypeEnum.JSON);
+      fiCalcParam.meta(meta);
 
-      ApiResponse<Object> response = null;
-      Map<String, List<String>> headers = null;
-      response = apiInstance.postAndCalculateWithHttpInfo(DEADLINE_HEADER_VALUE, null, fiCalcParam);
-      headers = response.getHeaders();
+      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=3600", fiCalcParam);
+      Map<String, List<String>> headers = response.getHeaders();
 
-      ApiResponse<CalculationStatusRoot> getStatus = null;
-      ApiResponse<ObjectRoot> resultResponse = null;
       Object result = null;
 
       switch(response.getStatusCode()) {
@@ -109,10 +126,10 @@ public class FiInteractiveEngineExample {
           break;
       }
 
-   // Get Calculation Result
+      // Get Calculation Result
       String[] location = headers.get("Location").get(0).split("/");
       String id = location[location.length - 2];
-      resultResponse = apiInstance.getCalculationResultWithHttpInfo(id);
+      ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationResultWithHttpInfo(id);
       headers = resultResponse.getHeaders();
       result = resultResponse.getData().getData();
 
@@ -136,20 +153,13 @@ public class FiInteractiveEngineExample {
         System.out.println(e.getMessage());
         e.getStackTrace();
       }
+
       ObjectMapper mapper = new ObjectMapper();
       String json = mapper.writeValueAsString(tableDataList);
       System.out.println(json); // Prints the result in 2D table format.
       // Uncomment the following line to generate an Excel file
-      // generateExcel(tableDataList); //my change
+      //generateExcel(tableDataList);
 
-      /*Package result = builder.build();
-      // To convert result to 2D tables.
-      List<TableData> tables = convertToTableFormat(result);
-      ObjectMapper mapper = new ObjectMapper();
-      String json = mapper.writeValueAsString(tables.get(0));
-      System.out.println(json); // Prints the result in 2D table format.
-      // Uncomment the following line to generate an Excel file
-      // StachExtensions.generateExcel(result);*/
     } catch (ApiException e) {
       handleException("FiEngineExample#Main", e);
     }
@@ -186,16 +196,9 @@ public class FiInteractiveEngineExample {
 
   private static class FdsApiClient extends ApiClient
   {
- // Uncomment the below lines to use a proxy server
-    //@Override
-    //protected void performAdditionalClientConfiguration(ClientConfig clientConfig) {
-    //clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
-    //clientConfig.connectorProvider( new ApacheConnectorProvider() );
-    //}
-   /* protected void customizeClientBuilder(ClientBuilder clientBuilder) {
-      // uncomment following settings when you want to use a proxy
+    // Uncomment the below lines to use a proxy server
+    /* protected void customizeClientBuilder(ClientBuilder clientBuilder) {
       clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
-      clientConfig.property(ClientProperties.REQUEST_ENTITY_PROCESSING, "BUFFERED");
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }  

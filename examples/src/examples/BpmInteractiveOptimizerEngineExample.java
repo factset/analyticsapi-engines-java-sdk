@@ -30,7 +30,6 @@ import factset.analyticsapi.engines.api.BpmOptimizerApi;
 import factset.analyticsapi.engines.models.BPMOptimizationParameters;
 import factset.analyticsapi.engines.models.BPMOptimizationParametersRoot;
 import factset.analyticsapi.engines.models.BPMOptimizerStrategy;
-import factset.analyticsapi.engines.models.CalculationStatusRoot;
 import factset.analyticsapi.engines.models.ObjectRoot;
 import factset.analyticsapi.engines.models.OptimizerOutputTypes;
 import factset.analyticsapi.engines.models.OptimizerTradesList;
@@ -38,25 +37,24 @@ import factset.analyticsapi.engines.models.OptimizerTradesList.IdentifierTypeEnu
 
 public class BpmInteractiveOptimizerEngineExample {
   private static FdsApiClient apiClient = null;
-  private static final String BASE_PATH = "http://api.inhouse-cauth.factset.com";//"https://api.factset.com";
-  private static final String USERNAME ="<username-serial>";
-  private static final String PASSWORD = "<apiKey>";
-  private static final String BpmStrategyId = "CLIENT:/Aapi/BPMAPISIMPLE";
-  //private static final String BpmSecondaryStrategyId = "CLIENT:/Analytics_api/Optimizers/BPMAPISIMPLE";
-  private static final IdentifierTypeEnum TradesIdType = IdentifierTypeEnum.ASSET;
-  private static final Boolean IncludeCash = false;
-  private static final Integer DEADLINE_HEADER_VALUE = 20;
+  private static String BASE_PATH = "https://api.factset.com";
+  private static String USERNAME = "<username-serial>";
+  private static String PASSWORD = "<apiKey>";
+  private static String BPM_STRATEGY_ID = "CLIENT:/Aapi/BPMAPISIMPLE";
+  private static IdentifierTypeEnum TRADES_ID_TYPE = IdentifierTypeEnum.ASSET;
+  private static Boolean INCLUDE_CASH = false;
+  private static Integer DEADLINE_HEADER_VALUE = 20;
   private static BpmOptimizerApi apiInstance = new BpmOptimizerApi(getApiClient());
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
       BPMOptimizationParameters bpmItem = new BPMOptimizationParameters();
       BPMOptimizerStrategy strategy = new BPMOptimizerStrategy();
-      strategy.setId(BpmStrategyId);
+      strategy.setId(BPM_STRATEGY_ID);
       OptimizerOutputTypes optOutputTypes = new OptimizerOutputTypes();
       OptimizerTradesList tradesList = new OptimizerTradesList();
-      tradesList.setIdentifierType(TradesIdType);
-      tradesList.setIncludeCash(IncludeCash);
+      tradesList.setIdentifierType(TRADES_ID_TYPE);
+      tradesList.setIncludeCash(INCLUDE_CASH);
       optOutputTypes.setTrades(tradesList);
 
       bpmItem.setStrategy(strategy);
@@ -64,14 +62,9 @@ public class BpmInteractiveOptimizerEngineExample {
       BPMOptimizationParametersRoot bpmOptimizerParam = new BPMOptimizationParametersRoot();
       bpmOptimizerParam.setData(bpmItem);
 
-      ApiResponse<Object> response = null;
-      Map<String, List<String>> headers = null;
+      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=3600", bpmOptimizerParam);
+      Map<String, List<String>> headers = response.getHeaders();
 
-      response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, null, bpmOptimizerParam);
-      headers = response.getHeaders();
-
-      ApiResponse<CalculationStatusRoot> getStatus = null;
-      ApiResponse<ObjectRoot> resultResponse = null;
       Object result = null;
 
       switch(response.getStatusCode()) {
@@ -99,43 +92,33 @@ public class BpmInteractiveOptimizerEngineExample {
           break;
       }
 
-   // Get Calculation Result
+      // Get Calculation Result
       String[] location = headers.get("Location").get(0).split("/");
       String id = location[location.length - 2];
-      resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id);
+      ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id);
       headers = resultResponse.getHeaders();
       result = resultResponse.getData().getData();
 
       System.out.println("Calculation Completed!!!");
       List<TableData> tables = null;
-      String jsonString = "";
       try {
         ObjectMapper mapper = new ObjectMapper();     
-        jsonString = mapper.writeValueAsString(result);
+        String jsonString = mapper.writeValueAsString(result);
         JsonNode jsonObject = mapper.readTree(jsonString);
         RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
         stachExtensionBuilder.addTable("data", jsonObject.get("trades"));//a)limited to only one case
         tables = stachExtensionBuilder.build().convertToTable();
-
-
       } catch(Exception e) {
         System.out.println(e.getMessage());
         e.getStackTrace();
       }
+
       ObjectMapper mapper = new ObjectMapper();
-      String json = mapper.writeValueAsString(tables);//mapper.writeValueAsString(tableDataList);
+      String json = mapper.writeValueAsString(tables);
       System.out.println(json); // Prints the result in 2D table format.
       // Uncomment the following line to generate an Excel file
       // generateExcel(tableDataList); //my change
 
-      /*Package result = builder.build();
-      // To convert result to 2D tables.
-      List<TableData> tables = convertToTableFormat(result);
-      ObjectMapper mapper = new ObjectMapper();
-      String json = mapper.writeValueAsString(tables.get(0));
-      System.out.println(json); // Prints the result in 2D table format.
-      // Uncomment the following line to generate an Excel file
-      // StachExtensions.generateExcel(result);*/
     } catch (ApiException e) {
       handleException("BpmOptimizerEngineExample#Main", e);
     }
@@ -172,18 +155,12 @@ public class BpmInteractiveOptimizerEngineExample {
 
   private static class FdsApiClient extends ApiClient
   {
- // Uncomment the below lines to use a proxy server
-    //@Override
-    //protected void performAdditionalClientConfiguration(ClientConfig clientConfig) {
-    //clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
-    //clientConfig.connectorProvider( new ApacheConnectorProvider() );
-    //}
+    // Uncomment the below lines to use a proxy server
+    /*@Override
     protected void customizeClientBuilder(ClientBuilder clientBuilder) {
-      // uncomment following settings when you want to use a proxy
       clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
-      clientConfig.property(ClientProperties.REQUEST_ENTITY_PROCESSING, "BUFFERED");
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
-    }
+    }*/
   }
 
   private static FdsApiClient getApiClient() {

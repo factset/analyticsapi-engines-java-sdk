@@ -15,44 +15,33 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
 import org.glassfish.jersey.client.ClientProperties;
 
-//import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
-//import org.glassfish.jersey.client.ClientConfig;
-//import org.glassfish.jersey.client.ClientProperties;
-
 import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
-//import factset.analyticsapi.engines.StachExtensions.*;
+import factset.analyticsapi.engines.models.CalculationMeta.ContentorganizationEnum;
+import factset.analyticsapi.engines.models.CalculationMeta.ContenttypeEnum;
 
-
-import com.google.protobuf.util.JsonFormat;
-import com.google.protobuf.InvalidProtocolBufferException;
 import com.factset.protobuf.stach.extensions.ColumnStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.RowStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.StachExtensionFactory;
 import com.factset.protobuf.stach.extensions.StachExtensions;
 import com.factset.protobuf.stach.extensions.models.StachVersion;
 import com.factset.protobuf.stach.extensions.models.TableData;
-//import com.factset.protobuf.stach.PackageProto.Package.Builder;
-import com.factset.protobuf.stach.v2.PackageProto;
-import com.factset.protobuf.stach.v2.RowOrganizedProto;
-import com.factset.protobuf.stach.v2.RowOrganizedProto.RowOrganizedPackage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.factset.protobuf.stach.PackageProto.Package;
 
-//import static factset.analyticsapi.engines.StachExtensions.convertToTableFormat;
 
 public class VaultEngineInteractiveExample {
 
   private static FdsApiClient apiClient = null;
-  private static final String BASE_PATH = "http://api.inhouse-cauth.factset.com";//"https://api.factset.com";
-  private static final String USERNAME = "<username-serial>";
-  private static final String PASSWORD = "<apiKey>";
-  private static final String VAULT_DEFAULT_DOCUMENT = "Client:/aapi/VAULT_QA_PI_DEFAULT_LOCKED";
-  private static final String VAULT_DEFAULT_ACCOUNT = "CLIENT:/BISAM/REPOSITORY/QA/SMALL_PORT.ACCT";
-  private static final String COMPONENT_NAME = "Average\r\nWeight";
-  private static final String COMPONENT_CATEGORY = "Performance / 4 Tiles Calculate";
+  private static String BASE_PATH = "https://api.factset.com";
+  private static String USERNAME = "<username-serial>";
+  private static String PASSWORD = "<apiKey>";
+  private static String VAULT_DEFAULT_DOCUMENT = "Client:/aapi/VAULT_QA_PI_DEFAULT_LOCKED";
+  private static String VAULT_DEFAULT_ACCOUNT = "CLIENT:/BISAM/REPOSITORY/QA/SMALL_PORT.ACCT";
+  private static String COMPONENT_NAME = "Average\r\nWeight";
+  private static String COMPONENT_CATEGORY = "Performance / 4 Tiles Calculate";
+  private static Integer DEADLINE_HEADER_VALUE = 20;
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
@@ -62,18 +51,18 @@ public class VaultEngineInteractiveExample {
       ComponentsApi componentsApi = new ComponentsApi(getApiClient());
       Map<String, ComponentSummary> components = componentsApi.getVaultComponents(VAULT_DEFAULT_DOCUMENT).getData();
       String componentId = components.entrySet().stream().filter(
-              c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
-              .iterator().next().getKey();
+          c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
+          .iterator().next().getKey();
       System.out.println("ID of component with Name '" + COMPONENT_NAME + "' and category '" + COMPONENT_CATEGORY
-              + "' : " + componentId);
+          + "' : " + componentId);
 
       ConfigurationsApi configurationsApi = new ConfigurationsApi(getApiClient());
       Map<String, VaultConfigurationSummary> configurationsMap = configurationsApi
-              .getVaultConfigurations(VAULT_DEFAULT_ACCOUNT).getData();
+          .getVaultConfigurations(VAULT_DEFAULT_ACCOUNT).getData();
       String configurationId = configurationsMap.entrySet().iterator().next().getKey();
 
       VaultCalculationParameters vaultItem = new VaultCalculationParameters();
-      VaultCalculationParametersRoot parameters = new VaultCalculationParametersRoot();
+      VaultCalculationParametersRoot calcParameters = new VaultCalculationParametersRoot();
 
       vaultItem.setComponentid(componentId);
       vaultItem.setConfigid(configurationId);
@@ -88,18 +77,20 @@ public class VaultEngineInteractiveExample {
       dateParameters.setFrequency("Monthly");
       vaultItem.setDates(dateParameters);
       vaultItem.setComponentdetail("Groups");
-      
-      parameters.putDataItem("1", vaultItem);
+
+      calcParameters.putDataItem("1", vaultItem);
+      CalculationMeta meta = new CalculationMeta();
+      meta.contentorganization(ContentorganizationEnum.SIMPLIFIEDROW);
+      meta.contenttype(ContenttypeEnum.JSON);
+      calcParameters.setMeta(meta);
+
       // Run Calculation Request
       VaultCalculationsApi apiInstance = new VaultCalculationsApi(getApiClient());
-      ApiResponse<Object> response = null;
-      Map<String, List<String>> headers = null;
-      
-      response = apiInstance.postAndCalculateWithHttpInfo(null, null, parameters);
-      headers = response.getHeaders();
+
+      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=3600", calcParameters);
+      Map<String, List<String>> headers = response.getHeaders();
 
       ApiResponse<CalculationStatusRoot> getStatus = null;
-      ApiResponse<ObjectRoot> resultResponse = null;
       Object result = null;
       if (response.getStatusCode() == 202) {
         String[] locationList = response.getHeaders().get("Location").get(0).split("/");
@@ -128,7 +119,7 @@ public class VaultEngineInteractiveExample {
             String[] location = calculationUnitParameters.getValue().getResult().split("/");
             String id = location[location.length - 4];
             String unitId = location[location.length - 2];
-            resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
+            ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
             result = resultResponse.getData().getData();
             headers = resultResponse.getHeaders();
           }}
@@ -158,13 +149,13 @@ public class VaultEngineInteractiveExample {
         System.out.println(e.getMessage());
         e.getStackTrace();
       }
-      
+
       ObjectMapper mapper = new ObjectMapper();
       String json = mapper.writeValueAsString(tableDataList);
       System.out.println(json); // Prints the result in 2D table format.
       // Uncomment the following line to generate an Excel file
-      // generateExcel(tableDataList); //my change
-      
+      // generateExcel(tableDataList);
+
     } catch (ApiException e) {
       handleException("VaultEngineExample#Main", e);
       return;
@@ -199,21 +190,15 @@ public class VaultEngineInteractiveExample {
       e.printStackTrace();
     }
   }
-  
+
   private static class FdsApiClient extends ApiClient
   {
- // Uncomment the below lines to use a proxy server
-    //@Override
-    //protected void performAdditionalClientConfiguration(ClientConfig clientConfig) {
-    //clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
-    //clientConfig.connectorProvider( new ApacheConnectorProvider() );
-    //}
+    // Uncomment the below lines to use a proxy server
+    /*@Override
     protected void customizeClientBuilder(ClientBuilder clientBuilder) {
-      // uncomment following settings when you want to use a proxy
       clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
-      clientConfig.property(ClientProperties.REQUEST_ENTITY_PROCESSING, "BUFFERED");
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
-    }
+    }*/
   }
 
   private static FdsApiClient getApiClient() {

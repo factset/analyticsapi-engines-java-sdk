@@ -3,8 +3,12 @@ package examples;
 import java.util.List;
 import java.util.Map;
 
+import javax.ws.rs.client.ClientBuilder;
+
+import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
+import org.glassfish.jersey.client.ClientProperties;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
@@ -17,36 +21,33 @@ import factset.analyticsapi.engines.models.FIABIdentifier;
 
 public class FiabInteractiveEngineExample {
   private static FdsApiClient apiClient = null;
-  private static final String BASE_PATH = "https://api.factset.com";
-  private static final String USERNAME = "<username-serial>";
-  private static final String PASSWORD = "<apiKey>";
-  private static final String FiabAccountId = "Client:/aapi/FIAB_TEST_HOLDINGS.ACCT";
-  private static final String FiabDocument = "Client:/aapi/AAPI_FIAB_BASE_DOC";
-  private static final String FiabDate = "20200618";
-  private static final String FiabMsl = "CLIENT:$$MSL_AAPI_TESTING.OFDB";
-  private static final String FiabFiSettingsDocument = "None";
+  private static String BASE_PATH = "https://api.factset.com";
+  private static String USERNAME = "<username-serial>";
+  private static String PASSWORD = "<apiKey>";
+  private static String FIAB_ACCOUNT_ID = "Client:/aapi/FIAB_TEST_HOLDINGS.ACCT";
+  private static String FIAB_DOCUMENT = "Client:/aapi/AAPI_FIAB_BASE_DOC";
+  private static String FIAB_DATE = "20200618";
+  private static String FIAB_MSL = "CLIENT:$$MSL_AAPI_TESTING.OFDB";
+  private static String FIAB_SETTINGS_DOCUMENT = "None";
   private static FiabCalculationsApi apiInstance = new FiabCalculationsApi(getApiClient());
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
-      final FIABCalculationParameters parameters = new FIABCalculationParameters();
+      FIABCalculationParameters calcParameters = new FIABCalculationParameters();
 
-      final FIABIdentifier fiabID = new FIABIdentifier();
-      fiabID.setId(FiabAccountId);
-      parameters.setAccount(fiabID);
-      final FIABDateParameters fiabDateParam = new FIABDateParameters();
-      fiabDateParam.setEnddate(FiabDate);
-      fiabDateParam.setStartdate(FiabDate);
-      parameters.setDates(fiabDateParam);
-      parameters.setFiabdocument(FiabDocument);
-      parameters.setFisettingsdocument(FiabFiSettingsDocument);
-      parameters.setMsl(FiabMsl);
+      FIABIdentifier fiabID = new FIABIdentifier();
+      fiabID.setId(FIAB_ACCOUNT_ID);
+      calcParameters.setAccount(fiabID);
+      FIABDateParameters fiabDateParam = new FIABDateParameters();
+      fiabDateParam.setEnddate(FIAB_DATE);
+      fiabDateParam.setStartdate(FIAB_DATE);
+      calcParameters.setDates(fiabDateParam);
+      calcParameters.setFiabdocument(FIAB_DOCUMENT);
+      calcParameters.setFisettingsdocument(FIAB_SETTINGS_DOCUMENT);
+      calcParameters.setMsl(FIAB_MSL);
 
-      ApiResponse<Void> response = null;
-      Map<String, List<String>> headers = null;
-
-      response = apiInstance.runCalculationWithHttpInfo(parameters);
-      headers = response.getHeaders();
+      ApiResponse<Void> response = apiInstance.runCalculationWithHttpInfo(calcParameters);
+      Map<String, List<String>> headers = response.getHeaders();
 
       ApiResponse<FIABCalculationStatus> resultStatus = null;
       String[] locationList = headers.get("Location").get(0).split("/");
@@ -66,7 +67,7 @@ public class FiabInteractiveEngineExample {
       } while(resultStatus.getStatusCode() == 202);
       System.out.println(resultStatus.getData());
     } catch (ApiException e) {
-      handleException("BpmOptimizerEngineExample#Main", e);
+      handleException("FiabEngineExample#Main", e);
     }    
   }
 
@@ -74,9 +75,9 @@ public class FiabInteractiveEngineExample {
   {
     // Uncomment the below lines to use a proxy server
     /*@Override
-    protected void performAdditionalClientConfiguration(ClientConfig clientConfig) {
-    clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
-    clientConfig.connectorProvider( new ApacheConnectorProvider() );
+    protected void customizeClientBuilder(ClientBuilder clientBuilder) {
+      clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
+      clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }
 

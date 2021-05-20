@@ -1,17 +1,14 @@
 package examples;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.client.ClientBuilder;
 
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.compress.utils.IOUtils;
+import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
+import org.glassfish.jersey.client.ClientProperties;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -21,54 +18,49 @@ import factset.analyticsapi.engines.ApiResponse;
 import factset.analyticsapi.engines.api.PubCalculationsApi;
 import factset.analyticsapi.engines.models.CalculationStatusRoot;
 import factset.analyticsapi.engines.models.CalculationUnitStatus;
-import factset.analyticsapi.engines.models.ObjectRoot;
 import factset.analyticsapi.engines.models.PubCalculationParameters;
 import factset.analyticsapi.engines.models.PubCalculationParametersRoot;
 import factset.analyticsapi.engines.models.PubDateParameters;
 import factset.analyticsapi.engines.models.PubIdentifier;
-import factset.analyticsapi.engines.models.CalculationStatus.StatusEnum;
 
 public class PubEngineInteractiveExample {
   private static FdsApiClient apiClient = null;
-  private static final String BASE_PATH = "https://api.factset.com";
-  private static final String USERNAME = "<username-serial>";
-  private static final String PASSWORD = "<apiKey>";
-  private static final String PUB_DEFAULT_DOCUMENT = "Client:/AAPI/Puma Test Doc.Pub_bridge_pdf";
-  private static final String PUB_DEFAULT_ACCOUNT = "BENCH:SP50";
+  private static String BASE_PATH = "https://api.factset.com";
+  private static String USERNAME = "<username-serial>";
+  private static String PASSWORD = "<apiKey>";
+  private static String PUB_DEFAULT_DOCUMENT = "Client:/AAPI/Puma Test Doc.Pub_bridge_pdf";
+  private static String PUB_DEFAULT_ACCOUNT = "BENCH:SP50";
+  private static Integer DEADLINE_HEADER_VALUE = 20;
 
-  public static void main(final String[] args) throws InterruptedException, JsonProcessingException {
+  public static void main(String[] args) throws InterruptedException, JsonProcessingException, FileNotFoundException {
     try {
       // Build Pub Calculation Parameters List
 
-      final PubCalculationParametersRoot parameters = new PubCalculationParametersRoot();
+      PubCalculationParametersRoot calcParameters = new PubCalculationParametersRoot();
 
-      final PubCalculationParameters pubItem = new PubCalculationParameters();
-      Map<String, List<String>> headers = null;
+      PubCalculationParameters pubItem = new PubCalculationParameters();
       pubItem.setDocument(PUB_DEFAULT_DOCUMENT);
 
-      final PubIdentifier account = new PubIdentifier();
+      PubIdentifier account = new PubIdentifier();
       account.setId(PUB_DEFAULT_ACCOUNT);
       pubItem.setAccount(account);
 
-      final PubDateParameters dateParameters = new PubDateParameters();
+      PubDateParameters dateParameters = new PubDateParameters();
       dateParameters.setStartdate("-1M");
       dateParameters.setEnddate("0M");
       pubItem.setDates(dateParameters);
 
-      parameters.putDataItem("1", pubItem);
+      calcParameters.putDataItem("1", pubItem);
 
       // Run Calculation Request
-      final PubCalculationsApi apiInstance = new PubCalculationsApi(getApiClient());
-      ApiResponse<Object> createResponse = null;
+      PubCalculationsApi apiInstance = new PubCalculationsApi(getApiClient());
 
-      createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, parameters);
+      ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=3600", calcParameters);
 
 
       // Get Calculation Request Status
       ApiResponse<CalculationStatusRoot> getStatus = null;
-
-      ApiResponse<File> resultResponse = null;
-      Object result = null;
+      File result = null;
       if(createResponse.getStatusCode() == 202) {
         String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
         String requestId = locationList[locationList.length - 2];
@@ -88,7 +80,6 @@ public class PubEngineInteractiveExample {
             }
           }
           getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
-          headers = getStatus.getHeaders();
         }
         for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
           if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS)
@@ -96,68 +87,32 @@ public class PubEngineInteractiveExample {
             String[] location = calculationUnitParameters.getValue().getResult().split("/");
             String id = location[location.length - 4];
             String unitId = location[location.length - 2];
-            resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
+            ApiResponse<File> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
             result = resultResponse.getData();
-            headers = resultResponse.getHeaders();
           }}
       }
       else if(createResponse.getStatusCode() == 201) {
-        result = ((ObjectRoot)createResponse.getData()).getData();
-        headers = createResponse.getHeaders();
+        result = (File)createResponse.getData();
       }
 
       System.out.println("Calculation Completed!!!");
 
-      // Check for Calculation Units
-      for (final Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits()
-          .entrySet()) {//need to run and check if this logic still works with v3
-        if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
-          final Client httpClient = apiClient.getHttpClient();
-          final WebTarget target = httpClient.target(calculationUnitParameters.getValue().getResult());
-          final Response response = target.request().accept("application/pdf")
-              .header("Authorization",
-                  "Basic " + new String(Base64.encodeBase64((USERNAME + ":" + PASSWORD).getBytes())))
-              .get(Response.class);
+      result.renameTo(new File("output.pdf"));//ensure that file with the same name does not exist in the location
 
-          if (response.getStatus() == Response.Status.OK.getStatusCode()) {
-            InputStream inputStream = response.readEntity(InputStream.class);
-            File outputPDF = new File("output.pdf");
-            try {
+      System.out.println("Result file output.pdf");
 
-              byte[] byteArray = IOUtils.toByteArray(inputStream);
-              FileOutputStream fileOutputStream = new FileOutputStream(outputPDF);
-              fileOutputStream.write(byteArray);
-              fileOutputStream.flush();
-              fileOutputStream.close();
-            } catch (Exception e) {
-              e.getMessage();
-            }
-
-            IOUtils.closeQuietly(inputStream);
-
-            System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Succeeded!!!");
-            System.out.println("Result file output.pdf");
-          }
-
-        } else {
-          System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Failed!!!");
-          System.out.println("Error message : " + calculationUnitParameters.getValue().getErrors());
-        }
-      }
-    } catch (final ApiException e) {
-      handleException("VaultEngineExample#Main", e);
+    } catch (ApiException e) {
+      handleException("PubEngineExample#Main", e);
       return;
     }
   }
 
   private static class FdsApiClient extends ApiClient {
-    // Uncomment the below lines to use a proxy server
-    /*
-     * @Override protected void performAdditionalClientConfiguration(ClientConfig
-     * clientConfig) { clientConfig.property( ClientProperties.PROXY_URI,
-     * "<proxyUrl>" ); clientConfig.connectorProvider( new ApacheConnectorProvider()
-     * ); }
-     */
+    /*protected void customizeClientBuilder(ClientBuilder clientBuilder) {
+      // uncomment following settings when you want to use a proxy
+      clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
+      clientConfig.connectorProvider( new ApacheConnectorProvider() );
+    }*/
   }
 
   private static FdsApiClient getApiClient() {
