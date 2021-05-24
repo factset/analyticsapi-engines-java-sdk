@@ -88,6 +88,7 @@ public class AxpInteractiveOptimizerEngineExample {
         case 201: // Calculation completed
           System.out.println("Calculation successful!!!");	
           result = ((ObjectRoot)response.getData()).getData();
+          headers = response.getHeaders();
           break;
         case 202:
           String[] locationList = headers.get("Location").get(0).split("/");
@@ -108,13 +109,15 @@ public class AxpInteractiveOptimizerEngineExample {
           } while(response.getStatusCode() == 202);
           
           System.out.println("Calculation successful!!!");
-          // Get Calculation Result
-          String[] location = headers.get("Location").get(0).split("/");
-          String id = location[location.length - 2];
-          ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id);
-          result = resultResponse.getData().getData();
+          result = ((ObjectRoot)response.getData()).getData();
           break;
       }
+      
+      // Get Calculation Result (Optional)
+      // String[] location = headers.get("Location").get(0).split("/");
+      // String id = location[location.length - 2];
+      // ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id);
+      // result = resultResponse.getData().getData();
       
       List<TableData> tables = null;
       try {
