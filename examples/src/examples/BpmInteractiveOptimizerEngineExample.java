@@ -125,8 +125,7 @@ public class BpmInteractiveOptimizerEngineExample {
       String json = mapper.writeValueAsString(tables);
       System.out.println(json); // Prints the result in 2D table format.
       // Uncomment the following line to generate an Excel file
-      // generateExcel(tableDataList); //my change
-
+      // generateExcel(tables);
     } catch (ApiException e) {
       handleException("BpmOptimizerEngineExample#Main", e);
     }
