@@ -37,9 +37,12 @@ public class SPAREngineInteractiveExample {
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
   private static String PASSWORD = "<apiKey>";
+  
   private static String SPAR_DEFAULT_DOCUMENT = "pmw_root:/spar_documents/Factset Default Document";
   private static String COMPONENT_NAME = "Returns Table";
   private static String COMPONENT_CATEGORY = "Raw Data / Returns";
+  
+  private static String CALCULATION_UNIT_ID = "1"; 
   private static Integer DEADLINE_HEADER_VALUE = 20;
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
@@ -82,9 +85,11 @@ public class SPAREngineInteractiveExample {
       dateParameters.setEnddate("20181231");
       dateParameters.setFrequency("Monthly");
       sparItem.setDates(dateParameters);
-      calcParameters.putDataItem("1", sparItem);
+      
+      calcParameters.putDataItem(CALCULATION_UNIT_ID, sparItem);
+      
       CalculationMeta meta = new CalculationMeta();
-      meta.contentorganization(ContentorganizationEnum.COLUMN);
+      meta.contentorganization(ContentorganizationEnum.SIMPLIFIEDROW);
       meta.contenttype(ContenttypeEnum.JSON);
       calcParameters.setMeta(meta);
 
@@ -96,45 +101,55 @@ public class SPAREngineInteractiveExample {
 
       ApiResponse<CalculationStatusRoot> getStatus = null;
       Object result = null;
-      if(response.getStatusCode() == 202) {
-        String[] locationList = response.getHeaders().get("Location").get(0).split("/");
-        String requestId = locationList[locationList.length - 2];
+      switch(response.getStatusCode()) {
+        case 200:
+          System.out.println("Calculation failed!!!");
+          CalculationUnitStatus calcUnitStatus = ((CalculationStatusRoot)response.getData()).getData().getUnits().get(CALCULATION_UNIT_ID);
+          System.out.println("Status : " + calcUnitStatus.getStatus());
+          System.out.println("Reason : " + calcUnitStatus.getErrors());
+          System.exit(-1);
+          break; 
+        case 201:
+          result = ((ObjectRoot)response.getData()).getData();
+          headers = response.getHeaders();
+          break;
+        case 202:
+          String[] locationList = response.getHeaders().get("Location").get(0).split("/");
+          String requestId = locationList[locationList.length - 2];
 
-        // Get Calculation Request Status
-
-        while (getStatus == null || getStatus.getStatusCode() == 202) {
-          if (getStatus != null) {
-            List<String> cacheControl = getStatus.getHeaders().get("Cache-Control");
-            if (cacheControl != null) {
-              int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
-              System.out.println("Sleeping for: " + maxAge + " seconds");
-              Thread.sleep(maxAge * 1000L);
-            } else {
-              System.out.println("Sleeping for: 2 seconds");
-              Thread.sleep(2 * 1000L);
+          // Get Calculation Request Status
+          while (getStatus == null || getStatus.getStatusCode() == 202) {
+            if (getStatus != null) {
+              List<String> cacheControl = getStatus.getHeaders().get("Cache-Control");
+              if (cacheControl != null) {
+                int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
+                System.out.println("Sleeping for: " + maxAge + " seconds");
+                Thread.sleep(maxAge * 1000L);
+              } else {
+                System.out.println("Sleeping for: 2 seconds");
+                Thread.sleep(2 * 1000L);
+              }
+            }
+            getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+            headers = getStatus.getHeaders();
+          }
+        
+          for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
+            if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS)
+            {
+              String[] location = calculationUnitParameters.getValue().getResult().split("/");
+              String id = location[location.length - 4];
+              String unitId = location[location.length - 2];
+              ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
+              result = resultResponse.getData().getData();
+              headers = resultResponse.getHeaders();
             }
           }
-          getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
-          headers = getStatus.getHeaders();
-        }
-        for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
-          if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS)
-          {
-            String[] location = calculationUnitParameters.getValue().getResult().split("/");
-            String id = location[location.length - 4];
-            String unitId = location[location.length - 2];
-            ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
-            result = resultResponse.getData().getData();
-            headers = resultResponse.getHeaders();
-          }}
-      }
-      else if(response.getStatusCode() == 201) {
-        result = ((ObjectRoot)response.getData()).getData();
-        headers = response.getHeaders();
+          break;
       }
 
       System.out.println("Calculation Completed!!!");
-      List<TableData> tableDataList = null;
+      List<TableData> tables = null;
       try {
         ObjectMapper mapper = new ObjectMapper();     
         String jsonString = mapper.writeValueAsString(result);
@@ -142,12 +157,12 @@ public class SPAREngineInteractiveExample {
         if(headers.get("content-type").get(0).toLowerCase().contains("row")) {
           RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
           StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-          tableDataList = stachExtension.convertToTable();              
+          tables = stachExtension.convertToTable();              
         }
         else {
           ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
           StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-          tableDataList = stachExtension.convertToTable();              
+          tables = stachExtension.convertToTable();              
         }        
       } catch(Exception e) {
         System.out.println(e.getMessage());
@@ -155,10 +170,10 @@ public class SPAREngineInteractiveExample {
       }
 
       ObjectMapper mapper = new ObjectMapper();
-      String json = mapper.writeValueAsString(tableDataList);
+      String json = mapper.writeValueAsString(tables);
       System.out.println(json); // Prints the result in 2D table format.
       // Uncomment the following line to generate an Excel file
-      // generateExcel(tableDataList);
+      // generateExcel(tables);
     } catch (ApiException e) {
       handleException("SPAREngineExample#Main", e);
     }
@@ -197,11 +212,11 @@ public class SPAREngineInteractiveExample {
   private static class FdsApiClient extends ApiClient
   {
     // Uncomment the below lines to use a proxy server
-    /*@Override
+    @Override
     protected void customizeClientBuilder(ClientBuilder clientBuilder) {
-      clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
+      clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8888" );
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
-    }*/
+    }
   }
 
   private static FdsApiClient getApiClient() {

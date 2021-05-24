@@ -24,15 +24,16 @@ public class FiabInteractiveEngineExample {
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
   private static String PASSWORD = "<apiKey>";
+  
   private static String FIAB_ACCOUNT_ID = "Client:/aapi/FIAB_TEST_HOLDINGS.ACCT";
   private static String FIAB_DOCUMENT = "Client:/aapi/AAPI_FIAB_BASE_DOC";
   private static String FIAB_DATE = "20200618";
   private static String FIAB_MSL = "CLIENT:$$MSL_AAPI_TESTING.OFDB";
   private static String FIAB_SETTINGS_DOCUMENT = "None";
-  private static FiabCalculationsApi apiInstance = new FiabCalculationsApi(getApiClient());
-
+  
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
+      FiabCalculationsApi apiInstance = new FiabCalculationsApi(getApiClient());	
       FIABCalculationParameters calcParameters = new FIABCalculationParameters();
 
       FIABIdentifier fiabID = new FIABIdentifier();
