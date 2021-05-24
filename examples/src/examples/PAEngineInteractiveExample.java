@@ -36,15 +36,18 @@ public class PAEngineInteractiveExample {
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
   private static String PASSWORD = "<apiKey>";
+  
   private static String PA_DEFAULT_DOCUMENT = "PA_DOCUMENTS:DEFAULT";
   private static String COMPONENT_NAME = "Weights";
   private static String COMPONENT_CATEGORY = "Weights / Exposures";
-  private static String COLUMN_NAME = "Ending Duration";
-  private static String COLUMN_CATEGORY = "DDS";
-  private static String COULMN_DIRECTORY = "Client";
-  private static String GROUP_NAME = "Average Life";
-  private static String GROUP_CATEGORY = "Average Life";
+  private static String COLUMN_NAME = "Port. Ending Weight";
+  private static String COLUMN_CATEGORY = "Portfolio/Position Data";
+  private static String COULMN_DIRECTORY = "Factset";
+  private static String GROUP_NAME = "Economic Sector - FactSet";
+  private static String GROUP_CATEGORY = "FactSet";
   private static String GROUP_DIRECTORY = "Factset";
+  
+  private static String CALCULATION_UNIT_ID = "1";
   private static Integer DEADLINE_HEADER_VALUE = 20;
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
@@ -67,10 +70,12 @@ public class PAEngineInteractiveExample {
 
       PAIdentifier accountPaIdentifier1 = new PAIdentifier();
       accountPaIdentifier1.setId("BENCH:SP50");
+      accountPaIdentifier1.setHoldingsmode("B&H"); // It can be B&H, TBR, OMS or EXT
       paItem.addAccountsItem(accountPaIdentifier1);
 
       PAIdentifier benchmarkPaIdentifier = new PAIdentifier();
       benchmarkPaIdentifier.setId("BENCH:R.2000");
+      benchmarkPaIdentifier.setHoldingsmode("B&H");
       paItem.addBenchmarksItem(benchmarkPaIdentifier);
 
       PADateParameters dateParameters = new PADateParameters();
@@ -79,79 +84,101 @@ public class PAEngineInteractiveExample {
       dateParameters.setFrequency("Monthly");
       paItem.setDates(dateParameters);
 
-      PACalculationColumn column = new PACalculationColumn();
-      column.setId(getColumnId(COLUMN_NAME, COLUMN_CATEGORY, COULMN_DIRECTORY));
-      paItem.addColumnsItem(column);
+      // To add column overrides
+      // PACalculationColumn column = new PACalculationColumn();
+      // column.setId(getColumnId(COLUMN_NAME, COLUMN_CATEGORY, COULMN_DIRECTORY));
+      // paItem.addColumnsItem(column);
 
-      PACalculationGroup group = new PACalculationGroup();
-      group.setId(getGroupId(GROUP_NAME, GROUP_CATEGORY, GROUP_DIRECTORY));
-      paItem.addGroupsItem(group);
+      // To add group overrides
+      // PACalculationGroup group = new PACalculationGroup();
+      // group.setId(getGroupId(GROUP_NAME, GROUP_CATEGORY, GROUP_DIRECTORY));
+      // paItem.addGroupsItem(group);
 
+      // To add currency override
+      // paItem.currencyisocode("USD");
+      
+      // To add component detail.
+      // paItem.setComponentdetail("GROUPS"); // It can be GROUPS or TOTALS
+      
       PACalculationParametersRoot calcParameters = new PACalculationParametersRoot();
-      calcParameters.putDataItem("1", paItem);
+      calcParameters.putDataItem(CALCULATION_UNIT_ID, paItem);
 
       CalculationMeta meta = new CalculationMeta();
-      meta.contentorganization(ContentorganizationEnum.COLUMN);
+      meta.contentorganization(ContentorganizationEnum.SIMPLIFIEDROW);
       meta.contenttype(ContenttypeEnum.JSON);
       calcParameters.setMeta(meta);
 
       // Run Calculation Request
       PaCalculationsApi apiInstance = new PaCalculationsApi(getApiClient());
-
       ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=3600", calcParameters);
+      
       Map<String, List<String>> headers = response.getHeaders();
       ApiResponse<CalculationStatusRoot> getStatus = null;
-      ApiResponse<ObjectRoot> resultResponse = null;
       Object result = null;
-      if (response.getStatusCode() == 202) {
-        String[] locationList = response.getHeaders().get("Location").get(0).split("/");
-        String requestId = locationList[locationList.length - 2];
+      switch(response.getStatusCode()) {
+        case 200:
+          System.out.println("Calculation failed!!!");
+          CalculationUnitStatus calcUnitStatus = ((CalculationStatusRoot)response.getData()).getData().getUnits().get(CALCULATION_UNIT_ID);
+          System.out.println("Status : " + calcUnitStatus.getStatus());
+          System.out.println("Reason : " + calcUnitStatus.getErrors());
+          System.exit(-1);
+    	  break;  
+        case 201:
+          System.out.println("Calculation successful!!!");	
+          result = ((ObjectRoot)response.getData()).getData();
+          headers = response.getHeaders();
+          break;
+        case 202:
+          String[] locationList = response.getHeaders().get("Location").get(0).split("/");
+          String requestId = locationList[locationList.length - 2];
 
-        // Get Calculation Request Status        
-        while (getStatus == null || getStatus.getStatusCode() == 202) {
-          if (getStatus != null) {
-            List<String> cacheControl = getStatus.getHeaders().get("Cache-Control");
-            if (cacheControl != null) {
-              int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
-              System.out.println("Sleeping for: " + maxAge + " seconds");
-              Thread.sleep(maxAge * 1000L);
-            } else {
-              System.out.println("Sleeping for: 2 seconds");
-              Thread.sleep(2 * 1000L);
+          // Get Calculation Request Status        
+          while (getStatus == null || getStatus.getStatusCode() == 202) {
+            if (getStatus != null) {
+              List<String> cacheControl = getStatus.getHeaders().get("Cache-Control");
+              if (cacheControl != null) {
+                int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
+                System.out.println("Sleeping for: " + maxAge + " seconds");
+                Thread.sleep(maxAge * 1000L);
+              } else {
+                System.out.println("Sleeping for: 2 seconds");
+       	        Thread.sleep(2 * 1000L);
+              }
             }
-          }
-          getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
-          headers = getStatus.getHeaders();
-        }
-        for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
-          if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS)
-          {
-            String[] location = calculationUnitParameters.getValue().getResult().split("/");
-            String id = location[location.length - 4];
-            String unitId = location[location.length - 2];
-            resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
-            result = resultResponse.getData().getData();
-            headers = resultResponse.getHeaders();
-          }}
+            getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+            headers = getStatus.getHeaders();
+    	  }
+    	
+    	  for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
+    	    if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS)
+    	    {
+    	      String[] location = calculationUnitParameters.getValue().getResult().split("/");
+    		  String id = location[location.length - 4];
+    		  String unitId = location[location.length - 2];
+    		  ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
+    		  result = resultResponse.getData().getData();
+    		  headers = resultResponse.getHeaders();
+    		}
+    	  }
+    	  break;
       }
-      else if (response.getStatusCode() == 201) {
-        result = ((ObjectRoot)response.getData()).getData();
-        headers = response.getHeaders();
-      }
-      List<TableData> tableDataList = null;
+      
+      List<TableData> tables = null;
       try {
         ObjectMapper mapper = new ObjectMapper();     
         String jsonString = mapper.writeValueAsString(result);
 
         if(headers.get("content-type").get(0).toLowerCase().contains("row")) {
+          // For row and simplified row organized formats
           RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
           StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-          tableDataList = stachExtension.convertToTable();              
+          tables = stachExtension.convertToTable();              
         }
         else {
+          // For column organized format
           ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
           StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-          tableDataList = stachExtension.convertToTable();              
+          tables = stachExtension.convertToTable();              
         }    
       } catch(Exception e) {
         System.out.println(e.getMessage());
@@ -159,10 +186,10 @@ public class PAEngineInteractiveExample {
       }
 
       ObjectMapper mapper = new ObjectMapper();
-      String json = mapper.writeValueAsString(tableDataList);
+      String json = mapper.writeValueAsString(tables);
       System.out.println(json); // Prints the result in 2D table format.
       // Uncomment the following line to generate an Excel file
-      // generateExcel(tableDataList);
+      // generateExcel(tables);
     } catch (ApiException e) {
       handleException("PAEngineExample#Main", e);
     }
@@ -205,6 +232,9 @@ public class PAEngineInteractiveExample {
         .filter(c -> c.getValue().getName().equals(columnName) && c.getValue().getCategory().equals(columnCategory) &&
             c.getValue().getDirectory().equals(directory))
         .iterator().next().getKey();
+    
+    System.out.println(
+            "ID of column with Name '" + columnName + "', category '" + columnCategory + "' and directory '" + directory + "'" + " : " + columnId);
     return columnId;
   }
 
@@ -215,17 +245,20 @@ public class PAEngineInteractiveExample {
         .filter(c -> c.getValue().getName().equals(groupName) && c.getValue().getCategory().equals(groupCategory) &&
             c.getValue().getDirectory().equals(groupDirectory))
         .iterator().next().getKey();
+    
+    System.out.println(
+            "ID of group with Name '" + groupName + "', category '" + groupCategory + "' and directory '" + groupDirectory + "'" + " : " + groupId);
     return groupId;
   }
 
   private static class FdsApiClient extends ApiClient
   {
     // Uncomment the below lines to use a proxy server
-    /*@Override
+    @Override
     protected void customizeClientBuilder(ClientBuilder clientBuilder) {
-      clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
+      clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8888" );
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
-    }*/
+    }
   }
 
   private static FdsApiClient getApiClient() {

@@ -43,6 +43,7 @@ public class FiInteractiveEngineExample {
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
   private static String PASSWORD = "<apiKey>";
+  
   private static String FI_CALC_FROM_METHOD = "Price";
   private static Double FI_CALC_FROM_VALUE = 108.40299;
   private static Double FI_CALC_FROM_VALUE_2 = 100.285;
@@ -56,12 +57,14 @@ public class FiInteractiveEngineExample {
   private static String FI_DISCOUNT_CURVE_2 = "UST";
   private static String FI_AS_OF_DATE = "20200922";
   private static String[] FI_CALCULATIONS = {"Effective Duration", "Partial Duration", "Security Type", "Effective Convexity", "CF Coupon"};
+  
   private static Integer DEADLINE_HEADER_VALUE = 20;
-  private static FiCalculationsApi apiInstance = new FiCalculationsApi(getApiClient());
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {    
     try{
+      FiCalculationsApi apiInstance = new FiCalculationsApi(getApiClient());	
       FICalculationParameters calcParameters = new FICalculationParameters();
+      
       FISecurity security1 = new FISecurity();
       security1.setCalcFromMethod(FI_CALC_FROM_METHOD);
       security1.setCalcFromValue(FI_CALC_FROM_VALUE);
@@ -91,6 +94,7 @@ public class FiInteractiveEngineExample {
 
       FICalculationParametersRoot fiCalcParam = new FICalculationParametersRoot();
       fiCalcParam.data(calcParameters);
+      
       CalculationMeta meta = new CalculationMeta();
       meta.contentorganization(ContentorganizationEnum.SIMPLIFIEDROW);
       meta.contenttype(ContenttypeEnum.JSON);
@@ -100,7 +104,6 @@ public class FiInteractiveEngineExample {
       Map<String, List<String>> headers = response.getHeaders();
 
       Object result = null;
-
       switch(response.getStatusCode()) {
         case 201: // Calculation completed
           result = ((ObjectRoot)response.getData()).getData();
@@ -134,20 +137,22 @@ public class FiInteractiveEngineExample {
       result = resultResponse.getData().getData();
 
       System.out.println("Calculation Completed!!!");
-      List<TableData> tableDataList = null;
+      List<TableData> tables = null;
       try {
         ObjectMapper mapper = new ObjectMapper();     
         String jsonString = mapper.writeValueAsString(result);
 
         if(headers.get("content-type").get(0).toLowerCase().contains("column")) {
+          // For row and simplified row organized formats
           ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
           StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-          tableDataList = stachExtension.convertToTable();                        
+          tables = stachExtension.convertToTable();                        
         }
         else {
+          // For row and simplified row organized formats
           RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
           StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-          tableDataList = stachExtension.convertToTable();
+          tables = stachExtension.convertToTable();
         }        
       } catch(Exception e) {
         System.out.println(e.getMessage());
@@ -155,11 +160,10 @@ public class FiInteractiveEngineExample {
       }
 
       ObjectMapper mapper = new ObjectMapper();
-      String json = mapper.writeValueAsString(tableDataList);
+      String json = mapper.writeValueAsString(tables);
       System.out.println(json); // Prints the result in 2D table format.
       // Uncomment the following line to generate an Excel file
-      //generateExcel(tableDataList);
-
+      // generateExcel(tables);
     } catch (ApiException e) {
       handleException("FiEngineExample#Main", e);
     }

@@ -22,6 +22,7 @@ public class PubEngineExample {
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
   private static String PASSWORD = "<apiKey>";
+  
   private static String PUB_DEFAULT_DOCUMENT = "Client:/AAPI/Puma Test Doc.Pub_bridge_pdf";
   private static String PUB_DEFAULT_ACCOUNT = "BENCH:SP50";
 
@@ -30,13 +31,13 @@ public class PubEngineExample {
       // Build Pub Calculation Parameters List
 
       PubCalculationParametersRoot calcParameters = new PubCalculationParametersRoot();
-
       PubCalculationParameters pubItem = new PubCalculationParameters();
 
       pubItem.setDocument(PUB_DEFAULT_DOCUMENT);
 
       PubIdentifier account = new PubIdentifier();
       account.setId(PUB_DEFAULT_ACCOUNT);
+      account.setHoldingsmode("B&H"); // It can be B&H, TBR, OMS or EXT
       pubItem.setAccount(account);
 
       PubDateParameters dateParameters = new PubDateParameters();
@@ -50,14 +51,14 @@ public class PubEngineExample {
       // Run Calculation Request
       PubCalculationsApi apiInstance = new PubCalculationsApi(getApiClient());
 
-      ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
+      ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, "max-stale=0", calcParameters);
 
       String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
       String requestId = locationList[locationList.length - 2];
       System.out.println("Calculation Id: " + requestId);
+      
       // Get Calculation Request Status
       ApiResponse<CalculationStatusRoot> getStatus = null;
-
       while (getStatus == null || getStatus.getData().getData().getStatus() == StatusEnum.QUEUED
           || getStatus.getData().getData().getStatus() == StatusEnum.EXECUTING) {
         if (getStatus != null) {
@@ -84,10 +85,10 @@ public class PubEngineExample {
           String id = location[location.length - 4];
           String unitId = location[location.length - 2];
           ApiResponse<File> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
+          
           File result = resultResponse.getData();
-          result.renameTo(new File("output"+unitId+".pdf"));
-          System.out.println("Result file output"+unitId+".pdf");
-
+          result.renameTo(new File("output-" + unitId + ".pdf"));
+          System.out.println("Result file : output-" + unitId + ".pdf");
         } else {
           System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Failed!!!");
           System.out.println("Error message : " + calculationUnitParameters.getValue().getErrors());
@@ -99,10 +100,12 @@ public class PubEngineExample {
     }
   }
 
-  private static class FdsApiClient extends ApiClient {
-    /*protected void customizeClientBuilder(ClientBuilder clientBuilder) {
-      // uncomment following settings when you want to use a proxy
-      clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
+  private static class FdsApiClient extends ApiClient
+  {
+    // Uncomment the below lines to use a proxy server
+    /*@Override
+    protected void customizeClientBuilder(ClientBuilder clientBuilder) {
+      clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8888" );
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }

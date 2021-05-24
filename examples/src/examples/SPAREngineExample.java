@@ -87,6 +87,7 @@ public class SPAREngineExample {
 
       calcParameters.putDataItem("1", sparItem);
       calcParameters.putDataItem("2", sparItem);
+      
       CalculationMeta meta = new CalculationMeta();
       meta.contentorganization(ContentorganizationEnum.SIMPLIFIEDROW);
       meta.contenttype(ContenttypeEnum.JSON);
@@ -131,20 +132,22 @@ public class SPAREngineExample {
 
           System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Succeeded!!!");
           System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Result");
-          List<TableData> tableDataList = null;
+          List<TableData> tables = null;
           try {
             ObjectMapper mapper = new ObjectMapper();     
             String jsonString = mapper.writeValueAsString(resultResponse.getData().getData());
 
             if(resultResponse.getHeaders().get("content-type").get(0).toLowerCase().contains("row")) {
+              // For row and simplified row organized formats
               RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
               StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-              tableDataList = stachExtension.convertToTable();              
+              tables = stachExtension.convertToTable();              
             }
             else {
+              // For column organized format
               ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
               StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-              tableDataList = stachExtension.convertToTable();              
+              tables = stachExtension.convertToTable();              
             }        
           } catch(Exception e) {
             System.out.println(e.getMessage());
@@ -152,10 +155,10 @@ public class SPAREngineExample {
           }
 
           ObjectMapper mapper = new ObjectMapper();
-          String json = mapper.writeValueAsString(tableDataList);
+          String json = mapper.writeValueAsString(tables);
           System.out.println(json); // Prints the result in 2D table format.
           // Uncomment the following line to generate an Excel file
-          // generateExcel(tableDataList);
+          // generateExcel(tables);
         }
       }
     }
@@ -199,7 +202,7 @@ public class SPAREngineExample {
     // Uncomment the below lines to use a proxy server
     /*@Override
     protected void customizeClientBuilder(ClientBuilder clientBuilder) {
-      clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
+      clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8888" );
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }

@@ -37,6 +37,7 @@ public class VaultEngineExample {
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
   private static String PASSWORD = "<apiKey>";
+  
   private static String VAULT_DEFAULT_DOCUMENT = "Client:/aapi/VAULT_QA_PI_DEFAULT_LOCKED";
   private static String VAULT_DEFAULT_ACCOUNT = "CLIENT:/BISAM/REPOSITORY/QA/SMALL_PORT.ACCT";
   private static String COMPONENT_NAME = "Performance Attribution";
@@ -70,33 +71,34 @@ public class VaultEngineExample {
       VaultIdentifier account = new VaultIdentifier();
       account.setId(VAULT_DEFAULT_ACCOUNT);
       vaultItem.setAccount(account);
-
+      
       VaultDateParameters dateParameters = new VaultDateParameters();
       dateParameters.setStartdate("20180101");
       dateParameters.setEnddate("20180331");
       dateParameters.setFrequency("Monthly");
       vaultItem.setDates(dateParameters);
 
-      vaultItem.setComponentdetail("Totals");
+      vaultItem.setComponentdetail("GROUPS"); // It can be GROUPS or TOTALS
 
       calcParameters.putDataItem("1", vaultItem);
       calcParameters.putDataItem("2", vaultItem);
+      
       CalculationMeta meta = new CalculationMeta();
-      meta.contentorganization(ContentorganizationEnum.ROW);
+      meta.contentorganization(ContentorganizationEnum.SIMPLIFIEDROW);
       meta.contenttype(ContenttypeEnum.JSON);
       calcParameters.setMeta(meta);
 
       // Run Calculation Request
       VaultCalculationsApi apiInstance = new VaultCalculationsApi(getApiClient());
 
-      ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
+      ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, "max-stale=3600", calcParameters);
 
       String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
       String requestId = locationList[locationList.length - 2];
       System.out.println("Calculation Id: "+ requestId);
+      
       // Get Calculation Request Status
       ApiResponse<CalculationStatusRoot> getStatus = null;
-
       while (getStatus == null || getStatus.getData().getData().getStatus() == StatusEnum.QUEUED
           || getStatus.getData().getData().getStatus() == StatusEnum.EXECUTING) {
         if (getStatus != null) {
@@ -126,20 +128,22 @@ public class VaultEngineExample {
 
           System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Succeeded!!!");
           System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Result");
-          List<TableData> tableDataList = null;
+          List<TableData> tables = null;
           try {
             ObjectMapper mapper = new ObjectMapper();     
             String jsonString = mapper.writeValueAsString(resultResponse.getData().getData());
 
             if(resultResponse.getHeaders().get("content-type").get(0).toLowerCase().contains("row")) {
+              // For row and simplified row organized formats	
               RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
               StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-              tableDataList = stachExtension.convertToTable();              
+              tables = stachExtension.convertToTable();              
             }
             else {
+              // For column organized format	
               ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
               StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-              tableDataList = stachExtension.convertToTable();
+              tables = stachExtension.convertToTable();
             }        
           } catch(Exception e) {
             System.out.println(e.getMessage());
@@ -147,10 +151,10 @@ public class VaultEngineExample {
           }
 
           ObjectMapper mapper = new ObjectMapper();
-          String json = mapper.writeValueAsString(tableDataList);
+          String json = mapper.writeValueAsString(tables);
           System.out.println(json); // Prints the result in 2D table format.
           // Uncomment the following line to generate an Excel file
-          // generateExcel(tableDataList);
+          // generateExcel(tables);
         }
       }
     }

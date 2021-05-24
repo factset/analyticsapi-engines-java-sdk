@@ -40,17 +40,21 @@ public class BpmInteractiveOptimizerEngineExample {
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
   private static String PASSWORD = "<apiKey>";
+  
   private static String BPM_STRATEGY_ID = "CLIENT:/Aapi/BPMAPISIMPLE";
   private static IdentifierTypeEnum TRADES_ID_TYPE = IdentifierTypeEnum.ASSET;
   private static Boolean INCLUDE_CASH = false;
+  
   private static Integer DEADLINE_HEADER_VALUE = 20;
-  private static BpmOptimizerApi apiInstance = new BpmOptimizerApi(getApiClient());
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
+      BpmOptimizerApi apiInstance = new BpmOptimizerApi(getApiClient());	
       BPMOptimizationParameters bpmItem = new BPMOptimizationParameters();
+      
       BPMOptimizerStrategy strategy = new BPMOptimizerStrategy();
       strategy.setId(BPM_STRATEGY_ID);
+      
       OptimizerOutputTypes optOutputTypes = new OptimizerOutputTypes();
       OptimizerTradesList tradesList = new OptimizerTradesList();
       tradesList.setIdentifierType(TRADES_ID_TYPE);
@@ -66,11 +70,10 @@ public class BpmInteractiveOptimizerEngineExample {
       Map<String, List<String>> headers = response.getHeaders();
 
       Object result = null;
-
       switch(response.getStatusCode()) {
         case 201: // Calculation completed
-          result = response;
-          headers = response.getHeaders();
+          System.out.println("Calculation successful!!!");	
+          result = ((ObjectRoot)response.getData()).getData();
           break;
         case 202:
           String[] locationList = headers.get("Location").get(0).split("/");
@@ -89,15 +92,15 @@ public class BpmInteractiveOptimizerEngineExample {
               Thread.sleep(2 * 1000L);
             }
           } while(response.getStatusCode() == 202);
+          
+          System.out.println("Calculation successful!!!");
+          // Get Calculation Result
+          String[] location = headers.get("Location").get(0).split("/");
+          String id = location[location.length - 2];
+          ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id);
+          result = resultResponse.getData().getData();
           break;
       }
-
-      // Get Calculation Result
-      String[] location = headers.get("Location").get(0).split("/");
-      String id = location[location.length - 2];
-      ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id);
-      headers = resultResponse.getHeaders();
-      result = resultResponse.getData().getData();
 
       System.out.println("Calculation Completed!!!");
       List<TableData> tables = null;
@@ -105,8 +108,10 @@ public class BpmInteractiveOptimizerEngineExample {
         ObjectMapper mapper = new ObjectMapper();     
         String jsonString = mapper.writeValueAsString(result);
         JsonNode jsonObject = mapper.readTree(jsonString);
+        
         RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
-        stachExtensionBuilder.addTable("data", jsonObject.get("trades"));//a)limited to only one case
+        stachExtensionBuilder.addTable("data", jsonObject.get("trades"));
+        // stachExtensionBuilder.addTable("data", jsonObject.get("optimal"));
         tables = stachExtensionBuilder.build().convertToTable();
       } catch(Exception e) {
         System.out.println(e.getMessage());
