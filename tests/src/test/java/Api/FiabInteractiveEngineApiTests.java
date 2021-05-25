@@ -84,8 +84,8 @@ public class FiabInteractiveEngineApiTests {
 
     Assert.assertTrue("Result Status returned should be 200", resultStatus.getStatusCode() == 200);
   }
-  // TO-DO: Uncomment below test.
-  /*@Test
+
+  @Test
   public void getAllOutStandingRequestsSuccess() throws ApiException {
     ApiResponse<Void> createResponse = null;
 
@@ -113,6 +113,6 @@ public class FiabInteractiveEngineApiTests {
     Assert.assertTrue("Response data should not be null.", getFIABCalculationStatusSummary.getData() != null);
     Assert.assertTrue("Response data does not include the created calculation.",
         getFIABCalculationStatusSummary.getData().containsKey(id));	  
-  }*/
+  }
 }
 

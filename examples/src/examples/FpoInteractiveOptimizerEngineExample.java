@@ -116,17 +116,14 @@ public class FpoInteractiveOptimizerEngineExample {
           } while(response.getStatusCode() == 202);
           
           System.out.println("Calculation successful!!!");
-          result = ((ObjectRoot)response.getData()).getData();
+          // Get Calculation Result
+          String[] location = headers.get("Location").get(0).split("/");
+          String id = location[location.length - 2];
+          ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id, ACCEPT_HEADER_VALUE);
+          result = resultResponse.getData().getData();
           break;
       }
       
-      // Get Calculation Result (Optional)
-      // String[] location = headers.get("Location").get(0).split("/");
-      // String id = location[location.length - 2];
-      // ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id, ACCEPT_HEADER_VALUE);
-      // result = resultResponse.getData().getData();
-
-      System.out.println("Calculation Completed!!!");
       List<TableData> tables = null;
       try {
         ObjectMapper mapper = new ObjectMapper();     
