@@ -212,11 +212,11 @@ public class SPAREngineInteractiveExample {
   private static class FdsApiClient extends ApiClient
   {
     // Uncomment the below lines to use a proxy server
-    /*@Override
+    @Override
     protected void customizeClientBuilder(ClientBuilder clientBuilder) {
       clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8888" );
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
-    }*/
+    }
   }
 
   private static FdsApiClient getApiClient() {
