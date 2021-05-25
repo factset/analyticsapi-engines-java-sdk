@@ -33,6 +33,7 @@ import factset.analyticsapi.engines.models.AxiomaEquityOptimizerStrategy;
 import factset.analyticsapi.engines.models.ObjectRoot;
 import factset.analyticsapi.engines.models.Optimization;
 import factset.analyticsapi.engines.models.OptimizerAccount;
+import factset.analyticsapi.engines.models.OptimizerOptimalHoldings;
 import factset.analyticsapi.engines.models.OptimizerOutputTypes;
 import factset.analyticsapi.engines.models.OptimizerTradesList;
 import factset.analyticsapi.engines.models.OptimizerTradesList.IdentifierTypeEnum;
@@ -49,6 +50,7 @@ public class AxpInteractiveOptimizerEngineExample {
   private static String STRATEGY_ID = "Client:/Optimizer/CN_TEST";
   private static IdentifierTypeEnum TRADES_ID_TYPE = IdentifierTypeEnum.ASSET;
   private static Boolean INCLUDE_CASH = false;
+  private static Boolean EXCLUDE_ZERO = false;
 
   private static Integer DEADLINE_HEADER_VALUE = 20;
 
@@ -72,6 +74,12 @@ public class AxpInteractiveOptimizerEngineExample {
       tradesList.setIdentifierType(TRADES_ID_TYPE);
       tradesList.setIncludeCash(INCLUDE_CASH);
       optOutputTypes.setTrades(tradesList);
+      
+      // OptimizerOptimalHoldings optimal = new OptimizerOptimalHoldings();
+      // optimal.setIdentifierType(OptimizerOptimalHoldings.IdentifierTypeEnum.ASSET);
+      // optimal.setIncludeCash(INCLUDE_CASH);
+      // optimal.setExcludeZero(EXCLUDE_ZERO);
+      // optOutputTypes.setOptimal(optimal); 
 
       axpItem.setAccount(accountId);
       axpItem.setOptimization(optimization);
@@ -80,7 +88,7 @@ public class AxpInteractiveOptimizerEngineExample {
       AxiomaEquityOptimizationParametersRoot axpOptimizerParam = new AxiomaEquityOptimizationParametersRoot();
       axpOptimizerParam.setData(axpItem);
 
-      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=3600", axpOptimizerParam);
+      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=0", axpOptimizerParam);
       Map<String, List<String>> headers = response.getHeaders();
 
       Object result = null;
@@ -124,12 +132,12 @@ public class AxpInteractiveOptimizerEngineExample {
         JsonNode jsonObject = mapper.readTree(jsonString);
         
         RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
-        stachExtensionBuilder.addTable("data", jsonObject.get("trades"));
-        // stachExtensionBuilder.addTable("data", jsonObject.get("optimal"));
+        stachExtensionBuilder.addTable("tradesTable", jsonObject.get("trades"));
+        // stachExtensionBuilder.addTable("optimalTable", jsonObject.get("optimal"));
         tables = stachExtensionBuilder.build().convertToTable();
       } catch(Exception e) {
         System.out.println(e.getMessage());
-        e.getStackTrace();
+        e.printStackTrace();
       }
       
       ObjectMapper mapper = new ObjectMapper();

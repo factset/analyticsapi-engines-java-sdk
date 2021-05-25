@@ -32,6 +32,7 @@ import factset.analyticsapi.engines.models.FPOOptimizationParameters;
 import factset.analyticsapi.engines.models.FPOOptimizationParametersRoot;
 import factset.analyticsapi.engines.models.ObjectRoot;
 import factset.analyticsapi.engines.models.Optimization;
+import factset.analyticsapi.engines.models.OptimizerOptimalHoldings;
 import factset.analyticsapi.engines.models.OptimizerOutputTypes;
 import factset.analyticsapi.engines.models.OptimizerStrategy;
 import factset.analyticsapi.engines.models.OptimizerTradesList;
@@ -50,6 +51,7 @@ public class FpoInteractiveOptimizerEngineExample {
   private static String STRATEGY_ID = "Client:/analytics_api/dbui_simple_strategy";
   private static IdentifierTypeEnum TRADES_ID_TYPE = IdentifierTypeEnum.ASSET;
   private static Boolean INCLUDE_CASH = false;
+  private static Boolean EXCLUDE_ZERO = false;
   private static String OPTIMIZATION_CASHFLOW = "0";
   
   private static Integer DEADLINE_HEADER_VALUE = 20;
@@ -79,6 +81,12 @@ public class FpoInteractiveOptimizerEngineExample {
       tradesList.setIdentifierType(TRADES_ID_TYPE);
       tradesList.setIncludeCash(INCLUDE_CASH);
       optOutputTypes.setTrades(tradesList);
+      
+      // OptimizerOptimalHoldings optimal = new OptimizerOptimalHoldings();
+      // optimal.setIdentifierType(OptimizerOptimalHoldings.IdentifierTypeEnum.ASSET);
+      // optimal.setIncludeCash(INCLUDE_CASH);
+      // optimal.setExcludeZero(EXCLUDE_ZERO);
+      // optOutputTypes.setOptimal(optimal); 
 
       fpoItem.setAccount(accountId);
       fpoItem.setOptimization(optimization);
@@ -87,7 +95,7 @@ public class FpoInteractiveOptimizerEngineExample {
       FPOOptimizationParametersRoot fpoOptimizerParam = new FPOOptimizationParametersRoot();
       fpoOptimizerParam.setData(fpoItem);
 
-      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=3600", fpoOptimizerParam);
+      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=0", fpoOptimizerParam);
       Map<String, List<String>> headers = response.getHeaders();
 
       Object result = null;
@@ -131,12 +139,12 @@ public class FpoInteractiveOptimizerEngineExample {
         JsonNode jsonObject = mapper.readTree(jsonString);
         
         RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
-        stachExtensionBuilder.addTable("data", jsonObject.get("trades"));
-        // stachExtensionBuilder.addTable("data", jsonObject.get("optimal"));
+        stachExtensionBuilder.addTable("tradesTable", jsonObject.get("trades"));
+        // stachExtensionBuilder.addTable("optimalTable", jsonObject.get("optimal"));
         tables = stachExtensionBuilder.build().convertToTable();
       } catch(Exception e) {
         System.out.println(e.getMessage());
-        e.getStackTrace();
+        e.printStackTrace();
       }
 
       ObjectMapper mapper = new ObjectMapper();
