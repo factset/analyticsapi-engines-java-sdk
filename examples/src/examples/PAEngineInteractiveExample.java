@@ -1,35 +1,54 @@
 package examples;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
-//import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
-//import org.glassfish.jersey.client.ClientConfig;
-//import org.glassfish.jersey.client.ClientProperties;
+import javax.ws.rs.client.ClientBuilder;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
+import org.glassfish.jersey.client.ClientProperties;
 
 import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
-import factset.analyticsapi.engines.StachExtensions.*;
+import factset.analyticsapi.engines.models.CalculationMeta.ContentorganizationEnum;
+import factset.analyticsapi.engines.models.CalculationMeta.ContenttypeEnum;
 
-import com.google.protobuf.util.JsonFormat;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.factset.protobuf.stach.PackageProto.Package.Builder;
+import com.factset.protobuf.stach.extensions.ColumnStachExtensionBuilder;
+import com.factset.protobuf.stach.extensions.RowStachExtensionBuilder;
+import com.factset.protobuf.stach.extensions.StachExtensionFactory;
+import com.factset.protobuf.stach.extensions.StachExtensions;
+import com.factset.protobuf.stach.extensions.models.StachVersion;
+import com.factset.protobuf.stach.extensions.models.TableData;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.factset.protobuf.stach.PackageProto.Package;
-
-import static factset.analyticsapi.engines.StachExtensions.convertToTableFormat;
 
 public class PAEngineInteractiveExample {
 
   private static FdsApiClient apiClient = null;
-  private static final String BASE_PATH = "https://api.factset.com";
-  private static final String USERNAME = "<username-serial>";
-  private static final String PASSWORD = "<apiKey>";
-  private static final String PA_DEFAULT_DOCUMENT = "PA_DOCUMENTS:DEFAULT";
-  private static final String COMPONENT_NAME = "Weights";
-  private static final String COMPONENT_CATEGORY = "Weights / Exposures";
+  private static String BASE_PATH = "https://api.factset.com";
+  private static String USERNAME = "<username-serial>";
+  private static String PASSWORD = "<apiKey>";
+  
+  private static String PA_DEFAULT_DOCUMENT = "PA_DOCUMENTS:DEFAULT";
+  private static String COMPONENT_NAME = "Weights";
+  private static String COMPONENT_CATEGORY = "Weights / Exposures";
+  private static String COLUMN_NAME = "Port. Ending Weight";
+  private static String COLUMN_CATEGORY = "Portfolio/Position Data";
+  private static String COULMN_DIRECTORY = "Factset";
+  private static String GROUP_NAME = "Economic Sector - FactSet";
+  private static String GROUP_CATEGORY = "FactSet";
+  private static String GROUP_DIRECTORY = "Factset";
+  
+  private static String CALCULATION_UNIT_ID = "1";
+  private static Integer DEADLINE_HEADER_VALUE = 20;
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
@@ -38,7 +57,7 @@ public class PAEngineInteractiveExample {
       // Get all component from PA_DEFAULT_DOCUMENT with Name COMPONENT_NAME &
       // category COMPONENT_CATEGORY
       ComponentsApi componentsApi = new ComponentsApi(getApiClient());
-      Map<String, ComponentSummary> components = componentsApi.getPAComponents(PA_DEFAULT_DOCUMENT);
+      Map<String, ComponentSummary> components = componentsApi.getPAComponents(PA_DEFAULT_DOCUMENT).getData();
       String componentId = components.entrySet().stream().filter(
           c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
           .iterator().next().getKey();
@@ -51,10 +70,12 @@ public class PAEngineInteractiveExample {
 
       PAIdentifier accountPaIdentifier1 = new PAIdentifier();
       accountPaIdentifier1.setId("BENCH:SP50");
+      accountPaIdentifier1.setHoldingsmode("B&H"); // It can be B&H, TBR, OMS or EXT
       paItem.addAccountsItem(accountPaIdentifier1);
 
       PAIdentifier benchmarkPaIdentifier = new PAIdentifier();
       benchmarkPaIdentifier.setId("BENCH:R.2000");
+      benchmarkPaIdentifier.setHoldingsmode("B&H");
       paItem.addBenchmarksItem(benchmarkPaIdentifier);
 
       PADateParameters dateParameters = new PADateParameters();
@@ -63,73 +84,183 @@ public class PAEngineInteractiveExample {
       dateParameters.setFrequency("Monthly");
       paItem.setDates(dateParameters);
 
+      // To add column overrides
+      // PACalculationColumn column = new PACalculationColumn();
+      // column.setId(getColumnId(COLUMN_NAME, COLUMN_CATEGORY, COULMN_DIRECTORY));
+      // paItem.addColumnsItem(column);
+
+      // To add group overrides
+      // PACalculationGroup group = new PACalculationGroup();
+      // group.setId(getGroupId(GROUP_NAME, GROUP_CATEGORY, GROUP_DIRECTORY));
+      // paItem.addGroupsItem(group);
+
+      // To add currency override
+      // paItem.currencyisocode("USD");
+      
+      // To add component detail.
+      // paItem.setComponentdetail("GROUPS"); // It can be GROUPS or TOTALS
+      
+      PACalculationParametersRoot calcParameters = new PACalculationParametersRoot();
+      calcParameters.putDataItem(CALCULATION_UNIT_ID, paItem);
+
+      CalculationMeta meta = new CalculationMeta();
+      meta.contentorganization(ContentorganizationEnum.SIMPLIFIEDROW);
+      meta.contenttype(ContenttypeEnum.JSON);
+      calcParameters.setMeta(meta);
+
       // Run Calculation Request
       PaCalculationsApi apiInstance = new PaCalculationsApi(getApiClient());
-      ApiResponse<Object> response = null;
+      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=3600", calcParameters);
+      
+      Map<String, List<String>> headers = response.getHeaders();
+      ApiResponse<CalculationStatusRoot> getStatus = null;
+      Object result = null;
+      switch(response.getStatusCode()) {
+        case 200:
+          System.out.println("Calculation failed!!!");
+          CalculationUnitStatus calcUnitStatus = ((CalculationStatusRoot)response.getData()).getData().getUnits().get(CALCULATION_UNIT_ID);
+          System.out.println("Status : " + calcUnitStatus.getStatus());
+          System.out.println("Reason : " + calcUnitStatus.getErrors());
+          System.exit(-1);
+    	  break;  
+        case 201:
+          System.out.println("Calculation successful!!!");	
+          result = ((ObjectRoot)response.getData()).getData();
+          headers = response.getHeaders();
+          break;
+        case 202:
+          String[] locationList = response.getHeaders().get("Location").get(0).split("/");
+          String requestId = locationList[locationList.length - 2];
 
-      response = apiInstance.runPACalculationWithHttpInfo(paItem);
-
-      if (response.getStatusCode() == 202) {
-        String[] locationList = response.getHeaders().get("Location").get(0).split("/");
-        String requestId = locationList[locationList.length - 1];
-
-        // Get Calculation Request Status
-
-        while (response == null || response.getStatusCode() == 202) {
-          if (response != null) {
-            List<String> cacheControl = response.getHeaders().get("Cache-Control");
-            if (cacheControl != null) {
-              int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
-              System.out.println("Sleeping for: " + maxAge + " seconds");
-              Thread.sleep(maxAge * 1000L);
-            } else {
-              System.out.println("Sleeping for: 2 seconds");
-              Thread.sleep(2 * 1000L);
+          // Get Calculation Request Status        
+          while (getStatus == null || getStatus.getStatusCode() == 202) {
+            if (getStatus != null) {
+              List<String> cacheControl = getStatus.getHeaders().get("Cache-Control");
+              if (cacheControl != null) {
+                int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
+                System.out.println("Sleeping for: " + maxAge + " seconds");
+                Thread.sleep(maxAge * 1000L);
+              } else {
+                System.out.println("Sleeping for: 2 seconds");
+       	        Thread.sleep(2 * 1000L);
+              }
             }
-          }
-          response = apiInstance.getPACalculationByIdWithHttpInfo(requestId);
+            getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+            headers = getStatus.getHeaders();
+    	  }
+    	
+    	  for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
+    	    if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS)
+    	    {
+    	      String[] location = calculationUnitParameters.getValue().getResult().split("/");
+    		  String id = location[location.length - 4];
+    		  String unitId = location[location.length - 2];
+    		  ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
+    		  result = resultResponse.getData().getData();
+    		  headers = resultResponse.getHeaders();
+    		}
+    	  }
+    	  break;
+      }
+      
+      List<TableData> tables = null;
+      try {
+        ObjectMapper mapper = new ObjectMapper();     
+        String jsonString = mapper.writeValueAsString(result);
+
+        if(headers.get("content-type").get(0).toLowerCase().contains("row")) {
+          // For row and simplified row organized formats
+          RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
+          StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
+          tables = stachExtension.convertToTable();              
         }
+        else {
+          // For column organized format
+          ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
+          StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
+          tables = stachExtension.convertToTable();              
+        }    
+      } catch(Exception e) {
+        System.out.println(e.getMessage());
+        e.printStackTrace();
       }
 
-      System.out.println("Calculation Completed!!!");
-
-      if (response.getStatusCode() == 200 || response.getStatusCode() == 201) {
-        // Get Result of Successful Calculations
-        Builder builder = Package.newBuilder();
-        try {
-          ObjectMapper objMapper = new ObjectMapper();
-          String jsonStr = objMapper.writeValueAsString(response.getData());
-          JsonFormat.parser().ignoringUnknownFields().merge(jsonStr, builder);
-        } catch (InvalidProtocolBufferException e) {
-          System.out.println("Error while deserializing the response");
-          e.printStackTrace();
-        }
-
-        Package result = builder.build();
-        // To convert result to 2D tables.
-        List<TableData> tables = convertToTableFormat(result);
-        ObjectMapper mapper = new ObjectMapper();
-        String json = mapper.writeValueAsString(tables.get(0));
-        System.out.println(json); // Prints the result in 2D table format.
-        // Uncomment the following line to generate an Excel file
-        // StachExtensions.generateExcel(result);
-      }
+      ObjectMapper mapper = new ObjectMapper();
+      String json = mapper.writeValueAsString(tables);
+      System.out.println(json); // Prints the result in 2D table format.
+      // Uncomment the following line to generate an Excel file
+      // generateExcel(tables);
     } catch (ApiException e) {
       handleException("PAEngineExample#Main", e);
     }
-  
+
+  }
+
+  private static void generateExcel(List<TableData> tableList) {
+    for(TableData table : tableList) {
+      writeDataToExcel(table, UUID.randomUUID().toString() + ".xlsv");
+    }      
+  }
+
+  private static void writeDataToExcel(TableData table, String fileLocation) {
+    XSSFWorkbook workbook = new XSSFWorkbook();
+    XSSFSheet sheet = workbook.createSheet("Calculation Report");
+    int rowsSize = table.getRows().size();
+    for (int rowIndex = 0; rowIndex < rowsSize; rowIndex++) {
+      XSSFRow xsswRow = sheet.createRow(rowIndex);
+      List<String> cells = table.getRows().get(rowIndex).getCells();
+      for (int cellIndex = 0; cellIndex < cells.size(); cellIndex++) {
+        XSSFCell xssfCell = xsswRow.createCell(cellIndex);
+        xssfCell.setCellValue(cells.get(cellIndex));
+      }
+    }
+    try {
+      FileOutputStream fileStream = new FileOutputStream(new File(fileLocation));
+      workbook.write(fileStream);
+      fileStream.close();
+      workbook.close();
+    } catch (Exception e) {
+      System.err.println("Failed to write data to excel");
+      e.printStackTrace();
+    }
+  }
+
+  private static String getColumnId(String columnName, String columnCategory, String directory) throws ApiException {
+    ColumnsApi apiInstance = new ColumnsApi(getApiClient());
+    ColumnSummaryRoot columns = apiInstance.getPAColumnsWithHttpInfo(columnName, columnCategory, directory).getData();
+    String columnId = columns.getData().entrySet().stream()
+        .filter(c -> c.getValue().getName().equals(columnName) && c.getValue().getCategory().equals(columnCategory) &&
+            c.getValue().getDirectory().equals(directory))
+        .iterator().next().getKey();
+    
+    System.out.println(
+            "ID of column with Name '" + columnName + "', category '" + columnCategory + "' and directory '" + directory + "'" + " : " + columnId);
+    return columnId;
+  }
+
+  private static String getGroupId(String groupName, String groupCategory, String groupDirectory) throws ApiException {
+    GroupsApi apiInstance = new GroupsApi(getApiClient());
+    GroupRoot groups = apiInstance.getPAGroupsWithHttpInfo().getData();
+    String groupId = groups.getData().entrySet().stream()
+        .filter(c -> c.getValue().getName().equals(groupName) && c.getValue().getCategory().equals(groupCategory) &&
+            c.getValue().getDirectory().equals(groupDirectory))
+        .iterator().next().getKey();
+    
+    System.out.println(
+            "ID of group with Name '" + groupName + "', category '" + groupCategory + "' and directory '" + groupDirectory + "'" + " : " + groupId);
+    return groupId;
   }
 
   private static class FdsApiClient extends ApiClient
   {
     // Uncomment the below lines to use a proxy server
     /*@Override
-    protected void performAdditionalClientConfiguration(ClientConfig clientConfig) {
-	  clientConfig.property( ClientProperties.PROXY_URI, "<proxyUrl>" );
-	  clientConfig.connectorProvider( new ApacheConnectorProvider() );
+    protected void customizeClientBuilder(ClientBuilder clientBuilder) {
+      clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8888" );
+      clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }
-  
+
   private static FdsApiClient getApiClient() {
     if (apiClient != null) {
       return apiClient;
@@ -151,7 +282,7 @@ public class PAEngineInteractiveExample {
       System.out.println("x-datadirect-request-key: " + e.getResponseHeaders().get("x-datadirect-request-key").get(0));
     }
     System.out.println("Status code: " + e.getCode());
-    System.out.println("Reason: " + e.getResponseBody());
+    System.out.println("Reason: " + e.getClientErrorResponse());
     e.printStackTrace();
   }
 }

@@ -58,7 +58,7 @@ public class CommonParameters {
   public static final String StrategyId = "Client:/analytics_api/dbui_simple_strategy";
   public static final String SecondaryStrategyId = "Client:/Optimizer/CN_TEST";
   public static final IdentifierTypeEnum TradesIdType = IdentifierTypeEnum.ASSET;
-  public static final Boolean IncudeCash = false;
+  public static final Boolean IncludeCash = false;
 
   // FPO values
   public static final String FpoAccountId = "CLIENT:/FPO/1K_MAC_AMZN_AAPL.ACCT";
