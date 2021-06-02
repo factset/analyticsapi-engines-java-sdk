@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Map&lt;String, PACalculationParameters&gt;**](PACalculationParameters.md) | List of calculation parameters. |  [optional]
+**data** | [**Map&lt;String, PACalculationParameters&gt;**](PACalculationParameters.md) | List of calculation parameters. | 
 **meta** | [**CalculationMeta**](CalculationMeta.md) |  |  [optional]
 
 

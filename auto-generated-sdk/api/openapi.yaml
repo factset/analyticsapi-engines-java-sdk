@@ -27429,6 +27429,8 @@ components:
           type: object
         meta:
           $ref: '#/components/schemas/CalculationMeta'
+      required:
+      - data
       type: object
     CalculationUnitStatus:
       example:
