@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines.api;
 
 import factset.analyticsapi.engines.ApiException;
@@ -7,6 +8,11 @@ import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.Pair;
 
 import javax.ws.rs.core.GenericType;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import java.io.File;
 
 import factset.analyticsapi.engines.models.FrequencyRoot;
 
@@ -42,7 +48,7 @@ public class FrequenciesApi {
   /**
    * Get PA frequencies
    * This endpoint lists all the frequencies that can be applied to a PA calculation.
-   * @return FrequencyRoot
+    @return FrequencyRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -56,14 +62,14 @@ public class FrequenciesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public FrequencyRoot getPAFrequencies() throws ApiException {
+ public FrequencyRoot getPAFrequencies() throws ApiException {
     return getPAFrequenciesWithHttpInfo().getData();
   }
 
   /**
    * Get PA frequencies
    * This endpoint lists all the frequencies that can be applied to a PA calculation.
-   * @return ApiResponse&lt;FrequencyRoot&gt;
+    * @return ApiResponse&lt;FrequencyRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -107,14 +113,17 @@ public class FrequenciesApi {
 
     GenericType<FrequencyRoot> localVarReturnType = new GenericType<FrequencyRoot>() {};
 
-    return apiClient.invokeAPI("FrequenciesApi.getPAFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<FrequencyRoot>(){});
+	
+      return apiClient.<FrequencyRoot>invokeAPIWithReturnMap("FrequenciesApi.getPAFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get SPAR frequencies
    * This endpoint lists all the frequencies that can be applied to a SPAR calculation.
-   * @return FrequencyRoot
+    @return FrequencyRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -128,14 +137,14 @@ public class FrequenciesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public FrequencyRoot getSPARFrequencies() throws ApiException {
+ public FrequencyRoot getSPARFrequencies() throws ApiException {
     return getSPARFrequenciesWithHttpInfo().getData();
   }
 
   /**
    * Get SPAR frequencies
    * This endpoint lists all the frequencies that can be applied to a SPAR calculation.
-   * @return ApiResponse&lt;FrequencyRoot&gt;
+    * @return ApiResponse&lt;FrequencyRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -179,14 +188,17 @@ public class FrequenciesApi {
 
     GenericType<FrequencyRoot> localVarReturnType = new GenericType<FrequencyRoot>() {};
 
-    return apiClient.invokeAPI("FrequenciesApi.getSPARFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<FrequencyRoot>(){});
+	
+      return apiClient.<FrequencyRoot>invokeAPIWithReturnMap("FrequenciesApi.getSPARFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get Vault frequencies
    * This endpoint lists all the frequencies that can be applied to a Vault calculation.
-   * @return FrequencyRoot
+    @return FrequencyRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -200,14 +212,14 @@ public class FrequenciesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public FrequencyRoot getVaultFrequencies() throws ApiException {
+ public FrequencyRoot getVaultFrequencies() throws ApiException {
     return getVaultFrequenciesWithHttpInfo().getData();
   }
 
   /**
    * Get Vault frequencies
    * This endpoint lists all the frequencies that can be applied to a Vault calculation.
-   * @return ApiResponse&lt;FrequencyRoot&gt;
+    * @return ApiResponse&lt;FrequencyRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -251,8 +263,11 @@ public class FrequenciesApi {
 
     GenericType<FrequencyRoot> localVarReturnType = new GenericType<FrequencyRoot>() {};
 
-    return apiClient.invokeAPI("FrequenciesApi.getVaultFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<FrequencyRoot>(){});
+	
+      return apiClient.<FrequencyRoot>invokeAPIWithReturnMap("FrequenciesApi.getVaultFrequencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
 }

@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines.api;
 
 import factset.analyticsapi.engines.ApiException;
@@ -7,6 +8,11 @@ import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.Pair;
 
 import javax.ws.rs.core.GenericType;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import java.io.File;
 
 import factset.analyticsapi.engines.models.CalculationStatusRoot;
 import factset.analyticsapi.engines.models.ClientErrorResponse;
@@ -59,7 +65,7 @@ public class SparCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public void cancelCalculationById(String id) throws ApiException {
+ public void cancelCalculationById(String id) throws ApiException {
     cancelCalculationByIdWithHttpInfo(id);
   }
 
@@ -67,7 +73,7 @@ public class SparCalculationsApi {
    * Cancel SPAR calculation
    * This is the endpoint to cancel a previously submitted calculation.
    * @param id from url, provided from the location header in the Create and Run SPAR calculation endpoint (required)
-   * @return ApiResponse&lt;Void&gt;
+    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -115,15 +121,19 @@ public class SparCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic" };
 
-    return apiClient.invokeAPI("SparCalculationsApi.cancelCalculationById", localVarPath, "DELETE", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<Void>invokeAPIWithReturnMap("SparCalculationsApi.cancelCalculationById", localVarPath, "DELETE", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, null, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get SPAR calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run SPAR calculation endpoint (required)
-   * @return SPARCalculationParametersRoot
+    @return SPARCalculationParametersRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -137,7 +147,7 @@ public class SparCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public SPARCalculationParametersRoot getCalculationParameters(String id) throws ApiException {
+ public SPARCalculationParametersRoot getCalculationParameters(String id) throws ApiException {
     return getCalculationParametersWithHttpInfo(id).getData();
   }
 
@@ -145,7 +155,7 @@ public class SparCalculationsApi {
    * Get SPAR calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run SPAR calculation endpoint (required)
-   * @return ApiResponse&lt;SPARCalculationParametersRoot&gt;
+    * @return ApiResponse&lt;SPARCalculationParametersRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -195,15 +205,20 @@ public class SparCalculationsApi {
 
     GenericType<SPARCalculationParametersRoot> localVarReturnType = new GenericType<SPARCalculationParametersRoot>() {};
 
-    return apiClient.invokeAPI("SparCalculationsApi.getCalculationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<SPARCalculationParametersRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<SPARCalculationParametersRoot>invokeAPIWithReturnMap("SparCalculationsApi.getCalculationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get SPAR calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the location header will point to the result url.
    * @param id from url, provided from the location header in the Create and Run SPAR calculation endpoint (required)
-   * @return CalculationStatusRoot
+    @return CalculationStatusRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -218,7 +233,7 @@ public class SparCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public CalculationStatusRoot getCalculationStatusById(String id) throws ApiException {
+ public CalculationStatusRoot getCalculationStatusById(String id) throws ApiException {
     return getCalculationStatusByIdWithHttpInfo(id).getData();
   }
 
@@ -226,7 +241,7 @@ public class SparCalculationsApi {
    * Get SPAR calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the location header will point to the result url.
    * @param id from url, provided from the location header in the Create and Run SPAR calculation endpoint (required)
-   * @return ApiResponse&lt;CalculationStatusRoot&gt;
+    * @return ApiResponse&lt;CalculationStatusRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -277,16 +292,22 @@ public class SparCalculationsApi {
 
     GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
 
-    return apiClient.invokeAPI("SparCalculationsApi.getCalculationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<CalculationStatusRoot>invokeAPIWithReturnMap("SparCalculationsApi.getCalculationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get SPAR calculation result by id
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Get SPAR calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get SPAR calculation status by id endpoint (required)
-   * @return ObjectRoot
+    @return ObjectRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -300,7 +321,7 @@ public class SparCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ObjectRoot getCalculationUnitResultById(String id, String unitId) throws ApiException {
+ public ObjectRoot getCalculationUnitResultById(String id, String unitId) throws ApiException {
     return getCalculationUnitResultByIdWithHttpInfo(id, unitId).getData();
   }
 
@@ -309,7 +330,7 @@ public class SparCalculationsApi {
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Get SPAR calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get SPAR calculation status by id endpoint (required)
-   * @return ApiResponse&lt;ObjectRoot&gt;
+    * @return ApiResponse&lt;ObjectRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -365,9 +386,14 @@ public class SparCalculationsApi {
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
-    return apiClient.invokeAPI("SparCalculationsApi.getCalculationUnitResultById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<ObjectRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<ObjectRoot>invokeAPIWithReturnMap("SparCalculationsApi.getCalculationUnitResultById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Create and Run SPAR calculation
@@ -375,7 +401,7 @@ public class SparCalculationsApi {
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param spARCalculationParametersRoot Calculation Parameters (optional)
-   * @return CalculationStatusRoot
+    @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -393,7 +419,7 @@ public class SparCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public CalculationStatusRoot postAndCalculate(Integer xFactSetApiLongRunningDeadline, String cacheControl, SPARCalculationParametersRoot spARCalculationParametersRoot) throws ApiException {
+ public Object postAndCalculate(Integer xFactSetApiLongRunningDeadline, String cacheControl, SPARCalculationParametersRoot spARCalculationParametersRoot) throws ApiException {
     return postAndCalculateWithHttpInfo(xFactSetApiLongRunningDeadline, cacheControl, spARCalculationParametersRoot).getData();
   }
 
@@ -403,7 +429,7 @@ public class SparCalculationsApi {
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param spARCalculationParametersRoot Calculation Parameters (optional)
-   * @return ApiResponse&lt;CalculationStatusRoot&gt;
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -421,7 +447,7 @@ public class SparCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<CalculationStatusRoot> postAndCalculateWithHttpInfo(Integer xFactSetApiLongRunningDeadline, String cacheControl, SPARCalculationParametersRoot spARCalculationParametersRoot) throws ApiException {
+  public ApiResponse<Object> postAndCalculateWithHttpInfo(Integer xFactSetApiLongRunningDeadline, String cacheControl, SPARCalculationParametersRoot spARCalculationParametersRoot) throws ApiException {
     Object localVarPostBody = spARCalculationParametersRoot;
     
     // create path and map variables
@@ -455,9 +481,16 @@ if (cacheControl != null)
 
     GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
 
-    return apiClient.invokeAPI("SparCalculationsApi.postAndCalculate", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<Object>invokeAPIWithReturnMap("SparCalculationsApi.postAndCalculate", localVarPath, "POST", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Create or Update SPAR calculation and run it.
@@ -466,7 +499,7 @@ if (cacheControl != null)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param spARCalculationParametersRoot Calculation Parameters (optional)
-   * @return CalculationStatusRoot
+    @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -485,7 +518,7 @@ if (cacheControl != null)
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public CalculationStatusRoot putAndCalculate(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, SPARCalculationParametersRoot spARCalculationParametersRoot) throws ApiException {
+ public Object putAndCalculate(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, SPARCalculationParametersRoot spARCalculationParametersRoot) throws ApiException {
     return putAndCalculateWithHttpInfo(id, xFactSetApiLongRunningDeadline, cacheControl, spARCalculationParametersRoot).getData();
   }
 
@@ -496,7 +529,7 @@ if (cacheControl != null)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param spARCalculationParametersRoot Calculation Parameters (optional)
-   * @return ApiResponse&lt;CalculationStatusRoot&gt;
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -515,7 +548,7 @@ if (cacheControl != null)
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<CalculationStatusRoot> putAndCalculateWithHttpInfo(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, SPARCalculationParametersRoot spARCalculationParametersRoot) throws ApiException {
+  public ApiResponse<Object> putAndCalculateWithHttpInfo(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, SPARCalculationParametersRoot spARCalculationParametersRoot) throws ApiException {
     Object localVarPostBody = spARCalculationParametersRoot;
     
     // verify the required parameter 'id' is set
@@ -555,8 +588,16 @@ if (cacheControl != null)
 
     GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
 
-    return apiClient.invokeAPI("SparCalculationsApi.putAndCalculate", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(409, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<Object>invokeAPIWithReturnMap("SparCalculationsApi.putAndCalculate", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
 }

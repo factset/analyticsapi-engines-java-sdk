@@ -1,3 +1,4 @@
+
 # VaultCalculationsApi
 
 All URIs are relative to *https://api.factset.com*
@@ -49,7 +50,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling VaultCalculationsApi#cancelCalculationById");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -126,7 +127,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling VaultCalculationsApi#getCalculationParameters");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -204,7 +205,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling VaultCalculationsApi#getCalculationStatusById");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -284,7 +285,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling VaultCalculationsApi#getCalculationUnitResultById");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -364,12 +365,12 @@ public class Example {
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
         VaultCalculationParametersRoot vaultCalculationParametersRoot = new VaultCalculationParametersRoot(); // VaultCalculationParametersRoot | Calculation Parameters
         try {
-            CalculationStatusRoot result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, vaultCalculationParametersRoot);
+            Object result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, vaultCalculationParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling VaultCalculationsApi#postAndCalculate");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -388,7 +389,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CalculationStatusRoot**](CalculationStatusRoot.md)
+(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
 
@@ -455,12 +456,12 @@ public class Example {
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
         VaultCalculationParametersRoot vaultCalculationParametersRoot = new VaultCalculationParametersRoot(); // VaultCalculationParametersRoot | Calculation Parameters
         try {
-            CalculationStatusRoot result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, vaultCalculationParametersRoot);
+            Object result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, vaultCalculationParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling VaultCalculationsApi#putAndCalculate");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -480,7 +481,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CalculationStatusRoot**](CalculationStatusRoot.md)
+(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
 

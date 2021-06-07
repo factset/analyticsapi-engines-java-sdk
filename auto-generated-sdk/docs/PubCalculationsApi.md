@@ -1,3 +1,4 @@
+
 # PubCalculationsApi
 
 All URIs are relative to *https://api.factset.com*
@@ -49,7 +50,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling PubCalculationsApi#cancelCalculationById");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -126,7 +127,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling PubCalculationsApi#getCalculationParameters");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -204,7 +205,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling PubCalculationsApi#getCalculationStatusById");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -284,7 +285,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling PubCalculationsApi#getCalculationUnitResultById");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -360,12 +361,12 @@ public class Example {
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
         PubCalculationParametersRoot pubCalculationParametersRoot = new PubCalculationParametersRoot(); // PubCalculationParametersRoot | Calculation Parameters
         try {
-            CalculationStatusRoot result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersRoot);
+            Object result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PubCalculationsApi#postAndCalculate");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -384,7 +385,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CalculationStatusRoot**](CalculationStatusRoot.md)
+(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status -  File )
 
 ### Authorization
 
@@ -451,12 +452,12 @@ public class Example {
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
         PubCalculationParametersRoot pubCalculationParametersRoot = new PubCalculationParametersRoot(); // PubCalculationParametersRoot | Calculation Parameters
         try {
-            CalculationStatusRoot result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersRoot);
+            Object result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PubCalculationsApi#putAndCalculate");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -476,7 +477,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CalculationStatusRoot**](CalculationStatusRoot.md)
+(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status -  File )
 
 ### Authorization
 

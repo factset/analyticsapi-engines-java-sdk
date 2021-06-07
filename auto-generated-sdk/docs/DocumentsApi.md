@@ -1,3 +1,4 @@
+
 # DocumentsApi
 
 All URIs are relative to *https://api.factset.com*
@@ -48,7 +49,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling DocumentsApi#getPA3Documents");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -127,7 +128,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling DocumentsApi#getPubDocuments");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -206,7 +207,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling DocumentsApi#getSPAR3Documents");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -285,7 +286,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling DocumentsApi#getVaultDocuments");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }

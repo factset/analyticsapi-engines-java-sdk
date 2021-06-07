@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines.api;
 
 import factset.analyticsapi.engines.ApiException;
@@ -7,6 +8,11 @@ import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.Pair;
 
 import javax.ws.rs.core.GenericType;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import java.io.File;
 
 import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.ComponentSummaryRoot;
@@ -46,7 +52,7 @@ public class ComponentsApi {
    * Get PA component by id
    * This endpoint returns the default settings of a PA component.
    * @param id Unique identifier for a PA component (required)
-   * @return PAComponentRoot
+    @return PAComponentRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -62,7 +68,7 @@ public class ComponentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public PAComponentRoot getPAComponentById(String id) throws ApiException {
+ public PAComponentRoot getPAComponentById(String id) throws ApiException {
     return getPAComponentByIdWithHttpInfo(id).getData();
   }
 
@@ -70,7 +76,7 @@ public class ComponentsApi {
    * Get PA component by id
    * This endpoint returns the default settings of a PA component.
    * @param id Unique identifier for a PA component (required)
-   * @return ApiResponse&lt;PAComponentRoot&gt;
+    * @return ApiResponse&lt;PAComponentRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -122,15 +128,20 @@ public class ComponentsApi {
 
     GenericType<PAComponentRoot> localVarReturnType = new GenericType<PAComponentRoot>() {};
 
-    return apiClient.invokeAPI("ComponentsApi.getPAComponentById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<PAComponentRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<PAComponentRoot>invokeAPIWithReturnMap("ComponentsApi.getPAComponentById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get PA components
    * This endpoint returns the list of PA components in a given PA document.
    * @param document Document Name (required)
-   * @return ComponentSummaryRoot
+    @return ComponentSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -146,7 +157,7 @@ public class ComponentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ComponentSummaryRoot getPAComponents(String document) throws ApiException {
+ public ComponentSummaryRoot getPAComponents(String document) throws ApiException {
     return getPAComponentsWithHttpInfo(document).getData();
   }
 
@@ -154,7 +165,7 @@ public class ComponentsApi {
    * Get PA components
    * This endpoint returns the list of PA components in a given PA document.
    * @param document Document Name (required)
-   * @return ApiResponse&lt;ComponentSummaryRoot&gt;
+    * @return ApiResponse&lt;ComponentSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -206,15 +217,20 @@ public class ComponentsApi {
 
     GenericType<ComponentSummaryRoot> localVarReturnType = new GenericType<ComponentSummaryRoot>() {};
 
-    return apiClient.invokeAPI("ComponentsApi.getPAComponents", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<ComponentSummaryRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<ComponentSummaryRoot>invokeAPIWithReturnMap("ComponentsApi.getPAComponents", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get SPAR components
    * This endpoint returns the list of SPAR components in a given SPAR document.
    * @param document Document Name (required)
-   * @return ComponentSummaryRoot
+    @return ComponentSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -230,7 +246,7 @@ public class ComponentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ComponentSummaryRoot getSPARComponents(String document) throws ApiException {
+ public ComponentSummaryRoot getSPARComponents(String document) throws ApiException {
     return getSPARComponentsWithHttpInfo(document).getData();
   }
 
@@ -238,7 +254,7 @@ public class ComponentsApi {
    * Get SPAR components
    * This endpoint returns the list of SPAR components in a given SPAR document.
    * @param document Document Name (required)
-   * @return ApiResponse&lt;ComponentSummaryRoot&gt;
+    * @return ApiResponse&lt;ComponentSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -290,15 +306,20 @@ public class ComponentsApi {
 
     GenericType<ComponentSummaryRoot> localVarReturnType = new GenericType<ComponentSummaryRoot>() {};
 
-    return apiClient.invokeAPI("ComponentsApi.getSPARComponents", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<ComponentSummaryRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<ComponentSummaryRoot>invokeAPIWithReturnMap("ComponentsApi.getSPARComponents", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get Vault component by id
    * This endpoint returns the default settings of a Vault component.
    * @param id Unique identifier for a vault component (required)
-   * @return VaultComponentRoot
+    @return VaultComponentRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -314,7 +335,7 @@ public class ComponentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public VaultComponentRoot getVaultComponentById(String id) throws ApiException {
+ public VaultComponentRoot getVaultComponentById(String id) throws ApiException {
     return getVaultComponentByIdWithHttpInfo(id).getData();
   }
 
@@ -322,7 +343,7 @@ public class ComponentsApi {
    * Get Vault component by id
    * This endpoint returns the default settings of a Vault component.
    * @param id Unique identifier for a vault component (required)
-   * @return ApiResponse&lt;VaultComponentRoot&gt;
+    * @return ApiResponse&lt;VaultComponentRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -374,15 +395,20 @@ public class ComponentsApi {
 
     GenericType<VaultComponentRoot> localVarReturnType = new GenericType<VaultComponentRoot>() {};
 
-    return apiClient.invokeAPI("ComponentsApi.getVaultComponentById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<VaultComponentRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<VaultComponentRoot>invokeAPIWithReturnMap("ComponentsApi.getVaultComponentById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get Vault components
    * This endpoint returns the list of Vault components in a given Vault document.
    * @param document Document Name (required)
-   * @return ComponentSummaryRoot
+    @return ComponentSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -398,7 +424,7 @@ public class ComponentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ComponentSummaryRoot getVaultComponents(String document) throws ApiException {
+ public ComponentSummaryRoot getVaultComponents(String document) throws ApiException {
     return getVaultComponentsWithHttpInfo(document).getData();
   }
 
@@ -406,7 +432,7 @@ public class ComponentsApi {
    * Get Vault components
    * This endpoint returns the list of Vault components in a given Vault document.
    * @param document Document Name (required)
-   * @return ApiResponse&lt;ComponentSummaryRoot&gt;
+    * @return ApiResponse&lt;ComponentSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -458,8 +484,13 @@ public class ComponentsApi {
 
     GenericType<ComponentSummaryRoot> localVarReturnType = new GenericType<ComponentSummaryRoot>() {};
 
-    return apiClient.invokeAPI("ComponentsApi.getVaultComponents", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<ComponentSummaryRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<ComponentSummaryRoot>invokeAPIWithReturnMap("ComponentsApi.getVaultComponents", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
 }

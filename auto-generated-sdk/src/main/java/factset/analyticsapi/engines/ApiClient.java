@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines;
 
 import javax.ws.rs.client.Client;
@@ -63,6 +64,9 @@ import factset.analyticsapi.engines.auth.HttpBasicAuth;
 import factset.analyticsapi.engines.auth.HttpBearerAuth;
 import factset.analyticsapi.engines.auth.ApiKeyAuth;
 
+import factset.analyticsapi.engines.models.ClientErrorResponse;
+import factset.analyticsapi.engines.models.Error;
+
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ApiClient extends JavaTimeFormatter {
   protected Map<String, String> defaultHeaderMap = new HashMap<String, String>();
@@ -114,7 +118,7 @@ public class ApiClient extends JavaTimeFormatter {
     httpClient = buildHttpClient();
     this.dateFormat = new RFC3339DateFormat();
     // Set default User-Agent.
-    setUserAgent("engines-api/4.1.0/java");
+    setUserAgent("engines-api/5.0.0/java");
     // Setup authentications (key: authentication name, value: authentication).
     authentications = new HashMap<String, Authentication>();
     Authentication auth = null;
@@ -978,7 +982,187 @@ public class ApiClient extends JavaTimeFormatter {
       }
     }
   }
+     /**
+     * Invoke API by sending HTTP request with the given options.
+     *
+     * @param <T> Type
+     * @param operation The qualified name of the operation
+     * @param path The sub-path of the HTTP URL
+     * @param method The request method, one of "GET", "POST", "PUT", "HEAD" and "DELETE"
+     * @param queryParams The query parameters
+     * @param body The request body object
+     * @param headerParams The header parameters
+     * @param cookieParams The cookie parameters
+     * @param formParams The form parameters
+     * @param accept The request's Accept header
+     * @param contentType The request's Content-Type header
+     * @param authNames The authentications to apply
+     * @param returnTypeMap The return type into which to deserialize the response for a given status code
+     * @param isBodyNullable True if the body is nullable
+     * @return The response body in type of string
+     * @throws ApiException API exception
+     */
+     @SuppressWarnings("unchecked")                                                                      
+      public <T> ApiResponse<T> invokeAPIWithReturnMap(
+      String operation,
+      String path,
+      String method,
+      List<Pair> queryParams,
+      Object body,
+      Map<String, String> headerParams,
+      Map<String, String> cookieParams,
+      Map<String, Object> formParams,
+      String accept,
+      String contentType,
+      String[] authNames,
+      Map<Integer, GenericType> returnTypeMap,
+      boolean isBodyNullable)
+      throws ApiException {
+    // Not using `.target(targetURL).path(path)` below,
+    // to support (constant) query string in `path`, e.g. "/posts?draft=1"
+    String targetURL;
+    if (serverIndex != null && operationServers.containsKey(operation)) {
+      Integer index = operationServerIndex.containsKey(operation) ? operationServerIndex.get(operation) : serverIndex;
+      Map<String, String> variables = operationServerVariables.containsKey(operation) ?
+        operationServerVariables.get(operation) : serverVariables;
+      List<ServerConfiguration> serverConfigurations = operationServers.get(operation);
+      if (index < 0 || index >= serverConfigurations.size()) {
+        throw new ArrayIndexOutOfBoundsException(
+            String.format(
+                "Invalid index %d when selecting the host settings. Must be less than %d",
+                index, serverConfigurations.size()));
+      }
+      targetURL = serverConfigurations.get(index).URL(variables) + path;
+    } else {
+      targetURL = this.basePath + path;
+    }
+    WebTarget target = httpClient.target(targetURL);
 
+    if (queryParams != null) {
+      for (Pair queryParam : queryParams) {
+        if (queryParam.getValue() != null) {
+          target = target.queryParam(queryParam.getName(), escapeString(queryParam.getValue()));
+        }
+      }
+    }
+
+    Invocation.Builder invocationBuilder = target.request().accept(accept);
+
+    for (Entry<String, String> entry : cookieParams.entrySet()) {
+      String value = entry.getValue();
+      if (value != null) {
+        invocationBuilder = invocationBuilder.cookie(entry.getKey(), value);
+      }
+    }
+
+    for (Entry<String, String> entry : defaultCookieMap.entrySet()) {
+      String value = entry.getValue();
+      if (value != null) {
+        invocationBuilder = invocationBuilder.cookie(entry.getKey(), value);
+      }
+    }
+
+    Entity<?> entity = serialize(body, formParams, contentType, isBodyNullable);
+
+    // put all headers in one place
+    Map<String, String> allHeaderParams = new HashMap<>(defaultHeaderMap);
+    allHeaderParams.putAll(headerParams);
+
+    // update different parameters (e.g. headers) for authentication
+    updateParamsForAuth(
+        authNames,
+        queryParams,
+        allHeaderParams,
+        cookieParams,
+        serializeToString(body, formParams, contentType, isBodyNullable),
+        method,
+        target.getUri());
+
+    for (Entry<String, String> entry : allHeaderParams.entrySet()) {
+      String value = entry.getValue();
+      if (value != null) {
+        invocationBuilder = invocationBuilder.header(entry.getKey(), value);
+      }
+    }
+
+    Response response = null;
+
+    try {
+      response = sendRequest(method, invocationBuilder, entity);
+      int statusCode = response.getStatusInfo().getStatusCode();
+      Map<String, List<String>> responseHeaders = buildResponseHeaders(response);
+
+     // New deserialization logic based on map of response types
+      if (response.getStatusInfo() == Status.NO_CONTENT) {
+        return new ApiResponse<T>(statusCode, responseHeaders);
+      }
+
+      if(returnTypeMap.keySet().contains(statusCode)){
+	  
+        if(response.getStatusInfo().getFamily() != Status.Family.SUCCESSFUL){ 
+          ClientErrorResponse clientErrorResponse = deserialize(response, new GenericType<ClientErrorResponse>() {});
+
+          String reason = "";
+          if(clientErrorResponse != null && !clientErrorResponse.getErrors().isEmpty() && clientErrorResponse.getErrors().get(0).getDetail() != null) {
+            List<Error> errors = clientErrorResponse.getErrors();
+            reason = errors.get(0).getDetail();
+
+            for(int i = 1; i < errors.size(); i++) {
+              if(errors.get(i).getDetail() != null)
+                reason = reason + " ||| " + errors.get(i).getDetail();
+            }
+          }
+
+          if(clientErrorResponse == null  && responseHeaders != null) {
+            Error error = new Error();
+            for(Entry<String, List<String>> entry : responseHeaders.entrySet()){
+              if("x-factset-api-request-key".equals(entry.getKey().toLowerCase())) {
+                error.setId(entry.getValue().toString());
+              }
+            }
+            clientErrorResponse = new ClientErrorResponse().addErrorsItem(error);
+          }
+
+          throw new ApiException(response.getStatus(), "error", responseHeaders, reason, clientErrorResponse);
+        }
+
+        return new ApiResponse<T>(statusCode, responseHeaders, deserialize(response, (GenericType<T>) returnTypeMap.get(statusCode)));
+      }
+
+      if (response.getStatusInfo().getFamily() == Status.Family.SUCCESSFUL) {
+        return new ApiResponse<T>(statusCode, responseHeaders);
+      } else{
+        String message = "error";
+        String respBody = null;
+        if (response.hasEntity()) {
+          try {
+            respBody = String.valueOf(response.readEntity(String.class));
+            message = respBody;
+          } catch (RuntimeException e) {
+            // e.printStackTrace();
+          }
+        }
+
+        Error error = new Error();
+        for(Entry<String, List<String>> entry : responseHeaders.entrySet()){
+            if("x-factset-api-request-key".equals(entry.getKey().toLowerCase())) {
+            	error.setId(entry.getValue().toString());
+            }
+        }
+        error.setDetail(respBody);
+        ClientErrorResponse clientErrorResponse = new ClientErrorResponse().addErrorsItem(error);
+        throw new ApiException(response.getStatus(), message, responseHeaders, respBody, clientErrorResponse);
+      }
+    } finally {
+      try {
+        response.close();
+      } catch (Exception e) {
+        // it's not critical, since the response object is local in method invokeAPI; that's fine,
+        // just continue
+      }
+    }
+  }
+                                                                                                                
   private Response sendRequest(String method, Invocation.Builder invocationBuilder, Entity<?> entity) {
     Response response;
     if ("POST".equals(method)) {

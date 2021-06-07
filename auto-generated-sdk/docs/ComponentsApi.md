@@ -1,3 +1,4 @@
+
 # ComponentsApi
 
 All URIs are relative to *https://api.factset.com*
@@ -49,7 +50,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling ComponentsApi#getPAComponentById");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -128,7 +129,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling ComponentsApi#getPAComponents");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -207,7 +208,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling ComponentsApi#getSPARComponents");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -286,7 +287,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling ComponentsApi#getVaultComponentById");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -365,7 +366,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling ComponentsApi#getVaultComponents");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }

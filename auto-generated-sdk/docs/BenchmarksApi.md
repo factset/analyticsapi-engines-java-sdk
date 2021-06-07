@@ -1,3 +1,4 @@
+
 # BenchmarksApi
 
 All URIs are relative to *https://api.factset.com*
@@ -45,7 +46,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling BenchmarksApi#getSPARBenchmarkById");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }

@@ -1,3 +1,4 @@
+
 # FiabCalculationsApi
 
 All URIs are relative to *https://api.factset.com*
@@ -47,7 +48,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling FiabCalculationsApi#getCalculationById");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -124,7 +125,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling FiabCalculationsApi#getCalculationStatusSummaries");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -138,7 +139,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**java.util.Map&lt;String, FIABCalculationStatusSummary&gt;**](FIABCalculationStatusSummary.md)
+[**java.util.Map&lt;String, FIABCalculationStatusSummary&gt;**](java.util.Map&lt;String, FIABCalculationStatusSummary&gt;.md)
 
 ### Authorization
 
@@ -202,7 +203,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling FiabCalculationsApi#runCalculation");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }

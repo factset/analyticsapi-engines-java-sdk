@@ -1,3 +1,4 @@
+
 # FiCalculationsApi
 
 All URIs are relative to *https://api.factset.com*
@@ -49,7 +50,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#cancelCalculationById");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -126,7 +127,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#getCalculationParameters");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -204,7 +205,7 @@ public class Example {
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#getCalculationResult");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -278,12 +279,12 @@ public class Example {
         FiCalculationsApi apiInstance = new FiCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run FI calculation endpoint
         try {
-            ObjectRoot result = apiInstance.getCalculationStatusById(id);
+            Object result = apiInstance.getCalculationStatusById(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#getCalculationStatusById");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -300,7 +301,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectRoot**](ObjectRoot.md)
+(For 201 status - [**ObjectRoot**](ObjectRoot.md))(For 202 status -  null (empty response body) )
 
 ### Authorization
 
@@ -358,12 +359,12 @@ public class Example {
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
         FICalculationParametersRoot fiCalculationParametersRoot = new FICalculationParametersRoot(); // FICalculationParametersRoot | Calculation Parameters
         try {
-            ObjectRoot result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot);
+            Object result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#postAndCalculate");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -382,7 +383,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectRoot**](ObjectRoot.md)
+(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
 
@@ -443,12 +444,12 @@ public class Example {
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
         FICalculationParametersRoot fiCalculationParametersRoot = new FICalculationParametersRoot(); // FICalculationParametersRoot | Calculation Parameters
         try {
-            ObjectRoot result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot);
+            Object result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#putAndCalculate");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
@@ -468,7 +469,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectRoot**](ObjectRoot.md)
+(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
 

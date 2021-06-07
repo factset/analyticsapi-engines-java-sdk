@@ -1,3 +1,4 @@
+
 # engines-sdk
 
 Engines API
@@ -41,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.factset.analyticsapi</groupId>
   <artifactId>engines-sdk</artifactId>
-  <version>4.1.0</version>
+  <version>5.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +52,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.factset.analyticsapi:engines-sdk:4.1.0"
+compile "com.factset.analyticsapi:engines-sdk:5.0.0"
 ```
 
 ### Others
@@ -64,7 +65,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/engines-sdk-4.1.0.jar`
+- `target/engines-sdk-5.0.0.jar`
 - `target/lib/*.jar`
 
 ## Usage
@@ -121,7 +122,7 @@ public class AccountsApiExample {
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountsApi#getAccounts");
             System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }

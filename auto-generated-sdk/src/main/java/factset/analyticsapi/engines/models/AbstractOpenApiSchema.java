@@ -1,3 +1,4 @@
+
 /*
  * Engines API
  * Allow clients to fetch Analytics through APIs.
@@ -11,7 +12,7 @@
  */
 
 
-package factset.analyticsapi.engines.model;
+package factset.analyticsapi.engines.models;
 
 import factset.analyticsapi.engines.ApiException;
 import java.util.Objects;

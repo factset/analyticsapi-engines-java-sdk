@@ -1,3 +1,4 @@
+
 /*
  * Engines API
  * Allow clients to fetch Analytics through APIs.
@@ -18,6 +19,8 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
+import factset.analyticsapi.engines.models.ClientErrorResponse;
+
 /**
  * API Exception
  */
@@ -26,6 +29,8 @@ public class ApiException extends Exception {
     private int code = 0;
     private Map<String, List<String>> responseHeaders = null;
     private String responseBody = null;
+    private ClientErrorResponse clientErrorResponse = null;
+
     public ApiException() {}
 
     public ApiException(Throwable throwable) {
@@ -74,6 +79,11 @@ public class ApiException extends Exception {
         this.responseBody = responseBody;
     }
 
+    public ApiException(int code, String message, Map<String, List<String>> responseHeaders, String responseBody, ClientErrorResponse clientErrorResponse) {
+        this(code, message, responseHeaders, responseBody);
+        this.clientErrorResponse = clientErrorResponse;
+    }
+
     /**
      * Get the HTTP status code.
      *
@@ -99,5 +109,14 @@ public class ApiException extends Exception {
      */
     public String getResponseBody() {
         return responseBody;
+    }
+   
+    /**
+     * Get the detailed client error response. This can contain multiple error reasons.
+     *
+     * @return ClientErrorResponse
+     */
+     public ClientErrorResponse getClientErrorResponse() {
+         return clientErrorResponse;
     }
 } 

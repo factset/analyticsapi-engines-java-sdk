@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines.api;
 
 import factset.analyticsapi.engines.ApiException;
@@ -7,6 +8,11 @@ import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.Pair;
 
 import javax.ws.rs.core.GenericType;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import java.io.File;
 
 import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.DateParametersSummaryRoot;
@@ -47,7 +53,7 @@ public class DatesApi {
    * @param componentid Component Id (required)
    * @param account Account (required)
    * @param startdate Start Date (optional)
-   * @return DateParametersSummaryRoot
+    @return DateParametersSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -63,7 +69,7 @@ public class DatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public DateParametersSummaryRoot convertPADatesToAbsoluteFormat(String enddate, String componentid, String account, String startdate) throws ApiException {
+ public DateParametersSummaryRoot convertPADatesToAbsoluteFormat(String enddate, String componentid, String account, String startdate) throws ApiException {
     return convertPADatesToAbsoluteFormatWithHttpInfo(enddate, componentid, account, startdate).getData();
   }
 
@@ -74,7 +80,7 @@ public class DatesApi {
    * @param componentid Component Id (required)
    * @param account Account (required)
    * @param startdate Start Date (optional)
-   * @return ApiResponse&lt;DateParametersSummaryRoot&gt;
+    * @return ApiResponse&lt;DateParametersSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -139,9 +145,14 @@ public class DatesApi {
 
     GenericType<DateParametersSummaryRoot> localVarReturnType = new GenericType<DateParametersSummaryRoot>() {};
 
-    return apiClient.invokeAPI("DatesApi.convertPADatesToAbsoluteFormat", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<DateParametersSummaryRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<DateParametersSummaryRoot>invokeAPIWithReturnMap("DatesApi.convertPADatesToAbsoluteFormat", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Convert Vault dates to absolute format
@@ -150,7 +161,7 @@ public class DatesApi {
    * @param componentid Vault Component Id (required)
    * @param account Account (required)
    * @param startdate Start Date (optional)
-   * @return DateParametersSummaryRoot
+    @return DateParametersSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -166,7 +177,7 @@ public class DatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public DateParametersSummaryRoot convertVaultDatesToAbsoluteFormat(String enddate, String componentid, String account, String startdate) throws ApiException {
+ public DateParametersSummaryRoot convertVaultDatesToAbsoluteFormat(String enddate, String componentid, String account, String startdate) throws ApiException {
     return convertVaultDatesToAbsoluteFormatWithHttpInfo(enddate, componentid, account, startdate).getData();
   }
 
@@ -177,7 +188,7 @@ public class DatesApi {
    * @param componentid Vault Component Id (required)
    * @param account Account (required)
    * @param startdate Start Date (optional)
-   * @return ApiResponse&lt;DateParametersSummaryRoot&gt;
+    * @return ApiResponse&lt;DateParametersSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -242,8 +253,13 @@ public class DatesApi {
 
     GenericType<DateParametersSummaryRoot> localVarReturnType = new GenericType<DateParametersSummaryRoot>() {};
 
-    return apiClient.invokeAPI("DatesApi.convertVaultDatesToAbsoluteFormat", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<DateParametersSummaryRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<DateParametersSummaryRoot>invokeAPIWithReturnMap("DatesApi.convertVaultDatesToAbsoluteFormat", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
 }

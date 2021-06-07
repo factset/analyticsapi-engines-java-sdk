@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines.api;
 
 import factset.analyticsapi.engines.ApiException;
@@ -7,6 +8,11 @@ import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.Pair;
 
 import javax.ws.rs.core.GenericType;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import java.io.File;
 
 import factset.analyticsapi.engines.models.AxiomaEquityOptimizationParametersRoot;
 import factset.analyticsapi.engines.models.CalculationInfoRoot;
@@ -59,7 +65,7 @@ public class AxpOptimizerApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public void cancelOptimizationById(String id) throws ApiException {
+ public void cancelOptimizationById(String id) throws ApiException {
     cancelOptimizationByIdWithHttpInfo(id);
   }
 
@@ -67,7 +73,7 @@ public class AxpOptimizerApi {
    * Cancel Axioma optimization by id
    * This is the endpoint to cancel a previously submitted optimization.
    * @param id from url, provided from the location header in the Create and Run Axioma optimization endpoint (required)
-   * @return ApiResponse&lt;Void&gt;
+    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -115,15 +121,19 @@ public class AxpOptimizerApi {
 
     String[] localVarAuthNames = new String[] { "Basic" };
 
-    return apiClient.invokeAPI("AxpOptimizerApi.cancelOptimizationById", localVarPath, "DELETE", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<Void>invokeAPIWithReturnMap("AxpOptimizerApi.cancelOptimizationById", localVarPath, "DELETE", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, null, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get Axioma optimization parameters by id
    * This is the endpoint that returns the optimization parameters passed for an optimization.
    * @param id from url, provided from the location header in the Create and Run Axioma optimization endpoint (required)
-   * @return AxiomaEquityOptimizationParametersRoot
+    @return AxiomaEquityOptimizationParametersRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -137,7 +147,7 @@ public class AxpOptimizerApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public AxiomaEquityOptimizationParametersRoot getOptimizationParameters(String id) throws ApiException {
+ public AxiomaEquityOptimizationParametersRoot getOptimizationParameters(String id) throws ApiException {
     return getOptimizationParametersWithHttpInfo(id).getData();
   }
 
@@ -145,7 +155,7 @@ public class AxpOptimizerApi {
    * Get Axioma optimization parameters by id
    * This is the endpoint that returns the optimization parameters passed for an optimization.
    * @param id from url, provided from the location header in the Create and Run Axioma optimization endpoint (required)
-   * @return ApiResponse&lt;AxiomaEquityOptimizationParametersRoot&gt;
+    * @return ApiResponse&lt;AxiomaEquityOptimizationParametersRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -195,15 +205,20 @@ public class AxpOptimizerApi {
 
     GenericType<AxiomaEquityOptimizationParametersRoot> localVarReturnType = new GenericType<AxiomaEquityOptimizationParametersRoot>() {};
 
-    return apiClient.invokeAPI("AxpOptimizerApi.getOptimizationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<AxiomaEquityOptimizationParametersRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<AxiomaEquityOptimizationParametersRoot>invokeAPIWithReturnMap("AxpOptimizerApi.getOptimizationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get Axioma optimization result by id
    * This is the endpoint to get the result of a previously requested optimization.
    * @param id from url, provided from the location header in the Get Axioma optimization status by id endpoint (required)
-   * @return ObjectRoot
+    @return ObjectRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -217,7 +232,7 @@ public class AxpOptimizerApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ObjectRoot getOptimizationResult(String id) throws ApiException {
+ public ObjectRoot getOptimizationResult(String id) throws ApiException {
     return getOptimizationResultWithHttpInfo(id).getData();
   }
 
@@ -225,7 +240,7 @@ public class AxpOptimizerApi {
    * Get Axioma optimization result by id
    * This is the endpoint to get the result of a previously requested optimization.
    * @param id from url, provided from the location header in the Get Axioma optimization status by id endpoint (required)
-   * @return ApiResponse&lt;ObjectRoot&gt;
+    * @return ApiResponse&lt;ObjectRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -275,15 +290,20 @@ public class AxpOptimizerApi {
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
-    return apiClient.invokeAPI("AxpOptimizerApi.getOptimizationResult", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<ObjectRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<ObjectRoot>invokeAPIWithReturnMap("AxpOptimizerApi.getOptimizationResult", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get Axioma optimization status by id
    * This is the endpoint to check on the progress of a previously requested optimization.  If the optimization has finished computing, the body of the response will contain result in JSON.  Otherwise, the optimization is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run Axioma optimization endpoint (required)
-   * @return ObjectRoot
+    @return (For 201 status - ObjectRoot)(For 202 status - null)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -298,7 +318,7 @@ public class AxpOptimizerApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ObjectRoot getOptimizationStatusById(String id) throws ApiException {
+ public Object getOptimizationStatusById(String id) throws ApiException {
     return getOptimizationStatusByIdWithHttpInfo(id).getData();
   }
 
@@ -306,7 +326,7 @@ public class AxpOptimizerApi {
    * Get Axioma optimization status by id
    * This is the endpoint to check on the progress of a previously requested optimization.  If the optimization has finished computing, the body of the response will contain result in JSON.  Otherwise, the optimization is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run Axioma optimization endpoint (required)
-   * @return ApiResponse&lt;ObjectRoot&gt;
+    * @return ApiResponse&lt;Object&gt;(For 201 status - ObjectRoot)(For 202 status - null)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -321,7 +341,7 @@ public class AxpOptimizerApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<ObjectRoot> getOptimizationStatusByIdWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<Object> getOptimizationStatusByIdWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -357,9 +377,14 @@ public class AxpOptimizerApi {
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
-    return apiClient.invokeAPI("AxpOptimizerApi.getOptimizationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<Object>invokeAPIWithReturnMap("AxpOptimizerApi.getOptimizationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Create and Run Axioma optimization
@@ -367,24 +392,24 @@ public class AxpOptimizerApi {
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param axiomaEquityOptimizationParametersRoot Optimization Parameters (optional)
-   * @return ObjectRoot
+    @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 202 </td><td> Expected response, contains the poll URL in the Location header. </td><td>  * Location - URL to poll for the resulting optimization <br>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
-       <tr><td> 201 </td><td> Expected response, returns json if optimization is completed in a short span. </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
-       <tr><td> 400 </td><td> Invalid optimization parameters. </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
-       <tr><td> 404 </td><td> One or more optimization settings were unavailable. </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
-       <tr><td> 401 </td><td> Missing or invalid authentication. </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
-       <tr><td> 403 </td><td> User is forbidden with current credentials </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
-       <tr><td> 415 </td><td> Missing/Invalid Content-Type header. Header needs to be set to application/json. </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
-       <tr><td> 429 </td><td> Rate limit reached. Cancel older requests using Cancel optimization endpoint or wait for older requests to finish/expire. </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  * Retry-After - Time to wait in seconds before making a new request as the rate limit has reached. <br>  </td></tr>
-       <tr><td> 500 </td><td> Server error. Log the X-DataDirect-Request-Key header to assist in troubleshooting. </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
-       <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
+       <tr><td> 202 </td><td> Expected response, contains the poll URL in the Location header. </td><td>  * Location - URL to poll for the resulting optimization <br>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 201 </td><td> Expected response, returns json if optimization is completed in a short span. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 400 </td><td> Invalid optimization parameters. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 404 </td><td> One or more optimization settings were unavailable. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 401 </td><td> Missing or invalid authentication. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
+       <tr><td> 403 </td><td> User is forbidden with current credentials </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 415 </td><td> Missing/Invalid Content-Type header. Header needs to be set to application/json. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 429 </td><td> Rate limit reached. Cancel older requests using Cancel optimization endpoint or wait for older requests to finish/expire. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  * Retry-After - Time to wait in seconds before making a new request as the rate limit has reached. <br>  </td></tr>
+       <tr><td> 500 </td><td> Server error. Log the X-DataDirect-Request-Key header to assist in troubleshooting. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
+       <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ObjectRoot postAndOptimize(Integer xFactSetApiLongRunningDeadline, String cacheControl, AxiomaEquityOptimizationParametersRoot axiomaEquityOptimizationParametersRoot) throws ApiException {
+ public Object postAndOptimize(Integer xFactSetApiLongRunningDeadline, String cacheControl, AxiomaEquityOptimizationParametersRoot axiomaEquityOptimizationParametersRoot) throws ApiException {
     return postAndOptimizeWithHttpInfo(xFactSetApiLongRunningDeadline, cacheControl, axiomaEquityOptimizationParametersRoot).getData();
   }
 
@@ -394,24 +419,24 @@ public class AxpOptimizerApi {
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param axiomaEquityOptimizationParametersRoot Optimization Parameters (optional)
-   * @return ApiResponse&lt;ObjectRoot&gt;
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 202 </td><td> Expected response, contains the poll URL in the Location header. </td><td>  * Location - URL to poll for the resulting optimization <br>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
-       <tr><td> 201 </td><td> Expected response, returns json if optimization is completed in a short span. </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
-       <tr><td> 400 </td><td> Invalid optimization parameters. </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
-       <tr><td> 404 </td><td> One or more optimization settings were unavailable. </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
-       <tr><td> 401 </td><td> Missing or invalid authentication. </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
-       <tr><td> 403 </td><td> User is forbidden with current credentials </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
-       <tr><td> 415 </td><td> Missing/Invalid Content-Type header. Header needs to be set to application/json. </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
-       <tr><td> 429 </td><td> Rate limit reached. Cancel older requests using Cancel optimization endpoint or wait for older requests to finish/expire. </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  * Retry-After - Time to wait in seconds before making a new request as the rate limit has reached. <br>  </td></tr>
-       <tr><td> 500 </td><td> Server error. Log the X-DataDirect-Request-Key header to assist in troubleshooting. </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
-       <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet�s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
+       <tr><td> 202 </td><td> Expected response, contains the poll URL in the Location header. </td><td>  * Location - URL to poll for the resulting optimization <br>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 201 </td><td> Expected response, returns json if optimization is completed in a short span. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 400 </td><td> Invalid optimization parameters. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 404 </td><td> One or more optimization settings were unavailable. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 401 </td><td> Missing or invalid authentication. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
+       <tr><td> 403 </td><td> User is forbidden with current credentials </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 415 </td><td> Missing/Invalid Content-Type header. Header needs to be set to application/json. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 429 </td><td> Rate limit reached. Cancel older requests using Cancel optimization endpoint or wait for older requests to finish/expire. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  * Retry-After - Time to wait in seconds before making a new request as the rate limit has reached. <br>  </td></tr>
+       <tr><td> 500 </td><td> Server error. Log the X-DataDirect-Request-Key header to assist in troubleshooting. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
+       <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<ObjectRoot> postAndOptimizeWithHttpInfo(Integer xFactSetApiLongRunningDeadline, String cacheControl, AxiomaEquityOptimizationParametersRoot axiomaEquityOptimizationParametersRoot) throws ApiException {
+  public ApiResponse<Object> postAndOptimizeWithHttpInfo(Integer xFactSetApiLongRunningDeadline, String cacheControl, AxiomaEquityOptimizationParametersRoot axiomaEquityOptimizationParametersRoot) throws ApiException {
     Object localVarPostBody = axiomaEquityOptimizationParametersRoot;
     
     // create path and map variables
@@ -445,9 +470,15 @@ if (cacheControl != null)
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
-    return apiClient.invokeAPI("AxpOptimizerApi.postAndOptimize", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(202, new GenericType<CalculationInfoRoot>(){});
+        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<Object>invokeAPIWithReturnMap("AxpOptimizerApi.postAndOptimize", localVarPath, "POST", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Create or Update Axioma optimization and run it.
@@ -456,7 +487,7 @@ if (cacheControl != null)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param axiomaEquityOptimizationParametersRoot Optimization Parameters (optional)
-   * @return ObjectRoot
+    @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -474,7 +505,7 @@ if (cacheControl != null)
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ObjectRoot putAndOptimize(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, AxiomaEquityOptimizationParametersRoot axiomaEquityOptimizationParametersRoot) throws ApiException {
+ public Object putAndOptimize(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, AxiomaEquityOptimizationParametersRoot axiomaEquityOptimizationParametersRoot) throws ApiException {
     return putAndOptimizeWithHttpInfo(id, xFactSetApiLongRunningDeadline, cacheControl, axiomaEquityOptimizationParametersRoot).getData();
   }
 
@@ -485,7 +516,7 @@ if (cacheControl != null)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
    * @param axiomaEquityOptimizationParametersRoot Optimization Parameters (optional)
-   * @return ApiResponse&lt;ObjectRoot&gt;
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -503,7 +534,7 @@ if (cacheControl != null)
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<ObjectRoot> putAndOptimizeWithHttpInfo(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, AxiomaEquityOptimizationParametersRoot axiomaEquityOptimizationParametersRoot) throws ApiException {
+  public ApiResponse<Object> putAndOptimizeWithHttpInfo(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, AxiomaEquityOptimizationParametersRoot axiomaEquityOptimizationParametersRoot) throws ApiException {
     Object localVarPostBody = axiomaEquityOptimizationParametersRoot;
     
     // verify the required parameter 'id' is set
@@ -543,8 +574,15 @@ if (cacheControl != null)
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
-    return apiClient.invokeAPI("AxpOptimizerApi.putAndOptimize", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(202, new GenericType<CalculationInfoRoot>(){});
+        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(409, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<Object>invokeAPIWithReturnMap("AxpOptimizerApi.putAndOptimize", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
 }

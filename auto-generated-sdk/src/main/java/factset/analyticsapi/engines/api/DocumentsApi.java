@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines.api;
 
 import factset.analyticsapi.engines.ApiException;
@@ -7,6 +8,11 @@ import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.Pair;
 
 import javax.ws.rs.core.GenericType;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import java.io.File;
 
 import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.DocumentDirectoriesRoot;
@@ -44,7 +50,7 @@ public class DocumentsApi {
    * Get PA3 documents and sub-directories in a directory
    * This endpoint looks up all PA3 documents and sub-directories in a given directory.
    * @param path The directory to get the documents and sub-directories in (required)
-   * @return DocumentDirectoriesRoot
+    @return DocumentDirectoriesRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -60,7 +66,7 @@ public class DocumentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in some time </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public DocumentDirectoriesRoot getPA3Documents(String path) throws ApiException {
+ public DocumentDirectoriesRoot getPA3Documents(String path) throws ApiException {
     return getPA3DocumentsWithHttpInfo(path).getData();
   }
 
@@ -68,7 +74,7 @@ public class DocumentsApi {
    * Get PA3 documents and sub-directories in a directory
    * This endpoint looks up all PA3 documents and sub-directories in a given directory.
    * @param path The directory to get the documents and sub-directories in (required)
-   * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
+    * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -120,15 +126,20 @@ public class DocumentsApi {
 
     GenericType<DocumentDirectoriesRoot> localVarReturnType = new GenericType<DocumentDirectoriesRoot>() {};
 
-    return apiClient.invokeAPI("DocumentsApi.getPA3Documents", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<DocumentDirectoriesRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<DocumentDirectoriesRoot>invokeAPIWithReturnMap("DocumentsApi.getPA3Documents", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Gets Publisher documents and sub-directories in a directory
    * This endpoint looks up all Publisher documents and sub-directories in a given directory.
    * @param path The directory to get the documents in (required)
-   * @return DocumentDirectoriesRoot
+    @return DocumentDirectoriesRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -144,7 +155,7 @@ public class DocumentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in some time </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public DocumentDirectoriesRoot getPubDocuments(String path) throws ApiException {
+ public DocumentDirectoriesRoot getPubDocuments(String path) throws ApiException {
     return getPubDocumentsWithHttpInfo(path).getData();
   }
 
@@ -152,7 +163,7 @@ public class DocumentsApi {
    * Gets Publisher documents and sub-directories in a directory
    * This endpoint looks up all Publisher documents and sub-directories in a given directory.
    * @param path The directory to get the documents in (required)
-   * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
+    * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -204,15 +215,20 @@ public class DocumentsApi {
 
     GenericType<DocumentDirectoriesRoot> localVarReturnType = new GenericType<DocumentDirectoriesRoot>() {};
 
-    return apiClient.invokeAPI("DocumentsApi.getPubDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<DocumentDirectoriesRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<DocumentDirectoriesRoot>invokeAPIWithReturnMap("DocumentsApi.getPubDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Gets SPAR3 documents and sub-directories in a directory
    * This endpoint looks up all SPAR3 documents and sub-directories in a given directory.
    * @param path The directory to get the documents in (required)
-   * @return DocumentDirectoriesRoot
+    @return DocumentDirectoriesRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -228,7 +244,7 @@ public class DocumentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in some time </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public DocumentDirectoriesRoot getSPAR3Documents(String path) throws ApiException {
+ public DocumentDirectoriesRoot getSPAR3Documents(String path) throws ApiException {
     return getSPAR3DocumentsWithHttpInfo(path).getData();
   }
 
@@ -236,7 +252,7 @@ public class DocumentsApi {
    * Gets SPAR3 documents and sub-directories in a directory
    * This endpoint looks up all SPAR3 documents and sub-directories in a given directory.
    * @param path The directory to get the documents in (required)
-   * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
+    * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -288,15 +304,20 @@ public class DocumentsApi {
 
     GenericType<DocumentDirectoriesRoot> localVarReturnType = new GenericType<DocumentDirectoriesRoot>() {};
 
-    return apiClient.invokeAPI("DocumentsApi.getSPAR3Documents", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<DocumentDirectoriesRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<DocumentDirectoriesRoot>invokeAPIWithReturnMap("DocumentsApi.getSPAR3Documents", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get Vault documents and sub-directories in a directory
    * This endpoint looks up all Vault documents and sub-directories in a given directory.
    * @param path The directory to get the documents in (required)
-   * @return DocumentDirectoriesRoot
+    @return DocumentDirectoriesRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -312,7 +333,7 @@ public class DocumentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in some time </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public DocumentDirectoriesRoot getVaultDocuments(String path) throws ApiException {
+ public DocumentDirectoriesRoot getVaultDocuments(String path) throws ApiException {
     return getVaultDocumentsWithHttpInfo(path).getData();
   }
 
@@ -320,7 +341,7 @@ public class DocumentsApi {
    * Get Vault documents and sub-directories in a directory
    * This endpoint looks up all Vault documents and sub-directories in a given directory.
    * @param path The directory to get the documents in (required)
-   * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
+    * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -372,8 +393,13 @@ public class DocumentsApi {
 
     GenericType<DocumentDirectoriesRoot> localVarReturnType = new GenericType<DocumentDirectoriesRoot>() {};
 
-    return apiClient.invokeAPI("DocumentsApi.getVaultDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<DocumentDirectoriesRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<DocumentDirectoriesRoot>invokeAPIWithReturnMap("DocumentsApi.getVaultDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
 }

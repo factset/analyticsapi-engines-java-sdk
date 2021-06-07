@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines.api;
 
 import factset.analyticsapi.engines.ApiException;
@@ -7,6 +8,11 @@ import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.Pair;
 
 import javax.ws.rs.core.GenericType;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import java.io.File;
 
 import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.VaultConfigurationRoot;
@@ -45,7 +51,7 @@ public class ConfigurationsApi {
    * Get Vault configuration by id
    * This endpoint returns details for a Vault configuration as well as a list of accounts it is used in.
    * @param id Vault configuration id to get the details of (required)
-   * @return VaultConfigurationRoot
+    @return VaultConfigurationRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -61,7 +67,7 @@ public class ConfigurationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public VaultConfigurationRoot getVaultConfigurationById(String id) throws ApiException {
+ public VaultConfigurationRoot getVaultConfigurationById(String id) throws ApiException {
     return getVaultConfigurationByIdWithHttpInfo(id).getData();
   }
 
@@ -69,7 +75,7 @@ public class ConfigurationsApi {
    * Get Vault configuration by id
    * This endpoint returns details for a Vault configuration as well as a list of accounts it is used in.
    * @param id Vault configuration id to get the details of (required)
-   * @return ApiResponse&lt;VaultConfigurationRoot&gt;
+    * @return ApiResponse&lt;VaultConfigurationRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -121,15 +127,20 @@ public class ConfigurationsApi {
 
     GenericType<VaultConfigurationRoot> localVarReturnType = new GenericType<VaultConfigurationRoot>() {};
 
-    return apiClient.invokeAPI("ConfigurationsApi.getVaultConfigurationById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<VaultConfigurationRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<VaultConfigurationRoot>invokeAPIWithReturnMap("ConfigurationsApi.getVaultConfigurationById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get Vault configurations
    * This endpoint returns all the Vault configurations saved in the provided account.
    * @param account Required account query parameter to filter configurations for a specific account (required)
-   * @return VaultConfigurationSummaryRoot
+    @return VaultConfigurationSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -145,7 +156,7 @@ public class ConfigurationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public VaultConfigurationSummaryRoot getVaultConfigurations(String account) throws ApiException {
+ public VaultConfigurationSummaryRoot getVaultConfigurations(String account) throws ApiException {
     return getVaultConfigurationsWithHttpInfo(account).getData();
   }
 
@@ -153,7 +164,7 @@ public class ConfigurationsApi {
    * Get Vault configurations
    * This endpoint returns all the Vault configurations saved in the provided account.
    * @param account Required account query parameter to filter configurations for a specific account (required)
-   * @return ApiResponse&lt;VaultConfigurationSummaryRoot&gt;
+    * @return ApiResponse&lt;VaultConfigurationSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -205,8 +216,13 @@ public class ConfigurationsApi {
 
     GenericType<VaultConfigurationSummaryRoot> localVarReturnType = new GenericType<VaultConfigurationSummaryRoot>() {};
 
-    return apiClient.invokeAPI("ConfigurationsApi.getVaultConfigurations", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<VaultConfigurationSummaryRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<VaultConfigurationSummaryRoot>invokeAPIWithReturnMap("ConfigurationsApi.getVaultConfigurations", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
 }

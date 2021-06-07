@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines.api;
 
 import factset.analyticsapi.engines.ApiException;
@@ -7,6 +8,11 @@ import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.Pair;
 
 import javax.ws.rs.core.GenericType;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import java.io.File;
 
 import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.FIABCalculationParameters;
@@ -46,7 +52,7 @@ public class FiabCalculationsApi {
    * Get FIAB calculation by id
    * This is the endpoint to check on the progress of a previously requested calculation.
    * @param id from url, provided from the location header in the Run FIAB Calculation endpoint (required)
-   * @return FIABCalculationStatus
+    @return FIABCalculationStatus
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -61,7 +67,7 @@ public class FiabCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public FIABCalculationStatus getCalculationById(String id) throws ApiException {
+ public FIABCalculationStatus getCalculationById(String id) throws ApiException {
     return getCalculationByIdWithHttpInfo(id).getData();
   }
 
@@ -69,7 +75,7 @@ public class FiabCalculationsApi {
    * Get FIAB calculation by id
    * This is the endpoint to check on the progress of a previously requested calculation.
    * @param id from url, provided from the location header in the Run FIAB Calculation endpoint (required)
-   * @return ApiResponse&lt;FIABCalculationStatus&gt;
+    * @return ApiResponse&lt;FIABCalculationStatus&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -120,14 +126,20 @@ public class FiabCalculationsApi {
 
     GenericType<FIABCalculationStatus> localVarReturnType = new GenericType<FIABCalculationStatus>() {};
 
-    return apiClient.invokeAPI("FiabCalculationsApi.getCalculationById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<FIABCalculationStatus>(){});
+        returnTypeMap.put(202, new GenericType<FIABCalculationStatus>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<FIABCalculationStatus>invokeAPIWithReturnMap("FiabCalculationsApi.getCalculationById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get all FIAB calculation summaries
    * This endpoints returns all FIAB calculation requests.
-   * @return java.util.Map&lt;String, FIABCalculationStatusSummary&gt;
+    @return java.util.Map<String, FIABCalculationStatusSummary>
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -141,14 +153,14 @@ public class FiabCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public java.util.Map<String, FIABCalculationStatusSummary> getCalculationStatusSummaries() throws ApiException {
+ public java.util.Map<String, FIABCalculationStatusSummary> getCalculationStatusSummaries() throws ApiException {
     return getCalculationStatusSummariesWithHttpInfo().getData();
   }
 
   /**
    * Get all FIAB calculation summaries
    * This endpoints returns all FIAB calculation requests.
-   * @return ApiResponse&lt;java.util.Map&lt;String, FIABCalculationStatusSummary&gt;&gt;
+    * @return ApiResponse&lt;java.util.Map<String, FIABCalculationStatusSummary>&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -192,9 +204,12 @@ public class FiabCalculationsApi {
 
     GenericType<java.util.Map<String, FIABCalculationStatusSummary>> localVarReturnType = new GenericType<java.util.Map<String, FIABCalculationStatusSummary>>() {};
 
-    return apiClient.invokeAPI("FiabCalculationsApi.getCalculationStatusSummaries", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<java.util.Map<String, FIABCalculationStatusSummary>>(){});
+	
+      return apiClient.<java.util.Map<String, FIABCalculationStatusSummary>>invokeAPIWithReturnMap("FiabCalculationsApi.getCalculationStatusSummaries", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Run FIAB calculation
@@ -215,7 +230,7 @@ public class FiabCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * Location - URL to check status of the request. <br>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FIAB request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FIAB requests remaining till request limit reached. <br>  </td></tr>
      </table>
    */
-  public void runCalculation(FIABCalculationParameters fiABCalculationParameters) throws ApiException {
+ public void runCalculation(FIABCalculationParameters fiABCalculationParameters) throws ApiException {
     runCalculationWithHttpInfo(fiABCalculationParameters);
   }
 
@@ -223,7 +238,7 @@ public class FiabCalculationsApi {
    * Run FIAB calculation
    * This endpoint creates a new FIAB calculation.  This must be used first before get status or cancelling endpoints with a calculation id.  A successful response will contain the URL to check the status of the calculation request.    Remarks:  * Any settings in POST body will act as a one-time override over the settings saved in the FIAB template.
    * @param fiABCalculationParameters  (optional)
-   * @return ApiResponse&lt;Void&gt;
+    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -267,8 +282,12 @@ public class FiabCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic" };
 
-    return apiClient.invokeAPI("FiabCalculationsApi.runCalculation", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<Void>invokeAPIWithReturnMap("FiabCalculationsApi.runCalculation", localVarPath, "POST", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, null, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
 }

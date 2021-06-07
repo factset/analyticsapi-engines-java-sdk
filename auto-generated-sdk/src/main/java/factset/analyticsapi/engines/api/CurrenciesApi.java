@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines.api;
 
 import factset.analyticsapi.engines.ApiException;
@@ -7,6 +8,11 @@ import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.Pair;
 
 import javax.ws.rs.core.GenericType;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import java.io.File;
 
 import factset.analyticsapi.engines.models.CurrencyRoot;
 
@@ -42,7 +48,7 @@ public class CurrenciesApi {
   /**
    * Get currencies
    * This endpoint lists all the currencies that can be applied to any calculation.
-   * @return CurrencyRoot
+    @return CurrencyRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -56,14 +62,14 @@ public class CurrenciesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public CurrencyRoot getCurrencies() throws ApiException {
+ public CurrencyRoot getCurrencies() throws ApiException {
     return getCurrenciesWithHttpInfo().getData();
   }
 
   /**
    * Get currencies
    * This endpoint lists all the currencies that can be applied to any calculation.
-   * @return ApiResponse&lt;CurrencyRoot&gt;
+    * @return ApiResponse&lt;CurrencyRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -107,8 +113,11 @@ public class CurrenciesApi {
 
     GenericType<CurrencyRoot> localVarReturnType = new GenericType<CurrencyRoot>() {};
 
-    return apiClient.invokeAPI("CurrenciesApi.getCurrencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<CurrencyRoot>(){});
+	
+      return apiClient.<CurrencyRoot>invokeAPIWithReturnMap("CurrenciesApi.getCurrencies", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
 }

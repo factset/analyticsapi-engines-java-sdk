@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines.api;
 
 import factset.analyticsapi.engines.ApiException;
@@ -7,6 +8,11 @@ import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.Pair;
 
 import javax.ws.rs.core.GenericType;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import java.io.File;
 
 import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.ColumnRoot;
@@ -45,7 +51,7 @@ public class ColumnsApi {
    * Get PA column settings
    * This endpoint returns the default settings of a PA column.
    * @param id Unique identifier for a column (required)
-   * @return ColumnRoot
+    @return ColumnRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -61,7 +67,7 @@ public class ColumnsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ColumnRoot getPAColumnById(String id) throws ApiException {
+ public ColumnRoot getPAColumnById(String id) throws ApiException {
     return getPAColumnByIdWithHttpInfo(id).getData();
   }
 
@@ -69,7 +75,7 @@ public class ColumnsApi {
    * Get PA column settings
    * This endpoint returns the default settings of a PA column.
    * @param id Unique identifier for a column (required)
-   * @return ApiResponse&lt;ColumnRoot&gt;
+    * @return ApiResponse&lt;ColumnRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -121,9 +127,14 @@ public class ColumnsApi {
 
     GenericType<ColumnRoot> localVarReturnType = new GenericType<ColumnRoot>() {};
 
-    return apiClient.invokeAPI("ColumnsApi.getPAColumnById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<ColumnRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<ColumnRoot>invokeAPIWithReturnMap("ColumnsApi.getPAColumnById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
   /**
    * Get PA columns
@@ -131,7 +142,7 @@ public class ColumnsApi {
    * @param name Column name (optional, default to )
    * @param category Column category (optional, default to )
    * @param directory The directory to get the columns in (optional, default to )
-   * @return ColumnSummaryRoot
+    @return ColumnSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -145,7 +156,7 @@ public class ColumnsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ColumnSummaryRoot getPAColumns(String name, String category, String directory) throws ApiException {
+ public ColumnSummaryRoot getPAColumns(String name, String category, String directory) throws ApiException {
     return getPAColumnsWithHttpInfo(name, category, directory).getData();
   }
 
@@ -155,7 +166,7 @@ public class ColumnsApi {
    * @param name Column name (optional, default to )
    * @param category Column category (optional, default to )
    * @param directory The directory to get the columns in (optional, default to )
-   * @return ApiResponse&lt;ColumnSummaryRoot&gt;
+    * @return ApiResponse&lt;ColumnSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -202,8 +213,11 @@ public class ColumnsApi {
 
     GenericType<ColumnSummaryRoot> localVarReturnType = new GenericType<ColumnSummaryRoot>() {};
 
-    return apiClient.invokeAPI("ColumnsApi.getPAColumns", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<ColumnSummaryRoot>(){});
+	
+      return apiClient.<ColumnSummaryRoot>invokeAPIWithReturnMap("ColumnsApi.getPAColumns", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
 }

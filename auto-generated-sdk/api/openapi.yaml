@@ -368,10 +368,10 @@ paths:
                 type: string
               style: simple
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -410,10 +410,10 @@ paths:
             in a short span.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -451,10 +451,10 @@ paths:
           description: Invalid optimization parameters.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -492,10 +492,10 @@ paths:
           description: One or more optimization settings were unavailable.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -529,10 +529,10 @@ paths:
           description: Missing or invalid authentication.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -548,10 +548,10 @@ paths:
           description: User is forbidden with current credentials
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -586,10 +586,10 @@ paths:
             to application/json.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -624,10 +624,10 @@ paths:
             endpoint or wait for older requests to finish/expire.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -669,10 +669,10 @@ paths:
             in troubleshooting.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -688,10 +688,10 @@ paths:
           description: Request timed out. Retry the request in sometime.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -2600,10 +2600,10 @@ paths:
                 type: string
               style: simple
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -2642,10 +2642,10 @@ paths:
             in a short span.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -2683,10 +2683,10 @@ paths:
           description: Invalid optimization parameters.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -2724,10 +2724,10 @@ paths:
           description: One or more optimization settings were unavailable.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -2761,10 +2761,10 @@ paths:
           description: Missing or invalid authentication.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -2780,10 +2780,10 @@ paths:
           description: User is forbidden with current credentials
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -2818,10 +2818,10 @@ paths:
             to application/json.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -2856,10 +2856,10 @@ paths:
             endpoint or wait for older requests to finish/expire.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -2901,10 +2901,10 @@ paths:
             in troubleshooting.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -2920,10 +2920,10 @@ paths:
           description: Request timed out. Retry the request in sometime.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -12745,10 +12745,10 @@ paths:
                 type: string
               style: simple
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -12787,10 +12787,10 @@ paths:
             in a short span.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -12828,10 +12828,10 @@ paths:
           description: Invalid optimization parameters.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -12869,10 +12869,10 @@ paths:
           description: One or more optimization settings were unavailable.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -12906,10 +12906,10 @@ paths:
           description: Missing or invalid authentication.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -12925,10 +12925,10 @@ paths:
           description: User is forbidden with current credentials
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -12963,10 +12963,10 @@ paths:
             to application/json.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -13001,10 +13001,10 @@ paths:
             endpoint or wait for older requests to finish/expire.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -13046,10 +13046,10 @@ paths:
             in troubleshooting.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -13065,10 +13065,10 @@ paths:
           description: Request timed out. Retry the request in sometime.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet�s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet�s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -27429,8 +27429,6 @@ components:
           type: object
         meta:
           $ref: '#/components/schemas/CalculationMeta'
-      required:
-      - data
       type: object
     CalculationUnitStatus:
       example:

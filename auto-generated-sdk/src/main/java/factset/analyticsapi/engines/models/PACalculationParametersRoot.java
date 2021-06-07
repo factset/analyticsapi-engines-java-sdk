@@ -43,7 +43,7 @@ public class PACalculationParametersRoot implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_DATA = "data";
-  private java.util.Map<String, PACalculationParameters> data = new java.util.HashMap<String, PACalculationParameters>();
+  private java.util.Map<String, PACalculationParameters> data = null;
 
   public static final String JSON_PROPERTY_META = "meta";
   private CalculationMeta meta;
@@ -55,6 +55,9 @@ public class PACalculationParametersRoot implements Serializable {
   }
 
   public PACalculationParametersRoot putDataItem(String key, PACalculationParameters dataItem) {
+    if (this.data == null) {
+      this.data = new java.util.HashMap<String, PACalculationParameters>();
+    }
     this.data.put(key, dataItem);
     return this;
   }
@@ -63,9 +66,10 @@ public class PACalculationParametersRoot implements Serializable {
    * List of calculation parameters.
    * @return data
   **/
-  @ApiModelProperty(required = true, value = "List of calculation parameters.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "List of calculation parameters.")
   @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public java.util.Map<String, PACalculationParameters> getData() {
     return data;

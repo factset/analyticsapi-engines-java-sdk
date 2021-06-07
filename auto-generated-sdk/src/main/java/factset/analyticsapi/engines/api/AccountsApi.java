@@ -1,3 +1,4 @@
+
 package factset.analyticsapi.engines.api;
 
 import factset.analyticsapi.engines.ApiException;
@@ -7,6 +8,11 @@ import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.Pair;
 
 import javax.ws.rs.core.GenericType;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import java.io.File;
 
 import factset.analyticsapi.engines.models.AccountDirectoriesRoot;
 import factset.analyticsapi.engines.models.ClientErrorResponse;
@@ -44,7 +50,7 @@ public class AccountsApi {
    * Get accounts and sub-directories in a directory
    * This endpoint looks up all ACCT and ACTM files and sub-directories in a given directory.
    * @param path The directory to get the accounts and sub-directories in (required)
-   * @return AccountDirectoriesRoot
+    @return AccountDirectoriesRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -60,7 +66,7 @@ public class AccountsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in some time </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public AccountDirectoriesRoot getAccounts(String path) throws ApiException {
+ public AccountDirectoriesRoot getAccounts(String path) throws ApiException {
     return getAccountsWithHttpInfo(path).getData();
   }
 
@@ -68,7 +74,7 @@ public class AccountsApi {
    * Get accounts and sub-directories in a directory
    * This endpoint looks up all ACCT and ACTM files and sub-directories in a given directory.
    * @param path The directory to get the accounts and sub-directories in (required)
-   * @return ApiResponse&lt;AccountDirectoriesRoot&gt;
+    * @return ApiResponse&lt;AccountDirectoriesRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -120,8 +126,13 @@ public class AccountsApi {
 
     GenericType<AccountDirectoriesRoot> localVarReturnType = new GenericType<AccountDirectoriesRoot>() {};
 
-    return apiClient.invokeAPI("AccountsApi.getAccounts", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
+        returnTypeMap.put(200, new GenericType<AccountDirectoriesRoot>(){});
+        returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
+        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
+	
+      return apiClient.<AccountDirectoriesRoot>invokeAPIWithReturnMap("AccountsApi.getAccounts", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
+                               localVarAuthNames, returnTypeMap, false);
   }
 }
