@@ -30,20 +30,20 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * UniversalScreenUniverse
+ * QuantUniversalScreenUniverse
  */
 @JsonPropertyOrder({
-  UniversalScreenUniverse.JSON_PROPERTY_SCREEN
+  QuantUniversalScreenUniverse.JSON_PROPERTY_SCREEN
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class UniversalScreenUniverse implements Serializable {
+public class QuantUniversalScreenUniverse implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_SCREEN = "screen";
   private String screen;
 
 
-  public UniversalScreenUniverse screen(String screen) {
+  public QuantUniversalScreenUniverse screen(String screen) {
     this.screen = screen;
     return this;
   }
@@ -67,7 +67,7 @@ public class UniversalScreenUniverse implements Serializable {
 
 
   /**
-   * Return true if this UniversalScreenUniverse object is equal to o.
+   * Return true if this QuantUniversalScreenUniverse object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -77,8 +77,8 @@ public class UniversalScreenUniverse implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UniversalScreenUniverse universalScreenUniverse = (UniversalScreenUniverse) o;
-    return Objects.equals(this.screen, universalScreenUniverse.screen);
+    QuantUniversalScreenUniverse quantUniversalScreenUniverse = (QuantUniversalScreenUniverse) o;
+    return Objects.equals(this.screen, quantUniversalScreenUniverse.screen);
   }
 
   @Override
@@ -89,7 +89,7 @@ public class UniversalScreenUniverse implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UniversalScreenUniverse {\n");
+    sb.append("class QuantUniversalScreenUniverse {\n");
     sb.append("    screen: ").append(toIndentedString(screen)).append("\n");
     sb.append("}");
     return sb.toString();

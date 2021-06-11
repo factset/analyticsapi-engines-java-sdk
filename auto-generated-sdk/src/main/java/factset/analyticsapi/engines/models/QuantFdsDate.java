@@ -30,16 +30,16 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * FdsDate
+ * QuantFdsDate
  */
 @JsonPropertyOrder({
-  FdsDate.JSON_PROPERTY_START_DATE,
-  FdsDate.JSON_PROPERTY_END_DATE,
-  FdsDate.JSON_PROPERTY_FREQUENCY,
-  FdsDate.JSON_PROPERTY_CALENDAR
+  QuantFdsDate.JSON_PROPERTY_START_DATE,
+  QuantFdsDate.JSON_PROPERTY_END_DATE,
+  QuantFdsDate.JSON_PROPERTY_FREQUENCY,
+  QuantFdsDate.JSON_PROPERTY_CALENDAR
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class FdsDate implements Serializable {
+public class QuantFdsDate implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_START_DATE = "startDate";
@@ -55,7 +55,7 @@ public class FdsDate implements Serializable {
   private String calendar;
 
 
-  public FdsDate startDate(String startDate) {
+  public QuantFdsDate startDate(String startDate) {
     this.startDate = startDate;
     return this;
   }
@@ -78,7 +78,7 @@ public class FdsDate implements Serializable {
   }
 
 
-  public FdsDate endDate(String endDate) {
+  public QuantFdsDate endDate(String endDate) {
     this.endDate = endDate;
     return this;
   }
@@ -101,7 +101,7 @@ public class FdsDate implements Serializable {
   }
 
 
-  public FdsDate frequency(String frequency) {
+  public QuantFdsDate frequency(String frequency) {
     this.frequency = frequency;
     return this;
   }
@@ -124,7 +124,7 @@ public class FdsDate implements Serializable {
   }
 
 
-  public FdsDate calendar(String calendar) {
+  public QuantFdsDate calendar(String calendar) {
     this.calendar = calendar;
     return this;
   }
@@ -148,7 +148,7 @@ public class FdsDate implements Serializable {
 
 
   /**
-   * Return true if this FdsDate object is equal to o.
+   * Return true if this QuantFdsDate object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -158,11 +158,11 @@ public class FdsDate implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    FdsDate fdsDate = (FdsDate) o;
-    return Objects.equals(this.startDate, fdsDate.startDate) &&
-        Objects.equals(this.endDate, fdsDate.endDate) &&
-        Objects.equals(this.frequency, fdsDate.frequency) &&
-        Objects.equals(this.calendar, fdsDate.calendar);
+    QuantFdsDate quantFdsDate = (QuantFdsDate) o;
+    return Objects.equals(this.startDate, quantFdsDate.startDate) &&
+        Objects.equals(this.endDate, quantFdsDate.endDate) &&
+        Objects.equals(this.frequency, quantFdsDate.frequency) &&
+        Objects.equals(this.calendar, quantFdsDate.calendar);
   }
 
   @Override
@@ -173,7 +173,7 @@ public class FdsDate implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FdsDate {\n");
+    sb.append("class QuantFdsDate {\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("    frequency: ").append(toIndentedString(frequency)).append("\n");

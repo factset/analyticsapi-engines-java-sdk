@@ -30,47 +30,47 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * UniversalScreenParameter
+ * QuantScreeningExpression
  */
 @JsonPropertyOrder({
-  UniversalScreenParameter.JSON_PROPERTY_REFERENCE_NAME,
-  UniversalScreenParameter.JSON_PROPERTY_NAME
+  QuantScreeningExpression.JSON_PROPERTY_EXPR,
+  QuantScreeningExpression.JSON_PROPERTY_NAME
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class UniversalScreenParameter implements Serializable {
+public class QuantScreeningExpression implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_REFERENCE_NAME = "referenceName";
-  private String referenceName;
+  public static final String JSON_PROPERTY_EXPR = "expr";
+  private String expr;
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
 
-  public UniversalScreenParameter referenceName(String referenceName) {
-    this.referenceName = referenceName;
+  public QuantScreeningExpression expr(String expr) {
+    this.expr = expr;
     return this;
   }
 
    /**
-   * Get referenceName
-   * @return referenceName
+   * Get expr
+   * @return expr
   **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_REFERENCE_NAME)
+  @JsonProperty(JSON_PROPERTY_EXPR)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getReferenceName() {
-    return referenceName;
+  public String getExpr() {
+    return expr;
   }
 
 
-  public void setReferenceName(String referenceName) {
-    this.referenceName = referenceName;
+  public void setExpr(String expr) {
+    this.expr = expr;
   }
 
 
-  public UniversalScreenParameter name(String name) {
+  public QuantScreeningExpression name(String name) {
     this.name = name;
     return this;
   }
@@ -94,7 +94,7 @@ public class UniversalScreenParameter implements Serializable {
 
 
   /**
-   * Return true if this UniversalScreenParameter object is equal to o.
+   * Return true if this QuantScreeningExpression object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -104,21 +104,21 @@ public class UniversalScreenParameter implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UniversalScreenParameter universalScreenParameter = (UniversalScreenParameter) o;
-    return Objects.equals(this.referenceName, universalScreenParameter.referenceName) &&
-        Objects.equals(this.name, universalScreenParameter.name);
+    QuantScreeningExpression quantScreeningExpression = (QuantScreeningExpression) o;
+    return Objects.equals(this.expr, quantScreeningExpression.expr) &&
+        Objects.equals(this.name, quantScreeningExpression.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(referenceName, name);
+    return Objects.hash(expr, name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UniversalScreenParameter {\n");
-    sb.append("    referenceName: ").append(toIndentedString(referenceName)).append("\n");
+    sb.append("class QuantScreeningExpression {\n");
+    sb.append("    expr: ").append(toIndentedString(expr)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();

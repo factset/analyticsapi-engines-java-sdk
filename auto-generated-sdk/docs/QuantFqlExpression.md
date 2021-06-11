@@ -1,13 +1,14 @@
 
 
-# UniversalScreenUniverse
+# QuantFqlExpression
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**screen** | **String** |  | 
+**expr** | **String** |  | 
+**name** | **String** |  | 
 
 
 ## Implemented Interfaces

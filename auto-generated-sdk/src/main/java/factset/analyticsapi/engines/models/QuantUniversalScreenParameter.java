@@ -30,47 +30,47 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * ScreeningExpression
+ * QuantUniversalScreenParameter
  */
 @JsonPropertyOrder({
-  ScreeningExpression.JSON_PROPERTY_EXPR,
-  ScreeningExpression.JSON_PROPERTY_NAME
+  QuantUniversalScreenParameter.JSON_PROPERTY_REFERENCE_NAME,
+  QuantUniversalScreenParameter.JSON_PROPERTY_NAME
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class ScreeningExpression implements Serializable {
+public class QuantUniversalScreenParameter implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_EXPR = "expr";
-  private String expr;
+  public static final String JSON_PROPERTY_REFERENCE_NAME = "referenceName";
+  private String referenceName;
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
 
-  public ScreeningExpression expr(String expr) {
-    this.expr = expr;
+  public QuantUniversalScreenParameter referenceName(String referenceName) {
+    this.referenceName = referenceName;
     return this;
   }
 
    /**
-   * Get expr
-   * @return expr
+   * Get referenceName
+   * @return referenceName
   **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_EXPR)
+  @JsonProperty(JSON_PROPERTY_REFERENCE_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getExpr() {
-    return expr;
+  public String getReferenceName() {
+    return referenceName;
   }
 
 
-  public void setExpr(String expr) {
-    this.expr = expr;
+  public void setReferenceName(String referenceName) {
+    this.referenceName = referenceName;
   }
 
 
-  public ScreeningExpression name(String name) {
+  public QuantUniversalScreenParameter name(String name) {
     this.name = name;
     return this;
   }
@@ -94,7 +94,7 @@ public class ScreeningExpression implements Serializable {
 
 
   /**
-   * Return true if this ScreeningExpression object is equal to o.
+   * Return true if this QuantUniversalScreenParameter object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -104,21 +104,21 @@ public class ScreeningExpression implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ScreeningExpression screeningExpression = (ScreeningExpression) o;
-    return Objects.equals(this.expr, screeningExpression.expr) &&
-        Objects.equals(this.name, screeningExpression.name);
+    QuantUniversalScreenParameter quantUniversalScreenParameter = (QuantUniversalScreenParameter) o;
+    return Objects.equals(this.referenceName, quantUniversalScreenParameter.referenceName) &&
+        Objects.equals(this.name, quantUniversalScreenParameter.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expr, name);
+    return Objects.hash(referenceName, name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ScreeningExpression {\n");
-    sb.append("    expr: ").append(toIndentedString(expr)).append("\n");
+    sb.append("class QuantUniversalScreenParameter {\n");
+    sb.append("    referenceName: ").append(toIndentedString(referenceName)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();

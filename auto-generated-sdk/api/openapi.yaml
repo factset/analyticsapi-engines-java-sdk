@@ -33880,7 +33880,7 @@ components:
         meta:
           type: object
       type: object
-    ScreeningExpressionUniverse:
+    QuantScreeningExpressionUniverse:
       example:
         universeExpr: universeExpr
         securityExpr: securityExpr
@@ -33899,7 +33899,7 @@ components:
       - universeExpr
       - universeType
       type: object
-    UniversalScreenUniverse:
+    QuantUniversalScreenUniverse:
       example:
         screen: screen
       properties:
@@ -33908,7 +33908,7 @@ components:
       required:
       - screen
       type: object
-    IdentifierUniverse:
+    QuantIdentifierUniverse:
       example:
         identifiers:
         - identifiers
@@ -33928,7 +33928,7 @@ components:
       - identifiers
       - universeType
       type: object
-    FdsDate:
+    QuantFdsDate:
       example:
         calendar: calendar
         endDate: endDate
@@ -33949,7 +33949,7 @@ components:
       - frequency
       - startDate
       type: object
-    DateList:
+    QuantDateList:
       example:
         calendar: calendar
         dates:
@@ -33969,7 +33969,7 @@ components:
       - calendar
       - frequency
       type: object
-    ScreeningExpression:
+    QuantScreeningExpression:
       example:
         name: name
         expr: expr
@@ -33982,7 +33982,7 @@ components:
       - expr
       - name
       type: object
-    FqlExpression:
+    QuantFqlExpression:
       example:
         name: name
         expr: expr
@@ -33995,7 +33995,7 @@ components:
       - expr
       - name
       type: object
-    UniversalScreenParameter:
+    QuantUniversalScreenParameter:
       example:
         name: name
         referenceName: referenceName
@@ -34008,7 +34008,7 @@ components:
       - name
       - referenceName
       type: object
-    AllUniversalScreenParameters:
+    QuantAllUniversalScreenParameters:
       type: object
     QuantCalculationParameters:
       example:
@@ -34054,30 +34054,30 @@ components:
           expr: expr
       properties:
         screeningExpressionUniverse:
-          $ref: '#/components/schemas/ScreeningExpressionUniverse'
+          $ref: '#/components/schemas/QuantScreeningExpressionUniverse'
         universalScreenUniverse:
-          $ref: '#/components/schemas/UniversalScreenUniverse'
+          $ref: '#/components/schemas/QuantUniversalScreenUniverse'
         identifierUniverse:
-          $ref: '#/components/schemas/IdentifierUniverse'
+          $ref: '#/components/schemas/QuantIdentifierUniverse'
         fdsDate:
-          $ref: '#/components/schemas/FdsDate'
+          $ref: '#/components/schemas/QuantFdsDate'
         dateList:
-          $ref: '#/components/schemas/DateList'
+          $ref: '#/components/schemas/QuantDateList'
         screeningExpression:
           items:
-            $ref: '#/components/schemas/ScreeningExpression'
+            $ref: '#/components/schemas/QuantScreeningExpression'
           type: array
         fqlExpression:
           items:
-            $ref: '#/components/schemas/FqlExpression'
+            $ref: '#/components/schemas/QuantFqlExpression'
           type: array
         universalScreenParameter:
           items:
-            $ref: '#/components/schemas/UniversalScreenParameter'
+            $ref: '#/components/schemas/QuantUniversalScreenParameter'
           type: array
         allUniversalScreenParameters:
           items:
-            $ref: '#/components/schemas/AllUniversalScreenParameters'
+            $ref: '#/components/schemas/QuantAllUniversalScreenParameters'
           type: array
       type: object
     QuantCalculationMeta:

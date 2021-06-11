@@ -1,13 +1,13 @@
 
 
-# FqlExpression
+# QuantUniversalScreenParameter
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**expr** | **String** |  | 
+**referenceName** | **String** |  | 
 **name** | **String** |  | 
 
 
