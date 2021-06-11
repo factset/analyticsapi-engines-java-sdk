@@ -358,7 +358,7 @@ public class Example {
 
         PubCalculationsApi apiInstance = new PubCalculationsApi(defaultClient);
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds when only one unit is passed in the POST body.
-        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
+        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         PubCalculationParametersRoot pubCalculationParametersRoot = new PubCalculationParametersRoot(); // PubCalculationParametersRoot | Calculation Parameters
         try {
             Object result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersRoot);
@@ -380,7 +380,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds when only one unit is passed in the POST body. | [optional]
- **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
+ **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **pubCalculationParametersRoot** | [**PubCalculationParametersRoot**](PubCalculationParametersRoot.md)| Calculation Parameters | [optional]
 
 ### Return type
@@ -449,7 +449,7 @@ public class Example {
         PubCalculationsApi apiInstance = new PubCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run Pub calculation endpoint
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds when only one unit is passed in the PUT body.
-        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
+        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         PubCalculationParametersRoot pubCalculationParametersRoot = new PubCalculationParametersRoot(); // PubCalculationParametersRoot | Calculation Parameters
         try {
             Object result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersRoot);
@@ -472,7 +472,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| from url, provided from the location header in the Create and Run Pub calculation endpoint |
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds when only one unit is passed in the PUT body. | [optional]
- **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
+ **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **pubCalculationParametersRoot** | [**PubCalculationParametersRoot**](PubCalculationParametersRoot.md)| Calculation Parameters | [optional]
 
 ### Return type
