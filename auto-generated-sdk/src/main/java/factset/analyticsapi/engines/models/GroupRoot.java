@@ -34,7 +34,8 @@ import factset.analyticsapi.engines.JSON;
  * GroupRoot
  */
 @JsonPropertyOrder({
-  GroupRoot.JSON_PROPERTY_DATA
+  GroupRoot.JSON_PROPERTY_DATA,
+  GroupRoot.JSON_PROPERTY_META
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class GroupRoot implements Serializable {
@@ -42,6 +43,9 @@ public class GroupRoot implements Serializable {
 
   public static final String JSON_PROPERTY_DATA = "data";
   private java.util.Map<String, Group> data = new java.util.HashMap<String, Group>();
+
+  public static final String JSON_PROPERTY_META = "meta";
+  private Object meta;
 
 
   public GroupRoot data(java.util.Map<String, Group> data) {
@@ -72,6 +76,30 @@ public class GroupRoot implements Serializable {
   }
 
 
+  public GroupRoot meta(Object meta) {
+    this.meta = meta;
+    return this;
+  }
+
+   /**
+   * Get meta
+   * @return meta
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_META)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Object getMeta() {
+    return meta;
+  }
+
+
+  public void setMeta(Object meta) {
+    this.meta = meta;
+  }
+
+
   /**
    * Return true if this GroupRoot object is equal to o.
    */
@@ -84,12 +112,13 @@ public class GroupRoot implements Serializable {
       return false;
     }
     GroupRoot groupRoot = (GroupRoot) o;
-    return Objects.equals(this.data, groupRoot.data);
+    return Objects.equals(this.data, groupRoot.data) &&
+        Objects.equals(this.meta, groupRoot.meta);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(data, meta);
   }
 
   @Override
@@ -97,6 +126,7 @@ public class GroupRoot implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class GroupRoot {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }

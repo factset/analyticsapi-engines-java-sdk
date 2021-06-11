@@ -34,7 +34,8 @@ import factset.analyticsapi.engines.JSON;
  * CurrencyRoot
  */
 @JsonPropertyOrder({
-  CurrencyRoot.JSON_PROPERTY_DATA
+  CurrencyRoot.JSON_PROPERTY_DATA,
+  CurrencyRoot.JSON_PROPERTY_META
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class CurrencyRoot implements Serializable {
@@ -42,6 +43,9 @@ public class CurrencyRoot implements Serializable {
 
   public static final String JSON_PROPERTY_DATA = "data";
   private java.util.Map<String, Currency> data = new java.util.HashMap<String, Currency>();
+
+  public static final String JSON_PROPERTY_META = "meta";
+  private Object meta;
 
 
   public CurrencyRoot data(java.util.Map<String, Currency> data) {
@@ -72,6 +76,30 @@ public class CurrencyRoot implements Serializable {
   }
 
 
+  public CurrencyRoot meta(Object meta) {
+    this.meta = meta;
+    return this;
+  }
+
+   /**
+   * Get meta
+   * @return meta
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_META)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Object getMeta() {
+    return meta;
+  }
+
+
+  public void setMeta(Object meta) {
+    this.meta = meta;
+  }
+
+
   /**
    * Return true if this CurrencyRoot object is equal to o.
    */
@@ -84,12 +112,13 @@ public class CurrencyRoot implements Serializable {
       return false;
     }
     CurrencyRoot currencyRoot = (CurrencyRoot) o;
-    return Objects.equals(this.data, currencyRoot.data);
+    return Objects.equals(this.data, currencyRoot.data) &&
+        Objects.equals(this.meta, currencyRoot.meta);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(data, meta);
   }
 
   @Override
@@ -97,6 +126,7 @@ public class CurrencyRoot implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class CurrencyRoot {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }

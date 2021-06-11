@@ -30,8 +30,10 @@ docs/CalculationInfo.md
 docs/CalculationInfoRoot.md
 docs/CalculationMeta.md
 docs/CalculationStatus.md
+docs/CalculationStatusMeta.md
 docs/CalculationStatusRoot.md
 docs/CalculationUnitStatus.md
+docs/CalculationUnitStatusMeta.md
 docs/ClientErrorResponse.md
 docs/Column.md
 docs/ColumnRoot.md
@@ -211,8 +213,10 @@ src/main/java/factset/analyticsapi/engines/models/CalculationInfo.java
 src/main/java/factset/analyticsapi/engines/models/CalculationInfoRoot.java
 src/main/java/factset/analyticsapi/engines/models/CalculationMeta.java
 src/main/java/factset/analyticsapi/engines/models/CalculationStatus.java
+src/main/java/factset/analyticsapi/engines/models/CalculationStatusMeta.java
 src/main/java/factset/analyticsapi/engines/models/CalculationStatusRoot.java
 src/main/java/factset/analyticsapi/engines/models/CalculationUnitStatus.java
+src/main/java/factset/analyticsapi/engines/models/CalculationUnitStatusMeta.java
 src/main/java/factset/analyticsapi/engines/models/ClientErrorResponse.java
 src/main/java/factset/analyticsapi/engines/models/Column.java
 src/main/java/factset/analyticsapi/engines/models/ColumnRoot.java

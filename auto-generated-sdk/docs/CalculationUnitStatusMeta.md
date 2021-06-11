@@ -1,14 +1,13 @@
 
 
-# FrequencyRoot
+# CalculationUnitStatusMeta
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Map&lt;String, Frequency&gt;**](Frequency.md) |  | 
-**meta** | **Object** |  |  [optional]
+**info** | **String** | The Info URL of the calculation. |  [optional]
 
 
 ## Implemented Interfaces

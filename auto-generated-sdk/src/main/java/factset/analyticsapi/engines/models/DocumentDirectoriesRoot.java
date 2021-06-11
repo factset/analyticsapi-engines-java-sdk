@@ -34,7 +34,8 @@ import factset.analyticsapi.engines.JSON;
  * DocumentDirectoriesRoot
  */
 @JsonPropertyOrder({
-  DocumentDirectoriesRoot.JSON_PROPERTY_DATA
+  DocumentDirectoriesRoot.JSON_PROPERTY_DATA,
+  DocumentDirectoriesRoot.JSON_PROPERTY_META
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class DocumentDirectoriesRoot implements Serializable {
@@ -42,6 +43,9 @@ public class DocumentDirectoriesRoot implements Serializable {
 
   public static final String JSON_PROPERTY_DATA = "data";
   private DocumentDirectories data;
+
+  public static final String JSON_PROPERTY_META = "meta";
+  private Object meta;
 
 
   public DocumentDirectoriesRoot data(DocumentDirectories data) {
@@ -67,6 +71,30 @@ public class DocumentDirectoriesRoot implements Serializable {
   }
 
 
+  public DocumentDirectoriesRoot meta(Object meta) {
+    this.meta = meta;
+    return this;
+  }
+
+   /**
+   * Get meta
+   * @return meta
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_META)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Object getMeta() {
+    return meta;
+  }
+
+
+  public void setMeta(Object meta) {
+    this.meta = meta;
+  }
+
+
   /**
    * Return true if this DocumentDirectoriesRoot object is equal to o.
    */
@@ -79,12 +107,13 @@ public class DocumentDirectoriesRoot implements Serializable {
       return false;
     }
     DocumentDirectoriesRoot documentDirectoriesRoot = (DocumentDirectoriesRoot) o;
-    return Objects.equals(this.data, documentDirectoriesRoot.data);
+    return Objects.equals(this.data, documentDirectoriesRoot.data) &&
+        Objects.equals(this.meta, documentDirectoriesRoot.meta);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(data, meta);
   }
 
   @Override
@@ -92,6 +121,7 @@ public class DocumentDirectoriesRoot implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class DocumentDirectoriesRoot {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }
