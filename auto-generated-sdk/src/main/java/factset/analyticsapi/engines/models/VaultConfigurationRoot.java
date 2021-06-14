@@ -34,7 +34,8 @@ import factset.analyticsapi.engines.JSON;
  * VaultConfigurationRoot
  */
 @JsonPropertyOrder({
-  VaultConfigurationRoot.JSON_PROPERTY_DATA
+  VaultConfigurationRoot.JSON_PROPERTY_DATA,
+  VaultConfigurationRoot.JSON_PROPERTY_META
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class VaultConfigurationRoot implements Serializable {
@@ -42,6 +43,9 @@ public class VaultConfigurationRoot implements Serializable {
 
   public static final String JSON_PROPERTY_DATA = "data";
   private VaultConfiguration data;
+
+  public static final String JSON_PROPERTY_META = "meta";
+  private Object meta;
 
 
   public VaultConfigurationRoot data(VaultConfiguration data) {
@@ -67,6 +71,30 @@ public class VaultConfigurationRoot implements Serializable {
   }
 
 
+  public VaultConfigurationRoot meta(Object meta) {
+    this.meta = meta;
+    return this;
+  }
+
+   /**
+   * Get meta
+   * @return meta
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_META)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Object getMeta() {
+    return meta;
+  }
+
+
+  public void setMeta(Object meta) {
+    this.meta = meta;
+  }
+
+
   /**
    * Return true if this VaultConfigurationRoot object is equal to o.
    */
@@ -79,12 +107,13 @@ public class VaultConfigurationRoot implements Serializable {
       return false;
     }
     VaultConfigurationRoot vaultConfigurationRoot = (VaultConfigurationRoot) o;
-    return Objects.equals(this.data, vaultConfigurationRoot.data);
+    return Objects.equals(this.data, vaultConfigurationRoot.data) &&
+        Objects.equals(this.meta, vaultConfigurationRoot.meta);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(data, meta);
   }
 
   @Override
@@ -92,6 +121,7 @@ public class VaultConfigurationRoot implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class VaultConfigurationRoot {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }

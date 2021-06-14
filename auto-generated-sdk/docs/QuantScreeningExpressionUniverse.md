@@ -1,14 +1,15 @@
 
 
-# IdentifierUniverse
+# QuantScreeningExpressionUniverse
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**universeExpr** | **String** |  | 
 **universeType** | [**UniverseTypeEnum**](#UniverseTypeEnum) |  | 
-**identifiers** | **java.util.List&lt;String&gt;** |  | 
+**securityExpr** | **String** |  |  [optional]
 
 
 

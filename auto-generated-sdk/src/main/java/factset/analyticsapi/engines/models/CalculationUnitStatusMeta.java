@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import factset.analyticsapi.engines.models.SPARBenchmark;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -31,72 +30,45 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * SPARBenchmarkRoot
+ * CalculationUnitStatusMeta
  */
 @JsonPropertyOrder({
-  SPARBenchmarkRoot.JSON_PROPERTY_DATA,
-  SPARBenchmarkRoot.JSON_PROPERTY_META
+  CalculationUnitStatusMeta.JSON_PROPERTY_INFO
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class SPARBenchmarkRoot implements Serializable {
+public class CalculationUnitStatusMeta implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_DATA = "data";
-  private SPARBenchmark data;
-
-  public static final String JSON_PROPERTY_META = "meta";
-  private Object meta;
+  public static final String JSON_PROPERTY_INFO = "info";
+  private String info;
 
 
-  public SPARBenchmarkRoot data(SPARBenchmark data) {
-    this.data = data;
+  public CalculationUnitStatusMeta info(String info) {
+    this.info = info;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public SPARBenchmark getData() {
-    return data;
-  }
-
-
-  public void setData(SPARBenchmark data) {
-    this.data = data;
-  }
-
-
-  public SPARBenchmarkRoot meta(Object meta) {
-    this.meta = meta;
-    return this;
-  }
-
-   /**
-   * Get meta
-   * @return meta
+   * The Info URL of the calculation.
+   * @return info
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_META)
+  @ApiModelProperty(value = "The Info URL of the calculation.")
+  @JsonProperty(JSON_PROPERTY_INFO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Object getMeta() {
-    return meta;
+  public String getInfo() {
+    return info;
   }
 
 
-  public void setMeta(Object meta) {
-    this.meta = meta;
+  public void setInfo(String info) {
+    this.info = info;
   }
 
 
   /**
-   * Return true if this SPARBenchmarkRoot object is equal to o.
+   * Return true if this CalculationUnitStatusMeta object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -106,22 +78,20 @@ public class SPARBenchmarkRoot implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SPARBenchmarkRoot spARBenchmarkRoot = (SPARBenchmarkRoot) o;
-    return Objects.equals(this.data, spARBenchmarkRoot.data) &&
-        Objects.equals(this.meta, spARBenchmarkRoot.meta);
+    CalculationUnitStatusMeta calculationUnitStatusMeta = (CalculationUnitStatusMeta) o;
+    return Objects.equals(this.info, calculationUnitStatusMeta.info);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, meta);
+    return Objects.hash(info);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SPARBenchmarkRoot {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
+    sb.append("class CalculationUnitStatusMeta {\n");
+    sb.append("    info: ").append(toIndentedString(info)).append("\n");
     sb.append("}");
     return sb.toString();
   }

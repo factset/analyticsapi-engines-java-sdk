@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import factset.analyticsapi.engines.models.SPARBenchmark;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -31,72 +30,44 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * SPARBenchmarkRoot
+ * QuantUniversalScreenUniverse
  */
 @JsonPropertyOrder({
-  SPARBenchmarkRoot.JSON_PROPERTY_DATA,
-  SPARBenchmarkRoot.JSON_PROPERTY_META
+  QuantUniversalScreenUniverse.JSON_PROPERTY_SCREEN
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class SPARBenchmarkRoot implements Serializable {
+public class QuantUniversalScreenUniverse implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_DATA = "data";
-  private SPARBenchmark data;
-
-  public static final String JSON_PROPERTY_META = "meta";
-  private Object meta;
+  public static final String JSON_PROPERTY_SCREEN = "screen";
+  private String screen;
 
 
-  public SPARBenchmarkRoot data(SPARBenchmark data) {
-    this.data = data;
+  public QuantUniversalScreenUniverse screen(String screen) {
+    this.screen = screen;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * Get screen
+   * @return screen
   **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_DATA)
+  @JsonProperty(JSON_PROPERTY_SCREEN)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public SPARBenchmark getData() {
-    return data;
+  public String getScreen() {
+    return screen;
   }
 
 
-  public void setData(SPARBenchmark data) {
-    this.data = data;
-  }
-
-
-  public SPARBenchmarkRoot meta(Object meta) {
-    this.meta = meta;
-    return this;
-  }
-
-   /**
-   * Get meta
-   * @return meta
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_META)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Object getMeta() {
-    return meta;
-  }
-
-
-  public void setMeta(Object meta) {
-    this.meta = meta;
+  public void setScreen(String screen) {
+    this.screen = screen;
   }
 
 
   /**
-   * Return true if this SPARBenchmarkRoot object is equal to o.
+   * Return true if this QuantUniversalScreenUniverse object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -106,22 +77,20 @@ public class SPARBenchmarkRoot implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SPARBenchmarkRoot spARBenchmarkRoot = (SPARBenchmarkRoot) o;
-    return Objects.equals(this.data, spARBenchmarkRoot.data) &&
-        Objects.equals(this.meta, spARBenchmarkRoot.meta);
+    QuantUniversalScreenUniverse quantUniversalScreenUniverse = (QuantUniversalScreenUniverse) o;
+    return Objects.equals(this.screen, quantUniversalScreenUniverse.screen);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, meta);
+    return Objects.hash(screen);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SPARBenchmarkRoot {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
+    sb.append("class QuantUniversalScreenUniverse {\n");
+    sb.append("    screen: ").append(toIndentedString(screen)).append("\n");
     sb.append("}");
     return sb.toString();
   }

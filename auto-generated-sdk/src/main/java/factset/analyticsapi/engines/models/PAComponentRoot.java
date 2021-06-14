@@ -34,7 +34,8 @@ import factset.analyticsapi.engines.JSON;
  * PAComponentRoot
  */
 @JsonPropertyOrder({
-  PAComponentRoot.JSON_PROPERTY_DATA
+  PAComponentRoot.JSON_PROPERTY_DATA,
+  PAComponentRoot.JSON_PROPERTY_META
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class PAComponentRoot implements Serializable {
@@ -42,6 +43,9 @@ public class PAComponentRoot implements Serializable {
 
   public static final String JSON_PROPERTY_DATA = "data";
   private PAComponent data;
+
+  public static final String JSON_PROPERTY_META = "meta";
+  private Object meta;
 
 
   public PAComponentRoot data(PAComponent data) {
@@ -67,6 +71,30 @@ public class PAComponentRoot implements Serializable {
   }
 
 
+  public PAComponentRoot meta(Object meta) {
+    this.meta = meta;
+    return this;
+  }
+
+   /**
+   * Get meta
+   * @return meta
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_META)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Object getMeta() {
+    return meta;
+  }
+
+
+  public void setMeta(Object meta) {
+    this.meta = meta;
+  }
+
+
   /**
    * Return true if this PAComponentRoot object is equal to o.
    */
@@ -79,12 +107,13 @@ public class PAComponentRoot implements Serializable {
       return false;
     }
     PAComponentRoot paComponentRoot = (PAComponentRoot) o;
-    return Objects.equals(this.data, paComponentRoot.data);
+    return Objects.equals(this.data, paComponentRoot.data) &&
+        Objects.equals(this.meta, paComponentRoot.meta);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(data, meta);
   }
 
   @Override
@@ -92,6 +121,7 @@ public class PAComponentRoot implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class PAComponentRoot {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }

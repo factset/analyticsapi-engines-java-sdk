@@ -1,13 +1,13 @@
 
 
-# UniversalScreenUniverse
+# CalculationUnitStatusMeta
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**screen** | **String** |  | 
+**info** | **String** | The Info URL of the calculation. |  [optional]
 
 
 ## Implemented Interfaces

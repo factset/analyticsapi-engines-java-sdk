@@ -31630,9 +31630,12 @@ components:
           accounts:
           - accounts
           - accounts
+        meta: '{}'
       properties:
         data:
           $ref: '#/components/schemas/AccountDirectories'
+        meta:
+          type: object
       required:
       - data
       type: object
@@ -31978,14 +31981,19 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/CalculationInfo'
+        meta:
+          type: object
       required:
       - data
       type: object
     ObjectRoot:
       example:
         data: '{}'
+        meta: '{}'
       properties:
         data:
+          type: object
+        meta:
           type: object
       required:
       - data
@@ -32187,9 +32195,12 @@ components:
             id: id
           name: name
           id: id
+        meta: '{}'
       properties:
         data:
           $ref: '#/components/schemas/SPARBenchmark'
+        meta:
+          type: object
       required:
       - data
       type: object
@@ -32432,10 +32443,13 @@ components:
             name: name
             category: category
             directory: directory
+        meta: '{}'
       properties:
         data:
           additionalProperties:
             $ref: '#/components/schemas/ColumnSummary'
+          type: object
+        meta:
           type: object
       required:
       - data
@@ -32473,9 +32487,12 @@ components:
           name: name
           category: category
           directory: directory
+        meta: '{}'
       properties:
         data:
           $ref: '#/components/schemas/Column'
+        meta:
+          type: object
       required:
       - data
       type: object
@@ -32492,10 +32509,13 @@ components:
         data:
           key:
             name: name
+        meta: '{}'
       properties:
         data:
           additionalProperties:
             $ref: '#/components/schemas/ColumnStatistic'
+          type: object
+        meta:
           type: object
       required:
       - data
@@ -32518,10 +32538,13 @@ components:
           key:
             name: name
             category: category
+        meta: '{}'
       properties:
         data:
           additionalProperties:
             $ref: '#/components/schemas/ComponentSummary'
+          type: object
+        meta:
           type: object
       required:
       - data
@@ -32631,9 +32654,12 @@ components:
             holdingsmode: holdingsmode
           category: category
           snapshot: true
+        meta: '{}'
       properties:
         data:
           $ref: '#/components/schemas/PAComponent'
+        meta:
+          type: object
       required:
       - data
       type: object
@@ -32722,9 +32748,12 @@ components:
           benchmark:
             id: id
           snapshot: true
+        meta: '{}'
       properties:
         data:
           $ref: '#/components/schemas/VaultComponent'
+        meta:
+          type: object
       required:
       - data
       type: object
@@ -32741,10 +32770,13 @@ components:
         data:
           key:
             name: name
+        meta: '{}'
       properties:
         data:
           additionalProperties:
             $ref: '#/components/schemas/VaultConfigurationSummary'
+          type: object
+        meta:
           type: object
       required:
       - data
@@ -32809,9 +32841,12 @@ components:
               name: name
               benchmarkCode: benchmarkCode
               benchmarkName: benchmarkName
+        meta: '{}'
       properties:
         data:
           $ref: '#/components/schemas/VaultConfiguration'
+        meta:
+          type: object
       required:
       - data
       type: object
@@ -32828,10 +32863,13 @@ components:
         data:
           key:
             name: name
+        meta: '{}'
       properties:
         data:
           additionalProperties:
             $ref: '#/components/schemas/Currency'
+          type: object
+        meta:
           type: object
       required:
       - data
@@ -32853,9 +32891,12 @@ components:
         data:
           enddate: enddate
           startdate: startdate
+        meta: '{}'
       properties:
         data:
           $ref: '#/components/schemas/DateParametersSummary'
+        meta:
+          type: object
       required:
       - data
       type: object
@@ -32888,9 +32929,12 @@ components:
           directories:
           - directories
           - directories
+        meta: '{}'
       properties:
         data:
           $ref: '#/components/schemas/DocumentDirectories'
+        meta:
+          type: object
       required:
       - data
       type: object
@@ -33369,10 +33413,13 @@ components:
         data:
           key:
             name: name
+        meta: '{}'
       properties:
         data:
           additionalProperties:
             $ref: '#/components/schemas/Frequency'
+          type: object
+        meta:
           type: object
       required:
       - data
@@ -33400,10 +33447,13 @@ components:
             name: name
             category: category
             directory: directory
+        meta: '{}'
       properties:
         data:
           additionalProperties:
             $ref: '#/components/schemas/Group'
+          type: object
+        meta:
           type: object
       required:
       - data
@@ -33779,6 +33829,26 @@ components:
           description: Number of calculation units in batch.
           type: object
       type: object
+    CalculationUnitStatusMeta:
+      example:
+        info: info
+      properties:
+        info:
+          description: The Info URL of the calculation.
+          type: string
+      type: object
+    CalculationStatusMeta:
+      example:
+        units:
+          key:
+            info: info
+      properties:
+        units:
+          additionalProperties:
+            $ref: '#/components/schemas/CalculationUnitStatusMeta'
+          description: Meta of calculation units in batch.
+          type: object
+      type: object
     CalculationStatusRoot:
       example:
         data:
@@ -33800,9 +33870,15 @@ components:
                   parameter: parameter
               status: Queued
           status: Queued
+        meta:
+          units:
+            key:
+              info: info
       properties:
         data:
           $ref: '#/components/schemas/CalculationStatus'
+        meta:
+          $ref: '#/components/schemas/CalculationStatusMeta'
       required:
       - data
       type: object
@@ -33880,7 +33956,7 @@ components:
         meta:
           type: object
       type: object
-    ScreeningExpressionUniverse:
+    QuantScreeningExpressionUniverse:
       example:
         universeExpr: universeExpr
         securityExpr: securityExpr
@@ -33899,7 +33975,7 @@ components:
       - universeExpr
       - universeType
       type: object
-    UniversalScreenUniverse:
+    QuantUniversalScreenUniverse:
       example:
         screen: screen
       properties:
@@ -33908,7 +33984,7 @@ components:
       required:
       - screen
       type: object
-    IdentifierUniverse:
+    QuantIdentifierUniverse:
       example:
         identifiers:
         - identifiers
@@ -33928,7 +34004,7 @@ components:
       - identifiers
       - universeType
       type: object
-    FdsDate:
+    QuantFdsDate:
       example:
         calendar: calendar
         endDate: endDate
@@ -33949,7 +34025,7 @@ components:
       - frequency
       - startDate
       type: object
-    DateList:
+    QuantDateList:
       example:
         calendar: calendar
         dates:
@@ -33969,7 +34045,7 @@ components:
       - calendar
       - frequency
       type: object
-    ScreeningExpression:
+    QuantScreeningExpression:
       example:
         name: name
         expr: expr
@@ -33982,7 +34058,7 @@ components:
       - expr
       - name
       type: object
-    FqlExpression:
+    QuantFqlExpression:
       example:
         name: name
         expr: expr
@@ -33995,7 +34071,7 @@ components:
       - expr
       - name
       type: object
-    UniversalScreenParameter:
+    QuantUniversalScreenParameter:
       example:
         name: name
         referenceName: referenceName
@@ -34008,7 +34084,7 @@ components:
       - name
       - referenceName
       type: object
-    AllUniversalScreenParameters:
+    QuantAllUniversalScreenParameters:
       type: object
     QuantCalculationParameters:
       example:
@@ -34054,30 +34130,30 @@ components:
           expr: expr
       properties:
         screeningExpressionUniverse:
-          $ref: '#/components/schemas/ScreeningExpressionUniverse'
+          $ref: '#/components/schemas/QuantScreeningExpressionUniverse'
         universalScreenUniverse:
-          $ref: '#/components/schemas/UniversalScreenUniverse'
+          $ref: '#/components/schemas/QuantUniversalScreenUniverse'
         identifierUniverse:
-          $ref: '#/components/schemas/IdentifierUniverse'
+          $ref: '#/components/schemas/QuantIdentifierUniverse'
         fdsDate:
-          $ref: '#/components/schemas/FdsDate'
+          $ref: '#/components/schemas/QuantFdsDate'
         dateList:
-          $ref: '#/components/schemas/DateList'
+          $ref: '#/components/schemas/QuantDateList'
         screeningExpression:
           items:
-            $ref: '#/components/schemas/ScreeningExpression'
+            $ref: '#/components/schemas/QuantScreeningExpression'
           type: array
         fqlExpression:
           items:
-            $ref: '#/components/schemas/FqlExpression'
+            $ref: '#/components/schemas/QuantFqlExpression'
           type: array
         universalScreenParameter:
           items:
-            $ref: '#/components/schemas/UniversalScreenParameter'
+            $ref: '#/components/schemas/QuantUniversalScreenParameter'
           type: array
         allUniversalScreenParameters:
           items:
-            $ref: '#/components/schemas/AllUniversalScreenParameters'
+            $ref: '#/components/schemas/QuantAllUniversalScreenParameters'
           type: array
       type: object
     QuantCalculationMeta:

@@ -34,7 +34,8 @@ import factset.analyticsapi.engines.JSON;
  * ColumnSummaryRoot
  */
 @JsonPropertyOrder({
-  ColumnSummaryRoot.JSON_PROPERTY_DATA
+  ColumnSummaryRoot.JSON_PROPERTY_DATA,
+  ColumnSummaryRoot.JSON_PROPERTY_META
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ColumnSummaryRoot implements Serializable {
@@ -42,6 +43,9 @@ public class ColumnSummaryRoot implements Serializable {
 
   public static final String JSON_PROPERTY_DATA = "data";
   private java.util.Map<String, ColumnSummary> data = new java.util.HashMap<String, ColumnSummary>();
+
+  public static final String JSON_PROPERTY_META = "meta";
+  private Object meta;
 
 
   public ColumnSummaryRoot data(java.util.Map<String, ColumnSummary> data) {
@@ -72,6 +76,30 @@ public class ColumnSummaryRoot implements Serializable {
   }
 
 
+  public ColumnSummaryRoot meta(Object meta) {
+    this.meta = meta;
+    return this;
+  }
+
+   /**
+   * Get meta
+   * @return meta
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_META)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Object getMeta() {
+    return meta;
+  }
+
+
+  public void setMeta(Object meta) {
+    this.meta = meta;
+  }
+
+
   /**
    * Return true if this ColumnSummaryRoot object is equal to o.
    */
@@ -84,12 +112,13 @@ public class ColumnSummaryRoot implements Serializable {
       return false;
     }
     ColumnSummaryRoot columnSummaryRoot = (ColumnSummaryRoot) o;
-    return Objects.equals(this.data, columnSummaryRoot.data);
+    return Objects.equals(this.data, columnSummaryRoot.data) &&
+        Objects.equals(this.meta, columnSummaryRoot.meta);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(data, meta);
   }
 
   @Override
@@ -97,6 +126,7 @@ public class ColumnSummaryRoot implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class ColumnSummaryRoot {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }

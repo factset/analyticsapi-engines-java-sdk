@@ -30,14 +30,14 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * IdentifierUniverse
+ * QuantIdentifierUniverse
  */
 @JsonPropertyOrder({
-  IdentifierUniverse.JSON_PROPERTY_UNIVERSE_TYPE,
-  IdentifierUniverse.JSON_PROPERTY_IDENTIFIERS
+  QuantIdentifierUniverse.JSON_PROPERTY_UNIVERSE_TYPE,
+  QuantIdentifierUniverse.JSON_PROPERTY_IDENTIFIERS
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class IdentifierUniverse implements Serializable {
+public class QuantIdentifierUniverse implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /**
@@ -82,7 +82,7 @@ public class IdentifierUniverse implements Serializable {
   private java.util.List<String> identifiers = new java.util.ArrayList<String>();
 
 
-  public IdentifierUniverse universeType(UniverseTypeEnum universeType) {
+  public QuantIdentifierUniverse universeType(UniverseTypeEnum universeType) {
     this.universeType = universeType;
     return this;
   }
@@ -105,12 +105,12 @@ public class IdentifierUniverse implements Serializable {
   }
 
 
-  public IdentifierUniverse identifiers(java.util.List<String> identifiers) {
+  public QuantIdentifierUniverse identifiers(java.util.List<String> identifiers) {
     this.identifiers = identifiers;
     return this;
   }
 
-  public IdentifierUniverse addIdentifiersItem(String identifiersItem) {
+  public QuantIdentifierUniverse addIdentifiersItem(String identifiersItem) {
     this.identifiers.add(identifiersItem);
     return this;
   }
@@ -134,7 +134,7 @@ public class IdentifierUniverse implements Serializable {
 
 
   /**
-   * Return true if this IdentifierUniverse object is equal to o.
+   * Return true if this QuantIdentifierUniverse object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -144,9 +144,9 @@ public class IdentifierUniverse implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    IdentifierUniverse identifierUniverse = (IdentifierUniverse) o;
-    return Objects.equals(this.universeType, identifierUniverse.universeType) &&
-        Objects.equals(this.identifiers, identifierUniverse.identifiers);
+    QuantIdentifierUniverse quantIdentifierUniverse = (QuantIdentifierUniverse) o;
+    return Objects.equals(this.universeType, quantIdentifierUniverse.universeType) &&
+        Objects.equals(this.identifiers, quantIdentifierUniverse.identifiers);
   }
 
   @Override
@@ -157,7 +157,7 @@ public class IdentifierUniverse implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class IdentifierUniverse {\n");
+    sb.append("class QuantIdentifierUniverse {\n");
     sb.append("    universeType: ").append(toIndentedString(universeType)).append("\n");
     sb.append("    identifiers: ").append(toIndentedString(identifiers)).append("\n");
     sb.append("}");

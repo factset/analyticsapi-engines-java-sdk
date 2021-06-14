@@ -1,14 +1,14 @@
 
 
-# FrequencyRoot
+# QuantUniversalScreenParameter
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Map&lt;String, Frequency&gt;**](Frequency.md) |  | 
-**meta** | **Object** |  |  [optional]
+**referenceName** | **String** |  | 
+**name** | **String** |  | 
 
 
 ## Implemented Interfaces

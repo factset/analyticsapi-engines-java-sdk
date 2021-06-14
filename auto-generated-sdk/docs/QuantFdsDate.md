@@ -1,14 +1,16 @@
 
 
-# UniversalScreenParameter
+# QuantFdsDate
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**referenceName** | **String** |  | 
-**name** | **String** |  | 
+**startDate** | **String** |  | 
+**endDate** | **String** |  | 
+**frequency** | **String** |  | 
+**calendar** | **String** |  | 
 
 
 ## Implemented Interfaces

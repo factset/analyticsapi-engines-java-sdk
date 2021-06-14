@@ -1,6 +1,6 @@
 
 
-# FqlExpression
+# QuantFqlExpression
 
 
 ## Properties

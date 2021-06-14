@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.CalculationUnitStatusMeta;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -30,71 +31,53 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * ScreeningExpression
+ * CalculationStatusMeta
  */
 @JsonPropertyOrder({
-  ScreeningExpression.JSON_PROPERTY_EXPR,
-  ScreeningExpression.JSON_PROPERTY_NAME
+  CalculationStatusMeta.JSON_PROPERTY_UNITS
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class ScreeningExpression implements Serializable {
+public class CalculationStatusMeta implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_EXPR = "expr";
-  private String expr;
-
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+  public static final String JSON_PROPERTY_UNITS = "units";
+  private java.util.Map<String, CalculationUnitStatusMeta> units = null;
 
 
-  public ScreeningExpression expr(String expr) {
-    this.expr = expr;
+  public CalculationStatusMeta units(java.util.Map<String, CalculationUnitStatusMeta> units) {
+    this.units = units;
+    return this;
+  }
+
+  public CalculationStatusMeta putUnitsItem(String key, CalculationUnitStatusMeta unitsItem) {
+    if (this.units == null) {
+      this.units = new java.util.HashMap<String, CalculationUnitStatusMeta>();
+    }
+    this.units.put(key, unitsItem);
     return this;
   }
 
    /**
-   * Get expr
-   * @return expr
+   * Meta of calculation units in batch.
+   * @return units
   **/
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_EXPR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Meta of calculation units in batch.")
+  @JsonProperty(JSON_PROPERTY_UNITS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getExpr() {
-    return expr;
+  public java.util.Map<String, CalculationUnitStatusMeta> getUnits() {
+    return units;
   }
 
 
-  public void setExpr(String expr) {
-    this.expr = expr;
-  }
-
-
-  public ScreeningExpression name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Get name
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getName() {
-    return name;
-  }
-
-
-  public void setName(String name) {
-    this.name = name;
+  public void setUnits(java.util.Map<String, CalculationUnitStatusMeta> units) {
+    this.units = units;
   }
 
 
   /**
-   * Return true if this ScreeningExpression object is equal to o.
+   * Return true if this CalculationStatusMeta object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -104,22 +87,20 @@ public class ScreeningExpression implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ScreeningExpression screeningExpression = (ScreeningExpression) o;
-    return Objects.equals(this.expr, screeningExpression.expr) &&
-        Objects.equals(this.name, screeningExpression.name);
+    CalculationStatusMeta calculationStatusMeta = (CalculationStatusMeta) o;
+    return Objects.equals(this.units, calculationStatusMeta.units);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expr, name);
+    return Objects.hash(units);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ScreeningExpression {\n");
-    sb.append("    expr: ").append(toIndentedString(expr)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class CalculationStatusMeta {\n");
+    sb.append("    units: ").append(toIndentedString(units)).append("\n");
     sb.append("}");
     return sb.toString();
   }

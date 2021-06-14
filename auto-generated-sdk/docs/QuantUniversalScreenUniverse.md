@@ -1,14 +1,13 @@
 
 
-# ScreeningExpression
+# QuantUniversalScreenUniverse
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**expr** | **String** |  | 
-**name** | **String** |  | 
+**screen** | **String** |  | 
 
 
 ## Implemented Interfaces
