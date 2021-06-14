@@ -173,7 +173,7 @@ Name | Type | Description  | Notes
 
 ## getCalculationUnitInfoById
 
-> ObjectRoot getCalculationUnitInfoById(id, unitId)
+> File getCalculationUnitInfoById(id, unitId)
 
 Get Quant Engine calculation metadata information by id
 
@@ -204,7 +204,7 @@ public class Example {
         String id = "id_example"; // String | from url, provided from the location header in the Get Quant calculation status by id endpoint
         String unitId = "unitId_example"; // String | from url, provided from the location header in the Get Quant calculation status by id endpoint
         try {
-            ObjectRoot result = apiInstance.getCalculationUnitInfoById(id, unitId);
+            File result = apiInstance.getCalculationUnitInfoById(id, unitId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling QuantCalculationsApi#getCalculationUnitInfoById");
@@ -227,7 +227,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectRoot**](ObjectRoot.md)
+[**File**](File.md)
 
 ### Authorization
 
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, application/x-protobuf
+- **Accept**: application/json, application/x-protobuf, application/octet-stream
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -252,7 +252,7 @@ Name | Type | Description  | Notes
 
 ## getCalculationUnitResultById
 
-> ObjectRoot getCalculationUnitResultById(id, unitId)
+> File getCalculationUnitResultById(id, unitId)
 
 Get Quant Engine calculation result by id
 
@@ -284,7 +284,7 @@ public class Example {
         String id = "id_example"; // String | from url, provided from the location header in the Get Quant Engine calculation status by id endpoint
         String unitId = "unitId_example"; // String | from url, provided from the location header in the Get Quant Engine calculation status by id endpoint
         try {
-            ObjectRoot result = apiInstance.getCalculationUnitResultById(id, unitId);
+            File result = apiInstance.getCalculationUnitResultById(id, unitId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling QuantCalculationsApi#getCalculationUnitResultById");
@@ -307,7 +307,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectRoot**](ObjectRoot.md)
+[**File**](File.md)
 
 ### Authorization
 
@@ -316,7 +316,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, application/x-protobuf
+- **Accept**: application/json, application/x-protobuf, application/octet-stream
 
 ### HTTP response details
 | Status code | Description | Response headers |

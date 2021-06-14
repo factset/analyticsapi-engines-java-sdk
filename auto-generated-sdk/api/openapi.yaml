@@ -25296,10 +25296,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectRoot'
+                format: binary
+                type: string
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/ObjectRoot'
+                format: binary
+                type: string
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
           description: Expected response once calculation is completed, returns JSON
             in the format specified in the Calculation parameters.
           headers:
@@ -25370,6 +25376,9 @@ paths:
             application/x-protobuf:
               schema:
                 $ref: '#/components/schemas/ClientErrorResponse'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
           description: Invalid identifier provided.
           headers:
             X-DataDirect-Request-Key:
@@ -25412,6 +25421,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClientErrorResponse'
             application/x-protobuf:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+            application/octet-stream:
               schema:
                 $ref: '#/components/schemas/ClientErrorResponse'
           description: Calculation was already returned, provided id was not a requested
@@ -25552,7 +25564,7 @@ paths:
       x-are-multiple-success-responses-different: false
       x-success-response-types:
       - status-code: "200"
-        response-type: ObjectRoot
+        is-file: true
       x-accepts: application/json
   /analytics/engines/quant/v3/calculations/{id}/units/{unitId}/info:
     get:
@@ -25587,10 +25599,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectRoot'
+                format: binary
+                type: string
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/ObjectRoot'
+                format: binary
+                type: string
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
           description: Expected response once calculation is completed.
           headers:
             Content-Encoding:
@@ -25660,6 +25678,9 @@ paths:
             application/x-protobuf:
               schema:
                 $ref: '#/components/schemas/ClientErrorResponse'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
           description: Invalid identifier provided.
           headers:
             X-DataDirect-Request-Key:
@@ -25702,6 +25723,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClientErrorResponse'
             application/x-protobuf:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+            application/octet-stream:
               schema:
                 $ref: '#/components/schemas/ClientErrorResponse'
           description: Calculation was already returned, provided id was not a requested
@@ -25842,7 +25866,7 @@ paths:
       x-are-multiple-success-responses-different: false
       x-success-response-types:
       - status-code: "200"
-        response-type: ObjectRoot
+        is-file: true
       x-accepts: application/json
   /analytics/engines/spar/v3/calculations:
     post:

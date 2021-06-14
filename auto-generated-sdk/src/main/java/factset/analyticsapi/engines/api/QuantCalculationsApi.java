@@ -16,6 +16,7 @@ import java.io.File;
 
 import factset.analyticsapi.engines.models.CalculationStatusRoot;
 import factset.analyticsapi.engines.models.ClientErrorResponse;
+import java.io.File;
 import factset.analyticsapi.engines.models.ObjectRoot;
 import factset.analyticsapi.engines.models.QuantCalculationParametersRoot;
 
@@ -226,7 +227,7 @@ public class QuantCalculationsApi {
    * This is the endpoint to get the metadata information of a previously requested calculation.
    * @param id from url, provided from the location header in the Get Quant calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get Quant calculation status by id endpoint (required)
-    @return ObjectRoot
+    @return File
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -240,7 +241,7 @@ public class QuantCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public ObjectRoot getCalculationUnitInfoById(String id, String unitId) throws ApiException {
+ public File getCalculationUnitInfoById(String id, String unitId) throws ApiException {
     return getCalculationUnitInfoByIdWithHttpInfo(id, unitId).getData();
   }
 
@@ -249,7 +250,7 @@ public class QuantCalculationsApi {
    * This is the endpoint to get the metadata information of a previously requested calculation.
    * @param id from url, provided from the location header in the Get Quant calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get Quant calculation status by id endpoint (required)
-    * @return ApiResponse&lt;ObjectRoot&gt;
+    * @return ApiResponse&lt;File&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -263,7 +264,7 @@ public class QuantCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<ObjectRoot> getCalculationUnitInfoByIdWithHttpInfo(String id, String unitId) throws ApiException {
+  public ApiResponse<File> getCalculationUnitInfoByIdWithHttpInfo(String id, String unitId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -292,7 +293,7 @@ public class QuantCalculationsApi {
     
     
     final String[] localVarAccepts = {
-      "application/json", "application/x-protobuf"
+      "application/json", "application/x-protobuf", "application/octet-stream"
     };
     final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
@@ -303,14 +304,14 @@ public class QuantCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic" };
 
-    GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
+    GenericType<File> localVarReturnType = new GenericType<File>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<ObjectRoot>(){});
+        returnTypeMap.put(200, new GenericType<File>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<ObjectRoot>invokeAPIWithReturnMap("QuantCalculationsApi.getCalculationUnitInfoById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<File>invokeAPIWithReturnMap("QuantCalculationsApi.getCalculationUnitInfoById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -319,7 +320,7 @@ public class QuantCalculationsApi {
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Get Quant Engine calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get Quant Engine calculation status by id endpoint (required)
-    @return ObjectRoot
+    @return File
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -333,7 +334,7 @@ public class QuantCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public ObjectRoot getCalculationUnitResultById(String id, String unitId) throws ApiException {
+ public File getCalculationUnitResultById(String id, String unitId) throws ApiException {
     return getCalculationUnitResultByIdWithHttpInfo(id, unitId).getData();
   }
 
@@ -342,7 +343,7 @@ public class QuantCalculationsApi {
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Get Quant Engine calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get Quant Engine calculation status by id endpoint (required)
-    * @return ApiResponse&lt;ObjectRoot&gt;
+    * @return ApiResponse&lt;File&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -356,7 +357,7 @@ public class QuantCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<ObjectRoot> getCalculationUnitResultByIdWithHttpInfo(String id, String unitId) throws ApiException {
+  public ApiResponse<File> getCalculationUnitResultByIdWithHttpInfo(String id, String unitId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -385,7 +386,7 @@ public class QuantCalculationsApi {
     
     
     final String[] localVarAccepts = {
-      "application/json", "application/x-protobuf"
+      "application/json", "application/x-protobuf", "application/octet-stream"
     };
     final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
@@ -396,14 +397,14 @@ public class QuantCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic" };
 
-    GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
+    GenericType<File> localVarReturnType = new GenericType<File>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<ObjectRoot>(){});
+        returnTypeMap.put(200, new GenericType<File>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<ObjectRoot>invokeAPIWithReturnMap("QuantCalculationsApi.getCalculationUnitResultById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<File>invokeAPIWithReturnMap("QuantCalculationsApi.getCalculationUnitResultById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
