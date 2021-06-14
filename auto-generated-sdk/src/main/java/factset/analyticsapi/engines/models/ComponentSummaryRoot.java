@@ -34,8 +34,7 @@ import factset.analyticsapi.engines.JSON;
  * ComponentSummaryRoot
  */
 @JsonPropertyOrder({
-  ComponentSummaryRoot.JSON_PROPERTY_DATA,
-  ComponentSummaryRoot.JSON_PROPERTY_META
+  ComponentSummaryRoot.JSON_PROPERTY_DATA
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ComponentSummaryRoot implements Serializable {
@@ -43,9 +42,6 @@ public class ComponentSummaryRoot implements Serializable {
 
   public static final String JSON_PROPERTY_DATA = "data";
   private java.util.Map<String, ComponentSummary> data = new java.util.HashMap<String, ComponentSummary>();
-
-  public static final String JSON_PROPERTY_META = "meta";
-  private Object meta;
 
 
   public ComponentSummaryRoot data(java.util.Map<String, ComponentSummary> data) {
@@ -76,30 +72,6 @@ public class ComponentSummaryRoot implements Serializable {
   }
 
 
-  public ComponentSummaryRoot meta(Object meta) {
-    this.meta = meta;
-    return this;
-  }
-
-   /**
-   * Get meta
-   * @return meta
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_META)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Object getMeta() {
-    return meta;
-  }
-
-
-  public void setMeta(Object meta) {
-    this.meta = meta;
-  }
-
-
   /**
    * Return true if this ComponentSummaryRoot object is equal to o.
    */
@@ -112,13 +84,12 @@ public class ComponentSummaryRoot implements Serializable {
       return false;
     }
     ComponentSummaryRoot componentSummaryRoot = (ComponentSummaryRoot) o;
-    return Objects.equals(this.data, componentSummaryRoot.data) &&
-        Objects.equals(this.meta, componentSummaryRoot.meta);
+    return Objects.equals(this.data, componentSummaryRoot.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, meta);
+    return Objects.hash(data);
   }
 
   @Override
@@ -126,7 +97,6 @@ public class ComponentSummaryRoot implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class ComponentSummaryRoot {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }

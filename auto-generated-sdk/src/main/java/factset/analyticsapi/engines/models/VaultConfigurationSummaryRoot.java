@@ -34,8 +34,7 @@ import factset.analyticsapi.engines.JSON;
  * VaultConfigurationSummaryRoot
  */
 @JsonPropertyOrder({
-  VaultConfigurationSummaryRoot.JSON_PROPERTY_DATA,
-  VaultConfigurationSummaryRoot.JSON_PROPERTY_META
+  VaultConfigurationSummaryRoot.JSON_PROPERTY_DATA
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class VaultConfigurationSummaryRoot implements Serializable {
@@ -43,9 +42,6 @@ public class VaultConfigurationSummaryRoot implements Serializable {
 
   public static final String JSON_PROPERTY_DATA = "data";
   private java.util.Map<String, VaultConfigurationSummary> data = new java.util.HashMap<String, VaultConfigurationSummary>();
-
-  public static final String JSON_PROPERTY_META = "meta";
-  private Object meta;
 
 
   public VaultConfigurationSummaryRoot data(java.util.Map<String, VaultConfigurationSummary> data) {
@@ -76,30 +72,6 @@ public class VaultConfigurationSummaryRoot implements Serializable {
   }
 
 
-  public VaultConfigurationSummaryRoot meta(Object meta) {
-    this.meta = meta;
-    return this;
-  }
-
-   /**
-   * Get meta
-   * @return meta
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_META)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Object getMeta() {
-    return meta;
-  }
-
-
-  public void setMeta(Object meta) {
-    this.meta = meta;
-  }
-
-
   /**
    * Return true if this VaultConfigurationSummaryRoot object is equal to o.
    */
@@ -112,13 +84,12 @@ public class VaultConfigurationSummaryRoot implements Serializable {
       return false;
     }
     VaultConfigurationSummaryRoot vaultConfigurationSummaryRoot = (VaultConfigurationSummaryRoot) o;
-    return Objects.equals(this.data, vaultConfigurationSummaryRoot.data) &&
-        Objects.equals(this.meta, vaultConfigurationSummaryRoot.meta);
+    return Objects.equals(this.data, vaultConfigurationSummaryRoot.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, meta);
+    return Objects.hash(data);
   }
 
   @Override
@@ -126,7 +97,6 @@ public class VaultConfigurationSummaryRoot implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class VaultConfigurationSummaryRoot {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }

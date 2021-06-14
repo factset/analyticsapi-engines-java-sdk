@@ -30,14 +30,14 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * QuantUniversalScreenParameter
+ * UniversalScreenParameter
  */
 @JsonPropertyOrder({
-  QuantUniversalScreenParameter.JSON_PROPERTY_REFERENCE_NAME,
-  QuantUniversalScreenParameter.JSON_PROPERTY_NAME
+  UniversalScreenParameter.JSON_PROPERTY_REFERENCE_NAME,
+  UniversalScreenParameter.JSON_PROPERTY_NAME
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class QuantUniversalScreenParameter implements Serializable {
+public class UniversalScreenParameter implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_REFERENCE_NAME = "referenceName";
@@ -47,7 +47,7 @@ public class QuantUniversalScreenParameter implements Serializable {
   private String name;
 
 
-  public QuantUniversalScreenParameter referenceName(String referenceName) {
+  public UniversalScreenParameter referenceName(String referenceName) {
     this.referenceName = referenceName;
     return this;
   }
@@ -70,7 +70,7 @@ public class QuantUniversalScreenParameter implements Serializable {
   }
 
 
-  public QuantUniversalScreenParameter name(String name) {
+  public UniversalScreenParameter name(String name) {
     this.name = name;
     return this;
   }
@@ -94,7 +94,7 @@ public class QuantUniversalScreenParameter implements Serializable {
 
 
   /**
-   * Return true if this QuantUniversalScreenParameter object is equal to o.
+   * Return true if this UniversalScreenParameter object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -104,9 +104,9 @@ public class QuantUniversalScreenParameter implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    QuantUniversalScreenParameter quantUniversalScreenParameter = (QuantUniversalScreenParameter) o;
-    return Objects.equals(this.referenceName, quantUniversalScreenParameter.referenceName) &&
-        Objects.equals(this.name, quantUniversalScreenParameter.name);
+    UniversalScreenParameter universalScreenParameter = (UniversalScreenParameter) o;
+    return Objects.equals(this.referenceName, universalScreenParameter.referenceName) &&
+        Objects.equals(this.name, universalScreenParameter.name);
   }
 
   @Override
@@ -117,7 +117,7 @@ public class QuantUniversalScreenParameter implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class QuantUniversalScreenParameter {\n");
+    sb.append("class UniversalScreenParameter {\n");
     sb.append("    referenceName: ").append(toIndentedString(referenceName)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");

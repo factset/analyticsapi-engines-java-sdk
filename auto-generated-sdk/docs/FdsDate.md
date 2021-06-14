@@ -1,14 +1,16 @@
 
 
-# QuantScreeningExpression
+# FdsDate
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**expr** | **String** |  | 
-**name** | **String** |  | 
+**startDate** | **String** |  | 
+**endDate** | **String** |  | 
+**frequency** | **String** |  | 
+**calendar** | **String** |  | 
 
 
 ## Implemented Interfaces

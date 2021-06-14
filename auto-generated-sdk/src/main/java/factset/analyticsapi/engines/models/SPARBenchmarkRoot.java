@@ -34,8 +34,7 @@ import factset.analyticsapi.engines.JSON;
  * SPARBenchmarkRoot
  */
 @JsonPropertyOrder({
-  SPARBenchmarkRoot.JSON_PROPERTY_DATA,
-  SPARBenchmarkRoot.JSON_PROPERTY_META
+  SPARBenchmarkRoot.JSON_PROPERTY_DATA
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class SPARBenchmarkRoot implements Serializable {
@@ -43,9 +42,6 @@ public class SPARBenchmarkRoot implements Serializable {
 
   public static final String JSON_PROPERTY_DATA = "data";
   private SPARBenchmark data;
-
-  public static final String JSON_PROPERTY_META = "meta";
-  private Object meta;
 
 
   public SPARBenchmarkRoot data(SPARBenchmark data) {
@@ -71,30 +67,6 @@ public class SPARBenchmarkRoot implements Serializable {
   }
 
 
-  public SPARBenchmarkRoot meta(Object meta) {
-    this.meta = meta;
-    return this;
-  }
-
-   /**
-   * Get meta
-   * @return meta
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_META)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Object getMeta() {
-    return meta;
-  }
-
-
-  public void setMeta(Object meta) {
-    this.meta = meta;
-  }
-
-
   /**
    * Return true if this SPARBenchmarkRoot object is equal to o.
    */
@@ -107,13 +79,12 @@ public class SPARBenchmarkRoot implements Serializable {
       return false;
     }
     SPARBenchmarkRoot spARBenchmarkRoot = (SPARBenchmarkRoot) o;
-    return Objects.equals(this.data, spARBenchmarkRoot.data) &&
-        Objects.equals(this.meta, spARBenchmarkRoot.meta);
+    return Objects.equals(this.data, spARBenchmarkRoot.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, meta);
+    return Objects.hash(data);
   }
 
   @Override
@@ -121,7 +92,6 @@ public class SPARBenchmarkRoot implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class SPARBenchmarkRoot {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -23,7 +23,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.CalculationStatus;
-import factset.analyticsapi.engines.models.CalculationStatusMeta;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -35,8 +34,7 @@ import factset.analyticsapi.engines.JSON;
  * CalculationStatusRoot
  */
 @JsonPropertyOrder({
-  CalculationStatusRoot.JSON_PROPERTY_DATA,
-  CalculationStatusRoot.JSON_PROPERTY_META
+  CalculationStatusRoot.JSON_PROPERTY_DATA
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class CalculationStatusRoot implements Serializable {
@@ -44,9 +42,6 @@ public class CalculationStatusRoot implements Serializable {
 
   public static final String JSON_PROPERTY_DATA = "data";
   private CalculationStatus data;
-
-  public static final String JSON_PROPERTY_META = "meta";
-  private CalculationStatusMeta meta;
 
 
   public CalculationStatusRoot data(CalculationStatus data) {
@@ -72,30 +67,6 @@ public class CalculationStatusRoot implements Serializable {
   }
 
 
-  public CalculationStatusRoot meta(CalculationStatusMeta meta) {
-    this.meta = meta;
-    return this;
-  }
-
-   /**
-   * Get meta
-   * @return meta
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_META)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public CalculationStatusMeta getMeta() {
-    return meta;
-  }
-
-
-  public void setMeta(CalculationStatusMeta meta) {
-    this.meta = meta;
-  }
-
-
   /**
    * Return true if this CalculationStatusRoot object is equal to o.
    */
@@ -108,13 +79,12 @@ public class CalculationStatusRoot implements Serializable {
       return false;
     }
     CalculationStatusRoot calculationStatusRoot = (CalculationStatusRoot) o;
-    return Objects.equals(this.data, calculationStatusRoot.data) &&
-        Objects.equals(this.meta, calculationStatusRoot.meta);
+    return Objects.equals(this.data, calculationStatusRoot.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, meta);
+    return Objects.hash(data);
   }
 
   @Override
@@ -122,7 +92,6 @@ public class CalculationStatusRoot implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class CalculationStatusRoot {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }

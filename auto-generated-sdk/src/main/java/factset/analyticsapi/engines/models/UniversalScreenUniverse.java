@@ -30,71 +30,44 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * QuantFqlExpression
+ * UniversalScreenUniverse
  */
 @JsonPropertyOrder({
-  QuantFqlExpression.JSON_PROPERTY_EXPR,
-  QuantFqlExpression.JSON_PROPERTY_NAME
+  UniversalScreenUniverse.JSON_PROPERTY_SCREEN
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class QuantFqlExpression implements Serializable {
+public class UniversalScreenUniverse implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_EXPR = "expr";
-  private String expr;
-
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+  public static final String JSON_PROPERTY_SCREEN = "screen";
+  private String screen;
 
 
-  public QuantFqlExpression expr(String expr) {
-    this.expr = expr;
+  public UniversalScreenUniverse screen(String screen) {
+    this.screen = screen;
     return this;
   }
 
    /**
-   * Get expr
-   * @return expr
+   * Get screen
+   * @return screen
   **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_EXPR)
+  @JsonProperty(JSON_PROPERTY_SCREEN)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getExpr() {
-    return expr;
+  public String getScreen() {
+    return screen;
   }
 
 
-  public void setExpr(String expr) {
-    this.expr = expr;
-  }
-
-
-  public QuantFqlExpression name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Get name
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getName() {
-    return name;
-  }
-
-
-  public void setName(String name) {
-    this.name = name;
+  public void setScreen(String screen) {
+    this.screen = screen;
   }
 
 
   /**
-   * Return true if this QuantFqlExpression object is equal to o.
+   * Return true if this UniversalScreenUniverse object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -104,22 +77,20 @@ public class QuantFqlExpression implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    QuantFqlExpression quantFqlExpression = (QuantFqlExpression) o;
-    return Objects.equals(this.expr, quantFqlExpression.expr) &&
-        Objects.equals(this.name, quantFqlExpression.name);
+    UniversalScreenUniverse universalScreenUniverse = (UniversalScreenUniverse) o;
+    return Objects.equals(this.screen, universalScreenUniverse.screen);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expr, name);
+    return Objects.hash(screen);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class QuantFqlExpression {\n");
-    sb.append("    expr: ").append(toIndentedString(expr)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class UniversalScreenUniverse {\n");
+    sb.append("    screen: ").append(toIndentedString(screen)).append("\n");
     sb.append("}");
     return sb.toString();
   }

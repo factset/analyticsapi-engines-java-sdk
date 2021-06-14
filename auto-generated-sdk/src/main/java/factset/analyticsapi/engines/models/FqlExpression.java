@@ -30,14 +30,14 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * QuantScreeningExpression
+ * FqlExpression
  */
 @JsonPropertyOrder({
-  QuantScreeningExpression.JSON_PROPERTY_EXPR,
-  QuantScreeningExpression.JSON_PROPERTY_NAME
+  FqlExpression.JSON_PROPERTY_EXPR,
+  FqlExpression.JSON_PROPERTY_NAME
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class QuantScreeningExpression implements Serializable {
+public class FqlExpression implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_EXPR = "expr";
@@ -47,7 +47,7 @@ public class QuantScreeningExpression implements Serializable {
   private String name;
 
 
-  public QuantScreeningExpression expr(String expr) {
+  public FqlExpression expr(String expr) {
     this.expr = expr;
     return this;
   }
@@ -70,7 +70,7 @@ public class QuantScreeningExpression implements Serializable {
   }
 
 
-  public QuantScreeningExpression name(String name) {
+  public FqlExpression name(String name) {
     this.name = name;
     return this;
   }
@@ -94,7 +94,7 @@ public class QuantScreeningExpression implements Serializable {
 
 
   /**
-   * Return true if this QuantScreeningExpression object is equal to o.
+   * Return true if this FqlExpression object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -104,9 +104,9 @@ public class QuantScreeningExpression implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    QuantScreeningExpression quantScreeningExpression = (QuantScreeningExpression) o;
-    return Objects.equals(this.expr, quantScreeningExpression.expr) &&
-        Objects.equals(this.name, quantScreeningExpression.name);
+    FqlExpression fqlExpression = (FqlExpression) o;
+    return Objects.equals(this.expr, fqlExpression.expr) &&
+        Objects.equals(this.name, fqlExpression.name);
   }
 
   @Override
@@ -117,7 +117,7 @@ public class QuantScreeningExpression implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class QuantScreeningExpression {\n");
+    sb.append("class FqlExpression {\n");
     sb.append("    expr: ").append(toIndentedString(expr)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");

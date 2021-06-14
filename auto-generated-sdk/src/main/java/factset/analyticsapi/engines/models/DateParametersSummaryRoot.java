@@ -34,8 +34,7 @@ import factset.analyticsapi.engines.JSON;
  * DateParametersSummaryRoot
  */
 @JsonPropertyOrder({
-  DateParametersSummaryRoot.JSON_PROPERTY_DATA,
-  DateParametersSummaryRoot.JSON_PROPERTY_META
+  DateParametersSummaryRoot.JSON_PROPERTY_DATA
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class DateParametersSummaryRoot implements Serializable {
@@ -43,9 +42,6 @@ public class DateParametersSummaryRoot implements Serializable {
 
   public static final String JSON_PROPERTY_DATA = "data";
   private DateParametersSummary data;
-
-  public static final String JSON_PROPERTY_META = "meta";
-  private Object meta;
 
 
   public DateParametersSummaryRoot data(DateParametersSummary data) {
@@ -71,30 +67,6 @@ public class DateParametersSummaryRoot implements Serializable {
   }
 
 
-  public DateParametersSummaryRoot meta(Object meta) {
-    this.meta = meta;
-    return this;
-  }
-
-   /**
-   * Get meta
-   * @return meta
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_META)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Object getMeta() {
-    return meta;
-  }
-
-
-  public void setMeta(Object meta) {
-    this.meta = meta;
-  }
-
-
   /**
    * Return true if this DateParametersSummaryRoot object is equal to o.
    */
@@ -107,13 +79,12 @@ public class DateParametersSummaryRoot implements Serializable {
       return false;
     }
     DateParametersSummaryRoot dateParametersSummaryRoot = (DateParametersSummaryRoot) o;
-    return Objects.equals(this.data, dateParametersSummaryRoot.data) &&
-        Objects.equals(this.meta, dateParametersSummaryRoot.meta);
+    return Objects.equals(this.data, dateParametersSummaryRoot.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, meta);
+    return Objects.hash(data);
   }
 
   @Override
@@ -121,7 +92,6 @@ public class DateParametersSummaryRoot implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class DateParametersSummaryRoot {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }

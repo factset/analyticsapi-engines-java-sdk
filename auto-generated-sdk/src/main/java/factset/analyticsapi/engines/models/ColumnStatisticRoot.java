@@ -34,8 +34,7 @@ import factset.analyticsapi.engines.JSON;
  * ColumnStatisticRoot
  */
 @JsonPropertyOrder({
-  ColumnStatisticRoot.JSON_PROPERTY_DATA,
-  ColumnStatisticRoot.JSON_PROPERTY_META
+  ColumnStatisticRoot.JSON_PROPERTY_DATA
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ColumnStatisticRoot implements Serializable {
@@ -43,9 +42,6 @@ public class ColumnStatisticRoot implements Serializable {
 
   public static final String JSON_PROPERTY_DATA = "data";
   private java.util.Map<String, ColumnStatistic> data = new java.util.HashMap<String, ColumnStatistic>();
-
-  public static final String JSON_PROPERTY_META = "meta";
-  private Object meta;
 
 
   public ColumnStatisticRoot data(java.util.Map<String, ColumnStatistic> data) {
@@ -76,30 +72,6 @@ public class ColumnStatisticRoot implements Serializable {
   }
 
 
-  public ColumnStatisticRoot meta(Object meta) {
-    this.meta = meta;
-    return this;
-  }
-
-   /**
-   * Get meta
-   * @return meta
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_META)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Object getMeta() {
-    return meta;
-  }
-
-
-  public void setMeta(Object meta) {
-    this.meta = meta;
-  }
-
-
   /**
    * Return true if this ColumnStatisticRoot object is equal to o.
    */
@@ -112,13 +84,12 @@ public class ColumnStatisticRoot implements Serializable {
       return false;
     }
     ColumnStatisticRoot columnStatisticRoot = (ColumnStatisticRoot) o;
-    return Objects.equals(this.data, columnStatisticRoot.data) &&
-        Objects.equals(this.meta, columnStatisticRoot.meta);
+    return Objects.equals(this.data, columnStatisticRoot.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, meta);
+    return Objects.hash(data);
   }
 
   @Override
@@ -126,7 +97,6 @@ public class ColumnStatisticRoot implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class ColumnStatisticRoot {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }

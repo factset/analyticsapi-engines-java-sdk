@@ -30,15 +30,15 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * QuantDateList
+ * DateList
  */
 @JsonPropertyOrder({
-  QuantDateList.JSON_PROPERTY_DATES,
-  QuantDateList.JSON_PROPERTY_FREQUENCY,
-  QuantDateList.JSON_PROPERTY_CALENDAR
+  DateList.JSON_PROPERTY_DATES,
+  DateList.JSON_PROPERTY_FREQUENCY,
+  DateList.JSON_PROPERTY_CALENDAR
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class QuantDateList implements Serializable {
+public class DateList implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_DATES = "dates";
@@ -51,12 +51,12 @@ public class QuantDateList implements Serializable {
   private String calendar;
 
 
-  public QuantDateList dates(java.util.List<String> dates) {
+  public DateList dates(java.util.List<String> dates) {
     this.dates = dates;
     return this;
   }
 
-  public QuantDateList addDatesItem(String datesItem) {
+  public DateList addDatesItem(String datesItem) {
     if (this.dates == null) {
       this.dates = new java.util.ArrayList<String>();
     }
@@ -83,7 +83,7 @@ public class QuantDateList implements Serializable {
   }
 
 
-  public QuantDateList frequency(String frequency) {
+  public DateList frequency(String frequency) {
     this.frequency = frequency;
     return this;
   }
@@ -106,7 +106,7 @@ public class QuantDateList implements Serializable {
   }
 
 
-  public QuantDateList calendar(String calendar) {
+  public DateList calendar(String calendar) {
     this.calendar = calendar;
     return this;
   }
@@ -130,7 +130,7 @@ public class QuantDateList implements Serializable {
 
 
   /**
-   * Return true if this QuantDateList object is equal to o.
+   * Return true if this DateList object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -140,10 +140,10 @@ public class QuantDateList implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    QuantDateList quantDateList = (QuantDateList) o;
-    return Objects.equals(this.dates, quantDateList.dates) &&
-        Objects.equals(this.frequency, quantDateList.frequency) &&
-        Objects.equals(this.calendar, quantDateList.calendar);
+    DateList dateList = (DateList) o;
+    return Objects.equals(this.dates, dateList.dates) &&
+        Objects.equals(this.frequency, dateList.frequency) &&
+        Objects.equals(this.calendar, dateList.calendar);
   }
 
   @Override
@@ -154,7 +154,7 @@ public class QuantDateList implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class QuantDateList {\n");
+    sb.append("class DateList {\n");
     sb.append("    dates: ").append(toIndentedString(dates)).append("\n");
     sb.append("    frequency: ").append(toIndentedString(frequency)).append("\n");
     sb.append("    calendar: ").append(toIndentedString(calendar)).append("\n");

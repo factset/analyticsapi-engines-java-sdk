@@ -33,8 +33,7 @@ import factset.analyticsapi.engines.JSON;
  * ObjectRoot
  */
 @JsonPropertyOrder({
-  ObjectRoot.JSON_PROPERTY_DATA,
-  ObjectRoot.JSON_PROPERTY_META
+  ObjectRoot.JSON_PROPERTY_DATA
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ObjectRoot implements Serializable {
@@ -42,9 +41,6 @@ public class ObjectRoot implements Serializable {
 
   public static final String JSON_PROPERTY_DATA = "data";
   private Object data;
-
-  public static final String JSON_PROPERTY_META = "meta";
-  private Object meta;
 
 
   public ObjectRoot data(Object data) {
@@ -70,30 +66,6 @@ public class ObjectRoot implements Serializable {
   }
 
 
-  public ObjectRoot meta(Object meta) {
-    this.meta = meta;
-    return this;
-  }
-
-   /**
-   * Get meta
-   * @return meta
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_META)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Object getMeta() {
-    return meta;
-  }
-
-
-  public void setMeta(Object meta) {
-    this.meta = meta;
-  }
-
-
   /**
    * Return true if this ObjectRoot object is equal to o.
    */
@@ -106,13 +78,12 @@ public class ObjectRoot implements Serializable {
       return false;
     }
     ObjectRoot objectRoot = (ObjectRoot) o;
-    return Objects.equals(this.data, objectRoot.data) &&
-        Objects.equals(this.meta, objectRoot.meta);
+    return Objects.equals(this.data, objectRoot.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, meta);
+    return Objects.hash(data);
   }
 
   @Override
@@ -120,7 +91,6 @@ public class ObjectRoot implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class ObjectRoot {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }
