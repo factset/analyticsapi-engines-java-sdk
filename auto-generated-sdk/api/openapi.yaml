@@ -31997,7 +31997,7 @@ components:
       type: object
     CalculationInfo:
       properties:
-        id:
+        calculationId:
           description: Calculation identifier
           type: string
       type: object
