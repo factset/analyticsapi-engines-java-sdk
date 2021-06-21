@@ -399,7 +399,7 @@ public class PaCalculationsApi {
    * Create and Run PA calculation
    * This endpoint runs the PA calculation specified in the POST body parameters.  It can take one or more calculation units as input.    Remarks:    * Any settings in POST body will act as a one-time override over the settings saved in the PA template.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param paCalculationParametersRoot Calculation Parameters (optional)
     @return (For 202 status - CalculationStatusRoot)(For 201 status - ObjectRoot)(For 200 status - CalculationStatusRoot)
    * @throws ApiException if fails to make API call
@@ -427,7 +427,7 @@ public class PaCalculationsApi {
    * Create and Run PA calculation
    * This endpoint runs the PA calculation specified in the POST body parameters.  It can take one or more calculation units as input.    Remarks:    * Any settings in POST body will act as a one-time override over the settings saved in the PA template.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param paCalculationParametersRoot Calculation Parameters (optional)
     * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 201 status - ObjectRoot)(For 200 status - CalculationStatusRoot)
    * @throws ApiException if fails to make API call
@@ -497,7 +497,7 @@ if (cacheControl != null)
    * This endpoint updates and run the PA calculation specified in the PUT body parameters. This also allows creating new PA calculations with custom ids.  It can take one or more calculation units as input.    Remarks:    * Any settings in PUT body will act as a one-time override over the settings saved in the PA template.
    * @param id from url, provided from the location header in the Create and Run PA calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param paCalculationParametersRoot Calculation Parameters (optional)
     @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
@@ -527,7 +527,7 @@ if (cacheControl != null)
    * This endpoint updates and run the PA calculation specified in the PUT body parameters. This also allows creating new PA calculations with custom ids.  It can take one or more calculation units as input.    Remarks:    * Any settings in PUT body will act as a one-time override over the settings saved in the PA template.
    * @param id from url, provided from the location header in the Create and Run PA calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param paCalculationParametersRoot Calculation Parameters (optional)
     * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
