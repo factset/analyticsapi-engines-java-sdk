@@ -359,7 +359,7 @@ public class Example {
 
         BpmOptimizerApi apiInstance = new BpmOptimizerApi(defaultClient);
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
-        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
+        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         BPMOptimizationParametersRoot bpMOptimizationParametersRoot = new BPMOptimizationParametersRoot(); // BPMOptimizationParametersRoot | Optimization Parameters
         try {
             Object result = apiInstance.postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, bpMOptimizationParametersRoot);
@@ -381,7 +381,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
- **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
+ **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **bpMOptimizationParametersRoot** | [**BPMOptimizationParametersRoot**](BPMOptimizationParametersRoot.md)| Optimization Parameters | [optional]
 
 ### Return type
@@ -444,7 +444,7 @@ public class Example {
         BpmOptimizerApi apiInstance = new BpmOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run BPM optimization endpoint
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
-        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
+        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         BPMOptimizationParametersRoot bpMOptimizationParametersRoot = new BPMOptimizationParametersRoot(); // BPMOptimizationParametersRoot | Optimization Parameters
         try {
             Object result = apiInstance.putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, bpMOptimizationParametersRoot);
@@ -467,7 +467,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| from url, provided from the location header in the Create and Run BPM optimization endpoint |
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
- **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
+ **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **bpMOptimizationParametersRoot** | [**BPMOptimizationParametersRoot**](BPMOptimizationParametersRoot.md)| Optimization Parameters | [optional]
 
 ### Return type
