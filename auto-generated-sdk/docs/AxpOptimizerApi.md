@@ -359,7 +359,7 @@ public class Example {
 
         AxpOptimizerApi apiInstance = new AxpOptimizerApi(defaultClient);
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
-        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
+        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         AxiomaEquityOptimizationParametersRoot axiomaEquityOptimizationParametersRoot = new AxiomaEquityOptimizationParametersRoot(); // AxiomaEquityOptimizationParametersRoot | Optimization Parameters
         try {
             Object result = apiInstance.postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, axiomaEquityOptimizationParametersRoot);
@@ -381,7 +381,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
- **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
+ **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **axiomaEquityOptimizationParametersRoot** | [**AxiomaEquityOptimizationParametersRoot**](AxiomaEquityOptimizationParametersRoot.md)| Optimization Parameters | [optional]
 
 ### Return type
@@ -444,7 +444,7 @@ public class Example {
         AxpOptimizerApi apiInstance = new AxpOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run Axioma optimization endpoint
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
-        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
+        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         AxiomaEquityOptimizationParametersRoot axiomaEquityOptimizationParametersRoot = new AxiomaEquityOptimizationParametersRoot(); // AxiomaEquityOptimizationParametersRoot | Optimization Parameters
         try {
             Object result = apiInstance.putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, axiomaEquityOptimizationParametersRoot);
@@ -467,7 +467,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| from url, provided from the location header in the Create and Run Axioma optimization endpoint |
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
- **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
+ **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **axiomaEquityOptimizationParametersRoot** | [**AxiomaEquityOptimizationParametersRoot**](AxiomaEquityOptimizationParametersRoot.md)| Optimization Parameters | [optional]
 
 ### Return type
