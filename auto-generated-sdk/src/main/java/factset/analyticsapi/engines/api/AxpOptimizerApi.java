@@ -390,7 +390,7 @@ public class AxpOptimizerApi {
    * Create and Run Axioma optimization
    * This endpoint creates and runs Axioma optimization specified in the POST body parameters.                Remarks:                * Any settings in POST body will act as a one-time override over the settings saved in the strategy document.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param axiomaEquityOptimizationParametersRoot Optimization Parameters (optional)
     @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
@@ -417,7 +417,7 @@ public class AxpOptimizerApi {
    * Create and Run Axioma optimization
    * This endpoint creates and runs Axioma optimization specified in the POST body parameters.                Remarks:                * Any settings in POST body will act as a one-time override over the settings saved in the strategy document.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param axiomaEquityOptimizationParametersRoot Optimization Parameters (optional)
     * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
@@ -485,7 +485,7 @@ if (cacheControl != null)
    * This endpoint updates and run the Axioma optimization specified in the PUT body parameters. It also allows the creation of new Axioma optimization with custom id.
    * @param id from url, provided from the location header in the Create and Run Axioma optimization endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param axiomaEquityOptimizationParametersRoot Optimization Parameters (optional)
     @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
@@ -514,7 +514,7 @@ if (cacheControl != null)
    * This endpoint updates and run the Axioma optimization specified in the PUT body parameters. It also allows the creation of new Axioma optimization with custom id.
    * @param id from url, provided from the location header in the Create and Run Axioma optimization endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param axiomaEquityOptimizationParametersRoot Optimization Parameters (optional)
     * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
