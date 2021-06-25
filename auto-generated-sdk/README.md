@@ -3,7 +3,7 @@
 
 Engines API
 
-- API version: v3:[pa,spar,vault,pub,fi,axp,afi,npo,bpm,fpo,others],v1:[fiab]
+- API version: v3:[pa,spar,vault,pub,quant,fi,axp,afi,npo,bpm,fpo,others],v1:[fiab]
 
 Allow clients to fetch Analytics through APIs.
 
@@ -138,6 +138,12 @@ All URIs are relative to *https://api.factset.com*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AccountsApi* | [**getAccounts**](docs/AccountsApi.md#getAccounts) | **GET** /analytics/lookups/v3/accounts/{path} | Get accounts and sub-directories in a directory
+*AfiOptimizerApi* | [**cancelOptimizationById**](docs/AfiOptimizerApi.md#cancelOptimizationById) | **DELETE** /analytics/engines/afi/v3/optimizations/{id} | Cancel AFI optimization by id
+*AfiOptimizerApi* | [**getOptimizationParameters**](docs/AfiOptimizerApi.md#getOptimizationParameters) | **GET** /analytics/engines/afi/v3/optimizations/{id} | Get AFI optimization parameters by id
+*AfiOptimizerApi* | [**getOptimizationResult**](docs/AfiOptimizerApi.md#getOptimizationResult) | **GET** /analytics/engines/afi/v3/optimizations/{id}/result | Get AFI optimization result by id
+*AfiOptimizerApi* | [**getOptimizationStatusById**](docs/AfiOptimizerApi.md#getOptimizationStatusById) | **GET** /analytics/engines/afi/v3/optimizations/{id}/status | Get AFI optimization status by id
+*AfiOptimizerApi* | [**postAndOptimize**](docs/AfiOptimizerApi.md#postAndOptimize) | **POST** /analytics/engines/afi/v3/optimizations | Create and Run AFI optimization
+*AfiOptimizerApi* | [**putAndOptimize**](docs/AfiOptimizerApi.md#putAndOptimize) | **PUT** /analytics/engines/afi/v3/optimizations/{id} | Create or Update AFI optimization and run it.
 *AxpOptimizerApi* | [**cancelOptimizationById**](docs/AxpOptimizerApi.md#cancelOptimizationById) | **DELETE** /analytics/engines/axp/v3/optimizations/{id} | Cancel Axioma optimization by id
 *AxpOptimizerApi* | [**getOptimizationParameters**](docs/AxpOptimizerApi.md#getOptimizationParameters) | **GET** /analytics/engines/axp/v3/optimizations/{id} | Get Axioma optimization parameters by id
 *AxpOptimizerApi* | [**getOptimizationResult**](docs/AxpOptimizerApi.md#getOptimizationResult) | **GET** /analytics/engines/axp/v3/optimizations/{id}/result | Get Axioma optimization result by id
@@ -187,6 +193,12 @@ Class | Method | HTTP request | Description
 *FrequenciesApi* | [**getSPARFrequencies**](docs/FrequenciesApi.md#getSPARFrequencies) | **GET** /analytics/engines/spar/v3/frequencies | Get SPAR frequencies
 *FrequenciesApi* | [**getVaultFrequencies**](docs/FrequenciesApi.md#getVaultFrequencies) | **GET** /analytics/engines/vault/v3/frequencies | Get Vault frequencies
 *GroupsApi* | [**getPAGroups**](docs/GroupsApi.md#getPAGroups) | **GET** /analytics/engines/pa/v3/groups | Get PA groups
+*NpoOptimizerApi* | [**cancelOptimizationById**](docs/NpoOptimizerApi.md#cancelOptimizationById) | **DELETE** /analytics/engines/npo/v3/optimizations/{id} | Cancel NPO optimization by id
+*NpoOptimizerApi* | [**getOptimizationParameters**](docs/NpoOptimizerApi.md#getOptimizationParameters) | **GET** /analytics/engines/npo/v3/optimizations/{id} | Get NPO optimization parameters by id
+*NpoOptimizerApi* | [**getOptimizationResult**](docs/NpoOptimizerApi.md#getOptimizationResult) | **GET** /analytics/engines/npo/v3/optimizations/{id}/result | Get NPO optimization result by id
+*NpoOptimizerApi* | [**getOptimizationStatusById**](docs/NpoOptimizerApi.md#getOptimizationStatusById) | **GET** /analytics/engines/npo/v3/optimizations/{id}/status | Get NPO optimization status by id
+*NpoOptimizerApi* | [**postAndOptimize**](docs/NpoOptimizerApi.md#postAndOptimize) | **POST** /analytics/engines/npo/v3/optimizations | Create and Run NPO optimization
+*NpoOptimizerApi* | [**putAndOptimize**](docs/NpoOptimizerApi.md#putAndOptimize) | **PUT** /analytics/engines/npo/v3/optimizations/{id} | Create or Update NPO optimization and run it.
 *PaCalculationsApi* | [**cancelCalculationById**](docs/PaCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/pa/v3/calculations/{id} | Cancel PA calculation by id
 *PaCalculationsApi* | [**getCalculationParameters**](docs/PaCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/pa/v3/calculations/{id} | Get PA calculation parameters by id
 *PaCalculationsApi* | [**getCalculationStatusById**](docs/PaCalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/pa/v3/calculations/{id}/status | Get PA calculation status by id
@@ -199,6 +211,12 @@ Class | Method | HTTP request | Description
 *PubCalculationsApi* | [**getCalculationUnitResultById**](docs/PubCalculationsApi.md#getCalculationUnitResultById) | **GET** /analytics/engines/pub/v3/calculations/{id}/units/{unitId}/result | Get Pub calculation result by id
 *PubCalculationsApi* | [**postAndCalculate**](docs/PubCalculationsApi.md#postAndCalculate) | **POST** /analytics/engines/pub/v3/calculations | Create and Run Pub calculation
 *PubCalculationsApi* | [**putAndCalculate**](docs/PubCalculationsApi.md#putAndCalculate) | **PUT** /analytics/engines/pub/v3/calculations/{id} | Create or Update Pub calculation and run it.
+*QuantCalculationsApi* | [**getCalculationParameters**](docs/QuantCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/quant/v3/calculations/{id} | Get Quant Engine calculation parameters by id
+*QuantCalculationsApi* | [**getCalculationStatusById**](docs/QuantCalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/quant/v3/calculations/{id}/status | Get Quant Engine calculation status by id
+*QuantCalculationsApi* | [**getCalculationUnitInfoById**](docs/QuantCalculationsApi.md#getCalculationUnitInfoById) | **GET** /analytics/engines/quant/v3/calculations/{id}/units/{unitId}/info | Get Quant Engine calculation metadata information by id
+*QuantCalculationsApi* | [**getCalculationUnitResultById**](docs/QuantCalculationsApi.md#getCalculationUnitResultById) | **GET** /analytics/engines/quant/v3/calculations/{id}/units/{unitId}/result | Get Quant Engine calculation result by id
+*QuantCalculationsApi* | [**postAndCalculate**](docs/QuantCalculationsApi.md#postAndCalculate) | **POST** /analytics/engines/quant/v3/calculations | Create and Run Quant Engine calculation
+*QuantCalculationsApi* | [**putAndCalculate**](docs/QuantCalculationsApi.md#putAndCalculate) | **PUT** /analytics/engines/quant/v3/calculations/{id} | Create or update Quant Engine calculation and run it.
 *SparCalculationsApi* | [**cancelCalculationById**](docs/SparCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/spar/v3/calculations/{id} | Cancel SPAR calculation
 *SparCalculationsApi* | [**getCalculationParameters**](docs/SparCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/spar/v3/calculations/{id} | Get SPAR calculation parameters by id
 *SparCalculationsApi* | [**getCalculationStatusById**](docs/SparCalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/spar/v3/calculations/{id}/status | Get SPAR calculation status by id
@@ -220,6 +238,10 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [AFIOptimizationParameters](docs/AFIOptimizationParameters.md)
+ - [AFIOptimizationParametersRoot](docs/AFIOptimizationParametersRoot.md)
+ - [AFIOptimizerStrategy](docs/AFIOptimizerStrategy.md)
+ - [AFIOptimizerStrategyOverrides](docs/AFIOptimizerStrategyOverrides.md)
  - [AccountDirectories](docs/AccountDirectories.md)
  - [AccountDirectoriesRoot](docs/AccountDirectoriesRoot.md)
  - [AxiomaEquityOptimizationParameters](docs/AxiomaEquityOptimizationParameters.md)
@@ -236,8 +258,10 @@ Class | Method | HTTP request | Description
  - [CalculationInfoRoot](docs/CalculationInfoRoot.md)
  - [CalculationMeta](docs/CalculationMeta.md)
  - [CalculationStatus](docs/CalculationStatus.md)
+ - [CalculationStatusMeta](docs/CalculationStatusMeta.md)
  - [CalculationStatusRoot](docs/CalculationStatusRoot.md)
  - [CalculationUnitStatus](docs/CalculationUnitStatus.md)
+ - [CalculationUnitStatusMeta](docs/CalculationUnitStatusMeta.md)
  - [ClientErrorResponse](docs/ClientErrorResponse.md)
  - [Column](docs/Column.md)
  - [ColumnRoot](docs/ColumnRoot.md)
@@ -274,6 +298,10 @@ Class | Method | HTTP request | Description
  - [FrequencyRoot](docs/FrequencyRoot.md)
  - [Group](docs/Group.md)
  - [GroupRoot](docs/GroupRoot.md)
+ - [NPOOptimizationParameters](docs/NPOOptimizationParameters.md)
+ - [NPOOptimizationParametersRoot](docs/NPOOptimizationParametersRoot.md)
+ - [NPOOptimizerStrategy](docs/NPOOptimizerStrategy.md)
+ - [NPOOptimizerStrategyOverrides](docs/NPOOptimizerStrategyOverrides.md)
  - [ObjectRoot](docs/ObjectRoot.md)
  - [OptimalPortfolio](docs/OptimalPortfolio.md)
  - [Optimization](docs/Optimization.md)
@@ -297,6 +325,17 @@ Class | Method | HTTP request | Description
  - [PubCalculationParametersRoot](docs/PubCalculationParametersRoot.md)
  - [PubDateParameters](docs/PubDateParameters.md)
  - [PubIdentifier](docs/PubIdentifier.md)
+ - [QuantCalculationMeta](docs/QuantCalculationMeta.md)
+ - [QuantCalculationParameters](docs/QuantCalculationParameters.md)
+ - [QuantCalculationParametersRoot](docs/QuantCalculationParametersRoot.md)
+ - [QuantDateList](docs/QuantDateList.md)
+ - [QuantFdsDate](docs/QuantFdsDate.md)
+ - [QuantFqlExpression](docs/QuantFqlExpression.md)
+ - [QuantIdentifierUniverse](docs/QuantIdentifierUniverse.md)
+ - [QuantScreeningExpression](docs/QuantScreeningExpression.md)
+ - [QuantScreeningExpressionUniverse](docs/QuantScreeningExpressionUniverse.md)
+ - [QuantUniversalScreenParameter](docs/QuantUniversalScreenParameter.md)
+ - [QuantUniversalScreenUniverse](docs/QuantUniversalScreenUniverse.md)
  - [SPARBenchmark](docs/SPARBenchmark.md)
  - [SPARBenchmarkRoot](docs/SPARBenchmarkRoot.md)
  - [SPARCalculationParameters](docs/SPARCalculationParameters.md)

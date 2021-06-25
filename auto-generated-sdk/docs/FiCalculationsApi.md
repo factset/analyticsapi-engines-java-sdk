@@ -356,7 +356,7 @@ public class Example {
 
         FiCalculationsApi apiInstance = new FiCalculationsApi(defaultClient);
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
-        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
+        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         FICalculationParametersRoot fiCalculationParametersRoot = new FICalculationParametersRoot(); // FICalculationParametersRoot | Calculation Parameters
         try {
             Object result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot);
@@ -378,7 +378,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
- **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
+ **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **fiCalculationParametersRoot** | [**FICalculationParametersRoot**](FICalculationParametersRoot.md)| Calculation Parameters | [optional]
 
 ### Return type
@@ -441,7 +441,7 @@ public class Example {
         FiCalculationsApi apiInstance = new FiCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run FI calculation endpoint
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
-        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
+        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         FICalculationParametersRoot fiCalculationParametersRoot = new FICalculationParametersRoot(); // FICalculationParametersRoot | Calculation Parameters
         try {
             Object result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot);
@@ -464,7 +464,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| from url, provided from the location header in the Create and Run FI calculation endpoint |
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
- **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
+ **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **fiCalculationParametersRoot** | [**FICalculationParametersRoot**](FICalculationParametersRoot.md)| Calculation Parameters | [optional]
 
 ### Return type
