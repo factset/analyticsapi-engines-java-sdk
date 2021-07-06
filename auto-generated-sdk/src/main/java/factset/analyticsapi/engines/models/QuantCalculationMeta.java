@@ -33,14 +33,140 @@ import factset.analyticsapi.engines.JSON;
  * QuantCalculationMeta
  */
 @JsonPropertyOrder({
-  QuantCalculationMeta.JSON_PROPERTY_FORMAT,
   QuantCalculationMeta.JSON_PROPERTY_ALLOW_ARRAY_DATA,
   QuantCalculationMeta.JSON_PROPERTY_CONTENTORGANIZATION,
-  QuantCalculationMeta.JSON_PROPERTY_CONTENTTYPE
+  QuantCalculationMeta.JSON_PROPERTY_STACH_CONTENT_ORGANIZATION,
+  QuantCalculationMeta.JSON_PROPERTY_CONTENTTYPE,
+  QuantCalculationMeta.JSON_PROPERTY_FORMAT
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class QuantCalculationMeta implements Serializable {
   private static final long serialVersionUID = 1L;
+
+  public static final String JSON_PROPERTY_ALLOW_ARRAY_DATA = "allowArrayData";
+  private Boolean allowArrayData;
+
+  /**
+   * Gets or Sets contentorganization
+   */
+  public enum ContentorganizationEnum {
+    NONE("None"),
+    
+    ROW("Row"),
+    
+    COLUMN("Column"),
+    
+    SIMPLIFIEDROW("SimplifiedRow");
+
+    private String value;
+
+    ContentorganizationEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ContentorganizationEnum fromValue(String value) {
+      for (ContentorganizationEnum b : ContentorganizationEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CONTENTORGANIZATION = "contentorganization";
+  private ContentorganizationEnum contentorganization = ContentorganizationEnum.SIMPLIFIEDROW;
+
+  /**
+   * Gets or Sets stachContentOrganization
+   */
+  public enum StachContentOrganizationEnum {
+    NONE("None"),
+    
+    ROW("Row"),
+    
+    COLUMN("Column"),
+    
+    SIMPLIFIEDROW("SimplifiedRow");
+
+    private String value;
+
+    StachContentOrganizationEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StachContentOrganizationEnum fromValue(String value) {
+      for (StachContentOrganizationEnum b : StachContentOrganizationEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_STACH_CONTENT_ORGANIZATION = "stachContentOrganization";
+  private StachContentOrganizationEnum stachContentOrganization = StachContentOrganizationEnum.SIMPLIFIEDROW;
+
+  /**
+   * Gets or Sets contenttype
+   */
+  public enum ContenttypeEnum {
+    JSON("Json"),
+    
+    BINARY("Binary");
+
+    private String value;
+
+    ContenttypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ContenttypeEnum fromValue(String value) {
+      for (ContenttypeEnum b : ContenttypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CONTENTTYPE = "contenttype";
+  private ContenttypeEnum contenttype = ContenttypeEnum.JSON;
 
   /**
    * Gets or Sets format
@@ -92,114 +218,7 @@ public class QuantCalculationMeta implements Serializable {
   }
 
   public static final String JSON_PROPERTY_FORMAT = "format";
-  private FormatEnum format;
-
-  public static final String JSON_PROPERTY_ALLOW_ARRAY_DATA = "allowArrayData";
-  private Boolean allowArrayData;
-
-  /**
-   * Gets or Sets contentorganization
-   */
-  public enum ContentorganizationEnum {
-    NONE("None"),
-    
-    ROW("Row"),
-    
-    COLUMN("Column"),
-    
-    SIMPLIFIEDROW("SimplifiedRow");
-
-    private String value;
-
-    ContentorganizationEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ContentorganizationEnum fromValue(String value) {
-      for (ContentorganizationEnum b : ContentorganizationEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_CONTENTORGANIZATION = "contentorganization";
-  private ContentorganizationEnum contentorganization = ContentorganizationEnum.SIMPLIFIEDROW;
-
-  /**
-   * Gets or Sets contenttype
-   */
-  public enum ContenttypeEnum {
-    JSON("Json"),
-    
-    BINARY("Binary");
-
-    private String value;
-
-    ContenttypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ContenttypeEnum fromValue(String value) {
-      for (ContenttypeEnum b : ContenttypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_CONTENTTYPE = "contenttype";
-  private ContenttypeEnum contenttype = ContenttypeEnum.JSON;
-
-
-  public QuantCalculationMeta format(FormatEnum format) {
-    this.format = format;
-    return this;
-  }
-
-   /**
-   * Get format
-   * @return format
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_FORMAT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public FormatEnum getFormat() {
-    return format;
-  }
-
-
-  public void setFormat(FormatEnum format) {
-    this.format = format;
-  }
+  private FormatEnum format = FormatEnum.JSONSTACH;
 
 
   public QuantCalculationMeta allowArrayData(Boolean allowArrayData) {
@@ -250,6 +269,30 @@ public class QuantCalculationMeta implements Serializable {
   }
 
 
+  public QuantCalculationMeta stachContentOrganization(StachContentOrganizationEnum stachContentOrganization) {
+    this.stachContentOrganization = stachContentOrganization;
+    return this;
+  }
+
+   /**
+   * Get stachContentOrganization
+   * @return stachContentOrganization
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_STACH_CONTENT_ORGANIZATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public StachContentOrganizationEnum getStachContentOrganization() {
+    return stachContentOrganization;
+  }
+
+
+  public void setStachContentOrganization(StachContentOrganizationEnum stachContentOrganization) {
+    this.stachContentOrganization = stachContentOrganization;
+  }
+
+
   public QuantCalculationMeta contenttype(ContenttypeEnum contenttype) {
     this.contenttype = contenttype;
     return this;
@@ -274,6 +317,30 @@ public class QuantCalculationMeta implements Serializable {
   }
 
 
+  public QuantCalculationMeta format(FormatEnum format) {
+    this.format = format;
+    return this;
+  }
+
+   /**
+   * Get format
+   * @return format
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_FORMAT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public FormatEnum getFormat() {
+    return format;
+  }
+
+
+  public void setFormat(FormatEnum format) {
+    this.format = format;
+  }
+
+
   /**
    * Return true if this QuantCalculationMeta object is equal to o.
    */
@@ -286,25 +353,27 @@ public class QuantCalculationMeta implements Serializable {
       return false;
     }
     QuantCalculationMeta quantCalculationMeta = (QuantCalculationMeta) o;
-    return Objects.equals(this.format, quantCalculationMeta.format) &&
-        Objects.equals(this.allowArrayData, quantCalculationMeta.allowArrayData) &&
+    return Objects.equals(this.allowArrayData, quantCalculationMeta.allowArrayData) &&
         Objects.equals(this.contentorganization, quantCalculationMeta.contentorganization) &&
-        Objects.equals(this.contenttype, quantCalculationMeta.contenttype);
+        Objects.equals(this.stachContentOrganization, quantCalculationMeta.stachContentOrganization) &&
+        Objects.equals(this.contenttype, quantCalculationMeta.contenttype) &&
+        Objects.equals(this.format, quantCalculationMeta.format);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(format, allowArrayData, contentorganization, contenttype);
+    return Objects.hash(allowArrayData, contentorganization, stachContentOrganization, contenttype, format);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class QuantCalculationMeta {\n");
-    sb.append("    format: ").append(toIndentedString(format)).append("\n");
     sb.append("    allowArrayData: ").append(toIndentedString(allowArrayData)).append("\n");
     sb.append("    contentorganization: ").append(toIndentedString(contentorganization)).append("\n");
+    sb.append("    stachContentOrganization: ").append(toIndentedString(stachContentOrganization)).append("\n");
     sb.append("    contenttype: ").append(toIndentedString(contenttype)).append("\n");
+    sb.append("    format: ").append(toIndentedString(format)).append("\n");
     sb.append("}");
     return sb.toString();
   }

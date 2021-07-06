@@ -368,10 +368,10 @@ paths:
                 type: string
               style: simple
             X-DataDirect-Request-Key:
-              description: FactSet’s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet’s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -410,10 +410,10 @@ paths:
             in a short span.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet’s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet’s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -451,10 +451,10 @@ paths:
           description: Invalid optimization parameters.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet’s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet’s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -492,10 +492,10 @@ paths:
           description: One or more optimization settings were unavailable.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet’s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet’s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -529,10 +529,10 @@ paths:
           description: Missing or invalid authentication.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet’s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet’s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -548,10 +548,10 @@ paths:
           description: User is forbidden with current credentials
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet’s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet’s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -586,10 +586,10 @@ paths:
             to application/json.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet’s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet’s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -624,10 +624,10 @@ paths:
             endpoint or wait for older requests to finish/expire.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet’s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet’s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -669,10 +669,10 @@ paths:
             in troubleshooting.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet’s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet’s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -688,10 +688,10 @@ paths:
           description: Request timed out. Retry the request in sometime.
           headers:
             X-DataDirect-Request-Key:
-              description: FactSet’s request key header.
+              description: FactSet's request key header.
               explode: false
               schema:
-                description: FactSet’s request key header.
+                description: FactSet's request key header.
                 type: string
               style: simple
             X-FactSet-Api-Request-Key:
@@ -33202,9 +33202,20 @@ components:
     CalculationMeta:
       example:
         contentorganization: SimplifiedRow
+        format: JsonStach
+        stachContentOrganization: SimplifiedRow
         contenttype: Json
       properties:
         contentorganization:
+          default: SimplifiedRow
+          deprecated: true
+          enum:
+          - None
+          - Row
+          - Column
+          - SimplifiedRow
+          type: string
+        stachContentOrganization:
           default: SimplifiedRow
           enum:
           - None
@@ -33214,9 +33225,23 @@ components:
           type: string
         contenttype:
           default: Json
+          deprecated: true
           enum:
           - Json
           - Binary
+          type: string
+        format:
+          default: JsonStach
+          enum:
+          - JsonStach
+          - Table
+          - Tableau
+          - BinaryStach
+          - Bison
+          - Binary
+          - Pdf
+          - Pptx
+          - Feather
           type: string
       type: object
     FICalculationParametersRoot:
@@ -33247,6 +33272,8 @@ components:
             settlement: settlement
         meta:
           contentorganization: SimplifiedRow
+          format: JsonStach
+          stachContentOrganization: SimplifiedRow
           contenttype: Json
       properties:
         data:
@@ -33767,6 +33794,8 @@ components:
               holdingsmode: holdingsmode
         meta:
           contentorganization: SimplifiedRow
+          format: JsonStach
+          stachContentOrganization: SimplifiedRow
           contenttype: Json
       properties:
         data:
@@ -34185,9 +34214,37 @@ components:
         contentorganization: SimplifiedRow
         allowArrayData: true
         format: JsonStach
+        stachContentOrganization: SimplifiedRow
         contenttype: Json
       properties:
+        allowArrayData:
+          type: boolean
+        contentorganization:
+          default: SimplifiedRow
+          deprecated: true
+          enum:
+          - None
+          - Row
+          - Column
+          - SimplifiedRow
+          type: string
+        stachContentOrganization:
+          default: SimplifiedRow
+          enum:
+          - None
+          - Row
+          - Column
+          - SimplifiedRow
+          type: string
+        contenttype:
+          default: Json
+          deprecated: true
+          enum:
+          - Json
+          - Binary
+          type: string
         format:
+          default: JsonStach
           enum:
           - JsonStach
           - Table
@@ -34198,22 +34255,6 @@ components:
           - Pdf
           - Pptx
           - Feather
-          type: string
-        allowArrayData:
-          type: boolean
-        contentorganization:
-          default: SimplifiedRow
-          enum:
-          - None
-          - Row
-          - Column
-          - SimplifiedRow
-          type: string
-        contenttype:
-          default: Json
-          enum:
-          - Json
-          - Binary
           type: string
       type: object
     QuantCalculationParametersRoot:
@@ -34264,6 +34305,7 @@ components:
           contentorganization: SimplifiedRow
           allowArrayData: true
           format: JsonStach
+          stachContentOrganization: SimplifiedRow
           contenttype: Json
       properties:
         data:
@@ -34351,6 +34393,8 @@ components:
               id: id
         meta:
           contentorganization: SimplifiedRow
+          format: JsonStach
+          stachContentOrganization: SimplifiedRow
           contenttype: Json
       properties:
         data:
@@ -34407,6 +34451,8 @@ components:
               id: id
         meta:
           contentorganization: SimplifiedRow
+          format: JsonStach
+          stachContentOrganization: SimplifiedRow
           contenttype: Json
       properties:
         data:
