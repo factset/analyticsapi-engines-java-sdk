@@ -363,7 +363,7 @@ public class Example {
 
         PaCalculationsApi apiInstance = new PaCalculationsApi(defaultClient);
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds when only one unit is passed in the POST body.
-        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
+        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         PACalculationParametersRoot paCalculationParametersRoot = new PACalculationParametersRoot(); // PACalculationParametersRoot | Calculation Parameters
         try {
             Object result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, paCalculationParametersRoot);
@@ -385,7 +385,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds when only one unit is passed in the POST body. | [optional]
- **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
+ **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **paCalculationParametersRoot** | [**PACalculationParametersRoot**](PACalculationParametersRoot.md)| Calculation Parameters | [optional]
 
 ### Return type
@@ -454,7 +454,7 @@ public class Example {
         PaCalculationsApi apiInstance = new PaCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run PA calculation endpoint
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds when only one unit is passed in the PUT body.
-        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
+        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         PACalculationParametersRoot paCalculationParametersRoot = new PACalculationParametersRoot(); // PACalculationParametersRoot | Calculation Parameters
         try {
             Object result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, paCalculationParametersRoot);
@@ -477,7 +477,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| from url, provided from the location header in the Create and Run PA calculation endpoint |
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds when only one unit is passed in the PUT body. | [optional]
- **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
+ **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **paCalculationParametersRoot** | [**PACalculationParametersRoot**](PACalculationParametersRoot.md)| Calculation Parameters | [optional]
 
 ### Return type
