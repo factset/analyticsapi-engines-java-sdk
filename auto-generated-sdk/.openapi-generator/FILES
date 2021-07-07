@@ -192,7 +192,6 @@ src/main/java/factset/analyticsapi/engines/auth/ApiKeyAuth.java
 src/main/java/factset/analyticsapi/engines/auth/Authentication.java
 src/main/java/factset/analyticsapi/engines/auth/HttpBasicAuth.java
 src/main/java/factset/analyticsapi/engines/auth/HttpBearerAuth.java
-src/main/java/factset/analyticsapi/engines/java.java
 src/main/java/factset/analyticsapi/engines/models/AFIOptimizationParameters.java
 src/main/java/factset/analyticsapi/engines/models/AFIOptimizationParametersRoot.java
 src/main/java/factset/analyticsapi/engines/models/AFIOptimizerStrategy.java
