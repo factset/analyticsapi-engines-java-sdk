@@ -119,7 +119,7 @@ public class FiCalculationsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
@@ -201,7 +201,7 @@ public class FiCalculationsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<FICalculationParametersRoot> localVarReturnType = new GenericType<FICalculationParametersRoot>() {};
 
@@ -286,7 +286,7 @@ public class FiCalculationsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
@@ -373,7 +373,7 @@ public class FiCalculationsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
@@ -390,7 +390,7 @@ public class FiCalculationsApi {
    * Create and Run FI calculation
    * This endpoint creates and runs a new FI calculation specified in the post body.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param fiCalculationParametersRoot Calculation Parameters (optional)
     @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
@@ -417,7 +417,7 @@ public class FiCalculationsApi {
    * Create and Run FI calculation
    * This endpoint creates and runs a new FI calculation specified in the post body.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param fiCalculationParametersRoot Calculation Parameters (optional)
     * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
@@ -466,7 +466,7 @@ if (cacheControl != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
@@ -485,7 +485,7 @@ if (cacheControl != null)
    * This endpoint updates and run the FI optimization specified in the PUT body parameters. It also allows the creation of new FI optimization with custom id.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param fiCalculationParametersRoot Calculation Parameters (optional)
     @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
@@ -514,7 +514,7 @@ if (cacheControl != null)
    * This endpoint updates and run the FI optimization specified in the PUT body parameters. It also allows the creation of new FI optimization with custom id.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param fiCalculationParametersRoot Calculation Parameters (optional)
     * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
@@ -570,7 +570,7 @@ if (cacheControl != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 

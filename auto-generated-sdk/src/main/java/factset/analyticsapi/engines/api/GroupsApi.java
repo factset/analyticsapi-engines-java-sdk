@@ -109,7 +109,7 @@ public class GroupsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<GroupRoot> localVarReturnType = new GenericType<GroupRoot>() {};
 

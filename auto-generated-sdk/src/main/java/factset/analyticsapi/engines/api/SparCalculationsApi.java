@@ -119,7 +119,7 @@ public class SparCalculationsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
@@ -201,7 +201,7 @@ public class SparCalculationsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<SPARCalculationParametersRoot> localVarReturnType = new GenericType<SPARCalculationParametersRoot>() {};
 
@@ -288,7 +288,7 @@ public class SparCalculationsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
 
@@ -382,7 +382,7 @@ public class SparCalculationsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
@@ -399,7 +399,7 @@ public class SparCalculationsApi {
    * Create and Run SPAR calculation
    * This endpoint runs the SPAR calculation specified in the POST body parameters.  It can take one or more units as input.    Remarks:    * Any settings in POST body will act as a one-time override over the settings saved in the SPAR template.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param spARCalculationParametersRoot Calculation Parameters (optional)
     @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
@@ -427,7 +427,7 @@ public class SparCalculationsApi {
    * Create and Run SPAR calculation
    * This endpoint runs the SPAR calculation specified in the POST body parameters.  It can take one or more units as input.    Remarks:    * Any settings in POST body will act as a one-time override over the settings saved in the SPAR template.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param spARCalculationParametersRoot Calculation Parameters (optional)
     * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
@@ -477,7 +477,7 @@ if (cacheControl != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
 
@@ -497,7 +497,7 @@ if (cacheControl != null)
    * This endpoint updates and run the SPAR calculation specified in the PUT body parameters. This also allows creating new SPAR calculations with custom ids.  It can take one or more units as input.    Remarks:    * Any settings in PUT body will act as a one-time override over the settings saved in the SPAR template.
    * @param id from url, provided from the location header in the Create and Run SPAR calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param spARCalculationParametersRoot Calculation Parameters (optional)
     @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
@@ -527,7 +527,7 @@ if (cacheControl != null)
    * This endpoint updates and run the SPAR calculation specified in the PUT body parameters. This also allows creating new SPAR calculations with custom ids.  It can take one or more units as input.    Remarks:    * Any settings in PUT body will act as a one-time override over the settings saved in the SPAR template.
    * @param id from url, provided from the location header in the Create and Run SPAR calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param spARCalculationParametersRoot Calculation Parameters (optional)
     * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
@@ -584,7 +584,7 @@ if (cacheControl != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
 

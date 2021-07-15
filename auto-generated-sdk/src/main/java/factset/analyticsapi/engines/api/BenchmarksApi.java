@@ -122,7 +122,7 @@ public class BenchmarksApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<SPARBenchmarkRoot> localVarReturnType = new GenericType<SPARBenchmarkRoot>() {};
 

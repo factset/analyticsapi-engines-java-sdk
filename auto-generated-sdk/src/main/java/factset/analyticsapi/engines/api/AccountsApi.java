@@ -122,7 +122,7 @@ public class AccountsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<AccountDirectoriesRoot> localVarReturnType = new GenericType<AccountDirectoriesRoot>() {};
 

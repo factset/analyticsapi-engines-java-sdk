@@ -119,7 +119,7 @@ public class BpmOptimizerApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
@@ -201,7 +201,7 @@ public class BpmOptimizerApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<BPMOptimizationParametersRoot> localVarReturnType = new GenericType<BPMOptimizationParametersRoot>() {};
 
@@ -286,7 +286,7 @@ public class BpmOptimizerApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
@@ -373,7 +373,7 @@ public class BpmOptimizerApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
@@ -390,7 +390,7 @@ public class BpmOptimizerApi {
    * Create and Run BPM optimization
    * This endpoint creates and runs BPM optimization specified in the POST body parameters.                Remarks:                * Any settings in POST body will act as a one-time override over the settings saved in the strategy document.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param bpMOptimizationParametersRoot Optimization Parameters (optional)
     @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
@@ -417,7 +417,7 @@ public class BpmOptimizerApi {
    * Create and Run BPM optimization
    * This endpoint creates and runs BPM optimization specified in the POST body parameters.                Remarks:                * Any settings in POST body will act as a one-time override over the settings saved in the strategy document.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param bpMOptimizationParametersRoot Optimization Parameters (optional)
     * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
@@ -466,7 +466,7 @@ if (cacheControl != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
@@ -485,7 +485,7 @@ if (cacheControl != null)
    * This endpoint updates and run the BPM optimization specified in the PUT body parameters. It also allows the creation of new BPM optimization with custom id.
    * @param id from url, provided from the location header in the Create and Run BPM optimization endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param bpMOptimizationParametersRoot Optimization Parameters (optional)
     @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
@@ -514,7 +514,7 @@ if (cacheControl != null)
    * This endpoint updates and run the BPM optimization specified in the PUT body parameters. It also allows the creation of new BPM optimization with custom id.
    * @param id from url, provided from the location header in the Create and Run BPM optimization endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
-   * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
+   * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param bpMOptimizationParametersRoot Optimization Parameters (optional)
     * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
@@ -570,7 +570,7 @@ if (cacheControl != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 

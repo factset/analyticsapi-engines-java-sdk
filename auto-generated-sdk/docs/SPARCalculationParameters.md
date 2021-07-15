@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **accounts** | [**java.util.List&lt;SPARIdentifier&gt;**](SPARIdentifier.md) | List of accounts for SPAR calculation. |  [optional]
 **benchmark** | [**SPARIdentifier**](SPARIdentifier.md) |  |  [optional]
 **dates** | [**SPARDateParameters**](SPARDateParameters.md) |  |  [optional]
+**currencyisocode** | **String** | Currency ISO code for calculation. |  [optional]
 
 
 ## Implemented Interfaces

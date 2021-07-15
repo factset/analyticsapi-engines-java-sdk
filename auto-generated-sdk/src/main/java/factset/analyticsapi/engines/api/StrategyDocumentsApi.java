@@ -122,7 +122,7 @@ public class StrategyDocumentsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<DocumentDirectoriesRoot> localVarReturnType = new GenericType<DocumentDirectoriesRoot>() {};
 
@@ -211,7 +211,7 @@ public class StrategyDocumentsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<DocumentDirectoriesRoot> localVarReturnType = new GenericType<DocumentDirectoriesRoot>() {};
 
@@ -300,7 +300,7 @@ public class StrategyDocumentsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<DocumentDirectoriesRoot> localVarReturnType = new GenericType<DocumentDirectoriesRoot>() {};
 
@@ -389,7 +389,7 @@ public class StrategyDocumentsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<DocumentDirectoriesRoot> localVarReturnType = new GenericType<DocumentDirectoriesRoot>() {};
 
@@ -478,7 +478,7 @@ public class StrategyDocumentsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<DocumentDirectoriesRoot> localVarReturnType = new GenericType<DocumentDirectoriesRoot>() {};
 

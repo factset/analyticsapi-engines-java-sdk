@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | Calculation identifier |  [optional]
+**calculationId** | **String** | Calculation identifier |  [optional]
 
 
 ## Implemented Interfaces

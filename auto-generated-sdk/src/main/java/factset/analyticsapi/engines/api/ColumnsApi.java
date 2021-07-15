@@ -123,7 +123,7 @@ public class ColumnsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ColumnRoot> localVarReturnType = new GenericType<ColumnRoot>() {};
 
@@ -209,7 +209,7 @@ public class ColumnsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ColumnSummaryRoot> localVarReturnType = new GenericType<ColumnSummaryRoot>() {};
 
