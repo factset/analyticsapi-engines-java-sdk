@@ -109,7 +109,7 @@ public class FrequenciesApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<FrequencyRoot> localVarReturnType = new GenericType<FrequencyRoot>() {};
 
@@ -184,7 +184,7 @@ public class FrequenciesApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<FrequencyRoot> localVarReturnType = new GenericType<FrequencyRoot>() {};
 
@@ -259,7 +259,7 @@ public class FrequenciesApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<FrequencyRoot> localVarReturnType = new GenericType<FrequencyRoot>() {};
 
