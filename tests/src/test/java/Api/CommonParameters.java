@@ -1,6 +1,7 @@
 package Api;
 
 import factset.analyticsapi.engines.models.OptimizerTradesList.IdentifierTypeEnum;
+import factset.analyticsapi.engines.models.QuantScreeningExpressionUniverse;
 
 public class CommonParameters {
 

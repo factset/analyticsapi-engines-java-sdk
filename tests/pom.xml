@@ -100,7 +100,7 @@
             <systemPath>${project.basedir}/../auto-generated-sdk/target/engines-sdk-5.0.0.jar</systemPath>
             <groupId>com.factset.analyticsapi</groupId>
             <artifactId>engines-sdk</artifactId>
-            <version>#{engines-sdk-version}</version>
+            <version>${engines-sdk-version}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.connectors</groupId>
