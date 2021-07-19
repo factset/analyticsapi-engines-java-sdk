@@ -147,8 +147,8 @@ public class QuantInteractiveEngineExample {
     }
 
     private static void SaveCalculationResult(File result, String output_filename) {
-        result.renameTo(new File("output-" + output_filename + ".pdf")); // Ensure that file with the same name does not exist in the location
-        System.out.println("Result file : output-" + output_filename + ".pdf");
+        result.renameTo(new File("output-" + output_filename + ".txt")); // Ensure that file with the same name does not exist in the location
+        System.out.println("Result file : output-" + output_filename + ".txt");
     }
 
     private static void outputCalculationResult(File result) {
