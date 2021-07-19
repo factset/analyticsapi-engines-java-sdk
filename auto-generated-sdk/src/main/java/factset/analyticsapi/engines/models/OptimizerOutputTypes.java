@@ -38,8 +38,7 @@ import factset.analyticsapi.engines.JSON;
 @JsonPropertyOrder({
   OptimizerOutputTypes.JSON_PROPERTY_TRADES,
   OptimizerOutputTypes.JSON_PROPERTY_OPTIMAL,
-  OptimizerOutputTypes.JSON_PROPERTY_ACCOUNT,
-  OptimizerOutputTypes.JSON_PROPERTY_STATS
+  OptimizerOutputTypes.JSON_PROPERTY_ACCOUNT
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class OptimizerOutputTypes implements Serializable {
@@ -53,9 +52,6 @@ public class OptimizerOutputTypes implements Serializable {
 
   public static final String JSON_PROPERTY_ACCOUNT = "account";
   private OptimalPortfolio account;
-
-  public static final String JSON_PROPERTY_STATS = "stats";
-  private Object stats;
 
 
   public OptimizerOutputTypes trades(OptimizerTradesList trades) {
@@ -130,30 +126,6 @@ public class OptimizerOutputTypes implements Serializable {
   }
 
 
-  public OptimizerOutputTypes stats(Object stats) {
-    this.stats = stats;
-    return this;
-  }
-
-   /**
-   * Get stats
-   * @return stats
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_STATS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Object getStats() {
-    return stats;
-  }
-
-
-  public void setStats(Object stats) {
-    this.stats = stats;
-  }
-
-
   /**
    * Return true if this OptimizerOutputTypes object is equal to o.
    */
@@ -168,13 +140,12 @@ public class OptimizerOutputTypes implements Serializable {
     OptimizerOutputTypes optimizerOutputTypes = (OptimizerOutputTypes) o;
     return Objects.equals(this.trades, optimizerOutputTypes.trades) &&
         Objects.equals(this.optimal, optimizerOutputTypes.optimal) &&
-        Objects.equals(this.account, optimizerOutputTypes.account) &&
-        Objects.equals(this.stats, optimizerOutputTypes.stats);
+        Objects.equals(this.account, optimizerOutputTypes.account);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(trades, optimal, account, stats);
+    return Objects.hash(trades, optimal, account);
   }
 
   @Override
@@ -184,7 +155,6 @@ public class OptimizerOutputTypes implements Serializable {
     sb.append("    trades: ").append(toIndentedString(trades)).append("\n");
     sb.append("    optimal: ").append(toIndentedString(optimal)).append("\n");
     sb.append("    account: ").append(toIndentedString(account)).append("\n");
-    sb.append("    stats: ").append(toIndentedString(stats)).append("\n");
     sb.append("}");
     return sb.toString();
   }

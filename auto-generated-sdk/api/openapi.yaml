@@ -31877,15 +31877,12 @@ components:
           - appendSecurities
           type: string
       type: object
-    OptimizerStats:
-      type: object
     OptimizerOutputTypes:
       example:
         optimal:
           includeCash: true
           excludeZero: true
           identifierType: Asset
-        stats: '{}'
         trades:
           includeCash: true
           identifierType: Asset
@@ -31902,8 +31899,6 @@ components:
           $ref: '#/components/schemas/OptimizerOptimalHoldings'
         account:
           $ref: '#/components/schemas/OptimalPortfolio'
-        stats:
-          type: object
       type: object
     AFIOptimizationParameters:
       example:
@@ -31916,7 +31911,6 @@ components:
             includeCash: true
             excludeZero: true
             identifierType: Asset
-          stats: '{}'
           trades:
             includeCash: true
             identifierType: Asset
@@ -31969,7 +31963,6 @@ components:
               includeCash: true
               excludeZero: true
               identifierType: Asset
-            stats: '{}'
             trades:
               includeCash: true
               identifierType: Asset
@@ -32089,7 +32082,6 @@ components:
             includeCash: true
             excludeZero: true
             identifierType: Asset
-          stats: '{}'
           trades:
             includeCash: true
             identifierType: Asset
@@ -32140,7 +32132,6 @@ components:
               includeCash: true
               excludeZero: true
               identifierType: Asset
-            stats: '{}'
             trades:
               includeCash: true
               identifierType: Asset
@@ -32358,7 +32349,6 @@ components:
             includeCash: true
             excludeZero: true
             identifierType: Asset
-          stats: '{}'
           trades:
             includeCash: true
             identifierType: Asset
@@ -32416,7 +32406,6 @@ components:
               includeCash: true
               excludeZero: true
               identifierType: Asset
-            stats: '{}'
             trades:
               includeCash: true
               identifierType: Asset
@@ -33378,7 +33367,6 @@ components:
             includeCash: true
             excludeZero: true
             identifierType: Asset
-          stats: '{}'
           trades:
             includeCash: true
             identifierType: Asset
@@ -33430,7 +33418,6 @@ components:
               includeCash: true
               excludeZero: true
               identifierType: Asset
-            stats: '{}'
             trades:
               includeCash: true
               identifierType: Asset
@@ -33589,7 +33576,6 @@ components:
             includeCash: true
             excludeZero: true
             identifierType: Asset
-          stats: '{}'
           trades:
             includeCash: true
             identifierType: Asset
@@ -33644,7 +33630,6 @@ components:
               includeCash: true
               excludeZero: true
               identifierType: Asset
-            stats: '{}'
             trades:
               includeCash: true
               identifierType: Asset
