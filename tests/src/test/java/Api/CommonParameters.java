@@ -90,4 +90,22 @@ public class CommonParameters {
   public static final Integer DEADLINE_HEADER_VALUE = 20;
   public static final Integer ZERO_DEADLINE_HEADER_VALUE = 0;
   public static final String ACCEPT_HEADER_VALUE = "gzip";
+
+  // AFI values
+  public static String AfiStrategyId = "CLIENT:/Analytics_api/AFIAPISIMPLE";
+  public static IdentifierTypeEnum AfiTradesIdType = IdentifierTypeEnum.ASSET;
+  public static Boolean AfiIncludeCash = false;
+
+  // Quant values
+  public static String QuantStartDate = "0";
+  public static String QuantEndDate = "-5D";
+  public static String QuantFrequency = "D";
+  public static String QuantCalender = "FIVEDAY";
+  public static String QuantUniverseExpr = "ISON_DOW";
+  public static QuantScreeningExpressionUniverse.UniverseTypeEnum QuantUniverseType = QuantScreeningExpressionUniverse.UniverseTypeEnum.EQUITY;
+  public static String QuantSecurityExpr = "TICKER";
+  public static String QuantScreeningExpr = "P_PRICE";
+  public static String QuantScreeningName = "Price (SCR)";
+  public static String QuantFqlExpr = "P_PRICE";
+  public static String QuantFqlName = "Price (SCR)";
 }
