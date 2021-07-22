@@ -49,8 +49,6 @@ public class QuantInteractiveEngineFeatherExample {
     private static String FQL_NAME = "Price (SCR)";
     private static String CALCULATION_UNIT_ID = "1";
 
-    private static Integer DEADLINE_HEADER_VALUE = null;
-
     public static void main(String[] args) throws InterruptedException, JsonProcessingException {
         try {
             QuantCalculationsApi apiInstance = new QuantCalculationsApi(getApiClient());

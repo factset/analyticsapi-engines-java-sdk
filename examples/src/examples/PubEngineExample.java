@@ -51,7 +51,7 @@ public class PubEngineExample {
       // Run Calculation Request
       PubCalculationsApi apiInstance = new PubCalculationsApi(getApiClient());
 
-      ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, "max-stale=0", calcParameters);
+      ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
 
       String requestId = createResponse.getHeaders().get("X-Factset-Api-Calculation-Id").get(0);
       System.out.println("Calculation Id: " + requestId);

@@ -49,8 +49,6 @@ public class AxpInteractiveOptimizerEngineExample {
   private static Boolean INCLUDE_CASH = false;
   private static Boolean EXCLUDE_ZERO = false;
 
-  private static Integer DEADLINE_HEADER_VALUE = null;
-
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {    
     try{
       AxpOptimizerApi apiInstance = new AxpOptimizerApi(getApiClient());	
@@ -85,7 +83,7 @@ public class AxpInteractiveOptimizerEngineExample {
       AxiomaEquityOptimizationParametersRoot axpOptimizerParam = new AxiomaEquityOptimizationParametersRoot();
       axpOptimizerParam.setData(axpItem);
 
-      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=0", axpOptimizerParam);
+      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, null, axpOptimizerParam);
       Map<String, List<String>> headers = response.getHeaders();
 
       Object result = null;

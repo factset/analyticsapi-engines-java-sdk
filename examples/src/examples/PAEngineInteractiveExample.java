@@ -47,7 +47,6 @@ public class PAEngineInteractiveExample {
   private static String GROUP_DIRECTORY = "Factset";
   
   private static String CALCULATION_UNIT_ID = "1";
-  private static Integer DEADLINE_HEADER_VALUE = null;
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
@@ -104,7 +103,7 @@ public class PAEngineInteractiveExample {
 
       // Run Calculation Request
       PaCalculationsApi apiInstance = new PaCalculationsApi(getApiClient());
-      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=0", calcParameters);
+      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
       
       Map<String, List<String>> headers = response.getHeaders();
       ApiResponse<CalculationStatusRoot> getStatus = null;

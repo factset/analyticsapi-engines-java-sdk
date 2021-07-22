@@ -55,8 +55,6 @@ public class FiInteractiveEngineExample {
   private static String FI_DISCOUNT_CURVE_2 = "UST";
   private static String FI_AS_OF_DATE = "20200922";
   private static String[] FI_CALCULATIONS = {"Effective Duration", "Partial Duration", "Security Type", "Effective Convexity", "CF Coupon"};
-  
-  private static Integer DEADLINE_HEADER_VALUE = null;
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {    
     try{
@@ -93,7 +91,7 @@ public class FiInteractiveEngineExample {
       FICalculationParametersRoot fiCalcParam = new FICalculationParametersRoot();
       fiCalcParam.data(calcParameters);
 
-      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=0", fiCalcParam);
+      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, fiCalcParam);
       Map<String, List<String>> headers = response.getHeaders();
 
       Object result = null;

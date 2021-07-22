@@ -43,7 +43,6 @@ public class VaultEngineInteractiveExample {
   private static String COMPONENT_CATEGORY = "Performance / 4 Tiles Calculate";
   
   private static String CALCULATION_UNIT_ID = "1";
-  private static Integer DEADLINE_HEADER_VALUE = null;
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
@@ -86,7 +85,7 @@ public class VaultEngineInteractiveExample {
       // Run Calculation Request
       VaultCalculationsApi apiInstance = new VaultCalculationsApi(getApiClient());
 
-      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=0", calcParameters);
+      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
       Map<String, List<String>> headers = response.getHeaders();
 
       ApiResponse<CalculationStatusRoot> getStatus = null;

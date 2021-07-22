@@ -111,7 +111,7 @@ public class PAEngineExample {
       PaCalculationsApi apiInstance = new PaCalculationsApi(getApiClient());
       ApiResponse<Object> createResponse = null;
 
-      createResponse = apiInstance.postAndCalculateWithHttpInfo(null, "max-stale=0", calcParameters);
+      createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
 
       String requestId = createResponse.getHeaders().get("X-Factset-Api-Calculation-Id").get(0);
       System.out.println("Calculation Id: "+ requestId);

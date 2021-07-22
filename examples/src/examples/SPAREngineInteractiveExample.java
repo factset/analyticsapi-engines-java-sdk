@@ -41,8 +41,7 @@ public class SPAREngineInteractiveExample {
   private static String COMPONENT_NAME = "Returns Table";
   private static String COMPONENT_CATEGORY = "Raw Data / Returns";
   
-  private static String CALCULATION_UNIT_ID = "1"; 
-  private static Integer DEADLINE_HEADER_VALUE = null;
+  private static String CALCULATION_UNIT_ID = "1";
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
@@ -90,7 +89,7 @@ public class SPAREngineInteractiveExample {
       // Run Calculation Request
       SparCalculationsApi apiInstance = new SparCalculationsApi(getApiClient());
 
-      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=0", calcParameters);
+      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
       Map<String, List<String>> headers = response.getHeaders();
 
       ApiResponse<CalculationStatusRoot> getStatus = null;

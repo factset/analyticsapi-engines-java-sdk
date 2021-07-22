@@ -53,8 +53,7 @@ public class FpoInteractiveOptimizerEngineExample {
   private static Boolean INCLUDE_CASH = false;
   private static Boolean EXCLUDE_ZERO = false;
   private static String OPTIMIZATION_CASHFLOW = "0";
-  
-  private static Integer DEADLINE_HEADER_VALUE = null;
+
   public static String ACCEPT_HEADER_VALUE = "gzip";
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
@@ -95,7 +94,7 @@ public class FpoInteractiveOptimizerEngineExample {
       FPOOptimizationParametersRoot fpoOptimizerParam = new FPOOptimizationParametersRoot();
       fpoOptimizerParam.setData(fpoItem);
 
-      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=0", fpoOptimizerParam);
+      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, null, fpoOptimizerParam);
       Map<String, List<String>> headers = response.getHeaders();
 
       Object result = null;

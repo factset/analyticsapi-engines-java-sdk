@@ -46,8 +46,6 @@ public class BpmInteractiveOptimizerEngineExample {
   private static IdentifierTypeEnum TRADES_ID_TYPE = IdentifierTypeEnum.ASSET;
   private static Boolean INCLUDE_CASH = false;
   private static Boolean EXCLUDE_ZERO = false;
-  
-  private static Integer DEADLINE_HEADER_VALUE = null;
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
@@ -74,7 +72,7 @@ public class BpmInteractiveOptimizerEngineExample {
       BPMOptimizationParametersRoot bpmOptimizerParam = new BPMOptimizationParametersRoot();
       bpmOptimizerParam.setData(bpmItem);
 
-      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=0", bpmOptimizerParam);
+      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, null, bpmOptimizerParam);
       Map<String, List<String>> headers = response.getHeaders();
 
       Object result = null;
