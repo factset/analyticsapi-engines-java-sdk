@@ -29,14 +29,12 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.ApiResponse;
 import factset.analyticsapi.engines.api.FiCalculationsApi;
-import factset.analyticsapi.engines.models.CalculationMeta;
 import factset.analyticsapi.engines.models.FICalculationParameters;
 import factset.analyticsapi.engines.models.FICalculationParametersRoot;
 import factset.analyticsapi.engines.models.FIJobSettings;
 import factset.analyticsapi.engines.models.FISecurity;
 import factset.analyticsapi.engines.models.ObjectRoot;
-import factset.analyticsapi.engines.models.CalculationMeta.ContentorganizationEnum;
-import factset.analyticsapi.engines.models.CalculationMeta.ContenttypeEnum;
+
 
 public class FiInteractiveEngineExample {
   private static FdsApiClient apiClient = null;
@@ -57,8 +55,6 @@ public class FiInteractiveEngineExample {
   private static String FI_DISCOUNT_CURVE_2 = "UST";
   private static String FI_AS_OF_DATE = "20200922";
   private static String[] FI_CALCULATIONS = {"Effective Duration", "Partial Duration", "Security Type", "Effective Convexity", "CF Coupon"};
-  
-  private static Integer DEADLINE_HEADER_VALUE = 20;
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {    
     try{
@@ -94,13 +90,8 @@ public class FiInteractiveEngineExample {
 
       FICalculationParametersRoot fiCalcParam = new FICalculationParametersRoot();
       fiCalcParam.data(calcParameters);
-      
-      CalculationMeta meta = new CalculationMeta();
-      meta.contentorganization(ContentorganizationEnum.SIMPLIFIEDROW);
-      meta.contenttype(ContenttypeEnum.JSON);
-      fiCalcParam.meta(meta);
 
-      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=3600", fiCalcParam);
+      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, fiCalcParam);
       Map<String, List<String>> headers = response.getHeaders();
 
       Object result = null;
@@ -110,8 +101,7 @@ public class FiInteractiveEngineExample {
           headers = response.getHeaders();
           break;
         case 202:
-          String[] locationList = headers.get("Location").get(0).split("/");
-          String requestId = locationList[locationList.length - 2];
+          String requestId = headers.get("X-Factset-Api-Calculation-Id").get(0);
           do {
             response = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
             headers = response.getHeaders();
@@ -130,8 +120,7 @@ public class FiInteractiveEngineExample {
       }
 
       // Get Calculation Result
-      String[] location = headers.get("Location").get(0).split("/");
-      String id = location[location.length - 2];
+      String id = headers.get("X-Factset-Api-Calculation-Id").get(0);
       ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationResultWithHttpInfo(id);
       headers = resultResponse.getHeaders();
       result = resultResponse.getData().getData();

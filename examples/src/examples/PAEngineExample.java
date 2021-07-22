@@ -14,8 +14,7 @@ import org.glassfish.jersey.client.ClientProperties;
 import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
-import factset.analyticsapi.engines.models.CalculationMeta.ContentorganizationEnum;
-import factset.analyticsapi.engines.models.CalculationMeta.ContenttypeEnum;
+
 import factset.analyticsapi.engines.models.CalculationStatus.StatusEnum;
 
 import com.factset.protobuf.stach.extensions.ColumnStachExtensionBuilder;
@@ -107,20 +106,14 @@ public class PAEngineExample {
       
       calcParameters.putDataItem("1", paItem);
       calcParameters.putDataItem("2", paItem);
-      
-      CalculationMeta meta = new CalculationMeta();
-      meta.contentorganization(ContentorganizationEnum.SIMPLIFIEDROW);
-      meta.contenttype(ContenttypeEnum.JSON);
-      calcParameters.setMeta(meta);
 
       // Run Calculation Request
       PaCalculationsApi apiInstance = new PaCalculationsApi(getApiClient());
       ApiResponse<Object> createResponse = null;
 
-      createResponse = apiInstance.postAndCalculateWithHttpInfo(null, "max-stale=3600", calcParameters);
+      createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
 
-      String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-      String requestId = locationList[locationList.length - 2];
+      String requestId = createResponse.getHeaders().get("X-Factset-Api-Calculation-Id").get(0);
       System.out.println("Calculation Id: "+ requestId);
       
       // Get Calculation Request Status

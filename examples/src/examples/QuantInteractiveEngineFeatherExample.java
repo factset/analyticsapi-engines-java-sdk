@@ -49,8 +49,6 @@ public class QuantInteractiveEngineFeatherExample {
     private static String FQL_NAME = "Price (SCR)";
     private static String CALCULATION_UNIT_ID = "1";
 
-    private static Integer DEADLINE_HEADER_VALUE = null;
-
     public static void main(String[] args) throws InterruptedException, JsonProcessingException {
         try {
             QuantCalculationsApi apiInstance = new QuantCalculationsApi(getApiClient());
@@ -104,8 +102,7 @@ public class QuantInteractiveEngineFeatherExample {
                     outputCalculationResult(result, "data");
                     break;
                 case 202:
-                    String[] locationList = response.getHeaders().get("Location").get(0).split("/");
-                    String requestId = locationList[locationList.length - 2];
+                    String requestId = response.getHeaders().get("X-Factset-Api-Calculation-Id").get(0);
                     // Get Calculation Request Status
                     while (getStatus == null || getStatus.getStatusCode() == 202) {
                         if (getStatus != null) {

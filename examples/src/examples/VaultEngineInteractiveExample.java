@@ -18,8 +18,7 @@ import org.glassfish.jersey.client.ClientProperties;
 import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
-import factset.analyticsapi.engines.models.CalculationMeta.ContentorganizationEnum;
-import factset.analyticsapi.engines.models.CalculationMeta.ContenttypeEnum;
+
 
 import com.factset.protobuf.stach.extensions.ColumnStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.RowStachExtensionBuilder;
@@ -44,7 +43,6 @@ public class VaultEngineInteractiveExample {
   private static String COMPONENT_CATEGORY = "Performance / 4 Tiles Calculate";
   
   private static String CALCULATION_UNIT_ID = "1";
-  private static Integer DEADLINE_HEADER_VALUE = 20;
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
@@ -83,16 +81,11 @@ public class VaultEngineInteractiveExample {
       vaultItem.setComponentdetail("GROUPS"); // It can be GROUPS or TOTALS
 
       calcParameters.putDataItem(CALCULATION_UNIT_ID, vaultItem);
-      
-      CalculationMeta meta = new CalculationMeta();
-      meta.contentorganization(ContentorganizationEnum.SIMPLIFIEDROW);
-      meta.contenttype(ContenttypeEnum.JSON);
-      calcParameters.setMeta(meta);
 
       // Run Calculation Request
       VaultCalculationsApi apiInstance = new VaultCalculationsApi(getApiClient());
 
-      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=3600", calcParameters);
+      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
       Map<String, List<String>> headers = response.getHeaders();
 
       ApiResponse<CalculationStatusRoot> getStatus = null;
@@ -110,8 +103,7 @@ public class VaultEngineInteractiveExample {
           headers = response.getHeaders();
           break;
         case 202:
-          String[] locationList = response.getHeaders().get("Location").get(0).split("/");
-          String requestId = locationList[locationList.length - 2];
+          String requestId = response.getHeaders().get("X-Factset-Api-Calculation-Id").get(0);
 
           // Get Calculation Request Status
           while (getStatus == null || getStatus.getStatusCode() == 202) {

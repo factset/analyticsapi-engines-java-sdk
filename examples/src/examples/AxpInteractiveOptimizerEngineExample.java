@@ -12,8 +12,6 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
-import org.glassfish.jersey.client.ClientProperties;
 
 import com.factset.protobuf.stach.extensions.RowStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.StachExtensionFactory;
@@ -33,7 +31,6 @@ import factset.analyticsapi.engines.models.AxiomaEquityOptimizerStrategy;
 import factset.analyticsapi.engines.models.ObjectRoot;
 import factset.analyticsapi.engines.models.Optimization;
 import factset.analyticsapi.engines.models.OptimizerAccount;
-import factset.analyticsapi.engines.models.OptimizerOptimalHoldings;
 import factset.analyticsapi.engines.models.OptimizerOutputTypes;
 import factset.analyticsapi.engines.models.OptimizerTradesList;
 import factset.analyticsapi.engines.models.OptimizerTradesList.IdentifierTypeEnum;
@@ -48,11 +45,9 @@ public class AxpInteractiveOptimizerEngineExample {
   private static String OPTIMIZATION_DATE = "09/01/2020";
   private static String OPTIMIZATION_CASHFLOW = "0";
   private static String STRATEGY_ID = "Client:/Optimizer/CN_TEST";
-  private static IdentifierTypeEnum TRADES_ID_TYPE = IdentifierTypeEnum.ASSET;
+  private static IdentifierTypeEnum TRADES_ID_TYPE = IdentifierTypeEnum.SEDOLCHK;
   private static Boolean INCLUDE_CASH = false;
   private static Boolean EXCLUDE_ZERO = false;
-
-  private static Integer DEADLINE_HEADER_VALUE = 20;
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {    
     try{
@@ -88,7 +83,7 @@ public class AxpInteractiveOptimizerEngineExample {
       AxiomaEquityOptimizationParametersRoot axpOptimizerParam = new AxiomaEquityOptimizationParametersRoot();
       axpOptimizerParam.setData(axpItem);
 
-      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=0", axpOptimizerParam);
+      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, null, axpOptimizerParam);
       Map<String, List<String>> headers = response.getHeaders();
 
       Object result = null;
@@ -99,8 +94,7 @@ public class AxpInteractiveOptimizerEngineExample {
           headers = response.getHeaders();
           break;
         case 202:
-          String[] locationList = headers.get("Location").get(0).split("/");
-          String requestId = locationList[locationList.length - 2];
+          String requestId = headers.get("X-Factset-Api-Calculation-Id").get(0);
           do {
             response = apiInstance.getOptimizationStatusByIdWithHttpInfo(requestId);
             headers = response.getHeaders();
@@ -118,8 +112,7 @@ public class AxpInteractiveOptimizerEngineExample {
           
           System.out.println("Calculation successful!!!");
           // Get Calculation Result
-          String[] location = headers.get("Location").get(0).split("/");
-          String id = location[location.length - 2];
+          String id = headers.get("X-Factset-Api-Calculation-Id").get(0);
           ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id);
           result = resultResponse.getData().getData();
           break;

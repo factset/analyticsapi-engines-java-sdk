@@ -43,8 +43,6 @@ public class AfiInteractiveOptimizerEngineExample {
     private static IdentifierTypeEnum TRADES_ID_TYPE = IdentifierTypeEnum.ASSET;
     private static Boolean INCLUDE_CASH = false;
 
-    private static Integer DEADLINE_HEADER_VALUE = null;
-
     public static void main(String[] args) throws InterruptedException, JsonProcessingException {
         try{
             AfiOptimizerApi apiInstance = new AfiOptimizerApi(getApiClient());
@@ -65,7 +63,7 @@ public class AfiInteractiveOptimizerEngineExample {
             AFIOptimizationParametersRoot afiOptimizerParam = new AFIOptimizationParametersRoot();
             afiOptimizerParam.setData(afiItem);
 
-            ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=0", afiOptimizerParam);
+            ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, null, afiOptimizerParam);
             Map<String, List<String>> headers = response.getHeaders();
 
             Object result = null;
@@ -76,8 +74,7 @@ public class AfiInteractiveOptimizerEngineExample {
                     headers = response.getHeaders();
                     break;
                 case 202:
-                    String[] locationList = headers.get("Location").get(0).split("/");
-                    String requestId = locationList[locationList.length - 2];
+                    String requestId = headers.get("X-Factset-Api-Calculation-Id").get(0);
                     do {
                         response = apiInstance.getOptimizationStatusByIdWithHttpInfo(requestId);
                         headers = response.getHeaders();
@@ -95,8 +92,7 @@ public class AfiInteractiveOptimizerEngineExample {
 
                     System.out.println("Calculation successful!!!");
                     // Get Calculation Result
-                    String[] location = headers.get("Location").get(0).split("/");
-                    String id = location[location.length - 2];
+                    String id = headers.get("X-Factset-Api-Calculation-Id").get(0);
                     ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id);
                     result = resultResponse.getData().getData();
                     break;

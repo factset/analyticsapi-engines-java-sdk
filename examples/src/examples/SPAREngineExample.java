@@ -14,8 +14,7 @@ import org.glassfish.jersey.client.ClientProperties;
 import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
-import factset.analyticsapi.engines.models.CalculationMeta.ContentorganizationEnum;
-import factset.analyticsapi.engines.models.CalculationMeta.ContenttypeEnum;
+
 import factset.analyticsapi.engines.models.CalculationStatus.StatusEnum;
 
 import com.factset.protobuf.stach.extensions.ColumnStachExtensionBuilder;
@@ -38,6 +37,7 @@ public class SPAREngineExample {
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
   private static String PASSWORD = "<apiKey>";
+
   private static String SPAR_DEFAULT_DOCUMENT = "pmw_root:/spar_documents/Factset Default Document";
   private static String COMPONENT_NAME = "Returns Table";
   private static String COMPONENT_CATEGORY = "Raw Data / Returns";
@@ -87,19 +87,13 @@ public class SPAREngineExample {
 
       calcParameters.putDataItem("1", sparItem);
       calcParameters.putDataItem("2", sparItem);
-      
-      CalculationMeta meta = new CalculationMeta();
-      meta.contentorganization(ContentorganizationEnum.SIMPLIFIEDROW);
-      meta.contenttype(ContenttypeEnum.JSON);
-      calcParameters.setMeta(meta);
 
       // Run Calculation Request
       SparCalculationsApi apiInstance = new SparCalculationsApi(getApiClient());
 
       ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
 
-      String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-      String requestId = locationList[locationList.length - 2];
+      String requestId = createResponse.getHeaders().get("X-Factset-Api-Calculation-Id").get(0);
       System.out.println("Calculation Id: "+ requestId);
       // Get Calculation Request Status
       ApiResponse<CalculationStatusRoot> getStatus = null;

@@ -31,8 +31,6 @@ public class PubEngineInteractiveExample {
   
   private static String PUB_DEFAULT_DOCUMENT = "Client:/AAPI/Puma Test Doc.Pub_bridge_pdf";
   private static String PUB_DEFAULT_ACCOUNT = "BENCH:SP50";
-  
-  private static Integer DEADLINE_HEADER_VALUE = 20;
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException, FileNotFoundException {
     try {
@@ -57,7 +55,7 @@ public class PubEngineInteractiveExample {
 
       // Run Calculation Request
       PubCalculationsApi apiInstance = new PubCalculationsApi(getApiClient());
-      ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=0", calcParameters);
+      ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
 
       // Get Calculation Request Status
       ApiResponse<CalculationStatusRoot> getStatus = null;
@@ -71,9 +69,8 @@ public class PubEngineInteractiveExample {
           System.exit(-1);
         case 201:
           result = (File)createResponse.getData();
-        case 202:      
-          String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-          String requestId = locationList[locationList.length - 2];
+        case 202:
+          String requestId = createResponse.getHeaders().get("X-Factset-Api-Calculation-Id").get(0);
           System.out.println("Calculation Id: " + requestId);
           
           // Get Calculation Request Status
