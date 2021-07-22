@@ -109,7 +109,7 @@ public class ColumnStatisticsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ColumnStatisticRoot> localVarReturnType = new GenericType<ColumnStatisticRoot>() {};
 

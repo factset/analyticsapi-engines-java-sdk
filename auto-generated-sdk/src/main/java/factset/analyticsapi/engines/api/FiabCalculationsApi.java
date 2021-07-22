@@ -122,7 +122,7 @@ public class FiabCalculationsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<FIABCalculationStatus> localVarReturnType = new GenericType<FIABCalculationStatus>() {};
 
@@ -200,7 +200,7 @@ public class FiabCalculationsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<java.util.Map<String, FIABCalculationStatusSummary>> localVarReturnType = new GenericType<java.util.Map<String, FIABCalculationStatusSummary>>() {};
 
@@ -280,7 +280,7 @@ public class FiabCalculationsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});

@@ -14,6 +14,7 @@ servers:
 - url: https://api.factset.com
 security:
 - Basic: []
+  Bearer: []
 paths:
   /analytics/lookups/v3/accounts/{path}:
     get:
@@ -24164,6 +24165,256 @@ paths:
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/quant/v3/calculations/{id}:
+    delete:
+      description: This is the endpoint to cancel a previously submitted calculation.
+      operationId: cancelCalculationById
+      parameters:
+      - description: from url, provided from the location header in the Create and
+          Run Quant calculation endpoint
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          description: from url, provided from the location header in the Create and
+            Run Quant calculation endpoint
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Expected response, calculation was canceled successfully.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+          description: Invalid identifier provided.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+          description: There was no request for the calculation identifier provided,
+            or the request was already canceled for the provided identifier.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Missing or invalid authentication.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+        "403":
+          description: User is forbidden with current credentials
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          description: Server error. Log the X-DataDirect-Request-Key header to assist
+            in troubleshooting.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+        "503":
+          description: Request timed out. Retry the request in sometime.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+      summary: Cancel Quant calculation by id
+      tags:
+      - QuantCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "204"
+      x-accepts: application/json
     get:
       description: This is the endpoint that returns the calculation parameters passed
         for a calculation.
@@ -31877,12 +32128,15 @@ components:
           - appendSecurities
           type: string
       type: object
+    OptimizerStats:
+      type: object
     OptimizerOutputTypes:
       example:
         optimal:
           includeCash: true
           excludeZero: true
           identifierType: Asset
+        stats: '{}'
         trades:
           includeCash: true
           identifierType: Asset
@@ -31899,6 +32153,8 @@ components:
           $ref: '#/components/schemas/OptimizerOptimalHoldings'
         account:
           $ref: '#/components/schemas/OptimalPortfolio'
+        stats:
+          type: object
       type: object
     AFIOptimizationParameters:
       example:
@@ -31911,6 +32167,7 @@ components:
             includeCash: true
             excludeZero: true
             identifierType: Asset
+          stats: '{}'
           trades:
             includeCash: true
             identifierType: Asset
@@ -31963,6 +32220,7 @@ components:
               includeCash: true
               excludeZero: true
               identifierType: Asset
+            stats: '{}'
             trades:
               includeCash: true
               identifierType: Asset
@@ -32082,6 +32340,7 @@ components:
             includeCash: true
             excludeZero: true
             identifierType: Asset
+          stats: '{}'
           trades:
             includeCash: true
             identifierType: Asset
@@ -32132,6 +32391,7 @@ components:
               includeCash: true
               excludeZero: true
               identifierType: Asset
+            stats: '{}'
             trades:
               includeCash: true
               identifierType: Asset
@@ -32349,6 +32609,7 @@ components:
             includeCash: true
             excludeZero: true
             identifierType: Asset
+          stats: '{}'
           trades:
             includeCash: true
             identifierType: Asset
@@ -32406,6 +32667,7 @@ components:
               includeCash: true
               excludeZero: true
               identifierType: Asset
+            stats: '{}'
             trades:
               includeCash: true
               identifierType: Asset
@@ -33367,6 +33629,7 @@ components:
             includeCash: true
             excludeZero: true
             identifierType: Asset
+          stats: '{}'
           trades:
             includeCash: true
             identifierType: Asset
@@ -33418,6 +33681,7 @@ components:
               includeCash: true
               excludeZero: true
               identifierType: Asset
+            stats: '{}'
             trades:
               includeCash: true
               identifierType: Asset
@@ -33576,6 +33840,7 @@ components:
             includeCash: true
             excludeZero: true
             identifierType: Asset
+          stats: '{}'
           trades:
             includeCash: true
             identifierType: Asset
@@ -33630,6 +33895,7 @@ components:
               includeCash: true
               excludeZero: true
               identifierType: Asset
+            stats: '{}'
             trades:
               includeCash: true
               identifierType: Asset
@@ -34339,6 +34605,7 @@ components:
       type: object
     SPARCalculationParameters:
       example:
+        currencyisocode: currencyisocode
         componentid: componentid
         dates:
           enddate: enddate
@@ -34368,6 +34635,9 @@ components:
           $ref: '#/components/schemas/SPARIdentifier'
         dates:
           $ref: '#/components/schemas/SPARDateParameters'
+        currencyisocode:
+          description: Currency ISO code for calculation.
+          type: string
       required:
       - componentid
       type: object
@@ -34375,6 +34645,7 @@ components:
       example:
         data:
           key:
+            currencyisocode: currencyisocode
             componentid: componentid
             dates:
               enddate: enddate
@@ -34467,5 +34738,9 @@ components:
     Basic:
       description: Input your username and password to access this API
       scheme: basic
+      type: http
+    Bearer:
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
       type: http
 

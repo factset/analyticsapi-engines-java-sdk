@@ -38,6 +38,10 @@ public class Example {
         Basic.setUsername("YOUR USERNAME");
         Basic.setPassword("YOUR PASSWORD");
 
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
         CurrenciesApi apiInstance = new CurrenciesApi(defaultClient);
         try {
             CurrencyRoot result = apiInstance.getCurrencies();
@@ -63,7 +67,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Basic](../README.md#Basic), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 

@@ -119,7 +119,7 @@ public class AxpOptimizerApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
@@ -201,7 +201,7 @@ public class AxpOptimizerApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<AxiomaEquityOptimizationParametersRoot> localVarReturnType = new GenericType<AxiomaEquityOptimizationParametersRoot>() {};
 
@@ -286,7 +286,7 @@ public class AxpOptimizerApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
@@ -373,7 +373,7 @@ public class AxpOptimizerApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
@@ -466,7 +466,7 @@ if (cacheControl != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
@@ -570,7 +570,7 @@ if (cacheControl != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
