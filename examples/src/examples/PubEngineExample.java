@@ -53,8 +53,7 @@ public class PubEngineExample {
 
       ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, "max-stale=0", calcParameters);
 
-      String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-      String requestId = locationList[locationList.length - 2];
+      String requestId = createResponse.getHeaders().get("X-Factset-Api-Calculation-Id").get(0);
       System.out.println("Calculation Id: " + requestId);
       
       // Get Calculation Request Status

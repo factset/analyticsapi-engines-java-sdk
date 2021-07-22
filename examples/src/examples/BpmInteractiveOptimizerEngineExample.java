@@ -47,7 +47,7 @@ public class BpmInteractiveOptimizerEngineExample {
   private static Boolean INCLUDE_CASH = false;
   private static Boolean EXCLUDE_ZERO = false;
   
-  private static Integer DEADLINE_HEADER_VALUE = 20;
+  private static Integer DEADLINE_HEADER_VALUE = null;
 
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
@@ -85,8 +85,7 @@ public class BpmInteractiveOptimizerEngineExample {
           headers = response.getHeaders();
           break;
         case 202:
-          String[] locationList = headers.get("Location").get(0).split("/");
-          String requestId = locationList[locationList.length - 2];
+          String requestId = headers.get("X-Factset-Api-Calculation-Id").get(0);
           do {
             response = apiInstance.getOptimizationStatusByIdWithHttpInfo(requestId);
             headers = response.getHeaders();
@@ -104,8 +103,7 @@ public class BpmInteractiveOptimizerEngineExample {
           
           System.out.println("Calculation successful!!!");
           // Get Calculation Result
-          String[] location = headers.get("Location").get(0).split("/");
-          String id = location[location.length - 2];
+          String id = headers.get("X-Factset-Api-Calculation-Id").get(0);
           ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id);
           result = resultResponse.getData().getData();
           break;

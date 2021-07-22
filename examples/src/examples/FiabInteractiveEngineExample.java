@@ -46,13 +46,11 @@ public class FiabInteractiveEngineExample {
       calcParameters.setFiabdocument(FIAB_DOCUMENT);
       calcParameters.setFisettingsdocument(FIAB_SETTINGS_DOCUMENT);
       calcParameters.setMsl(FIAB_MSL);
-
       ApiResponse<Void> response = apiInstance.runCalculationWithHttpInfo(calcParameters);
       Map<String, List<String>> headers = response.getHeaders();
 
       ApiResponse<FIABCalculationStatus> resultStatus = null;
-      String[] locationList = headers.get("Location").get(0).split("/");
-      String requestId = locationList[locationList.length - 1];
+      String requestId = headers.get("X-Factset-Api-Calculation-Id").get(0);
 
       do {
         resultStatus = apiInstance.getCalculationByIdWithHttpInfo(requestId);

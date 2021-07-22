@@ -11,8 +11,7 @@ import javax.ws.rs.client.ClientBuilder;
 import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
-import factset.analyticsapi.engines.models.CalculationMeta.ContentorganizationEnum;
-import factset.analyticsapi.engines.models.CalculationMeta.ContenttypeEnum;
+
 import factset.analyticsapi.engines.models.CalculationStatus.StatusEnum;
 
 import com.factset.protobuf.stach.extensions.ColumnStachExtensionBuilder;
@@ -82,19 +81,13 @@ public class VaultEngineExample {
 
       calcParameters.putDataItem("1", vaultItem);
       calcParameters.putDataItem("2", vaultItem);
-      
-      CalculationMeta meta = new CalculationMeta();
-      meta.contentorganization(ContentorganizationEnum.SIMPLIFIEDROW);
-      meta.contenttype(ContenttypeEnum.JSON);
-      calcParameters.setMeta(meta);
 
       // Run Calculation Request
       VaultCalculationsApi apiInstance = new VaultCalculationsApi(getApiClient());
 
-      ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, "max-stale=3600", calcParameters);
+      ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, "max-stale=0", calcParameters);
 
-      String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-      String requestId = locationList[locationList.length - 2];
+      String requestId = createResponse.getHeaders().get("X-Factset-Api-Calculation-Id").get(0);
       System.out.println("Calculation Id: "+ requestId);
       
       // Get Calculation Request Status

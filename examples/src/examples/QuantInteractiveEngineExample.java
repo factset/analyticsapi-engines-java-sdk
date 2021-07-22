@@ -102,8 +102,7 @@ public class QuantInteractiveEngineExample {
                     //outputCalculationResult(result);
                     break;
                 case 202:
-                    String[] locationList = response.getHeaders().get("Location").get(0).split("/");
-                    String requestId = locationList[locationList.length - 2];
+                    String requestId = response.getHeaders().get("X-Factset-Api-Calculation-Id").get(0);
                     // Get Calculation Request Status
                     while (getStatus == null || getStatus.getStatusCode() == 202) {
                         if (getStatus != null) {
