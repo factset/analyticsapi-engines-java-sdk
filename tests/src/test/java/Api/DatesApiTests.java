@@ -48,7 +48,7 @@ public class DatesApiTests {
   @Test
   public void convertVaultDateSuccess() throws ApiException {
     ApiResponse<ComponentSummaryRoot> getAllComponentsResponse = null;
-    apiClient = CommonFunctions.buildApiClient(CommonParameters.VaultPubUsername, CommonParameters.VaultPubPassword);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
     datesApiInstance = new DatesApi(apiClient);
     componentsApiInstance = new ComponentsApi(apiClient);
 
