@@ -1,18 +1,15 @@
 package Api;
 
 import factset.analyticsapi.engines.models.OptimizerTradesList.IdentifierTypeEnum;
+import factset.analyticsapi.engines.models.QuantScreeningExpressionUniverse;
 
 public class CommonParameters {
 
-  // Add 'ANALYTICS_API_DEFAULT_USERNAME_SERIAL', 'ANALYTICS_API_VAULT_PUB_USERNAME_SERIAL' and 'ANALYTICS_API_OPTIMIZER_USERNAME_SERIAL' environment variables with the respective username-serial as value
+  // Add 'ANALYTICS_API_DEFAULT_USERNAME_SERIAL' environment variables with the respective username-serial as value
   public static String DefaultUsername = System.getenv("ANALYTICS_API_DEFAULT_USERNAME_SERIAL");
-  public static String VaultPubUsername = System.getenv("ANALYTICS_API_VAULT_PUB_USERNAME_SERIAL");
-  public static String OptimizerUsername = System.getenv("ANALYTICS_API_OPTIMIZER_USERNAME_SERIAL");
 
-  // Add 'ANALYTICS_API_DEFAULT_PASSWORD', 'ANALYTICS_API_VAULT_PUB_PASSWORD' and 'ANALYTICS_API_OPTIMIZER_PASSWORD' environment variables with the respective api key generated on developer portal
-  public static String DefaultPassword =System.getenv("ANALYTICS_API_DEFAULT_PASSWORD");
-  public static String VaultPubPassword = System.getenv("ANALYTICS_API_VAULT_PUB_PASSWORD");
-  public static String OptimizerPassword = System.getenv("ANALYTICS_API_OPTIMIZER_PASSWORD");
+  // Add 'ANALYTICS_API_DEFAULT_PASSWORD' environment variables with the respective api key generated on developer portal
+  public static String DefaultPassword = System.getenv("ANALYTICS_API_DEFAULT_PASSWORD");
 
   // Set 'ANALYTICS_API_URL' environment variable with api url as value
   public static final String BASEPATH = System.getenv("ANALYTICS_API_URL") != null
@@ -48,16 +45,16 @@ public class CommonParameters {
   public static final String DEFAULT_LOOKUP_DIRECTORY = "client:";
 
   // Lookups dates  
-  public static final String DefaultPADatesAccount = "CLIENT:/AAPI/STATIC_HOLDINGS_20191205.ACCT";
+  public static final String DefaultPADatesAccount = "CLIENT:/BISAM/REPOSITORY/QA/SMALL_PORT.ACCT";
   public static final String DefaultVaultDatesAccount = "CLIENT:/BISAM/REPOSITORY/QA/GLOBAL.ACCT";
 
   // AXP values
-  public static final String AxiomaAccountId = "CLIENT:/OPTIMIZER/IBM.ACCT";
+  public static final String AxiomaAccountId = "BENCH:SP50";
   public static final String OptimizationDate = "09/01/2020";
   public static final String OptimizationCashflow = "0";
   public static final String StrategyId = "Client:/analytics_api/dbui_simple_strategy";
-  public static final String SecondaryStrategyId = "Client:/Optimizer/CN_TEST";
-  public static final IdentifierTypeEnum TradesIdType = IdentifierTypeEnum.ASSET;
+  public static final String SecondaryStrategyId = "Client:/Optimizer/TAXTEST";
+  public static final IdentifierTypeEnum TradesIdType = IdentifierTypeEnum.SEDOLCHK;
   public static final Boolean IncludeCash = false;
 
   // FPO values
@@ -65,6 +62,7 @@ public class CommonParameters {
   public static final String FpoPaDocName = "CLIENT:/FPO/FPO_MASTER";
   public static final String FpoOptimizationDate = "0M";
   public static final String FpoSecondaryOptimizationDate = "-1M";
+  public static final String FpoOptimizationStrategyId = "Client:/fpo/fpo-workflow";
 
   // FI values
   public static final String FICalcFromMethod = "Price";
@@ -90,4 +88,22 @@ public class CommonParameters {
   public static final Integer DEADLINE_HEADER_VALUE = 20;
   public static final Integer ZERO_DEADLINE_HEADER_VALUE = 0;
   public static final String ACCEPT_HEADER_VALUE = "gzip";
+
+  // AFI values
+  public static String AfiStrategyId = "CLIENT:/Analytics_api/AFIAPISIMPLE";
+  public static IdentifierTypeEnum AfiTradesIdType = IdentifierTypeEnum.ASSET;
+  public static Boolean AfiIncludeCash = false;
+
+  // Quant values
+  public static String QuantStartDate = "0";
+  public static String QuantEndDate = "-5D";
+  public static String QuantFrequency = "D";
+  public static String QuantCalender = "FIVEDAY";
+  public static String QuantUniverseExpr = "ISON_DOW";
+  public static QuantScreeningExpressionUniverse.UniverseTypeEnum QuantUniverseType = QuantScreeningExpressionUniverse.UniverseTypeEnum.EQUITY;
+  public static String QuantSecurityExpr = "TICKER";
+  public static String QuantScreeningExpr = "P_PRICE";
+  public static String QuantScreeningName = "Price (SCR)";
+  public static String QuantFqlExpr = "P_PRICE";
+  public static String QuantFqlName = "Price (SCR)";
 }

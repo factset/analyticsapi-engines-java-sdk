@@ -3,10 +3,7 @@ package Api;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -30,7 +27,7 @@ public class FpoInteractiveOptimizerEngineApiTests {
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient(CommonParameters.OptimizerUsername, CommonParameters.OptimizerPassword);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
   }
 
   @Before
@@ -50,7 +47,7 @@ public class FpoInteractiveOptimizerEngineApiTests {
     optimization.setRiskModelDate(CommonParameters.FpoOptimizationDate);
     optimization.setCashflow(CommonParameters.OptimizationCashflow);
     OptimizerStrategy strategy = new OptimizerStrategy();
-    strategy.setId(CommonParameters.StrategyId);
+    strategy.setId(CommonParameters.FpoOptimizationStrategyId);
     OptimizerOutputTypes optOutputTypes = new OptimizerOutputTypes();
     OptimizerTradesList tradesList = new OptimizerTradesList();
     tradesList.setIdentifierType(CommonParameters.TradesIdType);

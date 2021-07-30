@@ -66,7 +66,8 @@ public class PAEngineApiTests {
       CommonFunctions.handleException("EngineApi#runCalculation", e);
     }
 
-    Assert.assertTrue("Create response status code should be 202 - Created.", createResponse.getStatusCode() == 202);
+    Assert.assertTrue("Create response status code should be 200 or 202",
+            createResponse.getStatusCode() == 200 || createResponse.getStatusCode() == 202);
 
     String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
     String id = locationList[locationList.length - 2];
