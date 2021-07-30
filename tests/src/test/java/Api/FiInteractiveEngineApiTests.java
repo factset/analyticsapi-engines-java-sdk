@@ -27,7 +27,7 @@ public class FiInteractiveEngineApiTests {
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
-    apiClient = CommonFunctions.buildApiClient(CommonParameters.OptimizerUsername, CommonParameters.OptimizerPassword);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
   }
 
   @Before

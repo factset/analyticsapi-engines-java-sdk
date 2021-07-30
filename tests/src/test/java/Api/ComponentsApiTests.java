@@ -66,7 +66,7 @@ public class ComponentsApiTests {
   @Test
   public void getAllVaultComponentsSuccess() throws ApiException {
     ApiResponse<ComponentSummaryRoot> getVaultComponentsResponse = null;
-    apiClient = CommonFunctions.buildApiClient(CommonParameters.VaultPubUsername, CommonParameters.VaultPubPassword);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
     apiInstance = new ComponentsApi(apiClient);
 
     try {
@@ -83,7 +83,7 @@ public class ComponentsApiTests {
   @Test
   public void getByVaultComponentIdSuccess() throws ApiException {
     ApiResponse<ComponentSummaryRoot> getVaultComponentsResponse = null;
-    apiClient = CommonFunctions.buildApiClient(CommonParameters.VaultPubUsername, CommonParameters.VaultPubPassword);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
     apiInstance = new ComponentsApi(apiClient);
 
     try {

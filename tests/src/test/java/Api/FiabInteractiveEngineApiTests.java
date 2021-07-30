@@ -3,10 +3,7 @@ package Api;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -51,6 +48,7 @@ public class FiabInteractiveEngineApiTests {
     return apiInstance.runCalculationWithHttpInfo(parameters);
   }
 
+  @Ignore
   @Test
   public void enginesApiGetCalculationSuccess() throws ApiException, JsonProcessingException, InterruptedException{
     ApiResponse<Void> response = null;
@@ -85,6 +83,7 @@ public class FiabInteractiveEngineApiTests {
     Assert.assertTrue("Result Status returned should be 200", resultStatus.getStatusCode() == 200);
   }
 
+  @Ignore
   @Test
   public void getAllOutStandingRequestsSuccess() throws ApiException {
     ApiResponse<Void> createResponse = null;

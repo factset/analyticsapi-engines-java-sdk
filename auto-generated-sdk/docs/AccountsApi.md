@@ -38,6 +38,10 @@ public class Example {
         Basic.setUsername("YOUR USERNAME");
         Basic.setPassword("YOUR PASSWORD");
 
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
         AccountsApi apiInstance = new AccountsApi(defaultClient);
         String path = ""; // String | The directory to get the accounts and sub-directories in
         try {
@@ -67,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Basic](../README.md#Basic), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 

@@ -124,7 +124,7 @@ public class ComponentsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<PAComponentRoot> localVarReturnType = new GenericType<PAComponentRoot>() {};
 
@@ -213,7 +213,7 @@ public class ComponentsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ComponentSummaryRoot> localVarReturnType = new GenericType<ComponentSummaryRoot>() {};
 
@@ -302,7 +302,7 @@ public class ComponentsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ComponentSummaryRoot> localVarReturnType = new GenericType<ComponentSummaryRoot>() {};
 
@@ -391,7 +391,7 @@ public class ComponentsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<VaultComponentRoot> localVarReturnType = new GenericType<VaultComponentRoot>() {};
 
@@ -480,7 +480,7 @@ public class ComponentsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<ComponentSummaryRoot> localVarReturnType = new GenericType<ComponentSummaryRoot>() {};
 

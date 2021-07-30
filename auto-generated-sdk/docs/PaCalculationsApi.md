@@ -43,6 +43,10 @@ public class Example {
         Basic.setUsername("YOUR USERNAME");
         Basic.setPassword("YOUR PASSWORD");
 
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
         PaCalculationsApi apiInstance = new PaCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run PA calculation endpoint
         try {
@@ -71,7 +75,7 @@ null (empty response body)
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Basic](../README.md#Basic), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -119,6 +123,10 @@ public class Example {
         Basic.setUsername("YOUR USERNAME");
         Basic.setPassword("YOUR PASSWORD");
 
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
         PaCalculationsApi apiInstance = new PaCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run PA calculation endpoint
         try {
@@ -148,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Basic](../README.md#Basic), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -198,6 +206,10 @@ public class Example {
         Basic.setUsername("YOUR USERNAME");
         Basic.setPassword("YOUR PASSWORD");
 
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
         PaCalculationsApi apiInstance = new PaCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run PA calculation endpoint
         try {
@@ -227,7 +239,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Basic](../README.md#Basic), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -277,6 +289,10 @@ public class Example {
         Basic.setUsername("YOUR USERNAME");
         Basic.setPassword("YOUR PASSWORD");
 
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
         PaCalculationsApi apiInstance = new PaCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Get PA calculation status by id endpoint
         String unitId = "unitId_example"; // String | from url, provided from the location header in the Get PA calculation status by id endpoint
@@ -308,7 +324,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Basic](../README.md#Basic), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -361,9 +377,13 @@ public class Example {
         Basic.setUsername("YOUR USERNAME");
         Basic.setPassword("YOUR PASSWORD");
 
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
         PaCalculationsApi apiInstance = new PaCalculationsApi(defaultClient);
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds when only one unit is passed in the POST body.
-        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
+        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         PACalculationParametersRoot paCalculationParametersRoot = new PACalculationParametersRoot(); // PACalculationParametersRoot | Calculation Parameters
         try {
             Object result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, paCalculationParametersRoot);
@@ -385,7 +405,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds when only one unit is passed in the POST body. | [optional]
- **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
+ **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **paCalculationParametersRoot** | [**PACalculationParametersRoot**](PACalculationParametersRoot.md)| Calculation Parameters | [optional]
 
 ### Return type
@@ -394,7 +414,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Basic](../README.md#Basic), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -451,10 +471,14 @@ public class Example {
         Basic.setUsername("YOUR USERNAME");
         Basic.setPassword("YOUR PASSWORD");
 
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
         PaCalculationsApi apiInstance = new PaCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run PA calculation endpoint
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds when only one unit is passed in the PUT body.
-        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
+        String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         PACalculationParametersRoot paCalculationParametersRoot = new PACalculationParametersRoot(); // PACalculationParametersRoot | Calculation Parameters
         try {
             Object result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, paCalculationParametersRoot);
@@ -477,7 +501,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| from url, provided from the location header in the Create and Run PA calculation endpoint |
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds when only one unit is passed in the PUT body. | [optional]
- **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
+ **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **paCalculationParametersRoot** | [**PACalculationParametersRoot**](PACalculationParametersRoot.md)| Calculation Parameters | [optional]
 
 ### Return type
@@ -486,7 +510,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Basic](../README.md#Basic), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
