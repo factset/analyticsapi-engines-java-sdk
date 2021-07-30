@@ -58,8 +58,8 @@ public class CommonParameters {
   public static final Boolean IncludeCash = false;
 
   // FPO values
-  public static final String FpoAccountId = "CLIENT:/FPO/TEST-WORKFLOW.ACCT";
-  public static final String FpoPaDocName = "CLIENT:/FPO/FPO-WORKFLOW";
+  public static final String FpoAccountId = "CLIENT:/FPO/1K_MAC_AMZN_AAPL.ACCT";
+  public static final String FpoPaDocName = "CLIENT:/FPO/FPO_MASTER";
   public static final String FpoOptimizationDate = "0M";
   public static final String FpoSecondaryOptimizationDate = "-1M";
   public static final String FpoOptimizationStrategyId = "Client:/fpo/fpo-workflow";
