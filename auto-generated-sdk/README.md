@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.factset.analyticsapi</groupId>
   <artifactId>engines-sdk</artifactId>
-  <version>5.0.0</version>
+  <version>5.1.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +52,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.factset.analyticsapi:engines-sdk:5.0.0"
+compile "com.factset.analyticsapi:engines-sdk:5.1.0"
 ```
 
 ### Others
@@ -65,7 +65,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/engines-sdk-5.0.0.jar`
+- `target/engines-sdk-5.1.0.jar`
 - `target/lib/*.jar`
 
 ## Usage
@@ -113,6 +113,10 @@ public class AccountsApiExample {
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
         Basic.setUsername("YOUR USERNAME");
         Basic.setPassword("YOUR PASSWORD");
+
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
 
         AccountsApi apiInstance = new AccountsApi(defaultClient);
         String path = ""; // String | The directory to get the accounts and sub-directories in
@@ -211,6 +215,7 @@ Class | Method | HTTP request | Description
 *PubCalculationsApi* | [**getCalculationUnitResultById**](docs/PubCalculationsApi.md#getCalculationUnitResultById) | **GET** /analytics/engines/pub/v3/calculations/{id}/units/{unitId}/result | Get Pub calculation result by id
 *PubCalculationsApi* | [**postAndCalculate**](docs/PubCalculationsApi.md#postAndCalculate) | **POST** /analytics/engines/pub/v3/calculations | Create and Run Pub calculation
 *PubCalculationsApi* | [**putAndCalculate**](docs/PubCalculationsApi.md#putAndCalculate) | **PUT** /analytics/engines/pub/v3/calculations/{id} | Create or Update Pub calculation and run it.
+*QuantCalculationsApi* | [**cancelCalculationById**](docs/QuantCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/quant/v3/calculations/{id} | Cancel Quant calculation by id
 *QuantCalculationsApi* | [**getCalculationParameters**](docs/QuantCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/quant/v3/calculations/{id} | Get Quant Engine calculation parameters by id
 *QuantCalculationsApi* | [**getCalculationStatusById**](docs/QuantCalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/quant/v3/calculations/{id}/status | Get Quant Engine calculation status by id
 *QuantCalculationsApi* | [**getCalculationUnitInfoById**](docs/QuantCalculationsApi.md#getCalculationUnitInfoById) | **GET** /analytics/engines/quant/v3/calculations/{id}/units/{unitId}/info | Get Quant Engine calculation metadata information by id
@@ -358,6 +363,11 @@ Class | Method | HTTP request | Description
 
 Authentication schemes defined for the API:
 ### Basic
+
+
+- **Type**: HTTP basic authentication
+
+### Bearer
 
 
 - **Type**: HTTP basic authentication

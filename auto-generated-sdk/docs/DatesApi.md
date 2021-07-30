@@ -39,6 +39,10 @@ public class Example {
         Basic.setUsername("YOUR USERNAME");
         Basic.setPassword("YOUR PASSWORD");
 
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
         DatesApi apiInstance = new DatesApi(defaultClient);
         String enddate = "enddate_example"; // String | End Date
         String componentid = "componentid_example"; // String | Component Id
@@ -74,7 +78,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Basic](../README.md#Basic), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -124,6 +128,10 @@ public class Example {
         Basic.setUsername("YOUR USERNAME");
         Basic.setPassword("YOUR PASSWORD");
 
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
         DatesApi apiInstance = new DatesApi(defaultClient);
         String enddate = "enddate_example"; // String | End Date
         String componentid = "componentid_example"; // String | Vault Component Id
@@ -159,7 +167,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Basic](../README.md#Basic), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 

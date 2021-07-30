@@ -123,7 +123,7 @@ public class ConfigurationsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<VaultConfigurationRoot> localVarReturnType = new GenericType<VaultConfigurationRoot>() {};
 
@@ -212,7 +212,7 @@ public class ConfigurationsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Basic" };
+    String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
     GenericType<VaultConfigurationSummaryRoot> localVarReturnType = new GenericType<VaultConfigurationSummaryRoot>() {};
 
