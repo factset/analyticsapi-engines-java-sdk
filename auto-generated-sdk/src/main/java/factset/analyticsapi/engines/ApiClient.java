@@ -130,6 +130,14 @@ public class ApiClient extends JavaTimeFormatter {
     } else {
       authentications.put("Basic", new HttpBasicAuth());
     }
+    if (authMap != null) {
+      auth = authMap.get("Bearer");
+    }
+    if (auth instanceof HttpBearerAuth) {
+      authentications.put("Bearer", auth);
+    } else {
+      authentications.put("Bearer", new HttpBearerAuth("bearer"));
+    }
     // Prevent the authentications from being modified.
     authentications = Collections.unmodifiableMap(authentications);
 

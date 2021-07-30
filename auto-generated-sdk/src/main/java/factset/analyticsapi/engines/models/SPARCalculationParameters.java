@@ -38,7 +38,8 @@ import factset.analyticsapi.engines.JSON;
   SPARCalculationParameters.JSON_PROPERTY_COMPONENTID,
   SPARCalculationParameters.JSON_PROPERTY_ACCOUNTS,
   SPARCalculationParameters.JSON_PROPERTY_BENCHMARK,
-  SPARCalculationParameters.JSON_PROPERTY_DATES
+  SPARCalculationParameters.JSON_PROPERTY_DATES,
+  SPARCalculationParameters.JSON_PROPERTY_CURRENCYISOCODE
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class SPARCalculationParameters implements Serializable {
@@ -55,6 +56,9 @@ public class SPARCalculationParameters implements Serializable {
 
   public static final String JSON_PROPERTY_DATES = "dates";
   private SPARDateParameters dates;
+
+  public static final String JSON_PROPERTY_CURRENCYISOCODE = "currencyisocode";
+  private String currencyisocode;
 
 
   public SPARCalculationParameters componentid(String componentid) {
@@ -160,6 +164,30 @@ public class SPARCalculationParameters implements Serializable {
   }
 
 
+  public SPARCalculationParameters currencyisocode(String currencyisocode) {
+    this.currencyisocode = currencyisocode;
+    return this;
+  }
+
+   /**
+   * Currency ISO code for calculation.
+   * @return currencyisocode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Currency ISO code for calculation.")
+  @JsonProperty(JSON_PROPERTY_CURRENCYISOCODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getCurrencyisocode() {
+    return currencyisocode;
+  }
+
+
+  public void setCurrencyisocode(String currencyisocode) {
+    this.currencyisocode = currencyisocode;
+  }
+
+
   /**
    * Return true if this SPARCalculationParameters object is equal to o.
    */
@@ -175,12 +203,13 @@ public class SPARCalculationParameters implements Serializable {
     return Objects.equals(this.componentid, spARCalculationParameters.componentid) &&
         Objects.equals(this.accounts, spARCalculationParameters.accounts) &&
         Objects.equals(this.benchmark, spARCalculationParameters.benchmark) &&
-        Objects.equals(this.dates, spARCalculationParameters.dates);
+        Objects.equals(this.dates, spARCalculationParameters.dates) &&
+        Objects.equals(this.currencyisocode, spARCalculationParameters.currencyisocode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(componentid, accounts, benchmark, dates);
+    return Objects.hash(componentid, accounts, benchmark, dates, currencyisocode);
   }
 
   @Override
@@ -191,6 +220,7 @@ public class SPARCalculationParameters implements Serializable {
     sb.append("    accounts: ").append(toIndentedString(accounts)).append("\n");
     sb.append("    benchmark: ").append(toIndentedString(benchmark)).append("\n");
     sb.append("    dates: ").append(toIndentedString(dates)).append("\n");
+    sb.append("    currencyisocode: ").append(toIndentedString(currencyisocode)).append("\n");
     sb.append("}");
     return sb.toString();
   }
