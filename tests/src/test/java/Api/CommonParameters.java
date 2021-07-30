@@ -6,10 +6,10 @@ import factset.analyticsapi.engines.models.QuantScreeningExpressionUniverse;
 public class CommonParameters {
 
   // Add 'ANALYTICS_API_DEFAULT_USERNAME_SERIAL' environment variables with the respective username-serial as value
-  public static String DefaultUsername = System.getenv("ANALYTICS_API_DEFAULT_USERNAME_SERIAL");
+  public static String DefaultUsername = System.getenv("ANALYTICS_API_DEFAULT_QAR_USERNAME_SERIAL");
 
   // Add 'ANALYTICS_API_DEFAULT_PASSWORD' environment variables with the respective api key generated on developer portal
-  public static String DefaultPassword = System.getenv("ANALYTICS_API_DEFAULT_PASSWORD");
+  public static String DefaultPassword = System.getenv("ANALYTICS_API_DEFAULT_QAR_PASSWORD");
 
   // Set 'ANALYTICS_API_URL' environment variable with api url as value
   public static final String BASEPATH = System.getenv("ANALYTICS_API_URL") != null
