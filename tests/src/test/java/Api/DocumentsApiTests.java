@@ -30,7 +30,7 @@ public class DocumentsApiTests {
   @Test
   public void getVaultDocumentListSuccess() throws ApiException {
     ApiResponse<DocumentDirectoriesRoot> getDocumentListResponse = null;
-    apiClient = CommonFunctions.buildApiClient(CommonParameters.VaultPubUsername, CommonParameters.VaultPubPassword);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
     apiInstance = new DocumentsApi(apiClient);
     try {
       getDocumentListResponse = apiInstance.getVaultDocumentsWithHttpInfo(CommonParameters.DEFAULT_LOOKUP_DIRECTORY);

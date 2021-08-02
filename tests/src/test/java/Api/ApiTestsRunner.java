@@ -5,6 +5,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ AccountsApiTests.class,
+                      AfiInteractiveOptimizerEngineApiTests.class,
                       AxpInteractiveOptimizerEngineApiTests.class,
                       BenchmarksApiTests.class,
                       BpmInteractiveOptimizerEngineApiTests.class,
@@ -24,14 +25,15 @@ import org.junit.runners.Suite;
                       PAEngineInteractiveApiTests.class,
                       PubEngineApiTests.class,
                       PubEngineInteractiveApiTests.class,
+                      QuantInteractiveEngineTests.class,
                       SPAREngineApiTests.class,
                       SPAREngineInteractiveApiTests.class,
                       StrategyDocumentsApiTests.class,
                       VaultEngineApiTests.class,
                       VaultEngineInteractiveApiTests.class })
 public class ApiTestsRunner {
-  /*
-   * Purpose of this class is to run the test cases contained in the compiled java
-   * classes listed above
-   */
+    /*
+     * Purpose of this class is to run the test cases contained in the compiled java
+     * classes listed above
+     */
 }

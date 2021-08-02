@@ -30,7 +30,7 @@ public class FrequenciesApiTests {
   @Test
   public void getVaultFrequencies() throws ApiException {
     ApiResponse<FrequencyRoot> getVaultFrequenciesResponse = null;
-    apiClient = CommonFunctions.buildApiClient(CommonParameters.VaultPubUsername, CommonParameters.VaultPubPassword);
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
     apiInstance = new FrequenciesApi(apiClient);
     try {
       getVaultFrequenciesResponse = apiInstance.getVaultFrequenciesWithHttpInfo();
