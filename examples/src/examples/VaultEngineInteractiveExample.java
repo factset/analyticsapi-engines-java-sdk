@@ -86,7 +86,6 @@ public class VaultEngineInteractiveExample {
       VaultCalculationsApi apiInstance = new VaultCalculationsApi(getApiClient());
 
       ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
-      Map<String, List<String>> headers = response.getHeaders();
 
       ApiResponse<CalculationStatusRoot> getStatus = null;
       Object result = null;
@@ -100,10 +99,10 @@ public class VaultEngineInteractiveExample {
     	  break; 
         case 201: 
           result = ((ObjectRoot)response.getData()).getData();
-          headers = response.getHeaders();
           break;
         case 202:
-          String requestId = response.getHeaders().get("X-Factset-Api-Calculation-Id").get(0);
+          CalculationStatusRoot status = (CalculationStatusRoot) response.getData();
+          String requestId = status.getData().getCalculationid();
 
           // Get Calculation Request Status
           while (getStatus == null || getStatus.getStatusCode() == 202) {
@@ -119,7 +118,6 @@ public class VaultEngineInteractiveExample {
               }
             }
             getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
-            headers = getStatus.getHeaders();
           }
           for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
             if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS)
@@ -129,7 +127,6 @@ public class VaultEngineInteractiveExample {
               String unitId = location[location.length - 2];
               ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
               result = resultResponse.getData().getData();
-              headers = resultResponse.getHeaders();
             }
           }
           break;
@@ -141,18 +138,10 @@ public class VaultEngineInteractiveExample {
         ObjectMapper mapper = new ObjectMapper();     
         String jsonString = mapper.writeValueAsString(result);
 
-        if(headers.get("content-type").get(0).toLowerCase().contains("row")) {
-          // For row and simplified row organized formats
-          RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
-          StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-          tables = stachExtension.convertToTable();              
-        }
-        else {
-          // For column organized format
-          ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
-          StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-          tables = stachExtension.convertToTable();              
-        }        
+        RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
+        StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
+        tables = stachExtension.convertToTable();
+
       } catch(Exception e) {
         System.out.println(e.getMessage());
         e.printStackTrace();

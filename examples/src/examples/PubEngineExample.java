@@ -53,7 +53,9 @@ public class PubEngineExample {
 
       ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
 
-      String requestId = createResponse.getHeaders().get("X-Factset-Api-Calculation-Id").get(0);
+      CalculationStatusRoot status = (CalculationStatusRoot) createResponse.getData();
+      String requestId = status.getData().getCalculationid();
+
       System.out.println("Calculation Id: " + requestId);
       
       // Get Calculation Request Status

@@ -87,7 +87,8 @@ public class VaultEngineExample {
 
       ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
 
-      String requestId = createResponse.getHeaders().get("X-Factset-Api-Calculation-Id").get(0);
+      CalculationStatusRoot status = (CalculationStatusRoot) createResponse.getData();
+      String requestId = status.getData().getCalculationid();
       System.out.println("Calculation Id: "+ requestId);
       
       // Get Calculation Request Status
@@ -126,18 +127,10 @@ public class VaultEngineExample {
             ObjectMapper mapper = new ObjectMapper();     
             String jsonString = mapper.writeValueAsString(resultResponse.getData().getData());
 
-            if(resultResponse.getHeaders().get("content-type").get(0).toLowerCase().contains("row")) {
-              // For row and simplified row organized formats	
-              RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
-              StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-              tables = stachExtension.convertToTable();              
-            }
-            else {
-              // For column organized format	
-              ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
-              StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-              tables = stachExtension.convertToTable();
-            }        
+            RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
+            StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
+            tables = stachExtension.convertToTable();
+
           } catch(Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();

@@ -81,7 +81,6 @@ public class QuantInteractiveEngineExample {
             QuantCalculationParametersRoot quantCalculationParam = new QuantCalculationParametersRoot();
             quantCalculationParam.putDataItem("1", quantItem);
             ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, quantCalculationParam);
-            Map<String, List<String>> headers = response.getHeaders();
 
             ApiResponse<CalculationStatusRoot> getStatus = null;
             File result = null;
@@ -95,12 +94,11 @@ public class QuantInteractiveEngineExample {
                     break;
                 case 201:
                     result = (File)response.getData();
-                    headers = response.getHeaders();
-                    SaveCalculationResult(result, "data");
-                    //outputCalculationResult(result);
+                    outputCalculationResult(result);
                     break;
                 case 202:
-                    String requestId = response.getHeaders().get("X-Factset-Api-Calculation-Id").get(0);
+                    CalculationStatusRoot status = (CalculationStatusRoot) response.getData();
+                    String requestId = status.getData().getCalculationid();
                     // Get Calculation Request Status
                     while (getStatus == null || getStatus.getStatusCode() == 202) {
                         if (getStatus != null) {
@@ -115,7 +113,6 @@ public class QuantInteractiveEngineExample {
                             }
                         }
                         getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
-                        headers = getStatus.getHeaders();
                     }
                     for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
                         if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS)
@@ -126,13 +123,11 @@ public class QuantInteractiveEngineExample {
                             ApiResponse<File> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
                             result =  resultResponse.getData();
                             System.out.println("Calculation Data");
-                            SaveCalculationResult(result, "data");
-                            //outputCalculationResult(result);
+                            outputCalculationResult(result);
                             resultResponse = apiInstance.getCalculationUnitInfoByIdWithHttpInfo(id, unitId);
                             result =  resultResponse.getData();
                             System.out.println("Calculation Info");
-                            SaveCalculationResult(result, "info");
-                            //outputCalculationResult(result);
+                            outputCalculationResult(result);
                         }
                     }
                     break;

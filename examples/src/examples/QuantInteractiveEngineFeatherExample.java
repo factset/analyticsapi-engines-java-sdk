@@ -84,7 +84,6 @@ public class QuantInteractiveEngineFeatherExample {
             quantCalculationMeta.format(QuantCalculationMeta.FormatEnum.FEATHER);
             quantCalculationParam.meta(quantCalculationMeta);
             ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, quantCalculationParam);
-            Map<String, List<String>> headers = response.getHeaders();
 
             ApiResponse<CalculationStatusRoot> getStatus = null;
             File result = null;
@@ -98,11 +97,11 @@ public class QuantInteractiveEngineFeatherExample {
                     break;
                 case 201:
                     result = (File)response.getData();
-                    headers = response.getHeaders();
                     outputCalculationResult(result, "data");
                     break;
                 case 202:
-                    String requestId = response.getHeaders().get("X-Factset-Api-Calculation-Id").get(0);
+                    CalculationStatusRoot status = (CalculationStatusRoot) response.getData();
+                    String requestId = status.getData().getCalculationid();
                     // Get Calculation Request Status
                     while (getStatus == null || getStatus.getStatusCode() == 202) {
                         if (getStatus != null) {
@@ -117,7 +116,6 @@ public class QuantInteractiveEngineFeatherExample {
                             }
                         }
                         getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
-                        headers = getStatus.getHeaders();
                     }
                     for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
                         if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS)

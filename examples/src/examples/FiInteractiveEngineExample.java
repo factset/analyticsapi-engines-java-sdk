@@ -131,18 +131,10 @@ public class FiInteractiveEngineExample {
         ObjectMapper mapper = new ObjectMapper();     
         String jsonString = mapper.writeValueAsString(result);
 
-        if(headers.get("content-type").get(0).toLowerCase().contains("column")) {
-          // For row and simplified row organized formats
-          ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
-          StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-          tables = stachExtension.convertToTable();                        
-        }
-        else {
-          // For row and simplified row organized formats
-          RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
-          StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-          tables = stachExtension.convertToTable();
-        }        
+        RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
+        StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
+        tables = stachExtension.convertToTable();
+
       } catch(Exception e) {
         System.out.println(e.getMessage());
         e.printStackTrace();

@@ -70,7 +70,8 @@ public class PubEngineInteractiveExample {
         case 201:
           result = (File)createResponse.getData();
         case 202:
-          String requestId = createResponse.getHeaders().get("X-Factset-Api-Calculation-Id").get(0);
+          CalculationStatusRoot status = (CalculationStatusRoot) createResponse.getData();
+          String requestId = status.getData().getCalculationid();
           System.out.println("Calculation Id: " + requestId);
           
           // Get Calculation Request Status

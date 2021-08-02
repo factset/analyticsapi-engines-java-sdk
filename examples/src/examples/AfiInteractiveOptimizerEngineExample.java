@@ -71,7 +71,6 @@ public class AfiInteractiveOptimizerEngineExample {
                 case 201: // Calculation completed
                     System.out.println("Calculation successful!!!");
                     result = ((ObjectRoot)response.getData()).getData();
-                    headers = response.getHeaders();
                     break;
                 case 202:
                     String requestId = headers.get("X-Factset-Api-Calculation-Id").get(0);
