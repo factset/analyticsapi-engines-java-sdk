@@ -31,7 +31,7 @@ import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
 import org.glassfish.jersey.client.ClientProperties;
 
 public class VaultEngineExample {
-
+  
   private static FdsApiClient apiClient = null;
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
@@ -41,32 +41,32 @@ public class VaultEngineExample {
   private static String VAULT_DEFAULT_ACCOUNT = "CLIENT:/BISAM/REPOSITORY/QA/SMALL_PORT.ACCT";
   private static String COMPONENT_NAME = "Performance Attribution";
   private static String COMPONENT_CATEGORY = "Performance / Fixed Income Attribution";
-
+  
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
       // Build Vault Calculation Parameters List
-
+      
       // Get all component from VAULT_DEFAULT_DOCUMENT with Name COMPONENT_NAME & category COMPONENT_CATEGORY
       ComponentsApi componentsApi = new ComponentsApi(getApiClient());
       Map<String, ComponentSummary> components = componentsApi.getVaultComponents(VAULT_DEFAULT_DOCUMENT).getData();
       String componentId = components.entrySet().stream().filter(
-          c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
-          .iterator().next().getKey();
+              c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
+              .iterator().next().getKey();
       System.out.println("ID of component with Name '" + COMPONENT_NAME + "' and category '" + COMPONENT_CATEGORY
-          + "' : " + componentId);
-
+              + "' : " + componentId);
+      
       ConfigurationsApi configurationsApi = new ConfigurationsApi(getApiClient());
       Map<String, VaultConfigurationSummary> configurationsMap = configurationsApi
-          .getVaultConfigurations(VAULT_DEFAULT_ACCOUNT).getData();
+              .getVaultConfigurations(VAULT_DEFAULT_ACCOUNT).getData();
       String configurationId = configurationsMap.entrySet().iterator().next().getKey();
-
+      
       VaultCalculationParametersRoot calcParameters = new VaultCalculationParametersRoot();
-
+      
       VaultCalculationParameters vaultItem = new VaultCalculationParameters();
-
+      
       vaultItem.setComponentid(componentId);
       vaultItem.setConfigid(configurationId);
-
+      
       VaultIdentifier account = new VaultIdentifier();
       account.setId(VAULT_DEFAULT_ACCOUNT);
       vaultItem.setAccount(account);
@@ -76,25 +76,25 @@ public class VaultEngineExample {
       dateParameters.setEnddate("20180331");
       dateParameters.setFrequency("Monthly");
       vaultItem.setDates(dateParameters);
-
+      
       vaultItem.setComponentdetail("GROUPS"); // It can be GROUPS or TOTALS
-
+      
       calcParameters.putDataItem("1", vaultItem);
       calcParameters.putDataItem("2", vaultItem);
-
+      
       // Run Calculation Request
       VaultCalculationsApi apiInstance = new VaultCalculationsApi(getApiClient());
-
+      
       ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
-
+      
       CalculationStatusRoot status = (CalculationStatusRoot) createResponse.getData();
       String requestId = status.getData().getCalculationid();
-      System.out.println("Calculation Id: "+ requestId);
+      System.out.println("Calculation Id: " + requestId);
       
       // Get Calculation Request Status
       ApiResponse<CalculationStatusRoot> getStatus = null;
       while (getStatus == null || getStatus.getData().getData().getStatus() == StatusEnum.QUEUED
-          || getStatus.getData().getData().getStatus() == StatusEnum.EXECUTING) {
+              || getStatus.getData().getData().getStatus() == StatusEnum.EXECUTING) {
         if (getStatus != null) {
           List<String> cacheControl = getStatus.getHeaders().get("Cache-Control");
           if (cacheControl != null) {
@@ -108,34 +108,30 @@ public class VaultEngineExample {
         }
         getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
       }
-
+      
       System.out.println("Calculation Completed!!!");
-
+      
       // Check for Calculation Units
       for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
         if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
-          String[] location = calculationUnitParameters.getValue().getResult().split("/");
-          String id = location[location.length - 4];
-          String unitId = location[location.length - 2];
-          ApiResponse<ObjectRoot> resultResponse = apiInstance
-              .getCalculationUnitResultByIdWithHttpInfo(id, unitId);
-
+          ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(requestId, calculationUnitParameters.getKey());
+          
           System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Succeeded!!!");
           System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Result");
           List<TableData> tables = null;
           try {
-            ObjectMapper mapper = new ObjectMapper();     
+            ObjectMapper mapper = new ObjectMapper();
             String jsonString = mapper.writeValueAsString(resultResponse.getData().getData());
-
+            
             RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
             StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
             tables = stachExtension.convertToTable();
-
-          } catch(Exception e) {
+            
+          } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
           }
-
+          
           ObjectMapper mapper = new ObjectMapper();
           String json = mapper.writeValueAsString(tables);
           System.out.println(json); // Prints the result in 2D table format.
@@ -143,19 +139,18 @@ public class VaultEngineExample {
           // generateExcel(tables);
         }
       }
-    }
-    catch (ApiException e) {
+    } catch (ApiException e) {
       handleException("VaultEngineExample#Main", e);
       return;
     }
   }
-
+  
   private static void generateExcel(List<TableData> tableList) {
-    for(TableData table : tableList) {
+    for (TableData table : tableList) {
       writeDataToExcel(table, UUID.randomUUID().toString() + ".xlsv");
-    }      
+    }
   }
-
+  
   private static void writeDataToExcel(TableData table, String fileLocation) {
     XSSFWorkbook workbook = new XSSFWorkbook();
     XSSFSheet sheet = workbook.createSheet("Calculation Report");
@@ -178,9 +173,8 @@ public class VaultEngineExample {
       e.printStackTrace();
     }
   }
-
-  private static class FdsApiClient extends ApiClient
-  {
+  
+  private static class FdsApiClient extends ApiClient {
     // Uncomment the below lines to use a proxy server
     /*@Override
     protected void customizeClientBuilder(ClientBuilder clientBuilder) {
@@ -188,22 +182,22 @@ public class VaultEngineExample {
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }
-
+  
   private static FdsApiClient getApiClient() {
     if (apiClient != null) {
       return apiClient;
     }
-
+    
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
     apiClient.setBasePath(BASE_PATH);
     apiClient.setUsername(USERNAME);
     apiClient.setPassword(PASSWORD);
-
+    
     return apiClient;
   }
-
+  
   private static void handleException(String method, ApiException e) {
     System.out.println("Calculation Failed!!!");
     System.out.println("Status code: " + e.getCode());

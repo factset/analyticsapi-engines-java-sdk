@@ -31,7 +31,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class VaultEngineInteractiveExample {
-
+  
   private static FdsApiClient apiClient = null;
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
@@ -43,35 +43,35 @@ public class VaultEngineInteractiveExample {
   private static String COMPONENT_CATEGORY = "Performance / 4 Tiles Calculate";
   
   private static String CALCULATION_UNIT_ID = "1";
-
+  
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
       // Build Vault Calculation Parameters List
-
+      
       // Get all component from VAULT_DEFAULT_DOCUMENT with Name COMPONENT_NAME & category COMPONENT_CATEGORY
       ComponentsApi componentsApi = new ComponentsApi(getApiClient());
       Map<String, ComponentSummary> components = componentsApi.getVaultComponents(VAULT_DEFAULT_DOCUMENT).getData();
       String componentId = components.entrySet().stream().filter(
-          c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
-          .iterator().next().getKey();
+              c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
+              .iterator().next().getKey();
       System.out.println("ID of component with Name '" + COMPONENT_NAME + "' and category '" + COMPONENT_CATEGORY
-          + "' : " + componentId);
-
+              + "' : " + componentId);
+      
       ConfigurationsApi configurationsApi = new ConfigurationsApi(getApiClient());
       Map<String, VaultConfigurationSummary> configurationsMap = configurationsApi
-          .getVaultConfigurations(VAULT_DEFAULT_ACCOUNT).getData();
+              .getVaultConfigurations(VAULT_DEFAULT_ACCOUNT).getData();
       String configurationId = configurationsMap.entrySet().iterator().next().getKey();
-
+      
       VaultCalculationParameters vaultItem = new VaultCalculationParameters();
       VaultCalculationParametersRoot calcParameters = new VaultCalculationParametersRoot();
-
+      
       vaultItem.setComponentid(componentId);
       vaultItem.setConfigid(configurationId);
-
+      
       VaultIdentifier account = new VaultIdentifier();
       account.setId(VAULT_DEFAULT_ACCOUNT);
       vaultItem.setAccount(account);
-
+      
       VaultDateParameters dateParameters = new VaultDateParameters();
       dateParameters.setStartdate("20180101");
       dateParameters.setEnddate("20180331");
@@ -79,31 +79,31 @@ public class VaultEngineInteractiveExample {
       vaultItem.setDates(dateParameters);
       
       vaultItem.setComponentdetail("GROUPS"); // It can be GROUPS or TOTALS
-
+      
       calcParameters.putDataItem(CALCULATION_UNIT_ID, vaultItem);
-
+      
       // Run Calculation Request
       VaultCalculationsApi apiInstance = new VaultCalculationsApi(getApiClient());
-
+      
       ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
-
+      
       ApiResponse<CalculationStatusRoot> getStatus = null;
       Object result = null;
-      switch(response.getStatusCode()) {
+      switch (response.getStatusCode()) {
         case 200:
           System.out.println("Calculation failed!!!");
-          CalculationUnitStatus calcUnitStatus = ((CalculationStatusRoot)response.getData()).getData().getUnits().get(CALCULATION_UNIT_ID);
+          CalculationUnitStatus calcUnitStatus = ((CalculationStatusRoot) response.getData()).getData().getUnits().get(CALCULATION_UNIT_ID);
           System.out.println("Status : " + calcUnitStatus.getStatus());
           System.out.println("Reason : " + calcUnitStatus.getErrors());
           System.exit(-1);
-    	  break; 
-        case 201: 
-          result = ((ObjectRoot)response.getData()).getData();
+          break;
+        case 201:
+          result = ((ObjectRoot) response.getData()).getData();
           break;
         case 202:
           CalculationStatusRoot status = (CalculationStatusRoot) response.getData();
           String requestId = status.getData().getCalculationid();
-
+          
           // Get Calculation Request Status
           while (getStatus == null || getStatus.getStatusCode() == 202) {
             if (getStatus != null) {
@@ -120,51 +120,47 @@ public class VaultEngineInteractiveExample {
             getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
           }
           for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
-            if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS)
-            {
-              String[] location = calculationUnitParameters.getValue().getResult().split("/");
-              String id = location[location.length - 4];
-              String unitId = location[location.length - 2];
-              ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
+            if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
+              ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(requestId, calculationUnitParameters.getKey());
               result = resultResponse.getData().getData();
             }
           }
           break;
       }
-
+      
       System.out.println("Calculation Completed!!!");
       List<TableData> tables = null;
       try {
-        ObjectMapper mapper = new ObjectMapper();     
+        ObjectMapper mapper = new ObjectMapper();
         String jsonString = mapper.writeValueAsString(result);
-
+        
         RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
         StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
         tables = stachExtension.convertToTable();
-
-      } catch(Exception e) {
+        
+      } catch (Exception e) {
         System.out.println(e.getMessage());
         e.printStackTrace();
       }
-
+      
       ObjectMapper mapper = new ObjectMapper();
       String json = mapper.writeValueAsString(tables);
       System.out.println(json); // Prints the result in 2D table format.
       // Uncomment the following line to generate an Excel file
       // generateExcel(tables);
-
+      
     } catch (ApiException e) {
       handleException("VaultEngineExample#Main", e);
       return;
     }
   }
-
+  
   private static void generateExcel(List<TableData> tableList) {
-    for(TableData table : tableList) {
+    for (TableData table : tableList) {
       writeDataToExcel(table, UUID.randomUUID().toString() + ".xlsv");
-    }      
+    }
   }
-
+  
   private static void writeDataToExcel(TableData table, String fileLocation) {
     XSSFWorkbook workbook = new XSSFWorkbook();
     XSSFSheet sheet = workbook.createSheet("Calculation Report");
@@ -187,9 +183,8 @@ public class VaultEngineInteractiveExample {
       e.printStackTrace();
     }
   }
-
-  private static class FdsApiClient extends ApiClient
-  {
+  
+  private static class FdsApiClient extends ApiClient {
     // Uncomment the below lines to use a proxy server
     /*@Override
     protected void customizeClientBuilder(ClientBuilder clientBuilder) {
@@ -197,22 +192,22 @@ public class VaultEngineInteractiveExample {
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }
-
+  
   private static FdsApiClient getApiClient() {
     if (apiClient != null) {
       return apiClient;
     }
-
+    
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
     apiClient.setBasePath(BASE_PATH);
     apiClient.setUsername(USERNAME);
     apiClient.setPassword(PASSWORD);
-
+    
     return apiClient;
   }
-
+  
   private static void handleException(String method, ApiException e) {
     System.out.println("Calculation Failed!!!");
     System.out.println("Status code: " + e.getCode());

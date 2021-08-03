@@ -31,7 +31,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class SPAREngineInteractiveExample {
-
+  
   private static FdsApiClient apiClient = null;
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
@@ -42,42 +42,42 @@ public class SPAREngineInteractiveExample {
   private static String COMPONENT_CATEGORY = "Raw Data / Returns";
   
   private static String CALCULATION_UNIT_ID = "1";
-
+  
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
       // Build SPAR Calculation Parameters List
-
+      
       // Get all component from SPAR_DEFAULT_DOCUMENT with Name COMPONENT_NAME & category COMPONENT_CATEGORY
       ComponentsApi componentsApi = new ComponentsApi(getApiClient());
       Map<String, ComponentSummary> components = componentsApi.getSPARComponents(SPAR_DEFAULT_DOCUMENT).getData();
       String componentId = components.entrySet().stream().filter(
-          c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
-          .iterator().next().getKey();
+              c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
+              .iterator().next().getKey();
       System.out.println("ID of component with Name '" + COMPONENT_NAME + "' and category '" + COMPONENT_CATEGORY
-          + "' : " + componentId);
-
+              + "' : " + componentId);
+      
       SPARCalculationParameters sparItem = new SPARCalculationParameters();
       SPARCalculationParametersRoot calcParameters = new SPARCalculationParametersRoot();
       sparItem.setComponentid(componentId);
-
+      
       SPARIdentifier accountIdentifier1 = new SPARIdentifier();
       accountIdentifier1.setId("R.1000");
       accountIdentifier1.setPrefix("RUSSELL");
       accountIdentifier1.setReturntype("GTR");
       sparItem.addAccountsItem(accountIdentifier1);
-
+      
       SPARIdentifier accountIdentifier2 = new SPARIdentifier();
       accountIdentifier2.setId("RUSSELL_P:R.2000");
       accountIdentifier2.setPrefix("RUSSELL");
       accountIdentifier2.setReturntype("GTR");
       sparItem.addAccountsItem(accountIdentifier2);
-
+      
       SPARIdentifier benchmarkIdentifier = new SPARIdentifier();
       benchmarkIdentifier.setId("R.2000");
       benchmarkIdentifier.setPrefix("RUSSELL");
       benchmarkIdentifier.setReturntype("GTR");
       sparItem.setBenchmark(benchmarkIdentifier);
-
+      
       SPARDateParameters dateParameters = new SPARDateParameters();
       dateParameters.setStartdate("20180101");
       dateParameters.setEnddate("20181231");
@@ -85,29 +85,29 @@ public class SPAREngineInteractiveExample {
       sparItem.setDates(dateParameters);
       
       calcParameters.putDataItem(CALCULATION_UNIT_ID, sparItem);
-
+      
       // Run Calculation Request
       SparCalculationsApi apiInstance = new SparCalculationsApi(getApiClient());
-
+      
       ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
-
+      
       ApiResponse<CalculationStatusRoot> getStatus = null;
       Object result = null;
-      switch(response.getStatusCode()) {
+      switch (response.getStatusCode()) {
         case 200:
           System.out.println("Calculation failed!!!");
-          CalculationUnitStatus calcUnitStatus = ((CalculationStatusRoot)response.getData()).getData().getUnits().get(CALCULATION_UNIT_ID);
+          CalculationUnitStatus calcUnitStatus = ((CalculationStatusRoot) response.getData()).getData().getUnits().get(CALCULATION_UNIT_ID);
           System.out.println("Status : " + calcUnitStatus.getStatus());
           System.out.println("Reason : " + calcUnitStatus.getErrors());
           System.exit(-1);
-          break; 
+          break;
         case 201:
-          result = ((ObjectRoot)response.getData()).getData();
+          result = ((ObjectRoot) response.getData()).getData();
           break;
         case 202:
           CalculationStatusRoot status = (CalculationStatusRoot) response.getData();
           String requestId = status.getData().getCalculationid();
-
+          
           // Get Calculation Request Status
           while (getStatus == null || getStatus.getStatusCode() == 202) {
             if (getStatus != null) {
@@ -123,35 +123,31 @@ public class SPAREngineInteractiveExample {
             }
             getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
           }
-        
+          
           for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
-            if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS)
-            {
-              String[] location = calculationUnitParameters.getValue().getResult().split("/");
-              String id = location[location.length - 4];
-              String unitId = location[location.length - 2];
-              ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
+            if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
+              ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(requestId, calculationUnitParameters.getKey());
               result = resultResponse.getData().getData();
             }
           }
           break;
       }
-
+      
       System.out.println("Calculation Completed!!!");
       List<TableData> tables = null;
       try {
-        ObjectMapper mapper = new ObjectMapper();     
+        ObjectMapper mapper = new ObjectMapper();
         String jsonString = mapper.writeValueAsString(result);
-
+        
         RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
         StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
         tables = stachExtension.convertToTable();
-
-      } catch(Exception e) {
+        
+      } catch (Exception e) {
         System.out.println(e.getMessage());
         e.printStackTrace();
       }
-
+      
       ObjectMapper mapper = new ObjectMapper();
       String json = mapper.writeValueAsString(tables);
       System.out.println(json); // Prints the result in 2D table format.
@@ -160,15 +156,15 @@ public class SPAREngineInteractiveExample {
     } catch (ApiException e) {
       handleException("SPAREngineExample#Main", e);
     }
-
+    
   }
-
+  
   private static void generateExcel(List<TableData> tableList) {
-    for(TableData table : tableList) {
+    for (TableData table : tableList) {
       writeDataToExcel(table, UUID.randomUUID().toString() + ".xlsv");
-    }      
+    }
   }
-
+  
   private static void writeDataToExcel(TableData table, String fileLocation) {
     XSSFWorkbook workbook = new XSSFWorkbook();
     XSSFSheet sheet = workbook.createSheet("Calculation Report");
@@ -191,9 +187,8 @@ public class SPAREngineInteractiveExample {
       e.printStackTrace();
     }
   }
-
-  private static class FdsApiClient extends ApiClient
-  {
+  
+  private static class FdsApiClient extends ApiClient {
     // Uncomment the below lines to use a proxy server
     /*@Override
     protected void customizeClientBuilder(ClientBuilder clientBuilder) {
@@ -201,22 +196,22 @@ public class SPAREngineInteractiveExample {
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }
-
+  
   private static FdsApiClient getApiClient() {
     if (apiClient != null) {
       return apiClient;
     }
-
+    
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
     apiClient.setBasePath(BASE_PATH);
     apiClient.setUsername(USERNAME);
     apiClient.setPassword(PASSWORD);
-
+    
     return apiClient;
   }
-
+  
   private static void handleException(String method, ApiException e) {
     System.err.println("Exception when calling " + method);
     if (e.getResponseHeaders() != null && e.getResponseHeaders().containsKey("x-datadirect-request-key")) {

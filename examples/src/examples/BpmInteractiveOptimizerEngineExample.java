@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.ws.rs.client.ClientBuilder;
 
+import factset.analyticsapi.engines.models.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -27,13 +28,6 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.ApiResponse;
 import factset.analyticsapi.engines.api.BpmOptimizerApi;
-import factset.analyticsapi.engines.models.BPMOptimizationParameters;
-import factset.analyticsapi.engines.models.BPMOptimizationParametersRoot;
-import factset.analyticsapi.engines.models.BPMOptimizerStrategy;
-import factset.analyticsapi.engines.models.ObjectRoot;
-import factset.analyticsapi.engines.models.OptimizerOptimalHoldings;
-import factset.analyticsapi.engines.models.OptimizerOutputTypes;
-import factset.analyticsapi.engines.models.OptimizerTradesList;
 import factset.analyticsapi.engines.models.OptimizerTradesList.IdentifierTypeEnum;
 
 public class BpmInteractiveOptimizerEngineExample {
@@ -46,10 +40,10 @@ public class BpmInteractiveOptimizerEngineExample {
   private static IdentifierTypeEnum TRADES_ID_TYPE = IdentifierTypeEnum.ASSET;
   private static Boolean INCLUDE_CASH = false;
   private static Boolean EXCLUDE_ZERO = false;
-
+  
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
-      BpmOptimizerApi apiInstance = new BpmOptimizerApi(getApiClient());	
+      BpmOptimizerApi apiInstance = new BpmOptimizerApi(getApiClient());
       BPMOptimizationParameters bpmItem = new BPMOptimizationParameters();
       
       BPMOptimizerStrategy strategy = new BPMOptimizerStrategy();
@@ -66,27 +60,28 @@ public class BpmInteractiveOptimizerEngineExample {
       // optimal.setIncludeCash(INCLUDE_CASH);
       // optimal.setExcludeZero(EXCLUDE_ZERO);
       // optOutputTypes.setOptimal(optimal);
-
+      
       bpmItem.setStrategy(strategy);
       bpmItem.setOutputTypes(optOutputTypes);
       BPMOptimizationParametersRoot bpmOptimizerParam = new BPMOptimizationParametersRoot();
       bpmOptimizerParam.setData(bpmItem);
-
+      
       ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, null, bpmOptimizerParam);
       Map<String, List<String>> headers = response.getHeaders();
-
+      
       Object result = null;
-      switch(response.getStatusCode()) {
+      switch (response.getStatusCode()) {
         case 201: // Calculation completed
-          System.out.println("Calculation successful!!!");	
-          result = ((ObjectRoot)response.getData()).getData();
+          System.out.println("Calculation successful!!!");
+          result = ((ObjectRoot) response.getData()).getData();
           break;
         case 202:
-          String requestId = headers.get("X-Factset-Api-Calculation-Id").get(0);
+          CalculationInfoRoot status = (CalculationInfoRoot) response.getData();
+          String requestId = status.getData().getCalculationId();
           do {
             response = apiInstance.getOptimizationStatusByIdWithHttpInfo(requestId);
             headers = response.getHeaders();
-
+            
             List<String> cacheControl = headers.get("Cache-Control");
             if (cacheControl != null) {
               int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
@@ -96,19 +91,18 @@ public class BpmInteractiveOptimizerEngineExample {
               System.out.println("Sleeping for: 2 seconds");
               Thread.sleep(2 * 1000L);
             }
-          } while(response.getStatusCode() == 202);
+          } while (response.getStatusCode() == 202);
           
           System.out.println("Calculation successful!!!");
           // Get Calculation Result
-          String id = headers.get("X-Factset-Api-Calculation-Id").get(0);
-          ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id);
+          ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(requestId);
           result = resultResponse.getData().getData();
           break;
       }
       
       List<TableData> tables = null;
       try {
-        ObjectMapper mapper = new ObjectMapper();     
+        ObjectMapper mapper = new ObjectMapper();
         String jsonString = mapper.writeValueAsString(result);
         JsonNode jsonObject = mapper.readTree(jsonString);
         
@@ -116,11 +110,11 @@ public class BpmInteractiveOptimizerEngineExample {
         stachExtensionBuilder.addTable("tradesTable", jsonObject.get("trades"));
         // stachExtensionBuilder.addTable("optimalTable", jsonObject.get("optimal"));
         tables = stachExtensionBuilder.build().convertToTable();
-      } catch(Exception e) {
+      } catch (Exception e) {
         System.out.println(e.getMessage());
         e.printStackTrace();
       }
-
+      
       ObjectMapper mapper = new ObjectMapper();
       String json = mapper.writeValueAsString(tables);
       System.out.println(json); // Prints the result in 2D table format.
@@ -130,13 +124,13 @@ public class BpmInteractiveOptimizerEngineExample {
       handleException("BpmOptimizerEngineExample#Main", e);
     }
   }
-
+  
   private static void generateExcel(List<TableData> tableList) {
-    for(TableData table : tableList) {
+    for (TableData table : tableList) {
       writeDataToExcel(table, UUID.randomUUID().toString() + ".xlsv");
-    }      
+    }
   }
-
+  
   private static void writeDataToExcel(TableData table, String fileLocation) {
     XSSFWorkbook workbook = new XSSFWorkbook();
     XSSFSheet sheet = workbook.createSheet("Calculation Report");
@@ -159,9 +153,8 @@ public class BpmInteractiveOptimizerEngineExample {
       e.printStackTrace();
     }
   }
-
-  private static class FdsApiClient extends ApiClient
-  {
+  
+  private static class FdsApiClient extends ApiClient {
     // Uncomment the below lines to use a proxy server
     /*@Override
     protected void customizeClientBuilder(ClientBuilder clientBuilder) {
@@ -169,22 +162,22 @@ public class BpmInteractiveOptimizerEngineExample {
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }
-
+  
   private static FdsApiClient getApiClient() {
     if (apiClient != null) {
       return apiClient;
     }
-
+    
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
     apiClient.setBasePath(BASE_PATH);
     apiClient.setUsername(USERNAME);
     apiClient.setPassword(PASSWORD);
-
+    
     return apiClient;
   }
-
+  
   private static void handleException(String method, ApiException e) {
     System.err.println("Exception when calling " + method);
     if (e.getResponseHeaders() != null && e.getResponseHeaders().containsKey("x-datadirect-request-key")) {

@@ -33,9 +33,9 @@ public class FiabInteractiveEngineExample {
   
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
-      FiabCalculationsApi apiInstance = new FiabCalculationsApi(getApiClient());	
+      FiabCalculationsApi apiInstance = new FiabCalculationsApi(getApiClient());
       FIABCalculationParameters calcParameters = new FIABCalculationParameters();
-
+      
       FIABIdentifier fiabID = new FIABIdentifier();
       fiabID.setId(FIAB_ACCOUNT_ID);
       calcParameters.setAccount(fiabID);
@@ -48,10 +48,10 @@ public class FiabInteractiveEngineExample {
       calcParameters.setMsl(FIAB_MSL);
       ApiResponse<Void> response = apiInstance.runCalculationWithHttpInfo(calcParameters);
       Map<String, List<String>> headers = response.getHeaders();
-
+      
       ApiResponse<FIABCalculationStatus> resultStatus = null;
       String requestId = headers.get("X-Factset-Api-Calculation-Id").get(0);
-
+      
       do {
         resultStatus = apiInstance.getCalculationByIdWithHttpInfo(requestId);
         List<String> cacheControl = headers.get("Cache-Control");
@@ -62,16 +62,15 @@ public class FiabInteractiveEngineExample {
         } else {
           System.out.println("Sleeping for: 2 seconds");
           Thread.sleep(2 * 1000L);
-        }     
-      } while(resultStatus.getStatusCode() == 202);
+        }
+      } while (resultStatus.getStatusCode() == 202);
       System.out.println(resultStatus.getData());
     } catch (ApiException e) {
       handleException("FiabEngineExample#Main", e);
-    }    
+    }
   }
-
-  private static class FdsApiClient extends ApiClient
-  {
+  
+  private static class FdsApiClient extends ApiClient {
     // Uncomment the below lines to use a proxy server
     /*@Override
     protected void customizeClientBuilder(ClientBuilder clientBuilder) {
@@ -79,22 +78,22 @@ public class FiabInteractiveEngineExample {
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }
-
+  
   private static FdsApiClient getApiClient() {
     if (apiClient != null) {
       return apiClient;
     }
-
+    
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
     apiClient.setBasePath(BASE_PATH);
     apiClient.setUsername(USERNAME);
     apiClient.setPassword(PASSWORD);
-
+    
     return apiClient;
   }
-
+  
   private static void handleException(String method, ApiException e) {
     System.err.println("Exception when calling " + method);
     if (e.getResponseHeaders() != null && e.getResponseHeaders().containsKey("x-datadirect-request-key")) {
