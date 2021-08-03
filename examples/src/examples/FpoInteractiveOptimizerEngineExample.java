@@ -96,9 +96,9 @@ public class FpoInteractiveOptimizerEngineExample {
           break;
         case 202:
           CalculationInfoRoot status = (CalculationInfoRoot) response.getData();
-          String requestId = status.getData().getCalculationId();
+          String calculationId = status.getData().getCalculationId();
           do {
-            response = apiInstance.getOptimizationStatusByIdWithHttpInfo(requestId);
+            response = apiInstance.getOptimizationStatusByIdWithHttpInfo(calculationId);
             headers = response.getHeaders();
             
             List<String> cacheControl = headers.get("Cache-Control");
@@ -114,7 +114,7 @@ public class FpoInteractiveOptimizerEngineExample {
           
           System.out.println("Calculation successful!!!");
           // Get Calculation Result
-          ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(requestId, ACCEPT_HEADER_VALUE);
+          ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(calculationId, ACCEPT_HEADER_VALUE);
           result = resultResponse.getData().getData();
           break;
       }

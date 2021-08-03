@@ -8,9 +8,6 @@ import java.util.UUID;
 
 import javax.ws.rs.client.ClientBuilder;
 
-import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
-import org.glassfish.jersey.client.ClientProperties;
-
 import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
@@ -30,92 +27,69 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
+import org.glassfish.jersey.client.ClientProperties;
 
-public class PAEngineExample {
+public class VaultEngineMultipleUnitExample {
   
   private static FdsApiClient apiClient = null;
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
   private static String PASSWORD = "<apiKey>";
   
-  private static String PA_DEFAULT_DOCUMENT = "PA_DOCUMENTS:DEFAULT";
-  private static String COMPONENT_NAME = "Weights";
-  private static String COMPONENT_CATEGORY = "Weights / Exposures";
-  private static String COLUMN_NAME = "Port. Ending Weight";
-  private static String COLUMN_CATEGORY = "Portfolio/Position Data";
-  private static String COULMN_DIRECTORY = "Factset";
-  private static String GROUP_NAME = "Economic Sector - FactSet";
-  private static String GROUP_CATEGORY = "FactSet";
-  private static String GROUP_DIRECTORY = "Factset";
+  private static String VAULT_DEFAULT_DOCUMENT = "Client:/aapi/VAULT_QA_PI_DEFAULT_LOCKED";
+  private static String VAULT_DEFAULT_ACCOUNT = "CLIENT:/BISAM/REPOSITORY/QA/SMALL_PORT.ACCT";
+  private static String COMPONENT_NAME = "Performance Attribution";
+  private static String COMPONENT_CATEGORY = "Performance / Fixed Income Attribution";
   
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
-      // Build PA Calculation Parameters List
+      // Build Vault Calculation Parameters List
       
-      // Get all component from PA_DEFAULT_DOCUMENT with Name COMPONENT_NAME & category COMPONENT_CATEGORY
+      // Get all component from VAULT_DEFAULT_DOCUMENT with Name COMPONENT_NAME & category COMPONENT_CATEGORY
       ComponentsApi componentsApi = new ComponentsApi(getApiClient());
-      Map<String, ComponentSummary> components = componentsApi.getPAComponents(PA_DEFAULT_DOCUMENT).getData();
-      String componentId = components.entrySet().stream()
-              .filter(c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
+      Map<String, ComponentSummary> components = componentsApi.getVaultComponents(VAULT_DEFAULT_DOCUMENT).getData();
+      String componentId = components.entrySet().stream().filter(
+              c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
               .iterator().next().getKey();
-      System.out.println(
-              "ID of component with Name '" + COMPONENT_NAME + "' and category '" + COMPONENT_CATEGORY + "' : " + componentId);
+      System.out.println("ID of component with Name '" + COMPONENT_NAME + "' and category '" + COMPONENT_CATEGORY
+              + "' : " + componentId);
       
-      PACalculationParametersRoot calcParameters = new PACalculationParametersRoot();
+      ConfigurationsApi configurationsApi = new ConfigurationsApi(getApiClient());
+      Map<String, VaultConfigurationSummary> configurationsMap = configurationsApi
+              .getVaultConfigurations(VAULT_DEFAULT_ACCOUNT).getData();
+      String configurationId = configurationsMap.entrySet().iterator().next().getKey();
       
-      PACalculationParameters paItem = new PACalculationParameters();
+      VaultCalculationParametersRoot calcParameters = new VaultCalculationParametersRoot();
       
-      paItem.setComponentid(componentId);
+      VaultCalculationParameters vaultItem = new VaultCalculationParameters();
       
-      PAIdentifier accountPaIdentifier1 = new PAIdentifier();
-      accountPaIdentifier1.setId("BENCH:SP50");
-      accountPaIdentifier1.setHoldingsmode("B&H"); // It can be B&H, TBR, OMS or EXT
-      paItem.addAccountsItem(accountPaIdentifier1);
+      vaultItem.setComponentid(componentId);
+      vaultItem.setConfigid(configurationId);
       
-      PAIdentifier accountPaIdentifier2 = new PAIdentifier();
-      accountPaIdentifier2.setId("BENCH:R.2000");
-      accountPaIdentifier2.setHoldingsmode("B&H");
-      paItem.addAccountsItem(accountPaIdentifier2);
+      VaultIdentifier account = new VaultIdentifier();
+      account.setId(VAULT_DEFAULT_ACCOUNT);
+      vaultItem.setAccount(account);
       
-      PAIdentifier benchmarkPaIdentifier = new PAIdentifier();
-      benchmarkPaIdentifier.setId("BENCH:R.2000");
-      benchmarkPaIdentifier.setHoldingsmode("B&H");
-      paItem.addBenchmarksItem(benchmarkPaIdentifier);
-      
-      PADateParameters dateParameters = new PADateParameters();
+      VaultDateParameters dateParameters = new VaultDateParameters();
       dateParameters.setStartdate("20180101");
       dateParameters.setEnddate("20180331");
       dateParameters.setFrequency("Monthly");
-      paItem.setDates(dateParameters);
+      vaultItem.setDates(dateParameters);
       
-      // To add column overrides
-      // PACalculationColumn column = new PACalculationColumn();
-      // column.setId(getColumnId(COLUMN_NAME, COLUMN_CATEGORY, COULMN_DIRECTORY));
-      // paItem.addColumnsItem(column);
+      vaultItem.setComponentdetail("GROUPS"); // It can be GROUPS or TOTALS
       
-      // To add group overrides
-      // PACalculationGroup group = new PACalculationGroup();
-      // group.setId(getGroupId(GROUP_NAME, GROUP_CATEGORY, GROUP_DIRECTORY));
-      // paItem.addGroupsItem(group);
-      
-      // To add currency override
-      // paItem.currencyisocode("USD");
-      
-      // To add component detail.
-      // paItem.setComponentdetail("GROUPS"); // It can be GROUPS or TOTALS
-      
-      calcParameters.putDataItem("1", paItem);
-      calcParameters.putDataItem("2", paItem);
+      calcParameters.putDataItem("1", vaultItem);
+      calcParameters.putDataItem("2", vaultItem);
       
       // Run Calculation Request
-      PaCalculationsApi apiInstance = new PaCalculationsApi(getApiClient());
-      ApiResponse<Object> createResponse = null;
+      VaultCalculationsApi apiInstance = new VaultCalculationsApi(getApiClient());
       
-      createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
+      ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
       
       CalculationStatusRoot status = (CalculationStatusRoot) createResponse.getData();
-      String requestId = status.getData().getCalculationid();
-      System.out.println("Calculation Id: " + requestId);
+      String calculationId = status.getData().getCalculationid();
+      System.out.println("Calculation Id: " + calculationId);
       
       // Get Calculation Request Status
       ApiResponse<CalculationStatusRoot> getStatus = null;
@@ -132,7 +106,7 @@ public class PAEngineExample {
             Thread.sleep(2 * 1000L);
           }
         }
-        getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+        getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(calculationId);
       }
       
       System.out.println("Calculation Completed!!!");
@@ -140,11 +114,10 @@ public class PAEngineExample {
       // Check for Calculation Units
       for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
         if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
-          ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(requestId, calculationUnitParameters.getKey());
+          ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(calculationId, calculationUnitParameters.getKey());
           
           System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Succeeded!!!");
           System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Result");
-          
           List<TableData> tables = null;
           try {
             ObjectMapper mapper = new ObjectMapper();
@@ -164,42 +137,12 @@ public class PAEngineExample {
           System.out.println(json); // Prints the result in 2D table format.
           // Uncomment the following line to generate an Excel file
           // generateExcel(tables);
-        } else {
-          System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Failed!!!");
-          System.out.println("Error message : " + calculationUnitParameters.getValue().getErrors());
         }
       }
     } catch (ApiException e) {
-      handleException("PAEngineExample#Main", e);
+      handleException("VaultEngineExample#Main", e);
+      return;
     }
-  }
-  
-  private static String getColumnId(String columnName, String columnCategory, String directory) throws ApiException {
-    ColumnsApi apiInstance = new ColumnsApi(getApiClient());
-    ColumnSummaryRoot columns = apiInstance.getPAColumnsWithHttpInfo(columnName, columnCategory, directory).getData();
-    
-    String columnId = columns.getData().entrySet().stream()
-            .filter(c -> c.getValue().getName().equals(columnName) && c.getValue().getCategory().equals(columnCategory) &&
-                    c.getValue().getDirectory().equals(directory))
-            .iterator().next().getKey();
-    
-    System.out.println(
-            "ID of column with Name '" + columnName + "', category '" + columnCategory + "' and directory '" + directory + "'" + " : " + columnId);
-    return columnId;
-  }
-  
-  private static String getGroupId(String groupName, String groupCategory, String groupDirectory) throws ApiException {
-    GroupsApi apiInstance = new GroupsApi(getApiClient());
-    GroupRoot groups = apiInstance.getPAGroupsWithHttpInfo().getData();
-    
-    String groupId = groups.getData().entrySet().stream()
-            .filter(c -> c.getValue().getName().equals(groupName) && c.getValue().getCategory().equals(groupCategory) &&
-                    c.getValue().getDirectory().equals(groupDirectory))
-            .iterator().next().getKey();
-    
-    System.out.println(
-            "ID of group with Name '" + groupName + "', category '" + groupCategory + "' and directory '" + groupDirectory + "'" + " : " + groupId);
-    return groupId;
   }
   
   private static void generateExcel(List<TableData> tableList) {
@@ -235,7 +178,7 @@ public class PAEngineExample {
     // Uncomment the below lines to use a proxy server
     /*@Override
     protected void customizeClientBuilder(ClientBuilder clientBuilder) {
-      clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8888" );
+      clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }

@@ -8,11 +8,6 @@ import java.util.UUID;
 
 import javax.ws.rs.client.ClientBuilder;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
 import org.glassfish.jersey.client.ClientProperties;
 
@@ -20,6 +15,7 @@ import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
 
+import factset.analyticsapi.engines.models.CalculationStatus.StatusEnum;
 
 import com.factset.protobuf.stach.extensions.ColumnStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.RowStachExtensionBuilder;
@@ -30,7 +26,12 @@ import com.factset.protobuf.stach.extensions.models.TableData;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class SPAREngineInteractiveExample {
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class SPAREngineMultipleUnitExample {
   
   private static FdsApiClient apiClient = null;
   private static String BASE_PATH = "https://api.factset.com";
@@ -40,8 +41,6 @@ public class SPAREngineInteractiveExample {
   private static String SPAR_DEFAULT_DOCUMENT = "pmw_root:/spar_documents/Factset Default Document";
   private static String COMPONENT_NAME = "Returns Table";
   private static String COMPONENT_CATEGORY = "Raw Data / Returns";
-  
-  private static String CALCULATION_UNIT_ID = "1";
   
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
@@ -56,8 +55,10 @@ public class SPAREngineInteractiveExample {
       System.out.println("ID of component with Name '" + COMPONENT_NAME + "' and category '" + COMPONENT_CATEGORY
               + "' : " + componentId);
       
-      SPARCalculationParameters sparItem = new SPARCalculationParameters();
       SPARCalculationParametersRoot calcParameters = new SPARCalculationParametersRoot();
+      
+      SPARCalculationParameters sparItem = new SPARCalculationParameters();
+      
       sparItem.setComponentid(componentId);
       
       SPARIdentifier accountIdentifier1 = new SPARIdentifier();
@@ -84,79 +85,70 @@ public class SPAREngineInteractiveExample {
       dateParameters.setFrequency("Monthly");
       sparItem.setDates(dateParameters);
       
-      calcParameters.putDataItem(CALCULATION_UNIT_ID, sparItem);
+      calcParameters.putDataItem("1", sparItem);
+      calcParameters.putDataItem("2", sparItem);
       
       // Run Calculation Request
       SparCalculationsApi apiInstance = new SparCalculationsApi(getApiClient());
       
-      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
+      ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
       
+      CalculationStatusRoot status = (CalculationStatusRoot) createResponse.getData();
+      String calculationId = status.getData().getCalculationid();
+      System.out.println("Calculation Id: " + calculationId);
+      // Get Calculation Request Status
       ApiResponse<CalculationStatusRoot> getStatus = null;
-      Object result = null;
-      switch (response.getStatusCode()) {
-        case 200:
-          System.out.println("Calculation failed!!!");
-          CalculationUnitStatus calcUnitStatus = ((CalculationStatusRoot) response.getData()).getData().getUnits().get(CALCULATION_UNIT_ID);
-          System.out.println("Status : " + calcUnitStatus.getStatus());
-          System.out.println("Reason : " + calcUnitStatus.getErrors());
-          System.exit(-1);
-          break;
-        case 201:
-          result = ((ObjectRoot) response.getData()).getData();
-          break;
-        case 202:
-          CalculationStatusRoot status = (CalculationStatusRoot) response.getData();
-          String requestId = status.getData().getCalculationid();
-          
-          // Get Calculation Request Status
-          while (getStatus == null || getStatus.getStatusCode() == 202) {
-            if (getStatus != null) {
-              List<String> cacheControl = getStatus.getHeaders().get("Cache-Control");
-              if (cacheControl != null) {
-                int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
-                System.out.println("Sleeping for: " + maxAge + " seconds");
-                Thread.sleep(maxAge * 1000L);
-              } else {
-                System.out.println("Sleeping for: 2 seconds");
-                Thread.sleep(2 * 1000L);
-              }
-            }
-            getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+      
+      while (getStatus == null || getStatus.getData().getData().getStatus() == StatusEnum.QUEUED
+              || getStatus.getData().getData().getStatus() == StatusEnum.EXECUTING) {
+        if (getStatus != null) {
+          List<String> cacheControl = getStatus.getHeaders().get("Cache-Control");
+          if (cacheControl != null) {
+            int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
+            System.out.println("Sleeping for: " + maxAge + " seconds");
+            Thread.sleep(maxAge * 1000L);
+          } else {
+            System.out.println("Sleeping for: 2 seconds");
+            Thread.sleep(2 * 1000L);
           }
-          
-          for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
-            if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
-              ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(requestId, calculationUnitParameters.getKey());
-              result = resultResponse.getData().getData();
-            }
-          }
-          break;
+        }
+        getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(calculationId);
       }
       
       System.out.println("Calculation Completed!!!");
-      List<TableData> tables = null;
-      try {
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonString = mapper.writeValueAsString(result);
-        
-        RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
-        StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-        tables = stachExtension.convertToTable();
-        
-      } catch (Exception e) {
-        System.out.println(e.getMessage());
-        e.printStackTrace();
-      }
       
-      ObjectMapper mapper = new ObjectMapper();
-      String json = mapper.writeValueAsString(tables);
-      System.out.println(json); // Prints the result in 2D table format.
-      // Uncomment the following line to generate an Excel file
-      // generateExcel(tables);
+      // Check for Calculation Units
+      for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
+        if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
+          ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(calculationId, calculationUnitParameters.getKey());
+          
+          System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Succeeded!!!");
+          System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Result");
+          List<TableData> tables = null;
+          try {
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonString = mapper.writeValueAsString(resultResponse.getData().getData());
+            
+            RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
+            StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
+            tables = stachExtension.convertToTable();
+            
+          } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+          }
+          
+          ObjectMapper mapper = new ObjectMapper();
+          String json = mapper.writeValueAsString(tables);
+          System.out.println(json); // Prints the result in 2D table format.
+          // Uncomment the following line to generate an Excel file
+          // generateExcel(tables);
+        }
+      }
     } catch (ApiException e) {
       handleException("SPAREngineExample#Main", e);
+      return;
     }
-    
   }
   
   private static void generateExcel(List<TableData> tableList) {
@@ -213,11 +205,11 @@ public class SPAREngineInteractiveExample {
   }
   
   private static void handleException(String method, ApiException e) {
-    System.err.println("Exception when calling " + method);
-    if (e.getResponseHeaders() != null && e.getResponseHeaders().containsKey("x-datadirect-request-key")) {
-      System.out.println("x-datadirect-request-key: " + e.getResponseHeaders().get("x-datadirect-request-key").get(0));
-    }
+    System.out.println("Calculation Failed!!!");
     System.out.println("Status code: " + e.getCode());
+    if (e.getResponseHeaders() != null && e.getResponseHeaders().containsKey("x-datadirect-request-key")) {
+      System.out.println("Request Key: " + e.getResponseHeaders().get("x-datadirect-request-key").get(0));
+    }
     System.out.println("Reason: " + e.getClientErrorResponse());
     e.printStackTrace();
   }

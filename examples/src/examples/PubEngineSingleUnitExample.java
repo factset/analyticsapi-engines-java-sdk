@@ -23,7 +23,7 @@ import factset.analyticsapi.engines.models.PubCalculationParametersRoot;
 import factset.analyticsapi.engines.models.PubDateParameters;
 import factset.analyticsapi.engines.models.PubIdentifier;
 
-public class PubEngineInteractiveExample {
+public class PubEngineSingleUnitExample {
   private static FdsApiClient apiClient = null;
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
@@ -71,8 +71,8 @@ public class PubEngineInteractiveExample {
           result = (File) createResponse.getData();
         case 202:
           CalculationStatusRoot status = (CalculationStatusRoot) createResponse.getData();
-          String requestId = status.getData().getCalculationid();
-          System.out.println("Calculation Id: " + requestId);
+          String calculationId = status.getData().getCalculationid();
+          System.out.println("Calculation Id: " + calculationId);
           
           // Get Calculation Request Status
           while (getStatus == null || getStatus.getStatusCode() == 202) {
@@ -87,12 +87,12 @@ public class PubEngineInteractiveExample {
                 Thread.sleep(2 * 1000L);
               }
             }
-            getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+            getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(calculationId);
           }
           
           for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
             if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
-              ApiResponse<File> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(requestId, calculationUnitParameters.getKey());
+              ApiResponse<File> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(calculationId, calculationUnitParameters.getKey());
               result = resultResponse.getData();
             }
           }

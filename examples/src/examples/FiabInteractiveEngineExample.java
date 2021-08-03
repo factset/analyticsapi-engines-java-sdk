@@ -50,10 +50,11 @@ public class FiabInteractiveEngineExample {
       Map<String, List<String>> headers = response.getHeaders();
       
       ApiResponse<FIABCalculationStatus> resultStatus = null;
-      String requestId = headers.get("X-Factset-Api-Calculation-Id").get(0);
+      String[] locationList = headers.get("Location").get(0).split("/");
+      String calculationId = locationList[locationList.length - 1];
       
       do {
-        resultStatus = apiInstance.getCalculationByIdWithHttpInfo(requestId);
+        resultStatus = apiInstance.getCalculationByIdWithHttpInfo(calculationId);
         List<String> cacheControl = headers.get("Cache-Control");
         if (cacheControl != null) {
           int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));

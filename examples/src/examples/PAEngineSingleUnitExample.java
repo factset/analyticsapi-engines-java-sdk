@@ -29,62 +29,80 @@ import com.factset.protobuf.stach.extensions.models.TableData;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
-public class VaultEngineInteractiveExample {
+public class PAEngineSingleUnitExample {
   
   private static FdsApiClient apiClient = null;
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
   private static String PASSWORD = "<apiKey>";
   
-  private static String VAULT_DEFAULT_DOCUMENT = "Client:/aapi/VAULT_QA_PI_DEFAULT_LOCKED";
-  private static String VAULT_DEFAULT_ACCOUNT = "CLIENT:/BISAM/REPOSITORY/QA/SMALL_PORT.ACCT";
-  private static String COMPONENT_NAME = "Average\r\nWeight";
-  private static String COMPONENT_CATEGORY = "Performance / 4 Tiles Calculate";
+  private static String PA_DEFAULT_DOCUMENT = "PA_DOCUMENTS:DEFAULT";
+  private static String COMPONENT_NAME = "Weights";
+  private static String COMPONENT_CATEGORY = "Weights / Exposures";
+  private static String COLUMN_NAME = "Port. Ending Weight";
+  private static String COLUMN_CATEGORY = "Portfolio/Position Data";
+  private static String COULMN_DIRECTORY = "Factset";
+  private static String GROUP_NAME = "Economic Sector - FactSet";
+  private static String GROUP_CATEGORY = "FactSet";
+  private static String GROUP_DIRECTORY = "Factset";
   
   private static String CALCULATION_UNIT_ID = "1";
   
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
-      // Build Vault Calculation Parameters List
+      // Build PA Calculation Parameters List
       
-      // Get all component from VAULT_DEFAULT_DOCUMENT with Name COMPONENT_NAME & category COMPONENT_CATEGORY
+      // Get all component from PA_DEFAULT_DOCUMENT with Name COMPONENT_NAME &
+      // category COMPONENT_CATEGORY
       ComponentsApi componentsApi = new ComponentsApi(getApiClient());
-      Map<String, ComponentSummary> components = componentsApi.getVaultComponents(VAULT_DEFAULT_DOCUMENT).getData();
+      Map<String, ComponentSummary> components = componentsApi.getPAComponents(PA_DEFAULT_DOCUMENT).getData();
       String componentId = components.entrySet().stream().filter(
               c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
               .iterator().next().getKey();
       System.out.println("ID of component with Name '" + COMPONENT_NAME + "' and category '" + COMPONENT_CATEGORY
               + "' : " + componentId);
       
-      ConfigurationsApi configurationsApi = new ConfigurationsApi(getApiClient());
-      Map<String, VaultConfigurationSummary> configurationsMap = configurationsApi
-              .getVaultConfigurations(VAULT_DEFAULT_ACCOUNT).getData();
-      String configurationId = configurationsMap.entrySet().iterator().next().getKey();
+      PACalculationParameters paItem = new PACalculationParameters();
       
-      VaultCalculationParameters vaultItem = new VaultCalculationParameters();
-      VaultCalculationParametersRoot calcParameters = new VaultCalculationParametersRoot();
+      paItem.setComponentid(componentId);
       
-      vaultItem.setComponentid(componentId);
-      vaultItem.setConfigid(configurationId);
+      PAIdentifier accountPaIdentifier1 = new PAIdentifier();
+      accountPaIdentifier1.setId("BENCH:SP50");
+      accountPaIdentifier1.setHoldingsmode("B&H"); // It can be B&H, TBR, OMS or EXT
+      paItem.addAccountsItem(accountPaIdentifier1);
       
-      VaultIdentifier account = new VaultIdentifier();
-      account.setId(VAULT_DEFAULT_ACCOUNT);
-      vaultItem.setAccount(account);
+      PAIdentifier benchmarkPaIdentifier = new PAIdentifier();
+      benchmarkPaIdentifier.setId("BENCH:R.2000");
+      benchmarkPaIdentifier.setHoldingsmode("B&H");
+      paItem.addBenchmarksItem(benchmarkPaIdentifier);
       
-      VaultDateParameters dateParameters = new VaultDateParameters();
+      PADateParameters dateParameters = new PADateParameters();
       dateParameters.setStartdate("20180101");
-      dateParameters.setEnddate("20180331");
+      dateParameters.setEnddate("20181231");
       dateParameters.setFrequency("Monthly");
-      vaultItem.setDates(dateParameters);
+      paItem.setDates(dateParameters);
       
-      vaultItem.setComponentdetail("GROUPS"); // It can be GROUPS or TOTALS
+      // To add column overrides
+      // PACalculationColumn column = new PACalculationColumn();
+      // column.setId(getColumnId(COLUMN_NAME, COLUMN_CATEGORY, COULMN_DIRECTORY));
+      // paItem.addColumnsItem(column);
       
-      calcParameters.putDataItem(CALCULATION_UNIT_ID, vaultItem);
+      // To add group overrides
+      // PACalculationGroup group = new PACalculationGroup();
+      // group.setId(getGroupId(GROUP_NAME, GROUP_CATEGORY, GROUP_DIRECTORY));
+      // paItem.addGroupsItem(group);
+      
+      // To add currency override
+      // paItem.currencyisocode("USD");
+      
+      // To add component detail.
+      // paItem.setComponentdetail("GROUPS"); // It can be GROUPS or TOTALS
+      
+      PACalculationParametersRoot calcParameters = new PACalculationParametersRoot();
+      calcParameters.putDataItem(CALCULATION_UNIT_ID, paItem);
       
       // Run Calculation Request
-      VaultCalculationsApi apiInstance = new VaultCalculationsApi(getApiClient());
-      
+      PaCalculationsApi apiInstance = new PaCalculationsApi(getApiClient());
       ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
       
       ApiResponse<CalculationStatusRoot> getStatus = null;
@@ -98,13 +116,14 @@ public class VaultEngineInteractiveExample {
           System.exit(-1);
           break;
         case 201:
+          System.out.println("Calculation successful!!!");
           result = ((ObjectRoot) response.getData()).getData();
           break;
         case 202:
           CalculationStatusRoot status = (CalculationStatusRoot) response.getData();
-          String requestId = status.getData().getCalculationid();
+          String calculationId = status.getData().getCalculationid();
           
-          // Get Calculation Request Status
+          // Get Calculation Request Status        
           while (getStatus == null || getStatus.getStatusCode() == 202) {
             if (getStatus != null) {
               List<String> cacheControl = getStatus.getHeaders().get("Cache-Control");
@@ -117,18 +136,18 @@ public class VaultEngineInteractiveExample {
                 Thread.sleep(2 * 1000L);
               }
             }
-            getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+            getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(calculationId);
           }
+          
           for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
             if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
-              ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(requestId, calculationUnitParameters.getKey());
+              ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(calculationId, calculationUnitParameters.getKey());
               result = resultResponse.getData().getData();
             }
           }
           break;
       }
       
-      System.out.println("Calculation Completed!!!");
       List<TableData> tables = null;
       try {
         ObjectMapper mapper = new ObjectMapper();
@@ -148,11 +167,10 @@ public class VaultEngineInteractiveExample {
       System.out.println(json); // Prints the result in 2D table format.
       // Uncomment the following line to generate an Excel file
       // generateExcel(tables);
-      
     } catch (ApiException e) {
-      handleException("VaultEngineExample#Main", e);
-      return;
+      handleException("PAEngineExample#Main", e);
     }
+    
   }
   
   private static void generateExcel(List<TableData> tableList) {
@@ -184,13 +202,30 @@ public class VaultEngineInteractiveExample {
     }
   }
   
-  private static class FdsApiClient extends ApiClient {
-    // Uncomment the below lines to use a proxy server
-    /*@Override
-    protected void customizeClientBuilder(ClientBuilder clientBuilder) {
-      clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8866" );
-      clientConfig.connectorProvider( new ApacheConnectorProvider() );
-    }*/
+  private static String getColumnId(String columnName, String columnCategory, String directory) throws ApiException {
+    ColumnsApi apiInstance = new ColumnsApi(getApiClient());
+    ColumnSummaryRoot columns = apiInstance.getPAColumnsWithHttpInfo(columnName, columnCategory, directory).getData();
+    String columnId = columns.getData().entrySet().stream()
+            .filter(c -> c.getValue().getName().equals(columnName) && c.getValue().getCategory().equals(columnCategory) &&
+                    c.getValue().getDirectory().equals(directory))
+            .iterator().next().getKey();
+    
+    System.out.println(
+            "ID of column with Name '" + columnName + "', category '" + columnCategory + "' and directory '" + directory + "'" + " : " + columnId);
+    return columnId;
+  }
+  
+  private static String getGroupId(String groupName, String groupCategory, String groupDirectory) throws ApiException {
+    GroupsApi apiInstance = new GroupsApi(getApiClient());
+    GroupRoot groups = apiInstance.getPAGroupsWithHttpInfo().getData();
+    String groupId = groups.getData().entrySet().stream()
+            .filter(c -> c.getValue().getName().equals(groupName) && c.getValue().getCategory().equals(groupCategory) &&
+                    c.getValue().getDirectory().equals(groupDirectory))
+            .iterator().next().getKey();
+    
+    System.out.println(
+            "ID of group with Name '" + groupName + "', category '" + groupCategory + "' and directory '" + groupDirectory + "'" + " : " + groupId);
+    return groupId;
   }
   
   private static FdsApiClient getApiClient() {
@@ -209,12 +244,21 @@ public class VaultEngineInteractiveExample {
   }
   
   private static void handleException(String method, ApiException e) {
-    System.out.println("Calculation Failed!!!");
-    System.out.println("Status code: " + e.getCode());
+    System.err.println("Exception when calling " + method);
     if (e.getResponseHeaders() != null && e.getResponseHeaders().containsKey("x-datadirect-request-key")) {
-      System.out.println("Request Key: " + e.getResponseHeaders().get("x-datadirect-request-key").get(0));
+      System.out.println("x-datadirect-request-key: " + e.getResponseHeaders().get("x-datadirect-request-key").get(0));
     }
+    System.out.println("Status code: " + e.getCode());
     System.out.println("Reason: " + e.getClientErrorResponse());
     e.printStackTrace();
+  }
+  
+  private static class FdsApiClient extends ApiClient {
+    // Uncomment the below lines to use a proxy server
+    /*@Override
+    protected void customizeClientBuilder(ClientBuilder clientBuilder) {
+      clientConfig.property( ClientProperties.PROXY_URI, "http://127.0.0.1:8888" );
+      clientConfig.connectorProvider( new ApacheConnectorProvider() );
+    }*/
   }
 }

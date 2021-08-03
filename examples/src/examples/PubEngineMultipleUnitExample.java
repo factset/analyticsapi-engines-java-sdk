@@ -16,7 +16,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
 import org.glassfish.jersey.client.ClientProperties;
 
-public class PubEngineExample {
+public class PubEngineMultipleUnitExample {
   
   private static FdsApiClient apiClient = null;
   private static String BASE_PATH = "https://api.factset.com";
@@ -54,9 +54,9 @@ public class PubEngineExample {
       ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
       
       CalculationStatusRoot status = (CalculationStatusRoot) createResponse.getData();
-      String requestId = status.getData().getCalculationid();
+      String calculationId = status.getData().getCalculationid();
       
-      System.out.println("Calculation Id: " + requestId);
+      System.out.println("Calculation Id: " + calculationId);
       
       // Get Calculation Request Status
       ApiResponse<CalculationStatusRoot> getStatus = null;
@@ -73,7 +73,7 @@ public class PubEngineExample {
             Thread.sleep(2 * 1000L);
           }
         }
-        getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+        getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(calculationId);
       }
       
       System.out.println("Calculation Completed!!!");
@@ -82,7 +82,7 @@ public class PubEngineExample {
       for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits()
               .entrySet()) {
         if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
-          ApiResponse<File> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(requestId, calculationUnitParameters.getKey());
+          ApiResponse<File> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(calculationId, calculationUnitParameters.getKey());
           
           File result = resultResponse.getData();
           result.renameTo(new File("output-" + calculationUnitParameters.getKey() + ".pdf"));

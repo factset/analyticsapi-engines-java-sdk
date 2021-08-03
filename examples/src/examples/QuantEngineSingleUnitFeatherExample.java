@@ -30,7 +30,7 @@ import factset.analyticsapi.engines.api.QuantCalculationsApi;
 
 import static factset.analyticsapi.engines.models.QuantScreeningExpressionUniverse.*;
 
-public class QuantInteractiveEngineFeatherExample {
+public class QuantEngineSingleUnitFeatherExample {
   private static FdsApiClient apiClient = null;
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
@@ -101,7 +101,7 @@ public class QuantInteractiveEngineFeatherExample {
           break;
         case 202:
           CalculationStatusRoot status = (CalculationStatusRoot) response.getData();
-          String requestId = status.getData().getCalculationid();
+          String calculationId = status.getData().getCalculationid();
           // Get Calculation Request Status
           while (getStatus == null || getStatus.getStatusCode() == 202) {
             if (getStatus != null) {
@@ -115,15 +115,15 @@ public class QuantInteractiveEngineFeatherExample {
                 Thread.sleep(2 * 1000L);
               }
             }
-            getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+            getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(calculationId);
           }
           for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
             if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
-              ApiResponse<File> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(requestId, calculationUnitParameters.getKey());
+              ApiResponse<File> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(calculationId, calculationUnitParameters.getKey());
               result = resultResponse.getData();
               System.out.println("Calculation Data");
               outputCalculationResult(result, "data");
-              resultResponse = apiInstance.getCalculationUnitInfoByIdWithHttpInfo(requestId, calculationUnitParameters.getKey());
+              resultResponse = apiInstance.getCalculationUnitInfoByIdWithHttpInfo(calculationId, calculationUnitParameters.getKey());
               result = resultResponse.getData();
               System.out.println("Calculation Info");
               outputCalculationResult(result, "info");

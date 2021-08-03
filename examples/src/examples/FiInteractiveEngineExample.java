@@ -97,9 +97,9 @@ public class FiInteractiveEngineExample {
           break;
         case 202:
           CalculationInfoRoot status = (CalculationInfoRoot) response.getData();
-          String requestId = status.getData().getCalculationId();
+          String calculationId = status.getData().getCalculationId();
           do {
-            response = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+            response = apiInstance.getCalculationStatusByIdWithHttpInfo(calculationId);
             headers = response.getHeaders();
             
             List<String> cacheControl = headers.get("Cache-Control");
@@ -113,7 +113,7 @@ public class FiInteractiveEngineExample {
             }
           } while (response.getStatusCode() == 202);
           // Get Calculation Result
-          ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationResultWithHttpInfo(requestId);
+          ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationResultWithHttpInfo(calculationId);
           result = resultResponse.getData().getData();
           break;
       }
