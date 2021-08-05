@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.ws.rs.client.ClientBuilder;
 
+import factset.analyticsapi.engines.models.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -27,16 +28,6 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.ApiResponse;
 import factset.analyticsapi.engines.api.FpoOptimizerApi;
-import factset.analyticsapi.engines.models.FPOAccount;
-import factset.analyticsapi.engines.models.FPOOptimizationParameters;
-import factset.analyticsapi.engines.models.FPOOptimizationParametersRoot;
-import factset.analyticsapi.engines.models.ObjectRoot;
-import factset.analyticsapi.engines.models.Optimization;
-import factset.analyticsapi.engines.models.OptimizerOptimalHoldings;
-import factset.analyticsapi.engines.models.OptimizerOutputTypes;
-import factset.analyticsapi.engines.models.OptimizerStrategy;
-import factset.analyticsapi.engines.models.OptimizerTradesList;
-import factset.analyticsapi.engines.models.PaDoc;
 import factset.analyticsapi.engines.models.OptimizerTradesList.IdentifierTypeEnum;
 
 public class FpoInteractiveOptimizerEngineExample {
@@ -54,12 +45,11 @@ public class FpoInteractiveOptimizerEngineExample {
   private static Boolean EXCLUDE_ZERO = false;
   private static String OPTIMIZATION_CASHFLOW = "0";
   
-  private static Integer DEADLINE_HEADER_VALUE = 20;
   public static String ACCEPT_HEADER_VALUE = "gzip";
-
+  
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
-      FpoOptimizerApi apiInstance = new FpoOptimizerApi(getApiClient());	
+      FpoOptimizerApi apiInstance = new FpoOptimizerApi(getApiClient());
       FPOOptimizationParameters fpoItem = new FPOOptimizationParameters();
       
       FPOAccount accountId = new FPOAccount();
@@ -87,31 +77,30 @@ public class FpoInteractiveOptimizerEngineExample {
       // optimal.setIncludeCash(INCLUDE_CASH);
       // optimal.setExcludeZero(EXCLUDE_ZERO);
       // optOutputTypes.setOptimal(optimal); 
-
+      
       fpoItem.setAccount(accountId);
       fpoItem.setOptimization(optimization);
       fpoItem.setStrategy(strategy);
       fpoItem.setOutputTypes(optOutputTypes);
       FPOOptimizationParametersRoot fpoOptimizerParam = new FPOOptimizationParametersRoot();
       fpoOptimizerParam.setData(fpoItem);
-
-      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=0", fpoOptimizerParam);
+      
+      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, null, fpoOptimizerParam);
       Map<String, List<String>> headers = response.getHeaders();
-
+      
       Object result = null;
-      switch(response.getStatusCode()) {
+      switch (response.getStatusCode()) {
         case 201: // Calculation completed
-          System.out.println("Calculation successful!!!");		
-          result = ((ObjectRoot)response.getData()).getData();
-          headers = response.getHeaders();
+          System.out.println("Calculation successful!!!");
+          result = ((ObjectRoot) response.getData()).getData();
           break;
         case 202:
-          String[] locationList = headers.get("Location").get(0).split("/");
-          String requestId = locationList[locationList.length - 2];
+          CalculationInfoRoot status = (CalculationInfoRoot) response.getData();
+          String calculationId = status.getData().getCalculationId();
           do {
-            response = apiInstance.getOptimizationStatusByIdWithHttpInfo(requestId);
+            response = apiInstance.getOptimizationStatusByIdWithHttpInfo(calculationId);
             headers = response.getHeaders();
-
+            
             List<String> cacheControl = headers.get("Cache-Control");
             if (cacheControl != null) {
               int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
@@ -121,20 +110,18 @@ public class FpoInteractiveOptimizerEngineExample {
               System.out.println("Sleeping for: 2 seconds");
               Thread.sleep(2 * 1000L);
             }
-          } while(response.getStatusCode() == 202);
+          } while (response.getStatusCode() == 202);
           
           System.out.println("Calculation successful!!!");
           // Get Calculation Result
-          String[] location = headers.get("Location").get(0).split("/");
-          String id = location[location.length - 2];
-          ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id, ACCEPT_HEADER_VALUE);
+          ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(calculationId, ACCEPT_HEADER_VALUE);
           result = resultResponse.getData().getData();
           break;
       }
       
       List<TableData> tables = null;
       try {
-        ObjectMapper mapper = new ObjectMapper();     
+        ObjectMapper mapper = new ObjectMapper();
         String jsonString = mapper.writeValueAsString(result);
         JsonNode jsonObject = mapper.readTree(jsonString);
         
@@ -142,11 +129,11 @@ public class FpoInteractiveOptimizerEngineExample {
         stachExtensionBuilder.addTable("tradesTable", jsonObject.get("trades"));
         // stachExtensionBuilder.addTable("optimalTable", jsonObject.get("optimal"));
         tables = stachExtensionBuilder.build().convertToTable();
-      } catch(Exception e) {
+      } catch (Exception e) {
         System.out.println(e.getMessage());
         e.printStackTrace();
       }
-
+      
       ObjectMapper mapper = new ObjectMapper();
       String json = mapper.writeValueAsString(tables);
       System.out.println(json); // Prints the result in 2D table format.
@@ -156,13 +143,13 @@ public class FpoInteractiveOptimizerEngineExample {
       handleException("FpoOptimizerEngineExample#Main", e);
     }
   }
-
+  
   private static void generateExcel(List<TableData> tableList) {
-    for(TableData table : tableList) {
+    for (TableData table : tableList) {
       writeDataToExcel(table, UUID.randomUUID().toString() + ".xlsv");
-    }      
+    }
   }
-
+  
   private static void writeDataToExcel(TableData table, String fileLocation) {
     XSSFWorkbook workbook = new XSSFWorkbook();
     XSSFSheet sheet = workbook.createSheet("Calculation Report");
@@ -185,9 +172,8 @@ public class FpoInteractiveOptimizerEngineExample {
       e.printStackTrace();
     }
   }
-
-  private static class FdsApiClient extends ApiClient
-  {
+  
+  private static class FdsApiClient extends ApiClient {
     // Uncomment the below lines to use a proxy server
     /*@Override
     protected void customizeClientBuilder(ClientBuilder clientBuilder) {
@@ -195,22 +181,22 @@ public class FpoInteractiveOptimizerEngineExample {
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }
-
+  
   private static FdsApiClient getApiClient() {
     if (apiClient != null) {
       return apiClient;
     }
-
+    
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
     apiClient.setBasePath(BASE_PATH);
     apiClient.setUsername(USERNAME);
     apiClient.setPassword(PASSWORD);
-
+    
     return apiClient;
   }
-
+  
   private static void handleException(String method, ApiException e) {
     System.err.println("Exception when calling " + method);
     if (e.getResponseHeaders() != null && e.getResponseHeaders().containsKey("x-datadirect-request-key")) {

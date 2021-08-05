@@ -23,7 +23,7 @@ import factset.analyticsapi.engines.models.PubCalculationParametersRoot;
 import factset.analyticsapi.engines.models.PubDateParameters;
 import factset.analyticsapi.engines.models.PubIdentifier;
 
-public class PubEngineInteractiveExample {
+public class PubEngineSingleUnitExample {
   private static FdsApiClient apiClient = null;
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
@@ -32,49 +32,47 @@ public class PubEngineInteractiveExample {
   private static String PUB_DEFAULT_DOCUMENT = "Client:/AAPI/Puma Test Doc.Pub_bridge_pdf";
   private static String PUB_DEFAULT_ACCOUNT = "BENCH:SP50";
   
-  private static Integer DEADLINE_HEADER_VALUE = 20;
-
   public static void main(String[] args) throws InterruptedException, JsonProcessingException, FileNotFoundException {
     try {
       // Build Pub Calculation Parameters List
-
+      
       PubCalculationParametersRoot calcParameters = new PubCalculationParametersRoot();
-
+      
       PubCalculationParameters pubItem = new PubCalculationParameters();
       pubItem.setDocument(PUB_DEFAULT_DOCUMENT);
-
+      
       PubIdentifier account = new PubIdentifier();
       account.setId(PUB_DEFAULT_ACCOUNT);
       account.setHoldingsmode("B&H"); // It can be B&H, TBR, OMS or EXT
       pubItem.setAccount(account);
-
+      
       PubDateParameters dateParameters = new PubDateParameters();
       dateParameters.setStartdate("-1M");
       dateParameters.setEnddate("0M");
       pubItem.setDates(dateParameters);
-
+      
       calcParameters.putDataItem("1", pubItem);
-
+      
       // Run Calculation Request
       PubCalculationsApi apiInstance = new PubCalculationsApi(getApiClient());
-      ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=0", calcParameters);
-
+      ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
+      
       // Get Calculation Request Status
       ApiResponse<CalculationStatusRoot> getStatus = null;
       File result = null;
-      switch(createResponse.getStatusCode()) {
+      switch (createResponse.getStatusCode()) {
         case 200:
           System.out.println("Calculation failed!!!");
-          CalculationUnitStatus calcUnitStatus = ((CalculationStatusRoot)createResponse.getData()).getData().getUnits().get("1");
+          CalculationUnitStatus calcUnitStatus = ((CalculationStatusRoot) createResponse.getData()).getData().getUnits().get("1");
           System.out.println("Status : " + calcUnitStatus.getStatus());
           System.out.println("Reason : " + calcUnitStatus.getErrors());
           System.exit(-1);
         case 201:
-          result = (File)createResponse.getData();
-        case 202:      
-          String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-          String requestId = locationList[locationList.length - 2];
-          System.out.println("Calculation Id: " + requestId);
+          result = (File) createResponse.getData();
+        case 202:
+          CalculationStatusRoot status = (CalculationStatusRoot) createResponse.getData();
+          String calculationId = status.getData().getCalculationid();
+          System.out.println("Calculation Id: " + calculationId);
           
           // Get Calculation Request Status
           while (getStatus == null || getStatus.getStatusCode() == 202) {
@@ -89,16 +87,12 @@ public class PubEngineInteractiveExample {
                 Thread.sleep(2 * 1000L);
               }
             }
-            getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+            getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(calculationId);
           }
           
           for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
-            if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS)
-            {
-              String[] location = calculationUnitParameters.getValue().getResult().split("/");
-              String id = location[location.length - 4];
-              String unitId = location[location.length - 2];
-              ApiResponse<File> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(id, unitId);
+            if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
+              ApiResponse<File> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(calculationId, calculationUnitParameters.getKey());
               result = resultResponse.getData();
             }
           }
@@ -112,9 +106,8 @@ public class PubEngineInteractiveExample {
       return;
     }
   }
-
-  private static class FdsApiClient extends ApiClient
-  {
+  
+  private static class FdsApiClient extends ApiClient {
     // Uncomment the below lines to use a proxy server
     /*@Override
     protected void customizeClientBuilder(ClientBuilder clientBuilder) {
@@ -122,22 +115,22 @@ public class PubEngineInteractiveExample {
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }
-
+  
   private static FdsApiClient getApiClient() {
     if (apiClient != null) {
       return apiClient;
     }
-
+    
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
     apiClient.setBasePath(BASE_PATH);
     apiClient.setUsername(USERNAME);
     apiClient.setPassword(PASSWORD);
-
+    
     return apiClient;
   }
-
+  
   private static void handleException(final String method, final ApiException e) {
     System.out.println("Calculation Failed!!!");
     System.out.println("Status code: " + e.getCode());

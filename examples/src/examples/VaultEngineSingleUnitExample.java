@@ -8,12 +8,17 @@ import java.util.UUID;
 
 import javax.ws.rs.client.ClientBuilder;
 
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
+import org.glassfish.jersey.client.ClientProperties;
+
 import factset.analyticsapi.engines.*;
 import factset.analyticsapi.engines.api.*;
 import factset.analyticsapi.engines.models.*;
-import factset.analyticsapi.engines.models.CalculationMeta.ContentorganizationEnum;
-import factset.analyticsapi.engines.models.CalculationMeta.ContenttypeEnum;
-import factset.analyticsapi.engines.models.CalculationStatus.StatusEnum;
+
 
 import com.factset.protobuf.stach.extensions.ColumnStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.RowStachExtensionBuilder;
@@ -24,15 +29,9 @@ import com.factset.protobuf.stach.extensions.models.TableData;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
-import org.glassfish.jersey.client.ClientProperties;
 
-public class VaultEngineExample {
-
+public class VaultEngineSingleUnitExample {
+  
   private static FdsApiClient apiClient = null;
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
@@ -40,34 +39,35 @@ public class VaultEngineExample {
   
   private static String VAULT_DEFAULT_DOCUMENT = "Client:/aapi/VAULT_QA_PI_DEFAULT_LOCKED";
   private static String VAULT_DEFAULT_ACCOUNT = "CLIENT:/BISAM/REPOSITORY/QA/SMALL_PORT.ACCT";
-  private static String COMPONENT_NAME = "Performance Attribution";
-  private static String COMPONENT_CATEGORY = "Performance / Fixed Income Attribution";
-
+  private static String COMPONENT_NAME = "Average\r\nWeight";
+  private static String COMPONENT_CATEGORY = "Performance / 4 Tiles Calculate";
+  
+  private static String CALCULATION_UNIT_ID = "1";
+  
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
       // Build Vault Calculation Parameters List
-
+      
       // Get all component from VAULT_DEFAULT_DOCUMENT with Name COMPONENT_NAME & category COMPONENT_CATEGORY
       ComponentsApi componentsApi = new ComponentsApi(getApiClient());
       Map<String, ComponentSummary> components = componentsApi.getVaultComponents(VAULT_DEFAULT_DOCUMENT).getData();
       String componentId = components.entrySet().stream().filter(
-          c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
-          .iterator().next().getKey();
+              c -> c.getValue().getName().equals(COMPONENT_NAME) && c.getValue().getCategory().equals(COMPONENT_CATEGORY))
+              .iterator().next().getKey();
       System.out.println("ID of component with Name '" + COMPONENT_NAME + "' and category '" + COMPONENT_CATEGORY
-          + "' : " + componentId);
-
+              + "' : " + componentId);
+      
       ConfigurationsApi configurationsApi = new ConfigurationsApi(getApiClient());
       Map<String, VaultConfigurationSummary> configurationsMap = configurationsApi
-          .getVaultConfigurations(VAULT_DEFAULT_ACCOUNT).getData();
+              .getVaultConfigurations(VAULT_DEFAULT_ACCOUNT).getData();
       String configurationId = configurationsMap.entrySet().iterator().next().getKey();
-
-      VaultCalculationParametersRoot calcParameters = new VaultCalculationParametersRoot();
-
+      
       VaultCalculationParameters vaultItem = new VaultCalculationParameters();
-
+      VaultCalculationParametersRoot calcParameters = new VaultCalculationParametersRoot();
+      
       vaultItem.setComponentid(componentId);
       vaultItem.setConfigid(configurationId);
-
+      
       VaultIdentifier account = new VaultIdentifier();
       account.setId(VAULT_DEFAULT_ACCOUNT);
       vaultItem.setAccount(account);
@@ -77,99 +77,90 @@ public class VaultEngineExample {
       dateParameters.setEnddate("20180331");
       dateParameters.setFrequency("Monthly");
       vaultItem.setDates(dateParameters);
-
-      vaultItem.setComponentdetail("GROUPS"); // It can be GROUPS or TOTALS
-
-      calcParameters.putDataItem("1", vaultItem);
-      calcParameters.putDataItem("2", vaultItem);
       
-      CalculationMeta meta = new CalculationMeta();
-      meta.contentorganization(ContentorganizationEnum.SIMPLIFIEDROW);
-      meta.contenttype(ContenttypeEnum.JSON);
-      calcParameters.setMeta(meta);
-
+      vaultItem.setComponentdetail("GROUPS"); // It can be GROUPS or TOTALS
+      
+      calcParameters.putDataItem(CALCULATION_UNIT_ID, vaultItem);
+      
       // Run Calculation Request
       VaultCalculationsApi apiInstance = new VaultCalculationsApi(getApiClient());
-
-      ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, "max-stale=3600", calcParameters);
-
-      String[] locationList = createResponse.getHeaders().get("Location").get(0).split("/");
-      String requestId = locationList[locationList.length - 2];
-      System.out.println("Calculation Id: "+ requestId);
       
-      // Get Calculation Request Status
+      ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
+      
       ApiResponse<CalculationStatusRoot> getStatus = null;
-      while (getStatus == null || getStatus.getData().getData().getStatus() == StatusEnum.QUEUED
-          || getStatus.getData().getData().getStatus() == StatusEnum.EXECUTING) {
-        if (getStatus != null) {
-          List<String> cacheControl = getStatus.getHeaders().get("Cache-Control");
-          if (cacheControl != null) {
-            int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
-            System.out.println("Sleeping for: " + maxAge + " seconds");
-            Thread.sleep(maxAge * 1000L);
-          } else {
-            System.out.println("Sleeping for: 2 seconds");
-            Thread.sleep(2 * 1000L);
-          }
-        }
-        getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
-      }
-
-      System.out.println("Calculation Completed!!!");
-
-      // Check for Calculation Units
-      for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
-        if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
-          String[] location = calculationUnitParameters.getValue().getResult().split("/");
-          String id = location[location.length - 4];
-          String unitId = location[location.length - 2];
-          ApiResponse<ObjectRoot> resultResponse = apiInstance
-              .getCalculationUnitResultByIdWithHttpInfo(id, unitId);
-
-          System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Succeeded!!!");
-          System.out.println("Calculation Unit Id : " + calculationUnitParameters.getKey() + " Result");
-          List<TableData> tables = null;
-          try {
-            ObjectMapper mapper = new ObjectMapper();     
-            String jsonString = mapper.writeValueAsString(resultResponse.getData().getData());
-
-            if(resultResponse.getHeaders().get("content-type").get(0).toLowerCase().contains("row")) {
-              // For row and simplified row organized formats	
-              RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
-              StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-              tables = stachExtension.convertToTable();              
+      Object result = null;
+      switch (response.getStatusCode()) {
+        case 200:
+          System.out.println("Calculation failed!!!");
+          CalculationUnitStatus calcUnitStatus = ((CalculationStatusRoot) response.getData()).getData().getUnits().get(CALCULATION_UNIT_ID);
+          System.out.println("Status : " + calcUnitStatus.getStatus());
+          System.out.println("Reason : " + calcUnitStatus.getErrors());
+          System.exit(-1);
+          break;
+        case 201:
+          result = ((ObjectRoot) response.getData()).getData();
+          break;
+        case 202:
+          CalculationStatusRoot status = (CalculationStatusRoot) response.getData();
+          String calculationId = status.getData().getCalculationid();
+          
+          // Get Calculation Request Status
+          while (getStatus == null || getStatus.getStatusCode() == 202) {
+            if (getStatus != null) {
+              List<String> cacheControl = getStatus.getHeaders().get("Cache-Control");
+              if (cacheControl != null) {
+                int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
+                System.out.println("Sleeping for: " + maxAge + " seconds");
+                Thread.sleep(maxAge * 1000L);
+              } else {
+                System.out.println("Sleeping for: 2 seconds");
+                Thread.sleep(2 * 1000L);
+              }
             }
-            else {
-              // For column organized format	
-              ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
-              StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
-              tables = stachExtension.convertToTable();
-            }        
-          } catch(Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
+            getStatus = apiInstance.getCalculationStatusByIdWithHttpInfo(calculationId);
           }
-
-          ObjectMapper mapper = new ObjectMapper();
-          String json = mapper.writeValueAsString(tables);
-          System.out.println(json); // Prints the result in 2D table format.
-          // Uncomment the following line to generate an Excel file
-          // generateExcel(tables);
-        }
+          for (Map.Entry<String, CalculationUnitStatus> calculationUnitParameters : getStatus.getData().getData().getUnits().entrySet()) {
+            if (calculationUnitParameters.getValue().getStatus() == CalculationUnitStatus.StatusEnum.SUCCESS) {
+              ApiResponse<ObjectRoot> resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(calculationId, calculationUnitParameters.getKey());
+              result = resultResponse.getData().getData();
+            }
+          }
+          break;
       }
-    }
-    catch (ApiException e) {
+      
+      System.out.println("Calculation Completed!!!");
+      List<TableData> tables = null;
+      try {
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonString = mapper.writeValueAsString(result);
+        
+        RowStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getRowOrganizedBuilder(StachVersion.V2);
+        StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
+        tables = stachExtension.convertToTable();
+        
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+        e.printStackTrace();
+      }
+      
+      ObjectMapper mapper = new ObjectMapper();
+      String json = mapper.writeValueAsString(tables);
+      System.out.println(json); // Prints the result in 2D table format.
+      // Uncomment the following line to generate an Excel file
+      // generateExcel(tables);
+      
+    } catch (ApiException e) {
       handleException("VaultEngineExample#Main", e);
       return;
     }
   }
-
+  
   private static void generateExcel(List<TableData> tableList) {
-    for(TableData table : tableList) {
+    for (TableData table : tableList) {
       writeDataToExcel(table, UUID.randomUUID().toString() + ".xlsv");
-    }      
+    }
   }
-
+  
   private static void writeDataToExcel(TableData table, String fileLocation) {
     XSSFWorkbook workbook = new XSSFWorkbook();
     XSSFSheet sheet = workbook.createSheet("Calculation Report");
@@ -192,9 +183,8 @@ public class VaultEngineExample {
       e.printStackTrace();
     }
   }
-
-  private static class FdsApiClient extends ApiClient
-  {
+  
+  private static class FdsApiClient extends ApiClient {
     // Uncomment the below lines to use a proxy server
     /*@Override
     protected void customizeClientBuilder(ClientBuilder clientBuilder) {
@@ -202,22 +192,22 @@ public class VaultEngineExample {
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }
-
+  
   private static FdsApiClient getApiClient() {
     if (apiClient != null) {
       return apiClient;
     }
-
+    
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
     apiClient.setBasePath(BASE_PATH);
     apiClient.setUsername(USERNAME);
     apiClient.setPassword(PASSWORD);
-
+    
     return apiClient;
   }
-
+  
   private static void handleException(String method, ApiException e) {
     System.out.println("Calculation Failed!!!");
     System.out.println("Status code: " + e.getCode());

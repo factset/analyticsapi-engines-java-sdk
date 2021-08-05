@@ -13,8 +13,6 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
-import org.glassfish.jersey.client.ClientProperties;
 
 import com.factset.protobuf.stach.extensions.RowStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.StachExtensionFactory;
@@ -27,27 +25,26 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.ApiResponse;
-import factset.analyticsapi.engines.api.BpmOptimizerApi;
+import factset.analyticsapi.engines.api.AfiOptimizerApi;
 import factset.analyticsapi.engines.models.OptimizerTradesList.IdentifierTypeEnum;
 
-public class BpmInteractiveOptimizerEngineExample {
+public class AfiInteractiveOptimizerEngineExample {
   private static FdsApiClient apiClient = null;
   private static String BASE_PATH = "https://api.factset.com";
   private static String USERNAME = "<username-serial>";
   private static String PASSWORD = "<apiKey>";
   
-  private static String BPM_STRATEGY_ID = "CLIENT:/Aapi/BPMAPISIMPLE";
+  private static String STRATEGY_ID = "CLIENT:/Analytics_api/AFIAPISIMPLE";
   private static IdentifierTypeEnum TRADES_ID_TYPE = IdentifierTypeEnum.ASSET;
   private static Boolean INCLUDE_CASH = false;
-  private static Boolean EXCLUDE_ZERO = false;
   
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
-      BpmOptimizerApi apiInstance = new BpmOptimizerApi(getApiClient());
-      BPMOptimizationParameters bpmItem = new BPMOptimizationParameters();
+      AfiOptimizerApi apiInstance = new AfiOptimizerApi(getApiClient());
+      AFIOptimizationParameters afiItem = new AFIOptimizationParameters();
       
-      BPMOptimizerStrategy strategy = new BPMOptimizerStrategy();
-      strategy.setId(BPM_STRATEGY_ID);
+      AFIOptimizerStrategy strategy = new AFIOptimizerStrategy();
+      strategy.setId(STRATEGY_ID);
       
       OptimizerOutputTypes optOutputTypes = new OptimizerOutputTypes();
       OptimizerTradesList tradesList = new OptimizerTradesList();
@@ -55,18 +52,13 @@ public class BpmInteractiveOptimizerEngineExample {
       tradesList.setIncludeCash(INCLUDE_CASH);
       optOutputTypes.setTrades(tradesList);
       
-      // OptimizerOptimalHoldings optimal = new OptimizerOptimalHoldings();
-      // optimal.setIdentifierType(OptimizerOptimalHoldings.IdentifierTypeEnum.ASSET);
-      // optimal.setIncludeCash(INCLUDE_CASH);
-      // optimal.setExcludeZero(EXCLUDE_ZERO);
-      // optOutputTypes.setOptimal(optimal);
+      afiItem.setStrategy(strategy);
+      afiItem.setOutputTypes(optOutputTypes);
       
-      bpmItem.setStrategy(strategy);
-      bpmItem.setOutputTypes(optOutputTypes);
-      BPMOptimizationParametersRoot bpmOptimizerParam = new BPMOptimizationParametersRoot();
-      bpmOptimizerParam.setData(bpmItem);
+      AFIOptimizationParametersRoot afiOptimizerParam = new AFIOptimizationParametersRoot();
+      afiOptimizerParam.setData(afiItem);
       
-      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, null, bpmOptimizerParam);
+      ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, null, afiOptimizerParam);
       Map<String, List<String>> headers = response.getHeaders();
       
       Object result = null;
@@ -121,7 +113,7 @@ public class BpmInteractiveOptimizerEngineExample {
       // Uncomment the following line to generate an Excel file
       // generateExcel(tables);
     } catch (ApiException e) {
-      handleException("BpmOptimizerEngineExample#Main", e);
+      handleException("AfiOptimizerEngineExample#Main", e);
     }
   }
   
