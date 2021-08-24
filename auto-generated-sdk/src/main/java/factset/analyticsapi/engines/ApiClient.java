@@ -71,12 +71,12 @@ import factset.analyticsapi.engines.models.Error;
 public class ApiClient extends JavaTimeFormatter {
   protected Map<String, String> defaultHeaderMap = new HashMap<String, String>();
   protected Map<String, String> defaultCookieMap = new HashMap<String, String>();
-  protected String basePath = "https://api.factset.com";
+  protected String basePath = "http://localhost";
   protected String userAgent;
   private static final Logger log = Logger.getLogger(ApiClient.class.getName());
   protected List<ServerConfiguration> servers = new ArrayList<ServerConfiguration>(Arrays.asList(
     new ServerConfiguration(
-      "https://api.factset.com",
+      "",
       "No description provided",
       new HashMap<String, ServerVariable>()
     )

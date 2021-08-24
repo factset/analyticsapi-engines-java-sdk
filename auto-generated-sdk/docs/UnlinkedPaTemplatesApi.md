@@ -1,7 +1,7 @@
 
 # UnlinkedPaTemplatesApi
 
-All URIs are relative to *https://api.factset.com*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## createUnlinkedPATemplates
 
-> UnlinkedPATemplateSummaryRoot createUnlinkedPATemplates(unlinkedPATemplateParametersRoot)
+> StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel createUnlinkedPATemplates(unlinkedPATemplateParametersObjectDataAndMetaModel)
 
 Create unlinked PA template
 
@@ -43,7 +43,7 @@ import factset.analyticsapi.engines.api.UnlinkedPaTemplatesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -55,9 +55,9 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         UnlinkedPaTemplatesApi apiInstance = new UnlinkedPaTemplatesApi(defaultClient);
-        UnlinkedPATemplateParametersRoot unlinkedPATemplateParametersRoot = new UnlinkedPATemplateParametersRoot(); // UnlinkedPATemplateParametersRoot | Request Parameters
+        UnlinkedPATemplateParametersObjectDataAndMetaModel unlinkedPATemplateParametersObjectDataAndMetaModel = new UnlinkedPATemplateParametersObjectDataAndMetaModel(); // UnlinkedPATemplateParametersObjectDataAndMetaModel | Request Parameters
         try {
-            UnlinkedPATemplateSummaryRoot result = apiInstance.createUnlinkedPATemplates(unlinkedPATemplateParametersRoot);
+            StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel result = apiInstance.createUnlinkedPATemplates(unlinkedPATemplateParametersObjectDataAndMetaModel);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UnlinkedPaTemplatesApi#createUnlinkedPATemplates");
@@ -75,11 +75,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **unlinkedPATemplateParametersRoot** | [**UnlinkedPATemplateParametersRoot**](UnlinkedPATemplateParametersRoot.md)| Request Parameters |
+ **unlinkedPATemplateParametersObjectDataAndMetaModel** | [**UnlinkedPATemplateParametersObjectDataAndMetaModel**](UnlinkedPATemplateParametersObjectDataAndMetaModel.md)| Request Parameters |
 
 ### Return type
 
-[**UnlinkedPATemplateSummaryRoot**](UnlinkedPATemplateSummaryRoot.md)
+[**StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel**](StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -125,7 +125,7 @@ import factset.analyticsapi.engines.api.UnlinkedPaTemplatesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -187,7 +187,7 @@ null (empty response body)
 
 ## getDefaultUnlinkedPATemplateTypes
 
-> UnlinkedPATemplateCategoryAndTypeRoot getDefaultUnlinkedPATemplateTypes()
+> StringUnlinkedPATemplateCategoryAndTypeDictionaryObjectDataAndMetaModel getDefaultUnlinkedPATemplateTypes()
 
 Get default unlinked PA template types.
 
@@ -207,7 +207,7 @@ import factset.analyticsapi.engines.api.UnlinkedPaTemplatesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -220,7 +220,7 @@ public class Example {
 
         UnlinkedPaTemplatesApi apiInstance = new UnlinkedPaTemplatesApi(defaultClient);
         try {
-            UnlinkedPATemplateCategoryAndTypeRoot result = apiInstance.getDefaultUnlinkedPATemplateTypes();
+            StringUnlinkedPATemplateCategoryAndTypeDictionaryObjectDataAndMetaModel result = apiInstance.getDefaultUnlinkedPATemplateTypes();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UnlinkedPaTemplatesApi#getDefaultUnlinkedPATemplateTypes");
@@ -239,7 +239,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**UnlinkedPATemplateCategoryAndTypeRoot**](UnlinkedPATemplateCategoryAndTypeRoot.md)
+[**StringUnlinkedPATemplateCategoryAndTypeDictionaryObjectDataAndMetaModel**](StringUnlinkedPATemplateCategoryAndTypeDictionaryObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -264,7 +264,7 @@ This endpoint does not need any parameter.
 
 ## getDetailsType
 
-> UnlinkedPATemplateCategoryAndTypeDetailsRoot getDetailsType(id)
+> UnlinkedPATemplateCategoryAndTypeDetailsObjectDataAndMetaModel getDetailsType(id)
 
 Get unlinked PA template type details by id.
 
@@ -284,7 +284,7 @@ import factset.analyticsapi.engines.api.UnlinkedPaTemplatesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -298,7 +298,7 @@ public class Example {
         UnlinkedPaTemplatesApi apiInstance = new UnlinkedPaTemplatesApi(defaultClient);
         String id = "id_example"; // String | Unique identifier for an unlinked PA template type
         try {
-            UnlinkedPATemplateCategoryAndTypeDetailsRoot result = apiInstance.getDetailsType(id);
+            UnlinkedPATemplateCategoryAndTypeDetailsObjectDataAndMetaModel result = apiInstance.getDetailsType(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UnlinkedPaTemplatesApi#getDetailsType");
@@ -320,7 +320,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UnlinkedPATemplateCategoryAndTypeDetailsRoot**](UnlinkedPATemplateCategoryAndTypeDetailsRoot.md)
+[**UnlinkedPATemplateCategoryAndTypeDetailsObjectDataAndMetaModel**](UnlinkedPATemplateCategoryAndTypeDetailsObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -347,7 +347,7 @@ Name | Type | Description  | Notes
 
 ## getUnlinkedPATemplates
 
-> UnlinkedPATemplateSummaryRoot getUnlinkedPATemplates(directory, category)
+> StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel getUnlinkedPATemplates(directory, category)
 
 Get unlinked PA templates
 
@@ -367,7 +367,7 @@ import factset.analyticsapi.engines.api.UnlinkedPaTemplatesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -382,7 +382,7 @@ public class Example {
         String directory = "directory_example"; // String | Get unlinked PA templates in path.
         String category = "category_example"; // String | Get unlinked PA templates by category.
         try {
-            UnlinkedPATemplateSummaryRoot result = apiInstance.getUnlinkedPATemplates(directory, category);
+            StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel result = apiInstance.getUnlinkedPATemplates(directory, category);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UnlinkedPaTemplatesApi#getUnlinkedPATemplates");
@@ -405,7 +405,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UnlinkedPATemplateSummaryRoot**](UnlinkedPATemplateSummaryRoot.md)
+[**StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel**](StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -431,7 +431,7 @@ Name | Type | Description  | Notes
 
 ## getUnlinkedPATemplatesById
 
-> UnlinkedPATemplateRoot getUnlinkedPATemplatesById(id)
+> UnlinkedPATemplateObjectDataAndMetaModel getUnlinkedPATemplatesById(id)
 
 Get unlinked PA template details by id
 
@@ -451,7 +451,7 @@ import factset.analyticsapi.engines.api.UnlinkedPaTemplatesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -465,7 +465,7 @@ public class Example {
         UnlinkedPaTemplatesApi apiInstance = new UnlinkedPaTemplatesApi(defaultClient);
         String id = "id_example"; // String | Unique identifier for an unlinked PA template
         try {
-            UnlinkedPATemplateRoot result = apiInstance.getUnlinkedPATemplatesById(id);
+            UnlinkedPATemplateObjectDataAndMetaModel result = apiInstance.getUnlinkedPATemplatesById(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UnlinkedPaTemplatesApi#getUnlinkedPATemplatesById");
@@ -487,7 +487,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UnlinkedPATemplateRoot**](UnlinkedPATemplateRoot.md)
+[**UnlinkedPATemplateObjectDataAndMetaModel**](UnlinkedPATemplateObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -514,7 +514,7 @@ Name | Type | Description  | Notes
 
 ## updateUnlinkedPATemplates
 
-> UnlinkedPATemplateSummaryRoot updateUnlinkedPATemplates(id, unlinkedPATemplateUpdateParametersRoot)
+> StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel updateUnlinkedPATemplates(id, unlinkedPATemplateUpdateParametersObjectDataAndMetaModel)
 
 Update unlinked PA template
 
@@ -540,7 +540,7 @@ import factset.analyticsapi.engines.api.UnlinkedPaTemplatesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -553,9 +553,9 @@ public class Example {
 
         UnlinkedPaTemplatesApi apiInstance = new UnlinkedPaTemplatesApi(defaultClient);
         String id = "id_example"; // String | Unique identifier for an unlinked PA template
-        UnlinkedPATemplateUpdateParametersRoot unlinkedPATemplateUpdateParametersRoot = new UnlinkedPATemplateUpdateParametersRoot(); // UnlinkedPATemplateUpdateParametersRoot | Request Parameters
+        UnlinkedPATemplateUpdateParametersObjectDataAndMetaModel unlinkedPATemplateUpdateParametersObjectDataAndMetaModel = new UnlinkedPATemplateUpdateParametersObjectDataAndMetaModel(); // UnlinkedPATemplateUpdateParametersObjectDataAndMetaModel | Request Parameters
         try {
-            UnlinkedPATemplateSummaryRoot result = apiInstance.updateUnlinkedPATemplates(id, unlinkedPATemplateUpdateParametersRoot);
+            StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel result = apiInstance.updateUnlinkedPATemplates(id, unlinkedPATemplateUpdateParametersObjectDataAndMetaModel);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UnlinkedPaTemplatesApi#updateUnlinkedPATemplates");
@@ -574,11 +574,11 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Unique identifier for an unlinked PA template |
- **unlinkedPATemplateUpdateParametersRoot** | [**UnlinkedPATemplateUpdateParametersRoot**](UnlinkedPATemplateUpdateParametersRoot.md)| Request Parameters |
+ **unlinkedPATemplateUpdateParametersObjectDataAndMetaModel** | [**UnlinkedPATemplateUpdateParametersObjectDataAndMetaModel**](UnlinkedPATemplateUpdateParametersObjectDataAndMetaModel.md)| Request Parameters |
 
 ### Return type
 
-[**UnlinkedPATemplateSummaryRoot**](UnlinkedPATemplateSummaryRoot.md)
+[**StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel**](StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel.md)
 
 ### Authorization
 

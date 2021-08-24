@@ -7,7 +7,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**$type** | **String** |  | 
 **source** | [**SourceEnum**](#SourceEnum) |  | 
 **frequency** | **String** |  | 
 **calendar** | **String** |  | 

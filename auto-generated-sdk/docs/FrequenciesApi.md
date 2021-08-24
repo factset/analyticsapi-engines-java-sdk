@@ -1,7 +1,7 @@
 
 # FrequenciesApi
 
-All URIs are relative to *https://api.factset.com*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## getPAFrequencies
 
-> FrequencyRoot getPAFrequencies()
+> StringFrequencyDictionaryObjectDataAndMetaModel getPAFrequencies()
 
 Get PA frequencies
 
@@ -33,7 +33,7 @@ import factset.analyticsapi.engines.api.FrequenciesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -46,7 +46,7 @@ public class Example {
 
         FrequenciesApi apiInstance = new FrequenciesApi(defaultClient);
         try {
-            FrequencyRoot result = apiInstance.getPAFrequencies();
+            StringFrequencyDictionaryObjectDataAndMetaModel result = apiInstance.getPAFrequencies();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FrequenciesApi#getPAFrequencies");
@@ -65,7 +65,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**FrequencyRoot**](FrequencyRoot.md)
+[**StringFrequencyDictionaryObjectDataAndMetaModel**](StringFrequencyDictionaryObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -90,7 +90,7 @@ This endpoint does not need any parameter.
 
 ## getSPARFrequencies
 
-> FrequencyRoot getSPARFrequencies()
+> StringFrequencyDictionaryObjectDataAndMetaModel getSPARFrequencies()
 
 Get SPAR frequencies
 
@@ -110,7 +110,7 @@ import factset.analyticsapi.engines.api.FrequenciesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -123,7 +123,7 @@ public class Example {
 
         FrequenciesApi apiInstance = new FrequenciesApi(defaultClient);
         try {
-            FrequencyRoot result = apiInstance.getSPARFrequencies();
+            StringFrequencyDictionaryObjectDataAndMetaModel result = apiInstance.getSPARFrequencies();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FrequenciesApi#getSPARFrequencies");
@@ -142,7 +142,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**FrequencyRoot**](FrequencyRoot.md)
+[**StringFrequencyDictionaryObjectDataAndMetaModel**](StringFrequencyDictionaryObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -167,7 +167,7 @@ This endpoint does not need any parameter.
 
 ## getVaultFrequencies
 
-> FrequencyRoot getVaultFrequencies()
+> StringFrequencyDictionaryObjectDataAndMetaModel getVaultFrequencies()
 
 Get Vault frequencies
 
@@ -187,7 +187,7 @@ import factset.analyticsapi.engines.api.FrequenciesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -200,7 +200,7 @@ public class Example {
 
         FrequenciesApi apiInstance = new FrequenciesApi(defaultClient);
         try {
-            FrequencyRoot result = apiInstance.getVaultFrequencies();
+            StringFrequencyDictionaryObjectDataAndMetaModel result = apiInstance.getVaultFrequencies();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FrequenciesApi#getVaultFrequencies");
@@ -219,7 +219,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**FrequencyRoot**](FrequencyRoot.md)
+[**StringFrequencyDictionaryObjectDataAndMetaModel**](StringFrequencyDictionaryObjectDataAndMetaModel.md)
 
 ### Authorization
 

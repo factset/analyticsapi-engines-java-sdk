@@ -15,9 +15,9 @@ import java.util.Map;
 import java.io.File;
 
 import factset.analyticsapi.engines.models.ClientErrorResponse;
-import factset.analyticsapi.engines.models.TemplatedPAComponentParametersRoot;
-import factset.analyticsapi.engines.models.TemplatedPAComponentSummaryRoot;
-import factset.analyticsapi.engines.models.TemplatedPAComponentUpdateParametersRoot;
+import factset.analyticsapi.engines.models.StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel;
+import factset.analyticsapi.engines.models.TemplatedPAComponentParametersObjectDataAndMetaModel;
+import factset.analyticsapi.engines.models.TemplatedPAComponentUpdateParametersObjectDataAndMetaModel;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class TemplatedPaComponentsApi {
@@ -51,8 +51,8 @@ public class TemplatedPaComponentsApi {
   /**
    * Create templated PA component
    * This endpoint creates new component based off of linked PA template or unlinked PA template.
-   * @param templatedPAComponentParametersRoot Request Parameters (required)
-    @return TemplatedPAComponentSummaryRoot
+   * @param templatedPAComponentParametersObjectDataAndMetaModel Request Parameters (required)
+    @return StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -68,15 +68,15 @@ public class TemplatedPaComponentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public TemplatedPAComponentSummaryRoot createTemplatedPAComponents(TemplatedPAComponentParametersRoot templatedPAComponentParametersRoot) throws ApiException {
-    return createTemplatedPAComponentsWithHttpInfo(templatedPAComponentParametersRoot).getData();
+ public StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel createTemplatedPAComponents(TemplatedPAComponentParametersObjectDataAndMetaModel templatedPAComponentParametersObjectDataAndMetaModel) throws ApiException {
+    return createTemplatedPAComponentsWithHttpInfo(templatedPAComponentParametersObjectDataAndMetaModel).getData();
   }
 
   /**
    * Create templated PA component
    * This endpoint creates new component based off of linked PA template or unlinked PA template.
-   * @param templatedPAComponentParametersRoot Request Parameters (required)
-    * @return ApiResponse&lt;TemplatedPAComponentSummaryRoot&gt;
+   * @param templatedPAComponentParametersObjectDataAndMetaModel Request Parameters (required)
+    * @return ApiResponse&lt;StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -92,12 +92,12 @@ public class TemplatedPaComponentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<TemplatedPAComponentSummaryRoot> createTemplatedPAComponentsWithHttpInfo(TemplatedPAComponentParametersRoot templatedPAComponentParametersRoot) throws ApiException {
-    Object localVarPostBody = templatedPAComponentParametersRoot;
+  public ApiResponse<StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel> createTemplatedPAComponentsWithHttpInfo(TemplatedPAComponentParametersObjectDataAndMetaModel templatedPAComponentParametersObjectDataAndMetaModel) throws ApiException {
+    Object localVarPostBody = templatedPAComponentParametersObjectDataAndMetaModel;
     
-    // verify the required parameter 'templatedPAComponentParametersRoot' is set
-    if (templatedPAComponentParametersRoot == null) {
-      throw new ApiException(400, "Missing the required parameter 'templatedPAComponentParametersRoot' when calling createTemplatedPAComponents");
+    // verify the required parameter 'templatedPAComponentParametersObjectDataAndMetaModel' is set
+    if (templatedPAComponentParametersObjectDataAndMetaModel == null) {
+      throw new ApiException(400, "Missing the required parameter 'templatedPAComponentParametersObjectDataAndMetaModel' when calling createTemplatedPAComponents");
     }
     
     // create path and map variables
@@ -125,13 +125,13 @@ public class TemplatedPaComponentsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<TemplatedPAComponentSummaryRoot> localVarReturnType = new GenericType<TemplatedPAComponentSummaryRoot>() {};
+    GenericType<StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel> localVarReturnType = new GenericType<StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(201, new GenericType<TemplatedPAComponentSummaryRoot>(){});
+        returnTypeMap.put(201, new GenericType<StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<TemplatedPAComponentSummaryRoot>invokeAPIWithReturnMap("TemplatedPaComponentsApi.createTemplatedPAComponents", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+      return apiClient.<StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel>invokeAPIWithReturnMap("TemplatedPaComponentsApi.createTemplatedPAComponents", localVarPath, "POST", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -224,8 +224,8 @@ public class TemplatedPaComponentsApi {
    * Update templated PA component
    * This endpoint allows the user to change the request body from an existing templated PA component.
    * @param id Unique identifier for a templated PA component (required)
-   * @param templatedPAComponentUpdateParametersRoot Request Parameters (required)
-    @return TemplatedPAComponentSummaryRoot
+   * @param templatedPAComponentUpdateParametersObjectDataAndMetaModel Request Parameters (required)
+    @return StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -241,16 +241,16 @@ public class TemplatedPaComponentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public TemplatedPAComponentSummaryRoot updateTemplatedPAComponents(String id, TemplatedPAComponentUpdateParametersRoot templatedPAComponentUpdateParametersRoot) throws ApiException {
-    return updateTemplatedPAComponentsWithHttpInfo(id, templatedPAComponentUpdateParametersRoot).getData();
+ public StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel updateTemplatedPAComponents(String id, TemplatedPAComponentUpdateParametersObjectDataAndMetaModel templatedPAComponentUpdateParametersObjectDataAndMetaModel) throws ApiException {
+    return updateTemplatedPAComponentsWithHttpInfo(id, templatedPAComponentUpdateParametersObjectDataAndMetaModel).getData();
   }
 
   /**
    * Update templated PA component
    * This endpoint allows the user to change the request body from an existing templated PA component.
    * @param id Unique identifier for a templated PA component (required)
-   * @param templatedPAComponentUpdateParametersRoot Request Parameters (required)
-    * @return ApiResponse&lt;TemplatedPAComponentSummaryRoot&gt;
+   * @param templatedPAComponentUpdateParametersObjectDataAndMetaModel Request Parameters (required)
+    * @return ApiResponse&lt;StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -266,17 +266,17 @@ public class TemplatedPaComponentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<TemplatedPAComponentSummaryRoot> updateTemplatedPAComponentsWithHttpInfo(String id, TemplatedPAComponentUpdateParametersRoot templatedPAComponentUpdateParametersRoot) throws ApiException {
-    Object localVarPostBody = templatedPAComponentUpdateParametersRoot;
+  public ApiResponse<StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel> updateTemplatedPAComponentsWithHttpInfo(String id, TemplatedPAComponentUpdateParametersObjectDataAndMetaModel templatedPAComponentUpdateParametersObjectDataAndMetaModel) throws ApiException {
+    Object localVarPostBody = templatedPAComponentUpdateParametersObjectDataAndMetaModel;
     
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling updateTemplatedPAComponents");
     }
     
-    // verify the required parameter 'templatedPAComponentUpdateParametersRoot' is set
-    if (templatedPAComponentUpdateParametersRoot == null) {
-      throw new ApiException(400, "Missing the required parameter 'templatedPAComponentUpdateParametersRoot' when calling updateTemplatedPAComponents");
+    // verify the required parameter 'templatedPAComponentUpdateParametersObjectDataAndMetaModel' is set
+    if (templatedPAComponentUpdateParametersObjectDataAndMetaModel == null) {
+      throw new ApiException(400, "Missing the required parameter 'templatedPAComponentUpdateParametersObjectDataAndMetaModel' when calling updateTemplatedPAComponents");
     }
     
     // create path and map variables
@@ -305,14 +305,14 @@ public class TemplatedPaComponentsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<TemplatedPAComponentSummaryRoot> localVarReturnType = new GenericType<TemplatedPAComponentSummaryRoot>() {};
+    GenericType<StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel> localVarReturnType = new GenericType<StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<TemplatedPAComponentSummaryRoot>(){});
+        returnTypeMap.put(200, new GenericType<StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<TemplatedPAComponentSummaryRoot>invokeAPIWithReturnMap("TemplatedPaComponentsApi.updateTemplatedPAComponents", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
+      return apiClient.<StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel>invokeAPIWithReturnMap("TemplatedPaComponentsApi.updateTemplatedPAComponents", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

@@ -14,10 +14,10 @@ import java.util.Map;
 
 import java.io.File;
 
-import factset.analyticsapi.engines.models.CalculationStatusRoot;
+import factset.analyticsapi.engines.models.CalculationStatusCalculationStatusMetaDataAndMetaModel;
 import factset.analyticsapi.engines.models.ClientErrorResponse;
-import factset.analyticsapi.engines.models.ObjectRoot;
-import factset.analyticsapi.engines.models.PACalculationParametersRoot;
+import factset.analyticsapi.engines.models.ObjectObjectDataAndMetaModel;
+import factset.analyticsapi.engines.models.PACalculationParametersCalculationMetaCalculationParameters;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class PaCalculationsApi {
@@ -133,7 +133,7 @@ public class PaCalculationsApi {
    * Get PA calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run PA calculation endpoint (required)
-    @return PACalculationParametersRoot
+    @return PACalculationParametersCalculationMetaCalculationParameters
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -147,7 +147,7 @@ public class PaCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public PACalculationParametersRoot getCalculationParameters(String id) throws ApiException {
+ public PACalculationParametersCalculationMetaCalculationParameters getCalculationParameters(String id) throws ApiException {
     return getCalculationParametersWithHttpInfo(id).getData();
   }
 
@@ -155,7 +155,7 @@ public class PaCalculationsApi {
    * Get PA calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run PA calculation endpoint (required)
-    * @return ApiResponse&lt;PACalculationParametersRoot&gt;
+    * @return ApiResponse&lt;PACalculationParametersCalculationMetaCalculationParameters&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -169,7 +169,7 @@ public class PaCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<PACalculationParametersRoot> getCalculationParametersWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<PACalculationParametersCalculationMetaCalculationParameters> getCalculationParametersWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -203,14 +203,14 @@ public class PaCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<PACalculationParametersRoot> localVarReturnType = new GenericType<PACalculationParametersRoot>() {};
+    GenericType<PACalculationParametersCalculationMetaCalculationParameters> localVarReturnType = new GenericType<PACalculationParametersCalculationMetaCalculationParameters>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<PACalculationParametersRoot>(){});
+        returnTypeMap.put(200, new GenericType<PACalculationParametersCalculationMetaCalculationParameters>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<PACalculationParametersRoot>invokeAPIWithReturnMap("PaCalculationsApi.getCalculationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<PACalculationParametersCalculationMetaCalculationParameters>invokeAPIWithReturnMap("PaCalculationsApi.getCalculationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -218,7 +218,7 @@ public class PaCalculationsApi {
    * Get PA calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the location header will point to the result url.  Otherwise, the calculation is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run PA calculation endpoint (required)
-    @return CalculationStatusRoot
+    @return CalculationStatusCalculationStatusMetaDataAndMetaModel
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -233,7 +233,7 @@ public class PaCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public CalculationStatusRoot getCalculationStatusById(String id) throws ApiException {
+ public CalculationStatusCalculationStatusMetaDataAndMetaModel getCalculationStatusById(String id) throws ApiException {
     return getCalculationStatusByIdWithHttpInfo(id).getData();
   }
 
@@ -241,7 +241,7 @@ public class PaCalculationsApi {
    * Get PA calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the location header will point to the result url.  Otherwise, the calculation is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run PA calculation endpoint (required)
-    * @return ApiResponse&lt;CalculationStatusRoot&gt;
+    * @return ApiResponse&lt;CalculationStatusCalculationStatusMetaDataAndMetaModel&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -256,7 +256,7 @@ public class PaCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<CalculationStatusRoot> getCalculationStatusByIdWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<CalculationStatusCalculationStatusMetaDataAndMetaModel> getCalculationStatusByIdWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -290,15 +290,15 @@ public class PaCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
+    GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel> localVarReturnType = new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
-        returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(200, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
+        returnTypeMap.put(202, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<CalculationStatusRoot>invokeAPIWithReturnMap("PaCalculationsApi.getCalculationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<CalculationStatusCalculationStatusMetaDataAndMetaModel>invokeAPIWithReturnMap("PaCalculationsApi.getCalculationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -307,7 +307,7 @@ public class PaCalculationsApi {
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Get PA calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get PA calculation status by id endpoint (required)
-    @return ObjectRoot
+    @return ObjectObjectDataAndMetaModel
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -321,7 +321,7 @@ public class PaCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public ObjectRoot getCalculationUnitResultById(String id, String unitId) throws ApiException {
+ public ObjectObjectDataAndMetaModel getCalculationUnitResultById(String id, String unitId) throws ApiException {
     return getCalculationUnitResultByIdWithHttpInfo(id, unitId).getData();
   }
 
@@ -330,7 +330,7 @@ public class PaCalculationsApi {
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Get PA calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get PA calculation status by id endpoint (required)
-    * @return ApiResponse&lt;ObjectRoot&gt;
+    * @return ApiResponse&lt;ObjectObjectDataAndMetaModel&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -344,7 +344,7 @@ public class PaCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<ObjectRoot> getCalculationUnitResultByIdWithHttpInfo(String id, String unitId) throws ApiException {
+  public ApiResponse<ObjectObjectDataAndMetaModel> getCalculationUnitResultByIdWithHttpInfo(String id, String unitId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -384,14 +384,14 @@ public class PaCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
+    GenericType<ObjectObjectDataAndMetaModel> localVarReturnType = new GenericType<ObjectObjectDataAndMetaModel>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<ObjectRoot>(){});
+        returnTypeMap.put(200, new GenericType<ObjectObjectDataAndMetaModel>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<ObjectRoot>invokeAPIWithReturnMap("PaCalculationsApi.getCalculationUnitResultById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<ObjectObjectDataAndMetaModel>invokeAPIWithReturnMap("PaCalculationsApi.getCalculationUnitResultById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -400,8 +400,8 @@ public class PaCalculationsApi {
    * This endpoint runs the PA calculation specified in the POST body parameters.  It can take one or more calculation units as input.    Remarks:    * Any settings in POST body will act as a one-time override over the settings saved in the PA template.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param paCalculationParametersRoot Calculation Parameters (optional)
-    @return (For 202 status - CalculationStatusRoot)(For 201 status - ObjectRoot)(For 200 status - CalculationStatusRoot)
+   * @param paCalculationParametersCalculationMetaCalculationParameters Calculation Parameters (optional)
+    @return CalculationStatusCalculationStatusMetaDataAndMetaModel
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -419,8 +419,8 @@ public class PaCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public Object postAndCalculate(Integer xFactSetApiLongRunningDeadline, String cacheControl, PACalculationParametersRoot paCalculationParametersRoot) throws ApiException {
-    return postAndCalculateWithHttpInfo(xFactSetApiLongRunningDeadline, cacheControl, paCalculationParametersRoot).getData();
+ public CalculationStatusCalculationStatusMetaDataAndMetaModel postAndCalculate(Integer xFactSetApiLongRunningDeadline, String cacheControl, PACalculationParametersCalculationMetaCalculationParameters paCalculationParametersCalculationMetaCalculationParameters) throws ApiException {
+    return postAndCalculateWithHttpInfo(xFactSetApiLongRunningDeadline, cacheControl, paCalculationParametersCalculationMetaCalculationParameters).getData();
   }
 
   /**
@@ -428,8 +428,8 @@ public class PaCalculationsApi {
    * This endpoint runs the PA calculation specified in the POST body parameters.  It can take one or more calculation units as input.    Remarks:    * Any settings in POST body will act as a one-time override over the settings saved in the PA template.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param paCalculationParametersRoot Calculation Parameters (optional)
-    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 201 status - ObjectRoot)(For 200 status - CalculationStatusRoot)
+   * @param paCalculationParametersCalculationMetaCalculationParameters Calculation Parameters (optional)
+    * @return ApiResponse&lt;CalculationStatusCalculationStatusMetaDataAndMetaModel&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -447,8 +447,8 @@ public class PaCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<Object> postAndCalculateWithHttpInfo(Integer xFactSetApiLongRunningDeadline, String cacheControl, PACalculationParametersRoot paCalculationParametersRoot) throws ApiException {
-    Object localVarPostBody = paCalculationParametersRoot;
+  public ApiResponse<CalculationStatusCalculationStatusMetaDataAndMetaModel> postAndCalculateWithHttpInfo(Integer xFactSetApiLongRunningDeadline, String cacheControl, PACalculationParametersCalculationMetaCalculationParameters paCalculationParametersCalculationMetaCalculationParameters) throws ApiException {
+    Object localVarPostBody = paCalculationParametersCalculationMetaCalculationParameters;
     
     // create path and map variables
     String localVarPath = "/analytics/engines/pa/v3/calculations";
@@ -479,16 +479,16 @@ if (cacheControl != null)
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
+    GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel> localVarReturnType = new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
-        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
-        returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(202, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
+        returnTypeMap.put(201, new GenericType<ObjectObjectDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<Object>invokeAPIWithReturnMap("PaCalculationsApi.postAndCalculate", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+      return apiClient.<CalculationStatusCalculationStatusMetaDataAndMetaModel>invokeAPIWithReturnMap("PaCalculationsApi.postAndCalculate", localVarPath, "POST", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -498,8 +498,8 @@ if (cacheControl != null)
    * @param id from url, provided from the location header in the Create and Run PA calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param paCalculationParametersRoot Calculation Parameters (optional)
-    @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
+   * @param paCalculationParametersCalculationMetaCalculationParameters Calculation Parameters (optional)
+    @return CalculationStatusCalculationStatusMetaDataAndMetaModel
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -518,8 +518,8 @@ if (cacheControl != null)
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public Object putAndCalculate(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, PACalculationParametersRoot paCalculationParametersRoot) throws ApiException {
-    return putAndCalculateWithHttpInfo(id, xFactSetApiLongRunningDeadline, cacheControl, paCalculationParametersRoot).getData();
+ public CalculationStatusCalculationStatusMetaDataAndMetaModel putAndCalculate(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, PACalculationParametersCalculationMetaCalculationParameters paCalculationParametersCalculationMetaCalculationParameters) throws ApiException {
+    return putAndCalculateWithHttpInfo(id, xFactSetApiLongRunningDeadline, cacheControl, paCalculationParametersCalculationMetaCalculationParameters).getData();
   }
 
   /**
@@ -528,8 +528,8 @@ if (cacheControl != null)
    * @param id from url, provided from the location header in the Create and Run PA calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param paCalculationParametersRoot Calculation Parameters (optional)
-    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
+   * @param paCalculationParametersCalculationMetaCalculationParameters Calculation Parameters (optional)
+    * @return ApiResponse&lt;CalculationStatusCalculationStatusMetaDataAndMetaModel&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -548,8 +548,8 @@ if (cacheControl != null)
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<Object> putAndCalculateWithHttpInfo(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, PACalculationParametersRoot paCalculationParametersRoot) throws ApiException {
-    Object localVarPostBody = paCalculationParametersRoot;
+  public ApiResponse<CalculationStatusCalculationStatusMetaDataAndMetaModel> putAndCalculateWithHttpInfo(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, PACalculationParametersCalculationMetaCalculationParameters paCalculationParametersCalculationMetaCalculationParameters) throws ApiException {
+    Object localVarPostBody = paCalculationParametersCalculationMetaCalculationParameters;
     
     // verify the required parameter 'id' is set
     if (id == null) {
@@ -586,17 +586,17 @@ if (cacheControl != null)
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
+    GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel> localVarReturnType = new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
-        returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
-        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
+        returnTypeMap.put(202, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
+        returnTypeMap.put(201, new GenericType<ObjectObjectDataAndMetaModel>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(409, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<Object>invokeAPIWithReturnMap("PaCalculationsApi.putAndCalculate", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
+      return apiClient.<CalculationStatusCalculationStatusMetaDataAndMetaModel>invokeAPIWithReturnMap("PaCalculationsApi.putAndCalculate", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

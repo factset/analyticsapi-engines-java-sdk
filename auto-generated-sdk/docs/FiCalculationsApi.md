@@ -1,7 +1,7 @@
 
 # FiCalculationsApi
 
-All URIs are relative to *https://api.factset.com*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -36,7 +36,7 @@ import factset.analyticsapi.engines.api.FiCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -96,7 +96,7 @@ null (empty response body)
 
 ## getCalculationParameters
 
-> FICalculationParametersRoot getCalculationParameters(id)
+> FICalculationParametersCalculationMetaInteractiveCalculationParameters getCalculationParameters(id)
 
 Get FI calculation parameters by id
 
@@ -116,7 +116,7 @@ import factset.analyticsapi.engines.api.FiCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -130,7 +130,7 @@ public class Example {
         FiCalculationsApi apiInstance = new FiCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run FI calculation endpoint
         try {
-            FICalculationParametersRoot result = apiInstance.getCalculationParameters(id);
+            FICalculationParametersCalculationMetaInteractiveCalculationParameters result = apiInstance.getCalculationParameters(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#getCalculationParameters");
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FICalculationParametersRoot**](FICalculationParametersRoot.md)
+[**FICalculationParametersCalculationMetaInteractiveCalculationParameters**](FICalculationParametersCalculationMetaInteractiveCalculationParameters.md)
 
 ### Authorization
 
@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
 
 ## getCalculationResult
 
-> ObjectRoot getCalculationResult(id)
+> ObjectObjectDataAndMetaModel getCalculationResult(id)
 
 Get FI calculation result by id
 
@@ -198,7 +198,7 @@ import factset.analyticsapi.engines.api.FiCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -212,7 +212,7 @@ public class Example {
         FiCalculationsApi apiInstance = new FiCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Get FI calculation status by id endpoint
         try {
-            ObjectRoot result = apiInstance.getCalculationResult(id);
+            ObjectObjectDataAndMetaModel result = apiInstance.getCalculationResult(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#getCalculationResult");
@@ -234,7 +234,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectRoot**](ObjectRoot.md)
+[**ObjectObjectDataAndMetaModel**](ObjectObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -259,7 +259,7 @@ Name | Type | Description  | Notes
 
 ## getCalculationStatusById
 
-> ObjectRoot getCalculationStatusById(id)
+> ObjectObjectDataAndMetaModel getCalculationStatusById(id)
 
 Get FI calculation status by id
 
@@ -281,7 +281,7 @@ import factset.analyticsapi.engines.api.FiCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -295,7 +295,7 @@ public class Example {
         FiCalculationsApi apiInstance = new FiCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run FI calculation endpoint
         try {
-            Object result = apiInstance.getCalculationStatusById(id);
+            ObjectObjectDataAndMetaModel result = apiInstance.getCalculationStatusById(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#getCalculationStatusById");
@@ -317,7 +317,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-(For 201 status - [**ObjectRoot**](ObjectRoot.md))(For 202 status -  null (empty response body) )
+[**ObjectObjectDataAndMetaModel**](ObjectObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -343,7 +343,7 @@ Name | Type | Description  | Notes
 
 ## postAndCalculate
 
-> ObjectRoot postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot)
+> ObjectObjectDataAndMetaModel postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersCalculationMetaInteractiveCalculationParameters)
 
 Create and Run FI calculation
 
@@ -363,7 +363,7 @@ import factset.analyticsapi.engines.api.FiCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -377,9 +377,9 @@ public class Example {
         FiCalculationsApi apiInstance = new FiCalculationsApi(defaultClient);
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
-        FICalculationParametersRoot fiCalculationParametersRoot = new FICalculationParametersRoot(); // FICalculationParametersRoot | Calculation Parameters
+        FICalculationParametersCalculationMetaInteractiveCalculationParameters fiCalculationParametersCalculationMetaInteractiveCalculationParameters = new FICalculationParametersCalculationMetaInteractiveCalculationParameters(); // FICalculationParametersCalculationMetaInteractiveCalculationParameters | Calculation Parameters
         try {
-            Object result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot);
+            ObjectObjectDataAndMetaModel result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersCalculationMetaInteractiveCalculationParameters);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#postAndCalculate");
@@ -399,11 +399,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
- **fiCalculationParametersRoot** | [**FICalculationParametersRoot**](FICalculationParametersRoot.md)| Calculation Parameters | [optional]
+ **fiCalculationParametersCalculationMetaInteractiveCalculationParameters** | [**FICalculationParametersCalculationMetaInteractiveCalculationParameters**](FICalculationParametersCalculationMetaInteractiveCalculationParameters.md)| Calculation Parameters | [optional]
 
 ### Return type
 
-(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
+[**ObjectObjectDataAndMetaModel**](ObjectObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -431,7 +431,7 @@ Name | Type | Description  | Notes
 
 ## putAndCalculate
 
-> ObjectRoot putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot)
+> ObjectObjectDataAndMetaModel putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersCalculationMetaInteractiveCalculationParameters)
 
 Create or Update FI calculation and run it.
 
@@ -451,7 +451,7 @@ import factset.analyticsapi.engines.api.FiCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -466,9 +466,9 @@ public class Example {
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run FI calculation endpoint
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
-        FICalculationParametersRoot fiCalculationParametersRoot = new FICalculationParametersRoot(); // FICalculationParametersRoot | Calculation Parameters
+        FICalculationParametersCalculationMetaInteractiveCalculationParameters fiCalculationParametersCalculationMetaInteractiveCalculationParameters = new FICalculationParametersCalculationMetaInteractiveCalculationParameters(); // FICalculationParametersCalculationMetaInteractiveCalculationParameters | Calculation Parameters
         try {
-            Object result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot);
+            ObjectObjectDataAndMetaModel result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersCalculationMetaInteractiveCalculationParameters);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FiCalculationsApi#putAndCalculate");
@@ -489,11 +489,11 @@ Name | Type | Description  | Notes
  **id** | **String**| from url, provided from the location header in the Create and Run FI calculation endpoint |
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
- **fiCalculationParametersRoot** | [**FICalculationParametersRoot**](FICalculationParametersRoot.md)| Calculation Parameters | [optional]
+ **fiCalculationParametersCalculationMetaInteractiveCalculationParameters** | [**FICalculationParametersCalculationMetaInteractiveCalculationParameters**](FICalculationParametersCalculationMetaInteractiveCalculationParameters.md)| Calculation Parameters | [optional]
 
 ### Return type
 
-(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
+[**ObjectObjectDataAndMetaModel**](ObjectObjectDataAndMetaModel.md)
 
 ### Authorization
 

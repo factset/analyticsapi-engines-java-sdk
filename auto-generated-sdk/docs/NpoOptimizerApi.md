@@ -1,7 +1,7 @@
 
 # NpoOptimizerApi
 
-All URIs are relative to *https://api.factset.com*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -36,7 +36,7 @@ import factset.analyticsapi.engines.api.NpoOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -96,7 +96,7 @@ null (empty response body)
 
 ## getOptimizationParameters
 
-> NPOOptimizationParametersRoot getOptimizationParameters(id)
+> NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters getOptimizationParameters(id)
 
 Get NPO optimization parameters by id
 
@@ -116,7 +116,7 @@ import factset.analyticsapi.engines.api.NpoOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -130,7 +130,7 @@ public class Example {
         NpoOptimizerApi apiInstance = new NpoOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run NPO optimization endpoint
         try {
-            NPOOptimizationParametersRoot result = apiInstance.getOptimizationParameters(id);
+            NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters result = apiInstance.getOptimizationParameters(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling NpoOptimizerApi#getOptimizationParameters");
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NPOOptimizationParametersRoot**](NPOOptimizationParametersRoot.md)
+[**NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters**](NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters.md)
 
 ### Authorization
 
@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
 
 ## getOptimizationResult
 
-> ObjectRoot getOptimizationResult(id)
+> ObjectObjectDataAndMetaModel getOptimizationResult(id)
 
 Get NPO optimization result by id
 
@@ -197,7 +197,7 @@ import factset.analyticsapi.engines.api.NpoOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -211,7 +211,7 @@ public class Example {
         NpoOptimizerApi apiInstance = new NpoOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Get NPO optimization status by id endpoint
         try {
-            ObjectRoot result = apiInstance.getOptimizationResult(id);
+            ObjectObjectDataAndMetaModel result = apiInstance.getOptimizationResult(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling NpoOptimizerApi#getOptimizationResult");
@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectRoot**](ObjectRoot.md)
+[**ObjectObjectDataAndMetaModel**](ObjectObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -258,7 +258,7 @@ Name | Type | Description  | Notes
 
 ## getOptimizationStatusById
 
-> ObjectRoot getOptimizationStatusById(id)
+> ObjectObjectDataAndMetaModel getOptimizationStatusById(id)
 
 Get NPO optimization status by id
 
@@ -280,7 +280,7 @@ import factset.analyticsapi.engines.api.NpoOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -294,7 +294,7 @@ public class Example {
         NpoOptimizerApi apiInstance = new NpoOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run NPO optimization endpoint
         try {
-            Object result = apiInstance.getOptimizationStatusById(id);
+            ObjectObjectDataAndMetaModel result = apiInstance.getOptimizationStatusById(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling NpoOptimizerApi#getOptimizationStatusById");
@@ -316,7 +316,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-(For 201 status - [**ObjectRoot**](ObjectRoot.md))(For 202 status -  null (empty response body) )
+[**ObjectObjectDataAndMetaModel**](ObjectObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -342,7 +342,7 @@ Name | Type | Description  | Notes
 
 ## postAndOptimize
 
-> ObjectRoot postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, npOOptimizationParametersRoot)
+> ObjectObjectDataAndMetaModel postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, npOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters)
 
 Create and Run NPO optimization
 
@@ -366,7 +366,7 @@ import factset.analyticsapi.engines.api.NpoOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -380,9 +380,9 @@ public class Example {
         NpoOptimizerApi apiInstance = new NpoOptimizerApi(defaultClient);
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
-        NPOOptimizationParametersRoot npOOptimizationParametersRoot = new NPOOptimizationParametersRoot(); // NPOOptimizationParametersRoot | Optimization Parameters
+        NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters npOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters = new NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters(); // NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters | Optimization Parameters
         try {
-            Object result = apiInstance.postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, npOOptimizationParametersRoot);
+            ObjectObjectDataAndMetaModel result = apiInstance.postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, npOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling NpoOptimizerApi#postAndOptimize");
@@ -402,11 +402,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
- **npOOptimizationParametersRoot** | [**NPOOptimizationParametersRoot**](NPOOptimizationParametersRoot.md)| Optimization Parameters | [optional]
+ **npOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters** | [**NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters**](NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters.md)| Optimization Parameters | [optional]
 
 ### Return type
 
-(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
+[**ObjectObjectDataAndMetaModel**](ObjectObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -434,7 +434,7 @@ Name | Type | Description  | Notes
 
 ## putAndOptimize
 
-> ObjectRoot putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, npOOptimizationParametersRoot)
+> ObjectObjectDataAndMetaModel putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, npOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters)
 
 Create or Update NPO optimization and run it.
 
@@ -454,7 +454,7 @@ import factset.analyticsapi.engines.api.NpoOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -469,9 +469,9 @@ public class Example {
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run NPO optimization endpoint
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
-        NPOOptimizationParametersRoot npOOptimizationParametersRoot = new NPOOptimizationParametersRoot(); // NPOOptimizationParametersRoot | Optimization Parameters
+        NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters npOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters = new NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters(); // NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters | Optimization Parameters
         try {
-            Object result = apiInstance.putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, npOOptimizationParametersRoot);
+            ObjectObjectDataAndMetaModel result = apiInstance.putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, npOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling NpoOptimizerApi#putAndOptimize");
@@ -492,11 +492,11 @@ Name | Type | Description  | Notes
  **id** | **String**| from url, provided from the location header in the Create and Run NPO optimization endpoint |
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
- **npOOptimizationParametersRoot** | [**NPOOptimizationParametersRoot**](NPOOptimizationParametersRoot.md)| Optimization Parameters | [optional]
+ **npOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters** | [**NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters**](NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters.md)| Optimization Parameters | [optional]
 
 ### Return type
 
-(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
+[**ObjectObjectDataAndMetaModel**](ObjectObjectDataAndMetaModel.md)
 
 ### Authorization
 

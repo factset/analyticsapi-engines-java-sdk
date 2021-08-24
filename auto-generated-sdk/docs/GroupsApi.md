@@ -1,7 +1,7 @@
 
 # GroupsApi
 
-All URIs are relative to *https://api.factset.com*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## getPAGroups
 
-> GroupRoot getPAGroups()
+> StringGroupDictionaryObjectDataAndMetaModel getPAGroups()
 
 Get PA groups
 
@@ -31,7 +31,7 @@ import factset.analyticsapi.engines.api.GroupsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -44,7 +44,7 @@ public class Example {
 
         GroupsApi apiInstance = new GroupsApi(defaultClient);
         try {
-            GroupRoot result = apiInstance.getPAGroups();
+            StringGroupDictionaryObjectDataAndMetaModel result = apiInstance.getPAGroups();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GroupsApi#getPAGroups");
@@ -63,7 +63,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**GroupRoot**](GroupRoot.md)
+[**StringGroupDictionaryObjectDataAndMetaModel**](StringGroupDictionaryObjectDataAndMetaModel.md)
 
 ### Authorization
 

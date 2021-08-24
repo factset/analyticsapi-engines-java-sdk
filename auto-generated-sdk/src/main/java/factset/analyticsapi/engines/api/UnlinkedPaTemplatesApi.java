@@ -15,12 +15,12 @@ import java.util.Map;
 import java.io.File;
 
 import factset.analyticsapi.engines.models.ClientErrorResponse;
-import factset.analyticsapi.engines.models.UnlinkedPATemplateCategoryAndTypeDetailsRoot;
-import factset.analyticsapi.engines.models.UnlinkedPATemplateCategoryAndTypeRoot;
-import factset.analyticsapi.engines.models.UnlinkedPATemplateParametersRoot;
-import factset.analyticsapi.engines.models.UnlinkedPATemplateRoot;
-import factset.analyticsapi.engines.models.UnlinkedPATemplateSummaryRoot;
-import factset.analyticsapi.engines.models.UnlinkedPATemplateUpdateParametersRoot;
+import factset.analyticsapi.engines.models.StringUnlinkedPATemplateCategoryAndTypeDictionaryObjectDataAndMetaModel;
+import factset.analyticsapi.engines.models.StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel;
+import factset.analyticsapi.engines.models.UnlinkedPATemplateCategoryAndTypeDetailsObjectDataAndMetaModel;
+import factset.analyticsapi.engines.models.UnlinkedPATemplateObjectDataAndMetaModel;
+import factset.analyticsapi.engines.models.UnlinkedPATemplateParametersObjectDataAndMetaModel;
+import factset.analyticsapi.engines.models.UnlinkedPATemplateUpdateParametersObjectDataAndMetaModel;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class UnlinkedPaTemplatesApi {
@@ -54,8 +54,8 @@ public class UnlinkedPaTemplatesApi {
   /**
    * Create unlinked PA template
    * This endpoint creates a template which is not linked to any specific PA3 tile.     Remarks:    *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
-   * @param unlinkedPATemplateParametersRoot Request Parameters (required)
-    @return UnlinkedPATemplateSummaryRoot
+   * @param unlinkedPATemplateParametersObjectDataAndMetaModel Request Parameters (required)
+    @return StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -70,15 +70,15 @@ public class UnlinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public UnlinkedPATemplateSummaryRoot createUnlinkedPATemplates(UnlinkedPATemplateParametersRoot unlinkedPATemplateParametersRoot) throws ApiException {
-    return createUnlinkedPATemplatesWithHttpInfo(unlinkedPATemplateParametersRoot).getData();
+ public StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel createUnlinkedPATemplates(UnlinkedPATemplateParametersObjectDataAndMetaModel unlinkedPATemplateParametersObjectDataAndMetaModel) throws ApiException {
+    return createUnlinkedPATemplatesWithHttpInfo(unlinkedPATemplateParametersObjectDataAndMetaModel).getData();
   }
 
   /**
    * Create unlinked PA template
    * This endpoint creates a template which is not linked to any specific PA3 tile.     Remarks:    *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
-   * @param unlinkedPATemplateParametersRoot Request Parameters (required)
-    * @return ApiResponse&lt;UnlinkedPATemplateSummaryRoot&gt;
+   * @param unlinkedPATemplateParametersObjectDataAndMetaModel Request Parameters (required)
+    * @return ApiResponse&lt;StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -93,12 +93,12 @@ public class UnlinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<UnlinkedPATemplateSummaryRoot> createUnlinkedPATemplatesWithHttpInfo(UnlinkedPATemplateParametersRoot unlinkedPATemplateParametersRoot) throws ApiException {
-    Object localVarPostBody = unlinkedPATemplateParametersRoot;
+  public ApiResponse<StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel> createUnlinkedPATemplatesWithHttpInfo(UnlinkedPATemplateParametersObjectDataAndMetaModel unlinkedPATemplateParametersObjectDataAndMetaModel) throws ApiException {
+    Object localVarPostBody = unlinkedPATemplateParametersObjectDataAndMetaModel;
     
-    // verify the required parameter 'unlinkedPATemplateParametersRoot' is set
-    if (unlinkedPATemplateParametersRoot == null) {
-      throw new ApiException(400, "Missing the required parameter 'unlinkedPATemplateParametersRoot' when calling createUnlinkedPATemplates");
+    // verify the required parameter 'unlinkedPATemplateParametersObjectDataAndMetaModel' is set
+    if (unlinkedPATemplateParametersObjectDataAndMetaModel == null) {
+      throw new ApiException(400, "Missing the required parameter 'unlinkedPATemplateParametersObjectDataAndMetaModel' when calling createUnlinkedPATemplates");
     }
     
     // create path and map variables
@@ -126,13 +126,13 @@ public class UnlinkedPaTemplatesApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<UnlinkedPATemplateSummaryRoot> localVarReturnType = new GenericType<UnlinkedPATemplateSummaryRoot>() {};
+    GenericType<StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel> localVarReturnType = new GenericType<StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(201, new GenericType<UnlinkedPATemplateSummaryRoot>(){});
+        returnTypeMap.put(201, new GenericType<StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<UnlinkedPATemplateSummaryRoot>invokeAPIWithReturnMap("UnlinkedPaTemplatesApi.createUnlinkedPATemplates", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+      return apiClient.<StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>invokeAPIWithReturnMap("UnlinkedPaTemplatesApi.createUnlinkedPATemplates", localVarPath, "POST", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -224,7 +224,7 @@ public class UnlinkedPaTemplatesApi {
   /**
    * Get default unlinked PA template types.
    * This endpoint fetches default unlinked PA template types.
-    @return UnlinkedPATemplateCategoryAndTypeRoot
+    @return StringUnlinkedPATemplateCategoryAndTypeDictionaryObjectDataAndMetaModel
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -238,14 +238,14 @@ public class UnlinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public UnlinkedPATemplateCategoryAndTypeRoot getDefaultUnlinkedPATemplateTypes() throws ApiException {
+ public StringUnlinkedPATemplateCategoryAndTypeDictionaryObjectDataAndMetaModel getDefaultUnlinkedPATemplateTypes() throws ApiException {
     return getDefaultUnlinkedPATemplateTypesWithHttpInfo().getData();
   }
 
   /**
    * Get default unlinked PA template types.
    * This endpoint fetches default unlinked PA template types.
-    * @return ApiResponse&lt;UnlinkedPATemplateCategoryAndTypeRoot&gt;
+    * @return ApiResponse&lt;StringUnlinkedPATemplateCategoryAndTypeDictionaryObjectDataAndMetaModel&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -259,7 +259,7 @@ public class UnlinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<UnlinkedPATemplateCategoryAndTypeRoot> getDefaultUnlinkedPATemplateTypesWithHttpInfo() throws ApiException {
+  public ApiResponse<StringUnlinkedPATemplateCategoryAndTypeDictionaryObjectDataAndMetaModel> getDefaultUnlinkedPATemplateTypesWithHttpInfo() throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -287,12 +287,12 @@ public class UnlinkedPaTemplatesApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<UnlinkedPATemplateCategoryAndTypeRoot> localVarReturnType = new GenericType<UnlinkedPATemplateCategoryAndTypeRoot>() {};
+    GenericType<StringUnlinkedPATemplateCategoryAndTypeDictionaryObjectDataAndMetaModel> localVarReturnType = new GenericType<StringUnlinkedPATemplateCategoryAndTypeDictionaryObjectDataAndMetaModel>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<UnlinkedPATemplateCategoryAndTypeRoot>(){});
+        returnTypeMap.put(200, new GenericType<StringUnlinkedPATemplateCategoryAndTypeDictionaryObjectDataAndMetaModel>(){});
 	
-      return apiClient.<UnlinkedPATemplateCategoryAndTypeRoot>invokeAPIWithReturnMap("UnlinkedPaTemplatesApi.getDefaultUnlinkedPATemplateTypes", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<StringUnlinkedPATemplateCategoryAndTypeDictionaryObjectDataAndMetaModel>invokeAPIWithReturnMap("UnlinkedPaTemplatesApi.getDefaultUnlinkedPATemplateTypes", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -300,7 +300,7 @@ public class UnlinkedPaTemplatesApi {
    * Get unlinked PA template type details by id.
    * This endpoint fetches the unlinked PA template type details.
    * @param id Unique identifier for an unlinked PA template type (required)
-    @return UnlinkedPATemplateCategoryAndTypeDetailsRoot
+    @return UnlinkedPATemplateCategoryAndTypeDetailsObjectDataAndMetaModel
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -316,7 +316,7 @@ public class UnlinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public UnlinkedPATemplateCategoryAndTypeDetailsRoot getDetailsType(String id) throws ApiException {
+ public UnlinkedPATemplateCategoryAndTypeDetailsObjectDataAndMetaModel getDetailsType(String id) throws ApiException {
     return getDetailsTypeWithHttpInfo(id).getData();
   }
 
@@ -324,7 +324,7 @@ public class UnlinkedPaTemplatesApi {
    * Get unlinked PA template type details by id.
    * This endpoint fetches the unlinked PA template type details.
    * @param id Unique identifier for an unlinked PA template type (required)
-    * @return ApiResponse&lt;UnlinkedPATemplateCategoryAndTypeDetailsRoot&gt;
+    * @return ApiResponse&lt;UnlinkedPATemplateCategoryAndTypeDetailsObjectDataAndMetaModel&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -340,7 +340,7 @@ public class UnlinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<UnlinkedPATemplateCategoryAndTypeDetailsRoot> getDetailsTypeWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<UnlinkedPATemplateCategoryAndTypeDetailsObjectDataAndMetaModel> getDetailsTypeWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -374,14 +374,14 @@ public class UnlinkedPaTemplatesApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<UnlinkedPATemplateCategoryAndTypeDetailsRoot> localVarReturnType = new GenericType<UnlinkedPATemplateCategoryAndTypeDetailsRoot>() {};
+    GenericType<UnlinkedPATemplateCategoryAndTypeDetailsObjectDataAndMetaModel> localVarReturnType = new GenericType<UnlinkedPATemplateCategoryAndTypeDetailsObjectDataAndMetaModel>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<UnlinkedPATemplateCategoryAndTypeDetailsRoot>(){});
+        returnTypeMap.put(200, new GenericType<UnlinkedPATemplateCategoryAndTypeDetailsObjectDataAndMetaModel>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<UnlinkedPATemplateCategoryAndTypeDetailsRoot>invokeAPIWithReturnMap("UnlinkedPaTemplatesApi.getDetailsType", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<UnlinkedPATemplateCategoryAndTypeDetailsObjectDataAndMetaModel>invokeAPIWithReturnMap("UnlinkedPaTemplatesApi.getDetailsType", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -390,7 +390,7 @@ public class UnlinkedPaTemplatesApi {
    * This endpoint returns the list of unlinked PA templates.
    * @param directory Get unlinked PA templates in path. (optional)
    * @param category Get unlinked PA templates by category. (optional)
-    @return UnlinkedPATemplateSummaryRoot
+    @return StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -405,7 +405,7 @@ public class UnlinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public UnlinkedPATemplateSummaryRoot getUnlinkedPATemplates(String directory, String category) throws ApiException {
+ public StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel getUnlinkedPATemplates(String directory, String category) throws ApiException {
     return getUnlinkedPATemplatesWithHttpInfo(directory, category).getData();
   }
 
@@ -414,7 +414,7 @@ public class UnlinkedPaTemplatesApi {
    * This endpoint returns the list of unlinked PA templates.
    * @param directory Get unlinked PA templates in path. (optional)
    * @param category Get unlinked PA templates by category. (optional)
-    * @return ApiResponse&lt;UnlinkedPATemplateSummaryRoot&gt;
+    * @return ApiResponse&lt;StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -429,7 +429,7 @@ public class UnlinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<UnlinkedPATemplateSummaryRoot> getUnlinkedPATemplatesWithHttpInfo(String directory, String category) throws ApiException {
+  public ApiResponse<StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel> getUnlinkedPATemplatesWithHttpInfo(String directory, String category) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -459,13 +459,13 @@ public class UnlinkedPaTemplatesApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<UnlinkedPATemplateSummaryRoot> localVarReturnType = new GenericType<UnlinkedPATemplateSummaryRoot>() {};
+    GenericType<StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel> localVarReturnType = new GenericType<StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<UnlinkedPATemplateSummaryRoot>(){});
+        returnTypeMap.put(200, new GenericType<StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<UnlinkedPATemplateSummaryRoot>invokeAPIWithReturnMap("UnlinkedPaTemplatesApi.getUnlinkedPATemplates", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>invokeAPIWithReturnMap("UnlinkedPaTemplatesApi.getUnlinkedPATemplates", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -473,7 +473,7 @@ public class UnlinkedPaTemplatesApi {
    * Get unlinked PA template details by id
    * This endpoint fetches the template settings.
    * @param id Unique identifier for an unlinked PA template (required)
-    @return UnlinkedPATemplateRoot
+    @return UnlinkedPATemplateObjectDataAndMetaModel
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -489,7 +489,7 @@ public class UnlinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public UnlinkedPATemplateRoot getUnlinkedPATemplatesById(String id) throws ApiException {
+ public UnlinkedPATemplateObjectDataAndMetaModel getUnlinkedPATemplatesById(String id) throws ApiException {
     return getUnlinkedPATemplatesByIdWithHttpInfo(id).getData();
   }
 
@@ -497,7 +497,7 @@ public class UnlinkedPaTemplatesApi {
    * Get unlinked PA template details by id
    * This endpoint fetches the template settings.
    * @param id Unique identifier for an unlinked PA template (required)
-    * @return ApiResponse&lt;UnlinkedPATemplateRoot&gt;
+    * @return ApiResponse&lt;UnlinkedPATemplateObjectDataAndMetaModel&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -513,7 +513,7 @@ public class UnlinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<UnlinkedPATemplateRoot> getUnlinkedPATemplatesByIdWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<UnlinkedPATemplateObjectDataAndMetaModel> getUnlinkedPATemplatesByIdWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -547,14 +547,14 @@ public class UnlinkedPaTemplatesApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<UnlinkedPATemplateRoot> localVarReturnType = new GenericType<UnlinkedPATemplateRoot>() {};
+    GenericType<UnlinkedPATemplateObjectDataAndMetaModel> localVarReturnType = new GenericType<UnlinkedPATemplateObjectDataAndMetaModel>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<UnlinkedPATemplateRoot>(){});
+        returnTypeMap.put(200, new GenericType<UnlinkedPATemplateObjectDataAndMetaModel>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<UnlinkedPATemplateRoot>invokeAPIWithReturnMap("UnlinkedPaTemplatesApi.getUnlinkedPATemplatesById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<UnlinkedPATemplateObjectDataAndMetaModel>invokeAPIWithReturnMap("UnlinkedPaTemplatesApi.getUnlinkedPATemplatesById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -562,8 +562,8 @@ public class UnlinkedPaTemplatesApi {
    * Update unlinked PA template
    * This endpoint updates an existing unlinked PA template.    Remarks:                *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
    * @param id Unique identifier for an unlinked PA template (required)
-   * @param unlinkedPATemplateUpdateParametersRoot Request Parameters (required)
-    @return UnlinkedPATemplateSummaryRoot
+   * @param unlinkedPATemplateUpdateParametersObjectDataAndMetaModel Request Parameters (required)
+    @return StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -579,16 +579,16 @@ public class UnlinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public UnlinkedPATemplateSummaryRoot updateUnlinkedPATemplates(String id, UnlinkedPATemplateUpdateParametersRoot unlinkedPATemplateUpdateParametersRoot) throws ApiException {
-    return updateUnlinkedPATemplatesWithHttpInfo(id, unlinkedPATemplateUpdateParametersRoot).getData();
+ public StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel updateUnlinkedPATemplates(String id, UnlinkedPATemplateUpdateParametersObjectDataAndMetaModel unlinkedPATemplateUpdateParametersObjectDataAndMetaModel) throws ApiException {
+    return updateUnlinkedPATemplatesWithHttpInfo(id, unlinkedPATemplateUpdateParametersObjectDataAndMetaModel).getData();
   }
 
   /**
    * Update unlinked PA template
    * This endpoint updates an existing unlinked PA template.    Remarks:                *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
    * @param id Unique identifier for an unlinked PA template (required)
-   * @param unlinkedPATemplateUpdateParametersRoot Request Parameters (required)
-    * @return ApiResponse&lt;UnlinkedPATemplateSummaryRoot&gt;
+   * @param unlinkedPATemplateUpdateParametersObjectDataAndMetaModel Request Parameters (required)
+    * @return ApiResponse&lt;StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -604,17 +604,17 @@ public class UnlinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<UnlinkedPATemplateSummaryRoot> updateUnlinkedPATemplatesWithHttpInfo(String id, UnlinkedPATemplateUpdateParametersRoot unlinkedPATemplateUpdateParametersRoot) throws ApiException {
-    Object localVarPostBody = unlinkedPATemplateUpdateParametersRoot;
+  public ApiResponse<StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel> updateUnlinkedPATemplatesWithHttpInfo(String id, UnlinkedPATemplateUpdateParametersObjectDataAndMetaModel unlinkedPATemplateUpdateParametersObjectDataAndMetaModel) throws ApiException {
+    Object localVarPostBody = unlinkedPATemplateUpdateParametersObjectDataAndMetaModel;
     
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling updateUnlinkedPATemplates");
     }
     
-    // verify the required parameter 'unlinkedPATemplateUpdateParametersRoot' is set
-    if (unlinkedPATemplateUpdateParametersRoot == null) {
-      throw new ApiException(400, "Missing the required parameter 'unlinkedPATemplateUpdateParametersRoot' when calling updateUnlinkedPATemplates");
+    // verify the required parameter 'unlinkedPATemplateUpdateParametersObjectDataAndMetaModel' is set
+    if (unlinkedPATemplateUpdateParametersObjectDataAndMetaModel == null) {
+      throw new ApiException(400, "Missing the required parameter 'unlinkedPATemplateUpdateParametersObjectDataAndMetaModel' when calling updateUnlinkedPATemplates");
     }
     
     // create path and map variables
@@ -643,14 +643,14 @@ public class UnlinkedPaTemplatesApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<UnlinkedPATemplateSummaryRoot> localVarReturnType = new GenericType<UnlinkedPATemplateSummaryRoot>() {};
+    GenericType<StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel> localVarReturnType = new GenericType<StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<UnlinkedPATemplateSummaryRoot>(){});
+        returnTypeMap.put(200, new GenericType<StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<UnlinkedPATemplateSummaryRoot>invokeAPIWithReturnMap("UnlinkedPaTemplatesApi.updateUnlinkedPATemplates", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
+      return apiClient.<StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>invokeAPIWithReturnMap("UnlinkedPaTemplatesApi.updateUnlinkedPATemplates", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

@@ -1,7 +1,7 @@
 
 # FpoOptimizerApi
 
-All URIs are relative to *https://api.factset.com*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -36,7 +36,7 @@ import factset.analyticsapi.engines.api.FpoOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -96,7 +96,7 @@ null (empty response body)
 
 ## getOptimizationParameters
 
-> FPOOptimizationParametersRoot getOptimizationParameters(id)
+> FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters getOptimizationParameters(id)
 
 Get FPO optimization parameters by id
 
@@ -116,7 +116,7 @@ import factset.analyticsapi.engines.api.FpoOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -130,7 +130,7 @@ public class Example {
         FpoOptimizerApi apiInstance = new FpoOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run FPO optimization endpoint
         try {
-            FPOOptimizationParametersRoot result = apiInstance.getOptimizationParameters(id);
+            FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters result = apiInstance.getOptimizationParameters(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FpoOptimizerApi#getOptimizationParameters");
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FPOOptimizationParametersRoot**](FPOOptimizationParametersRoot.md)
+[**FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters**](FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters.md)
 
 ### Authorization
 
@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
 
 ## getOptimizationResult
 
-> ObjectRoot getOptimizationResult(id, accept)
+> ObjectObjectDataAndMetaModel getOptimizationResult(id, accept)
 
 Get FPO optimization result by id
 
@@ -198,7 +198,7 @@ import factset.analyticsapi.engines.api.FpoOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -213,7 +213,7 @@ public class Example {
         String id = "id_example"; // String | from url, provided from the location header in the Get FPO optimization status by id endpoint
         String accept = "accept_example"; // String | Standard HTTP header. Value can be gzip, compress, deflate, br, identity and/or *
         try {
-            ObjectRoot result = apiInstance.getOptimizationResult(id, accept);
+            ObjectObjectDataAndMetaModel result = apiInstance.getOptimizationResult(id, accept);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FpoOptimizerApi#getOptimizationResult");
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectRoot**](ObjectRoot.md)
+[**ObjectObjectDataAndMetaModel**](ObjectObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -261,7 +261,7 @@ Name | Type | Description  | Notes
 
 ## getOptimizationStatusById
 
-> ObjectRoot getOptimizationStatusById(id)
+> ObjectObjectDataAndMetaModel getOptimizationStatusById(id)
 
 Get FPO optimization status by id
 
@@ -283,7 +283,7 @@ import factset.analyticsapi.engines.api.FpoOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -297,7 +297,7 @@ public class Example {
         FpoOptimizerApi apiInstance = new FpoOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run FPO optimization endpoint
         try {
-            Object result = apiInstance.getOptimizationStatusById(id);
+            ObjectObjectDataAndMetaModel result = apiInstance.getOptimizationStatusById(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FpoOptimizerApi#getOptimizationStatusById");
@@ -319,7 +319,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-(For 201 status - [**ObjectRoot**](ObjectRoot.md))(For 202 status -  null (empty response body) )
+[**ObjectObjectDataAndMetaModel**](ObjectObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -345,7 +345,7 @@ Name | Type | Description  | Notes
 
 ## postAndOptimize
 
-> ObjectRoot postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, fpOOptimizationParametersRoot)
+> ObjectObjectDataAndMetaModel postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, fpOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters)
 
 Create and Run FPO optimization
 
@@ -369,7 +369,7 @@ import factset.analyticsapi.engines.api.FpoOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -383,9 +383,9 @@ public class Example {
         FpoOptimizerApi apiInstance = new FpoOptimizerApi(defaultClient);
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
-        FPOOptimizationParametersRoot fpOOptimizationParametersRoot = new FPOOptimizationParametersRoot(); // FPOOptimizationParametersRoot | Optimization Parameters
+        FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters fpOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters = new FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters(); // FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters | Optimization Parameters
         try {
-            Object result = apiInstance.postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, fpOOptimizationParametersRoot);
+            ObjectObjectDataAndMetaModel result = apiInstance.postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, fpOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FpoOptimizerApi#postAndOptimize");
@@ -405,11 +405,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
- **fpOOptimizationParametersRoot** | [**FPOOptimizationParametersRoot**](FPOOptimizationParametersRoot.md)| Optimization Parameters | [optional]
+ **fpOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters** | [**FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters**](FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters.md)| Optimization Parameters | [optional]
 
 ### Return type
 
-(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
+[**ObjectObjectDataAndMetaModel**](ObjectObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -437,7 +437,7 @@ Name | Type | Description  | Notes
 
 ## putAndOptimize
 
-> ObjectRoot putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, fpOOptimizationParametersRoot)
+> ObjectObjectDataAndMetaModel putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, fpOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters)
 
 Create or Update FPO optimization and run it.
 
@@ -457,7 +457,7 @@ import factset.analyticsapi.engines.api.FpoOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -472,9 +472,9 @@ public class Example {
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run FPO optimization endpoint
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
-        FPOOptimizationParametersRoot fpOOptimizationParametersRoot = new FPOOptimizationParametersRoot(); // FPOOptimizationParametersRoot | Optimization Parameters
+        FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters fpOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters = new FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters(); // FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters | Optimization Parameters
         try {
-            Object result = apiInstance.putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, fpOOptimizationParametersRoot);
+            ObjectObjectDataAndMetaModel result = apiInstance.putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, fpOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FpoOptimizerApi#putAndOptimize");
@@ -495,11 +495,11 @@ Name | Type | Description  | Notes
  **id** | **String**| from url, provided from the location header in the Create and Run FPO optimization endpoint |
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
- **fpOOptimizationParametersRoot** | [**FPOOptimizationParametersRoot**](FPOOptimizationParametersRoot.md)| Optimization Parameters | [optional]
+ **fpOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters** | [**FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters**](FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters.md)| Optimization Parameters | [optional]
 
 ### Return type
 
-(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
+[**ObjectObjectDataAndMetaModel**](ObjectObjectDataAndMetaModel.md)
 
 ### Authorization
 

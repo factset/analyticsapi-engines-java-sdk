@@ -1,7 +1,7 @@
 
 # TemplatedPaComponentsApi
 
-All URIs are relative to *https://api.factset.com*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## createTemplatedPAComponents
 
-> TemplatedPAComponentSummaryRoot createTemplatedPAComponents(templatedPAComponentParametersRoot)
+> StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel createTemplatedPAComponents(templatedPAComponentParametersObjectDataAndMetaModel)
 
 Create templated PA component
 
@@ -33,7 +33,7 @@ import factset.analyticsapi.engines.api.TemplatedPaComponentsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -45,9 +45,9 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         TemplatedPaComponentsApi apiInstance = new TemplatedPaComponentsApi(defaultClient);
-        TemplatedPAComponentParametersRoot templatedPAComponentParametersRoot = new TemplatedPAComponentParametersRoot(); // TemplatedPAComponentParametersRoot | Request Parameters
+        TemplatedPAComponentParametersObjectDataAndMetaModel templatedPAComponentParametersObjectDataAndMetaModel = new TemplatedPAComponentParametersObjectDataAndMetaModel(); // TemplatedPAComponentParametersObjectDataAndMetaModel | Request Parameters
         try {
-            TemplatedPAComponentSummaryRoot result = apiInstance.createTemplatedPAComponents(templatedPAComponentParametersRoot);
+            StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel result = apiInstance.createTemplatedPAComponents(templatedPAComponentParametersObjectDataAndMetaModel);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatedPaComponentsApi#createTemplatedPAComponents");
@@ -65,11 +65,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **templatedPAComponentParametersRoot** | [**TemplatedPAComponentParametersRoot**](TemplatedPAComponentParametersRoot.md)| Request Parameters |
+ **templatedPAComponentParametersObjectDataAndMetaModel** | [**TemplatedPAComponentParametersObjectDataAndMetaModel**](TemplatedPAComponentParametersObjectDataAndMetaModel.md)| Request Parameters |
 
 ### Return type
 
-[**TemplatedPAComponentSummaryRoot**](TemplatedPAComponentSummaryRoot.md)
+[**StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel**](StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -116,7 +116,7 @@ import factset.analyticsapi.engines.api.TemplatedPaComponentsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -178,7 +178,7 @@ null (empty response body)
 
 ## updateTemplatedPAComponents
 
-> TemplatedPAComponentSummaryRoot updateTemplatedPAComponents(id, templatedPAComponentUpdateParametersRoot)
+> StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel updateTemplatedPAComponents(id, templatedPAComponentUpdateParametersObjectDataAndMetaModel)
 
 Update templated PA component
 
@@ -198,7 +198,7 @@ import factset.analyticsapi.engines.api.TemplatedPaComponentsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -211,9 +211,9 @@ public class Example {
 
         TemplatedPaComponentsApi apiInstance = new TemplatedPaComponentsApi(defaultClient);
         String id = "id_example"; // String | Unique identifier for a templated PA component
-        TemplatedPAComponentUpdateParametersRoot templatedPAComponentUpdateParametersRoot = new TemplatedPAComponentUpdateParametersRoot(); // TemplatedPAComponentUpdateParametersRoot | Request Parameters
+        TemplatedPAComponentUpdateParametersObjectDataAndMetaModel templatedPAComponentUpdateParametersObjectDataAndMetaModel = new TemplatedPAComponentUpdateParametersObjectDataAndMetaModel(); // TemplatedPAComponentUpdateParametersObjectDataAndMetaModel | Request Parameters
         try {
-            TemplatedPAComponentSummaryRoot result = apiInstance.updateTemplatedPAComponents(id, templatedPAComponentUpdateParametersRoot);
+            StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel result = apiInstance.updateTemplatedPAComponents(id, templatedPAComponentUpdateParametersObjectDataAndMetaModel);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatedPaComponentsApi#updateTemplatedPAComponents");
@@ -232,11 +232,11 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Unique identifier for a templated PA component |
- **templatedPAComponentUpdateParametersRoot** | [**TemplatedPAComponentUpdateParametersRoot**](TemplatedPAComponentUpdateParametersRoot.md)| Request Parameters |
+ **templatedPAComponentUpdateParametersObjectDataAndMetaModel** | [**TemplatedPAComponentUpdateParametersObjectDataAndMetaModel**](TemplatedPAComponentUpdateParametersObjectDataAndMetaModel.md)| Request Parameters |
 
 ### Return type
 
-[**TemplatedPAComponentSummaryRoot**](TemplatedPAComponentSummaryRoot.md)
+[**StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel**](StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel.md)
 
 ### Authorization
 

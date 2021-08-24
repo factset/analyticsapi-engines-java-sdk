@@ -15,7 +15,7 @@ import java.util.Map;
 import java.io.File;
 
 import factset.analyticsapi.engines.models.ClientErrorResponse;
-import factset.analyticsapi.engines.models.SPARBenchmarkRoot;
+import factset.analyticsapi.engines.models.SPARBenchmarkObjectDataAndMetaModel;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class BenchmarksApi {
@@ -50,7 +50,7 @@ public class BenchmarksApi {
    * Get SPAR benchmark details
    * This endpoint returns the details of a given SPAR benchmark identifier.
    * @param id Benchmark Identifier (required)
-    @return SPARBenchmarkRoot
+    @return SPARBenchmarkObjectDataAndMetaModel
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -66,7 +66,7 @@ public class BenchmarksApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public SPARBenchmarkRoot getSPARBenchmarkById(String id) throws ApiException {
+ public SPARBenchmarkObjectDataAndMetaModel getSPARBenchmarkById(String id) throws ApiException {
     return getSPARBenchmarkByIdWithHttpInfo(id).getData();
   }
 
@@ -74,7 +74,7 @@ public class BenchmarksApi {
    * Get SPAR benchmark details
    * This endpoint returns the details of a given SPAR benchmark identifier.
    * @param id Benchmark Identifier (required)
-    * @return ApiResponse&lt;SPARBenchmarkRoot&gt;
+    * @return ApiResponse&lt;SPARBenchmarkObjectDataAndMetaModel&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -90,7 +90,7 @@ public class BenchmarksApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<SPARBenchmarkRoot> getSPARBenchmarkByIdWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<SPARBenchmarkObjectDataAndMetaModel> getSPARBenchmarkByIdWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -124,14 +124,14 @@ public class BenchmarksApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<SPARBenchmarkRoot> localVarReturnType = new GenericType<SPARBenchmarkRoot>() {};
+    GenericType<SPARBenchmarkObjectDataAndMetaModel> localVarReturnType = new GenericType<SPARBenchmarkObjectDataAndMetaModel>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<SPARBenchmarkRoot>(){});
+        returnTypeMap.put(200, new GenericType<SPARBenchmarkObjectDataAndMetaModel>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<SPARBenchmarkRoot>invokeAPIWithReturnMap("BenchmarksApi.getSPARBenchmarkById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<SPARBenchmarkObjectDataAndMetaModel>invokeAPIWithReturnMap("BenchmarksApi.getSPARBenchmarkById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

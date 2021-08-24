@@ -14,10 +14,10 @@ import java.util.Map;
 
 import java.io.File;
 
-import factset.analyticsapi.engines.models.CalculationInfoRoot;
 import factset.analyticsapi.engines.models.ClientErrorResponse;
-import factset.analyticsapi.engines.models.FICalculationParametersRoot;
-import factset.analyticsapi.engines.models.ObjectRoot;
+import factset.analyticsapi.engines.models.FICalculationParametersCalculationMetaInteractiveCalculationParameters;
+import factset.analyticsapi.engines.models.ObjectObjectDataAndMetaModel;
+import factset.analyticsapi.engines.models.PersistedCalculationInfoObjectDataAndMetaModel;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class FiCalculationsApi {
@@ -133,7 +133,7 @@ public class FiCalculationsApi {
    * Get FI calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
-    @return FICalculationParametersRoot
+    @return FICalculationParametersCalculationMetaInteractiveCalculationParameters
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -147,7 +147,7 @@ public class FiCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public FICalculationParametersRoot getCalculationParameters(String id) throws ApiException {
+ public FICalculationParametersCalculationMetaInteractiveCalculationParameters getCalculationParameters(String id) throws ApiException {
     return getCalculationParametersWithHttpInfo(id).getData();
   }
 
@@ -155,7 +155,7 @@ public class FiCalculationsApi {
    * Get FI calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
-    * @return ApiResponse&lt;FICalculationParametersRoot&gt;
+    * @return ApiResponse&lt;FICalculationParametersCalculationMetaInteractiveCalculationParameters&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -169,7 +169,7 @@ public class FiCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<FICalculationParametersRoot> getCalculationParametersWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<FICalculationParametersCalculationMetaInteractiveCalculationParameters> getCalculationParametersWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -203,14 +203,14 @@ public class FiCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<FICalculationParametersRoot> localVarReturnType = new GenericType<FICalculationParametersRoot>() {};
+    GenericType<FICalculationParametersCalculationMetaInteractiveCalculationParameters> localVarReturnType = new GenericType<FICalculationParametersCalculationMetaInteractiveCalculationParameters>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<FICalculationParametersRoot>(){});
+        returnTypeMap.put(200, new GenericType<FICalculationParametersCalculationMetaInteractiveCalculationParameters>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<FICalculationParametersRoot>invokeAPIWithReturnMap("FiCalculationsApi.getCalculationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<FICalculationParametersCalculationMetaInteractiveCalculationParameters>invokeAPIWithReturnMap("FiCalculationsApi.getCalculationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -218,7 +218,7 @@ public class FiCalculationsApi {
    * Get FI calculation result by id
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Get FI calculation status by id endpoint (required)
-    @return ObjectRoot
+    @return ObjectObjectDataAndMetaModel
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -232,7 +232,7 @@ public class FiCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public ObjectRoot getCalculationResult(String id) throws ApiException {
+ public ObjectObjectDataAndMetaModel getCalculationResult(String id) throws ApiException {
     return getCalculationResultWithHttpInfo(id).getData();
   }
 
@@ -240,7 +240,7 @@ public class FiCalculationsApi {
    * Get FI calculation result by id
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Get FI calculation status by id endpoint (required)
-    * @return ApiResponse&lt;ObjectRoot&gt;
+    * @return ApiResponse&lt;ObjectObjectDataAndMetaModel&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -254,7 +254,7 @@ public class FiCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<ObjectRoot> getCalculationResultWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<ObjectObjectDataAndMetaModel> getCalculationResultWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -288,14 +288,14 @@ public class FiCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
+    GenericType<ObjectObjectDataAndMetaModel> localVarReturnType = new GenericType<ObjectObjectDataAndMetaModel>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<ObjectRoot>(){});
+        returnTypeMap.put(200, new GenericType<ObjectObjectDataAndMetaModel>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<ObjectRoot>invokeAPIWithReturnMap("FiCalculationsApi.getCalculationResult", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<ObjectObjectDataAndMetaModel>invokeAPIWithReturnMap("FiCalculationsApi.getCalculationResult", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -303,7 +303,7 @@ public class FiCalculationsApi {
    * Get FI calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.  Otherwise, the calculation is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
-    @return (For 201 status - ObjectRoot)(For 202 status - null)
+    @return ObjectObjectDataAndMetaModel
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -318,7 +318,7 @@ public class FiCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public Object getCalculationStatusById(String id) throws ApiException {
+ public ObjectObjectDataAndMetaModel getCalculationStatusById(String id) throws ApiException {
     return getCalculationStatusByIdWithHttpInfo(id).getData();
   }
 
@@ -326,7 +326,7 @@ public class FiCalculationsApi {
    * Get FI calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.  Otherwise, the calculation is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
-    * @return ApiResponse&lt;Object&gt;(For 201 status - ObjectRoot)(For 202 status - null)
+    * @return ApiResponse&lt;ObjectObjectDataAndMetaModel&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -341,7 +341,7 @@ public class FiCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getCalculationStatusByIdWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<ObjectObjectDataAndMetaModel> getCalculationStatusByIdWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -375,14 +375,14 @@ public class FiCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
+    GenericType<ObjectObjectDataAndMetaModel> localVarReturnType = new GenericType<ObjectObjectDataAndMetaModel>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
+        returnTypeMap.put(201, new GenericType<ObjectObjectDataAndMetaModel>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<Object>invokeAPIWithReturnMap("FiCalculationsApi.getCalculationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<ObjectObjectDataAndMetaModel>invokeAPIWithReturnMap("FiCalculationsApi.getCalculationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -391,8 +391,8 @@ public class FiCalculationsApi {
    * This endpoint creates and runs a new FI calculation specified in the post body.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param fiCalculationParametersRoot Calculation Parameters (optional)
-    @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
+   * @param fiCalculationParametersCalculationMetaInteractiveCalculationParameters Calculation Parameters (optional)
+    @return ObjectObjectDataAndMetaModel
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -409,8 +409,8 @@ public class FiCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  </td></tr>
      </table>
    */
- public Object postAndCalculate(Integer xFactSetApiLongRunningDeadline, String cacheControl, FICalculationParametersRoot fiCalculationParametersRoot) throws ApiException {
-    return postAndCalculateWithHttpInfo(xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot).getData();
+ public ObjectObjectDataAndMetaModel postAndCalculate(Integer xFactSetApiLongRunningDeadline, String cacheControl, FICalculationParametersCalculationMetaInteractiveCalculationParameters fiCalculationParametersCalculationMetaInteractiveCalculationParameters) throws ApiException {
+    return postAndCalculateWithHttpInfo(xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersCalculationMetaInteractiveCalculationParameters).getData();
   }
 
   /**
@@ -418,8 +418,8 @@ public class FiCalculationsApi {
    * This endpoint creates and runs a new FI calculation specified in the post body.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param fiCalculationParametersRoot Calculation Parameters (optional)
-    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
+   * @param fiCalculationParametersCalculationMetaInteractiveCalculationParameters Calculation Parameters (optional)
+    * @return ApiResponse&lt;ObjectObjectDataAndMetaModel&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -436,8 +436,8 @@ public class FiCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<Object> postAndCalculateWithHttpInfo(Integer xFactSetApiLongRunningDeadline, String cacheControl, FICalculationParametersRoot fiCalculationParametersRoot) throws ApiException {
-    Object localVarPostBody = fiCalculationParametersRoot;
+  public ApiResponse<ObjectObjectDataAndMetaModel> postAndCalculateWithHttpInfo(Integer xFactSetApiLongRunningDeadline, String cacheControl, FICalculationParametersCalculationMetaInteractiveCalculationParameters fiCalculationParametersCalculationMetaInteractiveCalculationParameters) throws ApiException {
+    Object localVarPostBody = fiCalculationParametersCalculationMetaInteractiveCalculationParameters;
     
     // create path and map variables
     String localVarPath = "/analytics/engines/fi/v3/calculations";
@@ -468,15 +468,15 @@ if (cacheControl != null)
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
+    GenericType<ObjectObjectDataAndMetaModel> localVarReturnType = new GenericType<ObjectObjectDataAndMetaModel>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(202, new GenericType<CalculationInfoRoot>(){});
-        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
+        returnTypeMap.put(202, new GenericType<PersistedCalculationInfoObjectDataAndMetaModel>(){});
+        returnTypeMap.put(201, new GenericType<ObjectObjectDataAndMetaModel>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<Object>invokeAPIWithReturnMap("FiCalculationsApi.postAndCalculate", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+      return apiClient.<ObjectObjectDataAndMetaModel>invokeAPIWithReturnMap("FiCalculationsApi.postAndCalculate", localVarPath, "POST", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -486,8 +486,8 @@ if (cacheControl != null)
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param fiCalculationParametersRoot Calculation Parameters (optional)
-    @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
+   * @param fiCalculationParametersCalculationMetaInteractiveCalculationParameters Calculation Parameters (optional)
+    @return ObjectObjectDataAndMetaModel
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -505,8 +505,8 @@ if (cacheControl != null)
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public Object putAndCalculate(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, FICalculationParametersRoot fiCalculationParametersRoot) throws ApiException {
-    return putAndCalculateWithHttpInfo(id, xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersRoot).getData();
+ public ObjectObjectDataAndMetaModel putAndCalculate(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, FICalculationParametersCalculationMetaInteractiveCalculationParameters fiCalculationParametersCalculationMetaInteractiveCalculationParameters) throws ApiException {
+    return putAndCalculateWithHttpInfo(id, xFactSetApiLongRunningDeadline, cacheControl, fiCalculationParametersCalculationMetaInteractiveCalculationParameters).getData();
   }
 
   /**
@@ -515,8 +515,8 @@ if (cacheControl != null)
    * @param id from url, provided from the location header in the Create and Run FI calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param fiCalculationParametersRoot Calculation Parameters (optional)
-    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
+   * @param fiCalculationParametersCalculationMetaInteractiveCalculationParameters Calculation Parameters (optional)
+    * @return ApiResponse&lt;ObjectObjectDataAndMetaModel&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -534,8 +534,8 @@ if (cacheControl != null)
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<Object> putAndCalculateWithHttpInfo(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, FICalculationParametersRoot fiCalculationParametersRoot) throws ApiException {
-    Object localVarPostBody = fiCalculationParametersRoot;
+  public ApiResponse<ObjectObjectDataAndMetaModel> putAndCalculateWithHttpInfo(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, FICalculationParametersCalculationMetaInteractiveCalculationParameters fiCalculationParametersCalculationMetaInteractiveCalculationParameters) throws ApiException {
+    Object localVarPostBody = fiCalculationParametersCalculationMetaInteractiveCalculationParameters;
     
     // verify the required parameter 'id' is set
     if (id == null) {
@@ -572,16 +572,16 @@ if (cacheControl != null)
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
+    GenericType<ObjectObjectDataAndMetaModel> localVarReturnType = new GenericType<ObjectObjectDataAndMetaModel>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(202, new GenericType<CalculationInfoRoot>(){});
-        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
+        returnTypeMap.put(202, new GenericType<PersistedCalculationInfoObjectDataAndMetaModel>(){});
+        returnTypeMap.put(201, new GenericType<ObjectObjectDataAndMetaModel>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(409, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<Object>invokeAPIWithReturnMap("FiCalculationsApi.putAndCalculate", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
+      return apiClient.<ObjectObjectDataAndMetaModel>invokeAPIWithReturnMap("FiCalculationsApi.putAndCalculate", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

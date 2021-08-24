@@ -1,7 +1,7 @@
 
 # PaCalculationsApi
 
-All URIs are relative to *https://api.factset.com*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -36,7 +36,7 @@ import factset.analyticsapi.engines.api.PaCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -96,7 +96,7 @@ null (empty response body)
 
 ## getCalculationParameters
 
-> PACalculationParametersRoot getCalculationParameters(id)
+> PACalculationParametersCalculationMetaCalculationParameters getCalculationParameters(id)
 
 Get PA calculation parameters by id
 
@@ -116,7 +116,7 @@ import factset.analyticsapi.engines.api.PaCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -130,7 +130,7 @@ public class Example {
         PaCalculationsApi apiInstance = new PaCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run PA calculation endpoint
         try {
-            PACalculationParametersRoot result = apiInstance.getCalculationParameters(id);
+            PACalculationParametersCalculationMetaCalculationParameters result = apiInstance.getCalculationParameters(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PaCalculationsApi#getCalculationParameters");
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PACalculationParametersRoot**](PACalculationParametersRoot.md)
+[**PACalculationParametersCalculationMetaCalculationParameters**](PACalculationParametersCalculationMetaCalculationParameters.md)
 
 ### Authorization
 
@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
 
 ## getCalculationStatusById
 
-> CalculationStatusRoot getCalculationStatusById(id)
+> CalculationStatusCalculationStatusMetaDataAndMetaModel getCalculationStatusById(id)
 
 Get PA calculation status by id
 
@@ -199,7 +199,7 @@ import factset.analyticsapi.engines.api.PaCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -213,7 +213,7 @@ public class Example {
         PaCalculationsApi apiInstance = new PaCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run PA calculation endpoint
         try {
-            CalculationStatusRoot result = apiInstance.getCalculationStatusById(id);
+            CalculationStatusCalculationStatusMetaDataAndMetaModel result = apiInstance.getCalculationStatusById(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PaCalculationsApi#getCalculationStatusById");
@@ -235,7 +235,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CalculationStatusRoot**](CalculationStatusRoot.md)
+[**CalculationStatusCalculationStatusMetaDataAndMetaModel**](CalculationStatusCalculationStatusMetaDataAndMetaModel.md)
 
 ### Authorization
 
@@ -261,7 +261,7 @@ Name | Type | Description  | Notes
 
 ## getCalculationUnitResultById
 
-> ObjectRoot getCalculationUnitResultById(id, unitId)
+> ObjectObjectDataAndMetaModel getCalculationUnitResultById(id, unitId)
 
 Get PA calculation result by id
 
@@ -282,7 +282,7 @@ import factset.analyticsapi.engines.api.PaCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -297,7 +297,7 @@ public class Example {
         String id = "id_example"; // String | from url, provided from the location header in the Get PA calculation status by id endpoint
         String unitId = "unitId_example"; // String | from url, provided from the location header in the Get PA calculation status by id endpoint
         try {
-            ObjectRoot result = apiInstance.getCalculationUnitResultById(id, unitId);
+            ObjectObjectDataAndMetaModel result = apiInstance.getCalculationUnitResultById(id, unitId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PaCalculationsApi#getCalculationUnitResultById");
@@ -320,7 +320,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectRoot**](ObjectRoot.md)
+[**ObjectObjectDataAndMetaModel**](ObjectObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -345,7 +345,7 @@ Name | Type | Description  | Notes
 
 ## postAndCalculate
 
-> CalculationStatusRoot postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, paCalculationParametersRoot)
+> CalculationStatusCalculationStatusMetaDataAndMetaModel postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, paCalculationParametersCalculationMetaCalculationParameters)
 
 Create and Run PA calculation
 
@@ -370,7 +370,7 @@ import factset.analyticsapi.engines.api.PaCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -384,9 +384,9 @@ public class Example {
         PaCalculationsApi apiInstance = new PaCalculationsApi(defaultClient);
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds when only one unit is passed in the POST body.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
-        PACalculationParametersRoot paCalculationParametersRoot = new PACalculationParametersRoot(); // PACalculationParametersRoot | Calculation Parameters
+        PACalculationParametersCalculationMetaCalculationParameters paCalculationParametersCalculationMetaCalculationParameters = new PACalculationParametersCalculationMetaCalculationParameters(); // PACalculationParametersCalculationMetaCalculationParameters | Calculation Parameters
         try {
-            Object result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, paCalculationParametersRoot);
+            CalculationStatusCalculationStatusMetaDataAndMetaModel result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, paCalculationParametersCalculationMetaCalculationParameters);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PaCalculationsApi#postAndCalculate");
@@ -406,11 +406,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds when only one unit is passed in the POST body. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
- **paCalculationParametersRoot** | [**PACalculationParametersRoot**](PACalculationParametersRoot.md)| Calculation Parameters | [optional]
+ **paCalculationParametersCalculationMetaCalculationParameters** | [**PACalculationParametersCalculationMetaCalculationParameters**](PACalculationParametersCalculationMetaCalculationParameters.md)| Calculation Parameters | [optional]
 
 ### Return type
 
-(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))
+[**CalculationStatusCalculationStatusMetaDataAndMetaModel**](CalculationStatusCalculationStatusMetaDataAndMetaModel.md)
 
 ### Authorization
 
@@ -439,7 +439,7 @@ Name | Type | Description  | Notes
 
 ## putAndCalculate
 
-> CalculationStatusRoot putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, paCalculationParametersRoot)
+> CalculationStatusCalculationStatusMetaDataAndMetaModel putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, paCalculationParametersCalculationMetaCalculationParameters)
 
 Create or Update PA calculation and run it.
 
@@ -464,7 +464,7 @@ import factset.analyticsapi.engines.api.PaCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -479,9 +479,9 @@ public class Example {
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run PA calculation endpoint
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds when only one unit is passed in the PUT body.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
-        PACalculationParametersRoot paCalculationParametersRoot = new PACalculationParametersRoot(); // PACalculationParametersRoot | Calculation Parameters
+        PACalculationParametersCalculationMetaCalculationParameters paCalculationParametersCalculationMetaCalculationParameters = new PACalculationParametersCalculationMetaCalculationParameters(); // PACalculationParametersCalculationMetaCalculationParameters | Calculation Parameters
         try {
-            Object result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, paCalculationParametersRoot);
+            CalculationStatusCalculationStatusMetaDataAndMetaModel result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, paCalculationParametersCalculationMetaCalculationParameters);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PaCalculationsApi#putAndCalculate");
@@ -502,11 +502,11 @@ Name | Type | Description  | Notes
  **id** | **String**| from url, provided from the location header in the Create and Run PA calculation endpoint |
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds when only one unit is passed in the PUT body. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
- **paCalculationParametersRoot** | [**PACalculationParametersRoot**](PACalculationParametersRoot.md)| Calculation Parameters | [optional]
+ **paCalculationParametersCalculationMetaCalculationParameters** | [**PACalculationParametersCalculationMetaCalculationParameters**](PACalculationParametersCalculationMetaCalculationParameters.md)| Calculation Parameters | [optional]
 
 ### Return type
 
-(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
+[**CalculationStatusCalculationStatusMetaDataAndMetaModel**](CalculationStatusCalculationStatusMetaDataAndMetaModel.md)
 
 ### Authorization
 

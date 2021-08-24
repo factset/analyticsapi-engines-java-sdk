@@ -8,8 +8,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **universe** | [**OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse**](OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse.md) |  | 
-**dates** | [**OneOfQuantFdsDateQuantDateList**](OneOfQuantFdsDateQuantDateList.md) |  | 
-**formulas** | [**java.util.List&lt;OneOfQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters&gt;**](OneOfQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters.md) |  |  [optional]
+**dates** | [**OneOfQuantDateQuantFdsDateQuantDateList**](OneOfQuantDateQuantFdsDateQuantDateList.md) |  | 
+**formulas** | [**java.util.List&lt;OneOfQuantFormulaQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters&gt;**](OneOfQuantFormulaQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters.md) |  |  [optional]
 **screeningExpressionUniverse** | [**QuantScreeningExpressionUniverse1**](QuantScreeningExpressionUniverse1.md) |  |  [optional]
 **universalScreenUniverse** | [**QuantUniversalScreenUniverse1**](QuantUniversalScreenUniverse1.md) |  |  [optional]
 **identifierUniverse** | [**QuantIdentifierUniverse1**](QuantIdentifierUniverse1.md) |  |  [optional]

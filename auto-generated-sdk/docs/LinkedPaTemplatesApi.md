@@ -1,7 +1,7 @@
 
 # LinkedPaTemplatesApi
 
-All URIs are relative to *https://api.factset.com*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## createLinkedPATemplates
 
-> LinkedPATemplateSummaryRoot createLinkedPATemplates(linkedPATemplateParametersRoot)
+> StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel createLinkedPATemplates(linkedPATemplateParametersObjectDataAndMetaModel)
 
 Create a linked PA template
 
@@ -41,7 +41,7 @@ import factset.analyticsapi.engines.api.LinkedPaTemplatesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -53,9 +53,9 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         LinkedPaTemplatesApi apiInstance = new LinkedPaTemplatesApi(defaultClient);
-        LinkedPATemplateParametersRoot linkedPATemplateParametersRoot = new LinkedPATemplateParametersRoot(); // LinkedPATemplateParametersRoot | Request Parameters
+        LinkedPATemplateParametersObjectDataAndMetaModel linkedPATemplateParametersObjectDataAndMetaModel = new LinkedPATemplateParametersObjectDataAndMetaModel(); // LinkedPATemplateParametersObjectDataAndMetaModel | Request Parameters
         try {
-            LinkedPATemplateSummaryRoot result = apiInstance.createLinkedPATemplates(linkedPATemplateParametersRoot);
+            StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel result = apiInstance.createLinkedPATemplates(linkedPATemplateParametersObjectDataAndMetaModel);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling LinkedPaTemplatesApi#createLinkedPATemplates");
@@ -73,11 +73,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **linkedPATemplateParametersRoot** | [**LinkedPATemplateParametersRoot**](LinkedPATemplateParametersRoot.md)| Request Parameters |
+ **linkedPATemplateParametersObjectDataAndMetaModel** | [**LinkedPATemplateParametersObjectDataAndMetaModel**](LinkedPATemplateParametersObjectDataAndMetaModel.md)| Request Parameters |
 
 ### Return type
 
-[**LinkedPATemplateSummaryRoot**](LinkedPATemplateSummaryRoot.md)
+[**StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel**](StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -124,7 +124,7 @@ import factset.analyticsapi.engines.api.LinkedPaTemplatesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -186,7 +186,7 @@ null (empty response body)
 
 ## getLinkedPATemplates
 
-> LinkedPATemplateSummaryRoot getLinkedPATemplates(directory, documentDirectory, documentName)
+> StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel getLinkedPATemplates(directory, documentDirectory, documentName)
 
 Get linked PA templates
 
@@ -206,7 +206,7 @@ import factset.analyticsapi.engines.api.LinkedPaTemplatesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -222,7 +222,7 @@ public class Example {
         String documentDirectory = "documentDirectory_example"; // String | Get linked PA templates for documents in document path
         String documentName = "documentName_example"; // String | Get linked PA templates for documents by document name
         try {
-            LinkedPATemplateSummaryRoot result = apiInstance.getLinkedPATemplates(directory, documentDirectory, documentName);
+            StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel result = apiInstance.getLinkedPATemplates(directory, documentDirectory, documentName);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling LinkedPaTemplatesApi#getLinkedPATemplates");
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LinkedPATemplateSummaryRoot**](LinkedPATemplateSummaryRoot.md)
+[**StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel**](StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
 
 ## getLinkedPATemplatesById
 
-> LinkedPATemplateRoot getLinkedPATemplatesById(id)
+> LinkedPATemplateObjectDataAndMetaModel getLinkedPATemplatesById(id)
 
 Get linked PA template by id
 
@@ -293,7 +293,7 @@ import factset.analyticsapi.engines.api.LinkedPaTemplatesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -307,7 +307,7 @@ public class Example {
         LinkedPaTemplatesApi apiInstance = new LinkedPaTemplatesApi(defaultClient);
         String id = "id_example"; // String | Unique identifier for a linked PA template
         try {
-            LinkedPATemplateRoot result = apiInstance.getLinkedPATemplatesById(id);
+            LinkedPATemplateObjectDataAndMetaModel result = apiInstance.getLinkedPATemplatesById(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling LinkedPaTemplatesApi#getLinkedPATemplatesById");
@@ -329,7 +329,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LinkedPATemplateRoot**](LinkedPATemplateRoot.md)
+[**LinkedPATemplateObjectDataAndMetaModel**](LinkedPATemplateObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -356,7 +356,7 @@ Name | Type | Description  | Notes
 
 ## updateLinkedPATemplates
 
-> LinkedPATemplateSummaryRoot updateLinkedPATemplates(id, linkedPATemplateUpdateParametersRoot)
+> StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel updateLinkedPATemplates(id, linkedPATemplateUpdateParametersObjectDataAndMetaModel)
 
 Update a linked PA template
 
@@ -382,7 +382,7 @@ import factset.analyticsapi.engines.api.LinkedPaTemplatesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -395,9 +395,9 @@ public class Example {
 
         LinkedPaTemplatesApi apiInstance = new LinkedPaTemplatesApi(defaultClient);
         String id = "id_example"; // String | Unique identifier for a linked PA template
-        LinkedPATemplateUpdateParametersRoot linkedPATemplateUpdateParametersRoot = new LinkedPATemplateUpdateParametersRoot(); // LinkedPATemplateUpdateParametersRoot | Request Parameters
+        LinkedPATemplateUpdateParametersObjectDataAndMetaModel linkedPATemplateUpdateParametersObjectDataAndMetaModel = new LinkedPATemplateUpdateParametersObjectDataAndMetaModel(); // LinkedPATemplateUpdateParametersObjectDataAndMetaModel | Request Parameters
         try {
-            LinkedPATemplateSummaryRoot result = apiInstance.updateLinkedPATemplates(id, linkedPATemplateUpdateParametersRoot);
+            StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel result = apiInstance.updateLinkedPATemplates(id, linkedPATemplateUpdateParametersObjectDataAndMetaModel);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling LinkedPaTemplatesApi#updateLinkedPATemplates");
@@ -416,11 +416,11 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Unique identifier for a linked PA template |
- **linkedPATemplateUpdateParametersRoot** | [**LinkedPATemplateUpdateParametersRoot**](LinkedPATemplateUpdateParametersRoot.md)| Request Parameters |
+ **linkedPATemplateUpdateParametersObjectDataAndMetaModel** | [**LinkedPATemplateUpdateParametersObjectDataAndMetaModel**](LinkedPATemplateUpdateParametersObjectDataAndMetaModel.md)| Request Parameters |
 
 ### Return type
 
-[**LinkedPATemplateSummaryRoot**](LinkedPATemplateSummaryRoot.md)
+[**StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel**](StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel.md)
 
 ### Authorization
 

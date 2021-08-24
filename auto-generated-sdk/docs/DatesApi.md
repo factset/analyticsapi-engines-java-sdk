@@ -1,7 +1,7 @@
 
 # DatesApi
 
-All URIs are relative to *https://api.factset.com*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## convertPADatesToAbsoluteFormat
 
-> DateParametersSummaryRoot convertPADatesToAbsoluteFormat(enddate, componentid, account, startdate)
+> DateParametersSummaryObjectDataAndMetaModel convertPADatesToAbsoluteFormat(enddate, componentid, account, startdate)
 
 Convert PA dates to absolute format
 
@@ -32,7 +32,7 @@ import factset.analyticsapi.engines.api.DatesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -49,7 +49,7 @@ public class Example {
         String account = "account_example"; // String | Account
         String startdate = "startdate_example"; // String | Start Date
         try {
-            DateParametersSummaryRoot result = apiInstance.convertPADatesToAbsoluteFormat(enddate, componentid, account, startdate);
+            DateParametersSummaryObjectDataAndMetaModel result = apiInstance.convertPADatesToAbsoluteFormat(enddate, componentid, account, startdate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DatesApi#convertPADatesToAbsoluteFormat");
@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DateParametersSummaryRoot**](DateParametersSummaryRoot.md)
+[**DateParametersSummaryObjectDataAndMetaModel**](DateParametersSummaryObjectDataAndMetaModel.md)
 
 ### Authorization
 
@@ -101,7 +101,7 @@ Name | Type | Description  | Notes
 
 ## convertVaultDatesToAbsoluteFormat
 
-> DateParametersSummaryRoot convertVaultDatesToAbsoluteFormat(enddate, componentid, account, startdate)
+> DateParametersSummaryObjectDataAndMetaModel convertVaultDatesToAbsoluteFormat(enddate, componentid, account, startdate)
 
 Convert Vault dates to absolute format
 
@@ -121,7 +121,7 @@ import factset.analyticsapi.engines.api.DatesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -138,7 +138,7 @@ public class Example {
         String account = "account_example"; // String | Account
         String startdate = "startdate_example"; // String | Start Date
         try {
-            DateParametersSummaryRoot result = apiInstance.convertVaultDatesToAbsoluteFormat(enddate, componentid, account, startdate);
+            DateParametersSummaryObjectDataAndMetaModel result = apiInstance.convertVaultDatesToAbsoluteFormat(enddate, componentid, account, startdate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DatesApi#convertVaultDatesToAbsoluteFormat");
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DateParametersSummaryRoot**](DateParametersSummaryRoot.md)
+[**DateParametersSummaryObjectDataAndMetaModel**](DateParametersSummaryObjectDataAndMetaModel.md)
 
 ### Authorization
 

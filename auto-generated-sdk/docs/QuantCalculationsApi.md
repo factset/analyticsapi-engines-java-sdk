@@ -1,7 +1,7 @@
 
 # QuantCalculationsApi
 
-All URIs are relative to *https://api.factset.com*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -37,7 +37,7 @@ import factset.analyticsapi.engines.api.QuantCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -97,7 +97,7 @@ null (empty response body)
 
 ## getCalculationParameters
 
-> QuantCalculationParametersRoot getCalculationParameters(id)
+> QuantCalculationParametersQuantCalculationMetaCalculationParameters getCalculationParameters(id)
 
 Get Quant Engine calculation parameters by id
 
@@ -117,7 +117,7 @@ import factset.analyticsapi.engines.api.QuantCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -131,7 +131,7 @@ public class Example {
         QuantCalculationsApi apiInstance = new QuantCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run Quant Engine calculation endpoint
         try {
-            QuantCalculationParametersRoot result = apiInstance.getCalculationParameters(id);
+            QuantCalculationParametersQuantCalculationMetaCalculationParameters result = apiInstance.getCalculationParameters(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling QuantCalculationsApi#getCalculationParameters");
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**QuantCalculationParametersRoot**](QuantCalculationParametersRoot.md)
+[**QuantCalculationParametersQuantCalculationMetaCalculationParameters**](QuantCalculationParametersQuantCalculationMetaCalculationParameters.md)
 
 ### Authorization
 
@@ -178,7 +178,7 @@ Name | Type | Description  | Notes
 
 ## getCalculationStatusById
 
-> CalculationStatusRoot getCalculationStatusById(id)
+> CalculationStatusCalculationStatusMetaDataAndMetaModel getCalculationStatusById(id)
 
 Get Quant Engine calculation status by id
 
@@ -200,7 +200,7 @@ import factset.analyticsapi.engines.api.QuantCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -214,7 +214,7 @@ public class Example {
         QuantCalculationsApi apiInstance = new QuantCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run Quant Engine calculation endpoint
         try {
-            CalculationStatusRoot result = apiInstance.getCalculationStatusById(id);
+            CalculationStatusCalculationStatusMetaDataAndMetaModel result = apiInstance.getCalculationStatusById(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling QuantCalculationsApi#getCalculationStatusById");
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CalculationStatusRoot**](CalculationStatusRoot.md)
+[**CalculationStatusCalculationStatusMetaDataAndMetaModel**](CalculationStatusCalculationStatusMetaDataAndMetaModel.md)
 
 ### Authorization
 
@@ -282,7 +282,7 @@ import factset.analyticsapi.engines.api.QuantCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -366,7 +366,7 @@ import factset.analyticsapi.engines.api.QuantCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -429,7 +429,7 @@ Name | Type | Description  | Notes
 
 ## postAndCalculate
 
-> CalculationStatusRoot postAndCalculate(cacheControl, quantCalculationParametersRoot)
+> CalculationStatusCalculationStatusMetaDataAndMetaModel postAndCalculate(cacheControl, quantCalculationParametersQuantCalculationMetaCalculationParameters)
 
 Create and Run Quant Engine calculation
 
@@ -450,7 +450,7 @@ import factset.analyticsapi.engines.api.QuantCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -463,9 +463,9 @@ public class Example {
 
         QuantCalculationsApi apiInstance = new QuantCalculationsApi(defaultClient);
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
-        QuantCalculationParametersRoot quantCalculationParametersRoot = new QuantCalculationParametersRoot(); // QuantCalculationParametersRoot | 
+        QuantCalculationParametersQuantCalculationMetaCalculationParameters quantCalculationParametersQuantCalculationMetaCalculationParameters = new QuantCalculationParametersQuantCalculationMetaCalculationParameters(); // QuantCalculationParametersQuantCalculationMetaCalculationParameters | 
         try {
-            Object result = apiInstance.postAndCalculate(cacheControl, quantCalculationParametersRoot);
+            CalculationStatusCalculationStatusMetaDataAndMetaModel result = apiInstance.postAndCalculate(cacheControl, quantCalculationParametersQuantCalculationMetaCalculationParameters);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling QuantCalculationsApi#postAndCalculate");
@@ -484,11 +484,11 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
- **quantCalculationParametersRoot** | [**QuantCalculationParametersRoot**](QuantCalculationParametersRoot.md)|  | [optional]
+ **quantCalculationParametersQuantCalculationMetaCalculationParameters** | [**QuantCalculationParametersQuantCalculationMetaCalculationParameters**](QuantCalculationParametersQuantCalculationMetaCalculationParameters.md)|  | [optional]
 
 ### Return type
 
-(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))
+[**CalculationStatusCalculationStatusMetaDataAndMetaModel**](CalculationStatusCalculationStatusMetaDataAndMetaModel.md)
 
 ### Authorization
 
@@ -517,7 +517,7 @@ Name | Type | Description  | Notes
 
 ## putAndCalculate
 
-> CalculationStatusRoot putAndCalculate(id, cacheControl, quantCalculationParametersRoot)
+> CalculationStatusCalculationStatusMetaDataAndMetaModel putAndCalculate(id, cacheControl, quantCalculationParametersQuantCalculationMetaCalculationParameters)
 
 Create or update Quant Engine calculation and run it.
 
@@ -538,7 +538,7 @@ import factset.analyticsapi.engines.api.QuantCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -552,9 +552,9 @@ public class Example {
         QuantCalculationsApi apiInstance = new QuantCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run Quant Engine calculation endpoint
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts no-store, max-age, max-stale.
-        QuantCalculationParametersRoot quantCalculationParametersRoot = new QuantCalculationParametersRoot(); // QuantCalculationParametersRoot | Calculation Parameters
+        QuantCalculationParametersQuantCalculationMetaCalculationParameters quantCalculationParametersQuantCalculationMetaCalculationParameters = new QuantCalculationParametersQuantCalculationMetaCalculationParameters(); // QuantCalculationParametersQuantCalculationMetaCalculationParameters | Calculation Parameters
         try {
-            Object result = apiInstance.putAndCalculate(id, cacheControl, quantCalculationParametersRoot);
+            CalculationStatusCalculationStatusMetaDataAndMetaModel result = apiInstance.putAndCalculate(id, cacheControl, quantCalculationParametersQuantCalculationMetaCalculationParameters);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling QuantCalculationsApi#putAndCalculate");
@@ -574,11 +574,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| from url, provided from the location header in the Create and Run Quant Engine calculation endpoint |
  **cacheControl** | **String**| Standard HTTP header.  Accepts no-store, max-age, max-stale. | [optional]
- **quantCalculationParametersRoot** | [**QuantCalculationParametersRoot**](QuantCalculationParametersRoot.md)| Calculation Parameters | [optional]
+ **quantCalculationParametersQuantCalculationMetaCalculationParameters** | [**QuantCalculationParametersQuantCalculationMetaCalculationParameters**](QuantCalculationParametersQuantCalculationMetaCalculationParameters.md)| Calculation Parameters | [optional]
 
 ### Return type
 
-(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
+[**CalculationStatusCalculationStatusMetaDataAndMetaModel**](CalculationStatusCalculationStatusMetaDataAndMetaModel.md)
 
 ### Authorization
 
