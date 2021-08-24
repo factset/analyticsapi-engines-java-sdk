@@ -39332,6 +39332,7 @@ components:
           type: string
       required:
       - $type
+      - source
       type: object
     QuantUniversalScreenUniverse:
       allOf:
@@ -39364,6 +39365,7 @@ components:
       - $type
       - calendar
       - frequency
+      - source
       type: object
     QuantFdsDate:
       allOf:
@@ -39388,6 +39390,7 @@ components:
           type: string
       required:
       - $type
+      - source
       type: object
     QuantScreeningExpression:
       allOf:
@@ -39404,7 +39407,9 @@ components:
     QuantAllUniversalScreenParameters:
       allOf:
       - $ref: '#/components/schemas/QuantFormula'
-      - type: object
+      - required:
+        - source
+        type: object
     QuantScreeningExpressionUniverse1:
       example:
         universeExpr: universeExpr
@@ -39558,14 +39563,15 @@ components:
       type: object
     QuantCalculationParameters:
       example:
-        quantDate: ""
         fdsDate:
           calendar: calendar
           endDate: endDate
           startDate: startDate
           frequency: frequency
         universe: ""
-        quantFormula: ""
+        formulas:
+        - ""
+        - ""
         identifierUniverse:
           identifiers:
           - identifiers
@@ -39582,6 +39588,7 @@ components:
           expr: expr
         - name: name
           expr: expr
+        dates: ""
         allUniversalScreenParameters:
         - null
         - null
@@ -39610,16 +39617,18 @@ components:
           - $ref: '#/components/schemas/QuantUniversalScreenUniverse'
           - $ref: '#/components/schemas/QuantScreeningExpressionUniverse'
           - $ref: '#/components/schemas/QuantIdentifierUniverse'
-        quantDate:
+        dates:
           oneOf:
           - $ref: '#/components/schemas/QuantFdsDate'
           - $ref: '#/components/schemas/QuantDateList'
-        quantFormula:
-          oneOf:
-          - $ref: '#/components/schemas/QuantScreeningExpression'
-          - $ref: '#/components/schemas/QuantFqlExpression'
-          - $ref: '#/components/schemas/QuantUniversalScreenParameter'
-          - $ref: '#/components/schemas/QuantAllUniversalScreenParameters'
+        formulas:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/QuantScreeningExpression'
+            - $ref: '#/components/schemas/QuantFqlExpression'
+            - $ref: '#/components/schemas/QuantUniversalScreenParameter'
+            - $ref: '#/components/schemas/QuantAllUniversalScreenParameters'
+          type: array
         screeningExpressionUniverse:
           $ref: '#/components/schemas/QuantScreeningExpressionUniverse1'
         universalScreenUniverse:
@@ -39650,6 +39659,9 @@ components:
           items:
             $ref: '#/components/schemas/QuantAllUniversalScreenParameters1'
           type: array
+      required:
+      - dates
+      - universe
       type: object
     QuantCalculationMeta:
       example:
@@ -39703,14 +39715,15 @@ components:
       example:
         data:
           key:
-            quantDate: ""
             fdsDate:
               calendar: calendar
               endDate: endDate
               startDate: startDate
               frequency: frequency
             universe: ""
-            quantFormula: ""
+            formulas:
+            - ""
+            - ""
             identifierUniverse:
               identifiers:
               - identifiers
@@ -39727,6 +39740,7 @@ components:
               expr: expr
             - name: name
               expr: expr
+            dates: ""
             allUniversalScreenParameters:
             - null
             - null
@@ -40701,6 +40715,7 @@ components:
           type: string
       required:
       - screen
+      - source
       type: object
     QuantScreeningExpressionUniverse_allOf:
       properties:
@@ -40715,6 +40730,7 @@ components:
           nullable: true
           type: string
       required:
+      - source
       - universeExpr
       - universeType
       type: object
@@ -40731,6 +40747,7 @@ components:
           type: array
       required:
       - identifiers
+      - source
       - universeType
       type: object
     QuantFdsDate_allOf:
@@ -40743,6 +40760,7 @@ components:
       - calendar
       - endDate
       - frequency
+      - source
       - startDate
       type: object
     QuantDateList_allOf:
@@ -40755,6 +40773,7 @@ components:
       required:
       - calendar
       - frequency
+      - source
       type: object
     QuantScreeningExpression_allOf:
       properties:
@@ -40765,6 +40784,7 @@ components:
       required:
       - expr
       - name
+      - source
       type: object
     QuantUniversalScreenParameter_allOf:
       properties:
@@ -40775,6 +40795,7 @@ components:
       required:
       - name
       - referenceName
+      - source
       type: object
   securitySchemes:
     Basic:
