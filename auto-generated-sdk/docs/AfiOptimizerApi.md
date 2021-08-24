@@ -1,7 +1,7 @@
 
 # AfiOptimizerApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.factset.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -36,7 +36,7 @@ import factset.analyticsapi.engines.api.AfiOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -96,7 +96,7 @@ null (empty response body)
 
 ## getOptimizationParameters
 
-> AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters getOptimizationParameters(id)
+> AFIOptimizationParametersRoot getOptimizationParameters(id)
 
 Get AFI optimization parameters by id
 
@@ -116,7 +116,7 @@ import factset.analyticsapi.engines.api.AfiOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -130,7 +130,7 @@ public class Example {
         AfiOptimizerApi apiInstance = new AfiOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run AFI optimization endpoint
         try {
-            AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters result = apiInstance.getOptimizationParameters(id);
+            AFIOptimizationParametersRoot result = apiInstance.getOptimizationParameters(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AfiOptimizerApi#getOptimizationParameters");
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters**](AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters.md)
+[**AFIOptimizationParametersRoot**](AFIOptimizationParametersRoot.md)
 
 ### Authorization
 
@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
 
 ## getOptimizationResult
 
-> ObjectObjectDataAndMetaModel getOptimizationResult(id)
+> ObjectRoot getOptimizationResult(id)
 
 Get AFI optimization result by id
 
@@ -197,7 +197,7 @@ import factset.analyticsapi.engines.api.AfiOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -211,7 +211,7 @@ public class Example {
         AfiOptimizerApi apiInstance = new AfiOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Get AFI optimization status by id endpoint
         try {
-            ObjectObjectDataAndMetaModel result = apiInstance.getOptimizationResult(id);
+            ObjectRoot result = apiInstance.getOptimizationResult(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AfiOptimizerApi#getOptimizationResult");
@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectObjectDataAndMetaModel**](ObjectObjectDataAndMetaModel.md)
+[**ObjectRoot**](ObjectRoot.md)
 
 ### Authorization
 
@@ -258,7 +258,7 @@ Name | Type | Description  | Notes
 
 ## getOptimizationStatusById
 
-> ObjectObjectDataAndMetaModel getOptimizationStatusById(id)
+> ObjectRoot getOptimizationStatusById(id)
 
 Get AFI optimization status by id
 
@@ -280,7 +280,7 @@ import factset.analyticsapi.engines.api.AfiOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -294,7 +294,7 @@ public class Example {
         AfiOptimizerApi apiInstance = new AfiOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run AFI optimization endpoint
         try {
-            ObjectObjectDataAndMetaModel result = apiInstance.getOptimizationStatusById(id);
+            Object result = apiInstance.getOptimizationStatusById(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AfiOptimizerApi#getOptimizationStatusById");
@@ -316,7 +316,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectObjectDataAndMetaModel**](ObjectObjectDataAndMetaModel.md)
+(For 201 status - [**ObjectRoot**](ObjectRoot.md))(For 202 status -  null (empty response body) )
 
 ### Authorization
 
@@ -342,7 +342,7 @@ Name | Type | Description  | Notes
 
 ## postAndOptimize
 
-> ObjectObjectDataAndMetaModel postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters)
+> ObjectRoot postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, afIOptimizationParametersRoot)
 
 Create and Run AFI optimization
 
@@ -366,7 +366,7 @@ import factset.analyticsapi.engines.api.AfiOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -380,9 +380,9 @@ public class Example {
         AfiOptimizerApi apiInstance = new AfiOptimizerApi(defaultClient);
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
-        AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters = new AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters(); // AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters | Optimization Parameters
+        AFIOptimizationParametersRoot afIOptimizationParametersRoot = new AFIOptimizationParametersRoot(); // AFIOptimizationParametersRoot | Optimization Parameters
         try {
-            ObjectObjectDataAndMetaModel result = apiInstance.postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters);
+            Object result = apiInstance.postAndOptimize(xFactSetApiLongRunningDeadline, cacheControl, afIOptimizationParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AfiOptimizerApi#postAndOptimize");
@@ -402,11 +402,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
- **afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters** | [**AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters**](AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters.md)| Optimization Parameters | [optional]
+ **afIOptimizationParametersRoot** | [**AFIOptimizationParametersRoot**](AFIOptimizationParametersRoot.md)| Optimization Parameters | [optional]
 
 ### Return type
 
-[**ObjectObjectDataAndMetaModel**](ObjectObjectDataAndMetaModel.md)
+(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
 
@@ -434,7 +434,7 @@ Name | Type | Description  | Notes
 
 ## putAndOptimize
 
-> ObjectObjectDataAndMetaModel putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters)
+> ObjectRoot putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, afIOptimizationParametersRoot)
 
 Create or Update AFI optimization and run it.
 
@@ -454,7 +454,7 @@ import factset.analyticsapi.engines.api.AfiOptimizerApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -469,9 +469,9 @@ public class Example {
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run AFI optimization endpoint
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
-        AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters = new AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters(); // AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters | Optimization Parameters
+        AFIOptimizationParametersRoot afIOptimizationParametersRoot = new AFIOptimizationParametersRoot(); // AFIOptimizationParametersRoot | Optimization Parameters
         try {
-            ObjectObjectDataAndMetaModel result = apiInstance.putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters);
+            Object result = apiInstance.putAndOptimize(id, xFactSetApiLongRunningDeadline, cacheControl, afIOptimizationParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AfiOptimizerApi#putAndOptimize");
@@ -492,11 +492,11 @@ Name | Type | Description  | Notes
  **id** | **String**| from url, provided from the location header in the Create and Run AFI optimization endpoint |
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
- **afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters** | [**AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters**](AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters.md)| Optimization Parameters | [optional]
+ **afIOptimizationParametersRoot** | [**AFIOptimizationParametersRoot**](AFIOptimizationParametersRoot.md)| Optimization Parameters | [optional]
 
 ### Return type
 
-[**ObjectObjectDataAndMetaModel**](ObjectObjectDataAndMetaModel.md)
+(For 202 status - [**CalculationInfoRoot**](CalculationInfoRoot.md))(For 201 status - [**ObjectRoot**](ObjectRoot.md))
 
 ### Authorization
 

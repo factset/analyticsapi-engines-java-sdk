@@ -14,10 +14,10 @@ import java.util.Map;
 
 import java.io.File;
 
-import factset.analyticsapi.engines.models.CalculationStatusCalculationStatusMetaDataAndMetaModel;
+import factset.analyticsapi.engines.models.CalculationStatusRoot;
 import factset.analyticsapi.engines.models.ClientErrorResponse;
-import factset.analyticsapi.engines.models.ObjectObjectDataAndMetaModel;
-import factset.analyticsapi.engines.models.VaultCalculationParametersCalculationMetaCalculationParameters;
+import factset.analyticsapi.engines.models.ObjectRoot;
+import factset.analyticsapi.engines.models.VaultCalculationParametersRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class VaultCalculationsApi {
@@ -133,7 +133,7 @@ public class VaultCalculationsApi {
    * Get Vault calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run Vault calculation endpoint (required)
-    @return VaultCalculationParametersCalculationMetaCalculationParameters
+    @return VaultCalculationParametersRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -147,7 +147,7 @@ public class VaultCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public VaultCalculationParametersCalculationMetaCalculationParameters getCalculationParameters(String id) throws ApiException {
+ public VaultCalculationParametersRoot getCalculationParameters(String id) throws ApiException {
     return getCalculationParametersWithHttpInfo(id).getData();
   }
 
@@ -155,7 +155,7 @@ public class VaultCalculationsApi {
    * Get Vault calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run Vault calculation endpoint (required)
-    * @return ApiResponse&lt;VaultCalculationParametersCalculationMetaCalculationParameters&gt;
+    * @return ApiResponse&lt;VaultCalculationParametersRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -169,7 +169,7 @@ public class VaultCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<VaultCalculationParametersCalculationMetaCalculationParameters> getCalculationParametersWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<VaultCalculationParametersRoot> getCalculationParametersWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -203,14 +203,14 @@ public class VaultCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<VaultCalculationParametersCalculationMetaCalculationParameters> localVarReturnType = new GenericType<VaultCalculationParametersCalculationMetaCalculationParameters>() {};
+    GenericType<VaultCalculationParametersRoot> localVarReturnType = new GenericType<VaultCalculationParametersRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<VaultCalculationParametersCalculationMetaCalculationParameters>(){});
+        returnTypeMap.put(200, new GenericType<VaultCalculationParametersRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<VaultCalculationParametersCalculationMetaCalculationParameters>invokeAPIWithReturnMap("VaultCalculationsApi.getCalculationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<VaultCalculationParametersRoot>invokeAPIWithReturnMap("VaultCalculationsApi.getCalculationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -218,7 +218,7 @@ public class VaultCalculationsApi {
    * Get Vault calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the location header will point to the result url.
    * @param id from url, provided from the location header in the Create and Run Vault calculation endpoint (required)
-    @return CalculationStatusCalculationStatusMetaDataAndMetaModel
+    @return CalculationStatusRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -233,7 +233,7 @@ public class VaultCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public CalculationStatusCalculationStatusMetaDataAndMetaModel getCalculationStatusById(String id) throws ApiException {
+ public CalculationStatusRoot getCalculationStatusById(String id) throws ApiException {
     return getCalculationStatusByIdWithHttpInfo(id).getData();
   }
 
@@ -241,7 +241,7 @@ public class VaultCalculationsApi {
    * Get Vault calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the location header will point to the result url.
    * @param id from url, provided from the location header in the Create and Run Vault calculation endpoint (required)
-    * @return ApiResponse&lt;CalculationStatusCalculationStatusMetaDataAndMetaModel&gt;
+    * @return ApiResponse&lt;CalculationStatusRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -256,7 +256,7 @@ public class VaultCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<CalculationStatusCalculationStatusMetaDataAndMetaModel> getCalculationStatusByIdWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<CalculationStatusRoot> getCalculationStatusByIdWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -290,15 +290,15 @@ public class VaultCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel> localVarReturnType = new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>() {};
+    GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
-        returnTypeMap.put(202, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<CalculationStatusCalculationStatusMetaDataAndMetaModel>invokeAPIWithReturnMap("VaultCalculationsApi.getCalculationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<CalculationStatusRoot>invokeAPIWithReturnMap("VaultCalculationsApi.getCalculationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -307,7 +307,7 @@ public class VaultCalculationsApi {
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Get Vault calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get Vault calculation status by id endpoint (required)
-    @return ObjectObjectDataAndMetaModel
+    @return ObjectRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -321,7 +321,7 @@ public class VaultCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public ObjectObjectDataAndMetaModel getCalculationUnitResultById(String id, String unitId) throws ApiException {
+ public ObjectRoot getCalculationUnitResultById(String id, String unitId) throws ApiException {
     return getCalculationUnitResultByIdWithHttpInfo(id, unitId).getData();
   }
 
@@ -330,7 +330,7 @@ public class VaultCalculationsApi {
    * This is the endpoint to get the result of a previously requested calculation.  If the calculation has finished computing, the body of the response will contain the requested document in JSON.
    * @param id from url, provided from the location header in the Get Vault calculation status by id endpoint (required)
    * @param unitId from url, provided from the location header in the Get Vault calculation status by id endpoint (required)
-    * @return ApiResponse&lt;ObjectObjectDataAndMetaModel&gt;
+    * @return ApiResponse&lt;ObjectRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -344,7 +344,7 @@ public class VaultCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<ObjectObjectDataAndMetaModel> getCalculationUnitResultByIdWithHttpInfo(String id, String unitId) throws ApiException {
+  public ApiResponse<ObjectRoot> getCalculationUnitResultByIdWithHttpInfo(String id, String unitId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -384,14 +384,14 @@ public class VaultCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<ObjectObjectDataAndMetaModel> localVarReturnType = new GenericType<ObjectObjectDataAndMetaModel>() {};
+    GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<ObjectObjectDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<ObjectRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<ObjectObjectDataAndMetaModel>invokeAPIWithReturnMap("VaultCalculationsApi.getCalculationUnitResultById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<ObjectRoot>invokeAPIWithReturnMap("VaultCalculationsApi.getCalculationUnitResultById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -400,8 +400,8 @@ public class VaultCalculationsApi {
    * This endpoint runs the Vault calculation specified in the POST body parameters.  It can take one or more units as input.    Remarks:    *   Start and and end date must be within the configuration&#39;s min and max date range
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param vaultCalculationParametersCalculationMetaCalculationParameters Calculation Parameters (optional)
-    @return CalculationStatusCalculationStatusMetaDataAndMetaModel
+   * @param vaultCalculationParametersRoot Calculation Parameters (optional)
+    @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -419,8 +419,8 @@ public class VaultCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public CalculationStatusCalculationStatusMetaDataAndMetaModel postAndCalculate(Integer xFactSetApiLongRunningDeadline, String cacheControl, VaultCalculationParametersCalculationMetaCalculationParameters vaultCalculationParametersCalculationMetaCalculationParameters) throws ApiException {
-    return postAndCalculateWithHttpInfo(xFactSetApiLongRunningDeadline, cacheControl, vaultCalculationParametersCalculationMetaCalculationParameters).getData();
+ public Object postAndCalculate(Integer xFactSetApiLongRunningDeadline, String cacheControl, VaultCalculationParametersRoot vaultCalculationParametersRoot) throws ApiException {
+    return postAndCalculateWithHttpInfo(xFactSetApiLongRunningDeadline, cacheControl, vaultCalculationParametersRoot).getData();
   }
 
   /**
@@ -428,8 +428,8 @@ public class VaultCalculationsApi {
    * This endpoint runs the Vault calculation specified in the POST body parameters.  It can take one or more units as input.    Remarks:    *   Start and and end date must be within the configuration&#39;s min and max date range
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param vaultCalculationParametersCalculationMetaCalculationParameters Calculation Parameters (optional)
-    * @return ApiResponse&lt;CalculationStatusCalculationStatusMetaDataAndMetaModel&gt;
+   * @param vaultCalculationParametersRoot Calculation Parameters (optional)
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -447,8 +447,8 @@ public class VaultCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<CalculationStatusCalculationStatusMetaDataAndMetaModel> postAndCalculateWithHttpInfo(Integer xFactSetApiLongRunningDeadline, String cacheControl, VaultCalculationParametersCalculationMetaCalculationParameters vaultCalculationParametersCalculationMetaCalculationParameters) throws ApiException {
-    Object localVarPostBody = vaultCalculationParametersCalculationMetaCalculationParameters;
+  public ApiResponse<Object> postAndCalculateWithHttpInfo(Integer xFactSetApiLongRunningDeadline, String cacheControl, VaultCalculationParametersRoot vaultCalculationParametersRoot) throws ApiException {
+    Object localVarPostBody = vaultCalculationParametersRoot;
     
     // create path and map variables
     String localVarPath = "/analytics/engines/vault/v3/calculations";
@@ -479,16 +479,16 @@ if (cacheControl != null)
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel> localVarReturnType = new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>() {};
+    GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(202, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
-        returnTypeMap.put(200, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
-        returnTypeMap.put(201, new GenericType<ObjectObjectDataAndMetaModel>(){});
+        returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<CalculationStatusCalculationStatusMetaDataAndMetaModel>invokeAPIWithReturnMap("VaultCalculationsApi.postAndCalculate", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+      return apiClient.<Object>invokeAPIWithReturnMap("VaultCalculationsApi.postAndCalculate", localVarPath, "POST", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -498,8 +498,8 @@ if (cacheControl != null)
    * @param id from url, provided from the location header in the Create and Run Vault calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param vaultCalculationParametersCalculationMetaCalculationParameters Calculation Parameters (optional)
-    @return CalculationStatusCalculationStatusMetaDataAndMetaModel
+   * @param vaultCalculationParametersRoot Calculation Parameters (optional)
+    @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -518,8 +518,8 @@ if (cacheControl != null)
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public CalculationStatusCalculationStatusMetaDataAndMetaModel putAndCalculate(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, VaultCalculationParametersCalculationMetaCalculationParameters vaultCalculationParametersCalculationMetaCalculationParameters) throws ApiException {
-    return putAndCalculateWithHttpInfo(id, xFactSetApiLongRunningDeadline, cacheControl, vaultCalculationParametersCalculationMetaCalculationParameters).getData();
+ public Object putAndCalculate(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, VaultCalculationParametersRoot vaultCalculationParametersRoot) throws ApiException {
+    return putAndCalculateWithHttpInfo(id, xFactSetApiLongRunningDeadline, cacheControl, vaultCalculationParametersRoot).getData();
   }
 
   /**
@@ -528,8 +528,8 @@ if (cacheControl != null)
    * @param id from url, provided from the location header in the Create and Run Vault calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param vaultCalculationParametersCalculationMetaCalculationParameters Calculation Parameters (optional)
-    * @return ApiResponse&lt;CalculationStatusCalculationStatusMetaDataAndMetaModel&gt;
+   * @param vaultCalculationParametersRoot Calculation Parameters (optional)
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -548,8 +548,8 @@ if (cacheControl != null)
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<CalculationStatusCalculationStatusMetaDataAndMetaModel> putAndCalculateWithHttpInfo(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, VaultCalculationParametersCalculationMetaCalculationParameters vaultCalculationParametersCalculationMetaCalculationParameters) throws ApiException {
-    Object localVarPostBody = vaultCalculationParametersCalculationMetaCalculationParameters;
+  public ApiResponse<Object> putAndCalculateWithHttpInfo(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, VaultCalculationParametersRoot vaultCalculationParametersRoot) throws ApiException {
+    Object localVarPostBody = vaultCalculationParametersRoot;
     
     // verify the required parameter 'id' is set
     if (id == null) {
@@ -586,17 +586,17 @@ if (cacheControl != null)
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel> localVarReturnType = new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>() {};
+    GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(202, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
-        returnTypeMap.put(200, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
-        returnTypeMap.put(201, new GenericType<ObjectObjectDataAndMetaModel>(){});
+        returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(409, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<CalculationStatusCalculationStatusMetaDataAndMetaModel>invokeAPIWithReturnMap("VaultCalculationsApi.putAndCalculate", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
+      return apiClient.<Object>invokeAPIWithReturnMap("VaultCalculationsApi.putAndCalculate", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

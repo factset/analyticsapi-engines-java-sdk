@@ -14,11 +14,11 @@ import java.util.Map;
 
 import java.io.File;
 
-import factset.analyticsapi.engines.models.CalculationStatusCalculationStatusMetaDataAndMetaModel;
+import factset.analyticsapi.engines.models.CalculationStatusRoot;
 import factset.analyticsapi.engines.models.ClientErrorResponse;
 import java.io.File;
-import factset.analyticsapi.engines.models.ObjectObjectDataAndMetaModel;
-import factset.analyticsapi.engines.models.QuantCalculationParametersQuantCalculationMetaCalculationParameters;
+import factset.analyticsapi.engines.models.ObjectRoot;
+import factset.analyticsapi.engines.models.QuantCalculationParametersRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class QuantCalculationsApi {
@@ -134,7 +134,7 @@ public class QuantCalculationsApi {
    * Get Quant Engine calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run Quant Engine calculation endpoint (required)
-    @return QuantCalculationParametersQuantCalculationMetaCalculationParameters
+    @return QuantCalculationParametersRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -148,7 +148,7 @@ public class QuantCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public QuantCalculationParametersQuantCalculationMetaCalculationParameters getCalculationParameters(String id) throws ApiException {
+ public QuantCalculationParametersRoot getCalculationParameters(String id) throws ApiException {
     return getCalculationParametersWithHttpInfo(id).getData();
   }
 
@@ -156,7 +156,7 @@ public class QuantCalculationsApi {
    * Get Quant Engine calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run Quant Engine calculation endpoint (required)
-    * @return ApiResponse&lt;QuantCalculationParametersQuantCalculationMetaCalculationParameters&gt;
+    * @return ApiResponse&lt;QuantCalculationParametersRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -170,7 +170,7 @@ public class QuantCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<QuantCalculationParametersQuantCalculationMetaCalculationParameters> getCalculationParametersWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<QuantCalculationParametersRoot> getCalculationParametersWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -204,14 +204,14 @@ public class QuantCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<QuantCalculationParametersQuantCalculationMetaCalculationParameters> localVarReturnType = new GenericType<QuantCalculationParametersQuantCalculationMetaCalculationParameters>() {};
+    GenericType<QuantCalculationParametersRoot> localVarReturnType = new GenericType<QuantCalculationParametersRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<QuantCalculationParametersQuantCalculationMetaCalculationParameters>(){});
+        returnTypeMap.put(200, new GenericType<QuantCalculationParametersRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<QuantCalculationParametersQuantCalculationMetaCalculationParameters>invokeAPIWithReturnMap("QuantCalculationsApi.getCalculationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<QuantCalculationParametersRoot>invokeAPIWithReturnMap("QuantCalculationsApi.getCalculationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -219,7 +219,7 @@ public class QuantCalculationsApi {
    * Get Quant Engine calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the location header will point to the result url.  Otherwise, the calculation is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run Quant Engine calculation endpoint (required)
-    @return CalculationStatusCalculationStatusMetaDataAndMetaModel
+    @return CalculationStatusRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -234,7 +234,7 @@ public class QuantCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public CalculationStatusCalculationStatusMetaDataAndMetaModel getCalculationStatusById(String id) throws ApiException {
+ public CalculationStatusRoot getCalculationStatusById(String id) throws ApiException {
     return getCalculationStatusByIdWithHttpInfo(id).getData();
   }
 
@@ -242,7 +242,7 @@ public class QuantCalculationsApi {
    * Get Quant Engine calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the location header will point to the result url.  Otherwise, the calculation is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run Quant Engine calculation endpoint (required)
-    * @return ApiResponse&lt;CalculationStatusCalculationStatusMetaDataAndMetaModel&gt;
+    * @return ApiResponse&lt;CalculationStatusRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -257,7 +257,7 @@ public class QuantCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<CalculationStatusCalculationStatusMetaDataAndMetaModel> getCalculationStatusByIdWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<CalculationStatusRoot> getCalculationStatusByIdWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -291,15 +291,15 @@ public class QuantCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel> localVarReturnType = new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>() {};
+    GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
-        returnTypeMap.put(202, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<CalculationStatusCalculationStatusMetaDataAndMetaModel>invokeAPIWithReturnMap("QuantCalculationsApi.getCalculationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<CalculationStatusRoot>invokeAPIWithReturnMap("QuantCalculationsApi.getCalculationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -493,8 +493,8 @@ public class QuantCalculationsApi {
    * Create and Run Quant Engine calculation
    * This endpoint runs the Quant Engine calculation specified in the POST body parameters.  It can take one or more calculation units as input.
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
-   * @param quantCalculationParametersQuantCalculationMetaCalculationParameters  (optional)
-    @return CalculationStatusCalculationStatusMetaDataAndMetaModel
+   * @param quantCalculationParametersRoot  (optional)
+    @return (For 202 status - CalculationStatusRoot)(For 201 status - ObjectRoot)(For 200 status - CalculationStatusRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -512,16 +512,16 @@ public class QuantCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public CalculationStatusCalculationStatusMetaDataAndMetaModel postAndCalculate(String cacheControl, QuantCalculationParametersQuantCalculationMetaCalculationParameters quantCalculationParametersQuantCalculationMetaCalculationParameters) throws ApiException {
-    return postAndCalculateWithHttpInfo(cacheControl, quantCalculationParametersQuantCalculationMetaCalculationParameters).getData();
+ public Object postAndCalculate(String cacheControl, QuantCalculationParametersRoot quantCalculationParametersRoot) throws ApiException {
+    return postAndCalculateWithHttpInfo(cacheControl, quantCalculationParametersRoot).getData();
   }
 
   /**
    * Create and Run Quant Engine calculation
    * This endpoint runs the Quant Engine calculation specified in the POST body parameters.  It can take one or more calculation units as input.
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
-   * @param quantCalculationParametersQuantCalculationMetaCalculationParameters  (optional)
-    * @return ApiResponse&lt;CalculationStatusCalculationStatusMetaDataAndMetaModel&gt;
+   * @param quantCalculationParametersRoot  (optional)
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 201 status - ObjectRoot)(For 200 status - CalculationStatusRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -539,8 +539,8 @@ public class QuantCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<CalculationStatusCalculationStatusMetaDataAndMetaModel> postAndCalculateWithHttpInfo(String cacheControl, QuantCalculationParametersQuantCalculationMetaCalculationParameters quantCalculationParametersQuantCalculationMetaCalculationParameters) throws ApiException {
-    Object localVarPostBody = quantCalculationParametersQuantCalculationMetaCalculationParameters;
+  public ApiResponse<Object> postAndCalculateWithHttpInfo(String cacheControl, QuantCalculationParametersRoot quantCalculationParametersRoot) throws ApiException {
+    Object localVarPostBody = quantCalculationParametersRoot;
     
     // create path and map variables
     String localVarPath = "/analytics/engines/quant/v3/calculations";
@@ -569,16 +569,16 @@ public class QuantCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel> localVarReturnType = new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>() {};
+    GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(202, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
-        returnTypeMap.put(201, new GenericType<ObjectObjectDataAndMetaModel>(){});
-        returnTypeMap.put(200, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
+        returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
+        returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<CalculationStatusCalculationStatusMetaDataAndMetaModel>invokeAPIWithReturnMap("QuantCalculationsApi.postAndCalculate", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+      return apiClient.<Object>invokeAPIWithReturnMap("QuantCalculationsApi.postAndCalculate", localVarPath, "POST", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -587,8 +587,8 @@ public class QuantCalculationsApi {
    * This endpoint updates and runs the Quant Engine calculation specified in the PUT body parameters. This also allows creating new Quant Engine calculations with custom ids.  It can take one or more calculation units as input.
    * @param id from url, provided from the location header in the Create and Run Quant Engine calculation endpoint (required)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
-   * @param quantCalculationParametersQuantCalculationMetaCalculationParameters Calculation Parameters (optional)
-    @return CalculationStatusCalculationStatusMetaDataAndMetaModel
+   * @param quantCalculationParametersRoot Calculation Parameters (optional)
+    @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -607,8 +607,8 @@ public class QuantCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public CalculationStatusCalculationStatusMetaDataAndMetaModel putAndCalculate(String id, String cacheControl, QuantCalculationParametersQuantCalculationMetaCalculationParameters quantCalculationParametersQuantCalculationMetaCalculationParameters) throws ApiException {
-    return putAndCalculateWithHttpInfo(id, cacheControl, quantCalculationParametersQuantCalculationMetaCalculationParameters).getData();
+ public Object putAndCalculate(String id, String cacheControl, QuantCalculationParametersRoot quantCalculationParametersRoot) throws ApiException {
+    return putAndCalculateWithHttpInfo(id, cacheControl, quantCalculationParametersRoot).getData();
   }
 
   /**
@@ -616,8 +616,8 @@ public class QuantCalculationsApi {
    * This endpoint updates and runs the Quant Engine calculation specified in the PUT body parameters. This also allows creating new Quant Engine calculations with custom ids.  It can take one or more calculation units as input.
    * @param id from url, provided from the location header in the Create and Run Quant Engine calculation endpoint (required)
    * @param cacheControl Standard HTTP header.  Accepts no-store, max-age, max-stale. (optional)
-   * @param quantCalculationParametersQuantCalculationMetaCalculationParameters Calculation Parameters (optional)
-    * @return ApiResponse&lt;CalculationStatusCalculationStatusMetaDataAndMetaModel&gt;
+   * @param quantCalculationParametersRoot Calculation Parameters (optional)
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -636,8 +636,8 @@ public class QuantCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<CalculationStatusCalculationStatusMetaDataAndMetaModel> putAndCalculateWithHttpInfo(String id, String cacheControl, QuantCalculationParametersQuantCalculationMetaCalculationParameters quantCalculationParametersQuantCalculationMetaCalculationParameters) throws ApiException {
-    Object localVarPostBody = quantCalculationParametersQuantCalculationMetaCalculationParameters;
+  public ApiResponse<Object> putAndCalculateWithHttpInfo(String id, String cacheControl, QuantCalculationParametersRoot quantCalculationParametersRoot) throws ApiException {
+    Object localVarPostBody = quantCalculationParametersRoot;
     
     // verify the required parameter 'id' is set
     if (id == null) {
@@ -672,17 +672,17 @@ public class QuantCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel> localVarReturnType = new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>() {};
+    GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(202, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
-        returnTypeMap.put(200, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
-        returnTypeMap.put(201, new GenericType<ObjectObjectDataAndMetaModel>(){});
+        returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(409, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<CalculationStatusCalculationStatusMetaDataAndMetaModel>invokeAPIWithReturnMap("QuantCalculationsApi.putAndCalculate", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
+      return apiClient.<Object>invokeAPIWithReturnMap("QuantCalculationsApi.putAndCalculate", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

@@ -4,14 +4,14 @@ info:
     email: analytics.api.support@factset.com
     name: Analytics API Support
     url: https://developer.factset.com/contact
-  description: Allow clients to fetch Engines Analytics through APIs.
+  description: Allow clients to fetch Analytics through APIs.
   license:
     name: Apache License 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.txt
   title: Engines API
-  version: "3"
+  version: v3:[pa,spar,vault,pub,quant,fi,axp,afi,npo,bpm,fpo,others],v1:[fiab]
 servers:
-- url: /
+- url: https://api.factset.com
 security:
 - Basic: []
   Bearer: []
@@ -36,7 +36,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SPARAccountsObjectDataAndMetaModel'
+                $ref: '#/components/schemas/SPARAccountsRoot'
           description: Expected response, returns the list of return types for the
             account.
           headers:
@@ -318,6 +318,317 @@ paths:
       summary: Get SPAR account returns type details
       tags:
       - Accounts
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: SPARAccountsRoot
+      x-accepts: application/json
+  /analytics/lookups/v3/accounts/{path}:
+    get:
+      description: This endpoint looks up all ACCT and ACTM files and sub-directories
+        in a given directory.
+      operationId: getAccounts
+      parameters:
+      - description: The directory to get the accounts and sub-directories in
+        explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          default: ""
+          description: The directory to get the accounts and sub-directories in
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountDirectoriesRoot'
+          description: Expected response, returns a list of accounts and directories
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+          description: Invalid query parameter or value provided
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+          description: Path not found
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Missing or invalid authentication
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+        "403":
+          description: User is forbidden with current credentials
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "406":
+          description: Unsupported Accept header.  Header needs to be set to application/json
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "429":
+          description: Rate limit reached. Wait till the time specified in Retry-After
+            header value to make further requests.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            Retry-After:
+              description: Time to wait in seconds before making a new request as
+                the rate limit has reached.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          description: Server error. Log the X-DataDirect-Request-Key header to assist
+            in troubleshooting
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+        "503":
+          description: Request timed out. Retry the request in some time
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+      summary: Get accounts and sub-directories in a directory
+      tags:
+      - Accounts
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: AccountDirectoriesRoot
       x-accepts: application/json
   /analytics/engines/afi/v3/optimizations:
     post:
@@ -347,14 +658,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters'
+              $ref: '#/components/schemas/AFIOptimizationParametersRoot'
         description: Optimization Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersistedCalculationInfoObjectDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationInfoRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -402,7 +713,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response, returns json if optimization is completed
             in a short span.
           headers:
@@ -703,6 +1014,12 @@ paths:
       summary: Create and Run AFI optimization
       tags:
       - AFI Optimizer
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationInfoRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/afi/v3/optimizations/{id}:
@@ -952,6 +1269,9 @@ paths:
       summary: Cancel AFI optimization by id
       tags:
       - AFI Optimizer
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "204"
       x-accepts: application/json
     get:
       description: This is the endpoint that returns the optimization parameters passed
@@ -974,7 +1294,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters'
+                $ref: '#/components/schemas/AFIOptimizationParametersRoot'
           description: Expected response, returns the AFI optimization parameters.
           headers:
             Content-Encoding:
@@ -1216,6 +1536,10 @@ paths:
       summary: Get AFI optimization parameters by id
       tags:
       - AFI Optimizer
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: AFIOptimizationParametersRoot
       x-accepts: application/json
     put:
       description: This endpoint updates and run the AFI optimization specified in
@@ -1254,14 +1578,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters'
+              $ref: '#/components/schemas/AFIOptimizationParametersRoot'
         description: Optimization Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersistedCalculationInfoObjectDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationInfoRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -1309,7 +1633,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response, returns json if optimization is completed
             in a short span.
           headers:
@@ -1651,6 +1975,12 @@ paths:
       summary: Create or Update AFI optimization and run it.
       tags:
       - AFI Optimizer
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationInfoRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/afi/v3/optimizations/{id}/status:
@@ -1678,7 +2008,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once optimization is completed, returns JSON.
           headers:
             X-DataDirect-Request-Key:
@@ -1950,6 +2280,11 @@ paths:
       summary: Get AFI optimization status by id
       tags:
       - AFI Optimizer
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "201"
+        response-type: ObjectRoot
+      - status-code: "202"
       x-accepts: application/json
   /analytics/engines/afi/v3/optimizations/{id}/result:
     get:
@@ -1973,7 +2308,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once optimization is completed, returns JSON.
           headers:
             Content-Encoding:
@@ -2216,6 +2551,10 @@ paths:
       summary: Get AFI optimization result by id
       tags:
       - AFI Optimizer
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: ObjectRoot
       x-accepts: application/json
   /analytics/engines/axp/v3/optimizations:
     post:
@@ -2245,14 +2584,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AxiomaEquityOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters'
+              $ref: '#/components/schemas/AxiomaEquityOptimizationParametersRoot'
         description: Optimization Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersistedCalculationInfoObjectDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationInfoRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -2300,7 +2639,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response, returns json if optimization is completed
             in a short span.
           headers:
@@ -2601,6 +2940,12 @@ paths:
       summary: Create and Run Axioma optimization
       tags:
       - AXP Optimizer
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationInfoRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/axp/v3/optimizations/{id}:
@@ -2850,6 +3195,9 @@ paths:
       summary: Cancel Axioma optimization by id
       tags:
       - AXP Optimizer
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "204"
       x-accepts: application/json
     get:
       description: This is the endpoint that returns the optimization parameters passed
@@ -2872,7 +3220,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AxiomaEquityOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters'
+                $ref: '#/components/schemas/AxiomaEquityOptimizationParametersRoot'
           description: Expected response, returns the Axioma optimization parameters.
           headers:
             Content-Encoding:
@@ -3114,6 +3462,10 @@ paths:
       summary: Get Axioma optimization parameters by id
       tags:
       - AXP Optimizer
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: AxiomaEquityOptimizationParametersRoot
       x-accepts: application/json
     put:
       description: This endpoint updates and run the Axioma optimization specified
@@ -3152,14 +3504,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AxiomaEquityOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters'
+              $ref: '#/components/schemas/AxiomaEquityOptimizationParametersRoot'
         description: Optimization Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersistedCalculationInfoObjectDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationInfoRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -3207,7 +3559,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response, returns json if optimization is completed
             in a short span.
           headers:
@@ -3549,6 +3901,12 @@ paths:
       summary: Create or Update Axioma optimization and run it.
       tags:
       - AXP Optimizer
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationInfoRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/axp/v3/optimizations/{id}/status:
@@ -3576,7 +3934,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once optimization is completed, returns JSON.
           headers:
             X-DataDirect-Request-Key:
@@ -3848,6 +4206,11 @@ paths:
       summary: Get Axioma optimization status by id
       tags:
       - AXP Optimizer
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "201"
+        response-type: ObjectRoot
+      - status-code: "202"
       x-accepts: application/json
   /analytics/engines/axp/v3/optimizations/{id}/result:
     get:
@@ -3871,7 +4234,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once optimization is completed, returns JSON.
           headers:
             Content-Encoding:
@@ -4114,6 +4477,10 @@ paths:
       summary: Get Axioma optimization result by id
       tags:
       - AXP Optimizer
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: ObjectRoot
       x-accepts: application/json
   /analytics/engines/spar/v3/benchmarks:
     get:
@@ -4134,7 +4501,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SPARBenchmarkObjectDataAndMetaModel'
+                $ref: '#/components/schemas/SPARBenchmarkRoot'
           description: Expected response, returns the list of prefix and return types
             for the benchmark.
           headers:
@@ -4416,6 +4783,10 @@ paths:
       summary: Get SPAR benchmark details
       tags:
       - Benchmarks
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: SPARBenchmarkRoot
       x-accepts: application/json
   /analytics/engines/bpm/v3/optimizations:
     post:
@@ -4445,14 +4816,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BPMOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters'
+              $ref: '#/components/schemas/BPMOptimizationParametersRoot'
         description: Optimization Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersistedCalculationInfoObjectDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationInfoRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -4500,7 +4871,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response, returns json if optimization is completed
             in a short span.
           headers:
@@ -4801,6 +5172,12 @@ paths:
       summary: Create and Run BPM optimization
       tags:
       - BPM Optimizer
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationInfoRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/bpm/v3/optimizations/{id}:
@@ -5050,6 +5427,9 @@ paths:
       summary: Cancel BPM optimization by id
       tags:
       - BPM Optimizer
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "204"
       x-accepts: application/json
     get:
       description: This is the endpoint that returns the optimization parameters passed
@@ -5072,7 +5452,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BPMOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters'
+                $ref: '#/components/schemas/BPMOptimizationParametersRoot'
           description: Expected response, returns the BPM optimization parameters.
           headers:
             Content-Encoding:
@@ -5314,6 +5694,10 @@ paths:
       summary: Get BPM optimization parameters by id
       tags:
       - BPM Optimizer
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: BPMOptimizationParametersRoot
       x-accepts: application/json
     put:
       description: This endpoint updates and run the BPM optimization specified in
@@ -5352,14 +5736,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BPMOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters'
+              $ref: '#/components/schemas/BPMOptimizationParametersRoot'
         description: Optimization Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersistedCalculationInfoObjectDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationInfoRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -5407,7 +5791,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response, returns json if optimization is completed
             in a short span.
           headers:
@@ -5749,6 +6133,12 @@ paths:
       summary: Create or Update BPM optimization and run it.
       tags:
       - BPM Optimizer
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationInfoRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/bpm/v3/optimizations/{id}/status:
@@ -5776,7 +6166,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once optimization is completed, returns JSON.
           headers:
             X-DataDirect-Request-Key:
@@ -6048,6 +6438,11 @@ paths:
       summary: Get BPM optimization status by id
       tags:
       - BPM Optimizer
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "201"
+        response-type: ObjectRoot
+      - status-code: "202"
       x-accepts: application/json
   /analytics/engines/bpm/v3/optimizations/{id}/result:
     get:
@@ -6071,7 +6466,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once optimization is completed, returns JSON.
           headers:
             Content-Encoding:
@@ -6314,6 +6709,10 @@ paths:
       summary: Get BPM optimization result by id
       tags:
       - BPM Optimizer
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: ObjectRoot
       x-accepts: application/json
   /analytics/engines/pa/v3/columns:
     get:
@@ -6356,7 +6755,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringColumnSummaryDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ColumnSummaryRoot'
           description: Expected response, returns a list of PA columns
           headers:
             X-DataDirect-Request-Key:
@@ -6564,6 +6963,10 @@ paths:
       summary: Get PA columns
       tags:
       - Columns
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: ColumnSummaryRoot
       x-accepts: application/json
   /analytics/engines/pa/v3/columns/{id}:
     get:
@@ -6584,7 +6987,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ColumnObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ColumnRoot'
           description: Expected response, returns settings of a PA column.
           headers:
             X-DataDirect-Request-Key:
@@ -6874,6 +7277,10 @@ paths:
       summary: Get PA column settings
       tags:
       - Columns
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: ColumnRoot
       x-accepts: application/json
   /analytics/engines/pa/v3/columnstatistics:
     get:
@@ -6885,7 +7292,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringColumnStatisticDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ColumnStatisticRoot'
           description: Expected response, returns a list of PA column statistics
           headers:
             X-DataDirect-Request-Key:
@@ -7084,6 +7491,10 @@ paths:
       summary: Get PA column statistics
       tags:
       - ColumnStatistics
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: ColumnStatisticRoot
       x-accepts: application/json
   /analytics/engines/pa/v3/components:
     get:
@@ -7115,7 +7526,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringComponentSummaryDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ComponentSummaryRoot'
           description: Expected response, returns a list of PA components.
           headers:
             X-DataDirect-Request-Key:
@@ -7396,6 +7807,10 @@ paths:
       summary: Get PA components
       tags:
       - Components
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: ComponentSummaryRoot
       x-accepts: application/json
   /analytics/engines/pa/v3/components/{id}:
     get:
@@ -7416,7 +7831,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PAComponentObjectDataAndMetaModel'
+                $ref: '#/components/schemas/PAComponentRoot'
           description: Expected response, returns the default settings of a PA component.
           headers:
             X-DataDirect-Request-Key:
@@ -7697,6 +8112,10 @@ paths:
       summary: Get PA component by id
       tags:
       - Components
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: PAComponentRoot
       x-accepts: application/json
   /analytics/engines/spar/v3/components:
     get:
@@ -7718,7 +8137,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringComponentSummaryDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ComponentSummaryRoot'
           description: Expected response, returns a list of SPAR components.
           headers:
             X-DataDirect-Request-Key:
@@ -7999,6 +8418,10 @@ paths:
       summary: Get SPAR components
       tags:
       - Components
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: ComponentSummaryRoot
       x-accepts: application/json
   /analytics/engines/vault/v3/components:
     get:
@@ -8020,7 +8443,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringComponentSummaryDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ComponentSummaryRoot'
           description: Expected response, returns a list of Vault components.
           headers:
             X-DataDirect-Request-Key:
@@ -8302,6 +8725,10 @@ paths:
       summary: Get Vault components
       tags:
       - Components
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: ComponentSummaryRoot
       x-accepts: application/json
   /analytics/engines/vault/v3/components/{id}:
     get:
@@ -8322,7 +8749,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VaultComponentObjectDataAndMetaModel'
+                $ref: '#/components/schemas/VaultComponentRoot'
           description: Expected response, returns the default settings of a Vault
             component.
           headers:
@@ -8604,6 +9031,10 @@ paths:
       summary: Get Vault component by id
       tags:
       - Components
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: VaultComponentRoot
       x-accepts: application/json
   /analytics/engines/vault/v3/configurations:
     get:
@@ -8627,7 +9058,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringVaultConfigurationSummaryDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/VaultConfigurationSummaryRoot'
           description: Expected response, returns a dictionary of Vault configurations.
           headers:
             X-DataDirect-Request-Key:
@@ -8908,6 +9339,10 @@ paths:
       summary: Get Vault configurations
       tags:
       - Configurations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: VaultConfigurationSummaryRoot
       x-accepts: application/json
   /analytics/engines/vault/v3/configurations/{id}:
     get:
@@ -8929,7 +9364,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VaultConfigurationObjectDataAndMetaModel'
+                $ref: '#/components/schemas/VaultConfigurationRoot'
           description: Expected response, returns details for a Vault configuration.
           headers:
             X-DataDirect-Request-Key:
@@ -9210,6 +9645,224 @@ paths:
       summary: Get Vault configuration by id
       tags:
       - Configurations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: VaultConfigurationRoot
+      x-accepts: application/json
+  /analytics/lookups/v3/currencies:
+    get:
+      description: This endpoint lists all the currencies that can be applied to any
+        calculation.
+      operationId: getCurrencies
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyRoot'
+          description: Expected response, returns a list of currencies.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Missing or invalid authentication.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+        "403":
+          description: User is forbidden with current credentials
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "406":
+          description: Unsupported Accept header. Header needs to be set to application/json.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "429":
+          description: Rate limit reached. Wait till the time specified in Retry-After
+            header value to make further requests.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            Retry-After:
+              description: Time to wait in seconds before making a new request as
+                the rate limit has reached.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          description: Server error. Log the X-DataDirect-Request-Key header to assist
+            in troubleshooting.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+        "503":
+          description: Request timed out. Retry the request in sometime.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+      summary: Get currencies
+      tags:
+      - Currencies
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: CurrencyRoot
       x-accepts: application/json
   /analytics/engines/pa/v3/dates:
     get:
@@ -9260,7 +9913,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DateParametersSummaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/DateParametersSummaryRoot'
           description: Expected response, returns the converted dates in yyyymmdd
             format.
           headers:
@@ -9542,6 +10195,10 @@ paths:
       summary: Convert PA dates to absolute format
       tags:
       - Dates
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: DateParametersSummaryRoot
       x-accepts: application/json
   /analytics/engines/vault/v3/dates:
     get:
@@ -9592,7 +10249,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DateParametersSummaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/DateParametersSummaryRoot'
           description: Expected response, returns the converted dates in yyyymmdd
             format.
           headers:
@@ -9874,6 +10531,10 @@ paths:
       summary: Convert Vault dates to absolute format
       tags:
       - Dates
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: DateParametersSummaryRoot
       x-accepts: application/json
   /analytics/engines/pa/v3/documents/{path}:
     get:
@@ -9896,7 +10557,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DocumentDirectoriesObjectDataAndMetaModel'
+                $ref: '#/components/schemas/DocumentDirectoriesRoot'
           description: Expected response, returns a list of PA3 documents and directories
           headers:
             X-DataDirect-Request-Key:
@@ -10177,6 +10838,10 @@ paths:
       summary: Get PA3 documents and sub-directories in a directory
       tags:
       - Documents
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: DocumentDirectoriesRoot
       x-accepts: application/json
   /analytics/engines/vault/v3/documents/{path}:
     get:
@@ -10199,7 +10864,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DocumentDirectoriesObjectDataAndMetaModel'
+                $ref: '#/components/schemas/DocumentDirectoriesRoot'
           description: Expected response, returns a list of Vault documents and directories
           headers:
             X-DataDirect-Request-Key:
@@ -10480,6 +11145,10 @@ paths:
       summary: Get Vault documents and sub-directories in a directory
       tags:
       - Documents
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: DocumentDirectoriesRoot
       x-accepts: application/json
   /analytics/engines/spar/v3/documents/{path}:
     get:
@@ -10502,7 +11171,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DocumentDirectoriesObjectDataAndMetaModel'
+                $ref: '#/components/schemas/DocumentDirectoriesRoot'
           description: Expected response, returns a list of SPAR3 documents and directories
           headers:
             X-DataDirect-Request-Key:
@@ -10783,6 +11452,10 @@ paths:
       summary: Gets SPAR3 documents and sub-directories in a directory
       tags:
       - Documents
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: DocumentDirectoriesRoot
       x-accepts: application/json
   /analytics/engines/pub/v3/documents/{path}:
     get:
@@ -10805,7 +11478,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DocumentDirectoriesObjectDataAndMetaModel'
+                $ref: '#/components/schemas/DocumentDirectoriesRoot'
           description: Expected response, returns a list of Publisher documents and
             directories
           headers:
@@ -11087,6 +11760,990 @@ paths:
       summary: Gets Publisher documents and sub-directories in a directory
       tags:
       - Documents
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: DocumentDirectoriesRoot
+      x-accepts: application/json
+  /analytics/engines/fiab/v1/calculations:
+    get:
+      description: This endpoints returns all FIAB calculation requests.
+      operationId: getCalculationStatusSummaries
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  $ref: '#/components/schemas/FIABCalculationStatusSummary'
+                type: object
+          description: List of active FIAB calculation requests.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Missing or invalid authentication.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+        "403":
+          description: User is forbidden with current credentials.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "406":
+          description: Unsupported Accept header. Header needs to be set to application/json.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "429":
+          description: Rate limit reached. Wait till the time specified in Retry-After
+            header value to make further requests.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            Retry-After:
+              description: Time to wait in seconds before making a new request as
+                the rate limit has reached.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          description: Server error. Log the X-DataDirect-Request-Key header to assist
+            in troubleshooting.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+        "503":
+          description: Request timed out. Retry the request in sometime.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+      summary: Get all FIAB calculation summaries
+      tags:
+      - FIAB Calculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+      x-accepts: application/json
+    post:
+      description: "This endpoint creates a new FIAB calculation.\r\nThis must be\
+        \ used first before get status or cancelling endpoints with a calculation\
+        \ id.\r\nA successful response will contain the URL to check the status of\
+        \ the calculation request.\r\n\r\nRemarks:\r\n*\tAny settings in POST body\
+        \ will act as a one-time override over the settings saved in the FIAB template."
+      operationId: runCalculation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FIABCalculationParameters'
+      responses:
+        "202":
+          description: Expected response, contains the URL in the Location header
+            to check the status of the calculation.
+          headers:
+            Location:
+              description: URL to check status of the request.
+              explode: false
+              schema:
+                description: URL to check status of the request.
+                type: string
+              style: simple
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-Calculations-Limit:
+              description: Maximum FIAB request limit.
+              explode: false
+              schema:
+                description: Maximum FIAB request limit.
+                type: string
+              style: simple
+            X-FactSet-Api-Calculations-Remaining:
+              description: Number of FIAB requests remaining till request limit reached.
+              explode: false
+              schema:
+                description: Number of FIAB requests remaining till request limit
+                  reached.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Invalid POST body.
+          headers:
+            Location:
+              description: URL to check status of the request.
+              explode: false
+              schema:
+                description: URL to check status of the request.
+                type: string
+              style: simple
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-Calculations-Limit:
+              description: Maximum FIAB request limit.
+              explode: false
+              schema:
+                description: Maximum FIAB request limit.
+                type: string
+              style: simple
+            X-FactSet-Api-Calculations-Remaining:
+              description: Number of FIAB requests remaining till request limit reached.
+              explode: false
+              schema:
+                description: Number of FIAB requests remaining till request limit
+                  reached.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Missing or invalid authentication.
+          headers:
+            Location:
+              description: URL to check status of the request.
+              explode: false
+              schema:
+                description: URL to check status of the request.
+                type: string
+              style: simple
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-Calculations-Limit:
+              description: Maximum FIAB request limit.
+              explode: false
+              schema:
+                description: Maximum FIAB request limit.
+                type: string
+              style: simple
+            X-FactSet-Api-Calculations-Remaining:
+              description: Number of FIAB requests remaining till request limit reached.
+              explode: false
+              schema:
+                description: Number of FIAB requests remaining till request limit
+                  reached.
+                type: string
+              style: simple
+        "403":
+          description: User is forbidden with current credentials.
+          headers:
+            Location:
+              description: URL to check status of the request.
+              explode: false
+              schema:
+                description: URL to check status of the request.
+                type: string
+              style: simple
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-Calculations-Limit:
+              description: Maximum FIAB request limit.
+              explode: false
+              schema:
+                description: Maximum FIAB request limit.
+                type: string
+              style: simple
+            X-FactSet-Api-Calculations-Remaining:
+              description: Number of FIAB requests remaining till request limit reached.
+              explode: false
+              schema:
+                description: Number of FIAB requests remaining till request limit
+                  reached.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "415":
+          description: Missing/Invalid Content-Type header. Header needs to be set
+            to application/json.
+          headers:
+            Location:
+              description: URL to check status of the request.
+              explode: false
+              schema:
+                description: URL to check status of the request.
+                type: string
+              style: simple
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-Calculations-Limit:
+              description: Maximum FIAB request limit.
+              explode: false
+              schema:
+                description: Maximum FIAB request limit.
+                type: string
+              style: simple
+            X-FactSet-Api-Calculations-Remaining:
+              description: Number of FIAB requests remaining till request limit reached.
+              explode: false
+              schema:
+                description: Number of FIAB requests remaining till request limit
+                  reached.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "429":
+          description: Rate limit reached. Cancel older requests using Cancel FIAB
+            Calculation endpoint or wait for older requests to finish / expire.
+          headers:
+            Location:
+              description: URL to check status of the request.
+              explode: false
+              schema:
+                description: URL to check status of the request.
+                type: string
+              style: simple
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-Calculations-Limit:
+              description: Maximum FIAB request limit.
+              explode: false
+              schema:
+                description: Maximum FIAB request limit.
+                type: string
+              style: simple
+            X-FactSet-Api-Calculations-Remaining:
+              description: Number of FIAB requests remaining till request limit reached.
+              explode: false
+              schema:
+                description: Number of FIAB requests remaining till request limit
+                  reached.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Retry-After:
+              description: Time to wait in seconds before making a new request as
+                the rate limit has reached.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          description: Server error. Log the X-DataDirect-Request-Key header to assist
+            in troubleshooting.
+          headers:
+            Location:
+              description: URL to check status of the request.
+              explode: false
+              schema:
+                description: URL to check status of the request.
+                type: string
+              style: simple
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-Calculations-Limit:
+              description: Maximum FIAB request limit.
+              explode: false
+              schema:
+                description: Maximum FIAB request limit.
+                type: string
+              style: simple
+            X-FactSet-Api-Calculations-Remaining:
+              description: Number of FIAB requests remaining till request limit reached.
+              explode: false
+              schema:
+                description: Number of FIAB requests remaining till request limit
+                  reached.
+                type: string
+              style: simple
+        "503":
+          description: Request timed out. Retry the request in sometime.
+          headers:
+            Location:
+              description: URL to check status of the request.
+              explode: false
+              schema:
+                description: URL to check status of the request.
+                type: string
+              style: simple
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-Calculations-Limit:
+              description: Maximum FIAB request limit.
+              explode: false
+              schema:
+                description: Maximum FIAB request limit.
+                type: string
+              style: simple
+            X-FactSet-Api-Calculations-Remaining:
+              description: Number of FIAB requests remaining till request limit reached.
+              explode: false
+              schema:
+                description: Number of FIAB requests remaining till request limit
+                  reached.
+                type: string
+              style: simple
+      summary: Run FIAB calculation
+      tags:
+      - FIAB Calculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "202"
+      x-contentType: application/json
+      x-accepts: application/json
+  /analytics/engines/fiab/v1/calculations/{id}:
+    get:
+      description: This is the endpoint to check on the progress of a previously requested
+        calculation.
+      operationId: getCalculationById
+      parameters:
+      - description: from url, provided from the location header in the Run FIAB Calculation
+          endpoint
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          description: from url, provided from the location header in the Run FIAB
+            Calculation endpoint
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FIABCalculationStatus'
+          description: Expected response, returns status information of the entire
+            calculation if it is complete.
+          headers:
+            Content-Encoding:
+              description: Standard HTTP header. Header value based on Accept-Encoding
+                Request header.
+              explode: false
+              schema:
+                description: Standard HTTP header. Header value based on Accept-Encoding
+                  Request header.
+                type: string
+              style: simple
+            Content-Type:
+              description: Standard HTTP header.
+              explode: false
+              schema:
+                description: Standard HTTP header.
+                type: string
+              style: simple
+            Transfer-Encoding:
+              description: Standard HTTP header. Header value will be set to Chunked
+                if Accept-Encoding header is specified.
+              explode: false
+              schema:
+                description: Standard HTTP header. Header value will be set to Chunked
+                  if Accept-Encoding header is specified.
+                type: string
+              style: simple
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FIABCalculationStatus'
+          description: Expected response, returns status information of the entire
+            calculation if it is not complete.
+          headers:
+            Cache-Control:
+              description: Standard HTTP header. Header will specify max-age in seconds.
+                Polling can be adjusted based on the max-age value.
+              explode: false
+              schema:
+                description: Standard HTTP header. Header will specify max-age in
+                  seconds. Polling can be adjusted based on the max-age value.
+                type: integer
+              style: simple
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Invalid identifier provided.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Missing or invalid authentication.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+        "403":
+          description: User is forbidden with current credentials
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "404":
+          description: Calculation was already returned, provided id was not a requested
+            calculation, or the calculation was cancelled
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          description: Server error. Log the X-DataDirect-Request-Key header to assist
+            in troubleshooting
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+        "503":
+          description: Request timed out. Retry the request in sometime.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+      summary: Get FIAB calculation by id
+      tags:
+      - FIAB Calculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: FIABCalculationStatus
+      - status-code: "202"
+        response-type: FIABCalculationStatus
       x-accepts: application/json
   /analytics/engines/fi/v3/calculations:
     post:
@@ -11114,17 +12771,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FICalculationParametersCalculationMetaInteractiveCalculationParameters'
+              $ref: '#/components/schemas/FICalculationParametersRoot'
         description: Calculation Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersistedCalculationInfoObjectDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationInfoRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/PersistedCalculationInfoObjectDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationInfoRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -11186,10 +12843,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if calculation is completed in a short span,
             returns JSON in the format specified in the Calculation parameters.
           headers:
@@ -11622,6 +13279,12 @@ paths:
       summary: Create and Run FI calculation
       tags:
       - FICalculations
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationInfoRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/fi/v3/calculations/{id}:
@@ -11871,6 +13534,9 @@ paths:
       summary: Cancel FI calculation by id
       tags:
       - FICalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "204"
       x-accepts: application/json
     get:
       description: This is the endpoint that returns the calculation parameters passed
@@ -11893,7 +13559,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FICalculationParametersCalculationMetaInteractiveCalculationParameters'
+                $ref: '#/components/schemas/FICalculationParametersRoot'
           description: Expected response, returns the FI calculation parameters.
           headers:
             Content-Encoding:
@@ -12135,6 +13801,10 @@ paths:
       summary: Get FI calculation parameters by id
       tags:
       - FICalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: FICalculationParametersRoot
       x-accepts: application/json
     put:
       description: This endpoint updates and run the FI optimization specified in
@@ -12173,17 +13843,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FICalculationParametersCalculationMetaInteractiveCalculationParameters'
+              $ref: '#/components/schemas/FICalculationParametersRoot'
         description: Calculation Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersistedCalculationInfoObjectDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationInfoRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/PersistedCalculationInfoObjectDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationInfoRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -12231,10 +13901,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if calculation is completed in a short span,
             returns JSON in the format specified in the Calculation parameters.
           headers:
@@ -12585,6 +14255,12 @@ paths:
       summary: Create or Update FI calculation and run it.
       tags:
       - FICalculations
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationInfoRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/fi/v3/calculations/{id}/status:
@@ -12612,10 +14288,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once calculation is completed, returns JSON
             in the format specified in the Calculation parameters.
           headers:
@@ -12894,6 +14570,11 @@ paths:
       summary: Get FI calculation status by id
       tags:
       - FICalculations
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "201"
+        response-type: ObjectRoot
+      - status-code: "202"
       x-accepts: application/json
   /analytics/engines/fi/v3/calculations/{id}/result:
     get:
@@ -12918,10 +14599,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once calculation is completed, returns JSON
             in the format specified in the Calculation parameters.
           headers:
@@ -13171,6 +14852,10 @@ paths:
       summary: Get FI calculation result by id
       tags:
       - FICalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: ObjectRoot
       x-accepts: application/json
   /analytics/engines/fpo/v3/optimizations:
     post:
@@ -13200,14 +14885,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters'
+              $ref: '#/components/schemas/FPOOptimizationParametersRoot'
         description: Optimization Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersistedCalculationInfoObjectDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationInfoRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -13255,7 +14940,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response, returns json if optimization is completed
             in a short span.
           headers:
@@ -13556,6 +15241,12 @@ paths:
       summary: Create and Run FPO optimization
       tags:
       - FPO Optimizer
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationInfoRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/fpo/v3/optimizations/{id}:
@@ -13805,6 +15496,9 @@ paths:
       summary: Cancel FPO optimization by id
       tags:
       - FPO Optimizer
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "204"
       x-accepts: application/json
     get:
       description: This is the endpoint that returns the optimization parameters passed
@@ -13827,7 +15521,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters'
+                $ref: '#/components/schemas/FPOOptimizationParametersRoot'
           description: Expected response, returns the FPO optimization parameters.
           headers:
             Content-Encoding:
@@ -14069,6 +15763,10 @@ paths:
       summary: Get FPO optimization parameters by id
       tags:
       - FPO Optimizer
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: FPOOptimizationParametersRoot
       x-accepts: application/json
     put:
       description: This endpoint updates and run the FPO optimization specified in
@@ -14107,14 +15805,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters'
+              $ref: '#/components/schemas/FPOOptimizationParametersRoot'
         description: Optimization Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersistedCalculationInfoObjectDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationInfoRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -14162,7 +15860,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response, returns json if optimization is completed
             in a short span.
           headers:
@@ -14504,6 +16202,12 @@ paths:
       summary: Create or Update FPO optimization and run it.
       tags:
       - FPO Optimizer
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationInfoRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/fpo/v3/optimizations/{id}/status:
@@ -14531,7 +16235,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once optimization is completed, returns JSON.
           headers:
             X-DataDirect-Request-Key:
@@ -14803,6 +16507,11 @@ paths:
       summary: Get FPO optimization status by id
       tags:
       - FPO Optimizer
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "201"
+        response-type: ObjectRoot
+      - status-code: "202"
       x-accepts: application/json
   /analytics/engines/fpo/v3/optimizations/{id}/result:
     get:
@@ -14836,7 +16545,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once optimization is completed, returns JSON.
           headers:
             Content-Encoding:
@@ -15079,6 +16788,10 @@ paths:
       summary: Get FPO optimization result by id
       tags:
       - FPO Optimizer
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: ObjectRoot
       x-accepts: application/json
   /analytics/engines/pa/v3/frequencies:
     get:
@@ -15090,7 +16803,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringFrequencyDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/FrequencyRoot'
           description: Expected response, returns a list of PA frequencies.
           headers:
             X-DataDirect-Request-Key:
@@ -15289,6 +17002,10 @@ paths:
       summary: Get PA frequencies
       tags:
       - Frequencies
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: FrequencyRoot
       x-accepts: application/json
   /analytics/engines/spar/v3/frequencies:
     get:
@@ -15300,7 +17017,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringFrequencyDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/FrequencyRoot'
           description: Expected response, returns a list of SPAR frequencies.
           headers:
             X-DataDirect-Request-Key:
@@ -15499,6 +17216,10 @@ paths:
       summary: Get SPAR frequencies
       tags:
       - Frequencies
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: FrequencyRoot
       x-accepts: application/json
   /analytics/engines/vault/v3/frequencies:
     get:
@@ -15510,7 +17231,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringFrequencyDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/FrequencyRoot'
           description: Expected response, returns a list of Vault frequencies.
           headers:
             X-DataDirect-Request-Key:
@@ -15709,6 +17430,10 @@ paths:
       summary: Get Vault frequencies
       tags:
       - Frequencies
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: FrequencyRoot
       x-accepts: application/json
   /analytics/engines/pa/v3/groups:
     get:
@@ -15720,7 +17445,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringGroupDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/GroupRoot'
           description: Expected response, returns a list of PA groups
           headers:
             X-DataDirect-Request-Key:
@@ -15928,6 +17653,10 @@ paths:
       summary: Get PA groups
       tags:
       - Groups
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: GroupRoot
       x-accepts: application/json
   /analytics/engines/pa/v3/linked-templates:
     get:
@@ -15967,7 +17696,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/LinkedPATemplateSummaryRoot'
           description: Expected response, returns a list of templates linked to PA3
             tile.
           headers:
@@ -16250,6 +17979,10 @@ paths:
       summary: Get linked PA templates
       tags:
       - LinkedPATemplates
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: LinkedPATemplateSummaryRoot
       x-accepts: application/json
     post:
       description: "This endpoint creates a template from an **existing portfolio\
@@ -16263,7 +17996,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LinkedPATemplateParametersObjectDataAndMetaModel'
+              $ref: '#/components/schemas/LinkedPATemplateParametersRoot'
         description: Request Parameters
         required: true
       responses:
@@ -16271,7 +18004,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/LinkedPATemplateSummaryRoot'
           description: Expected response, created a template linked to a PA3 tile.
           headers:
             X-DataDirect-Request-Key:
@@ -16549,6 +18282,10 @@ paths:
       summary: Create a linked PA template
       tags:
       - LinkedPATemplates
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "201"
+        response-type: LinkedPATemplateSummaryRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/pa/v3/linked-templates/{id}:
@@ -16860,6 +18597,9 @@ paths:
       summary: Delete a linked PA template.
       tags:
       - LinkedPATemplates
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "204"
       x-accepts: application/json
     get:
       description: This endpoint fetches the linked PA template settings.
@@ -16879,7 +18619,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LinkedPATemplateObjectDataAndMetaModel'
+                $ref: '#/components/schemas/LinkedPATemplateRoot'
           description: Expected response, linked PA template details.
           headers:
             X-DataDirect-Request-Key:
@@ -17161,6 +18901,10 @@ paths:
       summary: Get linked PA template by id
       tags:
       - LinkedPATemplates
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: LinkedPATemplateRoot
       x-accepts: application/json
     put:
       description: "This endpoint allows the user to change the request body and description\
@@ -17183,7 +18927,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LinkedPATemplateUpdateParametersObjectDataAndMetaModel'
+              $ref: '#/components/schemas/LinkedPATemplateUpdateParametersRoot'
         description: Request Parameters
         required: true
       responses:
@@ -17191,7 +18935,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/LinkedPATemplateSummaryRoot'
           description: Expected response, updated a template linked to a PA3 tile.
           headers:
             X-DataDirect-Request-Key:
@@ -17473,6 +19217,10 @@ paths:
       summary: Update a linked PA template
       tags:
       - LinkedPATemplates
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: LinkedPATemplateSummaryRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/npo/v3/optimizations:
@@ -17503,14 +19251,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters'
+              $ref: '#/components/schemas/NPOOptimizationParametersRoot'
         description: Optimization Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersistedCalculationInfoObjectDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationInfoRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -17558,7 +19306,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response, returns json if optimization is completed
             in a short span.
           headers:
@@ -17859,6 +19607,12 @@ paths:
       summary: Create and Run NPO optimization
       tags:
       - NPO Optimizer
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationInfoRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/npo/v3/optimizations/{id}:
@@ -18108,6 +19862,9 @@ paths:
       summary: Cancel NPO optimization by id
       tags:
       - NPO Optimizer
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "204"
       x-accepts: application/json
     get:
       description: This is the endpoint that returns the optimization parameters passed
@@ -18130,7 +19887,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters'
+                $ref: '#/components/schemas/NPOOptimizationParametersRoot'
           description: Expected response, returns the NPO optimization parameters.
           headers:
             Content-Encoding:
@@ -18372,6 +20129,10 @@ paths:
       summary: Get NPO optimization parameters by id
       tags:
       - NPO Optimizer
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: NPOOptimizationParametersRoot
       x-accepts: application/json
     put:
       description: This endpoint updates and run the NPO optimization specified in
@@ -18410,14 +20171,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters'
+              $ref: '#/components/schemas/NPOOptimizationParametersRoot'
         description: Optimization Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PersistedCalculationInfoObjectDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationInfoRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -18465,7 +20226,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response, returns json if optimization is completed
             in a short span.
           headers:
@@ -18807,6 +20568,12 @@ paths:
       summary: Create or Update NPO optimization and run it.
       tags:
       - NPO Optimizer
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationInfoRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/npo/v3/optimizations/{id}/status:
@@ -18834,7 +20601,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once optimization is completed, returns JSON.
           headers:
             X-DataDirect-Request-Key:
@@ -19106,6 +20873,11 @@ paths:
       summary: Get NPO optimization status by id
       tags:
       - NPO Optimizer
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "201"
+        response-type: ObjectRoot
+      - status-code: "202"
       x-accepts: application/json
   /analytics/engines/npo/v3/optimizations/{id}/result:
     get:
@@ -19129,7 +20901,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once optimization is completed, returns JSON.
           headers:
             Content-Encoding:
@@ -19372,6 +21144,10 @@ paths:
       summary: Get NPO optimization result by id
       tags:
       - NPO Optimizer
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: ObjectRoot
       x-accepts: application/json
   /analytics/engines/pa/v3/calculations:
     post:
@@ -19402,17 +21178,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PACalculationParametersCalculationMetaCalculationParameters'
+              $ref: '#/components/schemas/PACalculationParametersRoot'
         description: Calculation Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -19460,10 +21236,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if the calculation has one unit and is completed
             in a short span, returns JSON in the format specified in the Calculation
             parameters.
@@ -19506,10 +21282,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, if the calculation has one unit and is completed
             with an error.
           headers:
@@ -19816,6 +21592,14 @@ paths:
       summary: Create and Run PA calculation
       tags:
       - PACalculations
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationStatusRoot
+      - status-code: "201"
+        response-type: ObjectRoot
+      - status-code: "200"
+        response-type: CalculationStatusRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/pa/v3/calculations/{id}:
@@ -20065,6 +21849,9 @@ paths:
       summary: Cancel PA calculation by id
       tags:
       - PACalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "204"
       x-accepts: application/json
     get:
       description: This is the endpoint that returns the calculation parameters passed
@@ -20087,7 +21874,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PACalculationParametersCalculationMetaCalculationParameters'
+                $ref: '#/components/schemas/PACalculationParametersRoot'
           description: Expected response, returns the PA calculation parameters.
           headers:
             Content-Encoding:
@@ -20329,6 +22116,10 @@ paths:
       summary: Get PA calculation parameters by id
       tags:
       - PACalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: PACalculationParametersRoot
       x-accepts: application/json
     put:
       description: "This endpoint updates and run the PA calculation specified in\
@@ -20370,17 +22161,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PACalculationParametersCalculationMetaCalculationParameters'
+              $ref: '#/components/schemas/PACalculationParametersRoot'
         description: Calculation Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -20428,10 +22219,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, if the calculation has one unit and is completed
             with an error.
           headers:
@@ -20473,10 +22264,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if the calculation has one unit and is completed
             in a short span, returns JSON in the format specified in the Calculation
             parameters.
@@ -20828,6 +22619,14 @@ paths:
       summary: Create or Update PA calculation and run it.
       tags:
       - PACalculations
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationStatusRoot
+      - status-code: "200"
+        response-type: CalculationStatusRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/pa/v3/calculations/{id}/status:
@@ -20855,7 +22654,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response once calculation is completed.
           headers:
             Content-Encoding:
@@ -20921,7 +22720,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response returned if the calculation is not yet completed,
             should contain X-FactSet-Api-PickUp-Progress header.
           headers:
@@ -21156,6 +22955,12 @@ paths:
       summary: Get PA calculation status by id
       tags:
       - PACalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: CalculationStatusRoot
+      - status-code: "202"
+        response-type: CalculationStatusRoot
       x-accepts: application/json
   /analytics/engines/pa/v3/calculations/{id}/units/{unitId}/result:
     get:
@@ -21191,10 +22996,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once calculation is completed, returns JSON
             in the format specified in the Calculation parameters.
           headers:
@@ -21444,6 +23249,10 @@ paths:
       summary: Get PA calculation result by id
       tags:
       - PACalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: ObjectRoot
       x-accepts: application/json
   /analytics/engines/pub/v3/calculations:
     post:
@@ -21472,17 +23281,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PubCalculationParametersPubCalculationMetaCalculationParameters'
+              $ref: '#/components/schemas/PubCalculationParametersRoot'
         description: Calculation Parameters
       responses:
         "202":
           content:
             application/pdf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/vnd.openxmlformats-officedocument.presentationml.presentation:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -21530,10 +23339,10 @@ paths:
           content:
             application/pdf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/vnd.openxmlformats-officedocument.presentationml.presentation:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, if the calculation has one unit and is completed
             with an error.
           headers:
@@ -21888,6 +23697,14 @@ paths:
       summary: Create and Run Pub calculation
       tags:
       - PubCalculations
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationStatusRoot
+      - status-code: "200"
+        response-type: CalculationStatusRoot
+      - status-code: "201"
+        is-file: true
       x-contentType: application/json
       x-accepts: application/pdf,application/vnd.openxmlformats-officedocument.presentationml.presentation
   /analytics/engines/pub/v3/calculations/{id}:
@@ -22137,6 +23954,9 @@ paths:
       summary: Cancel Pub calculation by id
       tags:
       - PubCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "204"
       x-accepts: application/json
     get:
       description: This is the endpoint that returns the calculation parameters passed
@@ -22159,7 +23979,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PubCalculationParametersPubCalculationMetaCalculationParameters'
+                $ref: '#/components/schemas/PubCalculationParametersRoot'
           description: Expected response, returns the Pub calculation parameters.
           headers:
             Content-Encoding:
@@ -22401,6 +24221,10 @@ paths:
       summary: Get Pub calculation parameters by id
       tags:
       - PubCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: PubCalculationParametersRoot
       x-accepts: application/json
     put:
       description: "This endpoint updates and run the Pub calculation specified in\
@@ -22442,14 +24266,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PubCalculationParametersPubCalculationMetaCalculationParameters'
+              $ref: '#/components/schemas/PubCalculationParametersRoot'
         description: Calculation Parameters
       responses:
         "202":
           content:
             application/pdf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -22511,7 +24335,7 @@ paths:
           content:
             application/pdf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, if the calculation has one unit and is completed
             with an error.
           headers:
@@ -23051,6 +24875,14 @@ paths:
       summary: Create or Update Pub calculation and run it.
       tags:
       - PubCalculations
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationStatusRoot
+      - status-code: "200"
+        response-type: CalculationStatusRoot
+      - status-code: "201"
+        is-file: true
       x-contentType: application/json
       x-accepts: application/pdf
   /analytics/engines/pub/v3/calculations/{id}/status:
@@ -23076,7 +24908,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response once calculation is completed.
           headers:
             Content-Encoding:
@@ -23142,7 +24974,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response returned if the calculation is not yet completed.
           headers:
             X-FactSet-Api-PickUp-Progress:
@@ -23376,6 +25208,12 @@ paths:
       summary: Get Pub calculation status by id
       tags:
       - PubCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: CalculationStatusRoot
+      - status-code: "202"
+        response-type: CalculationStatusRoot
       x-accepts: application/json
   /analytics/engines/pub/v3/calculations/{id}/units/{unitId}/result:
     get:
@@ -23676,6 +25514,10 @@ paths:
       summary: Get Pub calculation result by id
       tags:
       - PubCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        is-file: true
       x-accepts: application/json
   /analytics/engines/quant/v3/calculations:
     post:
@@ -23695,16 +25537,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/QuantCalculationParametersQuantCalculationMetaCalculationParameters'
+              $ref: '#/components/schemas/QuantCalculationParametersRoot'
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -23752,10 +25594,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if the calculation has one unit and is completed
             in a short span, returns JSON in the format specified in the Calculation
             parameters.
@@ -23798,10 +25640,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response if the calculation has one unit and is completed
             with an error.
           headers:
@@ -24108,6 +25950,14 @@ paths:
       summary: Create and Run Quant Engine calculation
       tags:
       - QuantCalculations
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationStatusRoot
+      - status-code: "201"
+        response-type: ObjectRoot
+      - status-code: "200"
+        response-type: CalculationStatusRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/quant/v3/calculations/{id}:
@@ -24357,6 +26207,9 @@ paths:
       summary: Cancel Quant calculation by id
       tags:
       - QuantCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "204"
       x-accepts: application/json
     get:
       description: This is the endpoint that returns the calculation parameters passed
@@ -24379,7 +26232,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/QuantCalculationParametersQuantCalculationMetaCalculationParameters'
+                $ref: '#/components/schemas/QuantCalculationParametersRoot'
           description: Expected response, returns the Quant Engine calculation parameters.
           headers:
             Content-Encoding:
@@ -24621,6 +26474,10 @@ paths:
       summary: Get Quant Engine calculation parameters by id
       tags:
       - QuantCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: QuantCalculationParametersRoot
       x-accepts: application/json
     put:
       description: "This endpoint updates and runs the Quant Engine calculation specified\
@@ -24651,17 +26508,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/QuantCalculationParametersQuantCalculationMetaCalculationParameters'
+              $ref: '#/components/schemas/QuantCalculationParametersRoot'
         description: Calculation Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -24709,10 +26566,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response if the calculation has one unit and is completed
             with an error.
           headers:
@@ -24754,10 +26611,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if the calculation has one unit and is completed
             in a short span, returns JSON in the format specified in the Calculation
             parameters.
@@ -25109,6 +26966,14 @@ paths:
       summary: Create or update Quant Engine calculation and run it.
       tags:
       - QuantCalculations
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationStatusRoot
+      - status-code: "200"
+        response-type: CalculationStatusRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/quant/v3/calculations/{id}/status:
@@ -25136,7 +27001,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response once calculation is completed.
           headers:
             Content-Encoding:
@@ -25202,7 +27067,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response returned if the calculation is not yet completed,
             should contain X-FactSet-Api-PickUp-Progress header.
           headers:
@@ -25437,6 +27302,12 @@ paths:
       summary: Get Quant Engine calculation status by id
       tags:
       - QuantCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: CalculationStatusRoot
+      - status-code: "202"
+        response-type: CalculationStatusRoot
       x-accepts: application/json
   /analytics/engines/quant/v3/calculations/{id}/units/{unitId}/result:
     get:
@@ -25737,6 +27608,10 @@ paths:
       summary: Get Quant Engine calculation result by id
       tags:
       - QuantCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        is-file: true
       x-accepts: application/json
   /analytics/engines/quant/v3/calculations/{id}/units/{unitId}/info:
     get:
@@ -26035,6 +27910,10 @@ paths:
       summary: Get Quant Engine calculation metadata information by id
       tags:
       - QuantCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        is-file: true
       x-accepts: application/json
   /analytics/engines/spar/v3/calculations:
     post:
@@ -26065,17 +27944,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SPARCalculationParametersCalculationMetaCalculationParameters'
+              $ref: '#/components/schemas/SPARCalculationParametersRoot'
         description: Calculation Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -26123,10 +28002,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, if the calculation has one unit and is completed
             with an error.
           headers:
@@ -26168,10 +28047,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if the calculation has one unit and is completed
             in a short span, returns JSON in the format specified in the Calculation
             parameters.
@@ -26479,6 +28358,14 @@ paths:
       summary: Create and Run SPAR calculation
       tags:
       - SPARCalculations
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationStatusRoot
+      - status-code: "200"
+        response-type: CalculationStatusRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/spar/v3/calculations/{id}:
@@ -26728,6 +28615,9 @@ paths:
       summary: Cancel SPAR calculation
       tags:
       - SPARCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "204"
       x-accepts: application/json
     get:
       description: This is the endpoint that returns the calculation parameters passed
@@ -26750,7 +28640,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SPARCalculationParametersCalculationMetaCalculationParameters'
+                $ref: '#/components/schemas/SPARCalculationParametersRoot'
           description: Expected response, returns the SPAR calculation parameters.
           headers:
             Content-Encoding:
@@ -26992,6 +28882,10 @@ paths:
       summary: Get SPAR calculation parameters by id
       tags:
       - SPARCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: SPARCalculationParametersRoot
       x-accepts: application/json
     put:
       description: "This endpoint updates and run the SPAR calculation specified in\
@@ -27033,17 +28927,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SPARCalculationParametersCalculationMetaCalculationParameters'
+              $ref: '#/components/schemas/SPARCalculationParametersRoot'
         description: Calculation Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -27091,10 +28985,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, if the calculation has one unit and is completed
             with an error.
           headers:
@@ -27136,10 +29030,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if the calculation has one unit and is completed
             in a short span, returns JSON in the format specified in the Calculation
             parameters.
@@ -27491,6 +29385,14 @@ paths:
       summary: Create or Update SPAR calculation and run it.
       tags:
       - SPARCalculations
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationStatusRoot
+      - status-code: "200"
+        response-type: CalculationStatusRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/spar/v3/calculations/{id}/status:
@@ -27516,7 +29418,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response once calculation is completed.
           headers:
             Content-Encoding:
@@ -27582,7 +29484,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response returned if the calculation is not yet completed.
           headers:
             X-FactSet-Api-PickUp-Progress:
@@ -27816,6 +29718,12 @@ paths:
       summary: Get SPAR calculation status by id
       tags:
       - SPARCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: CalculationStatusRoot
+      - status-code: "202"
+        response-type: CalculationStatusRoot
       x-accepts: application/json
   /analytics/engines/spar/v3/calculations/{id}/units/{unitId}/result:
     get:
@@ -27851,10 +29759,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once calculation is completed, returns JSON
             in the format specified in the Calculation parameters.
           headers:
@@ -28104,6 +30012,10 @@ paths:
       summary: Get SPAR calculation result by id
       tags:
       - SPARCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: ObjectRoot
       x-accepts: application/json
   /analytics/engines/axp/v3/strategies/{path}:
     get:
@@ -28128,7 +30040,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DocumentDirectoriesObjectDataAndMetaModel'
+                $ref: '#/components/schemas/DocumentDirectoriesRoot'
           description: Expected response, returns a list of Axioma Equity strategy
             documents and directories
           headers:
@@ -28410,6 +30322,10 @@ paths:
       summary: Get Axioma Equity strategy documents and sub-directories in a directory
       tags:
       - StrategyDocuments
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: DocumentDirectoriesRoot
       x-accepts: application/json
   /analytics/engines/afi/v3/strategies/{path}:
     get:
@@ -28434,7 +30350,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DocumentDirectoriesObjectDataAndMetaModel'
+                $ref: '#/components/schemas/DocumentDirectoriesRoot'
           description: Expected response, returns a list of Axioma FI strategy documents
             and directories
           headers:
@@ -28716,6 +30632,10 @@ paths:
       summary: Get Axioma FI strategy documents and sub-directories in a directory
       tags:
       - StrategyDocuments
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: DocumentDirectoriesRoot
       x-accepts: application/json
   /analytics/engines/bpm/v3/strategies/{path}:
     get:
@@ -28740,7 +30660,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DocumentDirectoriesObjectDataAndMetaModel'
+                $ref: '#/components/schemas/DocumentDirectoriesRoot'
           description: Expected response, returns a list of Barra strategy documents
             and directories
           headers:
@@ -29022,6 +30942,10 @@ paths:
       summary: Get Barra strategy documents and sub-directories in a directory
       tags:
       - StrategyDocuments
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: DocumentDirectoriesRoot
       x-accepts: application/json
   /analytics/engines/npo/v3/strategies/{path}:
     get:
@@ -29046,7 +30970,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DocumentDirectoriesObjectDataAndMetaModel'
+                $ref: '#/components/schemas/DocumentDirectoriesRoot'
           description: Expected response, returns a list of Northfield strategy documents
             and directories
           headers:
@@ -29328,6 +31252,10 @@ paths:
       summary: Get Northfield strategy documents and sub-directories in a directory
       tags:
       - StrategyDocuments
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: DocumentDirectoriesRoot
       x-accepts: application/json
   /analytics/engines/fpo/v3/strategies/{path}:
     get:
@@ -29352,7 +31280,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DocumentDirectoriesObjectDataAndMetaModel'
+                $ref: '#/components/schemas/DocumentDirectoriesRoot'
           description: Expected response, returns a list of FactSet Portfolio Optimizer
             strategy documents and directories
           headers:
@@ -29635,6 +31563,10 @@ paths:
         in a directory
       tags:
       - StrategyDocuments
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: DocumentDirectoriesRoot
       x-accepts: application/json
   /analytics/engines/pa/v3/templated-components:
     post:
@@ -29645,7 +31577,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TemplatedPAComponentParametersObjectDataAndMetaModel'
+              $ref: '#/components/schemas/TemplatedPAComponentParametersRoot'
         description: Request Parameters
         required: true
       responses:
@@ -29653,13 +31585,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/TemplatedPAComponentSummaryRoot'
             application/json:
               schema:
-                $ref: '#/components/schemas/StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/TemplatedPAComponentSummaryRoot'
             text/json:
               schema:
-                $ref: '#/components/schemas/StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/TemplatedPAComponentSummaryRoot'
           description: Expected response, templated PA component created successfully.
           headers:
             X-DataDirect-Request-Key:
@@ -29943,6 +31875,10 @@ paths:
       summary: Create templated PA component
       tags:
       - TemplatedPAComponents
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "201"
+        response-type: TemplatedPAComponentSummaryRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/pa/v3/templated-components/{id}:
@@ -30254,6 +32190,9 @@ paths:
       summary: Delete templated PA component
       tags:
       - TemplatedPAComponents
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "204"
       x-accepts: application/json
     put:
       description: This endpoint allows the user to change the request body from an
@@ -30273,7 +32212,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TemplatedPAComponentUpdateParametersObjectDataAndMetaModel'
+              $ref: '#/components/schemas/TemplatedPAComponentUpdateParametersRoot'
         description: Request Parameters
         required: true
       responses:
@@ -30281,7 +32220,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/TemplatedPAComponentSummaryRoot'
           description: Expected response, updated successfully.
           headers:
             X-DataDirect-Request-Key:
@@ -30563,6 +32502,10 @@ paths:
       summary: Update templated PA component
       tags:
       - TemplatedPAComponents
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: TemplatedPAComponentSummaryRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/pa/v3/unlinked-templates:
@@ -30593,7 +32536,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/UnlinkedPATemplateSummaryRoot'
           description: Expected response, returns a list of unlinked PA templates.
           headers:
             X-DataDirect-Request-Key:
@@ -30834,6 +32777,10 @@ paths:
       summary: Get unlinked PA templates
       tags:
       - UnlinkedPATemplates
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: UnlinkedPATemplateSummaryRoot
       x-accepts: application/json
     post:
       description: "This endpoint creates a template which is not linked to any specific\
@@ -30846,7 +32793,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UnlinkedPATemplateParametersObjectDataAndMetaModel'
+              $ref: '#/components/schemas/UnlinkedPATemplateParametersRoot'
         description: Request Parameters
         required: true
       responses:
@@ -30854,7 +32801,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/UnlinkedPATemplateSummaryRoot'
           description: Expected response, created a unlinked PA template.
           headers:
             X-DataDirect-Request-Key:
@@ -31095,6 +33042,10 @@ paths:
       summary: Create unlinked PA template
       tags:
       - UnlinkedPATemplates
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "201"
+        response-type: UnlinkedPATemplateSummaryRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/pa/v3/unlinked-templates/{id}:
@@ -31394,6 +33345,9 @@ paths:
       summary: Delete unlinked PA template
       tags:
       - UnlinkedPATemplates
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "204"
       x-accepts: application/json
     get:
       description: This endpoint fetches the template settings.
@@ -31413,7 +33367,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UnlinkedPATemplateObjectDataAndMetaModel'
+                $ref: '#/components/schemas/UnlinkedPATemplateRoot'
           description: Expected response, get details of the unlinked PA template.
           headers:
             X-DataDirect-Request-Key:
@@ -31695,6 +33649,10 @@ paths:
       summary: Get unlinked PA template details by id
       tags:
       - UnlinkedPATemplates
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: UnlinkedPATemplateRoot
       x-accepts: application/json
     put:
       description: "This endpoint updates an existing unlinked PA template.\r\n\r\n\
@@ -31717,7 +33675,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UnlinkedPATemplateUpdateParametersObjectDataAndMetaModel'
+              $ref: '#/components/schemas/UnlinkedPATemplateUpdateParametersRoot'
         description: Request Parameters
         required: true
       responses:
@@ -31725,7 +33683,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/UnlinkedPATemplateSummaryRoot'
           description: Expected response, updated the unlinked PA template.
           headers:
             X-DataDirect-Request-Key:
@@ -32007,6 +33965,10 @@ paths:
       summary: Update unlinked PA template
       tags:
       - UnlinkedPATemplates
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: UnlinkedPATemplateSummaryRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/pa/v3/unlinked-templates/template-types:
@@ -32018,7 +33980,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringUnlinkedPATemplateCategoryAndTypeDictionaryObjectDataAndMetaModel'
+                $ref: '#/components/schemas/UnlinkedPATemplateCategoryAndTypeRoot'
           description: Expected response, default unlinked PA template types
           headers:
             X-DataDirect-Request-Key:
@@ -32217,6 +34179,10 @@ paths:
       summary: Get default unlinked PA template types.
       tags:
       - UnlinkedPATemplates
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: UnlinkedPATemplateCategoryAndTypeRoot
       x-accepts: application/json
   /analytics/engines/pa/v3/unlinked-templates/template-types/{id}:
     get:
@@ -32237,7 +34203,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UnlinkedPATemplateCategoryAndTypeDetailsObjectDataAndMetaModel'
+                $ref: '#/components/schemas/UnlinkedPATemplateCategoryAndTypeDetailsRoot'
           description: Expected response, details of the unlinked PA template type
           headers:
             X-DataDirect-Request-Key:
@@ -32519,6 +34485,10 @@ paths:
       summary: Get unlinked PA template type details by id.
       tags:
       - UnlinkedPATemplates
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: UnlinkedPATemplateCategoryAndTypeDetailsRoot
       x-accepts: application/json
   /analytics/engines/vault/v3/calculations:
     post:
@@ -32549,17 +34519,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/VaultCalculationParametersCalculationMetaCalculationParameters'
+              $ref: '#/components/schemas/VaultCalculationParametersRoot'
         description: Calculation Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -32607,10 +34577,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, if the calculation has one unit and is completed
             with an error.
           headers:
@@ -32652,10 +34622,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if the calculation has one unit and is completed
             in a short span, returns JSON in the format specified in the Calculation
             parameters.
@@ -32963,6 +34933,14 @@ paths:
       summary: Create and Run Vault calculation
       tags:
       - VaultCalculations
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationStatusRoot
+      - status-code: "200"
+        response-type: CalculationStatusRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/vault/v3/calculations/{id}:
@@ -33212,6 +35190,9 @@ paths:
       summary: Cancel Vault calculation by id
       tags:
       - VaultCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "204"
       x-accepts: application/json
     get:
       description: This is the endpoint that returns the calculation parameters passed
@@ -33234,7 +35215,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VaultCalculationParametersCalculationMetaCalculationParameters'
+                $ref: '#/components/schemas/VaultCalculationParametersRoot'
           description: Expected response, returns the Vault calculation parameters.
           headers:
             Content-Encoding:
@@ -33476,6 +35457,10 @@ paths:
       summary: Get Vault calculation parameters by id
       tags:
       - VaultCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: VaultCalculationParametersRoot
       x-accepts: application/json
     put:
       description: "This endpoint updates and run the Vault calculation specified\
@@ -33517,17 +35502,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/VaultCalculationParametersCalculationMetaCalculationParameters'
+              $ref: '#/components/schemas/VaultCalculationParametersRoot'
         description: Calculation Parameters
       responses:
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, contains the poll URL in the Location header.
           headers:
             Location:
@@ -33575,10 +35560,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response, if the calculation has one unit and is completed
             with an error.
           headers:
@@ -33620,10 +35605,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response if the calculation has one unit and is completed
             in a short span, returns JSON in the format specified in the Calculation
             parameters.
@@ -33975,6 +35960,14 @@ paths:
       summary: Create or Update Vault calculation and run it.
       tags:
       - VaultCalculations
+      x-are-multiple-success-responses-different: true
+      x-success-response-types:
+      - status-code: "202"
+        response-type: CalculationStatusRoot
+      - status-code: "200"
+        response-type: CalculationStatusRoot
+      - status-code: "201"
+        response-type: ObjectRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/vault/v3/calculations/{id}/status:
@@ -34000,7 +35993,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response once calculation is completed.
           headers:
             Content-Encoding:
@@ -34066,7 +36059,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CalculationStatusCalculationStatusMetaDataAndMetaModel'
+                $ref: '#/components/schemas/CalculationStatusRoot'
           description: Expected response returned if the calculation is not yet completed.
           headers:
             X-FactSet-Api-PickUp-Progress:
@@ -34300,6 +36293,12 @@ paths:
       summary: Get Vault calculation status by id
       tags:
       - VaultCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: CalculationStatusRoot
+      - status-code: "202"
+        response-type: CalculationStatusRoot
       x-accepts: application/json
   /analytics/engines/vault/v3/calculations/{id}/units/{unitId}/result:
     get:
@@ -34335,10 +36334,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
             application/x-protobuf:
               schema:
-                $ref: '#/components/schemas/ObjectObjectDataAndMetaModel'
+                $ref: '#/components/schemas/ObjectRoot'
           description: Expected response once calculation is completed, returns JSON
             in the format specified in the Calculation parameters.
           headers:
@@ -34588,6 +36587,10 @@ paths:
       summary: Get Vault calculation result by id
       tags:
       - VaultCalculations
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: ObjectRoot
       x-accepts: application/json
 components:
   schemas:
@@ -34617,7 +36620,7 @@ components:
             $ref: '#/components/schemas/ReturnType'
           type: array
       type: object
-    SPARAccountsObjectDataAndMetaModel:
+    SPARAccountsRoot:
       additionalProperties: false
       example:
         data:
@@ -34668,6 +36671,45 @@ components:
           items:
             $ref: '#/components/schemas/Error'
           type: array
+      type: object
+    AccountDirectories:
+      additionalProperties: false
+      example:
+        directories:
+        - directories
+        - directories
+        accounts:
+        - accounts
+        - accounts
+      properties:
+        accounts:
+          description: List of account and composite files.
+          items:
+            type: string
+          type: array
+        directories:
+          description: List of directories.
+          items:
+            type: string
+          type: array
+      type: object
+    AccountDirectoriesRoot:
+      additionalProperties: false
+      example:
+        data:
+          directories:
+          - directories
+          - directories
+          accounts:
+          - accounts
+          - accounts
+        meta: ""
+      properties:
+        data:
+          $ref: '#/components/schemas/AccountDirectories'
+        meta: {}
+      required:
+      - data
       type: object
     AFIOptimizerStrategyOverrides:
       additionalProperties: false
@@ -34944,7 +36986,7 @@ components:
     OptimizerCalculationMeta:
       additionalProperties: false
       type: object
-    AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters:
+    AFIOptimizationParametersRoot:
       additionalProperties: false
       example:
         data:
@@ -34991,23 +37033,23 @@ components:
           additionalProperties: false
           type: object
       type: object
-    PersistedCalculationInfo:
+    CalculationInfo:
       additionalProperties: false
       properties:
         calculationId:
           description: Calculation identifier
           type: string
       type: object
-    PersistedCalculationInfoObjectDataAndMetaModel:
+    CalculationInfoRoot:
       additionalProperties: false
       properties:
         data:
-          $ref: '#/components/schemas/PersistedCalculationInfo'
+          $ref: '#/components/schemas/CalculationInfo'
         meta: {}
       required:
       - data
       type: object
-    ObjectObjectDataAndMetaModel:
+    ObjectRoot:
       additionalProperties: false
       example:
         data: ""
@@ -35120,7 +37162,7 @@ components:
       - outputTypes
       - strategy
       type: object
-    AxiomaEquityOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters:
+    AxiomaEquityOptimizationParametersRoot:
       additionalProperties: false
       example:
         data:
@@ -35212,7 +37254,7 @@ components:
             $ref: '#/components/schemas/SPARIdentifier'
           type: array
       type: object
-    SPARBenchmarkObjectDataAndMetaModel:
+    SPARBenchmarkRoot:
       additionalProperties: false
       example:
         data:
@@ -35233,7 +37275,7 @@ components:
       required:
       - data
       type: object
-    StringConstraintActionTuple:
+    ConstraintAction:
       additionalProperties: false
       example:
         item2: Disable
@@ -35285,7 +37327,7 @@ components:
         constraints:
           description: List of constraints
           items:
-            $ref: '#/components/schemas/StringConstraintActionTuple'
+            $ref: '#/components/schemas/ConstraintAction'
           type: array
         alpha:
           $ref: '#/components/schemas/BPMOptimizerStrategyAlphaOverride'
@@ -35404,7 +37446,7 @@ components:
       - outputTypes
       - strategy
       type: object
-    BPMOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters:
+    BPMOptimizationParametersRoot:
       additionalProperties: false
       example:
         data:
@@ -35476,7 +37518,7 @@ components:
           description: Column Category
           type: string
       type: object
-    StringColumnSummaryDictionaryObjectDataAndMetaModel:
+    ColumnSummaryRoot:
       additionalProperties: false
       example:
         data:
@@ -35519,7 +37561,7 @@ components:
           description: Column Category
           type: string
       type: object
-    ColumnObjectDataAndMetaModel:
+    ColumnRoot:
       additionalProperties: false
       example:
         data:
@@ -35546,7 +37588,7 @@ components:
           description: Column Statistic Name
           type: string
       type: object
-    StringColumnStatisticDictionaryObjectDataAndMetaModel:
+    ColumnStatisticRoot:
       additionalProperties: false
       example:
         data:
@@ -35579,7 +37621,7 @@ components:
           description: Component type.
           type: string
       type: object
-    StringComponentSummaryDictionaryObjectDataAndMetaModel:
+    ComponentSummaryRoot:
       additionalProperties: false
       example:
         data:
@@ -35687,7 +37729,7 @@ components:
           description: Component type.
           type: string
       type: object
-    PAComponentObjectDataAndMetaModel:
+    PAComponentRoot:
       additionalProperties: false
       example:
         data:
@@ -35795,7 +37837,7 @@ components:
           description: Component type.
           type: string
       type: object
-    VaultComponentObjectDataAndMetaModel:
+    VaultComponentRoot:
       additionalProperties: false
       example:
         data:
@@ -35830,7 +37872,7 @@ components:
           description: Configuration name.
           type: string
       type: object
-    StringVaultConfigurationSummaryDictionaryObjectDataAndMetaModel:
+    VaultConfigurationSummaryRoot:
       additionalProperties: false
       example:
         data:
@@ -35896,7 +37938,7 @@ components:
             $ref: '#/components/schemas/ConfigurationAccount'
           type: object
       type: object
-    VaultConfigurationObjectDataAndMetaModel:
+    VaultConfigurationRoot:
       additionalProperties: false
       example:
         data:
@@ -35917,6 +37959,31 @@ components:
       required:
       - data
       type: object
+    Currency:
+      additionalProperties: false
+      example:
+        name: name
+      properties:
+        name:
+          description: Name of currency.
+          type: string
+      type: object
+    CurrencyRoot:
+      additionalProperties: false
+      example:
+        data:
+          key:
+            name: name
+        meta: ""
+      properties:
+        data:
+          additionalProperties:
+            $ref: '#/components/schemas/Currency'
+          type: object
+        meta: {}
+      required:
+      - data
+      type: object
     DateParametersSummary:
       additionalProperties: false
       example:
@@ -35930,7 +37997,7 @@ components:
           description: End date in YYYYMMDD format.
           type: string
       type: object
-    DateParametersSummaryObjectDataAndMetaModel:
+    DateParametersSummaryRoot:
       additionalProperties: false
       example:
         data:
@@ -35965,7 +38032,7 @@ components:
             type: string
           type: array
       type: object
-    DocumentDirectoriesObjectDataAndMetaModel:
+    DocumentDirectoriesRoot:
       additionalProperties: false
       example:
         data:
@@ -35982,6 +38049,144 @@ components:
         meta: {}
       required:
       - data
+      type: object
+    FIABIdentifier:
+      additionalProperties: false
+      example:
+        id: id
+      properties:
+        id:
+          description: User's FactSet account path.
+          type: string
+      required:
+      - id
+      type: object
+    FIABDateParameters:
+      additionalProperties: false
+      description: The date parameters for FIAB calculations.
+      example:
+        enddate: enddate
+        startdate: startdate
+      properties:
+        startdate:
+          description: Calculation's start date.
+          type: string
+        enddate:
+          description: Calculation's end date.
+          type: string
+      required:
+      - enddate
+      - startdate
+      type: object
+    FIABCalculationParameters:
+      additionalProperties: false
+      example:
+        fiabdocument: fiabdocument
+        msl: msl
+        dates:
+          enddate: enddate
+          startdate: startdate
+        fisettingsdocument: fisettingsdocument
+        account:
+          id: id
+      properties:
+        fiabdocument:
+          description: "FiabDocument (optional) - FIAB document to use as a template.\
+            \ Should\r\nbe a path to a FIAB document. Expects a GUI-style path (Client:/foo/bar)"
+          type: string
+        account:
+          $ref: '#/components/schemas/FIABIdentifier'
+        dates:
+          $ref: '#/components/schemas/FIABDateParameters'
+        msl:
+          description: Master FISecurity List. Analytics results will be written to
+            the selected MSL. Expects a GUI-style path (Client:/foo/bar)
+          type: string
+        fisettingsdocument:
+          description: "FISettingsDocument (optional) - The given @FIS document will\
+            \ be used to\r\nconfigure analytics assumptions and settings. Expects\
+            \ a GUI-style path (Client:/foo/bar)"
+          type: string
+      required:
+      - account
+      - dates
+      type: object
+    FIABCalculationStatusSummary:
+      additionalProperties: false
+      properties:
+        requesttime:
+          description: Request time of calculation.
+          format: date-time
+          type: string
+        lastpolltime:
+          description: Last poll time of calculation.
+          format: date-time
+          type: string
+      type: object
+    EventSummary:
+      additionalProperties: false
+      example:
+        submissiondatetime: 2000-01-23T04:56:07.000+00:00
+        message: message
+        type: type
+      properties:
+        message:
+          description: Event's message
+          type: string
+        submissiondatetime:
+          description: Event's submission time
+          format: date-time
+          type: string
+        type:
+          description: Event's type
+          type: string
+      type: object
+    FIABCalculationStatus:
+      additionalProperties: false
+      example:
+        completiondatetime: 2000-01-23T04:56:07.000+00:00
+        batchevents:
+        - submissiondatetime: 2000-01-23T04:56:07.000+00:00
+          message: message
+          type: type
+        - submissiondatetime: 2000-01-23T04:56:07.000+00:00
+          message: message
+          type: type
+        progress: 0
+        id: id
+        status: Pending
+        startdatetime: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Calculation's identifier
+          type: string
+        status:
+          description: Calculation's status
+          enum:
+          - Pending
+          - InProgress
+          - Done
+          - Paused
+          - Cancelled
+          - Error
+          type: string
+        startdatetime:
+          description: Start time
+          format: date-time
+          type: string
+        completiondatetime:
+          description: Completion time
+          format: date-time
+          type: string
+        progress:
+          description: Calculation's progress
+          format: int32
+          type: integer
+        batchevents:
+          description: List of batch events
+          items:
+            $ref: '#/components/schemas/EventSummary'
+          type: array
       type: object
     FISecurity:
       additionalProperties: false
@@ -36167,7 +38372,7 @@ components:
           - Feather
           type: string
       type: object
-    FICalculationParametersCalculationMetaInteractiveCalculationParameters:
+    FICalculationParametersRoot:
       additionalProperties: false
       example:
         data:
@@ -36341,7 +38546,7 @@ components:
       - outputTypes
       - strategy
       type: object
-    FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters:
+    FPOOptimizationParametersRoot:
       additionalProperties: false
       example:
         data:
@@ -36398,7 +38603,7 @@ components:
           description: Frequency name.
           type: string
       type: object
-    StringFrequencyDictionaryObjectDataAndMetaModel:
+    FrequencyRoot:
       additionalProperties: false
       example:
         data:
@@ -36431,7 +38636,7 @@ components:
           description: Group Category
           type: string
       type: object
-    StringGroupDictionaryObjectDataAndMetaModel:
+    GroupRoot:
       additionalProperties: false
       example:
         data:
@@ -36510,7 +38715,7 @@ components:
       - directory
       - parentComponentId
       type: object
-    LinkedPATemplateParametersObjectDataAndMetaModel:
+    LinkedPATemplateParametersRoot:
       additionalProperties: false
       example:
         data:
@@ -36552,7 +38757,7 @@ components:
           description: Template parent tile.
           type: string
       type: object
-    StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel:
+    LinkedPATemplateSummaryRoot:
       additionalProperties: false
       example:
         data:
@@ -36595,7 +38800,7 @@ components:
         content:
           $ref: '#/components/schemas/TemplateContentTypes'
       type: object
-    LinkedPATemplateUpdateParametersObjectDataAndMetaModel:
+    LinkedPATemplateUpdateParametersRoot:
       additionalProperties: false
       example:
         data:
@@ -36660,7 +38865,7 @@ components:
           description: Template parent tile.
           type: string
       type: object
-    LinkedPATemplateObjectDataAndMetaModel:
+    LinkedPATemplateRoot:
       additionalProperties: false
       example:
         data:
@@ -36709,7 +38914,7 @@ components:
         constraints:
           description: List of constraints
           items:
-            $ref: '#/components/schemas/StringConstraintActionTuple'
+            $ref: '#/components/schemas/ConstraintAction'
           type: array
         tax:
           description: "Tax\r\nCan be set to \"\" for local"
@@ -36800,7 +39005,7 @@ components:
       - outputTypes
       - strategy
       type: object
-    NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters:
+    NPOOptimizationParametersRoot:
       additionalProperties: false
       example:
         data:
@@ -36947,7 +39152,7 @@ components:
       required:
       - componentid
       type: object
-    PACalculationParametersCalculationMetaCalculationParameters:
+    PACalculationParametersRoot:
       additionalProperties: false
       example:
         data:
@@ -37095,7 +39300,7 @@ components:
           description: Meta of calculation units in batch.
           type: object
       type: object
-    CalculationStatusCalculationStatusMetaDataAndMetaModel:
+    CalculationStatusRoot:
       additionalProperties: false
       example:
         data:
@@ -37186,7 +39391,7 @@ components:
     PubCalculationMeta:
       additionalProperties: false
       type: object
-    PubCalculationParametersPubCalculationMetaCalculationParameters:
+    PubCalculationParametersRoot:
       additionalProperties: false
       example:
         data:
@@ -37696,7 +39901,7 @@ components:
           - Feather
           type: string
       type: object
-    QuantCalculationParametersQuantCalculationMetaCalculationParameters:
+    QuantCalculationParametersRoot:
       additionalProperties: false
       example:
         data:
@@ -37825,7 +40030,7 @@ components:
       required:
       - componentid
       type: object
-    SPARCalculationParametersCalculationMetaCalculationParameters:
+    SPARCalculationParametersRoot:
       additionalProperties: false
       example:
         data:
@@ -37975,7 +40180,7 @@ components:
       - directory
       - parentTemplateId
       type: object
-    TemplatedPAComponentParametersObjectDataAndMetaModel:
+    TemplatedPAComponentParametersRoot:
       additionalProperties: false
       example:
         data:
@@ -38036,7 +40241,7 @@ components:
         type:
           type: string
       type: object
-    StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel:
+    TemplatedPAComponentSummaryRoot:
       additionalProperties: false
       example:
         data:
@@ -38099,7 +40304,7 @@ components:
         componentData:
           $ref: '#/components/schemas/PAComponentData'
       type: object
-    TemplatedPAComponentUpdateParametersObjectDataAndMetaModel:
+    TemplatedPAComponentUpdateParametersRoot:
       additionalProperties: false
       example:
         data:
@@ -38230,7 +40435,7 @@ components:
       - directory
       - templateTypeId
       type: object
-    UnlinkedPATemplateParametersObjectDataAndMetaModel:
+    UnlinkedPATemplateParametersRoot:
       additionalProperties: false
       example:
         data:
@@ -38297,7 +40502,7 @@ components:
         category:
           type: string
       type: object
-    StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel:
+    UnlinkedPATemplateSummaryRoot:
       additionalProperties: false
       example:
         data:
@@ -38392,7 +40597,7 @@ components:
         content:
           $ref: '#/components/schemas/TemplateContentTypes'
       type: object
-    UnlinkedPATemplateUpdateParametersObjectDataAndMetaModel:
+    UnlinkedPATemplateUpdateParametersRoot:
       additionalProperties: false
       example:
         data:
@@ -38531,7 +40736,7 @@ components:
         category:
           type: string
       type: object
-    UnlinkedPATemplateObjectDataAndMetaModel:
+    UnlinkedPATemplateRoot:
       additionalProperties: false
       example:
         data:
@@ -38601,7 +40806,7 @@ components:
           description: Unlinked template type
           type: string
       type: object
-    StringUnlinkedPATemplateCategoryAndTypeDictionaryObjectDataAndMetaModel:
+    UnlinkedPATemplateCategoryAndTypeRoot:
       additionalProperties: false
       example:
         data:
@@ -38635,7 +40840,7 @@ components:
           description: Unlinked template type
           type: string
       type: object
-    UnlinkedPATemplateCategoryAndTypeDetailsObjectDataAndMetaModel:
+    UnlinkedPATemplateCategoryAndTypeDetailsRoot:
       additionalProperties: false
       example:
         data:
@@ -38682,7 +40887,7 @@ components:
       - componentid
       - configid
       type: object
-    VaultCalculationParametersCalculationMetaCalculationParameters:
+    VaultCalculationParametersRoot:
       additionalProperties: false
       example:
         data:

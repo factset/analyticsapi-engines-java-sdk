@@ -14,10 +14,10 @@ import java.util.Map;
 
 import java.io.File;
 
-import factset.analyticsapi.engines.models.CalculationStatusCalculationStatusMetaDataAndMetaModel;
+import factset.analyticsapi.engines.models.CalculationStatusRoot;
 import factset.analyticsapi.engines.models.ClientErrorResponse;
 import java.io.File;
-import factset.analyticsapi.engines.models.PubCalculationParametersPubCalculationMetaCalculationParameters;
+import factset.analyticsapi.engines.models.PubCalculationParametersRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class PubCalculationsApi {
@@ -133,7 +133,7 @@ public class PubCalculationsApi {
    * Get Pub calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run Pub calculation endpoint (required)
-    @return PubCalculationParametersPubCalculationMetaCalculationParameters
+    @return PubCalculationParametersRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -147,7 +147,7 @@ public class PubCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public PubCalculationParametersPubCalculationMetaCalculationParameters getCalculationParameters(String id) throws ApiException {
+ public PubCalculationParametersRoot getCalculationParameters(String id) throws ApiException {
     return getCalculationParametersWithHttpInfo(id).getData();
   }
 
@@ -155,7 +155,7 @@ public class PubCalculationsApi {
    * Get Pub calculation parameters by id
    * This is the endpoint that returns the calculation parameters passed for a calculation.
    * @param id from url, provided from the location header in the Create and Run Pub calculation endpoint (required)
-    * @return ApiResponse&lt;PubCalculationParametersPubCalculationMetaCalculationParameters&gt;
+    * @return ApiResponse&lt;PubCalculationParametersRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -169,7 +169,7 @@ public class PubCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<PubCalculationParametersPubCalculationMetaCalculationParameters> getCalculationParametersWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<PubCalculationParametersRoot> getCalculationParametersWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -203,14 +203,14 @@ public class PubCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<PubCalculationParametersPubCalculationMetaCalculationParameters> localVarReturnType = new GenericType<PubCalculationParametersPubCalculationMetaCalculationParameters>() {};
+    GenericType<PubCalculationParametersRoot> localVarReturnType = new GenericType<PubCalculationParametersRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<PubCalculationParametersPubCalculationMetaCalculationParameters>(){});
+        returnTypeMap.put(200, new GenericType<PubCalculationParametersRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<PubCalculationParametersPubCalculationMetaCalculationParameters>invokeAPIWithReturnMap("PubCalculationsApi.getCalculationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<PubCalculationParametersRoot>invokeAPIWithReturnMap("PubCalculationsApi.getCalculationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -218,7 +218,7 @@ public class PubCalculationsApi {
    * Get Pub calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the location header will point to the result url.
    * @param id from url, provided from the location header in the Create and Run Pub calculation endpoint (required)
-    @return CalculationStatusCalculationStatusMetaDataAndMetaModel
+    @return CalculationStatusRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -233,7 +233,7 @@ public class PubCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public CalculationStatusCalculationStatusMetaDataAndMetaModel getCalculationStatusById(String id) throws ApiException {
+ public CalculationStatusRoot getCalculationStatusById(String id) throws ApiException {
     return getCalculationStatusByIdWithHttpInfo(id).getData();
   }
 
@@ -241,7 +241,7 @@ public class PubCalculationsApi {
    * Get Pub calculation status by id
    * This is the endpoint to check on the progress of a previously requested calculation.  If the calculation has finished computing, the location header will point to the result url.
    * @param id from url, provided from the location header in the Create and Run Pub calculation endpoint (required)
-    * @return ApiResponse&lt;CalculationStatusCalculationStatusMetaDataAndMetaModel&gt;
+    * @return ApiResponse&lt;CalculationStatusRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -256,7 +256,7 @@ public class PubCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<CalculationStatusCalculationStatusMetaDataAndMetaModel> getCalculationStatusByIdWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<CalculationStatusRoot> getCalculationStatusByIdWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -290,15 +290,15 @@ public class PubCalculationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel> localVarReturnType = new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>() {};
+    GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
-        returnTypeMap.put(202, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<CalculationStatusCalculationStatusMetaDataAndMetaModel>invokeAPIWithReturnMap("PubCalculationsApi.getCalculationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<CalculationStatusRoot>invokeAPIWithReturnMap("PubCalculationsApi.getCalculationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -400,8 +400,8 @@ public class PubCalculationsApi {
    * This endpoint runs the Pub calculation specified in the POST body parameters.  It can take one or more units as input.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param pubCalculationParametersPubCalculationMetaCalculationParameters Calculation Parameters (optional)
-    @return CalculationStatusCalculationStatusMetaDataAndMetaModel
+   * @param pubCalculationParametersRoot Calculation Parameters (optional)
+    @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - File)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -419,8 +419,8 @@ public class PubCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public CalculationStatusCalculationStatusMetaDataAndMetaModel postAndCalculate(Integer xFactSetApiLongRunningDeadline, String cacheControl, PubCalculationParametersPubCalculationMetaCalculationParameters pubCalculationParametersPubCalculationMetaCalculationParameters) throws ApiException {
-    return postAndCalculateWithHttpInfo(xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersPubCalculationMetaCalculationParameters).getData();
+ public Object postAndCalculate(Integer xFactSetApiLongRunningDeadline, String cacheControl, PubCalculationParametersRoot pubCalculationParametersRoot) throws ApiException {
+    return postAndCalculateWithHttpInfo(xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersRoot).getData();
   }
 
   /**
@@ -428,8 +428,8 @@ public class PubCalculationsApi {
    * This endpoint runs the Pub calculation specified in the POST body parameters.  It can take one or more units as input.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param pubCalculationParametersPubCalculationMetaCalculationParameters Calculation Parameters (optional)
-    * @return ApiResponse&lt;CalculationStatusCalculationStatusMetaDataAndMetaModel&gt;
+   * @param pubCalculationParametersRoot Calculation Parameters (optional)
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - File)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -447,8 +447,8 @@ public class PubCalculationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<CalculationStatusCalculationStatusMetaDataAndMetaModel> postAndCalculateWithHttpInfo(Integer xFactSetApiLongRunningDeadline, String cacheControl, PubCalculationParametersPubCalculationMetaCalculationParameters pubCalculationParametersPubCalculationMetaCalculationParameters) throws ApiException {
-    Object localVarPostBody = pubCalculationParametersPubCalculationMetaCalculationParameters;
+  public ApiResponse<Object> postAndCalculateWithHttpInfo(Integer xFactSetApiLongRunningDeadline, String cacheControl, PubCalculationParametersRoot pubCalculationParametersRoot) throws ApiException {
+    Object localVarPostBody = pubCalculationParametersRoot;
     
     // create path and map variables
     String localVarPath = "/analytics/engines/pub/v3/calculations";
@@ -479,16 +479,16 @@ if (cacheControl != null)
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel> localVarReturnType = new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>() {};
+    GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(202, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
-        returnTypeMap.put(200, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
+        returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
         returnTypeMap.put(201, new GenericType<File>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<CalculationStatusCalculationStatusMetaDataAndMetaModel>invokeAPIWithReturnMap("PubCalculationsApi.postAndCalculate", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+      return apiClient.<Object>invokeAPIWithReturnMap("PubCalculationsApi.postAndCalculate", localVarPath, "POST", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -498,8 +498,8 @@ if (cacheControl != null)
    * @param id from url, provided from the location header in the Create and Run Pub calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param pubCalculationParametersPubCalculationMetaCalculationParameters Calculation Parameters (optional)
-    @return CalculationStatusCalculationStatusMetaDataAndMetaModel
+   * @param pubCalculationParametersRoot Calculation Parameters (optional)
+    @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - File)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -518,8 +518,8 @@ if (cacheControl != null)
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  </td></tr>
      </table>
    */
- public CalculationStatusCalculationStatusMetaDataAndMetaModel putAndCalculate(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, PubCalculationParametersPubCalculationMetaCalculationParameters pubCalculationParametersPubCalculationMetaCalculationParameters) throws ApiException {
-    return putAndCalculateWithHttpInfo(id, xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersPubCalculationMetaCalculationParameters).getData();
+ public Object putAndCalculate(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, PubCalculationParametersRoot pubCalculationParametersRoot) throws ApiException {
+    return putAndCalculateWithHttpInfo(id, xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersRoot).getData();
   }
 
   /**
@@ -528,8 +528,8 @@ if (cacheControl != null)
    * @param id from url, provided from the location header in the Create and Run Pub calculation endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param pubCalculationParametersPubCalculationMetaCalculationParameters Calculation Parameters (optional)
-    * @return ApiResponse&lt;CalculationStatusCalculationStatusMetaDataAndMetaModel&gt;
+   * @param pubCalculationParametersRoot Calculation Parameters (optional)
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - File)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -548,8 +548,8 @@ if (cacheControl != null)
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-Calculations-Limit - Maximum FI request limit. <br>  * X-FactSet-Api-Calculations-Remaining - Number of FI requests remaining till request limit reached. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<CalculationStatusCalculationStatusMetaDataAndMetaModel> putAndCalculateWithHttpInfo(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, PubCalculationParametersPubCalculationMetaCalculationParameters pubCalculationParametersPubCalculationMetaCalculationParameters) throws ApiException {
-    Object localVarPostBody = pubCalculationParametersPubCalculationMetaCalculationParameters;
+  public ApiResponse<Object> putAndCalculateWithHttpInfo(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, PubCalculationParametersRoot pubCalculationParametersRoot) throws ApiException {
+    Object localVarPostBody = pubCalculationParametersRoot;
     
     // verify the required parameter 'id' is set
     if (id == null) {
@@ -586,17 +586,17 @@ if (cacheControl != null)
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel> localVarReturnType = new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>() {};
+    GenericType<CalculationStatusRoot> localVarReturnType = new GenericType<CalculationStatusRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(202, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
-        returnTypeMap.put(200, new GenericType<CalculationStatusCalculationStatusMetaDataAndMetaModel>(){});
+        returnTypeMap.put(202, new GenericType<CalculationStatusRoot>(){});
+        returnTypeMap.put(200, new GenericType<CalculationStatusRoot>(){});
         returnTypeMap.put(201, new GenericType<File>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(409, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<CalculationStatusCalculationStatusMetaDataAndMetaModel>invokeAPIWithReturnMap("PubCalculationsApi.putAndCalculate", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
+      return apiClient.<Object>invokeAPIWithReturnMap("PubCalculationsApi.putAndCalculate", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

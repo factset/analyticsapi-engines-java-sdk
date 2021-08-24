@@ -1,7 +1,7 @@
 
 # ColumnsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.factset.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## getPAColumnById
 
-> ColumnObjectDataAndMetaModel getPAColumnById(id)
+> ColumnRoot getPAColumnById(id)
 
 Get PA column settings
 
@@ -32,7 +32,7 @@ import factset.analyticsapi.engines.api.ColumnsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -46,7 +46,7 @@ public class Example {
         ColumnsApi apiInstance = new ColumnsApi(defaultClient);
         String id = "id_example"; // String | Unique identifier for a column
         try {
-            ColumnObjectDataAndMetaModel result = apiInstance.getPAColumnById(id);
+            ColumnRoot result = apiInstance.getPAColumnById(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ColumnsApi#getPAColumnById");
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ColumnObjectDataAndMetaModel**](ColumnObjectDataAndMetaModel.md)
+[**ColumnRoot**](ColumnRoot.md)
 
 ### Authorization
 
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ## getPAColumns
 
-> StringColumnSummaryDictionaryObjectDataAndMetaModel getPAColumns(name, category, directory)
+> ColumnSummaryRoot getPAColumns(name, category, directory)
 
 Get PA columns
 
@@ -115,7 +115,7 @@ import factset.analyticsapi.engines.api.ColumnsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -131,7 +131,7 @@ public class Example {
         String category = ""; // String | Column category
         String directory = ""; // String | The directory to get the columns in
         try {
-            StringColumnSummaryDictionaryObjectDataAndMetaModel result = apiInstance.getPAColumns(name, category, directory);
+            ColumnSummaryRoot result = apiInstance.getPAColumns(name, category, directory);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ColumnsApi#getPAColumns");
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StringColumnSummaryDictionaryObjectDataAndMetaModel**](StringColumnSummaryDictionaryObjectDataAndMetaModel.md)
+[**ColumnSummaryRoot**](ColumnSummaryRoot.md)
 
 ### Authorization
 

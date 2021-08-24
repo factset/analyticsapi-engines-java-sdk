@@ -14,7 +14,7 @@ import java.util.Map;
 
 import java.io.File;
 
-import factset.analyticsapi.engines.models.StringColumnStatisticDictionaryObjectDataAndMetaModel;
+import factset.analyticsapi.engines.models.ColumnStatisticRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ColumnStatisticsApi {
@@ -48,7 +48,7 @@ public class ColumnStatisticsApi {
   /**
    * Get PA column statistics
    * This endpoint lists all the column statistics that can be applied to a PA column.
-    @return StringColumnStatisticDictionaryObjectDataAndMetaModel
+    @return ColumnStatisticRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -62,14 +62,14 @@ public class ColumnStatisticsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public StringColumnStatisticDictionaryObjectDataAndMetaModel getPAColumnStatistics() throws ApiException {
+ public ColumnStatisticRoot getPAColumnStatistics() throws ApiException {
     return getPAColumnStatisticsWithHttpInfo().getData();
   }
 
   /**
    * Get PA column statistics
    * This endpoint lists all the column statistics that can be applied to a PA column.
-    * @return ApiResponse&lt;StringColumnStatisticDictionaryObjectDataAndMetaModel&gt;
+    * @return ApiResponse&lt;ColumnStatisticRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -83,7 +83,7 @@ public class ColumnStatisticsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<StringColumnStatisticDictionaryObjectDataAndMetaModel> getPAColumnStatisticsWithHttpInfo() throws ApiException {
+  public ApiResponse<ColumnStatisticRoot> getPAColumnStatisticsWithHttpInfo() throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -111,12 +111,12 @@ public class ColumnStatisticsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<StringColumnStatisticDictionaryObjectDataAndMetaModel> localVarReturnType = new GenericType<StringColumnStatisticDictionaryObjectDataAndMetaModel>() {};
+    GenericType<ColumnStatisticRoot> localVarReturnType = new GenericType<ColumnStatisticRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<StringColumnStatisticDictionaryObjectDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<ColumnStatisticRoot>(){});
 	
-      return apiClient.<StringColumnStatisticDictionaryObjectDataAndMetaModel>invokeAPIWithReturnMap("ColumnStatisticsApi.getPAColumnStatistics", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<ColumnStatisticRoot>invokeAPIWithReturnMap("ColumnStatisticsApi.getPAColumnStatistics", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

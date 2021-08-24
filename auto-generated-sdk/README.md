@@ -3,9 +3,9 @@
 
 Engines API
 
-- API version: 3
+- API version: v3:[pa,spar,vault,pub,quant,fi,axp,afi,npo,bpm,fpo,others],v1:[fiab]
 
-Allow clients to fetch Engines Analytics through APIs.
+Allow clients to fetch Analytics through APIs.
 
   For more information, please visit [https://developer.factset.com/contact](https://developer.factset.com/contact)
 
@@ -107,7 +107,7 @@ import factset.analyticsapi.engines.api.AccountsApi;
 public class AccountsApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -119,12 +119,12 @@ public class AccountsApiExample {
         Bearer.setBearerToken("BEARER TOKEN");
 
         AccountsApi apiInstance = new AccountsApi(defaultClient);
-        String accountPath = "accountPath_example"; // String | URL encoded account path
+        String path = ""; // String | The directory to get the accounts and sub-directories in
         try {
-            SPARAccountsObjectDataAndMetaModel result = apiInstance.getSPARReturnsType(accountPath);
+            AccountDirectoriesRoot result = apiInstance.getAccounts(path);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling AccountsApi#getSPARReturnsType");
+            System.err.println("Exception when calling AccountsApi#getAccounts");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -137,10 +137,11 @@ public class AccountsApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.factset.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AccountsApi* | [**getAccounts**](docs/AccountsApi.md#getAccounts) | **GET** /analytics/lookups/v3/accounts/{path} | Get accounts and sub-directories in a directory
 *AccountsApi* | [**getSPARReturnsType**](docs/AccountsApi.md#getSPARReturnsType) | **GET** /analytics/engines/spar/v3/accounts/{accountPath}/returns-type | Get SPAR account returns type details
 *AfiOptimizerApi* | [**cancelOptimizationById**](docs/AfiOptimizerApi.md#cancelOptimizationById) | **DELETE** /analytics/engines/afi/v3/optimizations/{id} | Cancel AFI optimization by id
 *AfiOptimizerApi* | [**getOptimizationParameters**](docs/AfiOptimizerApi.md#getOptimizationParameters) | **GET** /analytics/engines/afi/v3/optimizations/{id} | Get AFI optimization parameters by id
@@ -171,6 +172,7 @@ Class | Method | HTTP request | Description
 *ComponentsApi* | [**getVaultComponents**](docs/ComponentsApi.md#getVaultComponents) | **GET** /analytics/engines/vault/v3/components | Get Vault components
 *ConfigurationsApi* | [**getVaultConfigurationById**](docs/ConfigurationsApi.md#getVaultConfigurationById) | **GET** /analytics/engines/vault/v3/configurations/{id} | Get Vault configuration by id
 *ConfigurationsApi* | [**getVaultConfigurations**](docs/ConfigurationsApi.md#getVaultConfigurations) | **GET** /analytics/engines/vault/v3/configurations | Get Vault configurations
+*CurrenciesApi* | [**getCurrencies**](docs/CurrenciesApi.md#getCurrencies) | **GET** /analytics/lookups/v3/currencies | Get currencies
 *DatesApi* | [**convertPADatesToAbsoluteFormat**](docs/DatesApi.md#convertPADatesToAbsoluteFormat) | **GET** /analytics/engines/pa/v3/dates | Convert PA dates to absolute format
 *DatesApi* | [**convertVaultDatesToAbsoluteFormat**](docs/DatesApi.md#convertVaultDatesToAbsoluteFormat) | **GET** /analytics/engines/vault/v3/dates | Convert Vault dates to absolute format
 *DocumentsApi* | [**getPA3Documents**](docs/DocumentsApi.md#getPA3Documents) | **GET** /analytics/engines/pa/v3/documents/{path} | Get PA3 documents and sub-directories in a directory
@@ -183,6 +185,9 @@ Class | Method | HTTP request | Description
 *FiCalculationsApi* | [**getCalculationStatusById**](docs/FiCalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/fi/v3/calculations/{id}/status | Get FI calculation status by id
 *FiCalculationsApi* | [**postAndCalculate**](docs/FiCalculationsApi.md#postAndCalculate) | **POST** /analytics/engines/fi/v3/calculations | Create and Run FI calculation
 *FiCalculationsApi* | [**putAndCalculate**](docs/FiCalculationsApi.md#putAndCalculate) | **PUT** /analytics/engines/fi/v3/calculations/{id} | Create or Update FI calculation and run it.
+*FiabCalculationsApi* | [**getCalculationById**](docs/FiabCalculationsApi.md#getCalculationById) | **GET** /analytics/engines/fiab/v1/calculations/{id} | Get FIAB calculation by id
+*FiabCalculationsApi* | [**getCalculationStatusSummaries**](docs/FiabCalculationsApi.md#getCalculationStatusSummaries) | **GET** /analytics/engines/fiab/v1/calculations | Get all FIAB calculation summaries
+*FiabCalculationsApi* | [**runCalculation**](docs/FiabCalculationsApi.md#runCalculation) | **POST** /analytics/engines/fiab/v1/calculations | Run FIAB calculation
 *FpoOptimizerApi* | [**cancelOptimizationById**](docs/FpoOptimizerApi.md#cancelOptimizationById) | **DELETE** /analytics/engines/fpo/v3/optimizations/{id} | Cancel FPO optimization by id
 *FpoOptimizerApi* | [**getOptimizationParameters**](docs/FpoOptimizerApi.md#getOptimizationParameters) | **GET** /analytics/engines/fpo/v3/optimizations/{id} | Get FPO optimization parameters by id
 *FpoOptimizerApi* | [**getOptimizationResult**](docs/FpoOptimizerApi.md#getOptimizationResult) | **GET** /analytics/engines/fpo/v3/optimizations/{id}/result | Get FPO optimization result by id
@@ -255,59 +260,78 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [AFIOptimizationParameters](docs/AFIOptimizationParameters.md)
- - [AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters](docs/AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters.md)
+ - [AFIOptimizationParametersRoot](docs/AFIOptimizationParametersRoot.md)
  - [AFIOptimizerStrategy](docs/AFIOptimizerStrategy.md)
  - [AFIOptimizerStrategyOverrides](docs/AFIOptimizerStrategyOverrides.md)
+ - [AccountDirectories](docs/AccountDirectories.md)
+ - [AccountDirectoriesRoot](docs/AccountDirectoriesRoot.md)
  - [AxiomaEquityOptimizationParameters](docs/AxiomaEquityOptimizationParameters.md)
- - [AxiomaEquityOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters](docs/AxiomaEquityOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters.md)
+ - [AxiomaEquityOptimizationParametersRoot](docs/AxiomaEquityOptimizationParametersRoot.md)
  - [AxiomaEquityOptimizerStrategy](docs/AxiomaEquityOptimizerStrategy.md)
  - [AxiomaEquityOptimizerStrategyOverrides](docs/AxiomaEquityOptimizerStrategyOverrides.md)
  - [BPMOptimization](docs/BPMOptimization.md)
  - [BPMOptimizationParameters](docs/BPMOptimizationParameters.md)
- - [BPMOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters](docs/BPMOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters.md)
+ - [BPMOptimizationParametersRoot](docs/BPMOptimizationParametersRoot.md)
  - [BPMOptimizerStrategy](docs/BPMOptimizerStrategy.md)
  - [BPMOptimizerStrategyAlphaOverride](docs/BPMOptimizerStrategyAlphaOverride.md)
  - [BPMOptimizerStrategyOverrides](docs/BPMOptimizerStrategyOverrides.md)
+ - [CalculationInfo](docs/CalculationInfo.md)
+ - [CalculationInfoRoot](docs/CalculationInfoRoot.md)
  - [CalculationMeta](docs/CalculationMeta.md)
  - [CalculationStatus](docs/CalculationStatus.md)
- - [CalculationStatusCalculationStatusMetaDataAndMetaModel](docs/CalculationStatusCalculationStatusMetaDataAndMetaModel.md)
  - [CalculationStatusMeta](docs/CalculationStatusMeta.md)
+ - [CalculationStatusRoot](docs/CalculationStatusRoot.md)
  - [CalculationUnitStatus](docs/CalculationUnitStatus.md)
  - [CalculationUnitStatusMeta](docs/CalculationUnitStatusMeta.md)
  - [ClientErrorResponse](docs/ClientErrorResponse.md)
  - [Column](docs/Column.md)
- - [ColumnObjectDataAndMetaModel](docs/ColumnObjectDataAndMetaModel.md)
+ - [ColumnRoot](docs/ColumnRoot.md)
  - [ColumnStatistic](docs/ColumnStatistic.md)
+ - [ColumnStatisticRoot](docs/ColumnStatisticRoot.md)
  - [ColumnSummary](docs/ColumnSummary.md)
+ - [ColumnSummaryRoot](docs/ColumnSummaryRoot.md)
  - [ComponentSummary](docs/ComponentSummary.md)
+ - [ComponentSummaryRoot](docs/ComponentSummaryRoot.md)
  - [ConfigurationAccount](docs/ConfigurationAccount.md)
+ - [ConstraintAction](docs/ConstraintAction.md)
+ - [Currency](docs/Currency.md)
+ - [CurrencyRoot](docs/CurrencyRoot.md)
  - [DateParametersSummary](docs/DateParametersSummary.md)
- - [DateParametersSummaryObjectDataAndMetaModel](docs/DateParametersSummaryObjectDataAndMetaModel.md)
+ - [DateParametersSummaryRoot](docs/DateParametersSummaryRoot.md)
  - [DocumentDirectories](docs/DocumentDirectories.md)
- - [DocumentDirectoriesObjectDataAndMetaModel](docs/DocumentDirectoriesObjectDataAndMetaModel.md)
+ - [DocumentDirectoriesRoot](docs/DocumentDirectoriesRoot.md)
  - [Error](docs/Error.md)
  - [ErrorSource](docs/ErrorSource.md)
+ - [EventSummary](docs/EventSummary.md)
+ - [FIABCalculationParameters](docs/FIABCalculationParameters.md)
+ - [FIABCalculationStatus](docs/FIABCalculationStatus.md)
+ - [FIABCalculationStatusSummary](docs/FIABCalculationStatusSummary.md)
+ - [FIABDateParameters](docs/FIABDateParameters.md)
+ - [FIABIdentifier](docs/FIABIdentifier.md)
  - [FICalculationParameters](docs/FICalculationParameters.md)
- - [FICalculationParametersCalculationMetaInteractiveCalculationParameters](docs/FICalculationParametersCalculationMetaInteractiveCalculationParameters.md)
+ - [FICalculationParametersRoot](docs/FICalculationParametersRoot.md)
  - [FIJobSettings](docs/FIJobSettings.md)
  - [FISecurity](docs/FISecurity.md)
  - [FPOAccount](docs/FPOAccount.md)
  - [FPOOptimizationParameters](docs/FPOOptimizationParameters.md)
- - [FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters](docs/FPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters.md)
+ - [FPOOptimizationParametersRoot](docs/FPOOptimizationParametersRoot.md)
  - [Frequency](docs/Frequency.md)
+ - [FrequencyRoot](docs/FrequencyRoot.md)
  - [Group](docs/Group.md)
+ - [GroupRoot](docs/GroupRoot.md)
  - [LinkedPATemplate](docs/LinkedPATemplate.md)
- - [LinkedPATemplateObjectDataAndMetaModel](docs/LinkedPATemplateObjectDataAndMetaModel.md)
  - [LinkedPATemplateParameters](docs/LinkedPATemplateParameters.md)
- - [LinkedPATemplateParametersObjectDataAndMetaModel](docs/LinkedPATemplateParametersObjectDataAndMetaModel.md)
+ - [LinkedPATemplateParametersRoot](docs/LinkedPATemplateParametersRoot.md)
+ - [LinkedPATemplateRoot](docs/LinkedPATemplateRoot.md)
  - [LinkedPATemplateSummary](docs/LinkedPATemplateSummary.md)
+ - [LinkedPATemplateSummaryRoot](docs/LinkedPATemplateSummaryRoot.md)
  - [LinkedPATemplateUpdateParameters](docs/LinkedPATemplateUpdateParameters.md)
- - [LinkedPATemplateUpdateParametersObjectDataAndMetaModel](docs/LinkedPATemplateUpdateParametersObjectDataAndMetaModel.md)
+ - [LinkedPATemplateUpdateParametersRoot](docs/LinkedPATemplateUpdateParametersRoot.md)
  - [NPOOptimizationParameters](docs/NPOOptimizationParameters.md)
- - [NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters](docs/NPOOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters.md)
+ - [NPOOptimizationParametersRoot](docs/NPOOptimizationParametersRoot.md)
  - [NPOOptimizerStrategy](docs/NPOOptimizerStrategy.md)
  - [NPOOptimizerStrategyOverrides](docs/NPOOptimizerStrategyOverrides.md)
- - [ObjectObjectDataAndMetaModel](docs/ObjectObjectDataAndMetaModel.md)
+ - [ObjectRoot](docs/ObjectRoot.md)
  - [OptimalPortfolio](docs/OptimalPortfolio.md)
  - [Optimization](docs/Optimization.md)
  - [OptimizerAccount](docs/OptimizerAccount.md)
@@ -320,23 +344,21 @@ Class | Method | HTTP request | Description
  - [PACalculationColumn](docs/PACalculationColumn.md)
  - [PACalculationGroup](docs/PACalculationGroup.md)
  - [PACalculationParameters](docs/PACalculationParameters.md)
- - [PACalculationParametersCalculationMetaCalculationParameters](docs/PACalculationParametersCalculationMetaCalculationParameters.md)
+ - [PACalculationParametersRoot](docs/PACalculationParametersRoot.md)
  - [PAComponent](docs/PAComponent.md)
  - [PAComponentData](docs/PAComponentData.md)
- - [PAComponentObjectDataAndMetaModel](docs/PAComponentObjectDataAndMetaModel.md)
+ - [PAComponentRoot](docs/PAComponentRoot.md)
  - [PADateParameters](docs/PADateParameters.md)
  - [PAIdentifier](docs/PAIdentifier.md)
  - [PaDoc](docs/PaDoc.md)
- - [PersistedCalculationInfo](docs/PersistedCalculationInfo.md)
- - [PersistedCalculationInfoObjectDataAndMetaModel](docs/PersistedCalculationInfoObjectDataAndMetaModel.md)
  - [PubCalculationParameters](docs/PubCalculationParameters.md)
- - [PubCalculationParametersPubCalculationMetaCalculationParameters](docs/PubCalculationParametersPubCalculationMetaCalculationParameters.md)
+ - [PubCalculationParametersRoot](docs/PubCalculationParametersRoot.md)
  - [PubDateParameters](docs/PubDateParameters.md)
  - [PubIdentifier](docs/PubIdentifier.md)
  - [QuantAllUniversalScreenParameters](docs/QuantAllUniversalScreenParameters.md)
  - [QuantCalculationMeta](docs/QuantCalculationMeta.md)
  - [QuantCalculationParameters](docs/QuantCalculationParameters.md)
- - [QuantCalculationParametersQuantCalculationMetaCalculationParameters](docs/QuantCalculationParametersQuantCalculationMetaCalculationParameters.md)
+ - [QuantCalculationParametersRoot](docs/QuantCalculationParametersRoot.md)
  - [QuantDate](docs/QuantDate.md)
  - [QuantDateList](docs/QuantDateList.md)
  - [QuantDateList1](docs/QuantDateList1.md)
@@ -358,47 +380,40 @@ Class | Method | HTTP request | Description
  - [QuantUniverse](docs/QuantUniverse.md)
  - [ReturnType](docs/ReturnType.md)
  - [SPARAccounts](docs/SPARAccounts.md)
- - [SPARAccountsObjectDataAndMetaModel](docs/SPARAccountsObjectDataAndMetaModel.md)
+ - [SPARAccountsRoot](docs/SPARAccountsRoot.md)
  - [SPARBenchmark](docs/SPARBenchmark.md)
- - [SPARBenchmarkObjectDataAndMetaModel](docs/SPARBenchmarkObjectDataAndMetaModel.md)
+ - [SPARBenchmarkRoot](docs/SPARBenchmarkRoot.md)
  - [SPARCalculationParameters](docs/SPARCalculationParameters.md)
- - [SPARCalculationParametersCalculationMetaCalculationParameters](docs/SPARCalculationParametersCalculationMetaCalculationParameters.md)
+ - [SPARCalculationParametersRoot](docs/SPARCalculationParametersRoot.md)
  - [SPARDateParameters](docs/SPARDateParameters.md)
  - [SPARIdentifier](docs/SPARIdentifier.md)
- - [StringColumnStatisticDictionaryObjectDataAndMetaModel](docs/StringColumnStatisticDictionaryObjectDataAndMetaModel.md)
- - [StringColumnSummaryDictionaryObjectDataAndMetaModel](docs/StringColumnSummaryDictionaryObjectDataAndMetaModel.md)
- - [StringComponentSummaryDictionaryObjectDataAndMetaModel](docs/StringComponentSummaryDictionaryObjectDataAndMetaModel.md)
- - [StringConstraintActionTuple](docs/StringConstraintActionTuple.md)
- - [StringFrequencyDictionaryObjectDataAndMetaModel](docs/StringFrequencyDictionaryObjectDataAndMetaModel.md)
- - [StringGroupDictionaryObjectDataAndMetaModel](docs/StringGroupDictionaryObjectDataAndMetaModel.md)
- - [StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel](docs/StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel.md)
- - [StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel](docs/StringTemplatedPAComponentSummaryDictionaryObjectDataAndMetaModel.md)
- - [StringUnlinkedPATemplateCategoryAndTypeDictionaryObjectDataAndMetaModel](docs/StringUnlinkedPATemplateCategoryAndTypeDictionaryObjectDataAndMetaModel.md)
- - [StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel](docs/StringUnlinkedPATemplateSummaryDictionaryObjectDataAndMetaModel.md)
- - [StringVaultConfigurationSummaryDictionaryObjectDataAndMetaModel](docs/StringVaultConfigurationSummaryDictionaryObjectDataAndMetaModel.md)
  - [TemplateContentTypes](docs/TemplateContentTypes.md)
  - [TemplatedPAComponentParameters](docs/TemplatedPAComponentParameters.md)
- - [TemplatedPAComponentParametersObjectDataAndMetaModel](docs/TemplatedPAComponentParametersObjectDataAndMetaModel.md)
+ - [TemplatedPAComponentParametersRoot](docs/TemplatedPAComponentParametersRoot.md)
  - [TemplatedPAComponentSummary](docs/TemplatedPAComponentSummary.md)
+ - [TemplatedPAComponentSummaryRoot](docs/TemplatedPAComponentSummaryRoot.md)
  - [TemplatedPAComponentUpdateParameters](docs/TemplatedPAComponentUpdateParameters.md)
- - [TemplatedPAComponentUpdateParametersObjectDataAndMetaModel](docs/TemplatedPAComponentUpdateParametersObjectDataAndMetaModel.md)
+ - [TemplatedPAComponentUpdateParametersRoot](docs/TemplatedPAComponentUpdateParametersRoot.md)
  - [UnlinkedPATemplate](docs/UnlinkedPATemplate.md)
  - [UnlinkedPATemplateCategoryAndType](docs/UnlinkedPATemplateCategoryAndType.md)
  - [UnlinkedPATemplateCategoryAndTypeDetails](docs/UnlinkedPATemplateCategoryAndTypeDetails.md)
- - [UnlinkedPATemplateCategoryAndTypeDetailsObjectDataAndMetaModel](docs/UnlinkedPATemplateCategoryAndTypeDetailsObjectDataAndMetaModel.md)
- - [UnlinkedPATemplateObjectDataAndMetaModel](docs/UnlinkedPATemplateObjectDataAndMetaModel.md)
+ - [UnlinkedPATemplateCategoryAndTypeDetailsRoot](docs/UnlinkedPATemplateCategoryAndTypeDetailsRoot.md)
+ - [UnlinkedPATemplateCategoryAndTypeRoot](docs/UnlinkedPATemplateCategoryAndTypeRoot.md)
  - [UnlinkedPATemplateParameters](docs/UnlinkedPATemplateParameters.md)
- - [UnlinkedPATemplateParametersObjectDataAndMetaModel](docs/UnlinkedPATemplateParametersObjectDataAndMetaModel.md)
+ - [UnlinkedPATemplateParametersRoot](docs/UnlinkedPATemplateParametersRoot.md)
+ - [UnlinkedPATemplateRoot](docs/UnlinkedPATemplateRoot.md)
  - [UnlinkedPATemplateSummary](docs/UnlinkedPATemplateSummary.md)
+ - [UnlinkedPATemplateSummaryRoot](docs/UnlinkedPATemplateSummaryRoot.md)
  - [UnlinkedPATemplateUpdateParameters](docs/UnlinkedPATemplateUpdateParameters.md)
- - [UnlinkedPATemplateUpdateParametersObjectDataAndMetaModel](docs/UnlinkedPATemplateUpdateParametersObjectDataAndMetaModel.md)
+ - [UnlinkedPATemplateUpdateParametersRoot](docs/UnlinkedPATemplateUpdateParametersRoot.md)
  - [VaultCalculationParameters](docs/VaultCalculationParameters.md)
- - [VaultCalculationParametersCalculationMetaCalculationParameters](docs/VaultCalculationParametersCalculationMetaCalculationParameters.md)
+ - [VaultCalculationParametersRoot](docs/VaultCalculationParametersRoot.md)
  - [VaultComponent](docs/VaultComponent.md)
- - [VaultComponentObjectDataAndMetaModel](docs/VaultComponentObjectDataAndMetaModel.md)
+ - [VaultComponentRoot](docs/VaultComponentRoot.md)
  - [VaultConfiguration](docs/VaultConfiguration.md)
- - [VaultConfigurationObjectDataAndMetaModel](docs/VaultConfigurationObjectDataAndMetaModel.md)
+ - [VaultConfigurationRoot](docs/VaultConfigurationRoot.md)
  - [VaultConfigurationSummary](docs/VaultConfigurationSummary.md)
+ - [VaultConfigurationSummaryRoot](docs/VaultConfigurationSummaryRoot.md)
  - [VaultDateParameters](docs/VaultDateParameters.md)
  - [VaultIdentifier](docs/VaultIdentifier.md)
 

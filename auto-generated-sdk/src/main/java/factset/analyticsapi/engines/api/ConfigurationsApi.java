@@ -15,8 +15,8 @@ import java.util.Map;
 import java.io.File;
 
 import factset.analyticsapi.engines.models.ClientErrorResponse;
-import factset.analyticsapi.engines.models.StringVaultConfigurationSummaryDictionaryObjectDataAndMetaModel;
-import factset.analyticsapi.engines.models.VaultConfigurationObjectDataAndMetaModel;
+import factset.analyticsapi.engines.models.VaultConfigurationRoot;
+import factset.analyticsapi.engines.models.VaultConfigurationSummaryRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ConfigurationsApi {
@@ -51,7 +51,7 @@ public class ConfigurationsApi {
    * Get Vault configuration by id
    * This endpoint returns details for a Vault configuration as well as a list of accounts it is used in.
    * @param id Vault configuration id to get the details of (required)
-    @return VaultConfigurationObjectDataAndMetaModel
+    @return VaultConfigurationRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -67,7 +67,7 @@ public class ConfigurationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public VaultConfigurationObjectDataAndMetaModel getVaultConfigurationById(String id) throws ApiException {
+ public VaultConfigurationRoot getVaultConfigurationById(String id) throws ApiException {
     return getVaultConfigurationByIdWithHttpInfo(id).getData();
   }
 
@@ -75,7 +75,7 @@ public class ConfigurationsApi {
    * Get Vault configuration by id
    * This endpoint returns details for a Vault configuration as well as a list of accounts it is used in.
    * @param id Vault configuration id to get the details of (required)
-    * @return ApiResponse&lt;VaultConfigurationObjectDataAndMetaModel&gt;
+    * @return ApiResponse&lt;VaultConfigurationRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -91,7 +91,7 @@ public class ConfigurationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<VaultConfigurationObjectDataAndMetaModel> getVaultConfigurationByIdWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<VaultConfigurationRoot> getVaultConfigurationByIdWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -125,14 +125,14 @@ public class ConfigurationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<VaultConfigurationObjectDataAndMetaModel> localVarReturnType = new GenericType<VaultConfigurationObjectDataAndMetaModel>() {};
+    GenericType<VaultConfigurationRoot> localVarReturnType = new GenericType<VaultConfigurationRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<VaultConfigurationObjectDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<VaultConfigurationRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<VaultConfigurationObjectDataAndMetaModel>invokeAPIWithReturnMap("ConfigurationsApi.getVaultConfigurationById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<VaultConfigurationRoot>invokeAPIWithReturnMap("ConfigurationsApi.getVaultConfigurationById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -140,7 +140,7 @@ public class ConfigurationsApi {
    * Get Vault configurations
    * This endpoint returns all the Vault configurations saved in the provided account.
    * @param account Required account query parameter to filter configurations for a specific account (required)
-    @return StringVaultConfigurationSummaryDictionaryObjectDataAndMetaModel
+    @return VaultConfigurationSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -156,7 +156,7 @@ public class ConfigurationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public StringVaultConfigurationSummaryDictionaryObjectDataAndMetaModel getVaultConfigurations(String account) throws ApiException {
+ public VaultConfigurationSummaryRoot getVaultConfigurations(String account) throws ApiException {
     return getVaultConfigurationsWithHttpInfo(account).getData();
   }
 
@@ -164,7 +164,7 @@ public class ConfigurationsApi {
    * Get Vault configurations
    * This endpoint returns all the Vault configurations saved in the provided account.
    * @param account Required account query parameter to filter configurations for a specific account (required)
-    * @return ApiResponse&lt;StringVaultConfigurationSummaryDictionaryObjectDataAndMetaModel&gt;
+    * @return ApiResponse&lt;VaultConfigurationSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -180,7 +180,7 @@ public class ConfigurationsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<StringVaultConfigurationSummaryDictionaryObjectDataAndMetaModel> getVaultConfigurationsWithHttpInfo(String account) throws ApiException {
+  public ApiResponse<VaultConfigurationSummaryRoot> getVaultConfigurationsWithHttpInfo(String account) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'account' is set
@@ -214,14 +214,14 @@ public class ConfigurationsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<StringVaultConfigurationSummaryDictionaryObjectDataAndMetaModel> localVarReturnType = new GenericType<StringVaultConfigurationSummaryDictionaryObjectDataAndMetaModel>() {};
+    GenericType<VaultConfigurationSummaryRoot> localVarReturnType = new GenericType<VaultConfigurationSummaryRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<StringVaultConfigurationSummaryDictionaryObjectDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<VaultConfigurationSummaryRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<StringVaultConfigurationSummaryDictionaryObjectDataAndMetaModel>invokeAPIWithReturnMap("ConfigurationsApi.getVaultConfigurations", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<VaultConfigurationSummaryRoot>invokeAPIWithReturnMap("ConfigurationsApi.getVaultConfigurations", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

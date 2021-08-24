@@ -15,10 +15,10 @@ import java.util.Map;
 import java.io.File;
 
 import factset.analyticsapi.engines.models.ClientErrorResponse;
-import factset.analyticsapi.engines.models.LinkedPATemplateObjectDataAndMetaModel;
-import factset.analyticsapi.engines.models.LinkedPATemplateParametersObjectDataAndMetaModel;
-import factset.analyticsapi.engines.models.LinkedPATemplateUpdateParametersObjectDataAndMetaModel;
-import factset.analyticsapi.engines.models.StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel;
+import factset.analyticsapi.engines.models.LinkedPATemplateParametersRoot;
+import factset.analyticsapi.engines.models.LinkedPATemplateRoot;
+import factset.analyticsapi.engines.models.LinkedPATemplateSummaryRoot;
+import factset.analyticsapi.engines.models.LinkedPATemplateUpdateParametersRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class LinkedPaTemplatesApi {
@@ -52,8 +52,8 @@ public class LinkedPaTemplatesApi {
   /**
    * Create a linked PA template
    * This endpoint creates a template from an **existing portfolio analysis tile**, allowing the user to replicate and fetch reports settings.    Remarks:    *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
-   * @param linkedPATemplateParametersObjectDataAndMetaModel Request Parameters (required)
-    @return StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel
+   * @param linkedPATemplateParametersRoot Request Parameters (required)
+    @return LinkedPATemplateSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -69,15 +69,15 @@ public class LinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel createLinkedPATemplates(LinkedPATemplateParametersObjectDataAndMetaModel linkedPATemplateParametersObjectDataAndMetaModel) throws ApiException {
-    return createLinkedPATemplatesWithHttpInfo(linkedPATemplateParametersObjectDataAndMetaModel).getData();
+ public LinkedPATemplateSummaryRoot createLinkedPATemplates(LinkedPATemplateParametersRoot linkedPATemplateParametersRoot) throws ApiException {
+    return createLinkedPATemplatesWithHttpInfo(linkedPATemplateParametersRoot).getData();
   }
 
   /**
    * Create a linked PA template
    * This endpoint creates a template from an **existing portfolio analysis tile**, allowing the user to replicate and fetch reports settings.    Remarks:    *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
-   * @param linkedPATemplateParametersObjectDataAndMetaModel Request Parameters (required)
-    * @return ApiResponse&lt;StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel&gt;
+   * @param linkedPATemplateParametersRoot Request Parameters (required)
+    * @return ApiResponse&lt;LinkedPATemplateSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -93,12 +93,12 @@ public class LinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel> createLinkedPATemplatesWithHttpInfo(LinkedPATemplateParametersObjectDataAndMetaModel linkedPATemplateParametersObjectDataAndMetaModel) throws ApiException {
-    Object localVarPostBody = linkedPATemplateParametersObjectDataAndMetaModel;
+  public ApiResponse<LinkedPATemplateSummaryRoot> createLinkedPATemplatesWithHttpInfo(LinkedPATemplateParametersRoot linkedPATemplateParametersRoot) throws ApiException {
+    Object localVarPostBody = linkedPATemplateParametersRoot;
     
-    // verify the required parameter 'linkedPATemplateParametersObjectDataAndMetaModel' is set
-    if (linkedPATemplateParametersObjectDataAndMetaModel == null) {
-      throw new ApiException(400, "Missing the required parameter 'linkedPATemplateParametersObjectDataAndMetaModel' when calling createLinkedPATemplates");
+    // verify the required parameter 'linkedPATemplateParametersRoot' is set
+    if (linkedPATemplateParametersRoot == null) {
+      throw new ApiException(400, "Missing the required parameter 'linkedPATemplateParametersRoot' when calling createLinkedPATemplates");
     }
     
     // create path and map variables
@@ -126,13 +126,13 @@ public class LinkedPaTemplatesApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel> localVarReturnType = new GenericType<StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>() {};
+    GenericType<LinkedPATemplateSummaryRoot> localVarReturnType = new GenericType<LinkedPATemplateSummaryRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(201, new GenericType<StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>(){});
+        returnTypeMap.put(201, new GenericType<LinkedPATemplateSummaryRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>invokeAPIWithReturnMap("LinkedPaTemplatesApi.createLinkedPATemplates", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+      return apiClient.<LinkedPATemplateSummaryRoot>invokeAPIWithReturnMap("LinkedPaTemplatesApi.createLinkedPATemplates", localVarPath, "POST", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -227,7 +227,7 @@ public class LinkedPaTemplatesApi {
    * @param directory Get linked PA templates in path. (optional)
    * @param documentDirectory Get linked PA templates for documents in document path (optional)
    * @param documentName Get linked PA templates for documents by document name (optional)
-    @return StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel
+    @return LinkedPATemplateSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -243,7 +243,7 @@ public class LinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel getLinkedPATemplates(String directory, String documentDirectory, String documentName) throws ApiException {
+ public LinkedPATemplateSummaryRoot getLinkedPATemplates(String directory, String documentDirectory, String documentName) throws ApiException {
     return getLinkedPATemplatesWithHttpInfo(directory, documentDirectory, documentName).getData();
   }
 
@@ -253,7 +253,7 @@ public class LinkedPaTemplatesApi {
    * @param directory Get linked PA templates in path. (optional)
    * @param documentDirectory Get linked PA templates for documents in document path (optional)
    * @param documentName Get linked PA templates for documents by document name (optional)
-    * @return ApiResponse&lt;StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel&gt;
+    * @return ApiResponse&lt;LinkedPATemplateSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -269,7 +269,7 @@ public class LinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel> getLinkedPATemplatesWithHttpInfo(String directory, String documentDirectory, String documentName) throws ApiException {
+  public ApiResponse<LinkedPATemplateSummaryRoot> getLinkedPATemplatesWithHttpInfo(String directory, String documentDirectory, String documentName) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -300,14 +300,14 @@ public class LinkedPaTemplatesApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel> localVarReturnType = new GenericType<StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>() {};
+    GenericType<LinkedPATemplateSummaryRoot> localVarReturnType = new GenericType<LinkedPATemplateSummaryRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<LinkedPATemplateSummaryRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>invokeAPIWithReturnMap("LinkedPaTemplatesApi.getLinkedPATemplates", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<LinkedPATemplateSummaryRoot>invokeAPIWithReturnMap("LinkedPaTemplatesApi.getLinkedPATemplates", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -315,7 +315,7 @@ public class LinkedPaTemplatesApi {
    * Get linked PA template by id
    * This endpoint fetches the linked PA template settings.
    * @param id Unique identifier for a linked PA template (required)
-    @return LinkedPATemplateObjectDataAndMetaModel
+    @return LinkedPATemplateRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -331,7 +331,7 @@ public class LinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public LinkedPATemplateObjectDataAndMetaModel getLinkedPATemplatesById(String id) throws ApiException {
+ public LinkedPATemplateRoot getLinkedPATemplatesById(String id) throws ApiException {
     return getLinkedPATemplatesByIdWithHttpInfo(id).getData();
   }
 
@@ -339,7 +339,7 @@ public class LinkedPaTemplatesApi {
    * Get linked PA template by id
    * This endpoint fetches the linked PA template settings.
    * @param id Unique identifier for a linked PA template (required)
-    * @return ApiResponse&lt;LinkedPATemplateObjectDataAndMetaModel&gt;
+    * @return ApiResponse&lt;LinkedPATemplateRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -355,7 +355,7 @@ public class LinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<LinkedPATemplateObjectDataAndMetaModel> getLinkedPATemplatesByIdWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<LinkedPATemplateRoot> getLinkedPATemplatesByIdWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -389,14 +389,14 @@ public class LinkedPaTemplatesApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<LinkedPATemplateObjectDataAndMetaModel> localVarReturnType = new GenericType<LinkedPATemplateObjectDataAndMetaModel>() {};
+    GenericType<LinkedPATemplateRoot> localVarReturnType = new GenericType<LinkedPATemplateRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<LinkedPATemplateObjectDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<LinkedPATemplateRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<LinkedPATemplateObjectDataAndMetaModel>invokeAPIWithReturnMap("LinkedPaTemplatesApi.getLinkedPATemplatesById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<LinkedPATemplateRoot>invokeAPIWithReturnMap("LinkedPaTemplatesApi.getLinkedPATemplatesById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -404,8 +404,8 @@ public class LinkedPaTemplatesApi {
    * Update a linked PA template
    * This endpoint allows the user to change the request body and description from an existing template.    Remarks:    *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
    * @param id Unique identifier for a linked PA template (required)
-   * @param linkedPATemplateUpdateParametersObjectDataAndMetaModel Request Parameters (required)
-    @return StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel
+   * @param linkedPATemplateUpdateParametersRoot Request Parameters (required)
+    @return LinkedPATemplateSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -421,16 +421,16 @@ public class LinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel updateLinkedPATemplates(String id, LinkedPATemplateUpdateParametersObjectDataAndMetaModel linkedPATemplateUpdateParametersObjectDataAndMetaModel) throws ApiException {
-    return updateLinkedPATemplatesWithHttpInfo(id, linkedPATemplateUpdateParametersObjectDataAndMetaModel).getData();
+ public LinkedPATemplateSummaryRoot updateLinkedPATemplates(String id, LinkedPATemplateUpdateParametersRoot linkedPATemplateUpdateParametersRoot) throws ApiException {
+    return updateLinkedPATemplatesWithHttpInfo(id, linkedPATemplateUpdateParametersRoot).getData();
   }
 
   /**
    * Update a linked PA template
    * This endpoint allows the user to change the request body and description from an existing template.    Remarks:    *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
    * @param id Unique identifier for a linked PA template (required)
-   * @param linkedPATemplateUpdateParametersObjectDataAndMetaModel Request Parameters (required)
-    * @return ApiResponse&lt;StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel&gt;
+   * @param linkedPATemplateUpdateParametersRoot Request Parameters (required)
+    * @return ApiResponse&lt;LinkedPATemplateSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -446,17 +446,17 @@ public class LinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel> updateLinkedPATemplatesWithHttpInfo(String id, LinkedPATemplateUpdateParametersObjectDataAndMetaModel linkedPATemplateUpdateParametersObjectDataAndMetaModel) throws ApiException {
-    Object localVarPostBody = linkedPATemplateUpdateParametersObjectDataAndMetaModel;
+  public ApiResponse<LinkedPATemplateSummaryRoot> updateLinkedPATemplatesWithHttpInfo(String id, LinkedPATemplateUpdateParametersRoot linkedPATemplateUpdateParametersRoot) throws ApiException {
+    Object localVarPostBody = linkedPATemplateUpdateParametersRoot;
     
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling updateLinkedPATemplates");
     }
     
-    // verify the required parameter 'linkedPATemplateUpdateParametersObjectDataAndMetaModel' is set
-    if (linkedPATemplateUpdateParametersObjectDataAndMetaModel == null) {
-      throw new ApiException(400, "Missing the required parameter 'linkedPATemplateUpdateParametersObjectDataAndMetaModel' when calling updateLinkedPATemplates");
+    // verify the required parameter 'linkedPATemplateUpdateParametersRoot' is set
+    if (linkedPATemplateUpdateParametersRoot == null) {
+      throw new ApiException(400, "Missing the required parameter 'linkedPATemplateUpdateParametersRoot' when calling updateLinkedPATemplates");
     }
     
     // create path and map variables
@@ -485,14 +485,14 @@ public class LinkedPaTemplatesApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel> localVarReturnType = new GenericType<StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>() {};
+    GenericType<LinkedPATemplateSummaryRoot> localVarReturnType = new GenericType<LinkedPATemplateSummaryRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<LinkedPATemplateSummaryRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<StringLinkedPATemplateSummaryDictionaryObjectDataAndMetaModel>invokeAPIWithReturnMap("LinkedPaTemplatesApi.updateLinkedPATemplates", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
+      return apiClient.<LinkedPATemplateSummaryRoot>invokeAPIWithReturnMap("LinkedPaTemplatesApi.updateLinkedPATemplates", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

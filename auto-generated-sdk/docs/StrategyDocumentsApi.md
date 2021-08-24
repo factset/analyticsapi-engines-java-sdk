@@ -1,7 +1,7 @@
 
 # StrategyDocumentsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.factset.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## getAxiomaEquityStrategyDocuments
 
-> DocumentDirectoriesObjectDataAndMetaModel getAxiomaEquityStrategyDocuments(path)
+> DocumentDirectoriesRoot getAxiomaEquityStrategyDocuments(path)
 
 Get Axioma Equity strategy documents and sub-directories in a directory
 
@@ -35,7 +35,7 @@ import factset.analyticsapi.engines.api.StrategyDocumentsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -49,7 +49,7 @@ public class Example {
         StrategyDocumentsApi apiInstance = new StrategyDocumentsApi(defaultClient);
         String path = ""; // String | The directory to get the strategy documents and sub-directories in
         try {
-            DocumentDirectoriesObjectDataAndMetaModel result = apiInstance.getAxiomaEquityStrategyDocuments(path);
+            DocumentDirectoriesRoot result = apiInstance.getAxiomaEquityStrategyDocuments(path);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling StrategyDocumentsApi#getAxiomaEquityStrategyDocuments");
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentDirectoriesObjectDataAndMetaModel**](DocumentDirectoriesObjectDataAndMetaModel.md)
+[**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
 
 ### Authorization
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 ## getAxiomaFIStrategyDocuments
 
-> DocumentDirectoriesObjectDataAndMetaModel getAxiomaFIStrategyDocuments(path)
+> DocumentDirectoriesRoot getAxiomaFIStrategyDocuments(path)
 
 Get Axioma FI strategy documents and sub-directories in a directory
 
@@ -118,7 +118,7 @@ import factset.analyticsapi.engines.api.StrategyDocumentsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -132,7 +132,7 @@ public class Example {
         StrategyDocumentsApi apiInstance = new StrategyDocumentsApi(defaultClient);
         String path = ""; // String | The directory to get the strategy documents and sub-directories in
         try {
-            DocumentDirectoriesObjectDataAndMetaModel result = apiInstance.getAxiomaFIStrategyDocuments(path);
+            DocumentDirectoriesRoot result = apiInstance.getAxiomaFIStrategyDocuments(path);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling StrategyDocumentsApi#getAxiomaFIStrategyDocuments");
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentDirectoriesObjectDataAndMetaModel**](DocumentDirectoriesObjectDataAndMetaModel.md)
+[**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
 
 ### Authorization
 
@@ -181,7 +181,7 @@ Name | Type | Description  | Notes
 
 ## getBarraStrategyDocuments
 
-> DocumentDirectoriesObjectDataAndMetaModel getBarraStrategyDocuments(path)
+> DocumentDirectoriesRoot getBarraStrategyDocuments(path)
 
 Get Barra strategy documents and sub-directories in a directory
 
@@ -201,7 +201,7 @@ import factset.analyticsapi.engines.api.StrategyDocumentsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -215,7 +215,7 @@ public class Example {
         StrategyDocumentsApi apiInstance = new StrategyDocumentsApi(defaultClient);
         String path = ""; // String | The directory to get the strategy documents and sub-directories in
         try {
-            DocumentDirectoriesObjectDataAndMetaModel result = apiInstance.getBarraStrategyDocuments(path);
+            DocumentDirectoriesRoot result = apiInstance.getBarraStrategyDocuments(path);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling StrategyDocumentsApi#getBarraStrategyDocuments");
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentDirectoriesObjectDataAndMetaModel**](DocumentDirectoriesObjectDataAndMetaModel.md)
+[**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
 
 ### Authorization
 
@@ -264,7 +264,7 @@ Name | Type | Description  | Notes
 
 ## getFPOStrategyDocuments
 
-> DocumentDirectoriesObjectDataAndMetaModel getFPOStrategyDocuments(path)
+> DocumentDirectoriesRoot getFPOStrategyDocuments(path)
 
 Get FactSet Portfolio Optimizer strategy documents and sub-directories in a directory
 
@@ -284,7 +284,7 @@ import factset.analyticsapi.engines.api.StrategyDocumentsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -298,7 +298,7 @@ public class Example {
         StrategyDocumentsApi apiInstance = new StrategyDocumentsApi(defaultClient);
         String path = ""; // String | The directory to get the strategy documents and sub-directories in
         try {
-            DocumentDirectoriesObjectDataAndMetaModel result = apiInstance.getFPOStrategyDocuments(path);
+            DocumentDirectoriesRoot result = apiInstance.getFPOStrategyDocuments(path);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling StrategyDocumentsApi#getFPOStrategyDocuments");
@@ -320,7 +320,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentDirectoriesObjectDataAndMetaModel**](DocumentDirectoriesObjectDataAndMetaModel.md)
+[**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
 
 ### Authorization
 
@@ -347,7 +347,7 @@ Name | Type | Description  | Notes
 
 ## getNorthfieldStrategyDocuments
 
-> DocumentDirectoriesObjectDataAndMetaModel getNorthfieldStrategyDocuments(path)
+> DocumentDirectoriesRoot getNorthfieldStrategyDocuments(path)
 
 Get Northfield strategy documents and sub-directories in a directory
 
@@ -367,7 +367,7 @@ import factset.analyticsapi.engines.api.StrategyDocumentsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -381,7 +381,7 @@ public class Example {
         StrategyDocumentsApi apiInstance = new StrategyDocumentsApi(defaultClient);
         String path = ""; // String | The directory to get the strategy documents and sub-directories in
         try {
-            DocumentDirectoriesObjectDataAndMetaModel result = apiInstance.getNorthfieldStrategyDocuments(path);
+            DocumentDirectoriesRoot result = apiInstance.getNorthfieldStrategyDocuments(path);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling StrategyDocumentsApi#getNorthfieldStrategyDocuments");
@@ -403,7 +403,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentDirectoriesObjectDataAndMetaModel**](DocumentDirectoriesObjectDataAndMetaModel.md)
+[**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
 
 ### Authorization
 

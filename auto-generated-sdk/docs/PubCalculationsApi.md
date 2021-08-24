@@ -1,7 +1,7 @@
 
 # PubCalculationsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.factset.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -36,7 +36,7 @@ import factset.analyticsapi.engines.api.PubCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -96,7 +96,7 @@ null (empty response body)
 
 ## getCalculationParameters
 
-> PubCalculationParametersPubCalculationMetaCalculationParameters getCalculationParameters(id)
+> PubCalculationParametersRoot getCalculationParameters(id)
 
 Get Pub calculation parameters by id
 
@@ -116,7 +116,7 @@ import factset.analyticsapi.engines.api.PubCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -130,7 +130,7 @@ public class Example {
         PubCalculationsApi apiInstance = new PubCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run Pub calculation endpoint
         try {
-            PubCalculationParametersPubCalculationMetaCalculationParameters result = apiInstance.getCalculationParameters(id);
+            PubCalculationParametersRoot result = apiInstance.getCalculationParameters(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PubCalculationsApi#getCalculationParameters");
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PubCalculationParametersPubCalculationMetaCalculationParameters**](PubCalculationParametersPubCalculationMetaCalculationParameters.md)
+[**PubCalculationParametersRoot**](PubCalculationParametersRoot.md)
 
 ### Authorization
 
@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
 
 ## getCalculationStatusById
 
-> CalculationStatusCalculationStatusMetaDataAndMetaModel getCalculationStatusById(id)
+> CalculationStatusRoot getCalculationStatusById(id)
 
 Get Pub calculation status by id
 
@@ -198,7 +198,7 @@ import factset.analyticsapi.engines.api.PubCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -212,7 +212,7 @@ public class Example {
         PubCalculationsApi apiInstance = new PubCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run Pub calculation endpoint
         try {
-            CalculationStatusCalculationStatusMetaDataAndMetaModel result = apiInstance.getCalculationStatusById(id);
+            CalculationStatusRoot result = apiInstance.getCalculationStatusById(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PubCalculationsApi#getCalculationStatusById");
@@ -234,7 +234,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CalculationStatusCalculationStatusMetaDataAndMetaModel**](CalculationStatusCalculationStatusMetaDataAndMetaModel.md)
+[**CalculationStatusRoot**](CalculationStatusRoot.md)
 
 ### Authorization
 
@@ -281,7 +281,7 @@ import factset.analyticsapi.engines.api.PubCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -344,7 +344,7 @@ Name | Type | Description  | Notes
 
 ## postAndCalculate
 
-> CalculationStatusCalculationStatusMetaDataAndMetaModel postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersPubCalculationMetaCalculationParameters)
+> CalculationStatusRoot postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersRoot)
 
 Create and Run Pub calculation
 
@@ -365,7 +365,7 @@ import factset.analyticsapi.engines.api.PubCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -379,9 +379,9 @@ public class Example {
         PubCalculationsApi apiInstance = new PubCalculationsApi(defaultClient);
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds when only one unit is passed in the POST body.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
-        PubCalculationParametersPubCalculationMetaCalculationParameters pubCalculationParametersPubCalculationMetaCalculationParameters = new PubCalculationParametersPubCalculationMetaCalculationParameters(); // PubCalculationParametersPubCalculationMetaCalculationParameters | Calculation Parameters
+        PubCalculationParametersRoot pubCalculationParametersRoot = new PubCalculationParametersRoot(); // PubCalculationParametersRoot | Calculation Parameters
         try {
-            CalculationStatusCalculationStatusMetaDataAndMetaModel result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersPubCalculationMetaCalculationParameters);
+            Object result = apiInstance.postAndCalculate(xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PubCalculationsApi#postAndCalculate");
@@ -401,11 +401,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds when only one unit is passed in the POST body. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
- **pubCalculationParametersPubCalculationMetaCalculationParameters** | [**PubCalculationParametersPubCalculationMetaCalculationParameters**](PubCalculationParametersPubCalculationMetaCalculationParameters.md)| Calculation Parameters | [optional]
+ **pubCalculationParametersRoot** | [**PubCalculationParametersRoot**](PubCalculationParametersRoot.md)| Calculation Parameters | [optional]
 
 ### Return type
 
-[**CalculationStatusCalculationStatusMetaDataAndMetaModel**](CalculationStatusCalculationStatusMetaDataAndMetaModel.md)
+(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status -  File )
 
 ### Authorization
 
@@ -434,7 +434,7 @@ Name | Type | Description  | Notes
 
 ## putAndCalculate
 
-> CalculationStatusCalculationStatusMetaDataAndMetaModel putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersPubCalculationMetaCalculationParameters)
+> CalculationStatusRoot putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersRoot)
 
 Create or Update Pub calculation and run it.
 
@@ -459,7 +459,7 @@ import factset.analyticsapi.engines.api.PubCalculationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -474,9 +474,9 @@ public class Example {
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run Pub calculation endpoint
         Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds when only one unit is passed in the PUT body.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
-        PubCalculationParametersPubCalculationMetaCalculationParameters pubCalculationParametersPubCalculationMetaCalculationParameters = new PubCalculationParametersPubCalculationMetaCalculationParameters(); // PubCalculationParametersPubCalculationMetaCalculationParameters | Calculation Parameters
+        PubCalculationParametersRoot pubCalculationParametersRoot = new PubCalculationParametersRoot(); // PubCalculationParametersRoot | Calculation Parameters
         try {
-            CalculationStatusCalculationStatusMetaDataAndMetaModel result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersPubCalculationMetaCalculationParameters);
+            Object result = apiInstance.putAndCalculate(id, xFactSetApiLongRunningDeadline, cacheControl, pubCalculationParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PubCalculationsApi#putAndCalculate");
@@ -497,11 +497,11 @@ Name | Type | Description  | Notes
  **id** | **String**| from url, provided from the location header in the Create and Run Pub calculation endpoint |
  **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds when only one unit is passed in the PUT body. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
- **pubCalculationParametersPubCalculationMetaCalculationParameters** | [**PubCalculationParametersPubCalculationMetaCalculationParameters**](PubCalculationParametersPubCalculationMetaCalculationParameters.md)| Calculation Parameters | [optional]
+ **pubCalculationParametersRoot** | [**PubCalculationParametersRoot**](PubCalculationParametersRoot.md)| Calculation Parameters | [optional]
 
 ### Return type
 
-[**CalculationStatusCalculationStatusMetaDataAndMetaModel**](CalculationStatusCalculationStatusMetaDataAndMetaModel.md)
+(For 202 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 200 status - [**CalculationStatusRoot**](CalculationStatusRoot.md))(For 201 status -  File )
 
 ### Authorization
 

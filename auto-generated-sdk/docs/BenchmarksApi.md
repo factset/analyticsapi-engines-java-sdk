@@ -1,7 +1,7 @@
 
 # BenchmarksApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.factset.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## getSPARBenchmarkById
 
-> SPARBenchmarkObjectDataAndMetaModel getSPARBenchmarkById(id)
+> SPARBenchmarkRoot getSPARBenchmarkById(id)
 
 Get SPAR benchmark details
 
@@ -31,7 +31,7 @@ import factset.analyticsapi.engines.api.BenchmarksApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -45,7 +45,7 @@ public class Example {
         BenchmarksApi apiInstance = new BenchmarksApi(defaultClient);
         String id = "id_example"; // String | Benchmark Identifier
         try {
-            SPARBenchmarkObjectDataAndMetaModel result = apiInstance.getSPARBenchmarkById(id);
+            SPARBenchmarkRoot result = apiInstance.getSPARBenchmarkById(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BenchmarksApi#getSPARBenchmarkById");
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SPARBenchmarkObjectDataAndMetaModel**](SPARBenchmarkObjectDataAndMetaModel.md)
+[**SPARBenchmarkRoot**](SPARBenchmarkRoot.md)
 
 ### Authorization
 

@@ -1,7 +1,7 @@
 
 # ComponentsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.factset.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## getPAComponentById
 
-> PAComponentObjectDataAndMetaModel getPAComponentById(id)
+> PAComponentRoot getPAComponentById(id)
 
 Get PA component by id
 
@@ -35,7 +35,7 @@ import factset.analyticsapi.engines.api.ComponentsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -49,7 +49,7 @@ public class Example {
         ComponentsApi apiInstance = new ComponentsApi(defaultClient);
         String id = "id_example"; // String | Unique identifier for a PA component
         try {
-            PAComponentObjectDataAndMetaModel result = apiInstance.getPAComponentById(id);
+            PAComponentRoot result = apiInstance.getPAComponentById(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ComponentsApi#getPAComponentById");
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PAComponentObjectDataAndMetaModel**](PAComponentObjectDataAndMetaModel.md)
+[**PAComponentRoot**](PAComponentRoot.md)
 
 ### Authorization
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 ## getPAComponents
 
-> StringComponentSummaryDictionaryObjectDataAndMetaModel getPAComponents(document, directory)
+> ComponentSummaryRoot getPAComponents(document, directory)
 
 Get PA components
 
@@ -122,7 +122,7 @@ import factset.analyticsapi.engines.api.ComponentsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -137,7 +137,7 @@ public class Example {
         String document = "document_example"; // String | Document Name
         String directory = "directory_example"; // String | Directory to get the components
         try {
-            StringComponentSummaryDictionaryObjectDataAndMetaModel result = apiInstance.getPAComponents(document, directory);
+            ComponentSummaryRoot result = apiInstance.getPAComponents(document, directory);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ComponentsApi#getPAComponents");
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StringComponentSummaryDictionaryObjectDataAndMetaModel**](StringComponentSummaryDictionaryObjectDataAndMetaModel.md)
+[**ComponentSummaryRoot**](ComponentSummaryRoot.md)
 
 ### Authorization
 
@@ -187,7 +187,7 @@ Name | Type | Description  | Notes
 
 ## getSPARComponents
 
-> StringComponentSummaryDictionaryObjectDataAndMetaModel getSPARComponents(document)
+> ComponentSummaryRoot getSPARComponents(document)
 
 Get SPAR components
 
@@ -207,7 +207,7 @@ import factset.analyticsapi.engines.api.ComponentsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -221,7 +221,7 @@ public class Example {
         ComponentsApi apiInstance = new ComponentsApi(defaultClient);
         String document = "document_example"; // String | Document Name
         try {
-            StringComponentSummaryDictionaryObjectDataAndMetaModel result = apiInstance.getSPARComponents(document);
+            ComponentSummaryRoot result = apiInstance.getSPARComponents(document);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ComponentsApi#getSPARComponents");
@@ -243,7 +243,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StringComponentSummaryDictionaryObjectDataAndMetaModel**](StringComponentSummaryDictionaryObjectDataAndMetaModel.md)
+[**ComponentSummaryRoot**](ComponentSummaryRoot.md)
 
 ### Authorization
 
@@ -270,7 +270,7 @@ Name | Type | Description  | Notes
 
 ## getVaultComponentById
 
-> VaultComponentObjectDataAndMetaModel getVaultComponentById(id)
+> VaultComponentRoot getVaultComponentById(id)
 
 Get Vault component by id
 
@@ -290,7 +290,7 @@ import factset.analyticsapi.engines.api.ComponentsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -304,7 +304,7 @@ public class Example {
         ComponentsApi apiInstance = new ComponentsApi(defaultClient);
         String id = "id_example"; // String | Unique identifier for a vault component
         try {
-            VaultComponentObjectDataAndMetaModel result = apiInstance.getVaultComponentById(id);
+            VaultComponentRoot result = apiInstance.getVaultComponentById(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ComponentsApi#getVaultComponentById");
@@ -326,7 +326,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VaultComponentObjectDataAndMetaModel**](VaultComponentObjectDataAndMetaModel.md)
+[**VaultComponentRoot**](VaultComponentRoot.md)
 
 ### Authorization
 
@@ -353,7 +353,7 @@ Name | Type | Description  | Notes
 
 ## getVaultComponents
 
-> StringComponentSummaryDictionaryObjectDataAndMetaModel getVaultComponents(document)
+> ComponentSummaryRoot getVaultComponents(document)
 
 Get Vault components
 
@@ -373,7 +373,7 @@ import factset.analyticsapi.engines.api.ComponentsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -387,7 +387,7 @@ public class Example {
         ComponentsApi apiInstance = new ComponentsApi(defaultClient);
         String document = "document_example"; // String | Document Name
         try {
-            StringComponentSummaryDictionaryObjectDataAndMetaModel result = apiInstance.getVaultComponents(document);
+            ComponentSummaryRoot result = apiInstance.getVaultComponents(document);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ComponentsApi#getVaultComponents");
@@ -409,7 +409,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StringComponentSummaryDictionaryObjectDataAndMetaModel**](StringComponentSummaryDictionaryObjectDataAndMetaModel.md)
+[**ComponentSummaryRoot**](ComponentSummaryRoot.md)
 
 ### Authorization
 

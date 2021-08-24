@@ -15,7 +15,7 @@ import java.util.Map;
 import java.io.File;
 
 import factset.analyticsapi.engines.models.ClientErrorResponse;
-import factset.analyticsapi.engines.models.DateParametersSummaryObjectDataAndMetaModel;
+import factset.analyticsapi.engines.models.DateParametersSummaryRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class DatesApi {
@@ -53,7 +53,7 @@ public class DatesApi {
    * @param componentid Component Id (required)
    * @param account Account (required)
    * @param startdate Start Date (optional)
-    @return DateParametersSummaryObjectDataAndMetaModel
+    @return DateParametersSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -69,7 +69,7 @@ public class DatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public DateParametersSummaryObjectDataAndMetaModel convertPADatesToAbsoluteFormat(String enddate, String componentid, String account, String startdate) throws ApiException {
+ public DateParametersSummaryRoot convertPADatesToAbsoluteFormat(String enddate, String componentid, String account, String startdate) throws ApiException {
     return convertPADatesToAbsoluteFormatWithHttpInfo(enddate, componentid, account, startdate).getData();
   }
 
@@ -80,7 +80,7 @@ public class DatesApi {
    * @param componentid Component Id (required)
    * @param account Account (required)
    * @param startdate Start Date (optional)
-    * @return ApiResponse&lt;DateParametersSummaryObjectDataAndMetaModel&gt;
+    * @return ApiResponse&lt;DateParametersSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -96,7 +96,7 @@ public class DatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<DateParametersSummaryObjectDataAndMetaModel> convertPADatesToAbsoluteFormatWithHttpInfo(String enddate, String componentid, String account, String startdate) throws ApiException {
+  public ApiResponse<DateParametersSummaryRoot> convertPADatesToAbsoluteFormatWithHttpInfo(String enddate, String componentid, String account, String startdate) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'enddate' is set
@@ -143,14 +143,14 @@ public class DatesApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<DateParametersSummaryObjectDataAndMetaModel> localVarReturnType = new GenericType<DateParametersSummaryObjectDataAndMetaModel>() {};
+    GenericType<DateParametersSummaryRoot> localVarReturnType = new GenericType<DateParametersSummaryRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<DateParametersSummaryObjectDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<DateParametersSummaryRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<DateParametersSummaryObjectDataAndMetaModel>invokeAPIWithReturnMap("DatesApi.convertPADatesToAbsoluteFormat", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<DateParametersSummaryRoot>invokeAPIWithReturnMap("DatesApi.convertPADatesToAbsoluteFormat", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -161,7 +161,7 @@ public class DatesApi {
    * @param componentid Vault Component Id (required)
    * @param account Account (required)
    * @param startdate Start Date (optional)
-    @return DateParametersSummaryObjectDataAndMetaModel
+    @return DateParametersSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -177,7 +177,7 @@ public class DatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public DateParametersSummaryObjectDataAndMetaModel convertVaultDatesToAbsoluteFormat(String enddate, String componentid, String account, String startdate) throws ApiException {
+ public DateParametersSummaryRoot convertVaultDatesToAbsoluteFormat(String enddate, String componentid, String account, String startdate) throws ApiException {
     return convertVaultDatesToAbsoluteFormatWithHttpInfo(enddate, componentid, account, startdate).getData();
   }
 
@@ -188,7 +188,7 @@ public class DatesApi {
    * @param componentid Vault Component Id (required)
    * @param account Account (required)
    * @param startdate Start Date (optional)
-    * @return ApiResponse&lt;DateParametersSummaryObjectDataAndMetaModel&gt;
+    * @return ApiResponse&lt;DateParametersSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -204,7 +204,7 @@ public class DatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<DateParametersSummaryObjectDataAndMetaModel> convertVaultDatesToAbsoluteFormatWithHttpInfo(String enddate, String componentid, String account, String startdate) throws ApiException {
+  public ApiResponse<DateParametersSummaryRoot> convertVaultDatesToAbsoluteFormatWithHttpInfo(String enddate, String componentid, String account, String startdate) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'enddate' is set
@@ -251,14 +251,14 @@ public class DatesApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<DateParametersSummaryObjectDataAndMetaModel> localVarReturnType = new GenericType<DateParametersSummaryObjectDataAndMetaModel>() {};
+    GenericType<DateParametersSummaryRoot> localVarReturnType = new GenericType<DateParametersSummaryRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<DateParametersSummaryObjectDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<DateParametersSummaryRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<DateParametersSummaryObjectDataAndMetaModel>invokeAPIWithReturnMap("DatesApi.convertVaultDatesToAbsoluteFormat", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<DateParametersSummaryRoot>invokeAPIWithReturnMap("DatesApi.convertVaultDatesToAbsoluteFormat", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

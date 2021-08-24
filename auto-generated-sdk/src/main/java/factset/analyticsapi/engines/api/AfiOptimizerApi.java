@@ -14,10 +14,10 @@ import java.util.Map;
 
 import java.io.File;
 
-import factset.analyticsapi.engines.models.AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters;
+import factset.analyticsapi.engines.models.AFIOptimizationParametersRoot;
+import factset.analyticsapi.engines.models.CalculationInfoRoot;
 import factset.analyticsapi.engines.models.ClientErrorResponse;
-import factset.analyticsapi.engines.models.ObjectObjectDataAndMetaModel;
-import factset.analyticsapi.engines.models.PersistedCalculationInfoObjectDataAndMetaModel;
+import factset.analyticsapi.engines.models.ObjectRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class AfiOptimizerApi {
@@ -133,7 +133,7 @@ public class AfiOptimizerApi {
    * Get AFI optimization parameters by id
    * This is the endpoint that returns the optimization parameters passed for an optimization.
    * @param id from url, provided from the location header in the Create and Run AFI optimization endpoint (required)
-    @return AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters
+    @return AFIOptimizationParametersRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -147,7 +147,7 @@ public class AfiOptimizerApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters getOptimizationParameters(String id) throws ApiException {
+ public AFIOptimizationParametersRoot getOptimizationParameters(String id) throws ApiException {
     return getOptimizationParametersWithHttpInfo(id).getData();
   }
 
@@ -155,7 +155,7 @@ public class AfiOptimizerApi {
    * Get AFI optimization parameters by id
    * This is the endpoint that returns the optimization parameters passed for an optimization.
    * @param id from url, provided from the location header in the Create and Run AFI optimization endpoint (required)
-    * @return ApiResponse&lt;AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters&gt;
+    * @return ApiResponse&lt;AFIOptimizationParametersRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -169,7 +169,7 @@ public class AfiOptimizerApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters> getOptimizationParametersWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<AFIOptimizationParametersRoot> getOptimizationParametersWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -203,14 +203,14 @@ public class AfiOptimizerApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters> localVarReturnType = new GenericType<AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters>() {};
+    GenericType<AFIOptimizationParametersRoot> localVarReturnType = new GenericType<AFIOptimizationParametersRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters>(){});
+        returnTypeMap.put(200, new GenericType<AFIOptimizationParametersRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters>invokeAPIWithReturnMap("AfiOptimizerApi.getOptimizationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<AFIOptimizationParametersRoot>invokeAPIWithReturnMap("AfiOptimizerApi.getOptimizationParameters", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -218,7 +218,7 @@ public class AfiOptimizerApi {
    * Get AFI optimization result by id
    * This is the endpoint to get the result of a previously requested optimization.
    * @param id from url, provided from the location header in the Get AFI optimization status by id endpoint (required)
-    @return ObjectObjectDataAndMetaModel
+    @return ObjectRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -232,7 +232,7 @@ public class AfiOptimizerApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public ObjectObjectDataAndMetaModel getOptimizationResult(String id) throws ApiException {
+ public ObjectRoot getOptimizationResult(String id) throws ApiException {
     return getOptimizationResultWithHttpInfo(id).getData();
   }
 
@@ -240,7 +240,7 @@ public class AfiOptimizerApi {
    * Get AFI optimization result by id
    * This is the endpoint to get the result of a previously requested optimization.
    * @param id from url, provided from the location header in the Get AFI optimization status by id endpoint (required)
-    * @return ApiResponse&lt;ObjectObjectDataAndMetaModel&gt;
+    * @return ApiResponse&lt;ObjectRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -254,7 +254,7 @@ public class AfiOptimizerApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<ObjectObjectDataAndMetaModel> getOptimizationResultWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<ObjectRoot> getOptimizationResultWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -288,14 +288,14 @@ public class AfiOptimizerApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<ObjectObjectDataAndMetaModel> localVarReturnType = new GenericType<ObjectObjectDataAndMetaModel>() {};
+    GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<ObjectObjectDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<ObjectRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<ObjectObjectDataAndMetaModel>invokeAPIWithReturnMap("AfiOptimizerApi.getOptimizationResult", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<ObjectRoot>invokeAPIWithReturnMap("AfiOptimizerApi.getOptimizationResult", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -303,7 +303,7 @@ public class AfiOptimizerApi {
    * Get AFI optimization status by id
    * This is the endpoint to check on the progress of a previously requested optimization.  If the optimization has finished computing, the body of the response will contain result in JSON.  Otherwise, the optimization is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run AFI optimization endpoint (required)
-    @return ObjectObjectDataAndMetaModel
+    @return (For 201 status - ObjectRoot)(For 202 status - null)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -318,7 +318,7 @@ public class AfiOptimizerApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public ObjectObjectDataAndMetaModel getOptimizationStatusById(String id) throws ApiException {
+ public Object getOptimizationStatusById(String id) throws ApiException {
     return getOptimizationStatusByIdWithHttpInfo(id).getData();
   }
 
@@ -326,7 +326,7 @@ public class AfiOptimizerApi {
    * Get AFI optimization status by id
    * This is the endpoint to check on the progress of a previously requested optimization.  If the optimization has finished computing, the body of the response will contain result in JSON.  Otherwise, the optimization is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage.
    * @param id from url, provided from the location header in the Create and Run AFI optimization endpoint (required)
-    * @return ApiResponse&lt;ObjectObjectDataAndMetaModel&gt;
+    * @return ApiResponse&lt;Object&gt;(For 201 status - ObjectRoot)(For 202 status - null)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -341,7 +341,7 @@ public class AfiOptimizerApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<ObjectObjectDataAndMetaModel> getOptimizationStatusByIdWithHttpInfo(String id) throws ApiException {
+  public ApiResponse<Object> getOptimizationStatusByIdWithHttpInfo(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -375,14 +375,14 @@ public class AfiOptimizerApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<ObjectObjectDataAndMetaModel> localVarReturnType = new GenericType<ObjectObjectDataAndMetaModel>() {};
+    GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(201, new GenericType<ObjectObjectDataAndMetaModel>(){});
+        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<ObjectObjectDataAndMetaModel>invokeAPIWithReturnMap("AfiOptimizerApi.getOptimizationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<Object>invokeAPIWithReturnMap("AfiOptimizerApi.getOptimizationStatusById", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -391,8 +391,8 @@ public class AfiOptimizerApi {
    * This endpoint creates and runs AFI optimization specified in the POST body parameters.                Remarks:                * Any settings in POST body will act as a one-time override over the settings saved in the strategy document.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters Optimization Parameters (optional)
-    @return ObjectObjectDataAndMetaModel
+   * @param afIOptimizationParametersRoot Optimization Parameters (optional)
+    @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -409,8 +409,8 @@ public class AfiOptimizerApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public ObjectObjectDataAndMetaModel postAndOptimize(Integer xFactSetApiLongRunningDeadline, String cacheControl, AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters) throws ApiException {
-    return postAndOptimizeWithHttpInfo(xFactSetApiLongRunningDeadline, cacheControl, afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters).getData();
+ public Object postAndOptimize(Integer xFactSetApiLongRunningDeadline, String cacheControl, AFIOptimizationParametersRoot afIOptimizationParametersRoot) throws ApiException {
+    return postAndOptimizeWithHttpInfo(xFactSetApiLongRunningDeadline, cacheControl, afIOptimizationParametersRoot).getData();
   }
 
   /**
@@ -418,8 +418,8 @@ public class AfiOptimizerApi {
    * This endpoint creates and runs AFI optimization specified in the POST body parameters.                Remarks:                * Any settings in POST body will act as a one-time override over the settings saved in the strategy document.
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters Optimization Parameters (optional)
-    * @return ApiResponse&lt;ObjectObjectDataAndMetaModel&gt;
+   * @param afIOptimizationParametersRoot Optimization Parameters (optional)
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -436,8 +436,8 @@ public class AfiOptimizerApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<ObjectObjectDataAndMetaModel> postAndOptimizeWithHttpInfo(Integer xFactSetApiLongRunningDeadline, String cacheControl, AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters) throws ApiException {
-    Object localVarPostBody = afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters;
+  public ApiResponse<Object> postAndOptimizeWithHttpInfo(Integer xFactSetApiLongRunningDeadline, String cacheControl, AFIOptimizationParametersRoot afIOptimizationParametersRoot) throws ApiException {
+    Object localVarPostBody = afIOptimizationParametersRoot;
     
     // create path and map variables
     String localVarPath = "/analytics/engines/afi/v3/optimizations";
@@ -468,15 +468,15 @@ if (cacheControl != null)
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<ObjectObjectDataAndMetaModel> localVarReturnType = new GenericType<ObjectObjectDataAndMetaModel>() {};
+    GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(202, new GenericType<PersistedCalculationInfoObjectDataAndMetaModel>(){});
-        returnTypeMap.put(201, new GenericType<ObjectObjectDataAndMetaModel>(){});
+        returnTypeMap.put(202, new GenericType<CalculationInfoRoot>(){});
+        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<ObjectObjectDataAndMetaModel>invokeAPIWithReturnMap("AfiOptimizerApi.postAndOptimize", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+      return apiClient.<Object>invokeAPIWithReturnMap("AfiOptimizerApi.postAndOptimize", localVarPath, "POST", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -486,8 +486,8 @@ if (cacheControl != null)
    * @param id from url, provided from the location header in the Create and Run AFI optimization endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters Optimization Parameters (optional)
-    @return ObjectObjectDataAndMetaModel
+   * @param afIOptimizationParametersRoot Optimization Parameters (optional)
+    @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -505,8 +505,8 @@ if (cacheControl != null)
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public ObjectObjectDataAndMetaModel putAndOptimize(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters) throws ApiException {
-    return putAndOptimizeWithHttpInfo(id, xFactSetApiLongRunningDeadline, cacheControl, afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters).getData();
+ public Object putAndOptimize(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, AFIOptimizationParametersRoot afIOptimizationParametersRoot) throws ApiException {
+    return putAndOptimizeWithHttpInfo(id, xFactSetApiLongRunningDeadline, cacheControl, afIOptimizationParametersRoot).getData();
   }
 
   /**
@@ -515,8 +515,8 @@ if (cacheControl != null)
    * @param id from url, provided from the location header in the Create and Run AFI optimization endpoint (required)
    * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
-   * @param afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters Optimization Parameters (optional)
-    * @return ApiResponse&lt;ObjectObjectDataAndMetaModel&gt;
+   * @param afIOptimizationParametersRoot Optimization Parameters (optional)
+    * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -534,8 +534,8 @@ if (cacheControl != null)
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<ObjectObjectDataAndMetaModel> putAndOptimizeWithHttpInfo(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, AFIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters) throws ApiException {
-    Object localVarPostBody = afIOptimizationParametersOptimizerCalculationMetaInteractiveCalculationParameters;
+  public ApiResponse<Object> putAndOptimizeWithHttpInfo(String id, Integer xFactSetApiLongRunningDeadline, String cacheControl, AFIOptimizationParametersRoot afIOptimizationParametersRoot) throws ApiException {
+    Object localVarPostBody = afIOptimizationParametersRoot;
     
     // verify the required parameter 'id' is set
     if (id == null) {
@@ -572,16 +572,16 @@ if (cacheControl != null)
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<ObjectObjectDataAndMetaModel> localVarReturnType = new GenericType<ObjectObjectDataAndMetaModel>() {};
+    GenericType<ObjectRoot> localVarReturnType = new GenericType<ObjectRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(202, new GenericType<PersistedCalculationInfoObjectDataAndMetaModel>(){});
-        returnTypeMap.put(201, new GenericType<ObjectObjectDataAndMetaModel>(){});
+        returnTypeMap.put(202, new GenericType<CalculationInfoRoot>(){});
+        returnTypeMap.put(201, new GenericType<ObjectRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(409, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<ObjectObjectDataAndMetaModel>invokeAPIWithReturnMap("AfiOptimizerApi.putAndOptimize", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
+      return apiClient.<Object>invokeAPIWithReturnMap("AfiOptimizerApi.putAndOptimize", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

@@ -1,7 +1,7 @@
 
 # DocumentsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.factset.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## getPA3Documents
 
-> DocumentDirectoriesObjectDataAndMetaModel getPA3Documents(path)
+> DocumentDirectoriesRoot getPA3Documents(path)
 
 Get PA3 documents and sub-directories in a directory
 
@@ -34,7 +34,7 @@ import factset.analyticsapi.engines.api.DocumentsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -48,7 +48,7 @@ public class Example {
         DocumentsApi apiInstance = new DocumentsApi(defaultClient);
         String path = ""; // String | The directory to get the documents and sub-directories in
         try {
-            DocumentDirectoriesObjectDataAndMetaModel result = apiInstance.getPA3Documents(path);
+            DocumentDirectoriesRoot result = apiInstance.getPA3Documents(path);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DocumentsApi#getPA3Documents");
@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentDirectoriesObjectDataAndMetaModel**](DocumentDirectoriesObjectDataAndMetaModel.md)
+[**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
 
 ### Authorization
 
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 
 ## getPubDocuments
 
-> DocumentDirectoriesObjectDataAndMetaModel getPubDocuments(path)
+> DocumentDirectoriesRoot getPubDocuments(path)
 
 Gets Publisher documents and sub-directories in a directory
 
@@ -117,7 +117,7 @@ import factset.analyticsapi.engines.api.DocumentsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -131,7 +131,7 @@ public class Example {
         DocumentsApi apiInstance = new DocumentsApi(defaultClient);
         String path = ""; // String | The directory to get the documents in
         try {
-            DocumentDirectoriesObjectDataAndMetaModel result = apiInstance.getPubDocuments(path);
+            DocumentDirectoriesRoot result = apiInstance.getPubDocuments(path);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DocumentsApi#getPubDocuments");
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentDirectoriesObjectDataAndMetaModel**](DocumentDirectoriesObjectDataAndMetaModel.md)
+[**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
 
 ### Authorization
 
@@ -180,7 +180,7 @@ Name | Type | Description  | Notes
 
 ## getSPAR3Documents
 
-> DocumentDirectoriesObjectDataAndMetaModel getSPAR3Documents(path)
+> DocumentDirectoriesRoot getSPAR3Documents(path)
 
 Gets SPAR3 documents and sub-directories in a directory
 
@@ -200,7 +200,7 @@ import factset.analyticsapi.engines.api.DocumentsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -214,7 +214,7 @@ public class Example {
         DocumentsApi apiInstance = new DocumentsApi(defaultClient);
         String path = ""; // String | The directory to get the documents in
         try {
-            DocumentDirectoriesObjectDataAndMetaModel result = apiInstance.getSPAR3Documents(path);
+            DocumentDirectoriesRoot result = apiInstance.getSPAR3Documents(path);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DocumentsApi#getSPAR3Documents");
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentDirectoriesObjectDataAndMetaModel**](DocumentDirectoriesObjectDataAndMetaModel.md)
+[**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
 
 ### Authorization
 
@@ -263,7 +263,7 @@ Name | Type | Description  | Notes
 
 ## getVaultDocuments
 
-> DocumentDirectoriesObjectDataAndMetaModel getVaultDocuments(path)
+> DocumentDirectoriesRoot getVaultDocuments(path)
 
 Get Vault documents and sub-directories in a directory
 
@@ -283,7 +283,7 @@ import factset.analyticsapi.engines.api.DocumentsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -297,7 +297,7 @@ public class Example {
         DocumentsApi apiInstance = new DocumentsApi(defaultClient);
         String path = ""; // String | The directory to get the documents in
         try {
-            DocumentDirectoriesObjectDataAndMetaModel result = apiInstance.getVaultDocuments(path);
+            DocumentDirectoriesRoot result = apiInstance.getVaultDocuments(path);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DocumentsApi#getVaultDocuments");
@@ -319,7 +319,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentDirectoriesObjectDataAndMetaModel**](DocumentDirectoriesObjectDataAndMetaModel.md)
+[**DocumentDirectoriesRoot**](DocumentDirectoriesRoot.md)
 
 ### Authorization
 

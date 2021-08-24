@@ -1,7 +1,7 @@
 
 # ConfigurationsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.factset.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## getVaultConfigurationById
 
-> VaultConfigurationObjectDataAndMetaModel getVaultConfigurationById(id)
+> VaultConfigurationRoot getVaultConfigurationById(id)
 
 Get Vault configuration by id
 
@@ -32,7 +32,7 @@ import factset.analyticsapi.engines.api.ConfigurationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -46,7 +46,7 @@ public class Example {
         ConfigurationsApi apiInstance = new ConfigurationsApi(defaultClient);
         String id = "id_example"; // String | Vault configuration id to get the details of
         try {
-            VaultConfigurationObjectDataAndMetaModel result = apiInstance.getVaultConfigurationById(id);
+            VaultConfigurationRoot result = apiInstance.getVaultConfigurationById(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConfigurationsApi#getVaultConfigurationById");
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VaultConfigurationObjectDataAndMetaModel**](VaultConfigurationObjectDataAndMetaModel.md)
+[**VaultConfigurationRoot**](VaultConfigurationRoot.md)
 
 ### Authorization
 
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ## getVaultConfigurations
 
-> StringVaultConfigurationSummaryDictionaryObjectDataAndMetaModel getVaultConfigurations(account)
+> VaultConfigurationSummaryRoot getVaultConfigurations(account)
 
 Get Vault configurations
 
@@ -115,7 +115,7 @@ import factset.analyticsapi.engines.api.ConfigurationsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -129,7 +129,7 @@ public class Example {
         ConfigurationsApi apiInstance = new ConfigurationsApi(defaultClient);
         String account = "account_example"; // String | Required account query parameter to filter configurations for a specific account
         try {
-            StringVaultConfigurationSummaryDictionaryObjectDataAndMetaModel result = apiInstance.getVaultConfigurations(account);
+            VaultConfigurationSummaryRoot result = apiInstance.getVaultConfigurations(account);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConfigurationsApi#getVaultConfigurations");
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StringVaultConfigurationSummaryDictionaryObjectDataAndMetaModel**](StringVaultConfigurationSummaryDictionaryObjectDataAndMetaModel.md)
+[**VaultConfigurationSummaryRoot**](VaultConfigurationSummaryRoot.md)
 
 ### Authorization
 

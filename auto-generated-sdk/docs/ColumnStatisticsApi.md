@@ -1,7 +1,7 @@
 
 # ColumnStatisticsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.factset.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## getPAColumnStatistics
 
-> StringColumnStatisticDictionaryObjectDataAndMetaModel getPAColumnStatistics()
+> ColumnStatisticRoot getPAColumnStatistics()
 
 Get PA column statistics
 
@@ -31,7 +31,7 @@ import factset.analyticsapi.engines.api.ColumnStatisticsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.factset.com");
         
         // Configure HTTP basic authorization: Basic
         HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
@@ -44,7 +44,7 @@ public class Example {
 
         ColumnStatisticsApi apiInstance = new ColumnStatisticsApi(defaultClient);
         try {
-            StringColumnStatisticDictionaryObjectDataAndMetaModel result = apiInstance.getPAColumnStatistics();
+            ColumnStatisticRoot result = apiInstance.getPAColumnStatistics();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ColumnStatisticsApi#getPAColumnStatistics");
@@ -63,7 +63,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**StringColumnStatisticDictionaryObjectDataAndMetaModel**](StringColumnStatisticDictionaryObjectDataAndMetaModel.md)
+[**ColumnStatisticRoot**](ColumnStatisticRoot.md)
 
 ### Authorization
 

@@ -15,7 +15,7 @@ import java.util.Map;
 import java.io.File;
 
 import factset.analyticsapi.engines.models.ClientErrorResponse;
-import factset.analyticsapi.engines.models.DocumentDirectoriesObjectDataAndMetaModel;
+import factset.analyticsapi.engines.models.DocumentDirectoriesRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class StrategyDocumentsApi {
@@ -50,7 +50,7 @@ public class StrategyDocumentsApi {
    * Get Axioma Equity strategy documents and sub-directories in a directory
    * This endpoint looks up all Axioma Equity strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-    @return DocumentDirectoriesObjectDataAndMetaModel
+    @return DocumentDirectoriesRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -66,7 +66,7 @@ public class StrategyDocumentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in some time </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public DocumentDirectoriesObjectDataAndMetaModel getAxiomaEquityStrategyDocuments(String path) throws ApiException {
+ public DocumentDirectoriesRoot getAxiomaEquityStrategyDocuments(String path) throws ApiException {
     return getAxiomaEquityStrategyDocumentsWithHttpInfo(path).getData();
   }
 
@@ -74,7 +74,7 @@ public class StrategyDocumentsApi {
    * Get Axioma Equity strategy documents and sub-directories in a directory
    * This endpoint looks up all Axioma Equity strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-    * @return ApiResponse&lt;DocumentDirectoriesObjectDataAndMetaModel&gt;
+    * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -90,7 +90,7 @@ public class StrategyDocumentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in some time </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<DocumentDirectoriesObjectDataAndMetaModel> getAxiomaEquityStrategyDocumentsWithHttpInfo(String path) throws ApiException {
+  public ApiResponse<DocumentDirectoriesRoot> getAxiomaEquityStrategyDocumentsWithHttpInfo(String path) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'path' is set
@@ -124,14 +124,14 @@ public class StrategyDocumentsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<DocumentDirectoriesObjectDataAndMetaModel> localVarReturnType = new GenericType<DocumentDirectoriesObjectDataAndMetaModel>() {};
+    GenericType<DocumentDirectoriesRoot> localVarReturnType = new GenericType<DocumentDirectoriesRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<DocumentDirectoriesObjectDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<DocumentDirectoriesRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<DocumentDirectoriesObjectDataAndMetaModel>invokeAPIWithReturnMap("StrategyDocumentsApi.getAxiomaEquityStrategyDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<DocumentDirectoriesRoot>invokeAPIWithReturnMap("StrategyDocumentsApi.getAxiomaEquityStrategyDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -139,7 +139,7 @@ public class StrategyDocumentsApi {
    * Get Axioma FI strategy documents and sub-directories in a directory
    * This endpoint looks up all Axioma FI strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-    @return DocumentDirectoriesObjectDataAndMetaModel
+    @return DocumentDirectoriesRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -155,7 +155,7 @@ public class StrategyDocumentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in some time </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public DocumentDirectoriesObjectDataAndMetaModel getAxiomaFIStrategyDocuments(String path) throws ApiException {
+ public DocumentDirectoriesRoot getAxiomaFIStrategyDocuments(String path) throws ApiException {
     return getAxiomaFIStrategyDocumentsWithHttpInfo(path).getData();
   }
 
@@ -163,7 +163,7 @@ public class StrategyDocumentsApi {
    * Get Axioma FI strategy documents and sub-directories in a directory
    * This endpoint looks up all Axioma FI strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-    * @return ApiResponse&lt;DocumentDirectoriesObjectDataAndMetaModel&gt;
+    * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -179,7 +179,7 @@ public class StrategyDocumentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in some time </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<DocumentDirectoriesObjectDataAndMetaModel> getAxiomaFIStrategyDocumentsWithHttpInfo(String path) throws ApiException {
+  public ApiResponse<DocumentDirectoriesRoot> getAxiomaFIStrategyDocumentsWithHttpInfo(String path) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'path' is set
@@ -213,14 +213,14 @@ public class StrategyDocumentsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<DocumentDirectoriesObjectDataAndMetaModel> localVarReturnType = new GenericType<DocumentDirectoriesObjectDataAndMetaModel>() {};
+    GenericType<DocumentDirectoriesRoot> localVarReturnType = new GenericType<DocumentDirectoriesRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<DocumentDirectoriesObjectDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<DocumentDirectoriesRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<DocumentDirectoriesObjectDataAndMetaModel>invokeAPIWithReturnMap("StrategyDocumentsApi.getAxiomaFIStrategyDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<DocumentDirectoriesRoot>invokeAPIWithReturnMap("StrategyDocumentsApi.getAxiomaFIStrategyDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -228,7 +228,7 @@ public class StrategyDocumentsApi {
    * Get Barra strategy documents and sub-directories in a directory
    * This endpoint looks up all Barra strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-    @return DocumentDirectoriesObjectDataAndMetaModel
+    @return DocumentDirectoriesRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -244,7 +244,7 @@ public class StrategyDocumentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in some time </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public DocumentDirectoriesObjectDataAndMetaModel getBarraStrategyDocuments(String path) throws ApiException {
+ public DocumentDirectoriesRoot getBarraStrategyDocuments(String path) throws ApiException {
     return getBarraStrategyDocumentsWithHttpInfo(path).getData();
   }
 
@@ -252,7 +252,7 @@ public class StrategyDocumentsApi {
    * Get Barra strategy documents and sub-directories in a directory
    * This endpoint looks up all Barra strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-    * @return ApiResponse&lt;DocumentDirectoriesObjectDataAndMetaModel&gt;
+    * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -268,7 +268,7 @@ public class StrategyDocumentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in some time </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<DocumentDirectoriesObjectDataAndMetaModel> getBarraStrategyDocumentsWithHttpInfo(String path) throws ApiException {
+  public ApiResponse<DocumentDirectoriesRoot> getBarraStrategyDocumentsWithHttpInfo(String path) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'path' is set
@@ -302,14 +302,14 @@ public class StrategyDocumentsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<DocumentDirectoriesObjectDataAndMetaModel> localVarReturnType = new GenericType<DocumentDirectoriesObjectDataAndMetaModel>() {};
+    GenericType<DocumentDirectoriesRoot> localVarReturnType = new GenericType<DocumentDirectoriesRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<DocumentDirectoriesObjectDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<DocumentDirectoriesRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<DocumentDirectoriesObjectDataAndMetaModel>invokeAPIWithReturnMap("StrategyDocumentsApi.getBarraStrategyDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<DocumentDirectoriesRoot>invokeAPIWithReturnMap("StrategyDocumentsApi.getBarraStrategyDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -317,7 +317,7 @@ public class StrategyDocumentsApi {
    * Get FactSet Portfolio Optimizer strategy documents and sub-directories in a directory
    * This endpoint looks up all FactSet Portfolio Optimizer strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-    @return DocumentDirectoriesObjectDataAndMetaModel
+    @return DocumentDirectoriesRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -333,7 +333,7 @@ public class StrategyDocumentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in some time </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public DocumentDirectoriesObjectDataAndMetaModel getFPOStrategyDocuments(String path) throws ApiException {
+ public DocumentDirectoriesRoot getFPOStrategyDocuments(String path) throws ApiException {
     return getFPOStrategyDocumentsWithHttpInfo(path).getData();
   }
 
@@ -341,7 +341,7 @@ public class StrategyDocumentsApi {
    * Get FactSet Portfolio Optimizer strategy documents and sub-directories in a directory
    * This endpoint looks up all FactSet Portfolio Optimizer strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-    * @return ApiResponse&lt;DocumentDirectoriesObjectDataAndMetaModel&gt;
+    * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -357,7 +357,7 @@ public class StrategyDocumentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in some time </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<DocumentDirectoriesObjectDataAndMetaModel> getFPOStrategyDocumentsWithHttpInfo(String path) throws ApiException {
+  public ApiResponse<DocumentDirectoriesRoot> getFPOStrategyDocumentsWithHttpInfo(String path) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'path' is set
@@ -391,14 +391,14 @@ public class StrategyDocumentsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<DocumentDirectoriesObjectDataAndMetaModel> localVarReturnType = new GenericType<DocumentDirectoriesObjectDataAndMetaModel>() {};
+    GenericType<DocumentDirectoriesRoot> localVarReturnType = new GenericType<DocumentDirectoriesRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<DocumentDirectoriesObjectDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<DocumentDirectoriesRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<DocumentDirectoriesObjectDataAndMetaModel>invokeAPIWithReturnMap("StrategyDocumentsApi.getFPOStrategyDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<DocumentDirectoriesRoot>invokeAPIWithReturnMap("StrategyDocumentsApi.getFPOStrategyDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -406,7 +406,7 @@ public class StrategyDocumentsApi {
    * Get Northfield strategy documents and sub-directories in a directory
    * This endpoint looks up all Northfield strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-    @return DocumentDirectoriesObjectDataAndMetaModel
+    @return DocumentDirectoriesRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -422,7 +422,7 @@ public class StrategyDocumentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in some time </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public DocumentDirectoriesObjectDataAndMetaModel getNorthfieldStrategyDocuments(String path) throws ApiException {
+ public DocumentDirectoriesRoot getNorthfieldStrategyDocuments(String path) throws ApiException {
     return getNorthfieldStrategyDocumentsWithHttpInfo(path).getData();
   }
 
@@ -430,7 +430,7 @@ public class StrategyDocumentsApi {
    * Get Northfield strategy documents and sub-directories in a directory
    * This endpoint looks up all Northfield strategy documents and sub-directories in a given directory.
    * @param path The directory to get the strategy documents and sub-directories in (required)
-    * @return ApiResponse&lt;DocumentDirectoriesObjectDataAndMetaModel&gt;
+    * @return ApiResponse&lt;DocumentDirectoriesRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -446,7 +446,7 @@ public class StrategyDocumentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in some time </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<DocumentDirectoriesObjectDataAndMetaModel> getNorthfieldStrategyDocumentsWithHttpInfo(String path) throws ApiException {
+  public ApiResponse<DocumentDirectoriesRoot> getNorthfieldStrategyDocumentsWithHttpInfo(String path) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'path' is set
@@ -480,14 +480,14 @@ public class StrategyDocumentsApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<DocumentDirectoriesObjectDataAndMetaModel> localVarReturnType = new GenericType<DocumentDirectoriesObjectDataAndMetaModel>() {};
+    GenericType<DocumentDirectoriesRoot> localVarReturnType = new GenericType<DocumentDirectoriesRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<DocumentDirectoriesObjectDataAndMetaModel>(){});
+        returnTypeMap.put(200, new GenericType<DocumentDirectoriesRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<DocumentDirectoriesObjectDataAndMetaModel>invokeAPIWithReturnMap("StrategyDocumentsApi.getNorthfieldStrategyDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<DocumentDirectoriesRoot>invokeAPIWithReturnMap("StrategyDocumentsApi.getNorthfieldStrategyDocuments", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
