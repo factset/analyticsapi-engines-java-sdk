@@ -20,10 +20,17 @@ import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.QuantDate;
+import factset.analyticsapi.engines.models.QuantDateListAllOf;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import factset.analyticsapi.engines.JSON;
@@ -33,34 +40,32 @@ import factset.analyticsapi.engines.JSON;
  * QuantDateList
  */
 @JsonPropertyOrder({
-  QuantDateList.JSON_PROPERTY_DATES,
-  QuantDateList.JSON_PROPERTY_FREQUENCY,
-  QuantDateList.JSON_PROPERTY_CALENDAR
+  QuantDateList.JSON_PROPERTY_DATES
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class QuantDateList implements Serializable {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "$type", visible = true)
+
+public class QuantDateList extends QuantDate implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_DATES = "dates";
-  private java.util.List<String> dates = null;
-
-  public static final String JSON_PROPERTY_FREQUENCY = "frequency";
-  private String frequency;
-
-  public static final String JSON_PROPERTY_CALENDAR = "calendar";
-  private String calendar;
+  private JsonNullable<java.util.List<String>> dates = JsonNullable.<java.util.List<String>>undefined();
 
 
   public QuantDateList dates(java.util.List<String> dates) {
-    this.dates = dates;
+    this.dates = JsonNullable.<java.util.List<String>>of(dates);
     return this;
   }
 
   public QuantDateList addDatesItem(String datesItem) {
-    if (this.dates == null) {
-      this.dates = new java.util.ArrayList<String>();
+    if (this.dates == null || !this.dates.isPresent()) {
+      this.dates = JsonNullable.<java.util.List<String>>of(new java.util.ArrayList<String>());
     }
-    this.dates.add(datesItem);
+    try {
+      this.dates.get().add(datesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -70,62 +75,26 @@ public class QuantDateList implements Serializable {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public java.util.List<String> getDates() {
+        return dates.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_DATES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public java.util.List<String> getDates() {
+  public JsonNullable<java.util.List<String>> getDates_JsonNullable() {
     return dates;
   }
-
-
-  public void setDates(java.util.List<String> dates) {
+  
+  @JsonProperty(JSON_PROPERTY_DATES)
+  public void setDates_JsonNullable(JsonNullable<java.util.List<String>> dates) {
     this.dates = dates;
   }
 
-
-  public QuantDateList frequency(String frequency) {
-    this.frequency = frequency;
-    return this;
-  }
-
-   /**
-   * Get frequency
-   * @return frequency
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_FREQUENCY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getFrequency() {
-    return frequency;
-  }
-
-
-  public void setFrequency(String frequency) {
-    this.frequency = frequency;
-  }
-
-
-  public QuantDateList calendar(String calendar) {
-    this.calendar = calendar;
-    return this;
-  }
-
-   /**
-   * Get calendar
-   * @return calendar
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_CALENDAR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getCalendar() {
-    return calendar;
-  }
-
-
-  public void setCalendar(String calendar) {
-    this.calendar = calendar;
+  public void setDates(java.util.List<String> dates) {
+    this.dates = JsonNullable.<java.util.List<String>>of(dates);
   }
 
 
@@ -142,22 +111,20 @@ public class QuantDateList implements Serializable {
     }
     QuantDateList quantDateList = (QuantDateList) o;
     return Objects.equals(this.dates, quantDateList.dates) &&
-        Objects.equals(this.frequency, quantDateList.frequency) &&
-        Objects.equals(this.calendar, quantDateList.calendar);
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dates, frequency, calendar);
+    return Objects.hash(dates, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class QuantDateList {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    dates: ").append(toIndentedString(dates)).append("\n");
-    sb.append("    frequency: ").append(toIndentedString(frequency)).append("\n");
-    sb.append("    calendar: ").append(toIndentedString(calendar)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -173,5 +140,11 @@ public class QuantDateList implements Serializable {
     return o.toString().replace("\n", "\n    ");
   }
 
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("QuantDateList", QuantDateList.class);
+  JSON.registerDiscriminator(QuantDateList.class, "$type", mappings);
+}
 }
 

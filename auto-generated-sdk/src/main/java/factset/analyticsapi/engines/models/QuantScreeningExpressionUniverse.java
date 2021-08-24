@@ -20,10 +20,17 @@ import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.QuantScreeningExpressionUniverseAllOf;
+import factset.analyticsapi.engines.models.QuantUniverse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import factset.analyticsapi.engines.JSON;
@@ -38,7 +45,9 @@ import factset.analyticsapi.engines.JSON;
   QuantScreeningExpressionUniverse.JSON_PROPERTY_SECURITY_EXPR
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class QuantScreeningExpressionUniverse implements Serializable {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "$type", visible = true)
+
+public class QuantScreeningExpressionUniverse extends QuantUniverse implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_UNIVERSE_EXPR = "universeExpr";
@@ -83,7 +92,7 @@ public class QuantScreeningExpressionUniverse implements Serializable {
   private UniverseTypeEnum universeType;
 
   public static final String JSON_PROPERTY_SECURITY_EXPR = "securityExpr";
-  private String securityExpr;
+  private JsonNullable<String> securityExpr = JsonNullable.<String>undefined();
 
 
   public QuantScreeningExpressionUniverse universeExpr(String universeExpr) {
@@ -133,7 +142,7 @@ public class QuantScreeningExpressionUniverse implements Serializable {
 
 
   public QuantScreeningExpressionUniverse securityExpr(String securityExpr) {
-    this.securityExpr = securityExpr;
+    this.securityExpr = JsonNullable.<String>of(securityExpr);
     return this;
   }
 
@@ -143,16 +152,26 @@ public class QuantScreeningExpressionUniverse implements Serializable {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public String getSecurityExpr() {
+        return securityExpr.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_SECURITY_EXPR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getSecurityExpr() {
+  public JsonNullable<String> getSecurityExpr_JsonNullable() {
     return securityExpr;
   }
-
+  
+  @JsonProperty(JSON_PROPERTY_SECURITY_EXPR)
+  public void setSecurityExpr_JsonNullable(JsonNullable<String> securityExpr) {
+    this.securityExpr = securityExpr;
+  }
 
   public void setSecurityExpr(String securityExpr) {
-    this.securityExpr = securityExpr;
+    this.securityExpr = JsonNullable.<String>of(securityExpr);
   }
 
 
@@ -170,18 +189,20 @@ public class QuantScreeningExpressionUniverse implements Serializable {
     QuantScreeningExpressionUniverse quantScreeningExpressionUniverse = (QuantScreeningExpressionUniverse) o;
     return Objects.equals(this.universeExpr, quantScreeningExpressionUniverse.universeExpr) &&
         Objects.equals(this.universeType, quantScreeningExpressionUniverse.universeType) &&
-        Objects.equals(this.securityExpr, quantScreeningExpressionUniverse.securityExpr);
+        Objects.equals(this.securityExpr, quantScreeningExpressionUniverse.securityExpr) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(universeExpr, universeType, securityExpr);
+    return Objects.hash(universeExpr, universeType, securityExpr, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class QuantScreeningExpressionUniverse {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    universeExpr: ").append(toIndentedString(universeExpr)).append("\n");
     sb.append("    universeType: ").append(toIndentedString(universeType)).append("\n");
     sb.append("    securityExpr: ").append(toIndentedString(securityExpr)).append("\n");
@@ -200,5 +221,11 @@ public class QuantScreeningExpressionUniverse implements Serializable {
     return o.toString().replace("\n", "\n    ");
   }
 
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("QuantScreeningExpressionUniverse", QuantScreeningExpressionUniverse.class);
+  JSON.registerDiscriminator(QuantScreeningExpressionUniverse.class, "$type", mappings);
+}
 }
 

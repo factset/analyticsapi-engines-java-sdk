@@ -20,8 +20,12 @@ import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.QuantUniversalScreenUniverseAllOf;
+import factset.analyticsapi.engines.models.QuantUniverse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -36,7 +40,9 @@ import factset.analyticsapi.engines.JSON;
   QuantUniversalScreenUniverse.JSON_PROPERTY_SCREEN
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class QuantUniversalScreenUniverse implements Serializable {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "$type", visible = true)
+
+public class QuantUniversalScreenUniverse extends QuantUniverse implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_SCREEN = "screen";
@@ -78,18 +84,20 @@ public class QuantUniversalScreenUniverse implements Serializable {
       return false;
     }
     QuantUniversalScreenUniverse quantUniversalScreenUniverse = (QuantUniversalScreenUniverse) o;
-    return Objects.equals(this.screen, quantUniversalScreenUniverse.screen);
+    return Objects.equals(this.screen, quantUniversalScreenUniverse.screen) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(screen);
+    return Objects.hash(screen, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class QuantUniversalScreenUniverse {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    screen: ").append(toIndentedString(screen)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -106,5 +114,11 @@ public class QuantUniversalScreenUniverse implements Serializable {
     return o.toString().replace("\n", "\n    ");
   }
 
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("QuantUniversalScreenUniverse", QuantUniversalScreenUniverse.class);
+  JSON.registerDiscriminator(QuantUniversalScreenUniverse.class, "$type", mappings);
+}
 }
 

@@ -20,8 +20,12 @@ import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.QuantFormula;
+import factset.analyticsapi.engines.models.QuantUniversalScreenParameterAllOf;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -37,7 +41,9 @@ import factset.analyticsapi.engines.JSON;
   QuantUniversalScreenParameter.JSON_PROPERTY_NAME
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class QuantUniversalScreenParameter implements Serializable {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "$type", visible = true)
+
+public class QuantUniversalScreenParameter extends QuantFormula implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_REFERENCE_NAME = "referenceName";
@@ -106,18 +112,20 @@ public class QuantUniversalScreenParameter implements Serializable {
     }
     QuantUniversalScreenParameter quantUniversalScreenParameter = (QuantUniversalScreenParameter) o;
     return Objects.equals(this.referenceName, quantUniversalScreenParameter.referenceName) &&
-        Objects.equals(this.name, quantUniversalScreenParameter.name);
+        Objects.equals(this.name, quantUniversalScreenParameter.name) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(referenceName, name);
+    return Objects.hash(referenceName, name, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class QuantUniversalScreenParameter {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    referenceName: ").append(toIndentedString(referenceName)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
@@ -135,5 +143,11 @@ public class QuantUniversalScreenParameter implements Serializable {
     return o.toString().replace("\n", "\n    ");
   }
 
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("QuantUniversalScreenParameter", QuantUniversalScreenParameter.class);
+  JSON.registerDiscriminator(QuantUniversalScreenParameter.class, "$type", mappings);
+}
 }
 
