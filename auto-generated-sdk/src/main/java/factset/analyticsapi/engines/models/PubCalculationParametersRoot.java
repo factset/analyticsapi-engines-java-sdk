@@ -75,6 +75,8 @@ public class PubCalculationParametersRoot implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setData(java.util.Map<String, PubCalculationParameters> data) {
     this.data = data;
   }
@@ -99,6 +101,8 @@ public class PubCalculationParametersRoot implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_META)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMeta(Object meta) {
     this.meta = meta;
   }

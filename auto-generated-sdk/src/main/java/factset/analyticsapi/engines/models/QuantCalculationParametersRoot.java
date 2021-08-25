@@ -76,6 +76,8 @@ public class QuantCalculationParametersRoot implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setData(java.util.Map<String, QuantCalculationParameters> data) {
     this.data = data;
   }
@@ -100,6 +102,8 @@ public class QuantCalculationParametersRoot implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_META)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMeta(QuantCalculationMeta meta) {
     this.meta = meta;
   }

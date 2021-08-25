@@ -67,6 +67,8 @@ public class AxiomaEquityOptimizationParametersRoot implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setData(AxiomaEquityOptimizationParameters data) {
     this.data = data;
   }
@@ -91,6 +93,8 @@ public class AxiomaEquityOptimizationParametersRoot implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_META)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMeta(Object meta) {
     this.meta = meta;
   }

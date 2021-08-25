@@ -62,6 +62,8 @@ public class CalculationUnitStatusMeta implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_INFO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfo(String info) {
     this.info = info;
   }

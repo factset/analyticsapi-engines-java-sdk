@@ -74,6 +74,8 @@ public class OptimizerAccountOverrides implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PORTFOLIO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPortfolio(String portfolio) {
     this.portfolio = portfolio;
   }
@@ -98,6 +100,8 @@ public class OptimizerAccountOverrides implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_BENCHMARK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBenchmark(String benchmark) {
     this.benchmark = benchmark;
   }
@@ -122,6 +126,8 @@ public class OptimizerAccountOverrides implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_RISK_MODEL_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRiskModelId(String riskModelId) {
     this.riskModelId = riskModelId;
   }
@@ -146,6 +152,8 @@ public class OptimizerAccountOverrides implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CURRENCY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrency(String currency) {
     this.currency = currency;
   }

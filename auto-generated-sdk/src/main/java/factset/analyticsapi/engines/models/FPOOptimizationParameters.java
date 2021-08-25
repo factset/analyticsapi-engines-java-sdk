@@ -78,6 +78,8 @@ public class FPOOptimizationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ACCOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccount(FPOAccount account) {
     this.account = account;
   }
@@ -92,6 +94,7 @@ public class FPOOptimizationParameters implements Serializable {
    * Get strategy
    * @return strategy
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_STRATEGY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -101,6 +104,8 @@ public class FPOOptimizationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STRATEGY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setStrategy(OptimizerStrategy strategy) {
     this.strategy = strategy;
   }
@@ -125,6 +130,8 @@ public class FPOOptimizationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_OPTIMIZATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOptimization(Optimization optimization) {
     this.optimization = optimization;
   }
@@ -139,6 +146,7 @@ public class FPOOptimizationParameters implements Serializable {
    * Get outputTypes
    * @return outputTypes
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_OUTPUT_TYPES)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -148,6 +156,8 @@ public class FPOOptimizationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_OUTPUT_TYPES)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setOutputTypes(OptimizerOutputTypes outputTypes) {
     this.outputTypes = outputTypes;
   }

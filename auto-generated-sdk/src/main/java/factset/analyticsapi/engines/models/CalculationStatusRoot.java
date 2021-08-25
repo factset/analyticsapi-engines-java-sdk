@@ -58,6 +58,7 @@ public class CalculationStatusRoot implements Serializable {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -67,6 +68,8 @@ public class CalculationStatusRoot implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DATA)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(CalculationStatus data) {
     this.data = data;
   }
@@ -91,6 +94,8 @@ public class CalculationStatusRoot implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_META)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMeta(CalculationStatusMeta meta) {
     this.meta = meta;
   }

@@ -52,6 +52,7 @@ public class QuantUniversalScreenUniverse implements Serializable {
    * Get screen
    * @return screen
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_SCREEN)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -61,6 +62,8 @@ public class QuantUniversalScreenUniverse implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SCREEN)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setScreen(String screen) {
     this.screen = screen;
   }

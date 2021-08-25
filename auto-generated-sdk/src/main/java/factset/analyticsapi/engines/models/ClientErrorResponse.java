@@ -71,6 +71,8 @@ public class ClientErrorResponse implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ERRORS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setErrors(java.util.List<Error> errors) {
     this.errors = errors;
   }

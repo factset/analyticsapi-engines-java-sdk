@@ -80,6 +80,8 @@ public class FIABCalculationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FIABDOCUMENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFiabdocument(String fiabdocument) {
     this.fiabdocument = fiabdocument;
   }
@@ -94,6 +96,7 @@ public class FIABCalculationParameters implements Serializable {
    * Get account
    * @return account
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_ACCOUNT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -103,6 +106,8 @@ public class FIABCalculationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ACCOUNT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAccount(FIABIdentifier account) {
     this.account = account;
   }
@@ -117,6 +122,7 @@ public class FIABCalculationParameters implements Serializable {
    * Get dates
    * @return dates
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_DATES)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -126,6 +132,8 @@ public class FIABCalculationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DATES)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDates(FIABDateParameters dates) {
     this.dates = dates;
   }
@@ -150,6 +158,8 @@ public class FIABCalculationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_MSL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMsl(String msl) {
     this.msl = msl;
   }
@@ -174,6 +184,8 @@ public class FIABCalculationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FISETTINGSDOCUMENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFisettingsdocument(String fisettingsdocument) {
     this.fisettingsdocument = fisettingsdocument;
   }

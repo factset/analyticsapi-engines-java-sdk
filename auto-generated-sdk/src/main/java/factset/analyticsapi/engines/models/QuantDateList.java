@@ -78,6 +78,8 @@ public class QuantDateList implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DATES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDates(java.util.List<String> dates) {
     this.dates = dates;
   }
@@ -92,6 +94,7 @@ public class QuantDateList implements Serializable {
    * Get frequency
    * @return frequency
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_FREQUENCY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -101,6 +104,8 @@ public class QuantDateList implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FREQUENCY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setFrequency(String frequency) {
     this.frequency = frequency;
   }
@@ -115,6 +120,7 @@ public class QuantDateList implements Serializable {
    * Get calendar
    * @return calendar
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_CALENDAR)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -124,6 +130,8 @@ public class QuantDateList implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CALENDAR)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCalendar(String calendar) {
     this.calendar = calendar;
   }

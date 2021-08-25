@@ -102,6 +102,8 @@ public class QuantCalculationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SCREENING_EXPRESSION_UNIVERSE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setScreeningExpressionUniverse(QuantScreeningExpressionUniverse screeningExpressionUniverse) {
     this.screeningExpressionUniverse = screeningExpressionUniverse;
   }
@@ -126,6 +128,8 @@ public class QuantCalculationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_UNIVERSAL_SCREEN_UNIVERSE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUniversalScreenUniverse(QuantUniversalScreenUniverse universalScreenUniverse) {
     this.universalScreenUniverse = universalScreenUniverse;
   }
@@ -150,6 +154,8 @@ public class QuantCalculationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_IDENTIFIER_UNIVERSE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIdentifierUniverse(QuantIdentifierUniverse identifierUniverse) {
     this.identifierUniverse = identifierUniverse;
   }
@@ -174,6 +180,8 @@ public class QuantCalculationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FDS_DATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFdsDate(QuantFdsDate fdsDate) {
     this.fdsDate = fdsDate;
   }
@@ -198,6 +206,8 @@ public class QuantCalculationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DATE_LIST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDateList(QuantDateList dateList) {
     this.dateList = dateList;
   }
@@ -230,6 +240,8 @@ public class QuantCalculationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SCREENING_EXPRESSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setScreeningExpression(java.util.List<QuantScreeningExpression> screeningExpression) {
     this.screeningExpression = screeningExpression;
   }
@@ -262,6 +274,8 @@ public class QuantCalculationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FQL_EXPRESSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFqlExpression(java.util.List<QuantFqlExpression> fqlExpression) {
     this.fqlExpression = fqlExpression;
   }
@@ -294,6 +308,8 @@ public class QuantCalculationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_UNIVERSAL_SCREEN_PARAMETER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUniversalScreenParameter(java.util.List<QuantUniversalScreenParameter> universalScreenParameter) {
     this.universalScreenParameter = universalScreenParameter;
   }
@@ -326,6 +342,8 @@ public class QuantCalculationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ALL_UNIVERSAL_SCREEN_PARAMETERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAllUniversalScreenParameters(java.util.List<Object> allUniversalScreenParameters) {
     this.allUniversalScreenParameters = allUniversalScreenParameters;
   }

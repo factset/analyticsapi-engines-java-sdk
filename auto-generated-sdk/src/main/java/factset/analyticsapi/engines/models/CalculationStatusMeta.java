@@ -71,6 +71,8 @@ public class CalculationStatusMeta implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_UNITS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUnits(java.util.Map<String, CalculationUnitStatusMeta> units) {
     this.units = units;
   }

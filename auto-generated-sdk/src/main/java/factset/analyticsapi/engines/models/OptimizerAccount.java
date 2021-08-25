@@ -67,6 +67,8 @@ public class OptimizerAccount implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -91,6 +93,8 @@ public class OptimizerAccount implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_OVERRIDES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOverrides(OptimizerAccountOverrides overrides) {
     this.overrides = overrides;
   }

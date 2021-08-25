@@ -152,6 +152,8 @@ public class OptimalPortfolio implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ACCT_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAcctName(String acctName) {
     this.acctName = acctName;
   }
@@ -176,6 +178,8 @@ public class OptimalPortfolio implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EXCLUDE_ZERO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExcludeZero(Boolean excludeZero) {
     this.excludeZero = excludeZero;
   }
@@ -200,6 +204,8 @@ public class OptimalPortfolio implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ARCHIVE_DATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArchiveDate(String archiveDate) {
     this.archiveDate = archiveDate;
   }
@@ -224,6 +230,8 @@ public class OptimalPortfolio implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_IF_ACCT_EXISTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIfAcctExists(IfAcctExistsEnum ifAcctExists) {
     this.ifAcctExists = ifAcctExists;
   }
@@ -248,6 +256,8 @@ public class OptimalPortfolio implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_IF_OFDB_DATE_EXISTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIfOfdbDateExists(IfOfdbDateExistsEnum ifOfdbDateExists) {
     this.ifOfdbDateExists = ifOfdbDateExists;
   }

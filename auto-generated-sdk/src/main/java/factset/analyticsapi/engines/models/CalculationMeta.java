@@ -225,7 +225,9 @@ public class CalculationMeta implements Serializable {
    /**
    * Get contentorganization
    * @return contentorganization
+   * @deprecated
   **/
+  @Deprecated
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CONTENTORGANIZATION)
@@ -236,6 +238,8 @@ public class CalculationMeta implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CONTENTORGANIZATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContentorganization(ContentorganizationEnum contentorganization) {
     this.contentorganization = contentorganization;
   }
@@ -260,6 +264,8 @@ public class CalculationMeta implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STACH_CONTENT_ORGANIZATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStachContentOrganization(StachContentOrganizationEnum stachContentOrganization) {
     this.stachContentOrganization = stachContentOrganization;
   }
@@ -273,7 +279,9 @@ public class CalculationMeta implements Serializable {
    /**
    * Get contenttype
    * @return contenttype
+   * @deprecated
   **/
+  @Deprecated
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CONTENTTYPE)
@@ -284,6 +292,8 @@ public class CalculationMeta implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CONTENTTYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContenttype(ContenttypeEnum contenttype) {
     this.contenttype = contenttype;
   }
@@ -308,6 +318,8 @@ public class CalculationMeta implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FORMAT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFormat(FormatEnum format) {
     this.format = format;
   }

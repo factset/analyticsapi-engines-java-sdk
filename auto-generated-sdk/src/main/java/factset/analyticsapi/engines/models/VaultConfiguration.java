@@ -67,6 +67,8 @@ public class VaultConfiguration implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -99,6 +101,8 @@ public class VaultConfiguration implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ACCOUNTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccounts(java.util.Map<String, ConfigurationAccount> accounts) {
     this.accounts = accounts;
   }

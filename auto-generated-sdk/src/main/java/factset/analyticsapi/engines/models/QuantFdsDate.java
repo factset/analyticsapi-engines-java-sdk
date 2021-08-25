@@ -64,6 +64,7 @@ public class QuantFdsDate implements Serializable {
    * Get startDate
    * @return startDate
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_START_DATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -73,6 +74,8 @@ public class QuantFdsDate implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_START_DATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setStartDate(String startDate) {
     this.startDate = startDate;
   }
@@ -87,6 +90,7 @@ public class QuantFdsDate implements Serializable {
    * Get endDate
    * @return endDate
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_END_DATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -96,6 +100,8 @@ public class QuantFdsDate implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_END_DATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setEndDate(String endDate) {
     this.endDate = endDate;
   }
@@ -110,6 +116,7 @@ public class QuantFdsDate implements Serializable {
    * Get frequency
    * @return frequency
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_FREQUENCY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -119,6 +126,8 @@ public class QuantFdsDate implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FREQUENCY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setFrequency(String frequency) {
     this.frequency = frequency;
   }
@@ -133,6 +142,7 @@ public class QuantFdsDate implements Serializable {
    * Get calendar
    * @return calendar
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_CALENDAR)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -142,6 +152,8 @@ public class QuantFdsDate implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CALENDAR)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCalendar(String calendar) {
     this.calendar = calendar;
   }

@@ -117,6 +117,8 @@ public class OptimizerTradesList implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_IDENTIFIER_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIdentifierType(IdentifierTypeEnum identifierType) {
     this.identifierType = identifierType;
   }
@@ -141,6 +143,8 @@ public class OptimizerTradesList implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_INCLUDE_CASH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIncludeCash(Boolean includeCash) {
     this.includeCash = includeCash;
   }

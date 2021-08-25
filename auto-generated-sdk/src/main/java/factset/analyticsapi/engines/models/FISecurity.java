@@ -121,6 +121,8 @@ public class FISecurity implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SETTLEMENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSettlement(String settlement) {
     this.settlement = settlement;
   }
@@ -135,6 +137,7 @@ public class FISecurity implements Serializable {
    * Calculation from method
    * @return calcFromMethod
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Calculation from method")
   @JsonProperty(JSON_PROPERTY_CALC_FROM_METHOD)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -144,6 +147,8 @@ public class FISecurity implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CALC_FROM_METHOD)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCalcFromMethod(String calcFromMethod) {
     this.calcFromMethod = calcFromMethod;
   }
@@ -158,6 +163,7 @@ public class FISecurity implements Serializable {
    * Calculation from value
    * @return calcFromValue
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Calculation from value")
   @JsonProperty(JSON_PROPERTY_CALC_FROM_VALUE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -167,6 +173,8 @@ public class FISecurity implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CALC_FROM_VALUE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCalcFromValue(Double calcFromValue) {
     this.calcFromValue = calcFromValue;
   }
@@ -191,6 +199,8 @@ public class FISecurity implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FACE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFace(Double face) {
     this.face = face;
   }
@@ -215,6 +225,8 @@ public class FISecurity implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FACE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFaceType(FaceTypeEnum faceType) {
     this.faceType = faceType;
   }
@@ -229,6 +241,7 @@ public class FISecurity implements Serializable {
    * Symbol
    * @return symbol
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Symbol")
   @JsonProperty(JSON_PROPERTY_SYMBOL)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -238,6 +251,8 @@ public class FISecurity implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SYMBOL)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSymbol(String symbol) {
     this.symbol = symbol;
   }
@@ -262,6 +277,8 @@ public class FISecurity implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DISCOUNT_CURVE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDiscountCurve(String discountCurve) {
     this.discountCurve = discountCurve;
   }
