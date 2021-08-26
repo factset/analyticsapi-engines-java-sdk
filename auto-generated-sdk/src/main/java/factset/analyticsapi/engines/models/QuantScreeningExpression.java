@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.QuantFormula;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -34,7 +35,8 @@ import factset.analyticsapi.engines.JSON;
  */
 @JsonPropertyOrder({
   QuantScreeningExpression.JSON_PROPERTY_EXPR,
-  QuantScreeningExpression.JSON_PROPERTY_NAME
+  QuantScreeningExpression.JSON_PROPERTY_NAME,
+  QuantScreeningExpression.JSON_PROPERTY_SOURCE
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class QuantScreeningExpression implements Serializable {
@@ -45,6 +47,48 @@ public class QuantScreeningExpression implements Serializable {
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
+
+  /**
+   * Gets or Sets source
+   */
+  public enum SourceEnum {
+    SCREENINGEXPRESSION("ScreeningExpression"),
+    
+    FQLEXPRESSION("FqlExpression"),
+    
+    UNIVERSALSCREENPARAMETER("UniversalScreenParameter"),
+    
+    ALLUNIVERSALSCREENPARAMETERS("AllUniversalScreenParameters");
+
+    private String value;
+
+    SourceEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SourceEnum fromValue(String value) {
+      for (SourceEnum b : SourceEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_SOURCE = "source";
+  private SourceEnum source;
 
 
   public QuantScreeningExpression expr(String expr) {
@@ -99,6 +143,32 @@ public class QuantScreeningExpression implements Serializable {
   }
 
 
+  public QuantScreeningExpression source(SourceEnum source) {
+    this.source = source;
+    return this;
+  }
+
+   /**
+   * Get source
+   * @return source
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_SOURCE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public SourceEnum getSource() {
+    return source;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SOURCE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSource(SourceEnum source) {
+    this.source = source;
+  }
+
+
   /**
    * Return true if this QuantScreeningExpression object is equal to o.
    */
@@ -112,12 +182,13 @@ public class QuantScreeningExpression implements Serializable {
     }
     QuantScreeningExpression quantScreeningExpression = (QuantScreeningExpression) o;
     return Objects.equals(this.expr, quantScreeningExpression.expr) &&
-        Objects.equals(this.name, quantScreeningExpression.name);
+        Objects.equals(this.name, quantScreeningExpression.name) &&
+        Objects.equals(this.source, quantScreeningExpression.source);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expr, name);
+    return Objects.hash(expr, name, source);
   }
 
   @Override
@@ -126,6 +197,7 @@ public class QuantScreeningExpression implements Serializable {
     sb.append("class QuantScreeningExpression {\n");
     sb.append("    expr: ").append(toIndentedString(expr)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("}");
     return sb.toString();
   }

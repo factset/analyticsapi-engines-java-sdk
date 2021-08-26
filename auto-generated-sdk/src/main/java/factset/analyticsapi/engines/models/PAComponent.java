@@ -42,7 +42,8 @@ import factset.analyticsapi.engines.JSON;
   PAComponent.JSON_PROPERTY_DATES,
   PAComponent.JSON_PROPERTY_SNAPSHOT,
   PAComponent.JSON_PROPERTY_NAME,
-  PAComponent.JSON_PROPERTY_CATEGORY
+  PAComponent.JSON_PROPERTY_CATEGORY,
+  PAComponent.JSON_PROPERTY_TYPE
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class PAComponent implements Serializable {
@@ -71,6 +72,9 @@ public class PAComponent implements Serializable {
 
   public static final String JSON_PROPERTY_CATEGORY = "category";
   private String category;
+
+  public static final String JSON_PROPERTY_TYPE = "type";
+  private String type;
 
 
   public PAComponent id(String id) {
@@ -297,6 +301,32 @@ public class PAComponent implements Serializable {
   }
 
 
+  public PAComponent type(String type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Component type.
+   * @return type
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Component type.")
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getType() {
+    return type;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setType(String type) {
+    this.type = type;
+  }
+
+
   /**
    * Return true if this PAComponent object is equal to o.
    */
@@ -316,12 +346,13 @@ public class PAComponent implements Serializable {
         Objects.equals(this.dates, paComponent.dates) &&
         Objects.equals(this.snapshot, paComponent.snapshot) &&
         Objects.equals(this.name, paComponent.name) &&
-        Objects.equals(this.category, paComponent.category);
+        Objects.equals(this.category, paComponent.category) &&
+        Objects.equals(this.type, paComponent.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, accounts, benchmarks, currencyisocode, dates, snapshot, name, category);
+    return Objects.hash(id, accounts, benchmarks, currencyisocode, dates, snapshot, name, category, type);
   }
 
   @Override
@@ -336,6 +367,7 @@ public class PAComponent implements Serializable {
     sb.append("    snapshot: ").append(toIndentedString(snapshot)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -34,7 +34,10 @@ import factset.analyticsapi.engines.JSON;
  */
 @JsonPropertyOrder({
   FIJobSettings.JSON_PROPERTY_AS_OF_DATE,
-  FIJobSettings.JSON_PROPERTY_PARTIAL_DURATION_MONTHS
+  FIJobSettings.JSON_PROPERTY_PARTIAL_DURATION_MONTHS,
+  FIJobSettings.JSON_PROPERTY_CALL_METHOD,
+  FIJobSettings.JSON_PROPERTY_SETTLEMENT,
+  FIJobSettings.JSON_PROPERTY_CALC_FROM_METHOD
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class FIJobSettings implements Serializable {
@@ -45,6 +48,54 @@ public class FIJobSettings implements Serializable {
 
   public static final String JSON_PROPERTY_PARTIAL_DURATION_MONTHS = "partialDurationMonths";
   private java.util.List<Integer> partialDurationMonths = null;
+
+  /**
+   * Call Method
+   */
+  public enum CallMethodEnum {
+    NO_CALL("No Call"),
+    
+    INTRINSIC_VALUE("Intrinsic Value"),
+    
+    FIRST_CALL("First Call"),
+    
+    FIRST_PAR("First Par");
+
+    private String value;
+
+    CallMethodEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CallMethodEnum fromValue(String value) {
+      for (CallMethodEnum b : CallMethodEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CALL_METHOD = "callMethod";
+  private CallMethodEnum callMethod;
+
+  public static final String JSON_PROPERTY_SETTLEMENT = "settlement";
+  private String settlement;
+
+  public static final String JSON_PROPERTY_CALC_FROM_METHOD = "calcFromMethod";
+  private String calcFromMethod;
 
 
   public FIJobSettings asOfDate(String asOfDate) {
@@ -107,6 +158,84 @@ public class FIJobSettings implements Serializable {
   }
 
 
+  public FIJobSettings callMethod(CallMethodEnum callMethod) {
+    this.callMethod = callMethod;
+    return this;
+  }
+
+   /**
+   * Call Method
+   * @return callMethod
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Call Method")
+  @JsonProperty(JSON_PROPERTY_CALL_METHOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public CallMethodEnum getCallMethod() {
+    return callMethod;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CALL_METHOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCallMethod(CallMethodEnum callMethod) {
+    this.callMethod = callMethod;
+  }
+
+
+  public FIJobSettings settlement(String settlement) {
+    this.settlement = settlement;
+    return this;
+  }
+
+   /**
+   * Settlement Date
+   * @return settlement
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Settlement Date")
+  @JsonProperty(JSON_PROPERTY_SETTLEMENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getSettlement() {
+    return settlement;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SETTLEMENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSettlement(String settlement) {
+    this.settlement = settlement;
+  }
+
+
+  public FIJobSettings calcFromMethod(String calcFromMethod) {
+    this.calcFromMethod = calcFromMethod;
+    return this;
+  }
+
+   /**
+   * Calculation from method
+   * @return calcFromMethod
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Calculation from method")
+  @JsonProperty(JSON_PROPERTY_CALC_FROM_METHOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getCalcFromMethod() {
+    return calcFromMethod;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CALC_FROM_METHOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCalcFromMethod(String calcFromMethod) {
+    this.calcFromMethod = calcFromMethod;
+  }
+
+
   /**
    * Return true if this FIJobSettings object is equal to o.
    */
@@ -120,12 +249,15 @@ public class FIJobSettings implements Serializable {
     }
     FIJobSettings fiJobSettings = (FIJobSettings) o;
     return Objects.equals(this.asOfDate, fiJobSettings.asOfDate) &&
-        Objects.equals(this.partialDurationMonths, fiJobSettings.partialDurationMonths);
+        Objects.equals(this.partialDurationMonths, fiJobSettings.partialDurationMonths) &&
+        Objects.equals(this.callMethod, fiJobSettings.callMethod) &&
+        Objects.equals(this.settlement, fiJobSettings.settlement) &&
+        Objects.equals(this.calcFromMethod, fiJobSettings.calcFromMethod);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(asOfDate, partialDurationMonths);
+    return Objects.hash(asOfDate, partialDurationMonths, callMethod, settlement, calcFromMethod);
   }
 
   @Override
@@ -134,6 +266,9 @@ public class FIJobSettings implements Serializable {
     sb.append("class FIJobSettings {\n");
     sb.append("    asOfDate: ").append(toIndentedString(asOfDate)).append("\n");
     sb.append("    partialDurationMonths: ").append(toIndentedString(partialDurationMonths)).append("\n");
+    sb.append("    callMethod: ").append(toIndentedString(callMethod)).append("\n");
+    sb.append("    settlement: ").append(toIndentedString(settlement)).append("\n");
+    sb.append("    calcFromMethod: ").append(toIndentedString(calcFromMethod)).append("\n");
     sb.append("}");
     return sb.toString();
   }

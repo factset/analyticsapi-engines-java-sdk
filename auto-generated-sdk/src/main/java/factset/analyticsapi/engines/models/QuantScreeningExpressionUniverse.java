@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.QuantUniverse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -35,7 +36,8 @@ import factset.analyticsapi.engines.JSON;
 @JsonPropertyOrder({
   QuantScreeningExpressionUniverse.JSON_PROPERTY_UNIVERSE_EXPR,
   QuantScreeningExpressionUniverse.JSON_PROPERTY_UNIVERSE_TYPE,
-  QuantScreeningExpressionUniverse.JSON_PROPERTY_SECURITY_EXPR
+  QuantScreeningExpressionUniverse.JSON_PROPERTY_SECURITY_EXPR,
+  QuantScreeningExpressionUniverse.JSON_PROPERTY_SOURCE
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class QuantScreeningExpressionUniverse implements Serializable {
@@ -84,6 +86,46 @@ public class QuantScreeningExpressionUniverse implements Serializable {
 
   public static final String JSON_PROPERTY_SECURITY_EXPR = "securityExpr";
   private String securityExpr;
+
+  /**
+   * Gets or Sets source
+   */
+  public enum SourceEnum {
+    SCREENINGEXPRESSIONUNIVERSE("ScreeningExpressionUniverse"),
+    
+    UNIVERSALSCREENUNIVERSE("UniversalScreenUniverse"),
+    
+    IDENTIFIERUNIVERSE("IdentifierUniverse");
+
+    private String value;
+
+    SourceEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SourceEnum fromValue(String value) {
+      for (SourceEnum b : SourceEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_SOURCE = "source";
+  private SourceEnum source;
 
 
   public QuantScreeningExpressionUniverse universeExpr(String universeExpr) {
@@ -164,6 +206,32 @@ public class QuantScreeningExpressionUniverse implements Serializable {
   }
 
 
+  public QuantScreeningExpressionUniverse source(SourceEnum source) {
+    this.source = source;
+    return this;
+  }
+
+   /**
+   * Get source
+   * @return source
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_SOURCE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public SourceEnum getSource() {
+    return source;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SOURCE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSource(SourceEnum source) {
+    this.source = source;
+  }
+
+
   /**
    * Return true if this QuantScreeningExpressionUniverse object is equal to o.
    */
@@ -178,12 +246,13 @@ public class QuantScreeningExpressionUniverse implements Serializable {
     QuantScreeningExpressionUniverse quantScreeningExpressionUniverse = (QuantScreeningExpressionUniverse) o;
     return Objects.equals(this.universeExpr, quantScreeningExpressionUniverse.universeExpr) &&
         Objects.equals(this.universeType, quantScreeningExpressionUniverse.universeType) &&
-        Objects.equals(this.securityExpr, quantScreeningExpressionUniverse.securityExpr);
+        Objects.equals(this.securityExpr, quantScreeningExpressionUniverse.securityExpr) &&
+        Objects.equals(this.source, quantScreeningExpressionUniverse.source);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(universeExpr, universeType, securityExpr);
+    return Objects.hash(universeExpr, universeType, securityExpr, source);
   }
 
   @Override
@@ -193,6 +262,7 @@ public class QuantScreeningExpressionUniverse implements Serializable {
     sb.append("    universeExpr: ").append(toIndentedString(universeExpr)).append("\n");
     sb.append("    universeType: ").append(toIndentedString(universeType)).append("\n");
     sb.append("    securityExpr: ").append(toIndentedString(securityExpr)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("}");
     return sb.toString();
   }
