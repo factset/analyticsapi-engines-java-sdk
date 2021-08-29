@@ -83,7 +83,6 @@ public class AxiomaEquityOptimizerStrategy implements Serializable {
    * OptimizerStrategy document path
    * @return id
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "OptimizerStrategy document path")
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

@@ -94,7 +94,6 @@ public class QuantDateList1 implements Serializable {
    * Get frequency
    * @return frequency
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_FREQUENCY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -120,7 +119,6 @@ public class QuantDateList1 implements Serializable {
    * Get calendar
    * @return calendar
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_CALENDAR)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

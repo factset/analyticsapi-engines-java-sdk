@@ -137,7 +137,6 @@ public class QuantScreeningExpressionUniverse implements Serializable {
    * Get universeExpr
    * @return universeExpr
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_UNIVERSE_EXPR)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -163,7 +162,6 @@ public class QuantScreeningExpressionUniverse implements Serializable {
    * Get universeType
    * @return universeType
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_UNIVERSE_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -215,7 +213,6 @@ public class QuantScreeningExpressionUniverse implements Serializable {
    * Get source
    * @return source
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_SOURCE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

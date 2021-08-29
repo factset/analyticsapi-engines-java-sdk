@@ -56,7 +56,6 @@ public class QuantUniversalScreenParameter1 implements Serializable {
    * Get referenceName
    * @return referenceName
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_REFERENCE_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -82,7 +81,6 @@ public class QuantUniversalScreenParameter1 implements Serializable {
    * Get name
    * @return name
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

@@ -52,7 +52,6 @@ public class PaDoc implements Serializable {
    * PA document path
    * @return id
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "PA document path")
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

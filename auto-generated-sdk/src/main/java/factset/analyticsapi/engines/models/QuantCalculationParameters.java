@@ -107,7 +107,6 @@ public class QuantCalculationParameters implements Serializable {
    * Get universe
    * @return universe
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_UNIVERSE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -133,7 +132,6 @@ public class QuantCalculationParameters implements Serializable {
    * Get dates
    * @return dates
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_DATES)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -330,9 +328,7 @@ public class QuantCalculationParameters implements Serializable {
    /**
    * Get screeningExpression
    * @return screeningExpression
-   * @deprecated
   **/
-  @Deprecated
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_SCREENING_EXPRESSION)
@@ -366,9 +362,7 @@ public class QuantCalculationParameters implements Serializable {
    /**
    * Get fqlExpression
    * @return fqlExpression
-   * @deprecated
   **/
-  @Deprecated
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_FQL_EXPRESSION)
@@ -402,9 +396,7 @@ public class QuantCalculationParameters implements Serializable {
    /**
    * Get universalScreenParameter
    * @return universalScreenParameter
-   * @deprecated
   **/
-  @Deprecated
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_UNIVERSAL_SCREEN_PARAMETER)
@@ -438,9 +430,7 @@ public class QuantCalculationParameters implements Serializable {
    /**
    * Get allUniversalScreenParameters
    * @return allUniversalScreenParameters
-   * @deprecated
   **/
-  @Deprecated
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ALL_UNIVERSAL_SCREEN_PARAMETERS)

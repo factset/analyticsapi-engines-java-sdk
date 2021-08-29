@@ -25,7 +25,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.SPARAccounts;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
@@ -61,7 +60,6 @@ public class SPARAccountsRoot implements Serializable {
    * Get data
    * @return data
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -125,25 +123,12 @@ public class SPARAccountsRoot implements Serializable {
     }
     SPARAccountsRoot spARAccountsRoot = (SPARAccountsRoot) o;
     return Objects.equals(this.data, spARAccountsRoot.data) &&
-        equalsNullable(this.meta, spARAccountsRoot.meta);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && a.get().getClass().isArray() ? Arrays.equals((T[])a.get(), (T[])b.get()) : Objects.equals(a.get(), b.get()));
+        Objects.equals(this.meta, spARAccountsRoot.meta);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, hashCodeNullable(meta));
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent()
-      ? (a.get().getClass().isArray() ? Arrays.hashCode((T[])a.get()) : Objects.hashCode(a.get()))
-      : 31;
+    return Objects.hash(data, meta);
   }
 
   @Override

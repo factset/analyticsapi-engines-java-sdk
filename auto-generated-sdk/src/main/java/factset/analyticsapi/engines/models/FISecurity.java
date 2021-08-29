@@ -232,7 +232,6 @@ public class FISecurity implements Serializable {
    * Calculation from value
    * @return calcFromValue
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Calculation from value")
   @JsonProperty(JSON_PROPERTY_CALC_FROM_VALUE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -310,7 +309,6 @@ public class FISecurity implements Serializable {
    * Symbol
    * @return symbol
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Symbol")
   @JsonProperty(JSON_PROPERTY_SYMBOL)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

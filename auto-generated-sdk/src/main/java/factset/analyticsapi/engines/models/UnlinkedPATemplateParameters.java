@@ -97,7 +97,6 @@ public class UnlinkedPATemplateParameters implements Serializable {
    * The directory to create an unlinked PA template
    * @return directory
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "The directory to create an unlinked PA template")
   @JsonProperty(JSON_PROPERTY_DIRECTORY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -123,7 +122,6 @@ public class UnlinkedPATemplateParameters implements Serializable {
    * Template type id
    * @return templateTypeId
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Template type id")
   @JsonProperty(JSON_PROPERTY_TEMPLATE_TYPE_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

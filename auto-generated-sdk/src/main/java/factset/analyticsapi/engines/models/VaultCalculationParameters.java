@@ -70,7 +70,6 @@ public class VaultCalculationParameters implements Serializable {
    * The Vault component identifier to analyze.
    * @return componentid
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "The Vault component identifier to analyze.")
   @JsonProperty(JSON_PROPERTY_COMPONENTID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -96,7 +95,6 @@ public class VaultCalculationParameters implements Serializable {
    * Get account
    * @return account
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_ACCOUNT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -148,7 +146,6 @@ public class VaultCalculationParameters implements Serializable {
    * Vault Configuration identifier.
    * @return configid
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Vault Configuration identifier.")
   @JsonProperty(JSON_PROPERTY_CONFIGID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

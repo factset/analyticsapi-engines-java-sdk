@@ -56,7 +56,6 @@ public class PubIdentifier implements Serializable {
    * User&#39;s FactSet account path OR benchmark.
    * @return id
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "User's FactSet account path OR benchmark.")
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

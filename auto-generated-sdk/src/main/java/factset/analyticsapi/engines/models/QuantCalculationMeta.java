@@ -255,9 +255,7 @@ public class QuantCalculationMeta implements Serializable {
    /**
    * Get contentorganization
    * @return contentorganization
-   * @deprecated
   **/
-  @Deprecated
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CONTENTORGANIZATION)
@@ -309,9 +307,7 @@ public class QuantCalculationMeta implements Serializable {
    /**
    * Get contenttype
    * @return contenttype
-   * @deprecated
   **/
-  @Deprecated
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CONTENTTYPE)

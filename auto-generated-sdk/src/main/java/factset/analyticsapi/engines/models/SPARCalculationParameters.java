@@ -70,7 +70,6 @@ public class SPARCalculationParameters implements Serializable {
    * The SPAR Engine component identifier to analyze.
    * @return componentid
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "The SPAR Engine component identifier to analyze.")
   @JsonProperty(JSON_PROPERTY_COMPONENTID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

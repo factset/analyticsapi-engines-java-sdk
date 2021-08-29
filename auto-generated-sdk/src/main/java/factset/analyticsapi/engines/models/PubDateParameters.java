@@ -83,7 +83,6 @@ public class PubDateParameters implements Serializable {
    * Calculation&#39;s end date or as of date.
    * @return enddate
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Calculation's end date or as of date.")
   @JsonProperty(JSON_PROPERTY_ENDDATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

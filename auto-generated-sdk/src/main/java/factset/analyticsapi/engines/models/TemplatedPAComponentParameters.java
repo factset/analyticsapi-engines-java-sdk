@@ -65,7 +65,6 @@ public class TemplatedPAComponentParameters implements Serializable {
    * Directory to create templated components
    * @return directory
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Directory to create templated components")
   @JsonProperty(JSON_PROPERTY_DIRECTORY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -91,7 +90,6 @@ public class TemplatedPAComponentParameters implements Serializable {
    * Parent template id
    * @return parentTemplateId
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Parent template id")
   @JsonProperty(JSON_PROPERTY_PARENT_TEMPLATE_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

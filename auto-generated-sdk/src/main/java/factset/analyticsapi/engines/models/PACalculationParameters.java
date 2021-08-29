@@ -84,7 +84,6 @@ public class PACalculationParameters implements Serializable {
    * The PA Engine component identifier to analyze.
    * @return componentid
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "The PA Engine component identifier to analyze.")
   @JsonProperty(JSON_PROPERTY_COMPONENTID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

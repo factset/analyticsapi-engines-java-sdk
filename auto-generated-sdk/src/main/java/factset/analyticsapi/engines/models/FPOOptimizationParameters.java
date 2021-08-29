@@ -94,7 +94,6 @@ public class FPOOptimizationParameters implements Serializable {
    * Get strategy
    * @return strategy
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_STRATEGY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -146,7 +145,6 @@ public class FPOOptimizationParameters implements Serializable {
    * Get outputTypes
    * @return outputTypes
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_OUTPUT_TYPES)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

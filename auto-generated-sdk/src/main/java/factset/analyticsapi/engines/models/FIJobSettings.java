@@ -107,7 +107,6 @@ public class FIJobSettings implements Serializable {
    * As of date
    * @return asOfDate
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "As of date")
   @JsonProperty(JSON_PROPERTY_AS_OF_DATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

@@ -67,7 +67,6 @@ public class FICalculationParameters implements Serializable {
    * List of securities
    * @return securities
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "List of securities")
   @JsonProperty(JSON_PROPERTY_SECURITIES)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -98,7 +97,6 @@ public class FICalculationParameters implements Serializable {
    * List of calculations
    * @return calculations
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "List of calculations")
   @JsonProperty(JSON_PROPERTY_CALCULATIONS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -124,7 +122,6 @@ public class FICalculationParameters implements Serializable {
    * Get jobSettings
    * @return jobSettings
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_JOB_SETTINGS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

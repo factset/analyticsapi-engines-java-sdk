@@ -61,7 +61,6 @@ public class SPARDateParameters implements Serializable {
    * Calculation&#39;s start date.
    * @return startdate
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Calculation's start date.")
   @JsonProperty(JSON_PROPERTY_STARTDATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -87,7 +86,6 @@ public class SPARDateParameters implements Serializable {
    * Calculation&#39;s end date.
    * @return enddate
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Calculation's end date.")
   @JsonProperty(JSON_PROPERTY_ENDDATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -113,7 +111,6 @@ public class SPARDateParameters implements Serializable {
    * Calculation&#39;s frequency.
    * @return frequency
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Calculation's frequency.")
   @JsonProperty(JSON_PROPERTY_FREQUENCY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

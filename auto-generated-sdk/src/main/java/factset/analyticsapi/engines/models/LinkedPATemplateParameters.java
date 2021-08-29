@@ -65,7 +65,6 @@ public class LinkedPATemplateParameters implements Serializable {
    * The directory to create a linked PA template
    * @return directory
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "The directory to create a linked PA template")
   @JsonProperty(JSON_PROPERTY_DIRECTORY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -91,7 +90,6 @@ public class LinkedPATemplateParameters implements Serializable {
    * Parent component id
    * @return parentComponentId
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Parent component id")
   @JsonProperty(JSON_PROPERTY_PARENT_COMPONENT_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

@@ -62,7 +62,6 @@ public class FPOAccount implements Serializable {
    * Get paDocument
    * @return paDocument
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_PA_DOCUMENT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

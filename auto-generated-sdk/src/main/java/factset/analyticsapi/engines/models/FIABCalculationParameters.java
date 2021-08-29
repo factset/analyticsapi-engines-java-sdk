@@ -96,7 +96,6 @@ public class FIABCalculationParameters implements Serializable {
    * Get account
    * @return account
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_ACCOUNT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -122,7 +121,6 @@ public class FIABCalculationParameters implements Serializable {
    * Get dates
    * @return dates
   **/
-  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_DATES)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
