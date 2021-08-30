@@ -113,8 +113,6 @@ public class QuantFdsDate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_START_DATE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setStartDate(String startDate) {
     this.startDate = startDate;
   }
@@ -138,8 +136,6 @@ public class QuantFdsDate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_END_DATE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setEndDate(String endDate) {
     this.endDate = endDate;
   }
@@ -163,8 +159,6 @@ public class QuantFdsDate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSource(SourceEnum source) {
     this.source = source;
   }
@@ -188,8 +182,6 @@ public class QuantFdsDate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FREQUENCY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setFrequency(String frequency) {
     this.frequency = frequency;
   }
@@ -213,8 +205,6 @@ public class QuantFdsDate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CALENDAR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCalendar(String calendar) {
     this.calendar = calendar;
   }

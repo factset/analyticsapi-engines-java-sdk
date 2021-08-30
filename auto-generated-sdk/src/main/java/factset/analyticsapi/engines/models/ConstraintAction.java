@@ -101,8 +101,6 @@ public class ConstraintAction implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ITEM1)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setItem1(String item1) {
     this.item1 = item1;
   }
@@ -127,8 +125,6 @@ public class ConstraintAction implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ITEM2)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setItem2(Item2Enum item2) {
     this.item2 = item2;
   }

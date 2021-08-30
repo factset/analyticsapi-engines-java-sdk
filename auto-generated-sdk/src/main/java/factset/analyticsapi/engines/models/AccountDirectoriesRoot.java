@@ -69,8 +69,6 @@ public class AccountDirectoriesRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(AccountDirectories data) {
     this.data = data;
   }

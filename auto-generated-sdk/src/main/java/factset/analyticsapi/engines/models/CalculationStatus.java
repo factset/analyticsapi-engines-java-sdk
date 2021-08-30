@@ -110,8 +110,6 @@ public class CalculationStatus implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CALCULATIONID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCalculationid(String calculationid) {
     this.calculationid = calculationid;
   }
@@ -136,8 +134,6 @@ public class CalculationStatus implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -170,8 +166,6 @@ public class CalculationStatus implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UNITS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUnits(java.util.Map<String, CalculationUnitStatus> units) {
     this.units = units;
   }

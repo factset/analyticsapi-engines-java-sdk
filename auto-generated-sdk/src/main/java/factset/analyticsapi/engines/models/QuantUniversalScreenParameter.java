@@ -109,8 +109,6 @@ public class QuantUniversalScreenParameter implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REFERENCE_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setReferenceName(String referenceName) {
     this.referenceName = referenceName;
   }
@@ -134,8 +132,6 @@ public class QuantUniversalScreenParameter implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(String name) {
     this.name = name;
   }
@@ -159,8 +155,6 @@ public class QuantUniversalScreenParameter implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSource(SourceEnum source) {
     this.source = source;
   }

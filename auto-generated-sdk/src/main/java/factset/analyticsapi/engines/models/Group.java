@@ -70,8 +70,6 @@ public class Group implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -96,8 +94,6 @@ public class Group implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DIRECTORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDirectory(String directory) {
     this.directory = directory;
   }
@@ -122,8 +118,6 @@ public class Group implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CATEGORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCategory(String category) {
     this.category = category;
   }

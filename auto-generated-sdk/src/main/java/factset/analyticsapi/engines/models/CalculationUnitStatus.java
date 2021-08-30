@@ -116,8 +116,6 @@ public class CalculationUnitStatus implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -150,8 +148,6 @@ public class CalculationUnitStatus implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ERRORS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setErrors(java.util.List<Error> errors) {
     this.errors = errors;
   }
@@ -176,8 +172,6 @@ public class CalculationUnitStatus implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RESULT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setResult(String result) {
     this.result = result;
   }
@@ -202,8 +196,6 @@ public class CalculationUnitStatus implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PROGRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProgress(String progress) {
     this.progress = progress;
   }

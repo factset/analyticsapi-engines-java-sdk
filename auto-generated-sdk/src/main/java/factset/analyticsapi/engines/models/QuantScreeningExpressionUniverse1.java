@@ -145,8 +145,6 @@ public class QuantScreeningExpressionUniverse1 implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UNIVERSE_EXPR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUniverseExpr(String universeExpr) {
     this.universeExpr = universeExpr;
   }
@@ -170,8 +168,6 @@ public class QuantScreeningExpressionUniverse1 implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UNIVERSE_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUniverseType(UniverseTypeEnum universeType) {
     this.universeType = universeType;
   }
@@ -196,8 +192,6 @@ public class QuantScreeningExpressionUniverse1 implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SECURITY_EXPR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSecurityExpr(String securityExpr) {
     this.securityExpr = securityExpr;
   }
@@ -222,8 +216,6 @@ public class QuantScreeningExpressionUniverse1 implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSource(SourceEnum source) {
     this.source = source;
   }

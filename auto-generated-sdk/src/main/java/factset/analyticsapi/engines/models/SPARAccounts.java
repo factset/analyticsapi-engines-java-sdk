@@ -71,8 +71,6 @@ public class SPARAccounts implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RETURNS_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReturnsType(java.util.List<ReturnType> returnsType) {
     this.returnsType = returnsType;
   }

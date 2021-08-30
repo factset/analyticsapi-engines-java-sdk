@@ -71,8 +71,6 @@ public class PubCalculationParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DOCUMENT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDocument(String document) {
     this.document = document;
   }
@@ -96,8 +94,6 @@ public class PubCalculationParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ACCOUNT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAccount(PubIdentifier account) {
     this.account = account;
   }
@@ -121,8 +117,6 @@ public class PubCalculationParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATES)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDates(PubDateParameters dates) {
     this.dates = dates;
   }

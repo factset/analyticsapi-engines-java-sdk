@@ -96,8 +96,6 @@ public class VaultComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -122,8 +120,6 @@ public class VaultComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ACCOUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccount(VaultIdentifier account) {
     this.account = account;
   }
@@ -148,8 +144,6 @@ public class VaultComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BENCHMARK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBenchmark(VaultIdentifier benchmark) {
     this.benchmark = benchmark;
   }
@@ -174,8 +168,6 @@ public class VaultComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CURRENCYISOCODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrencyisocode(String currencyisocode) {
     this.currencyisocode = currencyisocode;
   }
@@ -200,8 +192,6 @@ public class VaultComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDates(VaultDateParameters dates) {
     this.dates = dates;
   }
@@ -226,8 +216,6 @@ public class VaultComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SNAPSHOT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSnapshot(Boolean snapshot) {
     this.snapshot = snapshot;
   }
@@ -252,8 +240,6 @@ public class VaultComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -278,8 +264,6 @@ public class VaultComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CATEGORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCategory(String category) {
     this.category = category;
   }
@@ -304,8 +288,6 @@ public class VaultComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(String type) {
     this.type = type;
   }

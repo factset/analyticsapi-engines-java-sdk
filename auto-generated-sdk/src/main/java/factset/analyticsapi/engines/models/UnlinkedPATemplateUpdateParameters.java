@@ -99,8 +99,6 @@ public class UnlinkedPATemplateUpdateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDescription(String description) {
     this.description = description;
   }
@@ -133,8 +131,6 @@ public class UnlinkedPATemplateUpdateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ACCOUNTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccounts(java.util.List<PAIdentifier> accounts) {
     this.accounts = accounts;
   }
@@ -167,8 +163,6 @@ public class UnlinkedPATemplateUpdateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BENCHMARKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBenchmarks(java.util.List<PAIdentifier> benchmarks) {
     this.benchmarks = benchmarks;
   }
@@ -201,8 +195,6 @@ public class UnlinkedPATemplateUpdateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_COLUMNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setColumns(java.util.List<PACalculationColumn> columns) {
     this.columns = columns;
   }
@@ -227,8 +219,6 @@ public class UnlinkedPATemplateUpdateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDates(PADateParameters dates) {
     this.dates = dates;
   }
@@ -261,8 +251,6 @@ public class UnlinkedPATemplateUpdateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_GROUPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGroups(java.util.List<PACalculationGroup> groups) {
     this.groups = groups;
   }
@@ -287,8 +275,6 @@ public class UnlinkedPATemplateUpdateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CURRENCYISOCODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrencyisocode(String currencyisocode) {
     this.currencyisocode = currencyisocode;
   }
@@ -313,8 +299,6 @@ public class UnlinkedPATemplateUpdateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_COMPONENTDETAIL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setComponentdetail(String componentdetail) {
     this.componentdetail = componentdetail;
   }
@@ -339,8 +323,6 @@ public class UnlinkedPATemplateUpdateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CONTENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContent(TemplateContentTypes content) {
     this.content = content;
   }

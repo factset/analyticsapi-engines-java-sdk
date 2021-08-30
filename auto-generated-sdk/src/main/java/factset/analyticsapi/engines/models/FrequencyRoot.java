@@ -74,8 +74,6 @@ public class FrequencyRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(java.util.Map<String, Frequency> data) {
     this.data = data;
   }

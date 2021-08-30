@@ -96,8 +96,6 @@ public class PAComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -130,8 +128,6 @@ public class PAComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ACCOUNTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccounts(java.util.List<PAIdentifier> accounts) {
     this.accounts = accounts;
   }
@@ -164,8 +160,6 @@ public class PAComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BENCHMARKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBenchmarks(java.util.List<PAIdentifier> benchmarks) {
     this.benchmarks = benchmarks;
   }
@@ -190,8 +184,6 @@ public class PAComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CURRENCYISOCODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrencyisocode(String currencyisocode) {
     this.currencyisocode = currencyisocode;
   }
@@ -216,8 +208,6 @@ public class PAComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDates(PADateParameters dates) {
     this.dates = dates;
   }
@@ -242,8 +232,6 @@ public class PAComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SNAPSHOT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSnapshot(Boolean snapshot) {
     this.snapshot = snapshot;
   }
@@ -268,8 +256,6 @@ public class PAComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -294,8 +280,6 @@ public class PAComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CATEGORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCategory(String category) {
     this.category = category;
   }
@@ -320,8 +304,6 @@ public class PAComponent implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(String type) {
     this.type = type;
   }

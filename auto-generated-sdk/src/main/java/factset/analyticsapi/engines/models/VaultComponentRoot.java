@@ -69,8 +69,6 @@ public class VaultComponentRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(VaultComponent data) {
     this.data = data;
   }

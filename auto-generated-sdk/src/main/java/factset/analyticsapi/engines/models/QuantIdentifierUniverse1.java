@@ -141,8 +141,6 @@ public class QuantIdentifierUniverse1 implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UNIVERSE_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUniverseType(UniverseTypeEnum universeType) {
     this.universeType = universeType;
   }
@@ -171,8 +169,6 @@ public class QuantIdentifierUniverse1 implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IDENTIFIERS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIdentifiers(java.util.List<String> identifiers) {
     this.identifiers = identifiers;
   }
@@ -197,8 +193,6 @@ public class QuantIdentifierUniverse1 implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSource(SourceEnum source) {
     this.source = source;
   }

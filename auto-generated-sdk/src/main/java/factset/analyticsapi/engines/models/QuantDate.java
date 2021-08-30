@@ -104,8 +104,6 @@ public class QuantDate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSource(SourceEnum source) {
     this.source = source;
   }
@@ -129,8 +127,6 @@ public class QuantDate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FREQUENCY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setFrequency(String frequency) {
     this.frequency = frequency;
   }
@@ -154,8 +150,6 @@ public class QuantDate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CALENDAR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCalendar(String calendar) {
     this.calendar = calendar;
   }

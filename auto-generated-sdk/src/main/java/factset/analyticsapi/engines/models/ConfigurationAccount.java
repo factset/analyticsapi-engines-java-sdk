@@ -82,8 +82,6 @@ public class ConfigurationAccount implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BENCHMARK_CODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBenchmarkCode(String benchmarkCode) {
     this.benchmarkCode = benchmarkCode;
   }
@@ -108,8 +106,6 @@ public class ConfigurationAccount implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BENCHMARK_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBenchmarkName(String benchmarkName) {
     this.benchmarkName = benchmarkName;
   }
@@ -134,8 +130,6 @@ public class ConfigurationAccount implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MAX_END_DATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMaxEndDate(String maxEndDate) {
     this.maxEndDate = maxEndDate;
   }
@@ -160,8 +154,6 @@ public class ConfigurationAccount implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MIN_START_DATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMinStartDate(String minStartDate) {
     this.minStartDate = minStartDate;
   }
@@ -186,8 +178,6 @@ public class ConfigurationAccount implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LOCKING_DATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLockingDate(String lockingDate) {
     this.lockingDate = lockingDate;
   }
@@ -212,8 +202,6 @@ public class ConfigurationAccount implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }

@@ -66,8 +66,6 @@ public class OptimizerStrategy implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(String id) {
     this.id = id;
   }
@@ -92,8 +90,6 @@ public class OptimizerStrategy implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_OVERRIDES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOverrides(OptimizerStrategyOverrides overrides) {
     this.overrides = overrides;
   }

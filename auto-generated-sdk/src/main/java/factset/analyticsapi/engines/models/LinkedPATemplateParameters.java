@@ -74,8 +74,6 @@ public class LinkedPATemplateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DIRECTORY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDirectory(String directory) {
     this.directory = directory;
   }
@@ -99,8 +97,6 @@ public class LinkedPATemplateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PARENT_COMPONENT_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setParentComponentId(String parentComponentId) {
     this.parentComponentId = parentComponentId;
   }
@@ -125,8 +121,6 @@ public class LinkedPATemplateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDescription(String description) {
     this.description = description;
   }
@@ -151,8 +145,6 @@ public class LinkedPATemplateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CONTENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContent(TemplateContentTypes content) {
     this.content = content;
   }

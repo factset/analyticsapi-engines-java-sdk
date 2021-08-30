@@ -69,8 +69,6 @@ public class LinkedPATemplateUpdateParametersRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(LinkedPATemplateUpdateParameters data) {
     this.data = data;
   }

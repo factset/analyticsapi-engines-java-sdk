@@ -69,8 +69,6 @@ public class CalculationInfoRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(CalculationInfo data) {
     this.data = data;
   }

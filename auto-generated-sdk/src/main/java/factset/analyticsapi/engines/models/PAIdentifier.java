@@ -65,8 +65,6 @@ public class PAIdentifier implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(String id) {
     this.id = id;
   }
@@ -91,8 +89,6 @@ public class PAIdentifier implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HOLDINGSMODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHoldingsmode(String holdingsmode) {
     this.holdingsmode = holdingsmode;
   }

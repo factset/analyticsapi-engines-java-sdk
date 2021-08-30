@@ -78,8 +78,6 @@ public class TemplateContentTypes implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MANDATORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMandatory(java.util.List<String> mandatory) {
     this.mandatory = mandatory;
   }
@@ -112,8 +110,6 @@ public class TemplateContentTypes implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_OPTIONAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOptional(java.util.List<String> optional) {
     this.optional = optional;
   }
@@ -146,8 +142,6 @@ public class TemplateContentTypes implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LOCKED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLocked(java.util.List<String> locked) {
     this.locked = locked;
   }

@@ -69,8 +69,6 @@ public class DocumentDirectoriesRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(DocumentDirectories data) {
     this.data = data;
   }

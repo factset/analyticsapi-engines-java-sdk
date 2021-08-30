@@ -109,8 +109,6 @@ public class QuantFqlExpression implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_EXPR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setExpr(String expr) {
     this.expr = expr;
   }
@@ -134,8 +132,6 @@ public class QuantFqlExpression implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(String name) {
     this.name = name;
   }
@@ -159,8 +155,6 @@ public class QuantFqlExpression implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSource(SourceEnum source) {
     this.source = source;
   }

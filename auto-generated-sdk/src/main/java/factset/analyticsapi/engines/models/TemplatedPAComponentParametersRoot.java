@@ -69,8 +69,6 @@ public class TemplatedPAComponentParametersRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(TemplatedPAComponentParameters data) {
     this.data = data;
   }

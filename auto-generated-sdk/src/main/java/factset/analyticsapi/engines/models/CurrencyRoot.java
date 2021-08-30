@@ -74,8 +74,6 @@ public class CurrencyRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(java.util.Map<String, Currency> data) {
     this.data = data;
   }

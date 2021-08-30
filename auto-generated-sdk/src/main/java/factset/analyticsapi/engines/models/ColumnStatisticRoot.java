@@ -74,8 +74,6 @@ public class ColumnStatisticRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(java.util.Map<String, ColumnStatistic> data) {
     this.data = data;
   }

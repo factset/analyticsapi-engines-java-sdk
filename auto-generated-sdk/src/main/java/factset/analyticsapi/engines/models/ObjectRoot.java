@@ -69,8 +69,6 @@ public class ObjectRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(Object data) {
     this.data = data;
   }

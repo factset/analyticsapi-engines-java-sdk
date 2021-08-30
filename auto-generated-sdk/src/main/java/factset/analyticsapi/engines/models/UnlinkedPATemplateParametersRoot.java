@@ -69,8 +69,6 @@ public class UnlinkedPATemplateParametersRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(UnlinkedPATemplateParameters data) {
     this.data = data;
   }

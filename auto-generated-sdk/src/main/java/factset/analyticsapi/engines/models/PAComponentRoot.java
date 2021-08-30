@@ -69,8 +69,6 @@ public class PAComponentRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(PAComponent data) {
     this.data = data;
   }

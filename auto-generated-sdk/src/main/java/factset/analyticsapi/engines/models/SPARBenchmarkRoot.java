@@ -69,8 +69,6 @@ public class SPARBenchmarkRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(SPARBenchmark data) {
     this.data = data;
   }

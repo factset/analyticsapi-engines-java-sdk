@@ -71,8 +71,6 @@ public class TemplatedPAComponentUpdateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PARENT_TEMPLATE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setParentTemplateId(String parentTemplateId) {
     this.parentTemplateId = parentTemplateId;
   }
@@ -97,8 +95,6 @@ public class TemplatedPAComponentUpdateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDescription(String description) {
     this.description = description;
   }
@@ -123,8 +119,6 @@ public class TemplatedPAComponentUpdateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_COMPONENT_DATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setComponentData(PAComponentData componentData) {
     this.componentData = componentData;
   }

@@ -84,8 +84,6 @@ public class BPMOptimizerStrategyOverrides implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CONSTRAINTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConstraints(java.util.List<ConstraintAction> constraints) {
     this.constraints = constraints;
   }
@@ -110,8 +108,6 @@ public class BPMOptimizerStrategyOverrides implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ALPHA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAlpha(BPMOptimizerStrategyAlphaOverride alpha) {
     this.alpha = alpha;
   }
@@ -136,8 +132,6 @@ public class BPMOptimizerStrategyOverrides implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TAX)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTax(String tax) {
     this.tax = tax;
   }
@@ -162,8 +156,6 @@ public class BPMOptimizerStrategyOverrides implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TRANSACTION_COST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTransactionCost(String transactionCost) {
     this.transactionCost = transactionCost;
   }

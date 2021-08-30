@@ -74,8 +74,6 @@ public class UnlinkedPATemplateCategoryAndTypeRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(java.util.Map<String, UnlinkedPATemplateCategoryAndType> data) {
     this.data = data;
   }

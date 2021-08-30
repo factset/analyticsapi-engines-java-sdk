@@ -102,8 +102,6 @@ public class QuantUniversalScreenUniverse1 implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SCREEN)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setScreen(String screen) {
     this.screen = screen;
   }
@@ -128,8 +126,6 @@ public class QuantUniversalScreenUniverse1 implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSource(SourceEnum source) {
     this.source = source;
   }

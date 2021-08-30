@@ -116,8 +116,6 @@ public class FIJobSettings implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_AS_OF_DATE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAsOfDate(String asOfDate) {
     this.asOfDate = asOfDate;
   }
@@ -150,8 +148,6 @@ public class FIJobSettings implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PARTIAL_DURATION_MONTHS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPartialDurationMonths(java.util.List<Integer> partialDurationMonths) {
     this.partialDurationMonths = partialDurationMonths;
   }
@@ -176,8 +172,6 @@ public class FIJobSettings implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CALL_METHOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCallMethod(CallMethodEnum callMethod) {
     this.callMethod = callMethod;
   }
@@ -202,8 +196,6 @@ public class FIJobSettings implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SETTLEMENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSettlement(String settlement) {
     this.settlement = settlement;
   }
@@ -228,8 +220,6 @@ public class FIJobSettings implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CALC_FROM_METHOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCalcFromMethod(String calcFromMethod) {
     this.calcFromMethod = calcFromMethod;
   }

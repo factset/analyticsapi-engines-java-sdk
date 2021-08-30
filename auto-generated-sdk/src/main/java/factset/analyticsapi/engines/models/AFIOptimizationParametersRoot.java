@@ -67,8 +67,6 @@ public class AFIOptimizationParametersRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setData(AFIOptimizationParameters data) {
     this.data = data;
   }
@@ -93,8 +91,6 @@ public class AFIOptimizationParametersRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_META)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMeta(Object meta) {
     this.meta = meta;
   }

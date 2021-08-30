@@ -123,8 +123,6 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DIRECTORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDirectory(String directory) {
     this.directory = directory;
   }
@@ -149,8 +147,6 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -175,8 +171,6 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TEMPLATE_TYPE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTemplateTypeId(String templateTypeId) {
     this.templateTypeId = templateTypeId;
   }
@@ -201,8 +195,6 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SNAPSHOT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSnapshot(Boolean snapshot) {
     this.snapshot = snapshot;
   }
@@ -235,8 +227,6 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ACCOUNTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccounts(java.util.List<PAIdentifier> accounts) {
     this.accounts = accounts;
   }
@@ -269,8 +259,6 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BENCHMARKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBenchmarks(java.util.List<PAIdentifier> benchmarks) {
     this.benchmarks = benchmarks;
   }
@@ -303,8 +291,6 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_COLUMNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setColumns(java.util.List<PACalculationColumn> columns) {
     this.columns = columns;
   }
@@ -329,8 +315,6 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDates(PADateParameters dates) {
     this.dates = dates;
   }
@@ -363,8 +347,6 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_GROUPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGroups(java.util.List<PACalculationGroup> groups) {
     this.groups = groups;
   }
@@ -389,8 +371,6 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CURRENCYISOCODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrencyisocode(String currencyisocode) {
     this.currencyisocode = currencyisocode;
   }
@@ -415,8 +395,6 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_COMPONENTDETAIL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setComponentdetail(String componentdetail) {
     this.componentdetail = componentdetail;
   }
@@ -441,8 +419,6 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CONTENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContent(TemplateContentTypes content) {
     this.content = content;
   }
@@ -467,8 +443,6 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDescription(String description) {
     this.description = description;
   }
@@ -493,8 +467,6 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -519,8 +491,6 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CATEGORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCategory(String category) {
     this.category = category;
   }

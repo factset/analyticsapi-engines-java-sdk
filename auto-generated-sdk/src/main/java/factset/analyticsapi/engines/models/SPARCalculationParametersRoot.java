@@ -76,8 +76,6 @@ public class SPARCalculationParametersRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setData(java.util.Map<String, SPARCalculationParameters> data) {
     this.data = data;
   }
@@ -102,8 +100,6 @@ public class SPARCalculationParametersRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_META)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMeta(CalculationMeta meta) {
     this.meta = meta;
   }

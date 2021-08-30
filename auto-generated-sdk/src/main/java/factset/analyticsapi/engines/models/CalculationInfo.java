@@ -62,8 +62,6 @@ public class CalculationInfo implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CALCULATION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCalculationId(String calculationId) {
     this.calculationId = calculationId;
   }

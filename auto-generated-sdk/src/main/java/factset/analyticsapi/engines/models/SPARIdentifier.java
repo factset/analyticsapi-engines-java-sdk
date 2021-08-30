@@ -70,8 +70,6 @@ public class SPARIdentifier implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(String id) {
     this.id = id;
   }
@@ -96,8 +94,6 @@ public class SPARIdentifier implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RETURNTYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReturntype(String returntype) {
     this.returntype = returntype;
   }
@@ -122,8 +118,6 @@ public class SPARIdentifier implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PREFIX)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPrefix(String prefix) {
     this.prefix = prefix;
   }

@@ -67,8 +67,6 @@ public class FIABCalculationStatusSummary implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REQUESTTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRequesttime(OffsetDateTime requesttime) {
     this.requesttime = requesttime;
   }
@@ -93,8 +91,6 @@ public class FIABCalculationStatusSummary implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LASTPOLLTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLastpolltime(OffsetDateTime lastpolltime) {
     this.lastpolltime = lastpolltime;
   }

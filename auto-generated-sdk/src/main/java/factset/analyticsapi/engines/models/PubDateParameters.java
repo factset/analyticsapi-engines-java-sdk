@@ -67,8 +67,6 @@ public class PubDateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_STARTDATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStartdate(String startdate) {
     this.startdate = startdate;
   }
@@ -92,8 +90,6 @@ public class PubDateParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ENDDATE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setEnddate(String enddate) {
     this.enddate = enddate;
   }

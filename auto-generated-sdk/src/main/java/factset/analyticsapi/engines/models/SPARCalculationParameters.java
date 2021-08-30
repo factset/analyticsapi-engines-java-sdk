@@ -79,8 +79,6 @@ public class SPARCalculationParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_COMPONENTID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setComponentid(String componentid) {
     this.componentid = componentid;
   }
@@ -113,8 +111,6 @@ public class SPARCalculationParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ACCOUNTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccounts(java.util.List<SPARIdentifier> accounts) {
     this.accounts = accounts;
   }
@@ -139,8 +135,6 @@ public class SPARCalculationParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BENCHMARK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBenchmark(SPARIdentifier benchmark) {
     this.benchmark = benchmark;
   }
@@ -165,8 +159,6 @@ public class SPARCalculationParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDates(SPARDateParameters dates) {
     this.dates = dates;
   }
@@ -191,8 +183,6 @@ public class SPARCalculationParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CURRENCYISOCODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrencyisocode(String currencyisocode) {
     this.currencyisocode = currencyisocode;
   }

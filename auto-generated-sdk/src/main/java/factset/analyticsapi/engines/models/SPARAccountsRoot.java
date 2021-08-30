@@ -69,8 +69,6 @@ public class SPARAccountsRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(SPARAccounts data) {
     this.data = data;
   }

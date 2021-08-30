@@ -69,8 +69,6 @@ public class ColumnRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(Column data) {
     this.data = data;
   }

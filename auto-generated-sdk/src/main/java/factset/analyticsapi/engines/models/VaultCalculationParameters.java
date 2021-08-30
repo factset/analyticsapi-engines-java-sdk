@@ -79,8 +79,6 @@ public class VaultCalculationParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_COMPONENTID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setComponentid(String componentid) {
     this.componentid = componentid;
   }
@@ -104,8 +102,6 @@ public class VaultCalculationParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ACCOUNT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAccount(VaultIdentifier account) {
     this.account = account;
   }
@@ -130,8 +126,6 @@ public class VaultCalculationParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDates(VaultDateParameters dates) {
     this.dates = dates;
   }
@@ -155,8 +149,6 @@ public class VaultCalculationParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CONFIGID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setConfigid(String configid) {
     this.configid = configid;
   }
@@ -181,8 +173,6 @@ public class VaultCalculationParameters implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_COMPONENTDETAIL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setComponentdetail(String componentdetail) {
     this.componentdetail = componentdetail;
   }

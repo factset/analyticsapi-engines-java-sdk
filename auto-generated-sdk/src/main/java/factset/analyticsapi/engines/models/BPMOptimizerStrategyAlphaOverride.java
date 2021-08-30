@@ -111,8 +111,6 @@ public class BPMOptimizerStrategyAlphaOverride implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FORMULA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFormula(String formula) {
     this.formula = formula;
   }
@@ -137,8 +135,6 @@ public class BPMOptimizerStrategyAlphaOverride implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RETURN_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReturnType(ReturnTypeEnum returnType) {
     this.returnType = returnType;
   }
@@ -163,8 +159,6 @@ public class BPMOptimizerStrategyAlphaOverride implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RETURN_MULTIPLIER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReturnMultiplier(String returnMultiplier) {
     this.returnMultiplier = returnMultiplier;
   }

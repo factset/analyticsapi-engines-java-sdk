@@ -69,8 +69,6 @@ public class DateParametersSummaryRoot implements Serializable {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(DateParametersSummary data) {
     this.data = data;
   }
