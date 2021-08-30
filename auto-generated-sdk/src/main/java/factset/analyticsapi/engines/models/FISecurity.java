@@ -34,6 +34,7 @@ import factset.analyticsapi.engines.JSON;
  */
 @JsonPropertyOrder({
   FISecurity.JSON_PROPERTY_SETTLEMENT,
+  FISecurity.JSON_PROPERTY_CALL_METHOD,
   FISecurity.JSON_PROPERTY_CALC_FROM_METHOD,
   FISecurity.JSON_PROPERTY_CALC_FROM_VALUE,
   FISecurity.JSON_PROPERTY_FACE,
@@ -47,6 +48,48 @@ public class FISecurity implements Serializable {
 
   public static final String JSON_PROPERTY_SETTLEMENT = "settlement";
   private String settlement;
+
+  /**
+   * Call Method
+   */
+  public enum CallMethodEnum {
+    NO_CALL("No Call"),
+    
+    INTRINSIC_VALUE("Intrinsic Value"),
+    
+    FIRST_CALL("First Call"),
+    
+    FIRST_PAR("First Par");
+
+    private String value;
+
+    CallMethodEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CallMethodEnum fromValue(String value) {
+      for (CallMethodEnum b : CallMethodEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CALL_METHOD = "callMethod";
+  private CallMethodEnum callMethod;
 
   public static final String JSON_PROPERTY_CALC_FROM_METHOD = "calcFromMethod";
   private String calcFromMethod;
@@ -126,6 +169,30 @@ public class FISecurity implements Serializable {
   }
 
 
+  public FISecurity callMethod(CallMethodEnum callMethod) {
+    this.callMethod = callMethod;
+    return this;
+  }
+
+   /**
+   * Call Method
+   * @return callMethod
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Call Method")
+  @JsonProperty(JSON_PROPERTY_CALL_METHOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public CallMethodEnum getCallMethod() {
+    return callMethod;
+  }
+
+
+  public void setCallMethod(CallMethodEnum callMethod) {
+    this.callMethod = callMethod;
+  }
+
+
   public FISecurity calcFromMethod(String calcFromMethod) {
     this.calcFromMethod = calcFromMethod;
     return this;
@@ -135,9 +202,10 @@ public class FISecurity implements Serializable {
    * Calculation from method
    * @return calcFromMethod
   **/
-  @ApiModelProperty(required = true, value = "Calculation from method")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Calculation from method")
   @JsonProperty(JSON_PROPERTY_CALC_FROM_METHOD)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getCalcFromMethod() {
     return calcFromMethod;
@@ -280,6 +348,7 @@ public class FISecurity implements Serializable {
     }
     FISecurity fiSecurity = (FISecurity) o;
     return Objects.equals(this.settlement, fiSecurity.settlement) &&
+        Objects.equals(this.callMethod, fiSecurity.callMethod) &&
         Objects.equals(this.calcFromMethod, fiSecurity.calcFromMethod) &&
         Objects.equals(this.calcFromValue, fiSecurity.calcFromValue) &&
         Objects.equals(this.face, fiSecurity.face) &&
@@ -290,7 +359,7 @@ public class FISecurity implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(settlement, calcFromMethod, calcFromValue, face, faceType, symbol, discountCurve);
+    return Objects.hash(settlement, callMethod, calcFromMethod, calcFromValue, face, faceType, symbol, discountCurve);
   }
 
   @Override
@@ -298,6 +367,7 @@ public class FISecurity implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class FISecurity {\n");
     sb.append("    settlement: ").append(toIndentedString(settlement)).append("\n");
+    sb.append("    callMethod: ").append(toIndentedString(callMethod)).append("\n");
     sb.append("    calcFromMethod: ").append(toIndentedString(calcFromMethod)).append("\n");
     sb.append("    calcFromValue: ").append(toIndentedString(calcFromValue)).append("\n");
     sb.append("    face: ").append(toIndentedString(face)).append("\n");
