@@ -30,15 +30,15 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * QuantIdentifierUniverse1
+ * QuantIdentifierUniverseObsolete
  */
 @JsonPropertyOrder({
-  QuantIdentifierUniverse1.JSON_PROPERTY_UNIVERSE_TYPE,
-  QuantIdentifierUniverse1.JSON_PROPERTY_IDENTIFIERS,
-  QuantIdentifierUniverse1.JSON_PROPERTY_SOURCE
+  QuantIdentifierUniverseObsolete.JSON_PROPERTY_UNIVERSE_TYPE,
+  QuantIdentifierUniverseObsolete.JSON_PROPERTY_IDENTIFIERS,
+  QuantIdentifierUniverseObsolete.JSON_PROPERTY_SOURCE
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class QuantIdentifierUniverse1 implements Serializable {
+public class QuantIdentifierUniverseObsolete implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /**
@@ -123,7 +123,7 @@ public class QuantIdentifierUniverse1 implements Serializable {
   private SourceEnum source;
 
 
-  public QuantIdentifierUniverse1 universeType(UniverseTypeEnum universeType) {
+  public QuantIdentifierUniverseObsolete universeType(UniverseTypeEnum universeType) {
     this.universeType = universeType;
     return this;
   }
@@ -146,12 +146,12 @@ public class QuantIdentifierUniverse1 implements Serializable {
   }
 
 
-  public QuantIdentifierUniverse1 identifiers(java.util.List<String> identifiers) {
+  public QuantIdentifierUniverseObsolete identifiers(java.util.List<String> identifiers) {
     this.identifiers = identifiers;
     return this;
   }
 
-  public QuantIdentifierUniverse1 addIdentifiersItem(String identifiersItem) {
+  public QuantIdentifierUniverseObsolete addIdentifiersItem(String identifiersItem) {
     this.identifiers.add(identifiersItem);
     return this;
   }
@@ -174,7 +174,7 @@ public class QuantIdentifierUniverse1 implements Serializable {
   }
 
 
-  public QuantIdentifierUniverse1 source(SourceEnum source) {
+  public QuantIdentifierUniverseObsolete source(SourceEnum source) {
     this.source = source;
     return this;
   }
@@ -199,7 +199,7 @@ public class QuantIdentifierUniverse1 implements Serializable {
 
 
   /**
-   * Return true if this QuantIdentifierUniverse1 object is equal to o.
+   * Return true if this QuantIdentifierUniverseObsolete object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -209,10 +209,10 @@ public class QuantIdentifierUniverse1 implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    QuantIdentifierUniverse1 quantIdentifierUniverse1 = (QuantIdentifierUniverse1) o;
-    return Objects.equals(this.universeType, quantIdentifierUniverse1.universeType) &&
-        Objects.equals(this.identifiers, quantIdentifierUniverse1.identifiers) &&
-        Objects.equals(this.source, quantIdentifierUniverse1.source);
+    QuantIdentifierUniverseObsolete quantIdentifierUniverseObsolete = (QuantIdentifierUniverseObsolete) o;
+    return Objects.equals(this.universeType, quantIdentifierUniverseObsolete.universeType) &&
+        Objects.equals(this.identifiers, quantIdentifierUniverseObsolete.identifiers) &&
+        Objects.equals(this.source, quantIdentifierUniverseObsolete.source);
   }
 
   @Override
@@ -223,7 +223,7 @@ public class QuantIdentifierUniverse1 implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class QuantIdentifierUniverse1 {\n");
+    sb.append("class QuantIdentifierUniverseObsolete {\n");
     sb.append("    universeType: ").append(toIndentedString(universeType)).append("\n");
     sb.append("    identifiers: ").append(toIndentedString(identifiers)).append("\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");

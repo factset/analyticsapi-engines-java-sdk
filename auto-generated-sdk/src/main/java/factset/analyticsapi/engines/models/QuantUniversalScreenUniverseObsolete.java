@@ -30,14 +30,14 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * QuantUniversalScreenUniverse1
+ * QuantUniversalScreenUniverseObsolete
  */
 @JsonPropertyOrder({
-  QuantUniversalScreenUniverse1.JSON_PROPERTY_SCREEN,
-  QuantUniversalScreenUniverse1.JSON_PROPERTY_SOURCE
+  QuantUniversalScreenUniverseObsolete.JSON_PROPERTY_SCREEN,
+  QuantUniversalScreenUniverseObsolete.JSON_PROPERTY_SOURCE
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class QuantUniversalScreenUniverse1 implements Serializable {
+public class QuantUniversalScreenUniverseObsolete implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_SCREEN = "screen";
@@ -84,7 +84,7 @@ public class QuantUniversalScreenUniverse1 implements Serializable {
   private SourceEnum source;
 
 
-  public QuantUniversalScreenUniverse1 screen(String screen) {
+  public QuantUniversalScreenUniverseObsolete screen(String screen) {
     this.screen = screen;
     return this;
   }
@@ -107,7 +107,7 @@ public class QuantUniversalScreenUniverse1 implements Serializable {
   }
 
 
-  public QuantUniversalScreenUniverse1 source(SourceEnum source) {
+  public QuantUniversalScreenUniverseObsolete source(SourceEnum source) {
     this.source = source;
     return this;
   }
@@ -132,7 +132,7 @@ public class QuantUniversalScreenUniverse1 implements Serializable {
 
 
   /**
-   * Return true if this QuantUniversalScreenUniverse1 object is equal to o.
+   * Return true if this QuantUniversalScreenUniverseObsolete object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -142,9 +142,9 @@ public class QuantUniversalScreenUniverse1 implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    QuantUniversalScreenUniverse1 quantUniversalScreenUniverse1 = (QuantUniversalScreenUniverse1) o;
-    return Objects.equals(this.screen, quantUniversalScreenUniverse1.screen) &&
-        Objects.equals(this.source, quantUniversalScreenUniverse1.source);
+    QuantUniversalScreenUniverseObsolete quantUniversalScreenUniverseObsolete = (QuantUniversalScreenUniverseObsolete) o;
+    return Objects.equals(this.screen, quantUniversalScreenUniverseObsolete.screen) &&
+        Objects.equals(this.source, quantUniversalScreenUniverseObsolete.source);
   }
 
   @Override
@@ -155,7 +155,7 @@ public class QuantUniversalScreenUniverse1 implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class QuantUniversalScreenUniverse1 {\n");
+    sb.append("class QuantUniversalScreenUniverseObsolete {\n");
     sb.append("    screen: ").append(toIndentedString(screen)).append("\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("}");

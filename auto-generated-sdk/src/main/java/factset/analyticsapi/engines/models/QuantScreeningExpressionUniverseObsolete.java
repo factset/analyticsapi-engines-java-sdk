@@ -30,16 +30,16 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * QuantScreeningExpressionUniverse1
+ * QuantScreeningExpressionUniverseObsolete
  */
 @JsonPropertyOrder({
-  QuantScreeningExpressionUniverse1.JSON_PROPERTY_UNIVERSE_EXPR,
-  QuantScreeningExpressionUniverse1.JSON_PROPERTY_UNIVERSE_TYPE,
-  QuantScreeningExpressionUniverse1.JSON_PROPERTY_SECURITY_EXPR,
-  QuantScreeningExpressionUniverse1.JSON_PROPERTY_SOURCE
+  QuantScreeningExpressionUniverseObsolete.JSON_PROPERTY_UNIVERSE_EXPR,
+  QuantScreeningExpressionUniverseObsolete.JSON_PROPERTY_UNIVERSE_TYPE,
+  QuantScreeningExpressionUniverseObsolete.JSON_PROPERTY_SECURITY_EXPR,
+  QuantScreeningExpressionUniverseObsolete.JSON_PROPERTY_SOURCE
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class QuantScreeningExpressionUniverse1 implements Serializable {
+public class QuantScreeningExpressionUniverseObsolete implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_UNIVERSE_EXPR = "universeExpr";
@@ -127,7 +127,7 @@ public class QuantScreeningExpressionUniverse1 implements Serializable {
   private SourceEnum source;
 
 
-  public QuantScreeningExpressionUniverse1 universeExpr(String universeExpr) {
+  public QuantScreeningExpressionUniverseObsolete universeExpr(String universeExpr) {
     this.universeExpr = universeExpr;
     return this;
   }
@@ -150,7 +150,7 @@ public class QuantScreeningExpressionUniverse1 implements Serializable {
   }
 
 
-  public QuantScreeningExpressionUniverse1 universeType(UniverseTypeEnum universeType) {
+  public QuantScreeningExpressionUniverseObsolete universeType(UniverseTypeEnum universeType) {
     this.universeType = universeType;
     return this;
   }
@@ -173,7 +173,7 @@ public class QuantScreeningExpressionUniverse1 implements Serializable {
   }
 
 
-  public QuantScreeningExpressionUniverse1 securityExpr(String securityExpr) {
+  public QuantScreeningExpressionUniverseObsolete securityExpr(String securityExpr) {
     this.securityExpr = securityExpr;
     return this;
   }
@@ -197,7 +197,7 @@ public class QuantScreeningExpressionUniverse1 implements Serializable {
   }
 
 
-  public QuantScreeningExpressionUniverse1 source(SourceEnum source) {
+  public QuantScreeningExpressionUniverseObsolete source(SourceEnum source) {
     this.source = source;
     return this;
   }
@@ -222,7 +222,7 @@ public class QuantScreeningExpressionUniverse1 implements Serializable {
 
 
   /**
-   * Return true if this QuantScreeningExpressionUniverse1 object is equal to o.
+   * Return true if this QuantScreeningExpressionUniverseObsolete object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -232,11 +232,11 @@ public class QuantScreeningExpressionUniverse1 implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    QuantScreeningExpressionUniverse1 quantScreeningExpressionUniverse1 = (QuantScreeningExpressionUniverse1) o;
-    return Objects.equals(this.universeExpr, quantScreeningExpressionUniverse1.universeExpr) &&
-        Objects.equals(this.universeType, quantScreeningExpressionUniverse1.universeType) &&
-        Objects.equals(this.securityExpr, quantScreeningExpressionUniverse1.securityExpr) &&
-        Objects.equals(this.source, quantScreeningExpressionUniverse1.source);
+    QuantScreeningExpressionUniverseObsolete quantScreeningExpressionUniverseObsolete = (QuantScreeningExpressionUniverseObsolete) o;
+    return Objects.equals(this.universeExpr, quantScreeningExpressionUniverseObsolete.universeExpr) &&
+        Objects.equals(this.universeType, quantScreeningExpressionUniverseObsolete.universeType) &&
+        Objects.equals(this.securityExpr, quantScreeningExpressionUniverseObsolete.securityExpr) &&
+        Objects.equals(this.source, quantScreeningExpressionUniverseObsolete.source);
   }
 
   @Override
@@ -247,7 +247,7 @@ public class QuantScreeningExpressionUniverse1 implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class QuantScreeningExpressionUniverse1 {\n");
+    sb.append("class QuantScreeningExpressionUniverseObsolete {\n");
     sb.append("    universeExpr: ").append(toIndentedString(universeExpr)).append("\n");
     sb.append("    universeType: ").append(toIndentedString(universeType)).append("\n");
     sb.append("    securityExpr: ").append(toIndentedString(securityExpr)).append("\n");

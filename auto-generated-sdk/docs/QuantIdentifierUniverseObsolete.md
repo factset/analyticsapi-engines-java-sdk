@@ -1,14 +1,24 @@
 
 
-# QuantUniversalScreenUniverse1
+# QuantIdentifierUniverseObsolete
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**screen** | **String** |  | 
+**universeType** | [**UniverseTypeEnum**](#UniverseTypeEnum) |  | 
+**identifiers** | **java.util.List&lt;String&gt;** |  | 
 **source** | [**SourceEnum**](#SourceEnum) |  |  [optional]
+
+
+
+## Enum: UniverseTypeEnum
+
+Name | Value
+---- | -----
+EQUITY | &quot;Equity&quot;
+DEBT | &quot;Debt&quot;
 
 
 

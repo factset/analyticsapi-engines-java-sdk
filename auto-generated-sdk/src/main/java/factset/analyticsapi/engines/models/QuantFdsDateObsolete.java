@@ -30,19 +30,23 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * QuantDateList1
+ * QuantFdsDateObsolete
  */
 @JsonPropertyOrder({
-  QuantDateList1.JSON_PROPERTY_DATES,
-  QuantDateList1.JSON_PROPERTY_FREQUENCY,
-  QuantDateList1.JSON_PROPERTY_CALENDAR
+  QuantFdsDateObsolete.JSON_PROPERTY_START_DATE,
+  QuantFdsDateObsolete.JSON_PROPERTY_END_DATE,
+  QuantFdsDateObsolete.JSON_PROPERTY_FREQUENCY,
+  QuantFdsDateObsolete.JSON_PROPERTY_CALENDAR
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class QuantDateList1 implements Serializable {
+public class QuantFdsDateObsolete implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_DATES = "dates";
-  private java.util.List<String> dates = null;
+  public static final String JSON_PROPERTY_START_DATE = "startDate";
+  private String startDate;
+
+  public static final String JSON_PROPERTY_END_DATE = "endDate";
+  private String endDate;
 
   public static final String JSON_PROPERTY_FREQUENCY = "frequency";
   private String frequency;
@@ -51,39 +55,53 @@ public class QuantDateList1 implements Serializable {
   private String calendar;
 
 
-  public QuantDateList1 dates(java.util.List<String> dates) {
-    this.dates = dates;
-    return this;
-  }
-
-  public QuantDateList1 addDatesItem(String datesItem) {
-    if (this.dates == null) {
-      this.dates = new java.util.ArrayList<String>();
-    }
-    this.dates.add(datesItem);
+  public QuantFdsDateObsolete startDate(String startDate) {
+    this.startDate = startDate;
     return this;
   }
 
    /**
-   * Get dates
-   * @return dates
+   * Get startDate
+   * @return startDate
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_DATES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_START_DATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public java.util.List<String> getDates() {
-    return dates;
+  public String getStartDate() {
+    return startDate;
   }
 
 
-  public void setDates(java.util.List<String> dates) {
-    this.dates = dates;
+  public void setStartDate(String startDate) {
+    this.startDate = startDate;
   }
 
 
-  public QuantDateList1 frequency(String frequency) {
+  public QuantFdsDateObsolete endDate(String endDate) {
+    this.endDate = endDate;
+    return this;
+  }
+
+   /**
+   * Get endDate
+   * @return endDate
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_END_DATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getEndDate() {
+    return endDate;
+  }
+
+
+  public void setEndDate(String endDate) {
+    this.endDate = endDate;
+  }
+
+
+  public QuantFdsDateObsolete frequency(String frequency) {
     this.frequency = frequency;
     return this;
   }
@@ -106,7 +124,7 @@ public class QuantDateList1 implements Serializable {
   }
 
 
-  public QuantDateList1 calendar(String calendar) {
+  public QuantFdsDateObsolete calendar(String calendar) {
     this.calendar = calendar;
     return this;
   }
@@ -130,7 +148,7 @@ public class QuantDateList1 implements Serializable {
 
 
   /**
-   * Return true if this QuantDateList1 object is equal to o.
+   * Return true if this QuantFdsDateObsolete object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -140,22 +158,24 @@ public class QuantDateList1 implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    QuantDateList1 quantDateList1 = (QuantDateList1) o;
-    return Objects.equals(this.dates, quantDateList1.dates) &&
-        Objects.equals(this.frequency, quantDateList1.frequency) &&
-        Objects.equals(this.calendar, quantDateList1.calendar);
+    QuantFdsDateObsolete quantFdsDateObsolete = (QuantFdsDateObsolete) o;
+    return Objects.equals(this.startDate, quantFdsDateObsolete.startDate) &&
+        Objects.equals(this.endDate, quantFdsDateObsolete.endDate) &&
+        Objects.equals(this.frequency, quantFdsDateObsolete.frequency) &&
+        Objects.equals(this.calendar, quantFdsDateObsolete.calendar);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dates, frequency, calendar);
+    return Objects.hash(startDate, endDate, frequency, calendar);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class QuantDateList1 {\n");
-    sb.append("    dates: ").append(toIndentedString(dates)).append("\n");
+    sb.append("class QuantFdsDateObsolete {\n");
+    sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
+    sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("    frequency: ").append(toIndentedString(frequency)).append("\n");
     sb.append("    calendar: ").append(toIndentedString(calendar)).append("\n");
     sb.append("}");

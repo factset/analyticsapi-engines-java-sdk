@@ -39472,19 +39472,6 @@ components:
       required:
       - screen
       type: object
-    QuantFdsDate:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/QuantDate'
-      properties:
-        startDate:
-          type: string
-        endDate:
-          type: string
-      required:
-      - endDate
-      - startDate
-      type: object
     QuantDateList:
       additionalProperties: false
       allOf:
@@ -39512,18 +39499,18 @@ components:
       - frequency
       - source
       type: object
-    QuantScreeningExpression:
+    QuantFdsDate:
       additionalProperties: false
       allOf:
-      - $ref: '#/components/schemas/QuantFormula'
+      - $ref: '#/components/schemas/QuantDate'
       properties:
-        expr:
+        startDate:
           type: string
-        name:
+        endDate:
           type: string
       required:
-      - expr
-      - name
+      - endDate
+      - startDate
       type: object
     QuantFqlExpression:
       additionalProperties: false
@@ -39569,13 +39556,21 @@ components:
       required:
       - source
       type: object
-    QuantScreeningExpressionUniverse1:
+    QuantScreeningExpression:
       additionalProperties: false
-      example:
-        universeExpr: universeExpr
-        securityExpr: securityExpr
-        source: ScreeningExpressionUniverse
-        universeType: Equity
+      allOf:
+      - $ref: '#/components/schemas/QuantFormula'
+      properties:
+        expr:
+          type: string
+        name:
+          type: string
+      required:
+      - expr
+      - name
+      type: object
+    QuantScreeningExpressionUniverseObsolete:
+      additionalProperties: false
       properties:
         universeExpr:
           type: string
@@ -39596,11 +39591,8 @@ components:
       - universeExpr
       - universeType
       type: object
-    QuantUniversalScreenUniverse1:
+    QuantUniversalScreenUniverseObsolete:
       additionalProperties: false
-      example:
-        screen: screen
-        source: ScreeningExpressionUniverse
       properties:
         screen:
           type: string
@@ -39613,14 +39605,8 @@ components:
       required:
       - screen
       type: object
-    QuantIdentifierUniverse1:
+    QuantIdentifierUniverseObsolete:
       additionalProperties: false
-      example:
-        identifiers:
-        - identifiers
-        - identifiers
-        source: ScreeningExpressionUniverse
-        universeType: Equity
       properties:
         universeType:
           enum:
@@ -39641,13 +39627,8 @@ components:
       - identifiers
       - universeType
       type: object
-    QuantFdsDate1:
+    QuantFdsDateObsolete:
       additionalProperties: false
-      example:
-        calendar: calendar
-        endDate: endDate
-        startDate: startDate
-        frequency: frequency
       properties:
         startDate:
           type: string
@@ -39663,14 +39644,8 @@ components:
       - frequency
       - startDate
       type: object
-    QuantDateList1:
+    QuantDateListObsolete:
       additionalProperties: false
-      example:
-        calendar: calendar
-        dates:
-        - dates
-        - dates
-        frequency: frequency
       properties:
         dates:
           items:
@@ -39684,11 +39659,8 @@ components:
       - calendar
       - frequency
       type: object
-    QuantScreeningExpression1:
+    QuantScreeningExpressionObsolete:
       additionalProperties: false
-      example:
-        name: name
-        expr: expr
       properties:
         expr:
           type: string
@@ -39698,11 +39670,8 @@ components:
       - expr
       - name
       type: object
-    QuantFqlExpression1:
+    QuantFqlExpressionObsolete:
       additionalProperties: false
-      example:
-        name: name
-        expr: expr
       properties:
         expr:
           type: string
@@ -39712,11 +39681,8 @@ components:
       - expr
       - name
       type: object
-    QuantUniversalScreenParameter1:
+    QuantUniversalScreenParameterObsolete:
       additionalProperties: false
-      example:
-        name: name
-        referenceName: referenceName
       properties:
         referenceName:
           type: string
@@ -39726,60 +39692,17 @@ components:
       - name
       - referenceName
       type: object
-    QuantAllUniversalScreenParameters1:
+    QuantAllUniversalScreenParametersObsolete:
       additionalProperties: false
       type: object
     QuantCalculationParameters:
       additionalProperties: false
       example:
-        fdsDate:
-          calendar: calendar
-          endDate: endDate
-          startDate: startDate
-          frequency: frequency
         universe: ""
         formulas:
         - ""
         - ""
-        identifierUniverse:
-          identifiers:
-          - identifiers
-          - identifiers
-          source: ScreeningExpressionUniverse
-          universeType: Equity
-        universalScreenParameter:
-        - name: name
-          referenceName: referenceName
-        - name: name
-          referenceName: referenceName
-        screeningExpression:
-        - name: name
-          expr: expr
-        - name: name
-          expr: expr
         dates: ""
-        allUniversalScreenParameters:
-        - null
-        - null
-        dateList:
-          calendar: calendar
-          dates:
-          - dates
-          - dates
-          frequency: frequency
-        screeningExpressionUniverse:
-          universeExpr: universeExpr
-          securityExpr: securityExpr
-          source: ScreeningExpressionUniverse
-          universeType: Equity
-        universalScreenUniverse:
-          screen: screen
-          source: ScreeningExpressionUniverse
-        fqlExpression:
-        - name: name
-          expr: expr
-        - name: name
-          expr: expr
       properties:
         universe:
           discriminator:
@@ -39799,7 +39722,6 @@ components:
               DateList: '#/components/schemas/QuantDateList'
             propertyName: source
           oneOf:
-          - $ref: '#/components/schemas/QuantDate'
           - $ref: '#/components/schemas/QuantFdsDate'
           - $ref: '#/components/schemas/QuantDateList'
         formulas:
@@ -39812,45 +39734,11 @@ components:
                 AllUniversalScreenParameters: '#/components/schemas/QuantAllUniversalScreenParameters'
               propertyName: source
             oneOf:
-            - $ref: '#/components/schemas/QuantFormula'
             - $ref: '#/components/schemas/QuantScreeningExpression'
             - $ref: '#/components/schemas/QuantFqlExpression'
             - $ref: '#/components/schemas/QuantUniversalScreenParameter'
             - $ref: '#/components/schemas/QuantAllUniversalScreenParameters'
           type: array
-        screeningExpressionUniverse:
-          $ref: '#/components/schemas/QuantScreeningExpressionUniverse1'
-        universalScreenUniverse:
-          $ref: '#/components/schemas/QuantUniversalScreenUniverse1'
-        identifierUniverse:
-          $ref: '#/components/schemas/QuantIdentifierUniverse1'
-        fdsDate:
-          $ref: '#/components/schemas/QuantFdsDate1'
-        dateList:
-          $ref: '#/components/schemas/QuantDateList1'
-        screeningExpression:
-          deprecated: true
-          items:
-            $ref: '#/components/schemas/QuantScreeningExpression1'
-          type: array
-        fqlExpression:
-          deprecated: true
-          items:
-            $ref: '#/components/schemas/QuantFqlExpression1'
-          type: array
-        universalScreenParameter:
-          deprecated: true
-          items:
-            $ref: '#/components/schemas/QuantUniversalScreenParameter1'
-          type: array
-        allUniversalScreenParameters:
-          deprecated: true
-          items:
-            $ref: '#/components/schemas/QuantAllUniversalScreenParameters1'
-          type: array
-      required:
-      - dates
-      - universe
       type: object
     QuantCalculationMeta:
       additionalProperties: false
@@ -39906,54 +39794,11 @@ components:
       example:
         data:
           key:
-            fdsDate:
-              calendar: calendar
-              endDate: endDate
-              startDate: startDate
-              frequency: frequency
             universe: ""
             formulas:
             - ""
             - ""
-            identifierUniverse:
-              identifiers:
-              - identifiers
-              - identifiers
-              source: ScreeningExpressionUniverse
-              universeType: Equity
-            universalScreenParameter:
-            - name: name
-              referenceName: referenceName
-            - name: name
-              referenceName: referenceName
-            screeningExpression:
-            - name: name
-              expr: expr
-            - name: name
-              expr: expr
             dates: ""
-            allUniversalScreenParameters:
-            - null
-            - null
-            dateList:
-              calendar: calendar
-              dates:
-              - dates
-              - dates
-              frequency: frequency
-            screeningExpressionUniverse:
-              universeExpr: universeExpr
-              securityExpr: securityExpr
-              source: ScreeningExpressionUniverse
-              universeType: Equity
-            universalScreenUniverse:
-              screen: screen
-              source: ScreeningExpressionUniverse
-            fqlExpression:
-            - name: name
-              expr: expr
-            - name: name
-              expr: expr
         meta:
           contentorganization: SimplifiedRow
           allowArrayData: true

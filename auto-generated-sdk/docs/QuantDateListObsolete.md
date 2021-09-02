@@ -1,14 +1,15 @@
 
 
-# QuantFqlExpression1
+# QuantDateListObsolete
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**expr** | **String** |  | 
-**name** | **String** |  | 
+**dates** | **java.util.List&lt;String&gt;** |  |  [optional]
+**frequency** | **String** |  | 
+**calendar** | **String** |  | 
 
 
 ## Implemented Interfaces

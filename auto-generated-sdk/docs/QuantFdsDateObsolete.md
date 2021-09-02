@@ -1,13 +1,14 @@
 
 
-# QuantDateList1
+# QuantFdsDateObsolete
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**dates** | **java.util.List&lt;String&gt;** |  |  [optional]
+**startDate** | **String** |  | 
+**endDate** | **String** |  | 
 **frequency** | **String** |  | 
 **calendar** | **String** |  | 
 

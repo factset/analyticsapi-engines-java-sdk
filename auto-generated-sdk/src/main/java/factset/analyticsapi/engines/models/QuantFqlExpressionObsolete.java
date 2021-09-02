@@ -30,14 +30,14 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * QuantFqlExpression1
+ * QuantFqlExpressionObsolete
  */
 @JsonPropertyOrder({
-  QuantFqlExpression1.JSON_PROPERTY_EXPR,
-  QuantFqlExpression1.JSON_PROPERTY_NAME
+  QuantFqlExpressionObsolete.JSON_PROPERTY_EXPR,
+  QuantFqlExpressionObsolete.JSON_PROPERTY_NAME
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class QuantFqlExpression1 implements Serializable {
+public class QuantFqlExpressionObsolete implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_EXPR = "expr";
@@ -47,7 +47,7 @@ public class QuantFqlExpression1 implements Serializable {
   private String name;
 
 
-  public QuantFqlExpression1 expr(String expr) {
+  public QuantFqlExpressionObsolete expr(String expr) {
     this.expr = expr;
     return this;
   }
@@ -70,7 +70,7 @@ public class QuantFqlExpression1 implements Serializable {
   }
 
 
-  public QuantFqlExpression1 name(String name) {
+  public QuantFqlExpressionObsolete name(String name) {
     this.name = name;
     return this;
   }
@@ -94,7 +94,7 @@ public class QuantFqlExpression1 implements Serializable {
 
 
   /**
-   * Return true if this QuantFqlExpression1 object is equal to o.
+   * Return true if this QuantFqlExpressionObsolete object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -104,9 +104,9 @@ public class QuantFqlExpression1 implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    QuantFqlExpression1 quantFqlExpression1 = (QuantFqlExpression1) o;
-    return Objects.equals(this.expr, quantFqlExpression1.expr) &&
-        Objects.equals(this.name, quantFqlExpression1.name);
+    QuantFqlExpressionObsolete quantFqlExpressionObsolete = (QuantFqlExpressionObsolete) o;
+    return Objects.equals(this.expr, quantFqlExpressionObsolete.expr) &&
+        Objects.equals(this.name, quantFqlExpressionObsolete.name);
   }
 
   @Override
@@ -117,7 +117,7 @@ public class QuantFqlExpression1 implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class QuantFqlExpression1 {\n");
+    sb.append("class QuantFqlExpressionObsolete {\n");
     sb.append("    expr: ").append(toIndentedString(expr)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");

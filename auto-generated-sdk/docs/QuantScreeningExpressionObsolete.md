@@ -1,13 +1,13 @@
 
 
-# QuantUniversalScreenParameter1
+# QuantScreeningExpressionObsolete
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**referenceName** | **String** |  | 
+**expr** | **String** |  | 
 **name** | **String** |  | 
 
 
