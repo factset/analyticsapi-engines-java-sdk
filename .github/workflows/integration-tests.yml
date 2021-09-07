@@ -37,7 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: 'v5.1.0'
+          ref: '5.1.0'
 
       - name: Set up JDK
         uses: actions/setup-java@v1
