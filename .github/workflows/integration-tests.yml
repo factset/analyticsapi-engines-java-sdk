@@ -31,13 +31,13 @@ jobs:
 
       - name: Run Tests
         run: cd tests && mvn -q test -Dtest=ApiTestsRunner
-
-   run-integration-tests-510:
+ 
+  run-integration-tests-v510:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: '5.1.0'
+          ref: 'v5.1.0'
 
       - name: Set up JDK
         uses: actions/setup-java@v1
