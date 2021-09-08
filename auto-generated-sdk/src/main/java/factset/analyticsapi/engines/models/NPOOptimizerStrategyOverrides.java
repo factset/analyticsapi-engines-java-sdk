@@ -80,7 +80,7 @@ public class NPOOptimizerStrategyOverrides implements Serializable {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Objective parameters")
   @JsonProperty(JSON_PROPERTY_OBJECTIVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
 
   public java.util.Map<String, Object> getObjective() {
     return objective;
