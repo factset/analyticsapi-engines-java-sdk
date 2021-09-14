@@ -7507,18 +7507,9 @@ paths:
         explode: true
         in: query
         name: document
-        required: false
+        required: true
         schema:
           description: Document Name
-          type: string
-        style: form
-      - description: Directory to get the components
-        explode: true
-        in: query
-        name: directory
-        required: false
-        schema:
-          description: Directory to get the components
           type: string
         style: form
       responses:
