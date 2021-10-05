@@ -21,8 +21,8 @@ on:
 
 jobs:
   run-integration-tests-400:
-    runs-on: ubuntu-latest
-    steps:
+      runs-on: [self-hosted, windows-latest]
+      steps:
       - uses: actions/checkout@v2
         with:
           ref: '4.0.0'
@@ -42,7 +42,7 @@ jobs:
         run: cd tests && mvn -q test -Dtest=ApiTestsRunner
 
   run-integration-tests-500:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, windows-latest]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -63,7 +63,7 @@ jobs:
         run: cd tests && mvn -q test -Dtest=ApiTestsRunner
  
   run-integration-tests-510:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, windows-latest]
     steps:
       - uses: actions/checkout@v2
         with:
