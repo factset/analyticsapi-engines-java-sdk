@@ -69,16 +69,9 @@ public class FiabInteractiveEngineApiTests {
 
     do {
       resultStatus = apiInstance.getCalculationByIdWithHttpInfo(requestId);
-      List<String> cacheControl = headers.get("Cache-Control");
-      if (cacheControl != null) {
-        int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
-        System.out.println("Sleeping for: " + maxAge + " seconds");
-        Thread.sleep(maxAge * 1000L);
-      } else {
-        System.out.println("Sleeping for: 2 seconds");
-        Thread.sleep(2 * 1000L);
-      }	    
-    }	while(resultStatus.getStatusCode() == 202); 
+      System.out.println("Sleeping for: 10 seconds");
+      Thread.sleep(10 * 1000L);
+    } while(resultStatus.getStatusCode() == 202);
 
     Assert.assertTrue("Result Status returned should be 200", resultStatus.getStatusCode() == 200);
   }
