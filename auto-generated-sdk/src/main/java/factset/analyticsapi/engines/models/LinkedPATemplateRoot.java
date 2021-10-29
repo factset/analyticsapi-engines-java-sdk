@@ -22,81 +22,94 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import factset.analyticsapi.engines.models.OptimizerStrategyOverrides;
+import factset.analyticsapi.engines.models.LinkedPATemplate;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import factset.analyticsapi.engines.JSON;
 
 
 /**
- * OptimizerStrategy
+ * LinkedPATemplateRoot
  */
 @JsonPropertyOrder({
-  OptimizerStrategy.JSON_PROPERTY_ID,
-  OptimizerStrategy.JSON_PROPERTY_OVERRIDES
+  LinkedPATemplateRoot.JSON_PROPERTY_DATA,
+  LinkedPATemplateRoot.JSON_PROPERTY_META
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class OptimizerStrategy implements Serializable {
+public class LinkedPATemplateRoot implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  public static final String JSON_PROPERTY_DATA = "data";
+  private LinkedPATemplate data;
 
-  public static final String JSON_PROPERTY_OVERRIDES = "overrides";
-  private OptimizerStrategyOverrides overrides;
+  public static final String JSON_PROPERTY_META = "meta";
+  private JsonNullable<Object> meta = JsonNullable.<Object>of(null);
 
 
-  public OptimizerStrategy id(String id) {
-    this.id = id;
+  public LinkedPATemplateRoot data(LinkedPATemplate data) {
+    this.data = data;
     return this;
   }
 
    /**
-   * OptimizerStrategy document path
-   * @return id
+   * Get data
+   * @return data
   **/
-  @ApiModelProperty(required = true, value = "OptimizerStrategy document path")
-  @JsonProperty(JSON_PROPERTY_ID)
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getId() {
-    return id;
+  public LinkedPATemplate getData() {
+    return data;
   }
 
 
-  public void setId(String id) {
-    this.id = id;
+  public void setData(LinkedPATemplate data) {
+    this.data = data;
   }
 
 
-  public OptimizerStrategy overrides(OptimizerStrategyOverrides overrides) {
-    this.overrides = overrides;
+  public LinkedPATemplateRoot meta(Object meta) {
+    this.meta = JsonNullable.<Object>of(meta);
     return this;
   }
 
    /**
-   * Get overrides
-   * @return overrides
+   * Get meta
+   * @return meta
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_OVERRIDES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public OptimizerStrategyOverrides getOverrides() {
-    return overrides;
+  public Object getMeta() {
+        return meta.orElse(null);
   }
 
+  @JsonProperty(JSON_PROPERTY_META)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public void setOverrides(OptimizerStrategyOverrides overrides) {
-    this.overrides = overrides;
+  public JsonNullable<Object> getMeta_JsonNullable() {
+    return meta;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_META)
+  public void setMeta_JsonNullable(JsonNullable<Object> meta) {
+    this.meta = meta;
+  }
+
+  public void setMeta(Object meta) {
+    this.meta = JsonNullable.<Object>of(meta);
   }
 
 
   /**
-   * Return true if this OptimizerStrategy object is equal to o.
+   * Return true if this LinkedPATemplateRoot object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -106,22 +119,22 @@ public class OptimizerStrategy implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OptimizerStrategy optimizerStrategy = (OptimizerStrategy) o;
-    return Objects.equals(this.id, optimizerStrategy.id) &&
-        Objects.equals(this.overrides, optimizerStrategy.overrides);
+    LinkedPATemplateRoot linkedPATemplateRoot = (LinkedPATemplateRoot) o;
+    return Objects.equals(this.data, linkedPATemplateRoot.data) &&
+        Objects.equals(this.meta, linkedPATemplateRoot.meta);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, overrides);
+    return Objects.hash(data, meta);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OptimizerStrategy {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    overrides: ").append(toIndentedString(overrides)).append("\n");
+    sb.append("class LinkedPATemplateRoot {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }
