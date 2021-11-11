@@ -30,10 +30,6 @@ import factset.analyticsapi.engines.models.OptimizerTradesList.IdentifierTypeEnu
 
 public class AxpInteractiveOptimizerEngineExample {
   private static FdsApiClient apiClient = null;
-  private static String BASE_PATH = "https://api.factset.com";
-  private static String USERNAME = "<username-serial>";
-  private static String PASSWORD = "<apiKey>";
-  
   private static String AXIOMA_ACCOUNT_ID = "BENCH:SP50";
   private static String OPTIMIZATION_DATE = "09/01/2020";
   private static String OPTIMIZATION_CASHFLOW = "0";
@@ -77,6 +73,9 @@ public class AxpInteractiveOptimizerEngineExample {
       axpOptimizerParam.setData(axpItem);
       
       ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, null, axpOptimizerParam);
+      //Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is 5 minutes older.
+      //String cache_control="max-stale=0";
+      //ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, cache_control, axpOptimizerParam);
       Map<String, List<String>> headers = response.getHeaders();
       
       Object result = null;
@@ -181,10 +180,9 @@ public class AxpInteractiveOptimizerEngineExample {
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
-    apiClient.setBasePath(BASE_PATH);
-    apiClient.setUsername(USERNAME);
-    apiClient.setPassword(PASSWORD);
-    
+    apiClient.setBasePath(System.getenv("FACTSET_HOST"));
+    apiClient.setUsername(System.getenv("FACTSET_USERNAME"));
+    apiClient.setPassword(System.getenv("FACTSET_PASSWORD"));
     return apiClient;
   }
   

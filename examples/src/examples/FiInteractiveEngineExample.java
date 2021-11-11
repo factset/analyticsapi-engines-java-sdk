@@ -34,10 +34,6 @@ import factset.analyticsapi.engines.api.FiCalculationsApi;
 
 public class FiInteractiveEngineExample {
   private static FdsApiClient apiClient = null;
-  private static String BASE_PATH = "https://api.factset.com";
-  private static String USERNAME = "<username-serial>";
-  private static String PASSWORD = "<apiKey>";
-  
   private static String FI_CALC_FROM_METHOD = "Price";
   private static Double FI_CALC_FROM_VALUE = 108.40299;
   private static Double FI_CALC_FROM_VALUE_2 = 100.285;
@@ -88,6 +84,9 @@ public class FiInteractiveEngineExample {
       fiCalcParam.data(calcParameters);
       
       ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, fiCalcParam);
+      //Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is 5 minutes older.
+      //String cache_control="max-stale=300";
+      //ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, cache_control, fiCalcParam);
       Map<String, List<String>> headers = response.getHeaders();
       
       Object result = null;
@@ -188,10 +187,9 @@ public class FiInteractiveEngineExample {
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
-    apiClient.setBasePath(BASE_PATH);
-    apiClient.setUsername(USERNAME);
-    apiClient.setPassword(PASSWORD);
-    
+    apiClient.setBasePath(System.getenv("FACTSET_HOST"));
+    apiClient.setUsername(System.getenv("FACTSET_USERNAME"));
+    apiClient.setPassword(System.getenv("FACTSET_PASSWORD"));
     return apiClient;
   }
   

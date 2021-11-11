@@ -32,10 +32,6 @@ import static factset.analyticsapi.engines.models.QuantScreeningExpressionUniver
 
 public class QuantEngineSingleUnitExample {
   private static FdsApiClient apiClient = null;
-  private static String BASE_PATH = "https://api.factset.com";
-  private static String USERNAME = "<username-serial>";
-  private static String PASSWORD = "<apiKey>";
-  
   private static String QUANT_START_DATE = "0";
   private static String QUANT_END_DATE = "-5D";
   private static String QUANT_FREQUENCY = "D";
@@ -81,7 +77,10 @@ public class QuantEngineSingleUnitExample {
       QuantCalculationParametersRoot quantCalculationParam = new QuantCalculationParametersRoot();
       quantCalculationParam.putDataItem("1", quantItem);
       ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, quantCalculationParam);
-      
+
+      //Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is 5 minutes older.
+      //String cache_control="max-stale=300";
+      //ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(cache_control, quantCalculationParam);
       ApiResponse<CalculationStatusRoot> getStatus = null;
       File result = null;
       switch (response.getStatusCode()) {
@@ -211,9 +210,9 @@ public class QuantEngineSingleUnitExample {
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
-    apiClient.setBasePath(BASE_PATH);
-    apiClient.setUsername(USERNAME);
-    apiClient.setPassword(PASSWORD);
+    apiClient.setBasePath(System.getenv("FACTSET_HOST"));
+    apiClient.setUsername(System.getenv("FACTSET_USERNAME"));
+    apiClient.setPassword(System.getenv("FACTSET_PASSWORD"));
     
     return apiClient;
   }

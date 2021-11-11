@@ -32,10 +32,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class PAEngineSingleUnitExample {
   
   private static FdsApiClient apiClient = null;
-  private static String BASE_PATH = "https://api.factset.com";
-  private static String USERNAME = "<username-serial>";
-  private static String PASSWORD = "<apiKey>";
-  
+
   private static String PA_DEFAULT_DOCUMENT = "PA_DOCUMENTS:DEFAULT";
   private static String COMPONENT_NAME = "Weights";
   private static String COMPONENT_CATEGORY = "Weights / Exposures";
@@ -104,7 +101,10 @@ public class PAEngineSingleUnitExample {
       // Run Calculation Request
       PaCalculationsApi apiInstance = new PaCalculationsApi(getApiClient());
       ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
-      
+      //Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is 5 minutes older.
+      //String cache_control="max-stale=300";
+      //ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, cache_control, calcParameters);
+
       ApiResponse<CalculationStatusRoot> getStatus = null;
       Object result = null;
       switch (response.getStatusCode()) {
@@ -236,13 +236,13 @@ public class PAEngineSingleUnitExample {
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
-    apiClient.setBasePath(BASE_PATH);
-    apiClient.setUsername(USERNAME);
-    apiClient.setPassword(PASSWORD);
-    
+    apiClient.setBasePath(System.getenv("FACTSET_HOST"));
+    apiClient.setUsername(System.getenv("FACTSET_USERNAME"));
+    apiClient.setPassword(System.getenv("FACTSET_PASSWORD"));
+
     return apiClient;
   }
-  
+
   private static void handleException(String method, ApiException e) {
     System.err.println("Exception when calling " + method);
     if (e.getResponseHeaders() != null && e.getResponseHeaders().containsKey("x-datadirect-request-key")) {

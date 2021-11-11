@@ -21,10 +21,6 @@ import factset.analyticsapi.engines.models.FIABIdentifier;
 
 public class FiabInteractiveEngineExample {
   private static FdsApiClient apiClient = null;
-  private static String BASE_PATH = "https://api.factset.com";
-  private static String USERNAME = "<username-serial>";
-  private static String PASSWORD = "<apiKey>";
-  
   private static String FIAB_ACCOUNT_ID = "Client:/aapi/FIAB_TEST_HOLDINGS.ACCT";
   private static String FIAB_DOCUMENT = "Client:/aapi/AAPI_FIAB_BASE_DOC";
   private static String FIAB_DATE = "20200618";
@@ -47,6 +43,9 @@ public class FiabInteractiveEngineExample {
       calcParameters.setFisettingsdocument(FIAB_SETTINGS_DOCUMENT);
       calcParameters.setMsl(FIAB_MSL);
       ApiResponse<Void> response = apiInstance.runCalculationWithHttpInfo(calcParameters);
+      //Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is 5 minutes older.
+      //String cache_control="max-stale=300";
+      //ApiResponse<Void> response = apiInstance.runCalculationWithHttpInfo(cache_control, calcParameters);
       Map<String, List<String>> headers = response.getHeaders();
       
       ApiResponse<FIABCalculationStatus> resultStatus = null;
@@ -88,10 +87,9 @@ public class FiabInteractiveEngineExample {
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
-    apiClient.setBasePath(BASE_PATH);
-    apiClient.setUsername(USERNAME);
-    apiClient.setPassword(PASSWORD);
-    
+    apiClient.setBasePath(System.getenv("FACTSET_HOST"));
+    apiClient.setUsername(System.getenv("FACTSET_USERNAME"));
+    apiClient.setPassword(System.getenv("FACTSET_PASSWORD"));
     return apiClient;
   }
   

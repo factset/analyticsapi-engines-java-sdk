@@ -34,10 +34,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class SPAREngineMultipleUnitExample {
   
   private static FdsApiClient apiClient = null;
-  private static String BASE_PATH = "https://api.factset.com";
-  private static String USERNAME = "<username-serial>";
-  private static String PASSWORD = "<apiKey>";
-  
+
   private static String SPAR_DEFAULT_DOCUMENT = "pmw_root:/spar_documents/Factset Default Document";
   private static String COMPONENT_NAME = "Returns Table";
   private static String COMPONENT_CATEGORY = "Raw Data / Returns";
@@ -92,6 +89,9 @@ public class SPAREngineMultipleUnitExample {
       SparCalculationsApi apiInstance = new SparCalculationsApi(getApiClient());
       
       ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
+      //Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is 5 minutes older.
+      //String cache_control="max-stale=0";
+      //ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, cache_control, calcParameters);
       
       CalculationStatusRoot status = (CalculationStatusRoot) createResponse.getData();
       String calculationId = status.getData().getCalculationid();
@@ -197,10 +197,10 @@ public class SPAREngineMultipleUnitExample {
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
-    apiClient.setBasePath(BASE_PATH);
-    apiClient.setUsername(USERNAME);
-    apiClient.setPassword(PASSWORD);
-    
+    apiClient.setBasePath(System.getenv("FACTSET_HOST"));
+    apiClient.setUsername(System.getenv("FACTSET_USERNAME"));
+    apiClient.setPassword(System.getenv("FACTSET_PASSWORD"));
+
     return apiClient;
   }
   

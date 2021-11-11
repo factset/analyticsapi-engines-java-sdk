@@ -33,10 +33,7 @@ import org.glassfish.jersey.client.ClientProperties;
 public class VaultEngineMultipleUnitExample {
   
   private static FdsApiClient apiClient = null;
-  private static String BASE_PATH = "https://api.factset.com";
-  private static String USERNAME = "<username-serial>";
-  private static String PASSWORD = "<apiKey>";
-  
+
   private static String VAULT_DEFAULT_DOCUMENT = "Client:/aapi/VAULT_QA_PI_DEFAULT_LOCKED";
   private static String VAULT_DEFAULT_ACCOUNT = "CLIENT:/BISAM/REPOSITORY/QA/SMALL_PORT.ACCT";
   private static String COMPONENT_NAME = "Performance Attribution";
@@ -86,6 +83,9 @@ public class VaultEngineMultipleUnitExample {
       VaultCalculationsApi apiInstance = new VaultCalculationsApi(getApiClient());
       
       ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
+      //Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is 5 minutes older.
+      //String cache_control="max-stale=300";
+      //ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, cache_control, calcParameters);
       
       CalculationStatusRoot status = (CalculationStatusRoot) createResponse.getData();
       String calculationId = status.getData().getCalculationid();
@@ -191,10 +191,10 @@ public class VaultEngineMultipleUnitExample {
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
-    apiClient.setBasePath(BASE_PATH);
-    apiClient.setUsername(USERNAME);
-    apiClient.setPassword(PASSWORD);
-    
+    apiClient.setBasePath(System.getenv("FACTSET_HOST"));
+    apiClient.setUsername(System.getenv("FACTSET_USERNAME"));
+    apiClient.setPassword(System.getenv("FACTSET_PASSWORD"));
+
     return apiClient;
   }
   
