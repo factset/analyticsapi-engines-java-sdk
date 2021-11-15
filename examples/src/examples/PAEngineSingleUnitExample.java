@@ -102,8 +102,8 @@ public class PAEngineSingleUnitExample {
       PaCalculationsApi apiInstance = new PaCalculationsApi(getApiClient());
       ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
       //Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is 5 minutes older.
-      //String cache_control="max-stale=300";
-      //ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, cache_control, calcParameters);
+      //String cacheControlInput="max-stale=300";
+      //ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, cacheControlInput, calcParameters);
 
       ApiResponse<CalculationStatusRoot> getStatus = null;
       Object result = null;

@@ -74,8 +74,8 @@ public class AxpInteractiveOptimizerEngineExample {
       
       ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, null, axpOptimizerParam);
       //Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is 5 minutes older.
-      //String cache_control="max-stale=0";
-      //ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, cache_control, axpOptimizerParam);
+      //String cacheControlInput="max-stale=300";
+      //ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, cacheControlInput, axpOptimizerParam);
       Map<String, List<String>> headers = response.getHeaders();
       
       Object result = null;

@@ -21,17 +21,18 @@ import factset.analyticsapi.engines.models.FIABIdentifier;
 
 public class FiabInteractiveEngineExample {
   private static FdsApiClient apiClient = null;
+
   private static String FIAB_ACCOUNT_ID = "Client:/aapi/FIAB_TEST_HOLDINGS.ACCT";
   private static String FIAB_DOCUMENT = "Client:/aapi/AAPI_FIAB_BASE_DOC";
   private static String FIAB_DATE = "20200618";
   private static String FIAB_MSL = "CLIENT:$$MSL_AAPI_TESTING.OFDB";
   private static String FIAB_SETTINGS_DOCUMENT = "None";
-  
+
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
       FiabCalculationsApi apiInstance = new FiabCalculationsApi(getApiClient());
       FIABCalculationParameters calcParameters = new FIABCalculationParameters();
-      
+
       FIABIdentifier fiabID = new FIABIdentifier();
       fiabID.setId(FIAB_ACCOUNT_ID);
       calcParameters.setAccount(fiabID);
@@ -43,15 +44,12 @@ public class FiabInteractiveEngineExample {
       calcParameters.setFisettingsdocument(FIAB_SETTINGS_DOCUMENT);
       calcParameters.setMsl(FIAB_MSL);
       ApiResponse<Void> response = apiInstance.runCalculationWithHttpInfo(calcParameters);
-      //Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is 5 minutes older.
-      //String cache_control="max-stale=300";
-      //ApiResponse<Void> response = apiInstance.runCalculationWithHttpInfo(cache_control, calcParameters);
       Map<String, List<String>> headers = response.getHeaders();
-      
+
       ApiResponse<FIABCalculationStatus> resultStatus = null;
       String[] locationList = headers.get("Location").get(0).split("/");
       String calculationId = locationList[locationList.length - 1];
-      
+
       do {
         resultStatus = apiInstance.getCalculationByIdWithHttpInfo(calculationId);
         List<String> cacheControl = headers.get("Cache-Control");
@@ -69,7 +67,7 @@ public class FiabInteractiveEngineExample {
       handleException("FiabEngineExample#Main", e);
     }
   }
-  
+
   private static class FdsApiClient extends ApiClient {
     // Uncomment the below lines to use a proxy server
     /*@Override
@@ -78,21 +76,22 @@ public class FiabInteractiveEngineExample {
       clientConfig.connectorProvider( new ApacheConnectorProvider() );
     }*/
   }
-  
+
   private static FdsApiClient getApiClient() {
     if (apiClient != null) {
       return apiClient;
     }
-    
+
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
     apiClient.setBasePath(System.getenv("FACTSET_HOST"));
     apiClient.setUsername(System.getenv("FACTSET_USERNAME"));
     apiClient.setPassword(System.getenv("FACTSET_PASSWORD"));
+
     return apiClient;
   }
-  
+
   private static void handleException(String method, ApiException e) {
     System.err.println("Exception when calling " + method);
     if (e.getResponseHeaders() != null && e.getResponseHeaders().containsKey("x-datadirect-request-key")) {
