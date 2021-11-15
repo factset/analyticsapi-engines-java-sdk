@@ -84,9 +84,9 @@ public class FiInteractiveEngineExample {
       fiCalcParam.data(calcParameters);
       
       ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, fiCalcParam);
-      //Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is 5 minutes older.
-      //String cacheControlInput="max-stale=300";
-      //ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, cacheControlInput, fiCalcParam);
+      // Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is 5 minutes older.
+      // String cacheControlInput = "max-stale=300";
+      // ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, cacheControlInput, fiCalcParam);
       Map<String, List<String>> headers = response.getHeaders();
       
       Object result = null;

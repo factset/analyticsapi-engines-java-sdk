@@ -63,9 +63,9 @@ public class BpmInteractiveOptimizerEngineExample {
       bpmOptimizerParam.setData(bpmItem);
       
       ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, null, bpmOptimizerParam);
-      //Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is 5 minutes older.
-      //String cacheControlInput="max-stale=300";
-      //ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, cacheControlInput, bpmOptimizerParam);
+      // Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is 5 minutes older.
+      // String cacheControlInput = "max-stale=300";
+      // ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, cacheControlInput, bpmOptimizerParam);
       Map<String, List<String>> headers = response.getHeaders();
       
       Object result = null;
