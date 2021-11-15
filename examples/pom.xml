@@ -35,7 +35,7 @@
     <dependency>
       <groupId>com.factset.protobuf</groupId>
   	  <artifactId>stachextensions</artifactId>
-  	  <version>${stach-extension-version}</version>
+      <version>${stach-extension-version}</version>
 	</dependency>
     <!-- @Nullable annotation -->
     <dependency>
