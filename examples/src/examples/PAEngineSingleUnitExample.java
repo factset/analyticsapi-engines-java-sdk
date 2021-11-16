@@ -2,13 +2,14 @@ package examples;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import javax.ws.rs.client.ClientBuilder;
 
 import com.factset.protobuf.stach.extensions.models.Row;
+import com.factset.protobuf.stach.extensions.v2.StachUtilities;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Value;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -34,8 +35,8 @@ public class PAEngineSingleUnitExample {
 
   private static FdsApiClient apiClient = null;
   private static String BASE_PATH = "https://api.factset.com";
-  private static String USERNAME = "<username-serial>";
-  private static String PASSWORD = "<apiKey>";
+  private static String USERNAME = System.getenv("ANALYTICS_API_QAR_USERNAME_SERIAL");
+  private static String PASSWORD = System.getenv("ANALYTICS_API_QAR_PASSWORD");
 
   private static String PA_DEFAULT_DOCUMENT = "PA_DOCUMENTS:DEFAULT";
   private static String COMPONENT_NAME = "Weights";
@@ -164,16 +165,31 @@ public class PAEngineSingleUnitExample {
       }
 
       ObjectMapper mapper = new ObjectMapper();
+      // Prints the results in 2D table format.
       for (TableData table : tables) {
         List<Row> rows = table.getRows();
         String json = mapper.writeValueAsString(rows);
-        System.out.println(json); // Prints the result in 2D table format.
+        System.out.println(json);
+      }
+      // Prints the metadata
+      for (TableData table : tables) {
+        System.out.println("Printing metadata...");
+        for (Map.Entry<String, List<Value>> e : table.getRawMetadata().entrySet()) {
+          for (Value val : e.getValue()) {
+            System.out.println("  " + e.getKey() + ": " + StachUtilities.valueToString(val));
+          }
+        }
       }
       // Uncomment the following line to generate an Excel file
       // generateExcel(tables);
     } catch (ApiException e) {
       handleException("PAEngineExample#Main", e);
     }
+    catch (InvalidProtocolBufferException e) {
+      System.out.println(e.getMessage());
+      e.printStackTrace();
+    }
+
 
   }
 
