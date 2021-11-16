@@ -184,8 +184,7 @@ public class PAEngineSingleUnitExample {
       // generateExcel(tables);
     } catch (ApiException e) {
       handleException("PAEngineExample#Main", e);
-    }
-    catch (InvalidProtocolBufferException e) {
+    } catch (InvalidProtocolBufferException e) {
       System.out.println(e.getMessage());
       e.printStackTrace();
     }
