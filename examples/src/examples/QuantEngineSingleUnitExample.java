@@ -8,8 +8,11 @@ import java.util.UUID;
 
 import com.factset.protobuf.stach.extensions.ColumnStachExtensionBuilder;
 import com.factset.protobuf.stach.extensions.StachExtensions;
+import com.factset.protobuf.stach.extensions.models.Row;
+import com.factset.protobuf.stach.extensions.v2.StachUtilities;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import com.google.protobuf.Value;
 import factset.analyticsapi.engines.models.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -33,8 +36,8 @@ import static factset.analyticsapi.engines.models.QuantScreeningExpressionUniver
 public class QuantEngineSingleUnitExample {
   private static FdsApiClient apiClient = null;
   private static String BASE_PATH = "https://api.factset.com";
-  private static String USERNAME = "<username-serial>";
-  private static String PASSWORD = "<apiKey>";
+  private static String USERNAME = System.getenv("ANALYTICS_API_QAR_USERNAME_SERIAL");
+  private static String PASSWORD = System.getenv("ANALYTICS_API_QAR_PASSWORD");
   
   private static String QUANT_START_DATE = "0";
   private static String QUANT_END_DATE = "-5D";
@@ -153,10 +156,23 @@ public class QuantEngineSingleUnitExample {
       ColumnStachExtensionBuilder stachExtensionBuilder = StachExtensionFactory.getColumnOrganizedBuilder(StachVersion.V2);
       StachExtensions stachExtension = stachExtensionBuilder.setPackage(jsonString).build();
       tables = stachExtension.convertToTable();
-      
-      
-      String json = mapper.writeValueAsString(tables);
-      System.out.println(json); // Prints the result in 2D table format.
+
+
+      // Prints the results in 2D table format.
+      for (TableData table : tables) {
+        List<Row> rows = table.getRows();
+        String json = mapper.writeValueAsString(rows);
+        System.out.println(json);
+      }
+      // Prints the metadata
+      for (TableData table : tables) {
+        if (table.getMetadata().size() > 0) System.out.println("Printing metadata...");
+        for (Map.Entry<String, List<Value>> rawMetadata : table.getRawMetadata().entrySet()) {
+          for (Value val : rawMetadata.getValue()) {
+            System.out.println("  " + rawMetadata.getKey() + ": " + StachUtilities.valueToString(val));
+          }
+        }
+      }
       // Uncomment the following line to generate an Excel file
       // generateExcel(tables);
     } catch (Exception e) {

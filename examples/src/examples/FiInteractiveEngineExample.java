@@ -9,6 +9,10 @@ import java.util.UUID;
 
 import javax.ws.rs.client.ClientBuilder;
 
+import com.factset.protobuf.stach.extensions.models.Row;
+import com.factset.protobuf.stach.extensions.v2.StachUtilities;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Value;
 import factset.analyticsapi.engines.models.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -134,12 +138,28 @@ public class FiInteractiveEngineExample {
       }
       
       ObjectMapper mapper = new ObjectMapper();
-      String json = mapper.writeValueAsString(tables);
-      System.out.println(json); // Prints the result in 2D table format.
+      // Prints the results in 2D table format.
+      for (TableData table : tables) {
+        List<Row> rows = table.getRows();
+        String json = mapper.writeValueAsString(rows);
+        System.out.println(json);
+      }
+      // Prints the metadata
+      for (TableData table : tables) {
+        if (table.getMetadata().size() > 0) System.out.println("Printing metadata...");
+        for (Map.Entry<String, List<Value>> rawMetadata : table.getRawMetadata().entrySet()) {
+          for (Value val : rawMetadata.getValue()) {
+            System.out.println("  " + rawMetadata.getKey() + ": " + StachUtilities.valueToString(val));
+          }
+        }
+      }
       // Uncomment the following line to generate an Excel file
       // generateExcel(tables);
     } catch (ApiException e) {
-      handleException("FiEngineExample#Main", e);
+      handleException("BpmOptimizerEngineExample#Main", e);
+    } catch (InvalidProtocolBufferException e) {
+      System.out.println(e.getMessage());
+      e.printStackTrace();
     }
   }
   

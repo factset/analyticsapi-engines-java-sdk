@@ -161,7 +161,7 @@ public class SPAREngineSingleUnitExample {
       }
       // Prints the metadata
       for (TableData table : tables) {
-        System.out.println("Printing metadata...");
+        if (table.getMetadata().size() > 0) System.out.println("Printing metadata...");
         for (Map.Entry<String, List<Value>> rawMetadata : table.getRawMetadata().entrySet()) {
           for (Value val : rawMetadata.getValue()) {
             System.out.println("  " + rawMetadata.getKey() + ": " + StachUtilities.valueToString(val));
