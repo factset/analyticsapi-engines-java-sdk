@@ -174,9 +174,9 @@ public class PAEngineSingleUnitExample {
       // Prints the metadata
       for (TableData table : tables) {
         System.out.println("Printing metadata...");
-        for (Map.Entry<String, List<Value>> e : table.getRawMetadata().entrySet()) {
-          for (Value val : e.getValue()) {
-            System.out.println("  " + e.getKey() + ": " + StachUtilities.valueToString(val));
+        for (Map.Entry<String, List<Value>> rawMetadata : table.getRawMetadata().entrySet()) {
+          for (Value val : rawMetadata.getValue()) {
+            System.out.println("  " + rawMetadata.getKey() + ": " + StachUtilities.valueToString(val));
           }
         }
       }
