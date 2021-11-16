@@ -156,7 +156,7 @@ public class FiInteractiveEngineExample {
       // Uncomment the following line to generate an Excel file
       // generateExcel(tables);
     } catch (ApiException e) {
-      handleException("BpmOptimizerEngineExample#Main", e);
+      handleException("FiEngineExample#Main", e);
     } catch (InvalidProtocolBufferException e) {
       System.out.println(e.getMessage());
       e.printStackTrace();

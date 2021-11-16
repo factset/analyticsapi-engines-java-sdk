@@ -36,8 +36,8 @@ import static factset.analyticsapi.engines.models.QuantScreeningExpressionUniver
 public class QuantEngineSingleUnitExample {
   private static FdsApiClient apiClient = null;
   private static String BASE_PATH = "https://api.factset.com";
-  private static String USERNAME = System.getenv("ANALYTICS_API_QAR_USERNAME_SERIAL");
-  private static String PASSWORD = System.getenv("ANALYTICS_API_QAR_PASSWORD");
+  private static String USERNAME = "<username-serial>";
+  private static String PASSWORD = "<apiKey>";
   
   private static String QUANT_START_DATE = "0";
   private static String QUANT_END_DATE = "-5D";
