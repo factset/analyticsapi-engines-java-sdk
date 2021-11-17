@@ -165,15 +165,14 @@ public class PAEngineSingleUnitExample {
       }
 
       ObjectMapper mapper = new ObjectMapper();
-      // Prints the results in 2D table format.
       for (TableData table : tables) {
+        // Prints the results in 2D table format.
         List<Row> rows = table.getRows();
         String json = mapper.writeValueAsString(rows);
         System.out.println(json);
-      }
-      // Prints the metadata
-      for (TableData table : tables) {
-        if (table.getMetadata().size() > 0) System.out.println("Printing metadata...");
+
+        // Prints the metadata
+        if (table.getRawMetadata().size() > 0) System.out.println("Printing metadata...");
         for (Map.Entry<String, List<Value>> rawMetadata : table.getRawMetadata().entrySet()) {
           for (Value val : rawMetadata.getValue()) {
             System.out.println("  " + rawMetadata.getKey() + ": " + StachUtilities.valueToString(val));
