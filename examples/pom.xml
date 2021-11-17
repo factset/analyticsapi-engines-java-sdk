@@ -34,9 +34,9 @@
     </dependency>
     <dependency>
       <groupId>com.factset.protobuf</groupId>
-  	  <artifactId>stachextensions</artifactId>
+      <artifactId>stachextensions</artifactId>
       <version>${stach-extension-version}</version>
-	</dependency>
+    </dependency>
     <!-- @Nullable annotation -->
     <dependency>
       <groupId>com.google.code.findbugs</groupId>
