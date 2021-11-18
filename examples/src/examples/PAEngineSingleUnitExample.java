@@ -32,6 +32,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class PAEngineSingleUnitExample {
   
   private static FdsApiClient apiClient = null;
+  private static String BASE_PATH = System.getenv("FACTSET_HOST");
+  private static String USERNAME = System.getenv("FACTSET_USERNAME");
+  private static String PASSWORD = System.getenv("FACTSET_PASSWORD");
 
   private static String PA_DEFAULT_DOCUMENT = "PA_DOCUMENTS:DEFAULT";
   private static String COMPONENT_NAME = "Weights";
@@ -236,9 +239,9 @@ public class PAEngineSingleUnitExample {
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
-    apiClient.setBasePath(System.getenv("FACTSET_HOST"));
-    apiClient.setUsername(System.getenv("FACTSET_USERNAME"));
-    apiClient.setPassword(System.getenv("FACTSET_PASSWORD"));
+    apiClient.setBasePath(BASE_PATH);
+    apiClient.setUsername(USERNAME);
+    apiClient.setPassword(PASSWORD);
 
     return apiClient;
   }

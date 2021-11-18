@@ -25,6 +25,9 @@ import factset.analyticsapi.engines.models.PubIdentifier;
 
 public class PubEngineSingleUnitExample {
   private static FdsApiClient apiClient = null;
+  private static String BASE_PATH = System.getenv("FACTSET_HOST");
+  private static String USERNAME = System.getenv("FACTSET_USERNAME");
+  private static String PASSWORD = System.getenv("FACTSET_PASSWORD");
 
   private static String PUB_DEFAULT_DOCUMENT = "Client:/AAPI/Puma Test Doc.Pub_bridge_pdf";
   private static String PUB_DEFAULT_ACCOUNT = "BENCH:SP50";
@@ -67,8 +70,10 @@ public class PubEngineSingleUnitExample {
           System.out.println("Status : " + calcUnitStatus.getStatus());
           System.out.println("Reason : " + calcUnitStatus.getErrors());
           System.exit(-1);
+          break;
         case 201:
           result = (File) createResponse.getData();
+          break;
         case 202:
           CalculationStatusRoot status = (CalculationStatusRoot) createResponse.getData();
           String calculationId = status.getData().getCalculationid();
@@ -96,6 +101,7 @@ public class PubEngineSingleUnitExample {
               result = resultResponse.getData();
             }
           }
+          break;
       }
       System.out.println("Calculation Completed!!!");
       
@@ -124,9 +130,9 @@ public class PubEngineSingleUnitExample {
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
-    apiClient.setBasePath(System.getenv("FACTSET_HOST"));
-    apiClient.setUsername(System.getenv("FACTSET_USERNAME"));
-    apiClient.setPassword(System.getenv("FACTSET_PASSWORD"));
+    apiClient.setBasePath(BASE_PATH);
+    apiClient.setUsername(USERNAME);
+    apiClient.setPassword(PASSWORD);
 
     return apiClient;
   }

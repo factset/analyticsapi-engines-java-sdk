@@ -21,6 +21,9 @@ import factset.analyticsapi.engines.models.FIABIdentifier;
 
 public class FiabInteractiveEngineExample {
   private static FdsApiClient apiClient = null;
+  private static String BASE_PATH = System.getenv("FACTSET_HOST");
+  private static String USERNAME = System.getenv("FACTSET_USERNAME");
+  private static String PASSWORD = System.getenv("FACTSET_PASSWORD");
 
   private static String FIAB_ACCOUNT_ID = "Client:/aapi/FIAB_TEST_HOLDINGS.ACCT";
   private static String FIAB_DOCUMENT = "Client:/aapi/AAPI_FIAB_BASE_DOC";
@@ -85,9 +88,9 @@ public class FiabInteractiveEngineExample {
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
-    apiClient.setBasePath(System.getenv("FACTSET_HOST"));
-    apiClient.setUsername(System.getenv("FACTSET_USERNAME"));
-    apiClient.setPassword(System.getenv("FACTSET_PASSWORD"));
+    apiClient.setBasePath(BASE_PATH);
+    apiClient.setUsername(USERNAME);
+    apiClient.setPassword(PASSWORD);
 
     return apiClient;
   }

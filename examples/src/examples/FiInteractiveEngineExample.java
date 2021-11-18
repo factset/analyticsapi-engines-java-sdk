@@ -34,6 +34,10 @@ import factset.analyticsapi.engines.api.FiCalculationsApi;
 
 public class FiInteractiveEngineExample {
   private static FdsApiClient apiClient = null;
+  private static String BASE_PATH = System.getenv("FACTSET_HOST");
+  private static String USERNAME = System.getenv("FACTSET_USERNAME");
+  private static String PASSWORD = System.getenv("FACTSET_PASSWORD");
+
   private static String FI_CALC_FROM_METHOD = "Price";
   private static Double FI_CALC_FROM_VALUE = 108.40299;
   private static Double FI_CALC_FROM_VALUE_2 = 100.285;
@@ -187,9 +191,9 @@ public class FiInteractiveEngineExample {
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
-    apiClient.setBasePath(System.getenv("FACTSET_HOST"));
-    apiClient.setUsername(System.getenv("FACTSET_USERNAME"));
-    apiClient.setPassword(System.getenv("FACTSET_PASSWORD"));
+    apiClient.setBasePath(BASE_PATH);
+    apiClient.setUsername(USERNAME);
+    apiClient.setPassword(PASSWORD);
     return apiClient;
   }
   

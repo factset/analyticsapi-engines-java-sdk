@@ -32,6 +32,10 @@ import factset.analyticsapi.engines.models.OptimizerTradesList.IdentifierTypeEnu
 
 public class BpmInteractiveOptimizerEngineExample {
   private static FdsApiClient apiClient = null;
+  private static String BASE_PATH = System.getenv("FACTSET_HOST");
+  private static String USERNAME = System.getenv("FACTSET_USERNAME");
+  private static String PASSWORD = System.getenv("FACTSET_PASSWORD");
+
   private static String BPM_STRATEGY_ID = "CLIENT:/Aapi/BPMAPISIMPLE";
   private static IdentifierTypeEnum TRADES_ID_TYPE = IdentifierTypeEnum.ASSET;
   private static Boolean INCLUDE_CASH = false;
@@ -170,9 +174,9 @@ public class BpmInteractiveOptimizerEngineExample {
     apiClient = new FdsApiClient();
     apiClient.setConnectTimeout(30000);
     apiClient.setReadTimeout(30000);
-    apiClient.setBasePath(System.getenv("FACTSET_HOST"));
-    apiClient.setUsername(System.getenv("FACTSET_USERNAME"));
-    apiClient.setPassword(System.getenv("FACTSET_PASSWORD"));
+    apiClient.setBasePath(BASE_PATH);
+    apiClient.setUsername(USERNAME);
+    apiClient.setPassword(PASSWORD);
     return apiClient;
   }
   
