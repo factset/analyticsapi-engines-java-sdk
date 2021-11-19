@@ -23,10 +23,10 @@ public class PrintOutCurrentTestRunListener extends RunListener {
 
     public void testRunFinished(Result result) {
         System.out.println("testRunFinished " + result.toString()
-                + " time:"+result.getRunTime()
-                +" R"+result.getRunCount()
-                +" F"+result.getFailureCount()
-                +" I"+result.getIgnoreCount()
+                + " time: "+result.getRunTime()
+                +" R: "+result.getRunCount()
+                +" F: "+result.getFailureCount()
+                +" I: "+result.getIgnoreCount()
                 );
     }
 }
