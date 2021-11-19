@@ -3,7 +3,6 @@ package Api;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gson.Gson;
 import factset.analyticsapi.engines.models.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import factset.analyticsapi.engines.ApiClient;
@@ -57,8 +56,6 @@ public class AfiInteractiveOptimizerEngineApiTests {
             AFIOptimizationParameters optimizationUnit = createUnitOptimization();
             AFIOptimizationParametersRoot afiOptimizerParam = new AFIOptimizationParametersRoot();
             afiOptimizerParam.setData(optimizationUnit);
-            Gson gson = new Gson();
-            System.out.println("afiOptimizerParam: " + gson.toJson(afiOptimizerParam));
             response = apiInstance.postAndOptimizeWithHttpInfo(DEADLINE_HEADER_VALUE, "max-stale=0", afiOptimizerParam);
             headers = response.getHeaders();
         } catch (ApiException e) {
