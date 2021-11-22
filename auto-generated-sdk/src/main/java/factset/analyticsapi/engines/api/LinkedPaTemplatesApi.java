@@ -52,7 +52,7 @@ public class LinkedPaTemplatesApi {
 
   /**
    * Create a linked PA template
-   * This endpoint creates a template from an **existing portfolio analysis tile**, allowing the user to replicate and fetch reports settings.    Remarks:    *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
+   * This endpoint creates a template from an **existing portfolio analysis tile**, allowing the user to replicate and fetch reports settings.    Remarks:    *   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary.       If no mandatory fields are passed, then we can use the template as a component and skip the component creation.        *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   We cannot override the Locked fields when creating the Component.    *   Mandatory and locked strings are mutually exclusive.    *   Multi-horizon frequencies are not supported through this endpoint.
    * @param linkedPATemplateParametersRoot Request Parameters (required)
     @return LinkedPATemplatePostSummaryRoot
    * @throws ApiException if fails to make API call
@@ -76,7 +76,7 @@ public class LinkedPaTemplatesApi {
 
   /**
    * Create a linked PA template
-   * This endpoint creates a template from an **existing portfolio analysis tile**, allowing the user to replicate and fetch reports settings.    Remarks:    *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
+   * This endpoint creates a template from an **existing portfolio analysis tile**, allowing the user to replicate and fetch reports settings.    Remarks:    *   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary.       If no mandatory fields are passed, then we can use the template as a component and skip the component creation.        *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   We cannot override the Locked fields when creating the Component.    *   Mandatory and locked strings are mutually exclusive.    *   Multi-horizon frequencies are not supported through this endpoint.
    * @param linkedPATemplateParametersRoot Request Parameters (required)
     * @return ApiResponse&lt;LinkedPATemplatePostSummaryRoot&gt;
    * @throws ApiException if fails to make API call
@@ -403,7 +403,7 @@ public class LinkedPaTemplatesApi {
   }
   /**
    * Update a linked PA template
-   * This endpoint allows the user to change the request body and description from an existing template.    Remarks:    *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
+   * This endpoint allows the user to change the request body and description from an existing template.    Remarks:    *   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary.       If no mandatory fields are passed, then we can use the template as a component and skip the component creation.        *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   We cannot override the Locked fields when creating the Component.    *   Mandatory and locked strings are mutually exclusive.    *   Multi-horizon frequencies are not supported through this endpoint.
    * @param id Unique identifier for a linked PA template (required)
    * @param linkedPATemplateUpdateParametersRoot Request Parameters (required)
     @return LinkedPATemplatePostSummaryRoot
@@ -428,7 +428,7 @@ public class LinkedPaTemplatesApi {
 
   /**
    * Update a linked PA template
-   * This endpoint allows the user to change the request body and description from an existing template.    Remarks:    *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
+   * This endpoint allows the user to change the request body and description from an existing template.    Remarks:    *   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary.       If no mandatory fields are passed, then we can use the template as a component and skip the component creation.        *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   We cannot override the Locked fields when creating the Component.    *   Mandatory and locked strings are mutually exclusive.    *   Multi-horizon frequencies are not supported through this endpoint.
    * @param id Unique identifier for a linked PA template (required)
    * @param linkedPATemplateUpdateParametersRoot Request Parameters (required)
     * @return ApiResponse&lt;LinkedPATemplatePostSummaryRoot&gt;

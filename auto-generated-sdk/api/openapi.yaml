@@ -17976,10 +17976,15 @@ paths:
     post:
       description: "This endpoint creates a template from an **existing portfolio\
         \ analysis tile**, allowing the user to replicate and fetch reports settings.\r\
-        \n\r\nRemarks:\r\n\r\n*   Mandatory, optional and locked fields can be  \"\
-        accounts\", \"benchmarks\", \"groups\", \"columns\", \"dates\", \"currencyisocode\"\
-        \ and \"componentdetail\".\r\n\r\n*   Mandatory and locked strings are mutually\
-        \ exclusive."
+        \n\r\nRemarks:\r\n\r\n*   Mandatory fields are required to be passed in POST\
+        \ requests and Optional fields are not necessary. \r\n    If no mandatory\
+        \ fields are passed, then we can use the template as a component and skip\
+        \ the component creation.\r\n    \r\n*   Mandatory, optional and locked fields\
+        \ can be  \"accounts\", \"benchmarks\", \"groups\", \"columns\", \"dates\"\
+        , \"currencyisocode\" and \"componentdetail\".\r\n\r\n*   We cannot override\
+        \ the Locked fields when creating the Component.\r\n\r\n*   Mandatory and\
+        \ locked strings are mutually exclusive.\r\n\r\n*   Multi-horizon frequencies\
+        \ are not supported through this endpoint."
       operationId: createLinkedPATemplates
       requestBody:
         content:
@@ -18897,10 +18902,15 @@ paths:
       x-accepts: application/json
     put:
       description: "This endpoint allows the user to change the request body and description\
-        \ from an existing template.\r\n\r\nRemarks:\r\n\r\n*   Mandatory, optional\
-        \ and locked fields can be  \"accounts\", \"benchmarks\", \"groups\", \"columns\"\
-        , \"dates\", \"currencyisocode\" and \"componentdetail\".\r\n\r\n*   Mandatory\
-        \ and locked strings are mutually exclusive."
+        \ from an existing template.\r\n\r\nRemarks:\r\n\r\n*   Mandatory fields are\
+        \ required to be passed in POST requests and Optional fields are not necessary.\
+        \ \r\n    If no mandatory fields are passed, then we can use the template\
+        \ as a component and skip the component creation.\r\n    \r\n*   Mandatory,\
+        \ optional and locked fields can be  \"accounts\", \"benchmarks\", \"groups\"\
+        , \"columns\", \"dates\", \"currencyisocode\" and \"componentdetail\".\r\n\
+        \r\n*   We cannot override the Locked fields when creating the Component.\r\
+        \n\r\n*   Mandatory and locked strings are mutually exclusive.\r\n\r\n*  \
+        \ Multi-horizon frequencies are not supported through this endpoint."
       operationId: updateLinkedPATemplates
       parameters:
       - description: Unique identifier for a linked PA template
@@ -31823,8 +31833,12 @@ paths:
         response-type: TemplatedPAComponentSummaryRoot
       x-accepts: application/json
     post:
-      description: This endpoint creates new component based off of linked PA template
-        or unlinked PA template.
+      description: "This endpoint creates new component based off of linked PA template\
+        \ or unlinked PA template.\r\n\r\nRemarks:\r\n\r\n*   Any settings in the\
+        \ POST body will act as a one-time override over the settings saved in the\
+        \ PA template.\r\n\r\n*   Multi-horizon frequencies are not supported through\
+        \ this endpoint.\r\n\r\n*   Componentdetail supports securities, groups, and\
+        \ totals as well but if we don't pass anything that defaults to securities."
       operationId: createTemplatedPAComponents
       requestBody:
         content:
@@ -32753,8 +32767,12 @@ paths:
         response-type: TemplatedPAComponentRoot
       x-accepts: application/json
     put:
-      description: This endpoint allows the user to change the request body from an
-        existing templated PA component.
+      description: "This endpoint allows the user to change the request body from\
+        \ an existing templated PA component.\r\n\r\nRemarks:\r\n\r\n*   Any settings\
+        \ in the POST body will act as a one-time override over the settings saved\
+        \ in the PA template.\r\n\r\n*   Multi-horizon frequencies are not supported\
+        \ through this endpoint.\r\n\r\n*   Componentdetail supports securities, groups,\
+        \ and totals as well but if we don't pass anything that defaults to securities."
       operationId: updateTemplatedPAComponents
       parameters:
       - description: Unique identifier for a templated PA component
@@ -33342,10 +33360,18 @@ paths:
       x-accepts: application/json
     post:
       description: "This endpoint creates a template which is not linked to any specific\
-        \ PA3 tile. \r\n\r\nRemarks:\r\n\r\n*   Mandatory, optional and locked fields\
-        \ can be  \"accounts\", \"benchmarks\", \"groups\", \"columns\", \"dates\"\
-        , \"currencyisocode\" and \"componentdetail\".\r\n\r\n*   Mandatory and locked\
-        \ strings are mutually exclusive."
+        \ PA3 tile. \r\n\r\nRemarks:\r\n\r\n*   Mandatory fields are required to be\
+        \ passed in POST requests and Optional fields are not necessary. \r\n    If\
+        \ no mandatory fields are passed, then we can use the template as a component\
+        \ and skip the component creation.\r\n    \r\n*   Mandatory, optional and\
+        \ locked fields can be  \"accounts\", \"benchmarks\", \"groups\", \"columns\"\
+        , \"dates\", \"currencyisocode\" and \"componentdetail\".\r\n\r\n*   We cannot\
+        \ override the Locked fields when creating the Component.\r\n\r\n*   Mandatory\
+        \ and locked strings are mutually exclusive.\r\n\r\n*   Any settings in the\
+        \ POST body will act as a one-time override over the settings saved in the\
+        \ PA template.\r\n\r\n*   Multi-horizon frequencies are not supported through\
+        \ this endpoint.\r\n\r\n*   Componentdetail supports securities, groups, and\
+        \ totals as well but if we don't pass anything that defaults to securities."
       operationId: createUnlinkedPATemplates
       requestBody:
         content:
@@ -34214,10 +34240,18 @@ paths:
       x-accepts: application/json
     put:
       description: "This endpoint updates an existing unlinked PA template.\r\n\r\n\
-        Remarks:\r\n            \r\n*   Mandatory, optional and locked fields can\
-        \ be  \"accounts\", \"benchmarks\", \"groups\", \"columns\", \"dates\", \"\
-        currencyisocode\" and \"componentdetail\".\r\n\r\n*   Mandatory and locked\
-        \ strings are mutually exclusive."
+        Remarks:\r\n            \r\n*   Mandatory fields are required to be passed\
+        \ in POST requests and Optional fields are not necessary. \r\n    If no mandatory\
+        \ fields are passed, then we can use the template as a component and skip\
+        \ the component creation.\r\n    \r\n*   Mandatory, optional and locked fields\
+        \ can be  \"accounts\", \"benchmarks\", \"groups\", \"columns\", \"dates\"\
+        , \"currencyisocode\" and \"componentdetail\".\r\n\r\n*   We cannot override\
+        \ the Locked fields when creating the Component.\r\n\r\n*   Mandatory and\
+        \ locked strings are mutually exclusive.\r\n\r\n*   Any settings in the POST\
+        \ body will act as a one-time override over the settings saved in the PA template.\r\
+        \n\r\n*   Multi-horizon frequencies are not supported through this endpoint.\r\
+        \n\r\n*   Componentdetail supports securities, groups, and totals as well\
+        \ but if we don't pass anything that defaults to securities."
       operationId: updateUnlinkedPATemplates
       parameters:
       - description: Unique identifier for an unlinked PA template
@@ -39988,6 +40022,7 @@ components:
             pointer: pointer
             parameter: parameter
         status: Queued
+        points: 0
       properties:
         status:
           description: The status of calculation unit.
@@ -40009,6 +40044,10 @@ components:
         progress:
           description: The progress of the calculation unit.
           type: string
+        points:
+          description: The points for the calculation unit.
+          format: int32
+          type: integer
       type: object
     CalculationStatus:
       additionalProperties: false
@@ -40030,6 +40069,7 @@ components:
                 pointer: pointer
                 parameter: parameter
             status: Queued
+            points: 0
         status: Queued
       properties:
         calculationid:
@@ -40092,6 +40132,7 @@ components:
                   pointer: pointer
                   parameter: parameter
               status: Queued
+              points: 0
           status: Queued
         meta:
           units:
@@ -41634,16 +41675,80 @@ components:
       required:
       - data
       type: object
-    UnlinkedPATemplateCategoryAndTypeDetails:
+    UnlinkedPATemplateColumnDetails:
       additionalProperties: false
       example:
         name: name
         id: id
+        statistics:
+        - statistics
+        - statistics
+      properties:
+        name:
+          description: Unlinked template column name
+          type: string
+        id:
+          description: FactSet-defined or User-defined Column identifier.
+          type: string
+        statistics:
+          description: Column Statistic identifier
+          items:
+            type: string
+          type: array
+      type: object
+    UnlinkedPATemplateGroupDetails:
+      additionalProperties: false
+      example:
+        name: name
+        id: id
+      properties:
+        name:
+          description: Unlinked template group name
+          type: string
+        id:
+          description: FactSet-defined or User-defined Group identifier.
+          type: string
+      type: object
+    UnlinkedPATemplateCategoryAndTypeDetails:
+      additionalProperties: false
+      example:
+        columns:
+        - name: name
+          id: id
+          statistics:
+          - statistics
+          - statistics
+        - name: name
+          id: id
+          statistics:
+          - statistics
+          - statistics
+        name: name
+        groups:
+        - name: name
+          id: id
+        - name: name
+          id: id
+        id: id
         category: category
+        snapshot: true
       properties:
         id:
           description: Type Id
           type: string
+        columns:
+          description: List of default columns
+          items:
+            $ref: '#/components/schemas/UnlinkedPATemplateColumnDetails'
+          type: array
+        groups:
+          description: List of default groupings
+          items:
+            $ref: '#/components/schemas/UnlinkedPATemplateGroupDetails'
+          type: array
+        snapshot:
+          description: Snapshot
+          type: boolean
         category:
           description: Unlinked template category
           type: string
@@ -41655,9 +41760,26 @@ components:
       additionalProperties: false
       example:
         data:
+          columns:
+          - name: name
+            id: id
+            statistics:
+            - statistics
+            - statistics
+          - name: name
+            id: id
+            statistics:
+            - statistics
+            - statistics
           name: name
+          groups:
+          - name: name
+            id: id
+          - name: name
+            id: id
           id: id
           category: category
+          snapshot: true
         meta: ""
       properties:
         data:
