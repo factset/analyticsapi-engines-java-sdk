@@ -4,6 +4,30 @@
     <groupId>com.factset</groupId>
     <artifactId>tests</artifactId>
     <version>0.0.1</version>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <parallel>classes</parallel>
+                    <useUnlimitedThreads>true</useUnlimitedThreads>
+                    <includes>
+                        ApiTestsRunner.java
+                    </includes>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>testconfig.PrintOutCurrentTestRunListener</value>
+                        </property>
+                    </properties>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>com.google.protobuf</groupId>
@@ -96,8 +120,6 @@
             <version>${junit-version}</version>
         </dependency>
         <dependency>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/../auto-generated-sdk/target/engines-sdk-5.1.0.jar</systemPath>
             <groupId>com.factset.analyticsapi</groupId>
             <artifactId>engines-sdk</artifactId>
             <version>${engines-sdk-version}</version>
