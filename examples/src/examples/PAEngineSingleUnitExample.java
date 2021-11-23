@@ -34,9 +34,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class PAEngineSingleUnitExample {
 
   private static FdsApiClient apiClient = null;
-  private static String BASE_PATH = "https://api.factset.com";
-  private static String USERNAME = "<username-serial>";
-  private static String PASSWORD = "<apiKey>";
+  private static String BASE_PATH = System.getenv("FACTSET_HOST");
+  private static String USERNAME = System.getenv("FACTSET_USERNAME");
+  private static String PASSWORD = System.getenv("FACTSET_PASSWORD");
 
   private static String PA_DEFAULT_DOCUMENT = "PA_DOCUMENTS:DEFAULT";
   private static String COMPONENT_NAME = "Weights";
@@ -106,6 +106,9 @@ public class PAEngineSingleUnitExample {
       // Run Calculation Request
       PaCalculationsApi apiInstance = new PaCalculationsApi(getApiClient());
       ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
+      // Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is at max 5 minutes older.
+      // String cacheControlInput = "max-stale=300";
+      // ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, cacheControlInput, calcParameters);
 
       ApiResponse<CalculationStatusRoot> getStatus = null;
       Object result = null;

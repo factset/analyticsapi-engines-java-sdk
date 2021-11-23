@@ -88,22 +88,12 @@ public class PubEngineInteractiveApiTests {
           resultStatus = (CalculationStatusRoot)resultStatusResponse.getData();
           Assert.assertTrue("Get status response status code should be 200 or 202",
               resultStatusResponse.getStatusCode() == 200 || resultStatusResponse.getStatusCode() == 202);
-          if (headers.containsKey("cache-control")) {
-            int maxAge = Integer.parseInt(headers.get("cache-control").get(0).split("=")[1]);
-            try {
-              System.out.println("\n **** Waiting for " + maxAge + " seconds **** \n");
-              TimeUnit.SECONDS.sleep(maxAge);
-            } catch (InterruptedException ex) {
-              Thread.currentThread().interrupt();
-            }
-          } else {
-            int waitTimeInSeconds = 5;
-            try {
-              System.out.println("\n **** Waiting for " + waitTimeInSeconds + " seconds **** \n");
-              TimeUnit.SECONDS.sleep(waitTimeInSeconds);
-            } catch (InterruptedException ex) {
-              Thread.currentThread().interrupt();
-            }
+          int waitTimeInSeconds = 10;
+          try {
+            System.out.println("\n **** Waiting for " + waitTimeInSeconds + " seconds **** \n");
+            TimeUnit.SECONDS.sleep(waitTimeInSeconds);
+          } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
           }
         } while(resultStatusResponse.getStatusCode() == 202);
         for(CalculationUnitStatus unitStatus : resultStatus.getData().getUnits().values()) {

@@ -34,10 +34,10 @@ import factset.analyticsapi.engines.models.OptimizerTradesList.IdentifierTypeEnu
 
 public class AfiInteractiveOptimizerEngineExample {
   private static FdsApiClient apiClient = null;
-  private static String BASE_PATH = "https://api.factset.com";
-  private static String USERNAME = "<username-serial>";
-  private static String PASSWORD = "<apiKey>";
-  
+  private static String BASE_PATH = System.getenv("FACTSET_HOST");
+  private static String USERNAME = System.getenv("FACTSET_USERNAME");
+  private static String PASSWORD = System.getenv("FACTSET_PASSWORD");
+
   private static String STRATEGY_ID = "CLIENT:/Analytics_api/AFIAPISIMPLE";
   private static IdentifierTypeEnum TRADES_ID_TYPE = IdentifierTypeEnum.ASSET;
   private static Boolean INCLUDE_CASH = false;
@@ -63,6 +63,9 @@ public class AfiInteractiveOptimizerEngineExample {
       afiOptimizerParam.setData(afiItem);
       
       ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, null, afiOptimizerParam);
+      // Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is at max 5 minutes older.
+      // String cacheControlInput = "max-stale=300";
+      // ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, cacheControlInput, afiOptimizerParam);
       Map<String, List<String>> headers = response.getHeaders();
       
       Object result = null;
@@ -185,7 +188,6 @@ public class AfiInteractiveOptimizerEngineExample {
     apiClient.setBasePath(BASE_PATH);
     apiClient.setUsername(USERNAME);
     apiClient.setPassword(PASSWORD);
-    
     return apiClient;
   }
   

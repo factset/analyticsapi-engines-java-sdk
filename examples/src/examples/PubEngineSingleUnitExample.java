@@ -25,10 +25,10 @@ import factset.analyticsapi.engines.models.PubIdentifier;
 
 public class PubEngineSingleUnitExample {
   private static FdsApiClient apiClient = null;
-  private static String BASE_PATH = "https://api.factset.com";
-  private static String USERNAME = "<username-serial>";
-  private static String PASSWORD = "<apiKey>";
-  
+  private static String BASE_PATH = System.getenv("FACTSET_HOST");
+  private static String USERNAME = System.getenv("FACTSET_USERNAME");
+  private static String PASSWORD = System.getenv("FACTSET_PASSWORD");
+
   private static String PUB_DEFAULT_DOCUMENT = "Client:/AAPI/Puma Test Doc.Pub_bridge_pdf";
   private static String PUB_DEFAULT_ACCOUNT = "BENCH:SP50";
   
@@ -56,8 +56,11 @@ public class PubEngineSingleUnitExample {
       // Run Calculation Request
       PubCalculationsApi apiInstance = new PubCalculationsApi(getApiClient());
       ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
-      
-      // Get Calculation Request Status
+      // Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is at max 5 minutes older.
+      // String cacheControlInput = "max-stale=300";
+      // ApiResponse<Object> createResponse = apiInstance.postAndCalculateWithHttpInfo(null, cacheControlInput, calcParameters);
+
+      //Get Calculation Request Status
       ApiResponse<CalculationStatusRoot> getStatus = null;
       File result = null;
       switch (createResponse.getStatusCode()) {
@@ -67,8 +70,10 @@ public class PubEngineSingleUnitExample {
           System.out.println("Status : " + calcUnitStatus.getStatus());
           System.out.println("Reason : " + calcUnitStatus.getErrors());
           System.exit(-1);
+          break;
         case 201:
           result = (File) createResponse.getData();
+          break;
         case 202:
           CalculationStatusRoot status = (CalculationStatusRoot) createResponse.getData();
           String calculationId = status.getData().getCalculationid();
@@ -96,6 +101,7 @@ public class PubEngineSingleUnitExample {
               result = resultResponse.getData();
             }
           }
+          break;
       }
       System.out.println("Calculation Completed!!!");
       
@@ -127,7 +133,7 @@ public class PubEngineSingleUnitExample {
     apiClient.setBasePath(BASE_PATH);
     apiClient.setUsername(USERNAME);
     apiClient.setPassword(PASSWORD);
-    
+
     return apiClient;
   }
   
