@@ -33,10 +33,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class VaultEngineSingleUnitExample {
   
   private static FdsApiClient apiClient = null;
-  private static String BASE_PATH = "https://api.factset.com";
-  private static String USERNAME = "<username-serial>";
-  private static String PASSWORD = "<apiKey>";
-  
+  private static String BASE_PATH = System.getenv("FACTSET_HOST");
+  private static String USERNAME = System.getenv("FACTSET_USERNAME");
+  private static String PASSWORD = System.getenv("FACTSET_PASSWORD");
+
   private static String VAULT_DEFAULT_DOCUMENT = "Client:/aapi/VAULT_QA_PI_DEFAULT_LOCKED";
   private static String VAULT_DEFAULT_ACCOUNT = "CLIENT:/BISAM/REPOSITORY/QA/SMALL_PORT.ACCT";
   private static String COMPONENT_NAME = "Average\r\nWeight";
@@ -86,7 +86,9 @@ public class VaultEngineSingleUnitExample {
       VaultCalculationsApi apiInstance = new VaultCalculationsApi(getApiClient());
       
       ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
-      
+      // Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is at max 5 minutes older.
+      // String cacheControlInput = "max-stale=300";
+      // ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, cacheControlInput, calcParameters);
       ApiResponse<CalculationStatusRoot> getStatus = null;
       Object result = null;
       switch (response.getStatusCode()) {
@@ -204,7 +206,7 @@ public class VaultEngineSingleUnitExample {
     apiClient.setBasePath(BASE_PATH);
     apiClient.setUsername(USERNAME);
     apiClient.setPassword(PASSWORD);
-    
+
     return apiClient;
   }
   
