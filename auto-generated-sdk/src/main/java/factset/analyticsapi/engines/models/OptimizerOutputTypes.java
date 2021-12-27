@@ -57,6 +57,8 @@ public class OptimizerOutputTypes implements Serializable {
   public static final String JSON_PROPERTY_STATS = "stats";
   private Object stats;
 
+  public OptimizerOutputTypes() { 
+  }
 
   public OptimizerOutputTypes trades(OptimizerTradesList trades) {
     this.trades = trades;
@@ -77,6 +79,8 @@ public class OptimizerOutputTypes implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TRADES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTrades(OptimizerTradesList trades) {
     this.trades = trades;
   }
@@ -101,6 +105,8 @@ public class OptimizerOutputTypes implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_OPTIMAL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOptimal(OptimizerOptimalHoldings optimal) {
     this.optimal = optimal;
   }
@@ -125,6 +131,8 @@ public class OptimizerOutputTypes implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ACCOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccount(OptimalPortfolio account) {
     this.account = account;
   }
@@ -149,6 +157,8 @@ public class OptimizerOutputTypes implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STATS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStats(Object stats) {
     this.stats = stats;
   }

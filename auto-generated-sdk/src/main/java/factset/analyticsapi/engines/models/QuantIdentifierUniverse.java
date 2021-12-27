@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.QuantUniverse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -34,7 +35,8 @@ import factset.analyticsapi.engines.JSON;
  */
 @JsonPropertyOrder({
   QuantIdentifierUniverse.JSON_PROPERTY_UNIVERSE_TYPE,
-  QuantIdentifierUniverse.JSON_PROPERTY_IDENTIFIERS
+  QuantIdentifierUniverse.JSON_PROPERTY_IDENTIFIERS,
+  QuantIdentifierUniverse.JSON_PROPERTY_SOURCE
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class QuantIdentifierUniverse implements Serializable {
@@ -81,6 +83,48 @@ public class QuantIdentifierUniverse implements Serializable {
   public static final String JSON_PROPERTY_IDENTIFIERS = "identifiers";
   private java.util.List<String> identifiers = new java.util.ArrayList<String>();
 
+  /**
+   * Gets or Sets source
+   */
+  public enum SourceEnum {
+    SCREENINGEXPRESSIONUNIVERSE("ScreeningExpressionUniverse"),
+    
+    UNIVERSALSCREENUNIVERSE("UniversalScreenUniverse"),
+    
+    IDENTIFIERUNIVERSE("IdentifierUniverse");
+
+    private String value;
+
+    SourceEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SourceEnum fromValue(String value) {
+      for (SourceEnum b : SourceEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_SOURCE = "source";
+  private SourceEnum source;
+
+  public QuantIdentifierUniverse() { 
+  }
 
   public QuantIdentifierUniverse universeType(UniverseTypeEnum universeType) {
     this.universeType = universeType;
@@ -91,6 +135,7 @@ public class QuantIdentifierUniverse implements Serializable {
    * Get universeType
    * @return universeType
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_UNIVERSE_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -100,6 +145,8 @@ public class QuantIdentifierUniverse implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_UNIVERSE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUniverseType(UniverseTypeEnum universeType) {
     this.universeType = universeType;
   }
@@ -119,6 +166,7 @@ public class QuantIdentifierUniverse implements Serializable {
    * Get identifiers
    * @return identifiers
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_IDENTIFIERS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -128,8 +176,36 @@ public class QuantIdentifierUniverse implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_IDENTIFIERS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIdentifiers(java.util.List<String> identifiers) {
     this.identifiers = identifiers;
+  }
+
+
+  public QuantIdentifierUniverse source(SourceEnum source) {
+    this.source = source;
+    return this;
+  }
+
+   /**
+   * Get source
+   * @return source
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_SOURCE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public SourceEnum getSource() {
+    return source;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SOURCE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSource(SourceEnum source) {
+    this.source = source;
   }
 
 
@@ -146,12 +222,13 @@ public class QuantIdentifierUniverse implements Serializable {
     }
     QuantIdentifierUniverse quantIdentifierUniverse = (QuantIdentifierUniverse) o;
     return Objects.equals(this.universeType, quantIdentifierUniverse.universeType) &&
-        Objects.equals(this.identifiers, quantIdentifierUniverse.identifiers);
+        Objects.equals(this.identifiers, quantIdentifierUniverse.identifiers) &&
+        Objects.equals(this.source, quantIdentifierUniverse.source);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(universeType, identifiers);
+    return Objects.hash(universeType, identifiers, source);
   }
 
   @Override
@@ -160,6 +237,7 @@ public class QuantIdentifierUniverse implements Serializable {
     sb.append("class QuantIdentifierUniverse {\n");
     sb.append("    universeType: ").append(toIndentedString(universeType)).append("\n");
     sb.append("    identifiers: ").append(toIndentedString(identifiers)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("}");
     return sb.toString();
   }

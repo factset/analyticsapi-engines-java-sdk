@@ -48,6 +48,8 @@ public class FICalculationParametersRoot implements Serializable {
   public static final String JSON_PROPERTY_META = "meta";
   private CalculationMeta meta;
 
+  public FICalculationParametersRoot() { 
+  }
 
   public FICalculationParametersRoot data(FICalculationParameters data) {
     this.data = data;
@@ -68,6 +70,8 @@ public class FICalculationParametersRoot implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setData(FICalculationParameters data) {
     this.data = data;
   }
@@ -92,6 +96,8 @@ public class FICalculationParametersRoot implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_META)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMeta(CalculationMeta meta) {
     this.meta = meta;
   }

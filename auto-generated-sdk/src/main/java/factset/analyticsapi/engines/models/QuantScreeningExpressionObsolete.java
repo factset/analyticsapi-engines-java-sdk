@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import factset.analyticsapi.engines.models.OptimizerStrategyOverrides;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -31,72 +30,79 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * OptimizerStrategy
+ * QuantScreeningExpressionObsolete
  */
 @JsonPropertyOrder({
-  OptimizerStrategy.JSON_PROPERTY_ID,
-  OptimizerStrategy.JSON_PROPERTY_OVERRIDES
+  QuantScreeningExpressionObsolete.JSON_PROPERTY_EXPR,
+  QuantScreeningExpressionObsolete.JSON_PROPERTY_NAME
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class OptimizerStrategy implements Serializable {
+public class QuantScreeningExpressionObsolete implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  public static final String JSON_PROPERTY_EXPR = "expr";
+  private String expr;
 
-  public static final String JSON_PROPERTY_OVERRIDES = "overrides";
-  private OptimizerStrategyOverrides overrides;
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
 
+  public QuantScreeningExpressionObsolete() { 
+  }
 
-  public OptimizerStrategy id(String id) {
-    this.id = id;
+  public QuantScreeningExpressionObsolete expr(String expr) {
+    this.expr = expr;
     return this;
   }
 
    /**
-   * OptimizerStrategy document path
-   * @return id
+   * Get expr
+   * @return expr
   **/
-  @ApiModelProperty(required = true, value = "OptimizerStrategy document path")
-  @JsonProperty(JSON_PROPERTY_ID)
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_EXPR)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getId() {
-    return id;
+  public String getExpr() {
+    return expr;
   }
 
 
-  public void setId(String id) {
-    this.id = id;
+  @JsonProperty(JSON_PROPERTY_EXPR)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setExpr(String expr) {
+    this.expr = expr;
   }
 
 
-  public OptimizerStrategy overrides(OptimizerStrategyOverrides overrides) {
-    this.overrides = overrides;
+  public QuantScreeningExpressionObsolete name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * Get overrides
-   * @return overrides
+   * Get name
+   * @return name
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_OVERRIDES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public OptimizerStrategyOverrides getOverrides() {
-    return overrides;
+  public String getName() {
+    return name;
   }
 
 
-  public void setOverrides(OptimizerStrategyOverrides overrides) {
-    this.overrides = overrides;
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setName(String name) {
+    this.name = name;
   }
 
 
   /**
-   * Return true if this OptimizerStrategy object is equal to o.
+   * Return true if this QuantScreeningExpressionObsolete object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -106,22 +112,22 @@ public class OptimizerStrategy implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OptimizerStrategy optimizerStrategy = (OptimizerStrategy) o;
-    return Objects.equals(this.id, optimizerStrategy.id) &&
-        Objects.equals(this.overrides, optimizerStrategy.overrides);
+    QuantScreeningExpressionObsolete quantScreeningExpressionObsolete = (QuantScreeningExpressionObsolete) o;
+    return Objects.equals(this.expr, quantScreeningExpressionObsolete.expr) &&
+        Objects.equals(this.name, quantScreeningExpressionObsolete.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, overrides);
+    return Objects.hash(expr, name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OptimizerStrategy {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    overrides: ").append(toIndentedString(overrides)).append("\n");
+    sb.append("class QuantScreeningExpressionObsolete {\n");
+    sb.append("    expr: ").append(toIndentedString(expr)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

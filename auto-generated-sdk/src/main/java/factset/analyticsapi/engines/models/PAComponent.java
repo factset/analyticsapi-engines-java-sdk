@@ -41,6 +41,7 @@ import factset.analyticsapi.engines.JSON;
   PAComponent.JSON_PROPERTY_CURRENCYISOCODE,
   PAComponent.JSON_PROPERTY_DATES,
   PAComponent.JSON_PROPERTY_SNAPSHOT,
+  PAComponent.JSON_PROPERTY_PATH,
   PAComponent.JSON_PROPERTY_NAME,
   PAComponent.JSON_PROPERTY_CATEGORY
 })
@@ -66,12 +67,17 @@ public class PAComponent implements Serializable {
   public static final String JSON_PROPERTY_SNAPSHOT = "snapshot";
   private Boolean snapshot;
 
+  public static final String JSON_PROPERTY_PATH = "path";
+  private String path;
+
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
   public static final String JSON_PROPERTY_CATEGORY = "category";
   private String category;
 
+  public PAComponent() { 
+  }
 
   public PAComponent id(String id) {
     this.id = id;
@@ -92,6 +98,8 @@ public class PAComponent implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -124,6 +132,8 @@ public class PAComponent implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ACCOUNTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccounts(java.util.List<PAIdentifier> accounts) {
     this.accounts = accounts;
   }
@@ -156,6 +166,8 @@ public class PAComponent implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_BENCHMARKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBenchmarks(java.util.List<PAIdentifier> benchmarks) {
     this.benchmarks = benchmarks;
   }
@@ -180,6 +192,8 @@ public class PAComponent implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CURRENCYISOCODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrencyisocode(String currencyisocode) {
     this.currencyisocode = currencyisocode;
   }
@@ -204,6 +218,8 @@ public class PAComponent implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DATES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDates(PADateParameters dates) {
     this.dates = dates;
   }
@@ -228,8 +244,36 @@ public class PAComponent implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SNAPSHOT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSnapshot(Boolean snapshot) {
     this.snapshot = snapshot;
+  }
+
+
+  public PAComponent path(String path) {
+    this.path = path;
+    return this;
+  }
+
+   /**
+   * The path to the document
+   * @return path
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The path to the document")
+  @JsonProperty(JSON_PROPERTY_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getPath() {
+    return path;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPath(String path) {
+    this.path = path;
   }
 
 
@@ -252,6 +296,8 @@ public class PAComponent implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -276,6 +322,8 @@ public class PAComponent implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CATEGORY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCategory(String category) {
     this.category = category;
   }
@@ -299,13 +347,14 @@ public class PAComponent implements Serializable {
         Objects.equals(this.currencyisocode, paComponent.currencyisocode) &&
         Objects.equals(this.dates, paComponent.dates) &&
         Objects.equals(this.snapshot, paComponent.snapshot) &&
+        Objects.equals(this.path, paComponent.path) &&
         Objects.equals(this.name, paComponent.name) &&
         Objects.equals(this.category, paComponent.category);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, accounts, benchmarks, currencyisocode, dates, snapshot, name, category);
+    return Objects.hash(id, accounts, benchmarks, currencyisocode, dates, snapshot, path, name, category);
   }
 
   @Override
@@ -318,6 +367,7 @@ public class PAComponent implements Serializable {
     sb.append("    currencyisocode: ").append(toIndentedString(currencyisocode)).append("\n");
     sb.append("    dates: ").append(toIndentedString(dates)).append("\n");
     sb.append("    snapshot: ").append(toIndentedString(snapshot)).append("\n");
+    sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("}");

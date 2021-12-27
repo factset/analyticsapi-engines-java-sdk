@@ -42,6 +42,8 @@ public class CalculationUnitStatusMeta implements Serializable {
   public static final String JSON_PROPERTY_INFO = "info";
   private String info;
 
+  public CalculationUnitStatusMeta() { 
+  }
 
   public CalculationUnitStatusMeta info(String info) {
     this.info = info;
@@ -62,6 +64,8 @@ public class CalculationUnitStatusMeta implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_INFO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfo(String info) {
     this.info = info;
   }

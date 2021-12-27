@@ -51,6 +51,8 @@ public class PADateParameters implements Serializable {
   public static final String JSON_PROPERTY_FREQUENCY = "frequency";
   private String frequency;
 
+  public PADateParameters() { 
+  }
 
   public PADateParameters startdate(String startdate) {
     this.startdate = startdate;
@@ -71,6 +73,8 @@ public class PADateParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STARTDATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStartdate(String startdate) {
     this.startdate = startdate;
   }
@@ -85,6 +89,7 @@ public class PADateParameters implements Serializable {
    * Calculation&#39;s end date.
    * @return enddate
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Calculation's end date.")
   @JsonProperty(JSON_PROPERTY_ENDDATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -94,6 +99,8 @@ public class PADateParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ENDDATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setEnddate(String enddate) {
     this.enddate = enddate;
   }
@@ -108,6 +115,7 @@ public class PADateParameters implements Serializable {
    * Calculation&#39;s frequency.
    * @return frequency
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Calculation's frequency.")
   @JsonProperty(JSON_PROPERTY_FREQUENCY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -117,6 +125,8 @@ public class PADateParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FREQUENCY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setFrequency(String frequency) {
     this.frequency = frequency;
   }

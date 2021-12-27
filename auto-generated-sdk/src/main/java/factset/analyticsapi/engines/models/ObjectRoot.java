@@ -24,6 +24,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import factset.analyticsapi.engines.JSON;
@@ -41,11 +45,13 @@ public class ObjectRoot implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_DATA = "data";
-  private Object data;
+  private Object data = null;
 
   public static final String JSON_PROPERTY_META = "meta";
-  private Object meta;
+  private JsonNullable<Object> meta = JsonNullable.<Object>of(null);
 
+  public ObjectRoot() { 
+  }
 
   public ObjectRoot data(Object data) {
     this.data = data;
@@ -56,6 +62,7 @@ public class ObjectRoot implements Serializable {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -65,13 +72,15 @@ public class ObjectRoot implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DATA)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(Object data) {
     this.data = data;
   }
 
 
   public ObjectRoot meta(Object meta) {
-    this.meta = meta;
+    this.meta = JsonNullable.<Object>of(meta);
     return this;
   }
 
@@ -81,16 +90,26 @@ public class ObjectRoot implements Serializable {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public Object getMeta() {
+        return meta.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_META)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Object getMeta() {
+  public JsonNullable<Object> getMeta_JsonNullable() {
     return meta;
   }
-
+  
+  @JsonProperty(JSON_PROPERTY_META)
+  public void setMeta_JsonNullable(JsonNullable<Object> meta) {
+    this.meta = meta;
+  }
 
   public void setMeta(Object meta) {
-    this.meta = meta;
+    this.meta = JsonNullable.<Object>of(meta);
   }
 
 
@@ -107,12 +126,23 @@ public class ObjectRoot implements Serializable {
     }
     ObjectRoot objectRoot = (ObjectRoot) o;
     return Objects.equals(this.data, objectRoot.data) &&
-        Objects.equals(this.meta, objectRoot.meta);
+        equalsNullable(this.meta, objectRoot.meta);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, meta);
+    return Objects.hash(data, hashCodeNullable(meta));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

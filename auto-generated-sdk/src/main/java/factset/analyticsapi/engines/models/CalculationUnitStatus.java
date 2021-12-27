@@ -37,7 +37,8 @@ import factset.analyticsapi.engines.JSON;
   CalculationUnitStatus.JSON_PROPERTY_STATUS,
   CalculationUnitStatus.JSON_PROPERTY_ERRORS,
   CalculationUnitStatus.JSON_PROPERTY_RESULT,
-  CalculationUnitStatus.JSON_PROPERTY_PROGRESS
+  CalculationUnitStatus.JSON_PROPERTY_PROGRESS,
+  CalculationUnitStatus.JSON_PROPERTY_POINTS
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class CalculationUnitStatus implements Serializable {
@@ -96,6 +97,11 @@ public class CalculationUnitStatus implements Serializable {
   public static final String JSON_PROPERTY_PROGRESS = "progress";
   private String progress;
 
+  public static final String JSON_PROPERTY_POINTS = "points";
+  private Integer points;
+
+  public CalculationUnitStatus() { 
+  }
 
   public CalculationUnitStatus status(StatusEnum status) {
     this.status = status;
@@ -116,6 +122,8 @@ public class CalculationUnitStatus implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -148,6 +156,8 @@ public class CalculationUnitStatus implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ERRORS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setErrors(java.util.List<Error> errors) {
     this.errors = errors;
   }
@@ -172,6 +182,8 @@ public class CalculationUnitStatus implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_RESULT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setResult(String result) {
     this.result = result;
   }
@@ -196,8 +208,36 @@ public class CalculationUnitStatus implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PROGRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProgress(String progress) {
     this.progress = progress;
+  }
+
+
+  public CalculationUnitStatus points(Integer points) {
+    this.points = points;
+    return this;
+  }
+
+   /**
+   * The points for the calculation unit.
+   * @return points
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The points for the calculation unit.")
+  @JsonProperty(JSON_PROPERTY_POINTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getPoints() {
+    return points;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_POINTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPoints(Integer points) {
+    this.points = points;
   }
 
 
@@ -216,12 +256,13 @@ public class CalculationUnitStatus implements Serializable {
     return Objects.equals(this.status, calculationUnitStatus.status) &&
         Objects.equals(this.errors, calculationUnitStatus.errors) &&
         Objects.equals(this.result, calculationUnitStatus.result) &&
-        Objects.equals(this.progress, calculationUnitStatus.progress);
+        Objects.equals(this.progress, calculationUnitStatus.progress) &&
+        Objects.equals(this.points, calculationUnitStatus.points);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, errors, result, progress);
+    return Objects.hash(status, errors, result, progress, points);
   }
 
   @Override
@@ -232,6 +273,7 @@ public class CalculationUnitStatus implements Serializable {
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("    result: ").append(toIndentedString(result)).append("\n");
     sb.append("    progress: ").append(toIndentedString(progress)).append("\n");
+    sb.append("    points: ").append(toIndentedString(points)).append("\n");
     sb.append("}");
     return sb.toString();
   }

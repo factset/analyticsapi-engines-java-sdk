@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.FPOObjective;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -30,20 +31,20 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * OptimizerStrategyOverrides
+ * FPOOptimizerStrategyOverrides
  */
 @JsonPropertyOrder({
-  OptimizerStrategyOverrides.JSON_PROPERTY_TAX,
-  OptimizerStrategyOverrides.JSON_PROPERTY_CONSTRAINTS,
-  OptimizerStrategyOverrides.JSON_PROPERTY_ALPHA,
-  OptimizerStrategyOverrides.JSON_PROPERTY_TRANSACTION_COST
+  FPOOptimizerStrategyOverrides.JSON_PROPERTY_OBJECTIVE,
+  FPOOptimizerStrategyOverrides.JSON_PROPERTY_CONSTRAINTS,
+  FPOOptimizerStrategyOverrides.JSON_PROPERTY_ALPHA,
+  FPOOptimizerStrategyOverrides.JSON_PROPERTY_TRANSACTION_COST
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class OptimizerStrategyOverrides implements Serializable {
+public class FPOOptimizerStrategyOverrides implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_TAX = "tax";
-  private String tax;
+  public static final String JSON_PROPERTY_OBJECTIVE = "objective";
+  private FPOObjective objective;
 
   /**
    * Gets or Sets inner
@@ -89,37 +90,41 @@ public class OptimizerStrategyOverrides implements Serializable {
   public static final String JSON_PROPERTY_TRANSACTION_COST = "transactionCost";
   private String transactionCost;
 
+  public FPOOptimizerStrategyOverrides() { 
+  }
 
-  public OptimizerStrategyOverrides tax(String tax) {
-    this.tax = tax;
+  public FPOOptimizerStrategyOverrides objective(FPOObjective objective) {
+    this.objective = objective;
     return this;
   }
 
    /**
-   * Tax
-   * @return tax
+   * Get objective
+   * @return objective
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Tax")
-  @JsonProperty(JSON_PROPERTY_TAX)
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_OBJECTIVE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getTax() {
-    return tax;
+  public FPOObjective getObjective() {
+    return objective;
   }
 
 
-  public void setTax(String tax) {
-    this.tax = tax;
+  @JsonProperty(JSON_PROPERTY_OBJECTIVE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setObjective(FPOObjective objective) {
+    this.objective = objective;
   }
 
 
-  public OptimizerStrategyOverrides constraints(java.util.Map<String, InnerEnum> constraints) {
+  public FPOOptimizerStrategyOverrides constraints(java.util.Map<String, InnerEnum> constraints) {
     this.constraints = constraints;
     return this;
   }
 
-  public OptimizerStrategyOverrides putConstraintsItem(String key, InnerEnum constraintsItem) {
+  public FPOOptimizerStrategyOverrides putConstraintsItem(String key, InnerEnum constraintsItem) {
     if (this.constraints == null) {
       this.constraints = new java.util.HashMap<String, InnerEnum>();
     }
@@ -141,12 +146,14 @@ public class OptimizerStrategyOverrides implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CONSTRAINTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConstraints(java.util.Map<String, InnerEnum> constraints) {
     this.constraints = constraints;
   }
 
 
-  public OptimizerStrategyOverrides alpha(String alpha) {
+  public FPOOptimizerStrategyOverrides alpha(String alpha) {
     this.alpha = alpha;
     return this;
   }
@@ -165,12 +172,14 @@ public class OptimizerStrategyOverrides implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ALPHA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAlpha(String alpha) {
     this.alpha = alpha;
   }
 
 
-  public OptimizerStrategyOverrides transactionCost(String transactionCost) {
+  public FPOOptimizerStrategyOverrides transactionCost(String transactionCost) {
     this.transactionCost = transactionCost;
     return this;
   }
@@ -189,13 +198,15 @@ public class OptimizerStrategyOverrides implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TRANSACTION_COST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTransactionCost(String transactionCost) {
     this.transactionCost = transactionCost;
   }
 
 
   /**
-   * Return true if this OptimizerStrategyOverrides object is equal to o.
+   * Return true if this FPOOptimizerStrategyOverrides object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -205,23 +216,23 @@ public class OptimizerStrategyOverrides implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OptimizerStrategyOverrides optimizerStrategyOverrides = (OptimizerStrategyOverrides) o;
-    return Objects.equals(this.tax, optimizerStrategyOverrides.tax) &&
-        Objects.equals(this.constraints, optimizerStrategyOverrides.constraints) &&
-        Objects.equals(this.alpha, optimizerStrategyOverrides.alpha) &&
-        Objects.equals(this.transactionCost, optimizerStrategyOverrides.transactionCost);
+    FPOOptimizerStrategyOverrides fpOOptimizerStrategyOverrides = (FPOOptimizerStrategyOverrides) o;
+    return Objects.equals(this.objective, fpOOptimizerStrategyOverrides.objective) &&
+        Objects.equals(this.constraints, fpOOptimizerStrategyOverrides.constraints) &&
+        Objects.equals(this.alpha, fpOOptimizerStrategyOverrides.alpha) &&
+        Objects.equals(this.transactionCost, fpOOptimizerStrategyOverrides.transactionCost);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(tax, constraints, alpha, transactionCost);
+    return Objects.hash(objective, constraints, alpha, transactionCost);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OptimizerStrategyOverrides {\n");
-    sb.append("    tax: ").append(toIndentedString(tax)).append("\n");
+    sb.append("class FPOOptimizerStrategyOverrides {\n");
+    sb.append("    objective: ").append(toIndentedString(objective)).append("\n");
     sb.append("    constraints: ").append(toIndentedString(constraints)).append("\n");
     sb.append("    alpha: ").append(toIndentedString(alpha)).append("\n");
     sb.append("    transactionCost: ").append(toIndentedString(transactionCost)).append("\n");

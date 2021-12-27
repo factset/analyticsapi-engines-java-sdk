@@ -51,6 +51,8 @@ public class EventSummary implements Serializable {
   public static final String JSON_PROPERTY_TYPE = "type";
   private String type;
 
+  public EventSummary() { 
+  }
 
   public EventSummary message(String message) {
     this.message = message;
@@ -71,6 +73,8 @@ public class EventSummary implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_MESSAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMessage(String message) {
     this.message = message;
   }
@@ -95,6 +99,8 @@ public class EventSummary implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SUBMISSIONDATETIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSubmissiondatetime(OffsetDateTime submissiondatetime) {
     this.submissiondatetime = submissiondatetime;
   }
@@ -119,6 +125,8 @@ public class EventSummary implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(String type) {
     this.type = type;
   }

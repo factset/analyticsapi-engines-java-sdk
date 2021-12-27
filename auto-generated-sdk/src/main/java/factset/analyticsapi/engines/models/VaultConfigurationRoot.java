@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.VaultConfiguration;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import factset.analyticsapi.engines.JSON;
@@ -45,8 +49,10 @@ public class VaultConfigurationRoot implements Serializable {
   private VaultConfiguration data;
 
   public static final String JSON_PROPERTY_META = "meta";
-  private Object meta;
+  private JsonNullable<Object> meta = JsonNullable.<Object>of(null);
 
+  public VaultConfigurationRoot() { 
+  }
 
   public VaultConfigurationRoot data(VaultConfiguration data) {
     this.data = data;
@@ -57,6 +63,7 @@ public class VaultConfigurationRoot implements Serializable {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -66,13 +73,15 @@ public class VaultConfigurationRoot implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DATA)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setData(VaultConfiguration data) {
     this.data = data;
   }
 
 
   public VaultConfigurationRoot meta(Object meta) {
-    this.meta = meta;
+    this.meta = JsonNullable.<Object>of(meta);
     return this;
   }
 
@@ -82,16 +91,26 @@ public class VaultConfigurationRoot implements Serializable {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public Object getMeta() {
+        return meta.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_META)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Object getMeta() {
+  public JsonNullable<Object> getMeta_JsonNullable() {
     return meta;
   }
-
+  
+  @JsonProperty(JSON_PROPERTY_META)
+  public void setMeta_JsonNullable(JsonNullable<Object> meta) {
+    this.meta = meta;
+  }
 
   public void setMeta(Object meta) {
-    this.meta = meta;
+    this.meta = JsonNullable.<Object>of(meta);
   }
 
 
@@ -108,12 +127,23 @@ public class VaultConfigurationRoot implements Serializable {
     }
     VaultConfigurationRoot vaultConfigurationRoot = (VaultConfigurationRoot) o;
     return Objects.equals(this.data, vaultConfigurationRoot.data) &&
-        Objects.equals(this.meta, vaultConfigurationRoot.meta);
+        equalsNullable(this.meta, vaultConfigurationRoot.meta);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, meta);
+    return Objects.hash(data, hashCodeNullable(meta));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

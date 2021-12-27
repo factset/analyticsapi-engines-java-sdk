@@ -1,14 +1,14 @@
 
 
-# OptimizerStrategy
+# FPOOptimizerStrategy
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**overrides** | [**FPOOptimizerStrategyOverrides**](FPOOptimizerStrategyOverrides.md) |  |  [optional]
 **id** | **String** | OptimizerStrategy document path | 
-**overrides** | [**OptimizerStrategyOverrides**](OptimizerStrategyOverrides.md) |  |  [optional]
 
 
 ## Implemented Interfaces

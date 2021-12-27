@@ -52,6 +52,8 @@ public class PubCalculationParameters implements Serializable {
   public static final String JSON_PROPERTY_DATES = "dates";
   private PubDateParameters dates;
 
+  public PubCalculationParameters() { 
+  }
 
   public PubCalculationParameters document(String document) {
     this.document = document;
@@ -62,6 +64,7 @@ public class PubCalculationParameters implements Serializable {
    * The Publisher Engine document to analyze.
    * @return document
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "The Publisher Engine document to analyze.")
   @JsonProperty(JSON_PROPERTY_DOCUMENT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -71,6 +74,8 @@ public class PubCalculationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DOCUMENT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDocument(String document) {
     this.document = document;
   }
@@ -85,6 +90,7 @@ public class PubCalculationParameters implements Serializable {
    * Get account
    * @return account
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_ACCOUNT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -94,6 +100,8 @@ public class PubCalculationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ACCOUNT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAccount(PubIdentifier account) {
     this.account = account;
   }
@@ -108,6 +116,7 @@ public class PubCalculationParameters implements Serializable {
    * Get dates
    * @return dates
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_DATES)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -117,6 +126,8 @@ public class PubCalculationParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DATES)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDates(PubDateParameters dates) {
     this.dates = dates;
   }

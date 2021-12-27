@@ -101,6 +101,8 @@ public class OptimizerOptimalHoldings implements Serializable {
   public static final String JSON_PROPERTY_EXCLUDE_ZERO = "excludeZero";
   private Boolean excludeZero;
 
+  public OptimizerOptimalHoldings() { 
+  }
 
   public OptimizerOptimalHoldings identifierType(IdentifierTypeEnum identifierType) {
     this.identifierType = identifierType;
@@ -121,6 +123,8 @@ public class OptimizerOptimalHoldings implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_IDENTIFIER_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIdentifierType(IdentifierTypeEnum identifierType) {
     this.identifierType = identifierType;
   }
@@ -145,6 +149,8 @@ public class OptimizerOptimalHoldings implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_INCLUDE_CASH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIncludeCash(Boolean includeCash) {
     this.includeCash = includeCash;
   }
@@ -169,6 +175,8 @@ public class OptimizerOptimalHoldings implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EXCLUDE_ZERO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExcludeZero(Boolean excludeZero) {
     this.excludeZero = excludeZero;
   }

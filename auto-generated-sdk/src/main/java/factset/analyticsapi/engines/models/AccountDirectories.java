@@ -46,6 +46,8 @@ public class AccountDirectories implements Serializable {
   public static final String JSON_PROPERTY_DIRECTORIES = "directories";
   private java.util.List<String> directories = null;
 
+  public AccountDirectories() { 
+  }
 
   public AccountDirectories accounts(java.util.List<String> accounts) {
     this.accounts = accounts;
@@ -74,6 +76,8 @@ public class AccountDirectories implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ACCOUNTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccounts(java.util.List<String> accounts) {
     this.accounts = accounts;
   }
@@ -106,6 +110,8 @@ public class AccountDirectories implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DIRECTORIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDirectories(java.util.List<String> directories) {
     this.directories = directories;
   }

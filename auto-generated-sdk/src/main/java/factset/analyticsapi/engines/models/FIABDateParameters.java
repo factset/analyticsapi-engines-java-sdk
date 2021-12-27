@@ -47,6 +47,8 @@ public class FIABDateParameters implements Serializable {
   public static final String JSON_PROPERTY_ENDDATE = "enddate";
   private String enddate;
 
+  public FIABDateParameters() { 
+  }
 
   public FIABDateParameters startdate(String startdate) {
     this.startdate = startdate;
@@ -57,6 +59,7 @@ public class FIABDateParameters implements Serializable {
    * Calculation&#39;s start date.
    * @return startdate
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Calculation's start date.")
   @JsonProperty(JSON_PROPERTY_STARTDATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -66,6 +69,8 @@ public class FIABDateParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STARTDATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setStartdate(String startdate) {
     this.startdate = startdate;
   }
@@ -80,6 +85,7 @@ public class FIABDateParameters implements Serializable {
    * Calculation&#39;s end date.
    * @return enddate
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Calculation's end date.")
   @JsonProperty(JSON_PROPERTY_ENDDATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -89,6 +95,8 @@ public class FIABDateParameters implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ENDDATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setEnddate(String enddate) {
     this.enddate = enddate;
   }

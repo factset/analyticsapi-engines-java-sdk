@@ -107,6 +107,8 @@ public class FIABCalculationStatus implements Serializable {
   public static final String JSON_PROPERTY_BATCHEVENTS = "batchevents";
   private java.util.List<EventSummary> batchevents = null;
 
+  public FIABCalculationStatus() { 
+  }
 
   public FIABCalculationStatus id(String id) {
     this.id = id;
@@ -127,6 +129,8 @@ public class FIABCalculationStatus implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -151,6 +155,8 @@ public class FIABCalculationStatus implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -175,6 +181,8 @@ public class FIABCalculationStatus implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STARTDATETIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStartdatetime(OffsetDateTime startdatetime) {
     this.startdatetime = startdatetime;
   }
@@ -199,6 +207,8 @@ public class FIABCalculationStatus implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_COMPLETIONDATETIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCompletiondatetime(OffsetDateTime completiondatetime) {
     this.completiondatetime = completiondatetime;
   }
@@ -223,6 +233,8 @@ public class FIABCalculationStatus implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PROGRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProgress(Integer progress) {
     this.progress = progress;
   }
@@ -255,6 +267,8 @@ public class FIABCalculationStatus implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_BATCHEVENTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBatchevents(java.util.List<EventSummary> batchevents) {
     this.batchevents = batchevents;
   }

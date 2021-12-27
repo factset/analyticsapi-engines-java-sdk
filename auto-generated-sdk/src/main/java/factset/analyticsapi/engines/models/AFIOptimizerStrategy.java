@@ -47,6 +47,8 @@ public class AFIOptimizerStrategy implements Serializable {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
 
+  public AFIOptimizerStrategy() { 
+  }
 
   public AFIOptimizerStrategy overrides(AFIOptimizerStrategyOverrides overrides) {
     this.overrides = overrides;
@@ -67,6 +69,8 @@ public class AFIOptimizerStrategy implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_OVERRIDES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOverrides(AFIOptimizerStrategyOverrides overrides) {
     this.overrides = overrides;
   }
@@ -81,6 +85,7 @@ public class AFIOptimizerStrategy implements Serializable {
    * OptimizerStrategy document path
    * @return id
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "OptimizerStrategy document path")
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -90,6 +95,8 @@ public class AFIOptimizerStrategy implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(String id) {
     this.id = id;
   }
