@@ -58,6 +58,7 @@ docs/DatesApi.md
 docs/DocumentDirectories.md
 docs/DocumentDirectoriesRoot.md
 docs/DocumentsApi.md
+docs/DummyUniverse.md
 docs/Error.md
 docs/ErrorSource.md
 docs/EventSummary.md
@@ -298,6 +299,7 @@ src/main/java/factset/analyticsapi/engines/models/DateParametersSummary.java
 src/main/java/factset/analyticsapi/engines/models/DateParametersSummaryRoot.java
 src/main/java/factset/analyticsapi/engines/models/DocumentDirectories.java
 src/main/java/factset/analyticsapi/engines/models/DocumentDirectoriesRoot.java
+src/main/java/factset/analyticsapi/engines/models/DummyUniverse.java
 src/main/java/factset/analyticsapi/engines/models/Error.java
 src/main/java/factset/analyticsapi/engines/models/ErrorSource.java
 src/main/java/factset/analyticsapi/engines/models/EventSummary.java

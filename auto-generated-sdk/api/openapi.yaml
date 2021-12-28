@@ -40507,26 +40507,27 @@ components:
     QuantAllUniversalScreenParametersObsolete:
       additionalProperties: false
       type: object
+    DummyUniverse:
+      discriminator:
+        mapping:
+          UniversalScreenUniverse: '#/components/schemas/QuantUniversalScreenUniverse'
+          ScreeningExpressionUniverse: '#/components/schemas/QuantScreeningExpressionUniverse'
+          IdentifierUniverse: '#/components/schemas/QuantIdentifierUniverse'
+        propertyName: source
+      oneOf:
+      - $ref: '#/components/schemas/QuantUniversalScreenUniverse'
+      - $ref: '#/components/schemas/QuantScreeningExpressionUniverse'
+      - $ref: '#/components/schemas/QuantIdentifierUniverse'
     QuantCalculationParameters:
       additionalProperties: false
       example:
-        universe: ""
         formulas:
         - ""
         - ""
         dates: ""
       properties:
         universe:
-          discriminator:
-            mapping:
-              UniversalScreenUniverse: '#/components/schemas/QuantUniversalScreenUniverse'
-              ScreeningExpressionUniverse: '#/components/schemas/QuantScreeningExpressionUniverse'
-              IdentifierUniverse: '#/components/schemas/QuantIdentifierUniverse'
-            propertyName: source
-          oneOf:
-          - $ref: '#/components/schemas/QuantUniversalScreenUniverse'
-          - $ref: '#/components/schemas/QuantScreeningExpressionUniverse'
-          - $ref: '#/components/schemas/QuantIdentifierUniverse'
+          $ref: '#/components/schemas/DummyUniverse'
         dates:
           discriminator:
             mapping:
@@ -40606,7 +40607,6 @@ components:
       example:
         data:
           key:
-            universe: ""
             formulas:
             - ""
             - ""

@@ -22,9 +22,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.DummyUniverse;
 import factset.analyticsapi.engines.models.OneOfQuantFdsDateQuantDateList;
 import factset.analyticsapi.engines.models.OneOfQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters;
-import factset.analyticsapi.engines.models.OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -49,7 +49,7 @@ public class QuantCalculationParameters implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_UNIVERSE = "universe";
-  private JsonNullable<OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse> universe = JsonNullable.<OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse>undefined();
+  private DummyUniverse universe;
 
   public static final String JSON_PROPERTY_DATES = "dates";
   private JsonNullable<OneOfQuantFdsDateQuantDateList> dates = JsonNullable.<OneOfQuantFdsDateQuantDateList>undefined();
@@ -60,8 +60,8 @@ public class QuantCalculationParameters implements Serializable {
   public QuantCalculationParameters() { 
   }
 
-  public QuantCalculationParameters universe(OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse universe) {
-    this.universe = JsonNullable.<OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse>of(universe);
+  public QuantCalculationParameters universe(DummyUniverse universe) {
+    this.universe = universe;
     return this;
   }
 
@@ -71,26 +71,18 @@ public class QuantCalculationParameters implements Serializable {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonIgnore
-
-  public OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse getUniverse() {
-        return universe.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_UNIVERSE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse> getUniverse_JsonNullable() {
+  public DummyUniverse getUniverse() {
     return universe;
   }
-  
-  @JsonProperty(JSON_PROPERTY_UNIVERSE)
-  public void setUniverse_JsonNullable(JsonNullable<OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse> universe) {
-    this.universe = universe;
-  }
 
-  public void setUniverse(OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse universe) {
-    this.universe = JsonNullable.<OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse>of(universe);
+
+  @JsonProperty(JSON_PROPERTY_UNIVERSE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUniverse(DummyUniverse universe) {
+    this.universe = universe;
   }
 
 
@@ -174,7 +166,7 @@ public class QuantCalculationParameters implements Serializable {
       return false;
     }
     QuantCalculationParameters quantCalculationParameters = (QuantCalculationParameters) o;
-    return equalsNullable(this.universe, quantCalculationParameters.universe) &&
+    return Objects.equals(this.universe, quantCalculationParameters.universe) &&
         equalsNullable(this.dates, quantCalculationParameters.dates) &&
         Objects.equals(this.formulas, quantCalculationParameters.formulas);
   }
@@ -185,7 +177,7 @@ public class QuantCalculationParameters implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(universe), hashCodeNullable(dates), formulas);
+    return Objects.hash(universe, hashCodeNullable(dates), formulas);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
