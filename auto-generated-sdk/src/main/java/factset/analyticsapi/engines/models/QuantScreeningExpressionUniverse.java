@@ -37,7 +37,7 @@ import factset.analyticsapi.engines.JSON;
   QuantScreeningExpressionUniverse.JSON_PROPERTY_UNIVERSE_EXPR,
   QuantScreeningExpressionUniverse.JSON_PROPERTY_UNIVERSE_TYPE,
   QuantScreeningExpressionUniverse.JSON_PROPERTY_SECURITY_EXPR,
-  QuantScreeningExpressionUniverse.JSON_PROPERTY_SOURCE
+  QuantScreeningExpressionUniverse.JSON_PROPERTY_CLASS_NAME
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class QuantScreeningExpressionUniverse implements Serializable {
@@ -88,9 +88,9 @@ public class QuantScreeningExpressionUniverse implements Serializable {
   private String securityExpr;
 
   /**
-   * Gets or Sets source
+   * Gets or Sets className
    */
-  public enum SourceEnum {
+  public enum ClassNameEnum {
     SCREENINGEXPRESSIONUNIVERSE("ScreeningExpressionUniverse"),
     
     UNIVERSALSCREENUNIVERSE("UniversalScreenUniverse"),
@@ -99,7 +99,7 @@ public class QuantScreeningExpressionUniverse implements Serializable {
 
     private String value;
 
-    SourceEnum(String value) {
+    ClassNameEnum(String value) {
       this.value = value;
     }
 
@@ -114,8 +114,8 @@ public class QuantScreeningExpressionUniverse implements Serializable {
     }
 
     @JsonCreator
-    public static SourceEnum fromValue(String value) {
-      for (SourceEnum b : SourceEnum.values()) {
+    public static ClassNameEnum fromValue(String value) {
+      for (ClassNameEnum b : ClassNameEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -124,8 +124,8 @@ public class QuantScreeningExpressionUniverse implements Serializable {
     }
   }
 
-  public static final String JSON_PROPERTY_SOURCE = "source";
-  private SourceEnum source;
+  public static final String JSON_PROPERTY_CLASS_NAME = "className";
+  private ClassNameEnum className;
 
   public QuantScreeningExpressionUniverse() { 
   }
@@ -208,29 +208,29 @@ public class QuantScreeningExpressionUniverse implements Serializable {
   }
 
 
-  public QuantScreeningExpressionUniverse source(SourceEnum source) {
-    this.source = source;
+  public QuantScreeningExpressionUniverse className(ClassNameEnum className) {
+    this.className = className;
     return this;
   }
 
    /**
-   * Get source
-   * @return source
+   * Get className
+   * @return className
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_SOURCE)
+  @JsonProperty(JSON_PROPERTY_CLASS_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public SourceEnum getSource() {
-    return source;
+  public ClassNameEnum getClassName() {
+    return className;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SOURCE)
+  @JsonProperty(JSON_PROPERTY_CLASS_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSource(SourceEnum source) {
-    this.source = source;
+  public void setClassName(ClassNameEnum className) {
+    this.className = className;
   }
 
 
@@ -249,12 +249,12 @@ public class QuantScreeningExpressionUniverse implements Serializable {
     return Objects.equals(this.universeExpr, quantScreeningExpressionUniverse.universeExpr) &&
         Objects.equals(this.universeType, quantScreeningExpressionUniverse.universeType) &&
         Objects.equals(this.securityExpr, quantScreeningExpressionUniverse.securityExpr) &&
-        Objects.equals(this.source, quantScreeningExpressionUniverse.source);
+        Objects.equals(this.className, quantScreeningExpressionUniverse.className);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(universeExpr, universeType, securityExpr, source);
+    return Objects.hash(universeExpr, universeType, securityExpr, className);
   }
 
   @Override
@@ -264,7 +264,7 @@ public class QuantScreeningExpressionUniverse implements Serializable {
     sb.append("    universeExpr: ").append(toIndentedString(universeExpr)).append("\n");
     sb.append("    universeType: ").append(toIndentedString(universeType)).append("\n");
     sb.append("    securityExpr: ").append(toIndentedString(securityExpr)).append("\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("    className: ").append(toIndentedString(className)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -8,11 +8,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **screen** | **String** |  | 
-**source** | [**SourceEnum**](#SourceEnum) |  | 
+**className** | [**ClassNameEnum**](#ClassNameEnum) |  | 
 
 
 
-## Enum: SourceEnum
+## Enum: ClassNameEnum
 
 Name | Value
 ---- | -----
