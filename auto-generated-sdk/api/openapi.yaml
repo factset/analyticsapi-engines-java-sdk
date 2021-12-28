@@ -40265,14 +40265,14 @@ components:
     QuantUniverse:
       additionalProperties: false
       properties:
-        className:
+        source:
           enum:
           - ScreeningExpressionUniverse
           - UniversalScreenUniverse
           - IdentifierUniverse
           type: string
       required:
-      - className
+      - source
       type: object
     QuantUniversalScreenUniverse:
       additionalProperties: false
@@ -40297,7 +40297,7 @@ components:
     QuantDate:
       additionalProperties: false
       properties:
-        className:
+        source:
           enum:
           - FdsDate
           - DateList
@@ -40308,8 +40308,8 @@ components:
           type: string
       required:
       - calendar
-      - className
       - frequency
+      - source
       type: object
     QuantFdsDate:
       additionalProperties: false
@@ -40358,7 +40358,7 @@ components:
     QuantFormula:
       additionalProperties: false
       properties:
-        className:
+        source:
           enum:
           - ScreeningExpression
           - FqlExpression
@@ -40366,7 +40366,7 @@ components:
           - AllUniversalScreenParameters
           type: string
       required:
-      - className
+      - source
       type: object
     QuantScreeningExpression:
       additionalProperties: false
@@ -40522,7 +40522,7 @@ components:
               UniversalScreenUniverse: '#/components/schemas/QuantUniversalScreenUniverse'
               ScreeningExpressionUniverse: '#/components/schemas/QuantScreeningExpressionUniverse'
               IdentifierUniverse: '#/components/schemas/QuantIdentifierUniverse'
-            propertyName: className
+            propertyName: source
           oneOf:
           - $ref: '#/components/schemas/QuantUniversalScreenUniverse'
           - $ref: '#/components/schemas/QuantScreeningExpressionUniverse'
@@ -40532,7 +40532,7 @@ components:
             mapping:
               FdsDate: '#/components/schemas/QuantFdsDate'
               DateList: '#/components/schemas/QuantDateList'
-            propertyName: className
+            propertyName: source
           oneOf:
           - $ref: '#/components/schemas/QuantFdsDate'
           - $ref: '#/components/schemas/QuantDateList'
@@ -40544,7 +40544,7 @@ components:
                 FqlExpression: '#/components/schemas/QuantFqlExpression'
                 UniversalScreenParameter: '#/components/schemas/QuantUniversalScreenParameter'
                 AllUniversalScreenParameters: '#/components/schemas/QuantAllUniversalScreenParameters'
-              propertyName: className
+              propertyName: source
             oneOf:
             - $ref: '#/components/schemas/QuantScreeningExpression'
             - $ref: '#/components/schemas/QuantFqlExpression'

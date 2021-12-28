@@ -9,11 +9,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **expr** | **String** |  | 
 **name** | **String** |  | 
-**className** | [**ClassNameEnum**](#ClassNameEnum) |  | 
+**source** | [**SourceEnum**](#SourceEnum) |  | 
 
 
 
-## Enum: ClassNameEnum
+## Enum: SourceEnum
 
 Name | Value
 ---- | -----

@@ -36,7 +36,7 @@ import factset.analyticsapi.engines.JSON;
 @JsonPropertyOrder({
   QuantIdentifierUniverse.JSON_PROPERTY_UNIVERSE_TYPE,
   QuantIdentifierUniverse.JSON_PROPERTY_IDENTIFIERS,
-  QuantIdentifierUniverse.JSON_PROPERTY_CLASS_NAME
+  QuantIdentifierUniverse.JSON_PROPERTY_SOURCE
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class QuantIdentifierUniverse implements Serializable {
@@ -84,9 +84,9 @@ public class QuantIdentifierUniverse implements Serializable {
   private java.util.List<String> identifiers = new java.util.ArrayList<String>();
 
   /**
-   * Gets or Sets className
+   * Gets or Sets source
    */
-  public enum ClassNameEnum {
+  public enum SourceEnum {
     SCREENINGEXPRESSIONUNIVERSE("ScreeningExpressionUniverse"),
     
     UNIVERSALSCREENUNIVERSE("UniversalScreenUniverse"),
@@ -95,7 +95,7 @@ public class QuantIdentifierUniverse implements Serializable {
 
     private String value;
 
-    ClassNameEnum(String value) {
+    SourceEnum(String value) {
       this.value = value;
     }
 
@@ -110,8 +110,8 @@ public class QuantIdentifierUniverse implements Serializable {
     }
 
     @JsonCreator
-    public static ClassNameEnum fromValue(String value) {
-      for (ClassNameEnum b : ClassNameEnum.values()) {
+    public static SourceEnum fromValue(String value) {
+      for (SourceEnum b : SourceEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -120,8 +120,8 @@ public class QuantIdentifierUniverse implements Serializable {
     }
   }
 
-  public static final String JSON_PROPERTY_CLASS_NAME = "className";
-  private ClassNameEnum className;
+  public static final String JSON_PROPERTY_SOURCE = "source";
+  private SourceEnum source;
 
   public QuantIdentifierUniverse() { 
   }
@@ -183,29 +183,29 @@ public class QuantIdentifierUniverse implements Serializable {
   }
 
 
-  public QuantIdentifierUniverse className(ClassNameEnum className) {
-    this.className = className;
+  public QuantIdentifierUniverse source(SourceEnum source) {
+    this.source = source;
     return this;
   }
 
    /**
-   * Get className
-   * @return className
+   * Get source
+   * @return source
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_CLASS_NAME)
+  @JsonProperty(JSON_PROPERTY_SOURCE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public ClassNameEnum getClassName() {
-    return className;
+  public SourceEnum getSource() {
+    return source;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CLASS_NAME)
+  @JsonProperty(JSON_PROPERTY_SOURCE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setClassName(ClassNameEnum className) {
-    this.className = className;
+  public void setSource(SourceEnum source) {
+    this.source = source;
   }
 
 
@@ -223,12 +223,12 @@ public class QuantIdentifierUniverse implements Serializable {
     QuantIdentifierUniverse quantIdentifierUniverse = (QuantIdentifierUniverse) o;
     return Objects.equals(this.universeType, quantIdentifierUniverse.universeType) &&
         Objects.equals(this.identifiers, quantIdentifierUniverse.identifiers) &&
-        Objects.equals(this.className, quantIdentifierUniverse.className);
+        Objects.equals(this.source, quantIdentifierUniverse.source);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(universeType, identifiers, className);
+    return Objects.hash(universeType, identifiers, source);
   }
 
   @Override
@@ -237,7 +237,7 @@ public class QuantIdentifierUniverse implements Serializable {
     sb.append("class QuantIdentifierUniverse {\n");
     sb.append("    universeType: ").append(toIndentedString(universeType)).append("\n");
     sb.append("    identifiers: ").append(toIndentedString(identifiers)).append("\n");
-    sb.append("    className: ").append(toIndentedString(className)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("}");
     return sb.toString();
   }

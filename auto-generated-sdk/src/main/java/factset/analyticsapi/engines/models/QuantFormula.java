@@ -33,16 +33,16 @@ import factset.analyticsapi.engines.JSON;
  * QuantFormula
  */
 @JsonPropertyOrder({
-  QuantFormula.JSON_PROPERTY_CLASS_NAME
+  QuantFormula.JSON_PROPERTY_SOURCE
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class QuantFormula implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /**
-   * Gets or Sets className
+   * Gets or Sets source
    */
-  public enum ClassNameEnum {
+  public enum SourceEnum {
     SCREENINGEXPRESSION("ScreeningExpression"),
     
     FQLEXPRESSION("FqlExpression"),
@@ -53,7 +53,7 @@ public class QuantFormula implements Serializable {
 
     private String value;
 
-    ClassNameEnum(String value) {
+    SourceEnum(String value) {
       this.value = value;
     }
 
@@ -68,8 +68,8 @@ public class QuantFormula implements Serializable {
     }
 
     @JsonCreator
-    public static ClassNameEnum fromValue(String value) {
-      for (ClassNameEnum b : ClassNameEnum.values()) {
+    public static SourceEnum fromValue(String value) {
+      for (SourceEnum b : SourceEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -78,35 +78,35 @@ public class QuantFormula implements Serializable {
     }
   }
 
-  public static final String JSON_PROPERTY_CLASS_NAME = "className";
-  private ClassNameEnum className;
+  public static final String JSON_PROPERTY_SOURCE = "source";
+  private SourceEnum source;
 
   public QuantFormula() { 
   }
 
-  public QuantFormula className(ClassNameEnum className) {
-    this.className = className;
+  public QuantFormula source(SourceEnum source) {
+    this.source = source;
     return this;
   }
 
    /**
-   * Get className
-   * @return className
+   * Get source
+   * @return source
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_CLASS_NAME)
+  @JsonProperty(JSON_PROPERTY_SOURCE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public ClassNameEnum getClassName() {
-    return className;
+  public SourceEnum getSource() {
+    return source;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CLASS_NAME)
+  @JsonProperty(JSON_PROPERTY_SOURCE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setClassName(ClassNameEnum className) {
-    this.className = className;
+  public void setSource(SourceEnum source) {
+    this.source = source;
   }
 
 
@@ -122,19 +122,19 @@ public class QuantFormula implements Serializable {
       return false;
     }
     QuantFormula quantFormula = (QuantFormula) o;
-    return Objects.equals(this.className, quantFormula.className);
+    return Objects.equals(this.source, quantFormula.source);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(className);
+    return Objects.hash(source);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class QuantFormula {\n");
-    sb.append("    className: ").append(toIndentedString(className)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("}");
     return sb.toString();
   }

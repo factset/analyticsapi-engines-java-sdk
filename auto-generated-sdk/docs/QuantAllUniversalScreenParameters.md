@@ -7,11 +7,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**className** | [**ClassNameEnum**](#ClassNameEnum) |  | 
+**source** | [**SourceEnum**](#SourceEnum) |  | 
 
 
 
-## Enum: ClassNameEnum
+## Enum: SourceEnum
 
 Name | Value
 ---- | -----

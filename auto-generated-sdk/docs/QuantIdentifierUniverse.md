@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **universeType** | [**UniverseTypeEnum**](#UniverseTypeEnum) |  | 
 **identifiers** | **java.util.List&lt;String&gt;** |  | 
-**className** | [**ClassNameEnum**](#ClassNameEnum) |  | 
+**source** | [**SourceEnum**](#SourceEnum) |  | 
 
 
 
@@ -22,7 +22,7 @@ DEBT | &quot;Debt&quot;
 
 
 
-## Enum: ClassNameEnum
+## Enum: SourceEnum
 
 Name | Value
 ---- | -----

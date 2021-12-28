@@ -9,13 +9,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **startDate** | **String** |  | 
 **endDate** | **String** |  | 
-**className** | [**ClassNameEnum**](#ClassNameEnum) |  | 
+**source** | [**SourceEnum**](#SourceEnum) |  | 
 **frequency** | **String** |  | 
 **calendar** | **String** |  | 
 
 
 
-## Enum: ClassNameEnum
+## Enum: SourceEnum
 
 Name | Value
 ---- | -----

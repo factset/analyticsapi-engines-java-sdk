@@ -36,7 +36,7 @@ import factset.analyticsapi.engines.JSON;
 @JsonPropertyOrder({
   QuantFdsDate.JSON_PROPERTY_START_DATE,
   QuantFdsDate.JSON_PROPERTY_END_DATE,
-  QuantFdsDate.JSON_PROPERTY_CLASS_NAME,
+  QuantFdsDate.JSON_PROPERTY_SOURCE,
   QuantFdsDate.JSON_PROPERTY_FREQUENCY,
   QuantFdsDate.JSON_PROPERTY_CALENDAR
 })
@@ -51,16 +51,16 @@ public class QuantFdsDate implements Serializable {
   private String endDate;
 
   /**
-   * Gets or Sets className
+   * Gets or Sets source
    */
-  public enum ClassNameEnum {
+  public enum SourceEnum {
     FDSDATE("FdsDate"),
     
     DATELIST("DateList");
 
     private String value;
 
-    ClassNameEnum(String value) {
+    SourceEnum(String value) {
       this.value = value;
     }
 
@@ -75,8 +75,8 @@ public class QuantFdsDate implements Serializable {
     }
 
     @JsonCreator
-    public static ClassNameEnum fromValue(String value) {
-      for (ClassNameEnum b : ClassNameEnum.values()) {
+    public static SourceEnum fromValue(String value) {
+      for (SourceEnum b : SourceEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -85,8 +85,8 @@ public class QuantFdsDate implements Serializable {
     }
   }
 
-  public static final String JSON_PROPERTY_CLASS_NAME = "className";
-  private ClassNameEnum className;
+  public static final String JSON_PROPERTY_SOURCE = "source";
+  private SourceEnum source;
 
   public static final String JSON_PROPERTY_FREQUENCY = "frequency";
   private String frequency;
@@ -149,29 +149,29 @@ public class QuantFdsDate implements Serializable {
   }
 
 
-  public QuantFdsDate className(ClassNameEnum className) {
-    this.className = className;
+  public QuantFdsDate source(SourceEnum source) {
+    this.source = source;
     return this;
   }
 
    /**
-   * Get className
-   * @return className
+   * Get source
+   * @return source
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_CLASS_NAME)
+  @JsonProperty(JSON_PROPERTY_SOURCE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public ClassNameEnum getClassName() {
-    return className;
+  public SourceEnum getSource() {
+    return source;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CLASS_NAME)
+  @JsonProperty(JSON_PROPERTY_SOURCE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setClassName(ClassNameEnum className) {
-    this.className = className;
+  public void setSource(SourceEnum source) {
+    this.source = source;
   }
 
 
@@ -241,14 +241,14 @@ public class QuantFdsDate implements Serializable {
     QuantFdsDate quantFdsDate = (QuantFdsDate) o;
     return Objects.equals(this.startDate, quantFdsDate.startDate) &&
         Objects.equals(this.endDate, quantFdsDate.endDate) &&
-        Objects.equals(this.className, quantFdsDate.className) &&
+        Objects.equals(this.source, quantFdsDate.source) &&
         Objects.equals(this.frequency, quantFdsDate.frequency) &&
         Objects.equals(this.calendar, quantFdsDate.calendar);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(startDate, endDate, className, frequency, calendar);
+    return Objects.hash(startDate, endDate, source, frequency, calendar);
   }
 
   @Override
@@ -257,7 +257,7 @@ public class QuantFdsDate implements Serializable {
     sb.append("class QuantFdsDate {\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
-    sb.append("    className: ").append(toIndentedString(className)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("    frequency: ").append(toIndentedString(frequency)).append("\n");
     sb.append("    calendar: ").append(toIndentedString(calendar)).append("\n");
     sb.append("}");

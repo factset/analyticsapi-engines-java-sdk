@@ -8,13 +8,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **dates** | **java.util.List&lt;String&gt;** |  |  [optional]
-**className** | [**ClassNameEnum**](#ClassNameEnum) |  | 
+**source** | [**SourceEnum**](#SourceEnum) |  | 
 **frequency** | **String** |  | 
 **calendar** | **String** |  | 
 
 
 
-## Enum: ClassNameEnum
+## Enum: SourceEnum
 
 Name | Value
 ---- | -----

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **universeExpr** | **String** |  | 
 **universeType** | [**UniverseTypeEnum**](#UniverseTypeEnum) |  | 
 **securityExpr** | **String** |  |  [optional]
-**className** | [**ClassNameEnum**](#ClassNameEnum) |  | 
+**source** | [**SourceEnum**](#SourceEnum) |  | 
 
 
 
@@ -23,7 +23,7 @@ DEBT | &quot;Debt&quot;
 
 
 
-## Enum: ClassNameEnum
+## Enum: SourceEnum
 
 Name | Value
 ---- | -----

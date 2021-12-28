@@ -36,7 +36,7 @@ import factset.analyticsapi.engines.JSON;
 @JsonPropertyOrder({
   QuantFqlExpression.JSON_PROPERTY_EXPR,
   QuantFqlExpression.JSON_PROPERTY_NAME,
-  QuantFqlExpression.JSON_PROPERTY_CLASS_NAME
+  QuantFqlExpression.JSON_PROPERTY_SOURCE
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class QuantFqlExpression implements Serializable {
@@ -49,9 +49,9 @@ public class QuantFqlExpression implements Serializable {
   private String name;
 
   /**
-   * Gets or Sets className
+   * Gets or Sets source
    */
-  public enum ClassNameEnum {
+  public enum SourceEnum {
     SCREENINGEXPRESSION("ScreeningExpression"),
     
     FQLEXPRESSION("FqlExpression"),
@@ -62,7 +62,7 @@ public class QuantFqlExpression implements Serializable {
 
     private String value;
 
-    ClassNameEnum(String value) {
+    SourceEnum(String value) {
       this.value = value;
     }
 
@@ -77,8 +77,8 @@ public class QuantFqlExpression implements Serializable {
     }
 
     @JsonCreator
-    public static ClassNameEnum fromValue(String value) {
-      for (ClassNameEnum b : ClassNameEnum.values()) {
+    public static SourceEnum fromValue(String value) {
+      for (SourceEnum b : SourceEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -87,8 +87,8 @@ public class QuantFqlExpression implements Serializable {
     }
   }
 
-  public static final String JSON_PROPERTY_CLASS_NAME = "className";
-  private ClassNameEnum className;
+  public static final String JSON_PROPERTY_SOURCE = "source";
+  private SourceEnum source;
 
   public QuantFqlExpression() { 
   }
@@ -145,29 +145,29 @@ public class QuantFqlExpression implements Serializable {
   }
 
 
-  public QuantFqlExpression className(ClassNameEnum className) {
-    this.className = className;
+  public QuantFqlExpression source(SourceEnum source) {
+    this.source = source;
     return this;
   }
 
    /**
-   * Get className
-   * @return className
+   * Get source
+   * @return source
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_CLASS_NAME)
+  @JsonProperty(JSON_PROPERTY_SOURCE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public ClassNameEnum getClassName() {
-    return className;
+  public SourceEnum getSource() {
+    return source;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CLASS_NAME)
+  @JsonProperty(JSON_PROPERTY_SOURCE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setClassName(ClassNameEnum className) {
-    this.className = className;
+  public void setSource(SourceEnum source) {
+    this.source = source;
   }
 
 
@@ -185,12 +185,12 @@ public class QuantFqlExpression implements Serializable {
     QuantFqlExpression quantFqlExpression = (QuantFqlExpression) o;
     return Objects.equals(this.expr, quantFqlExpression.expr) &&
         Objects.equals(this.name, quantFqlExpression.name) &&
-        Objects.equals(this.className, quantFqlExpression.className);
+        Objects.equals(this.source, quantFqlExpression.source);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expr, name, className);
+    return Objects.hash(expr, name, source);
   }
 
   @Override
@@ -199,7 +199,7 @@ public class QuantFqlExpression implements Serializable {
     sb.append("class QuantFqlExpression {\n");
     sb.append("    expr: ").append(toIndentedString(expr)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    className: ").append(toIndentedString(className)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("}");
     return sb.toString();
   }
