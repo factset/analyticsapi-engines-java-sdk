@@ -344,6 +344,7 @@ Class | Method | HTTP request | Description
  - [NPOOptimizerStrategyOverrides](docs/NPOOptimizerStrategyOverrides.md)
  - [ObjectRoot](docs/ObjectRoot.md)
  - [OneOfQuantDates](docs/OneOfQuantDates.md)
+ - [OneOfQuantFormulasArray](docs/OneOfQuantFormulasArray.md)
  - [OneOfQuantUniverse](docs/OneOfQuantUniverse.md)
  - [OptimalPortfolio](docs/OptimalPortfolio.md)
  - [Optimization](docs/Optimization.md)

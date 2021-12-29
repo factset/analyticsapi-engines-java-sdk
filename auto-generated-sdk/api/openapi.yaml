@@ -40527,27 +40527,29 @@ components:
       oneOf:
       - $ref: '#/components/schemas/QuantFdsDate'
       - $ref: '#/components/schemas/QuantDateList'
+    OneOfQuantFormulasArray:
+      discriminator:
+        mapping:
+          ScreeningExpression: '#/components/schemas/QuantScreeningExpression'
+          FqlExpression: '#/components/schemas/QuantFqlExpression'
+          UniversalScreenParameter: '#/components/schemas/QuantUniversalScreenParameter'
+          AllUniversalScreenParameters: '#/components/schemas/QuantAllUniversalScreenParameters'
+        propertyName: source
+      oneOf:
+      - $ref: '#/components/schemas/QuantScreeningExpression'
+      - $ref: '#/components/schemas/QuantFqlExpression'
+      - $ref: '#/components/schemas/QuantUniversalScreenParameter'
+      - $ref: '#/components/schemas/QuantAllUniversalScreenParameters'
     OneOfQuantFormulas:
       items:
-        discriminator:
-          mapping:
-            ScreeningExpression: '#/components/schemas/QuantScreeningExpression'
-            FqlExpression: '#/components/schemas/QuantFqlExpression'
-            UniversalScreenParameter: '#/components/schemas/QuantUniversalScreenParameter'
-            AllUniversalScreenParameters: '#/components/schemas/QuantAllUniversalScreenParameters'
-          propertyName: source
-        oneOf:
-        - $ref: '#/components/schemas/QuantScreeningExpression'
-        - $ref: '#/components/schemas/QuantFqlExpression'
-        - $ref: '#/components/schemas/QuantUniversalScreenParameter'
-        - $ref: '#/components/schemas/QuantAllUniversalScreenParameters'
+        $ref: '#/components/schemas/OneOfQuantFormulasArray'
       type: array
     QuantCalculationParameters:
       additionalProperties: false
       example:
         formulas:
-        - ""
-        - ""
+        - null
+        - null
       properties:
         universe:
           $ref: '#/components/schemas/OneOfQuantUniverse'
@@ -40555,18 +40557,7 @@ components:
           $ref: '#/components/schemas/OneOfQuantDates'
         formulas:
           items:
-            discriminator:
-              mapping:
-                ScreeningExpression: '#/components/schemas/QuantScreeningExpression'
-                FqlExpression: '#/components/schemas/QuantFqlExpression'
-                UniversalScreenParameter: '#/components/schemas/QuantUniversalScreenParameter'
-                AllUniversalScreenParameters: '#/components/schemas/QuantAllUniversalScreenParameters'
-              propertyName: source
-            oneOf:
-            - $ref: '#/components/schemas/QuantScreeningExpression'
-            - $ref: '#/components/schemas/QuantFqlExpression'
-            - $ref: '#/components/schemas/QuantUniversalScreenParameter'
-            - $ref: '#/components/schemas/QuantAllUniversalScreenParameters'
+            $ref: '#/components/schemas/OneOfQuantFormulasArray'
           type: array
       type: object
     QuantCalculationMeta:
@@ -40624,8 +40615,8 @@ components:
         data:
           key:
             formulas:
-            - ""
-            - ""
+            - null
+            - null
         meta:
           contentorganization: SimplifiedRow
           allowArrayData: true
