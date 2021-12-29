@@ -65,69 +65,69 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import factset.analyticsapi.engines.JSON;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-@JsonDeserialize(using = DummyUniverse.DummyUniverseDeserializer.class)
-@JsonSerialize(using = DummyUniverse.DummyUniverseSerializer.class)
-public class DummyUniverse extends AbstractOpenApiSchema, Serializable {
-    private static final Logger log = Logger.getLogger(DummyUniverse.class.getName());
+@JsonDeserialize(using = OneOfQuantUniverse.OneOfQuantUniverseDeserializer.class)
+@JsonSerialize(using = OneOfQuantUniverse.OneOfQuantUniverseSerializer.class)
+public class OneOfQuantUniverse extends AbstractOpenApiSchema, Serializable {
+    private static final Logger log = Logger.getLogger(OneOfQuantUniverse.class.getName());
 
-    public static class DummyUniverseSerializer extends StdSerializer<DummyUniverse> {
-        public DummyUniverseSerializer(Class<DummyUniverse> t) {
+    public static class OneOfQuantUniverseSerializer extends StdSerializer<OneOfQuantUniverse> {
+        public OneOfQuantUniverseSerializer(Class<OneOfQuantUniverse> t) {
             super(t);
         }
 
-        public DummyUniverseSerializer() {
+        public OneOfQuantUniverseSerializer() {
             this(null);
         }
 
         @Override
-        public void serialize(DummyUniverse value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
+        public void serialize(OneOfQuantUniverse value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
             jgen.writeObject(value.getActualInstance());
         }
     }
 
-    public static class DummyUniverseDeserializer extends StdDeserializer<DummyUniverse> {
-        public DummyUniverseDeserializer() {
-            this(DummyUniverse.class);
+    public static class OneOfQuantUniverseDeserializer extends StdDeserializer<OneOfQuantUniverse> {
+        public OneOfQuantUniverseDeserializer() {
+            this(OneOfQuantUniverse.class);
         }
 
-        public DummyUniverseDeserializer(Class<?> vc) {
+        public OneOfQuantUniverseDeserializer(Class<?> vc) {
             super(vc);
         }
 
         @Override
-        public DummyUniverse deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+        public OneOfQuantUniverse deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
             JsonNode tree = jp.readValueAsTree();
             Object deserialized = null;
-            DummyUniverse newDummyUniverse = new DummyUniverse();
+            OneOfQuantUniverse newOneOfQuantUniverse = new OneOfQuantUniverse();
             Map<String,Object> result2 = tree.traverse(jp.getCodec()).readValueAs(new TypeReference<Map<String, Object>>() {});
             String discriminatorValue = (String)result2.get("source");
             switch (discriminatorValue) {
                 case "IdentifierUniverse":
                     deserialized = tree.traverse(jp.getCodec()).readValueAs(QuantIdentifierUniverse.class);
-                    newDummyUniverse.setActualInstance(deserialized);
-                    return newDummyUniverse;
+                    newOneOfQuantUniverse.setActualInstance(deserialized);
+                    return newOneOfQuantUniverse;
                 case "QuantIdentifierUniverse":
                     deserialized = tree.traverse(jp.getCodec()).readValueAs(QuantIdentifierUniverse.class);
-                    newDummyUniverse.setActualInstance(deserialized);
-                    return newDummyUniverse;
+                    newOneOfQuantUniverse.setActualInstance(deserialized);
+                    return newOneOfQuantUniverse;
                 case "QuantScreeningExpressionUniverse":
                     deserialized = tree.traverse(jp.getCodec()).readValueAs(QuantScreeningExpressionUniverse.class);
-                    newDummyUniverse.setActualInstance(deserialized);
-                    return newDummyUniverse;
+                    newOneOfQuantUniverse.setActualInstance(deserialized);
+                    return newOneOfQuantUniverse;
                 case "QuantUniversalScreenUniverse":
                     deserialized = tree.traverse(jp.getCodec()).readValueAs(QuantUniversalScreenUniverse.class);
-                    newDummyUniverse.setActualInstance(deserialized);
-                    return newDummyUniverse;
+                    newOneOfQuantUniverse.setActualInstance(deserialized);
+                    return newOneOfQuantUniverse;
                 case "ScreeningExpressionUniverse":
                     deserialized = tree.traverse(jp.getCodec()).readValueAs(QuantScreeningExpressionUniverse.class);
-                    newDummyUniverse.setActualInstance(deserialized);
-                    return newDummyUniverse;
+                    newOneOfQuantUniverse.setActualInstance(deserialized);
+                    return newOneOfQuantUniverse;
                 case "UniversalScreenUniverse":
                     deserialized = tree.traverse(jp.getCodec()).readValueAs(QuantUniversalScreenUniverse.class);
-                    newDummyUniverse.setActualInstance(deserialized);
-                    return newDummyUniverse;
+                    newOneOfQuantUniverse.setActualInstance(deserialized);
+                    return newOneOfQuantUniverse;
                 default:
-                    log.log(Level.WARNING, String.format("Failed to lookup discriminator value `%s` for DummyUniverse. Possible values: IdentifierUniverse QuantIdentifierUniverse QuantScreeningExpressionUniverse QuantUniversalScreenUniverse ScreeningExpressionUniverse UniversalScreenUniverse", discriminatorValue));
+                    log.log(Level.WARNING, String.format("Failed to lookup discriminator value `%s` for OneOfQuantUniverse. Possible values: IdentifierUniverse QuantIdentifierUniverse QuantScreeningExpressionUniverse QuantUniversalScreenUniverse ScreeningExpressionUniverse UniversalScreenUniverse", discriminatorValue));
             }
 
             boolean typeCoercion = ctxt.isEnabled(MapperFeature.ALLOW_COERCION_OF_SCALARS);
@@ -212,26 +212,26 @@ public class DummyUniverse extends AbstractOpenApiSchema, Serializable {
             }
 
             if (match == 1) {
-                DummyUniverse ret = new DummyUniverse();
+                OneOfQuantUniverse ret = new OneOfQuantUniverse();
                 ret.setActualInstance(deserialized);
                 return ret;
             }
-            throw new IOException(String.format("Failed deserialization for DummyUniverse: %d classes match result, expected 1", match));
+            throw new IOException(String.format("Failed deserialization for OneOfQuantUniverse: %d classes match result, expected 1", match));
         }
 
         /**
          * Handle deserialization of the 'null' value.
          */
         @Override
-        public DummyUniverse getNullValue(DeserializationContext ctxt) throws JsonMappingException {
-            throw new JsonMappingException(ctxt.getParser(), "DummyUniverse cannot be null");
+        public OneOfQuantUniverse getNullValue(DeserializationContext ctxt) throws JsonMappingException {
+            throw new JsonMappingException(ctxt.getParser(), "OneOfQuantUniverse cannot be null");
         }
     }
 
     // store a list of schema names defined in oneOf
     public static final Map<String, GenericType> schemas = new HashMap<String, GenericType>();
 
-    public DummyUniverse() {
+    public OneOfQuantUniverse() {
         super("oneOf", Boolean.FALSE);
     }
   /**
@@ -246,7 +246,7 @@ public class DummyUniverse extends AbstractOpenApiSchema, Serializable {
    * If the property does not already exist, create it otherwise replace it.
    */
   @JsonAnySetter
-  public DummyUniverse putAdditionalProperty(String key, Object value) {
+  public OneOfQuantUniverse putAdditionalProperty(String key, Object value) {
     if (this.additionalProperties == null) {
         this.additionalProperties = new HashMap<String, Object>();
     }
@@ -273,28 +273,28 @@ public class DummyUniverse extends AbstractOpenApiSchema, Serializable {
   }
 
     /**
-     * Return true if this DummyUniverse object is equal to o.
+     * Return true if this OneOfQuantUniverse object is equal to o.
      */
     @Override
     public boolean equals(Object o) {
-        return super.equals(o) && Objects.equals(this.additionalProperties, ((DummyUniverse)o).additionalProperties);
+        return super.equals(o) && Objects.equals(this.additionalProperties, ((OneOfQuantUniverse)o).additionalProperties);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getActualInstance(), isNullable(), getSchemaType(), additionalProperties);
     }
-    public DummyUniverse(QuantIdentifierUniverse o) {
+    public OneOfQuantUniverse(QuantIdentifierUniverse o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }
 
-    public DummyUniverse(QuantScreeningExpressionUniverse o) {
+    public OneOfQuantUniverse(QuantScreeningExpressionUniverse o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }
 
-    public DummyUniverse(QuantUniversalScreenUniverse o) {
+    public OneOfQuantUniverse(QuantUniversalScreenUniverse o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }
@@ -306,7 +306,7 @@ public class DummyUniverse extends AbstractOpenApiSchema, Serializable {
         });
         schemas.put("QuantUniversalScreenUniverse", new GenericType<QuantUniversalScreenUniverse>() {
         });
-        JSON.registerDescendants(DummyUniverse.class, Collections.unmodifiableMap(schemas));
+        JSON.registerDescendants(OneOfQuantUniverse.class, Collections.unmodifiableMap(schemas));
         // Initialize and register the discriminator mappings.
         Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
         mappings.put("IdentifierUniverse", QuantIdentifierUniverse.class);
@@ -315,13 +315,13 @@ public class DummyUniverse extends AbstractOpenApiSchema, Serializable {
         mappings.put("QuantUniversalScreenUniverse", QuantUniversalScreenUniverse.class);
         mappings.put("ScreeningExpressionUniverse", QuantScreeningExpressionUniverse.class);
         mappings.put("UniversalScreenUniverse", QuantUniversalScreenUniverse.class);
-        mappings.put("DummyUniverse", DummyUniverse.class);
-        JSON.registerDiscriminator(DummyUniverse.class, "source", mappings);
+        mappings.put("OneOfQuantUniverse", OneOfQuantUniverse.class);
+        JSON.registerDiscriminator(OneOfQuantUniverse.class, "source", mappings);
     }
 
     @Override
     public Map<String, GenericType> getSchemas() {
-        return DummyUniverse.schemas;
+        return OneOfQuantUniverse.schemas;
     }
 
     /**

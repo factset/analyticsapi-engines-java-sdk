@@ -40507,7 +40507,7 @@ components:
     QuantAllUniversalScreenParametersObsolete:
       additionalProperties: false
       type: object
-    DummyUniverse:
+    OneOfQuantUniverse:
       discriminator:
         mapping:
           UniversalScreenUniverse: '#/components/schemas/QuantUniversalScreenUniverse'
@@ -40518,25 +40518,41 @@ components:
       - $ref: '#/components/schemas/QuantUniversalScreenUniverse'
       - $ref: '#/components/schemas/QuantScreeningExpressionUniverse'
       - $ref: '#/components/schemas/QuantIdentifierUniverse'
+    OneOfQuantDates:
+      discriminator:
+        mapping:
+          FdsDate: '#/components/schemas/QuantFdsDate'
+          DateList: '#/components/schemas/QuantDateList'
+        propertyName: source
+      oneOf:
+      - $ref: '#/components/schemas/QuantFdsDate'
+      - $ref: '#/components/schemas/QuantDateList'
+    OneOfQuantFormulas:
+      items:
+        discriminator:
+          mapping:
+            ScreeningExpression: '#/components/schemas/QuantScreeningExpression'
+            FqlExpression: '#/components/schemas/QuantFqlExpression'
+            UniversalScreenParameter: '#/components/schemas/QuantUniversalScreenParameter'
+            AllUniversalScreenParameters: '#/components/schemas/QuantAllUniversalScreenParameters'
+          propertyName: source
+        oneOf:
+        - $ref: '#/components/schemas/QuantScreeningExpression'
+        - $ref: '#/components/schemas/QuantFqlExpression'
+        - $ref: '#/components/schemas/QuantUniversalScreenParameter'
+        - $ref: '#/components/schemas/QuantAllUniversalScreenParameters'
+      type: array
     QuantCalculationParameters:
       additionalProperties: false
       example:
         formulas:
         - ""
         - ""
-        dates: ""
       properties:
         universe:
-          $ref: '#/components/schemas/DummyUniverse'
+          $ref: '#/components/schemas/OneOfQuantUniverse'
         dates:
-          discriminator:
-            mapping:
-              FdsDate: '#/components/schemas/QuantFdsDate'
-              DateList: '#/components/schemas/QuantDateList'
-            propertyName: source
-          oneOf:
-          - $ref: '#/components/schemas/QuantFdsDate'
-          - $ref: '#/components/schemas/QuantDateList'
+          $ref: '#/components/schemas/OneOfQuantDates'
         formulas:
           items:
             discriminator:
@@ -40610,7 +40626,6 @@ components:
             formulas:
             - ""
             - ""
-            dates: ""
         meta:
           contentorganization: SimplifiedRow
           allowArrayData: true

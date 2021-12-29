@@ -22,15 +22,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import factset.analyticsapi.engines.models.DummyUniverse;
-import factset.analyticsapi.engines.models.OneOfQuantFdsDateQuantDateList;
+import factset.analyticsapi.engines.models.OneOfQuantDates;
 import factset.analyticsapi.engines.models.OneOfQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters;
+import factset.analyticsapi.engines.models.OneOfQuantUniverse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import factset.analyticsapi.engines.JSON;
@@ -49,10 +45,10 @@ public class QuantCalculationParameters implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_UNIVERSE = "universe";
-  private DummyUniverse universe;
+  private OneOfQuantUniverse universe;
 
   public static final String JSON_PROPERTY_DATES = "dates";
-  private JsonNullable<OneOfQuantFdsDateQuantDateList> dates = JsonNullable.<OneOfQuantFdsDateQuantDateList>undefined();
+  private OneOfQuantDates dates;
 
   public static final String JSON_PROPERTY_FORMULAS = "formulas";
   private java.util.List<OneOfQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters> formulas = null;
@@ -60,7 +56,7 @@ public class QuantCalculationParameters implements Serializable {
   public QuantCalculationParameters() { 
   }
 
-  public QuantCalculationParameters universe(DummyUniverse universe) {
+  public QuantCalculationParameters universe(OneOfQuantUniverse universe) {
     this.universe = universe;
     return this;
   }
@@ -74,20 +70,20 @@ public class QuantCalculationParameters implements Serializable {
   @JsonProperty(JSON_PROPERTY_UNIVERSE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DummyUniverse getUniverse() {
+  public OneOfQuantUniverse getUniverse() {
     return universe;
   }
 
 
   @JsonProperty(JSON_PROPERTY_UNIVERSE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUniverse(DummyUniverse universe) {
+  public void setUniverse(OneOfQuantUniverse universe) {
     this.universe = universe;
   }
 
 
-  public QuantCalculationParameters dates(OneOfQuantFdsDateQuantDateList dates) {
-    this.dates = JsonNullable.<OneOfQuantFdsDateQuantDateList>of(dates);
+  public QuantCalculationParameters dates(OneOfQuantDates dates) {
+    this.dates = dates;
     return this;
   }
 
@@ -97,26 +93,18 @@ public class QuantCalculationParameters implements Serializable {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonIgnore
-
-  public OneOfQuantFdsDateQuantDateList getDates() {
-        return dates.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_DATES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<OneOfQuantFdsDateQuantDateList> getDates_JsonNullable() {
+  public OneOfQuantDates getDates() {
     return dates;
   }
-  
-  @JsonProperty(JSON_PROPERTY_DATES)
-  public void setDates_JsonNullable(JsonNullable<OneOfQuantFdsDateQuantDateList> dates) {
-    this.dates = dates;
-  }
 
-  public void setDates(OneOfQuantFdsDateQuantDateList dates) {
-    this.dates = JsonNullable.<OneOfQuantFdsDateQuantDateList>of(dates);
+
+  @JsonProperty(JSON_PROPERTY_DATES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDates(OneOfQuantDates dates) {
+    this.dates = dates;
   }
 
 
@@ -167,24 +155,13 @@ public class QuantCalculationParameters implements Serializable {
     }
     QuantCalculationParameters quantCalculationParameters = (QuantCalculationParameters) o;
     return Objects.equals(this.universe, quantCalculationParameters.universe) &&
-        equalsNullable(this.dates, quantCalculationParameters.dates) &&
+        Objects.equals(this.dates, quantCalculationParameters.dates) &&
         Objects.equals(this.formulas, quantCalculationParameters.formulas);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(universe, hashCodeNullable(dates), formulas);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(universe, dates, formulas);
   }
 
   @Override

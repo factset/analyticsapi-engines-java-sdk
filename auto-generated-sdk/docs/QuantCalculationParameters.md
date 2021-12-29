@@ -7,8 +7,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**universe** | [**DummyUniverse**](DummyUniverse.md) |  |  [optional]
-**dates** | [**OneOfQuantFdsDateQuantDateList**](OneOfQuantFdsDateQuantDateList.md) |  |  [optional]
+**universe** | [**OneOfQuantUniverse**](OneOfQuantUniverse.md) |  |  [optional]
+**dates** | [**OneOfQuantDates**](OneOfQuantDates.md) |  |  [optional]
 **formulas** | [**java.util.List&lt;OneOfQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters&gt;**](OneOfQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters.md) |  |  [optional]
 
 
