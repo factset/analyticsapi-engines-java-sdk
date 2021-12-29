@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.QuantUniverse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -33,7 +34,8 @@ import factset.analyticsapi.engines.JSON;
  * QuantUniversalScreenUniverse
  */
 @JsonPropertyOrder({
-  QuantUniversalScreenUniverse.JSON_PROPERTY_SCREEN
+  QuantUniversalScreenUniverse.JSON_PROPERTY_SCREEN,
+  QuantUniversalScreenUniverse.JSON_PROPERTY_SOURCE
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class QuantUniversalScreenUniverse implements Serializable {
@@ -42,6 +44,48 @@ public class QuantUniversalScreenUniverse implements Serializable {
   public static final String JSON_PROPERTY_SCREEN = "screen";
   private String screen;
 
+  /**
+   * Gets or Sets source
+   */
+  public enum SourceEnum {
+    SCREENINGEXPRESSIONUNIVERSE("ScreeningExpressionUniverse"),
+    
+    UNIVERSALSCREENUNIVERSE("UniversalScreenUniverse"),
+    
+    IDENTIFIERUNIVERSE("IdentifierUniverse");
+
+    private String value;
+
+    SourceEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SourceEnum fromValue(String value) {
+      for (SourceEnum b : SourceEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_SOURCE = "source";
+  private SourceEnum source;
+
+  public QuantUniversalScreenUniverse() { 
+  }
 
   public QuantUniversalScreenUniverse screen(String screen) {
     this.screen = screen;
@@ -52,6 +96,7 @@ public class QuantUniversalScreenUniverse implements Serializable {
    * Get screen
    * @return screen
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_SCREEN)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -61,8 +106,36 @@ public class QuantUniversalScreenUniverse implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SCREEN)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setScreen(String screen) {
     this.screen = screen;
+  }
+
+
+  public QuantUniversalScreenUniverse source(SourceEnum source) {
+    this.source = source;
+    return this;
+  }
+
+   /**
+   * Get source
+   * @return source
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_SOURCE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public SourceEnum getSource() {
+    return source;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SOURCE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSource(SourceEnum source) {
+    this.source = source;
   }
 
 
@@ -78,12 +151,13 @@ public class QuantUniversalScreenUniverse implements Serializable {
       return false;
     }
     QuantUniversalScreenUniverse quantUniversalScreenUniverse = (QuantUniversalScreenUniverse) o;
-    return Objects.equals(this.screen, quantUniversalScreenUniverse.screen);
+    return Objects.equals(this.screen, quantUniversalScreenUniverse.screen) &&
+        Objects.equals(this.source, quantUniversalScreenUniverse.source);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(screen);
+    return Objects.hash(screen, source);
   }
 
   @Override
@@ -91,6 +165,7 @@ public class QuantUniversalScreenUniverse implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class QuantUniversalScreenUniverse {\n");
     sb.append("    screen: ").append(toIndentedString(screen)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("}");
     return sb.toString();
   }

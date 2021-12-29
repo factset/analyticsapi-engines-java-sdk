@@ -50,6 +50,8 @@ public class Optimization implements Serializable {
   public static final String JSON_PROPERTY_CASHFLOW = "cashflow";
   private String cashflow;
 
+  public Optimization() { 
+  }
 
   public Optimization riskModelDate(String riskModelDate) {
     this.riskModelDate = riskModelDate;
@@ -70,6 +72,8 @@ public class Optimization implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_RISK_MODEL_DATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRiskModelDate(String riskModelDate) {
     this.riskModelDate = riskModelDate;
   }
@@ -94,6 +98,8 @@ public class Optimization implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_BACKTEST_DATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBacktestDate(String backtestDate) {
     this.backtestDate = backtestDate;
   }
@@ -118,6 +124,8 @@ public class Optimization implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CASHFLOW)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCashflow(String cashflow) {
     this.cashflow = cashflow;
   }

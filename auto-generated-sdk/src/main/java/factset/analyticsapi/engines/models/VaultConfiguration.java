@@ -47,6 +47,8 @@ public class VaultConfiguration implements Serializable {
   public static final String JSON_PROPERTY_ACCOUNTS = "accounts";
   private java.util.Map<String, ConfigurationAccount> accounts = null;
 
+  public VaultConfiguration() { 
+  }
 
   public VaultConfiguration name(String name) {
     this.name = name;
@@ -67,6 +69,8 @@ public class VaultConfiguration implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -99,6 +103,8 @@ public class VaultConfiguration implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ACCOUNTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccounts(java.util.Map<String, ConfigurationAccount> accounts) {
     this.accounts = accounts;
   }

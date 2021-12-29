@@ -43,6 +43,8 @@ public class ClientErrorResponse implements Serializable {
   public static final String JSON_PROPERTY_ERRORS = "errors";
   private java.util.List<Error> errors = null;
 
+  public ClientErrorResponse() { 
+  }
 
   public ClientErrorResponse errors(java.util.List<Error> errors) {
     this.errors = errors;
@@ -71,6 +73,8 @@ public class ClientErrorResponse implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ERRORS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setErrors(java.util.List<Error> errors) {
     this.errors = errors;
   }

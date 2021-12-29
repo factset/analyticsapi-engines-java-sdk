@@ -46,6 +46,8 @@ public class DocumentDirectories implements Serializable {
   public static final String JSON_PROPERTY_DIRECTORIES = "directories";
   private java.util.List<String> directories = null;
 
+  public DocumentDirectories() { 
+  }
 
   public DocumentDirectories documents(java.util.List<String> documents) {
     this.documents = documents;
@@ -74,6 +76,8 @@ public class DocumentDirectories implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DOCUMENTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDocuments(java.util.List<String> documents) {
     this.documents = documents;
   }
@@ -106,6 +110,8 @@ public class DocumentDirectories implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DIRECTORIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDirectories(java.util.List<String> directories) {
     this.directories = directories;
   }

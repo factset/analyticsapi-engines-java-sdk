@@ -42,6 +42,8 @@ public class VaultConfigurationSummary implements Serializable {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
+  public VaultConfigurationSummary() { 
+  }
 
   public VaultConfigurationSummary name(String name) {
     this.name = name;
@@ -62,6 +64,8 @@ public class VaultConfigurationSummary implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }

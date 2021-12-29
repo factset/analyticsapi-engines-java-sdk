@@ -46,6 +46,8 @@ public class ErrorSource implements Serializable {
   public static final String JSON_PROPERTY_PARAMETER = "parameter";
   private String parameter;
 
+  public ErrorSource() { 
+  }
 
   public ErrorSource pointer(String pointer) {
     this.pointer = pointer;
@@ -66,6 +68,8 @@ public class ErrorSource implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_POINTER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPointer(String pointer) {
     this.pointer = pointer;
   }
@@ -90,6 +94,8 @@ public class ErrorSource implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PARAMETER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setParameter(String parameter) {
     this.parameter = parameter;
   }

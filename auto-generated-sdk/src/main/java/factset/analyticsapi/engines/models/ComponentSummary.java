@@ -46,6 +46,8 @@ public class ComponentSummary implements Serializable {
   public static final String JSON_PROPERTY_CATEGORY = "category";
   private String category;
 
+  public ComponentSummary() { 
+  }
 
   public ComponentSummary name(String name) {
     this.name = name;
@@ -66,6 +68,8 @@ public class ComponentSummary implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -90,6 +94,8 @@ public class ComponentSummary implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CATEGORY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCategory(String category) {
     this.category = category;
   }

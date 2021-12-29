@@ -41,6 +41,7 @@ import factset.analyticsapi.engines.JSON;
   VaultComponent.JSON_PROPERTY_CURRENCYISOCODE,
   VaultComponent.JSON_PROPERTY_DATES,
   VaultComponent.JSON_PROPERTY_SNAPSHOT,
+  VaultComponent.JSON_PROPERTY_PATH,
   VaultComponent.JSON_PROPERTY_NAME,
   VaultComponent.JSON_PROPERTY_CATEGORY
 })
@@ -66,12 +67,17 @@ public class VaultComponent implements Serializable {
   public static final String JSON_PROPERTY_SNAPSHOT = "snapshot";
   private Boolean snapshot;
 
+  public static final String JSON_PROPERTY_PATH = "path";
+  private String path;
+
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
   public static final String JSON_PROPERTY_CATEGORY = "category";
   private String category;
 
+  public VaultComponent() { 
+  }
 
   public VaultComponent id(String id) {
     this.id = id;
@@ -92,6 +98,8 @@ public class VaultComponent implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -116,6 +124,8 @@ public class VaultComponent implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ACCOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccount(VaultIdentifier account) {
     this.account = account;
   }
@@ -140,6 +150,8 @@ public class VaultComponent implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_BENCHMARK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBenchmark(VaultIdentifier benchmark) {
     this.benchmark = benchmark;
   }
@@ -164,6 +176,8 @@ public class VaultComponent implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CURRENCYISOCODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrencyisocode(String currencyisocode) {
     this.currencyisocode = currencyisocode;
   }
@@ -188,6 +202,8 @@ public class VaultComponent implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DATES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDates(VaultDateParameters dates) {
     this.dates = dates;
   }
@@ -212,8 +228,36 @@ public class VaultComponent implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SNAPSHOT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSnapshot(Boolean snapshot) {
     this.snapshot = snapshot;
+  }
+
+
+  public VaultComponent path(String path) {
+    this.path = path;
+    return this;
+  }
+
+   /**
+   * The path to the document
+   * @return path
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The path to the document")
+  @JsonProperty(JSON_PROPERTY_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getPath() {
+    return path;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPath(String path) {
+    this.path = path;
   }
 
 
@@ -236,6 +280,8 @@ public class VaultComponent implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -260,6 +306,8 @@ public class VaultComponent implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CATEGORY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCategory(String category) {
     this.category = category;
   }
@@ -283,13 +331,14 @@ public class VaultComponent implements Serializable {
         Objects.equals(this.currencyisocode, vaultComponent.currencyisocode) &&
         Objects.equals(this.dates, vaultComponent.dates) &&
         Objects.equals(this.snapshot, vaultComponent.snapshot) &&
+        Objects.equals(this.path, vaultComponent.path) &&
         Objects.equals(this.name, vaultComponent.name) &&
         Objects.equals(this.category, vaultComponent.category);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, account, benchmark, currencyisocode, dates, snapshot, name, category);
+    return Objects.hash(id, account, benchmark, currencyisocode, dates, snapshot, path, name, category);
   }
 
   @Override
@@ -302,6 +351,7 @@ public class VaultComponent implements Serializable {
     sb.append("    currencyisocode: ").append(toIndentedString(currencyisocode)).append("\n");
     sb.append("    dates: ").append(toIndentedString(dates)).append("\n");
     sb.append("    snapshot: ").append(toIndentedString(snapshot)).append("\n");
+    sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("}");

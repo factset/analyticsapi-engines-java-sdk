@@ -220,6 +220,8 @@ public class QuantCalculationMeta implements Serializable {
   public static final String JSON_PROPERTY_FORMAT = "format";
   private FormatEnum format = FormatEnum.JSONSTACH;
 
+  public QuantCalculationMeta() { 
+  }
 
   public QuantCalculationMeta allowArrayData(Boolean allowArrayData) {
     this.allowArrayData = allowArrayData;
@@ -240,6 +242,8 @@ public class QuantCalculationMeta implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ALLOW_ARRAY_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAllowArrayData(Boolean allowArrayData) {
     this.allowArrayData = allowArrayData;
   }
@@ -253,7 +257,9 @@ public class QuantCalculationMeta implements Serializable {
    /**
    * Get contentorganization
    * @return contentorganization
+   * @deprecated
   **/
+  @Deprecated
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CONTENTORGANIZATION)
@@ -264,6 +270,8 @@ public class QuantCalculationMeta implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CONTENTORGANIZATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContentorganization(ContentorganizationEnum contentorganization) {
     this.contentorganization = contentorganization;
   }
@@ -288,6 +296,8 @@ public class QuantCalculationMeta implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STACH_CONTENT_ORGANIZATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStachContentOrganization(StachContentOrganizationEnum stachContentOrganization) {
     this.stachContentOrganization = stachContentOrganization;
   }
@@ -301,7 +311,9 @@ public class QuantCalculationMeta implements Serializable {
    /**
    * Get contenttype
    * @return contenttype
+   * @deprecated
   **/
+  @Deprecated
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CONTENTTYPE)
@@ -312,6 +324,8 @@ public class QuantCalculationMeta implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CONTENTTYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContenttype(ContenttypeEnum contenttype) {
     this.contenttype = contenttype;
   }
@@ -336,6 +350,8 @@ public class QuantCalculationMeta implements Serializable {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FORMAT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFormat(FormatEnum format) {
     this.format = format;
   }
