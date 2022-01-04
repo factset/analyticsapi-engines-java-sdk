@@ -435,4 +435,3 @@ src/main/java/factset/analyticsapi/engines/models/VaultConfigurationSummary.java
 src/main/java/factset/analyticsapi/engines/models/VaultConfigurationSummaryRoot.java
 src/main/java/factset/analyticsapi/engines/models/VaultDateParameters.java
 src/main/java/factset/analyticsapi/engines/models/VaultIdentifier.java
-src/main/java/factset/analyticsapi/engines/oneof_model.java
