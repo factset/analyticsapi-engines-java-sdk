@@ -106,6 +106,9 @@ docs/NPOOptimizerStrategy.md
 docs/NPOOptimizerStrategyOverrides.md
 docs/NpoOptimizerApi.md
 docs/ObjectRoot.md
+docs/OneOfQuantDates.md
+docs/OneOfQuantFormulas.md
+docs/OneOfQuantUniverse.md
 docs/OptimalPortfolio.md
 docs/Optimization.md
 docs/OptimizerAccount.md
@@ -339,6 +342,9 @@ src/main/java/factset/analyticsapi/engines/models/NPOOptimizationParametersRoot.
 src/main/java/factset/analyticsapi/engines/models/NPOOptimizerStrategy.java
 src/main/java/factset/analyticsapi/engines/models/NPOOptimizerStrategyOverrides.java
 src/main/java/factset/analyticsapi/engines/models/ObjectRoot.java
+src/main/java/factset/analyticsapi/engines/models/OneOfQuantDates.java
+src/main/java/factset/analyticsapi/engines/models/OneOfQuantFormulas.java
+src/main/java/factset/analyticsapi/engines/models/OneOfQuantUniverse.java
 src/main/java/factset/analyticsapi/engines/models/OptimalPortfolio.java
 src/main/java/factset/analyticsapi/engines/models/Optimization.java
 src/main/java/factset/analyticsapi/engines/models/OptimizerAccount.java

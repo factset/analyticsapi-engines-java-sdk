@@ -40507,49 +40507,57 @@ components:
     QuantAllUniversalScreenParametersObsolete:
       additionalProperties: false
       type: object
+    OneOfQuantUniverse:
+      discriminator:
+        mapping:
+          UniversalScreenUniverse: '#/components/schemas/QuantUniversalScreenUniverse'
+          ScreeningExpressionUniverse: '#/components/schemas/QuantScreeningExpressionUniverse'
+          IdentifierUniverse: '#/components/schemas/QuantIdentifierUniverse'
+        propertyName: source
+      oneOf:
+      - $ref: '#/components/schemas/QuantUniversalScreenUniverse'
+      - $ref: '#/components/schemas/QuantScreeningExpressionUniverse'
+      - $ref: '#/components/schemas/QuantIdentifierUniverse'
+    OneOfQuantDates:
+      discriminator:
+        mapping:
+          FdsDate: '#/components/schemas/QuantFdsDate'
+          DateList: '#/components/schemas/QuantDateList'
+        propertyName: source
+      oneOf:
+      - $ref: '#/components/schemas/QuantFdsDate'
+      - $ref: '#/components/schemas/QuantDateList'
+    OneOfQuantFormulas:
+      discriminator:
+        mapping:
+          ScreeningExpression: '#/components/schemas/QuantScreeningExpression'
+          FqlExpression: '#/components/schemas/QuantFqlExpression'
+          UniversalScreenParameter: '#/components/schemas/QuantUniversalScreenParameter'
+          AllUniversalScreenParameters: '#/components/schemas/QuantAllUniversalScreenParameters'
+        propertyName: source
+      oneOf:
+      - $ref: '#/components/schemas/QuantScreeningExpression'
+      - $ref: '#/components/schemas/QuantFqlExpression'
+      - $ref: '#/components/schemas/QuantUniversalScreenParameter'
+      - $ref: '#/components/schemas/QuantAllUniversalScreenParameters'
+    OneOfQuantFormulasArray:
+      items:
+        $ref: '#/components/schemas/OneOfQuantFormulas'
+      type: array
     QuantCalculationParameters:
       additionalProperties: false
       example:
-        universe: ""
         formulas:
-        - ""
-        - ""
-        dates: ""
+        - null
+        - null
       properties:
         universe:
-          discriminator:
-            mapping:
-              UniversalScreenUniverse: '#/components/schemas/QuantUniversalScreenUniverse'
-              ScreeningExpressionUniverse: '#/components/schemas/QuantScreeningExpressionUniverse'
-              IdentifierUniverse: '#/components/schemas/QuantIdentifierUniverse'
-            propertyName: source
-          oneOf:
-          - $ref: '#/components/schemas/QuantUniversalScreenUniverse'
-          - $ref: '#/components/schemas/QuantScreeningExpressionUniverse'
-          - $ref: '#/components/schemas/QuantIdentifierUniverse'
+          $ref: '#/components/schemas/OneOfQuantUniverse'
         dates:
-          discriminator:
-            mapping:
-              FdsDate: '#/components/schemas/QuantFdsDate'
-              DateList: '#/components/schemas/QuantDateList'
-            propertyName: source
-          oneOf:
-          - $ref: '#/components/schemas/QuantFdsDate'
-          - $ref: '#/components/schemas/QuantDateList'
+          $ref: '#/components/schemas/OneOfQuantDates'
         formulas:
           items:
-            discriminator:
-              mapping:
-                ScreeningExpression: '#/components/schemas/QuantScreeningExpression'
-                FqlExpression: '#/components/schemas/QuantFqlExpression'
-                UniversalScreenParameter: '#/components/schemas/QuantUniversalScreenParameter'
-                AllUniversalScreenParameters: '#/components/schemas/QuantAllUniversalScreenParameters'
-              propertyName: source
-            oneOf:
-            - $ref: '#/components/schemas/QuantScreeningExpression'
-            - $ref: '#/components/schemas/QuantFqlExpression'
-            - $ref: '#/components/schemas/QuantUniversalScreenParameter'
-            - $ref: '#/components/schemas/QuantAllUniversalScreenParameters'
+            $ref: '#/components/schemas/OneOfQuantFormulas'
           type: array
       type: object
     QuantCalculationMeta:
@@ -40606,11 +40614,9 @@ components:
       example:
         data:
           key:
-            universe: ""
             formulas:
-            - ""
-            - ""
-            dates: ""
+            - null
+            - null
         meta:
           contentorganization: SimplifiedRow
           allowArrayData: true

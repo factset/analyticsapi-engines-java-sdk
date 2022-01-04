@@ -7,9 +7,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**universe** | [**OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse**](OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse.md) |  |  [optional]
-**dates** | [**OneOfQuantFdsDateQuantDateList**](OneOfQuantFdsDateQuantDateList.md) |  |  [optional]
-**formulas** | [**java.util.List&lt;OneOfQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters&gt;**](OneOfQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters.md) |  |  [optional]
+**universe** | [**OneOfQuantUniverse**](OneOfQuantUniverse.md) |  |  [optional]
+**dates** | [**OneOfQuantDates**](OneOfQuantDates.md) |  |  [optional]
+**formulas** | [**java.util.List&lt;OneOfQuantFormulas&gt;**](OneOfQuantFormulas.md) |  |  [optional]
 
 
 ## Implemented Interfaces
