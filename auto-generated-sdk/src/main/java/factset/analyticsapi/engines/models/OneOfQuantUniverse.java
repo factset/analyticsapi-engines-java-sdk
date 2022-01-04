@@ -63,7 +63,7 @@ import factset.analyticsapi.engines.JSON;
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 @JsonDeserialize(using = OneOfQuantUniverse.OneOfQuantUniverseDeserializer.class)
 @JsonSerialize(using = OneOfQuantUniverse.OneOfQuantUniverseSerializer.class)
-public class OneOfQuantUniverse extends AbstractOpenApiSchema, Serializable {
+public class OneOfQuantUniverse extends AbstractOpenApiSchema implements Serializable {
     private static final Logger log = Logger.getLogger(OneOfQuantUniverse.class.getName());
 
     public static class OneOfQuantUniverseSerializer extends StdSerializer<OneOfQuantUniverse> {
@@ -312,4 +312,3 @@ public class OneOfQuantUniverse extends AbstractOpenApiSchema, Serializable {
     }
 
 }
-

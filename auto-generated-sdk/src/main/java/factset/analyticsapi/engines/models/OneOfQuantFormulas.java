@@ -64,7 +64,7 @@ import factset.analyticsapi.engines.JSON;
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 @JsonDeserialize(using = OneOfQuantFormulas.OneOfQuantFormulasDeserializer.class)
 @JsonSerialize(using = OneOfQuantFormulas.OneOfQuantFormulasSerializer.class)
-public class OneOfQuantFormulas extends AbstractOpenApiSchema, Serializable {
+public class OneOfQuantFormulas extends AbstractOpenApiSchema implements Serializable {
     private static final Logger log = Logger.getLogger(OneOfQuantFormulas.class.getName());
 
     public static class OneOfQuantFormulasSerializer extends StdSerializer<OneOfQuantFormulas> {
@@ -364,4 +364,3 @@ public class OneOfQuantFormulas extends AbstractOpenApiSchema, Serializable {
     }
 
 }
-
