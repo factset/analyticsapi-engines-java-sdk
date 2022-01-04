@@ -98,11 +98,15 @@ Name | Type | Description  | Notes
 
 ## getPAComponents
 
-> ComponentSummaryRoot getPAComponents(document)
+> ComponentSummaryRoot getPAComponents(document, directory)
 
 Get PA components
 
-This endpoint returns the list of PA components in a given PA document.
+This endpoint returns  
+
+1.List of PA components in a given PA document if document name is provided.
+
+2.List of components in given directory if directory is provided.
 
 ### Example
 
@@ -131,8 +135,9 @@ public class Example {
 
         ComponentsApi apiInstance = new ComponentsApi(defaultClient);
         String document = "document_example"; // String | Document Name
+        String directory = "directory_example"; // String | Directory to get the components
         try {
-            ComponentSummaryRoot result = apiInstance.getPAComponents(document);
+            ComponentSummaryRoot result = apiInstance.getPAComponents(document, directory);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ComponentsApi#getPAComponents");
@@ -150,7 +155,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **document** | **String**| Document Name |
+ **document** | **String**| Document Name | [optional]
+ **directory** | **String**| Directory to get the components | [optional]
 
 ### Return type
 

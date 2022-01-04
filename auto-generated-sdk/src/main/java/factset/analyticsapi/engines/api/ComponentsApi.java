@@ -139,8 +139,9 @@ public class ComponentsApi {
   }
   /**
    * Get PA components
-   * This endpoint returns the list of PA components in a given PA document.
-   * @param document Document Name (required)
+   * This endpoint returns      1.List of PA components in a given PA document if document name is provided.    2.List of components in given directory if directory is provided.
+   * @param document Document Name (optional)
+   * @param directory Directory to get the components (optional)
     @return ComponentSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
@@ -157,14 +158,15 @@ public class ComponentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public ComponentSummaryRoot getPAComponents(String document) throws ApiException {
-    return getPAComponentsWithHttpInfo(document).getData();
+ public ComponentSummaryRoot getPAComponents(String document, String directory) throws ApiException {
+    return getPAComponentsWithHttpInfo(document, directory).getData();
   }
 
   /**
    * Get PA components
-   * This endpoint returns the list of PA components in a given PA document.
-   * @param document Document Name (required)
+   * This endpoint returns      1.List of PA components in a given PA document if document name is provided.    2.List of components in given directory if directory is provided.
+   * @param document Document Name (optional)
+   * @param directory Directory to get the components (optional)
     * @return ApiResponse&lt;ComponentSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
@@ -181,13 +183,8 @@ public class ComponentsApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<ComponentSummaryRoot> getPAComponentsWithHttpInfo(String document) throws ApiException {
+  public ApiResponse<ComponentSummaryRoot> getPAComponentsWithHttpInfo(String document, String directory) throws ApiException {
     Object localVarPostBody = null;
-    
-    // verify the required parameter 'document' is set
-    if (document == null) {
-      throw new ApiException(400, "Missing the required parameter 'document' when calling getPAComponents");
-    }
     
     // create path and map variables
     String localVarPath = "/analytics/engines/pa/v3/components";
@@ -199,6 +196,7 @@ public class ComponentsApi {
     java.util.Map<String, Object> localVarFormParams = new java.util.HashMap<String, Object>();
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "document", document));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "directory", directory));
 
     
     
