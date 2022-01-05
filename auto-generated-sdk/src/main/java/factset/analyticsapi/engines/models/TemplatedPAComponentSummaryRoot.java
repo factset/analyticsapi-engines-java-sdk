@@ -25,9 +25,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.TemplatedPAComponentSummary;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import factset.analyticsapi.engines.JSON;
@@ -48,7 +45,7 @@ public class TemplatedPAComponentSummaryRoot implements Serializable {
   private java.util.Map<String, TemplatedPAComponentSummary> data = new java.util.HashMap<String, TemplatedPAComponentSummary>();
 
   public static final String JSON_PROPERTY_META = "meta";
-  private JsonNullable<Object> meta = JsonNullable.<Object>of(null);
+  private Object meta;
 
 
   public TemplatedPAComponentSummaryRoot data(java.util.Map<String, TemplatedPAComponentSummary> data) {
@@ -80,7 +77,7 @@ public class TemplatedPAComponentSummaryRoot implements Serializable {
 
 
   public TemplatedPAComponentSummaryRoot meta(Object meta) {
-    this.meta = JsonNullable.<Object>of(meta);
+    this.meta = meta;
     return this;
   }
 
@@ -90,26 +87,16 @@ public class TemplatedPAComponentSummaryRoot implements Serializable {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonIgnore
-
-  public Object getMeta() {
-        return meta.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_META)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getMeta_JsonNullable() {
+  public Object getMeta() {
     return meta;
   }
-  
-  @JsonProperty(JSON_PROPERTY_META)
-  public void setMeta_JsonNullable(JsonNullable<Object> meta) {
-    this.meta = meta;
-  }
+
 
   public void setMeta(Object meta) {
-    this.meta = JsonNullable.<Object>of(meta);
+    this.meta = meta;
   }
 
 

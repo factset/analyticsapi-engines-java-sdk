@@ -24,9 +24,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import factset.analyticsapi.engines.JSON;
@@ -44,10 +41,10 @@ public class ObjectRoot implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_DATA = "data";
-  private Object data = null;
+  private Object data;
 
   public static final String JSON_PROPERTY_META = "meta";
-  private JsonNullable<Object> meta = JsonNullable.<Object>of(null);
+  private Object meta;
 
 
   public ObjectRoot data(Object data) {
@@ -59,7 +56,6 @@ public class ObjectRoot implements Serializable {
    * Get data
    * @return data
   **/
-  @javax.annotation.Nullable
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -75,7 +71,7 @@ public class ObjectRoot implements Serializable {
 
 
   public ObjectRoot meta(Object meta) {
-    this.meta = JsonNullable.<Object>of(meta);
+    this.meta = meta;
     return this;
   }
 
@@ -85,26 +81,16 @@ public class ObjectRoot implements Serializable {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonIgnore
-
-  public Object getMeta() {
-        return meta.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_META)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getMeta_JsonNullable() {
+  public Object getMeta() {
     return meta;
   }
-  
-  @JsonProperty(JSON_PROPERTY_META)
-  public void setMeta_JsonNullable(JsonNullable<Object> meta) {
-    this.meta = meta;
-  }
+
 
   public void setMeta(Object meta) {
-    this.meta = JsonNullable.<Object>of(meta);
+    this.meta = meta;
   }
 
 
