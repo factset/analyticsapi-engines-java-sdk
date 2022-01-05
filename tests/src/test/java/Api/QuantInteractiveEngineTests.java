@@ -12,6 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -34,28 +35,39 @@ public class QuantInteractiveEngineTests {
         QuantCalculationParameters quantItem = new QuantCalculationParameters();
 
         QuantFdsDate fdsDate = new QuantFdsDate();
-        fdsDate.startDate(CommonParameters.QuantStartDate);
-        fdsDate.endDate(CommonParameters.QuantEndDate);
-        fdsDate.frequency(CommonParameters.QuantFrequency);
-        fdsDate.calendar(CommonParameters.QuantCalender);
+        fdsDate.setStartDate(CommonParameters.QuantStartDate);
+        fdsDate.setEndDate(CommonParameters.QuantEndDate);
+        fdsDate.setFrequency(CommonParameters.QuantFrequency);
+        fdsDate.setCalendar(CommonParameters.QuantCalender);
+        fdsDate.setSource(QuantFdsDate.SourceEnum.FDSDATE);
+        
+        OneOfQuantDates dates = new OneOfQuantDates(fdsDate);
 
         QuantScreeningExpressionUniverse screeningExpressionUniverse = new QuantScreeningExpressionUniverse();
-        screeningExpressionUniverse.universeExpr(CommonParameters.QuantUniverseExpr);
-        screeningExpressionUniverse.universeType(CommonParameters.QuantUniverseType);
-        screeningExpressionUniverse.securityExpr(CommonParameters.QuantSecurityExpr);
+        screeningExpressionUniverse.setUniverseExpr(CommonParameters.QuantUniverseExpr);
+        screeningExpressionUniverse.setUniverseType(CommonParameters.QuantUniverseType);
+        screeningExpressionUniverse.setSecurityExpr(CommonParameters.QuantSecurityExpr);
+        screeningExpressionUniverse.setSource(QuantScreeningExpressionUniverse.SourceEnum.SCREENINGEXPRESSIONUNIVERSE);
+        
+        OneOfQuantUniverse universe = new OneOfQuantUniverse(screeningExpressionUniverse);
 
         QuantScreeningExpression screeningExpression = new QuantScreeningExpression();
         screeningExpression.expr(CommonParameters.QuantScreeningExpr);
         screeningExpression.name(CommonParameters.QuantScreeningName);
+        screeningExpression.setSource(QuantScreeningExpression.SourceEnum.SCREENINGEXPRESSION);
 
         QuantFqlExpression fqlExpression = new QuantFqlExpression();
         fqlExpression.expr(CommonParameters.QuantFqlExpr);
         fqlExpression.name(CommonParameters.QuantFqlName);
+        fqlExpression.setSource(QuantFqlExpression.SourceEnum.FQLEXPRESSION);
+        
+        List<OneOfQuantFormulas> formulas = new ArrayList<OneOfQuantFormulas>();
+        formulas.add(new OneOfQuantFormulas(screeningExpression));
+        formulas.add(new OneOfQuantFormulas(fqlExpression));
 
-        quantItem.fdsDate(fdsDate);
-        quantItem.addScreeningExpressionItem(screeningExpression);
-        quantItem.addFqlExpressionItem(fqlExpression);
-        quantItem.screeningExpressionUniverse(screeningExpressionUniverse);
+        quantItem.setDates(dates);
+        quantItem.setUniverse(universe);
+        quantItem.setFormulas(formulas);
 
         return quantItem;
     }
