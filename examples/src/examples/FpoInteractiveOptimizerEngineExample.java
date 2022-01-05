@@ -8,6 +8,10 @@ import java.util.UUID;
 
 import javax.ws.rs.client.ClientBuilder;
 
+import com.factset.protobuf.stach.extensions.models.Row;
+import com.factset.protobuf.stach.extensions.v2.StachUtilities;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Value;
 import factset.analyticsapi.engines.models.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -32,10 +36,10 @@ import factset.analyticsapi.engines.models.OptimizerTradesList.IdentifierTypeEnu
 
 public class FpoInteractiveOptimizerEngineExample {
   private static FdsApiClient apiClient = null;
-  private static String BASE_PATH = "https://api.factset.com";
-  private static String USERNAME = "<username-serial>";
-  private static String PASSWORD = "<apiKey>";
-  
+  private static String BASE_PATH = System.getenv("FACTSET_HOST");
+  private static String USERNAME = System.getenv("FACTSET_USERNAME");
+  private static String PASSWORD = System.getenv("FACTSET_PASSWORD");
+
   private static String FPO_ACCOUNT_ID = "CLIENT:/FPO/1K_MAC_AMZN_AAPL.ACCT";
   private static String FPO_PA_DOC_NAME = "CLIENT:/FPO/FPO_MASTER";
   private static String FPO_OPTIMIZATION_DATE = "0M";
@@ -87,6 +91,9 @@ public class FpoInteractiveOptimizerEngineExample {
       fpoOptimizerParam.setData(fpoItem);
       
       ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, null, fpoOptimizerParam);
+      // Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is at max 5 minutes older.
+      // String cacheControlInput = "max-stale=300";
+      // ApiResponse<Object> response = apiInstance.postAndOptimizeWithHttpInfo(null, cacheControlInput, fpoOptimizerParam);
       Map<String, List<String>> headers = response.getHeaders();
       
       Object result = null;
@@ -138,12 +145,27 @@ public class FpoInteractiveOptimizerEngineExample {
       }
       
       ObjectMapper mapper = new ObjectMapper();
-      String json = mapper.writeValueAsString(tables);
-      System.out.println(json); // Prints the result in 2D table format.
+      for (TableData table : tables) {
+        // Prints the results in 2D table format.
+        List<Row> rows = table.getRows();
+        String json = mapper.writeValueAsString(rows);
+        System.out.println(json);
+
+        // Prints the metadata
+        if (table.getRawMetadata().size() > 0) System.out.println("Printing metadata...");
+        for (Map.Entry<String, List<Value>> rawMetadata : table.getRawMetadata().entrySet()) {
+          for (Value val : rawMetadata.getValue()) {
+            System.out.println("  " + rawMetadata.getKey() + ": " + StachUtilities.valueToString(val));
+          }
+        }
+      }
       // Uncomment the following line to generate an Excel file
       // generateExcel(tables);
     } catch (ApiException e) {
       handleException("FpoOptimizerEngineExample#Main", e);
+    } catch (InvalidProtocolBufferException e) {
+      System.out.println(e.getMessage());
+      e.printStackTrace();
     }
   }
   
@@ -196,7 +218,6 @@ public class FpoInteractiveOptimizerEngineExample {
     apiClient.setBasePath(BASE_PATH);
     apiClient.setUsername(USERNAME);
     apiClient.setPassword(PASSWORD);
-    
     return apiClient;
   }
   

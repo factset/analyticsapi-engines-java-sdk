@@ -9,6 +9,10 @@ import java.util.UUID;
 
 import javax.ws.rs.client.ClientBuilder;
 
+import com.factset.protobuf.stach.extensions.models.Row;
+import com.factset.protobuf.stach.extensions.v2.StachUtilities;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Value;
 import factset.analyticsapi.engines.models.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -34,10 +38,10 @@ import factset.analyticsapi.engines.api.FiCalculationsApi;
 
 public class FiInteractiveEngineExample {
   private static FdsApiClient apiClient = null;
-  private static String BASE_PATH = "https://api.factset.com";
-  private static String USERNAME = "<username-serial>";
-  private static String PASSWORD = "<apiKey>";
-  
+  private static String BASE_PATH = System.getenv("FACTSET_HOST");
+  private static String USERNAME = System.getenv("FACTSET_USERNAME");
+  private static String PASSWORD = System.getenv("FACTSET_PASSWORD");
+
   private static String FI_CALC_FROM_METHOD = "Price";
   private static Double FI_CALC_FROM_VALUE = 108.40299;
   private static Double FI_CALC_FROM_VALUE_2 = 100.285;
@@ -88,6 +92,9 @@ public class FiInteractiveEngineExample {
       fiCalcParam.data(calcParameters);
       
       ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, fiCalcParam);
+      // Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is at max 5 minutes older.
+      // String cacheControlInput = "max-stale=300";
+      // ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, cacheControlInput, fiCalcParam);
       Map<String, List<String>> headers = response.getHeaders();
       
       Object result = null;
@@ -134,12 +141,27 @@ public class FiInteractiveEngineExample {
       }
       
       ObjectMapper mapper = new ObjectMapper();
-      String json = mapper.writeValueAsString(tables);
-      System.out.println(json); // Prints the result in 2D table format.
+      for (TableData table : tables) {
+        // Prints the results in 2D table format.
+        List<Row> rows = table.getRows();
+        String json = mapper.writeValueAsString(rows);
+        System.out.println(json);
+
+        // Prints the metadata
+        if (table.getRawMetadata().size() > 0) System.out.println("Printing metadata...");
+        for (Map.Entry<String, List<Value>> rawMetadata : table.getRawMetadata().entrySet()) {
+          for (Value val : rawMetadata.getValue()) {
+            System.out.println("  " + rawMetadata.getKey() + ": " + StachUtilities.valueToString(val));
+          }
+        }
+      }
       // Uncomment the following line to generate an Excel file
       // generateExcel(tables);
     } catch (ApiException e) {
       handleException("FiEngineExample#Main", e);
+    } catch (InvalidProtocolBufferException e) {
+      System.out.println(e.getMessage());
+      e.printStackTrace();
     }
   }
   
@@ -191,7 +213,6 @@ public class FiInteractiveEngineExample {
     apiClient.setBasePath(BASE_PATH);
     apiClient.setUsername(USERNAME);
     apiClient.setPassword(PASSWORD);
-    
     return apiClient;
   }
   

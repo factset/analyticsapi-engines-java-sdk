@@ -94,20 +94,11 @@ public class FpoInteractiveOptimizerEngineApiTests {
           headers = response.getHeaders();
           Assert.assertTrue("Get status response status code should be 201 or 202",
               response.getStatusCode() == 201 || response.getStatusCode() == 202);
-          List<String> cacheControl = headers.get("Cache-Control");
-          if (cacheControl != null) {
-            int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));
-            System.out.println("Sleeping for: " + maxAge + " seconds");
-            Thread.sleep(maxAge * 1000L);
-          } else {
-            System.out.println("Sleeping for: 2 seconds");
-            Thread.sleep(2 * 1000L);
-          }
-          response = apiInstance.getOptimizationStatusByIdWithHttpInfo(requestId);
+          System.out.println("Sleeping for: 10 seconds");
+          Thread.sleep(10 * 1000L);
         } while(response.getStatusCode() == 202);
         break;
     }
-    headers = response.getHeaders();
     String[] location = headers.get("Location").get(0).split("/");
     String id = location[location.length - 2];
     ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id, CommonParameters.ACCEPT_HEADER_VALUE);

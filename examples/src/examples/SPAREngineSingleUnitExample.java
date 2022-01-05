@@ -8,6 +8,10 @@ import java.util.UUID;
 
 import javax.ws.rs.client.ClientBuilder;
 
+import com.factset.protobuf.stach.extensions.models.Row;
+import com.factset.protobuf.stach.extensions.v2.StachUtilities;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Value;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -33,10 +37,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SPAREngineSingleUnitExample {
   
   private static FdsApiClient apiClient = null;
-  private static String BASE_PATH = "https://api.factset.com";
-  private static String USERNAME = "<username-serial>";
-  private static String PASSWORD = "<apiKey>";
-  
+  private static String BASE_PATH = System.getenv("FACTSET_HOST");
+  private static String USERNAME = System.getenv("FACTSET_USERNAME");
+  private static String PASSWORD = System.getenv("FACTSET_PASSWORD");
+
   private static String SPAR_DEFAULT_DOCUMENT = "pmw_root:/spar_documents/Factset Default Document";
   private static String COMPONENT_NAME = "Returns Table";
   private static String COMPONENT_CATEGORY = "Raw Data / Returns";
@@ -90,7 +94,9 @@ public class SPAREngineSingleUnitExample {
       SparCalculationsApi apiInstance = new SparCalculationsApi(getApiClient());
       
       ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, null, calcParameters);
-      
+      // Comment the above line and uncomment the below lines to add cache control configuration. Results are by default cached for 12 hours; Setting max-stale=300 will fetch a cached result which is at max 5 minutes older.
+      // String cacheControlInput = "max-stale=300";
+      // ApiResponse<Object> response = apiInstance.postAndCalculateWithHttpInfo(null, cacheControlInput, calcParameters);
       ApiResponse<CalculationStatusRoot> getStatus = null;
       Object result = null;
       switch (response.getStatusCode()) {
@@ -149,12 +155,27 @@ public class SPAREngineSingleUnitExample {
       }
       
       ObjectMapper mapper = new ObjectMapper();
-      String json = mapper.writeValueAsString(tables);
-      System.out.println(json); // Prints the result in 2D table format.
+      for (TableData table : tables) {
+        // Prints the results in 2D table format.
+        List<Row> rows = table.getRows();
+        String json = mapper.writeValueAsString(rows);
+        System.out.println(json);
+
+        // Prints the metadata
+        if (table.getRawMetadata().size() > 0) System.out.println("Printing metadata...");
+        for (Map.Entry<String, List<Value>> rawMetadata : table.getRawMetadata().entrySet()) {
+          for (Value val : rawMetadata.getValue()) {
+            System.out.println("  " + rawMetadata.getKey() + ": " + StachUtilities.valueToString(val));
+          }
+        }
+      }
       // Uncomment the following line to generate an Excel file
       // generateExcel(tables);
     } catch (ApiException e) {
       handleException("SPAREngineExample#Main", e);
+    } catch (InvalidProtocolBufferException e) {
+      System.out.println(e.getMessage());
+      e.printStackTrace();
     }
     
   }
@@ -208,7 +229,7 @@ public class SPAREngineSingleUnitExample {
     apiClient.setBasePath(BASE_PATH);
     apiClient.setUsername(USERNAME);
     apiClient.setPassword(PASSWORD);
-    
+
     return apiClient;
   }
   
