@@ -80,7 +80,6 @@ public class BpmInteractiveOptimizerEngineApiTests {
         String[] locationList = headers.get("Location").get(0).split("/");
         String requestId = locationList[locationList.length - 2];
         do {
-          response = apiInstance.getOptimizationStatusByIdWithHttpInfo(requestId);
           headers = response.getHeaders();
           Assert.assertTrue("Get status response status code should be 201 or 202",
               response.getStatusCode() == 201 || response.getStatusCode() == 202);
@@ -93,9 +92,11 @@ public class BpmInteractiveOptimizerEngineApiTests {
             System.out.println("Sleeping for: 2 seconds");
             Thread.sleep(2 * 1000L);
           }
+          response = apiInstance.getOptimizationStatusByIdWithHttpInfo(requestId);
         } while(response.getStatusCode() == 202);
         break;
     } 
+    headers = response.getHeaders();
     String[] location = headers.get("Location").get(0).split("/");
     String calcId = location[location.length-2];
     ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(calcId);

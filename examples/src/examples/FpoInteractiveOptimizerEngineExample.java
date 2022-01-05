@@ -63,13 +63,14 @@ public class FpoInteractiveOptimizerEngineExample {
       optimization.setRiskModelDate(FPO_OPTIMIZATION_DATE);
       optimization.setCashflow(OPTIMIZATION_CASHFLOW);
       
-      OptimizerStrategy strategy = new OptimizerStrategy();
+      FPOOptimizerStrategy strategy = new FPOOptimizerStrategy();
       strategy.setId(STRATEGY_ID);
-      OptimizerOutputTypes optOutputTypes = new OptimizerOutputTypes();
       
       OptimizerTradesList tradesList = new OptimizerTradesList();
       tradesList.setIdentifierType(TRADES_ID_TYPE);
       tradesList.setIncludeCash(INCLUDE_CASH);
+      
+      OptimizerOutputTypes optOutputTypes = new OptimizerOutputTypes();
       optOutputTypes.setTrades(tradesList);
       
       // OptimizerOptimalHoldings optimal = new OptimizerOptimalHoldings();
@@ -99,8 +100,10 @@ public class FpoInteractiveOptimizerEngineExample {
           String calculationId = status.getData().getCalculationId();
           do {
             response = apiInstance.getOptimizationStatusByIdWithHttpInfo(calculationId);
-            headers = response.getHeaders();
+            if(response.getStatusCode() == 201)
+              break;
             
+            headers = response.getHeaders();    
             List<String> cacheControl = headers.get("Cache-Control");
             if (cacheControl != null) {
               int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));

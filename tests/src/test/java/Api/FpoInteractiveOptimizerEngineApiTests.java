@@ -103,9 +103,11 @@ public class FpoInteractiveOptimizerEngineApiTests {
             System.out.println("Sleeping for: 2 seconds");
             Thread.sleep(2 * 1000L);
           }
+          response = apiInstance.getOptimizationStatusByIdWithHttpInfo(requestId);
         } while(response.getStatusCode() == 202);
         break;
     }
+    headers = response.getHeaders();
     String[] location = headers.get("Location").get(0).split("/");
     String id = location[location.length - 2];
     ApiResponse<ObjectRoot> resultResponse = apiInstance.getOptimizationResultWithHttpInfo(id, CommonParameters.ACCEPT_HEADER_VALUE);
