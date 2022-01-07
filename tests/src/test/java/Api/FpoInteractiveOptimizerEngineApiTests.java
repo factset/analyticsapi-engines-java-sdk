@@ -14,10 +14,10 @@ import factset.analyticsapi.engines.api.FpoOptimizerApi;
 import factset.analyticsapi.engines.models.FPOAccount;
 import factset.analyticsapi.engines.models.FPOOptimizationParameters;
 import factset.analyticsapi.engines.models.FPOOptimizationParametersRoot;
+import factset.analyticsapi.engines.models.FPOOptimizerStrategy;
 import factset.analyticsapi.engines.models.ObjectRoot;
 import factset.analyticsapi.engines.models.Optimization;
 import factset.analyticsapi.engines.models.OptimizerOutputTypes;
-import factset.analyticsapi.engines.models.OptimizerStrategy;
 import factset.analyticsapi.engines.models.OptimizerTradesList;
 import factset.analyticsapi.engines.models.PaDoc;
 
@@ -46,7 +46,7 @@ public class FpoInteractiveOptimizerEngineApiTests {
     optimization.setBacktestDate(CommonParameters.FpoOptimizationDate);
     optimization.setRiskModelDate(CommonParameters.FpoOptimizationDate);
     optimization.setCashflow(CommonParameters.OptimizationCashflow);
-    OptimizerStrategy strategy = new OptimizerStrategy();
+    FPOOptimizerStrategy strategy = new FPOOptimizerStrategy();
     strategy.setId(CommonParameters.FpoOptimizationStrategyId);
     OptimizerOutputTypes optOutputTypes = new OptimizerOutputTypes();
     OptimizerTradesList tradesList = new OptimizerTradesList();

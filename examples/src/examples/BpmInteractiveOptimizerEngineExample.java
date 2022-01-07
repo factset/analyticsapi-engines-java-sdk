@@ -87,8 +87,10 @@ public class BpmInteractiveOptimizerEngineExample {
           String calculationId = status.getData().getCalculationId();
           do {
             response = apiInstance.getOptimizationStatusByIdWithHttpInfo(calculationId);
-            headers = response.getHeaders();
+            if(response.getStatusCode() == 201)
+                break;
 
+            headers = response.getHeaders();
             List<String> cacheControl = headers.get("Cache-Control");
             if (cacheControl != null) {
               int maxAge = Integer.parseInt(cacheControl.get(0).replace("max-age=", ""));

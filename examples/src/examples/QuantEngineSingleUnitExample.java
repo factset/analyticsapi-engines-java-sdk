@@ -1,6 +1,7 @@
 package examples;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import com.google.protobuf.Value;
 import factset.analyticsapi.engines.models.*;
+
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -58,28 +60,43 @@ public class QuantEngineSingleUnitExample {
       QuantCalculationParameters quantItem = new QuantCalculationParameters();
       
       QuantFdsDate fdsDate = new QuantFdsDate();
-      fdsDate.startDate(QUANT_START_DATE);
-      fdsDate.endDate(QUANT_END_DATE);
-      fdsDate.frequency(QUANT_FREQUENCY);
-      fdsDate.calendar(QUANT_CALENDAR);
+      fdsDate.setStartDate(QUANT_START_DATE);
+      fdsDate.setEndDate(QUANT_END_DATE);
+      fdsDate.setFrequency(QUANT_FREQUENCY);
+      fdsDate.setCalendar(QUANT_CALENDAR);
+      fdsDate.setSource(QuantFdsDate.SourceEnum.FDSDATE);
+      
+      OneOfQuantDates dates = new OneOfQuantDates(fdsDate);
       
       QuantScreeningExpressionUniverse screeningExpressionUniverse = new QuantScreeningExpressionUniverse();
-      screeningExpressionUniverse.universeExpr(UNIVERSE_EXPR);
-      screeningExpressionUniverse.universeType(UNIVERSE_TYPE);
-      screeningExpressionUniverse.securityExpr(SECURITY_EXPR);
+      screeningExpressionUniverse.setUniverseExpr(UNIVERSE_EXPR);
+      screeningExpressionUniverse.setUniverseType(UNIVERSE_TYPE);
+      screeningExpressionUniverse.setSecurityExpr(SECURITY_EXPR);
+      screeningExpressionUniverse.setSource(QuantScreeningExpressionUniverse.SourceEnum.SCREENINGEXPRESSIONUNIVERSE);
       
+      OneOfQuantUniverse universe = new OneOfQuantUniverse(screeningExpressionUniverse);
+            
       QuantScreeningExpression screeningExpression = new QuantScreeningExpression();
-      screeningExpression.expr(SCREENING_EXPR);
-      screeningExpression.name(SCREENING_NAME);
+      screeningExpression.setExpr(SCREENING_EXPR);
+      screeningExpression.setName(SCREENING_NAME);
+      screeningExpression.setSource(QuantScreeningExpression.SourceEnum.SCREENINGEXPRESSION);
+      
+      OneOfQuantFormulas screeningExpersionFormula = new OneOfQuantFormulas(screeningExpression);
       
       QuantFqlExpression fqlExpression = new QuantFqlExpression();
-      fqlExpression.expr(FQL_EXPR);
-      fqlExpression.name(FQL_NAME);
+      fqlExpression.setExpr(FQL_EXPR);
+      fqlExpression.setName(FQL_NAME);
+      fqlExpression.setSource(QuantFqlExpression.SourceEnum.FQLEXPRESSION);
       
-      quantItem.fdsDate(fdsDate);
-      quantItem.addScreeningExpressionItem(screeningExpression);
-      quantItem.addFqlExpressionItem(fqlExpression);
-      quantItem.screeningExpressionUniverse(screeningExpressionUniverse);
+      OneOfQuantFormulas fqlExpressionFormula = new OneOfQuantFormulas(fqlExpression);
+      
+      List<OneOfQuantFormulas> formulas = new ArrayList<OneOfQuantFormulas>();
+      formulas.add(screeningExpersionFormula);
+      formulas.add(fqlExpressionFormula);
+            
+      quantItem.setDates(dates);;
+      quantItem.setFormulas(formulas);
+      quantItem.setUniverse(universe);
       
       QuantCalculationParametersRoot quantCalculationParam = new QuantCalculationParametersRoot();
       quantCalculationParam.putDataItem("1", quantItem);
