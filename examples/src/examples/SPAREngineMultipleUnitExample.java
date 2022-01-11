@@ -90,7 +90,7 @@ public class SPAREngineMultipleUnitExample {
       sparItem.setDates(dateParameters);
 
       // To add currency override
-      sparItem.currencyisocode("INR");
+      sparItem.setCurrencyisocode("USD");
       
       calcParameters.putDataItem("1", sparItem);
       calcParameters.putDataItem("2", sparItem);
