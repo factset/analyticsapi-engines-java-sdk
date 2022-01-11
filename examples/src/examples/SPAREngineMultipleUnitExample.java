@@ -88,6 +88,9 @@ public class SPAREngineMultipleUnitExample {
       dateParameters.setEnddate("20181231");
       dateParameters.setFrequency("Monthly");
       sparItem.setDates(dateParameters);
+
+      // To add currency override
+      sparItem.setCurrencyisocode("USD");
       
       calcParameters.putDataItem("1", sparItem);
       calcParameters.putDataItem("2", sparItem);
