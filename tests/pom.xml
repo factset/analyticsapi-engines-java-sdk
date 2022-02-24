@@ -41,11 +41,6 @@
         </dependency>
         <dependency>
             <groupId>com.factset.protobuf</groupId>
-            <artifactId>stach.v2</artifactId>
-            <version>${stach-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.factset.protobuf</groupId>
             <artifactId>stachextensions</artifactId>
             <version>${stach-extension-version}</version>
         </dependency>
@@ -121,7 +116,7 @@
         </dependency>
         <dependency>
             <scope>system</scope>
-            <systemPath>${project.basedir}/../auto-generated-sdk/target/engines-sdk-5.2.0.jar</systemPath>
+            <systemPath>${project.basedir}/../auto-generated-sdk/target/engines-sdk-5.2.1.jar</systemPath>
             <groupId>com.factset.analyticsapi</groupId>
             <artifactId>engines-sdk</artifactId>
             <version>${engines-sdk-version}</version>
@@ -146,8 +141,7 @@
         <javax-annotation-version>1.3.2</javax-annotation-version>
         <junit-version>4.13.1</junit-version>
         <protobuf-version>3.12.2</protobuf-version>
-        <stach-version>1.0.0</stach-version>
-        <stach-extension-version>1.1.0</stach-extension-version>
+        <stach-extension-version>1.1.1</stach-extension-version>
         <engines-sdk-version>5.1.0</engines-sdk-version>
         <poi-ooxml-version>4.0.1</poi-ooxml-version>
     </properties>
