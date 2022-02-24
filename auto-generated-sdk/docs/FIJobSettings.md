@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **partialDurationMonths** | **java.util.List&lt;Integer&gt;** | Partial duration months |  [optional]
 **callMethod** | [**CallMethodEnum**](#CallMethodEnum) | Call Method |  [optional]
 **settlement** | **String** | Settlement Date |  [optional]
-**calcFromMethod** | **String** | Calculation from method |  [optional]
+**calcFromMethod** | **String** | Calculation Method.  Methods : Active Spread, Actual Spread, Actual Spread To Worst Call, OAS, Price, Yield, Yield To No Call, Act/Act Yield To No Call, Bond Equivalent Yield,  Yield To Worst Call, Discount Yield, Discount Margin, Implied Volatility, Bullet Spread, Bullet Spread To Worst Call, Pricing Matrix |  [optional]
 
 
 

@@ -34,8 +34,7 @@ import factset.analyticsapi.engines.JSON;
  */
 @JsonPropertyOrder({
   ComponentSummary.JSON_PROPERTY_NAME,
-  ComponentSummary.JSON_PROPERTY_CATEGORY,
-  ComponentSummary.JSON_PROPERTY_TYPE
+  ComponentSummary.JSON_PROPERTY_CATEGORY
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ComponentSummary implements Serializable {
@@ -46,9 +45,6 @@ public class ComponentSummary implements Serializable {
 
   public static final String JSON_PROPERTY_CATEGORY = "category";
   private String category;
-
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private String type;
 
 
   public ComponentSummary name(String name) {
@@ -99,30 +95,6 @@ public class ComponentSummary implements Serializable {
   }
 
 
-  public ComponentSummary type(String type) {
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Component type.
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Component type.")
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getType() {
-    return type;
-  }
-
-
-  public void setType(String type) {
-    this.type = type;
-  }
-
-
   /**
    * Return true if this ComponentSummary object is equal to o.
    */
@@ -136,13 +108,12 @@ public class ComponentSummary implements Serializable {
     }
     ComponentSummary componentSummary = (ComponentSummary) o;
     return Objects.equals(this.name, componentSummary.name) &&
-        Objects.equals(this.category, componentSummary.category) &&
-        Objects.equals(this.type, componentSummary.type);
+        Objects.equals(this.category, componentSummary.category);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, category, type);
+    return Objects.hash(name, category);
   }
 
   @Override
@@ -151,7 +122,6 @@ public class ComponentSummary implements Serializable {
     sb.append("class ComponentSummary {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

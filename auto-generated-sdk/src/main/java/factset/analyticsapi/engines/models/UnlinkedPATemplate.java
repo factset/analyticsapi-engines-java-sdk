@@ -38,8 +38,8 @@ import factset.analyticsapi.engines.JSON;
  * UnlinkedPATemplate
  */
 @JsonPropertyOrder({
-  UnlinkedPATemplate.JSON_PROPERTY_DIRECTORY,
   UnlinkedPATemplate.JSON_PROPERTY_ID,
+  UnlinkedPATemplate.JSON_PROPERTY_DIRECTORY,
   UnlinkedPATemplate.JSON_PROPERTY_TEMPLATE_TYPE_ID,
   UnlinkedPATemplate.JSON_PROPERTY_SNAPSHOT,
   UnlinkedPATemplate.JSON_PROPERTY_ACCOUNTS,
@@ -58,11 +58,11 @@ import factset.analyticsapi.engines.JSON;
 public class UnlinkedPATemplate implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_DIRECTORY = "directory";
-  private String directory;
-
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
+
+  public static final String JSON_PROPERTY_DIRECTORY = "directory";
+  private String directory;
 
   public static final String JSON_PROPERTY_TEMPLATE_TYPE_ID = "templateTypeId";
   private String templateTypeId;
@@ -104,41 +104,17 @@ public class UnlinkedPATemplate implements Serializable {
   private String category;
 
 
-  public UnlinkedPATemplate directory(String directory) {
-    this.directory = directory;
-    return this;
-  }
-
-   /**
-   * Get directory
-   * @return directory
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_DIRECTORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDirectory() {
-    return directory;
-  }
-
-
-  public void setDirectory(String directory) {
-    this.directory = directory;
-  }
-
-
   public UnlinkedPATemplate id(String id) {
     this.id = id;
     return this;
   }
 
    /**
-   * Get id
+   * Template id.
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Template id.")
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -152,17 +128,41 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
 
+  public UnlinkedPATemplate directory(String directory) {
+    this.directory = directory;
+    return this;
+  }
+
+   /**
+   * Template directory.
+   * @return directory
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Template directory.")
+  @JsonProperty(JSON_PROPERTY_DIRECTORY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDirectory() {
+    return directory;
+  }
+
+
+  public void setDirectory(String directory) {
+    this.directory = directory;
+  }
+
+
   public UnlinkedPATemplate templateTypeId(String templateTypeId) {
     this.templateTypeId = templateTypeId;
     return this;
   }
 
    /**
-   * Get templateTypeId
+   * Template type id
    * @return templateTypeId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Template type id")
   @JsonProperty(JSON_PROPERTY_TEMPLATE_TYPE_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -182,11 +182,11 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
    /**
-   * Get snapshot
+   * snapshot.
    * @return snapshot
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "snapshot.")
   @JsonProperty(JSON_PROPERTY_SNAPSHOT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -214,11 +214,11 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
    /**
-   * Get accounts
+   * List of accounts
    * @return accounts
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of accounts")
   @JsonProperty(JSON_PROPERTY_ACCOUNTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -246,11 +246,11 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
    /**
-   * Get benchmarks
+   * List of benchmarks
    * @return benchmarks
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of benchmarks")
   @JsonProperty(JSON_PROPERTY_BENCHMARKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -278,11 +278,11 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
    /**
-   * Get columns
+   * List of columns for the PA calculation
    * @return columns
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of columns for the PA calculation")
   @JsonProperty(JSON_PROPERTY_COLUMNS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -334,11 +334,11 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
    /**
-   * Get groups
+   * List of groupings for the PA calculation
    * @return groups
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of groupings for the PA calculation")
   @JsonProperty(JSON_PROPERTY_GROUPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -358,11 +358,11 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
    /**
-   * Get currencyisocode
+   * Currency ISO code for calculation.
    * @return currencyisocode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Currency ISO code for calculation.")
   @JsonProperty(JSON_PROPERTY_CURRENCYISOCODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -382,11 +382,11 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
    /**
-   * Get componentdetail
+   * PA storage type. It can be GROUPS or TOTALS or SECURITIES.
    * @return componentdetail
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "PA storage type. It can be GROUPS or TOTALS or SECURITIES.")
   @JsonProperty(JSON_PROPERTY_COMPONENTDETAIL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -430,11 +430,11 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
    /**
-   * Get description
+   * Template description.
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Template description.")
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -454,11 +454,11 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
    /**
-   * Get name
+   * Template name.
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Template name.")
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -478,11 +478,11 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
    /**
-   * Get category
+   * Unlinked template category
    * @return category
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Unlinked template category")
   @JsonProperty(JSON_PROPERTY_CATEGORY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -508,8 +508,8 @@ public class UnlinkedPATemplate implements Serializable {
       return false;
     }
     UnlinkedPATemplate unlinkedPATemplate = (UnlinkedPATemplate) o;
-    return Objects.equals(this.directory, unlinkedPATemplate.directory) &&
-        Objects.equals(this.id, unlinkedPATemplate.id) &&
+    return Objects.equals(this.id, unlinkedPATemplate.id) &&
+        Objects.equals(this.directory, unlinkedPATemplate.directory) &&
         Objects.equals(this.templateTypeId, unlinkedPATemplate.templateTypeId) &&
         Objects.equals(this.snapshot, unlinkedPATemplate.snapshot) &&
         Objects.equals(this.accounts, unlinkedPATemplate.accounts) &&
@@ -527,15 +527,15 @@ public class UnlinkedPATemplate implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(directory, id, templateTypeId, snapshot, accounts, benchmarks, columns, dates, groups, currencyisocode, componentdetail, content, description, name, category);
+    return Objects.hash(id, directory, templateTypeId, snapshot, accounts, benchmarks, columns, dates, groups, currencyisocode, componentdetail, content, description, name, category);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UnlinkedPATemplate {\n");
-    sb.append("    directory: ").append(toIndentedString(directory)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    directory: ").append(toIndentedString(directory)).append("\n");
     sb.append("    templateTypeId: ").append(toIndentedString(templateTypeId)).append("\n");
     sb.append("    snapshot: ").append(toIndentedString(snapshot)).append("\n");
     sb.append("    accounts: ").append(toIndentedString(accounts)).append("\n");

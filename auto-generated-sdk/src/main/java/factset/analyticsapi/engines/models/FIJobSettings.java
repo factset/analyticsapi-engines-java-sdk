@@ -207,11 +207,11 @@ public class FIJobSettings implements Serializable {
   }
 
    /**
-   * Calculation from method
+   * Calculation Method.  Methods : Active Spread, Actual Spread, Actual Spread To Worst Call, OAS, Price, Yield, Yield To No Call, Act/Act Yield To No Call, Bond Equivalent Yield,  Yield To Worst Call, Discount Yield, Discount Margin, Implied Volatility, Bullet Spread, Bullet Spread To Worst Call, Pricing Matrix
    * @return calcFromMethod
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Calculation from method")
+  @ApiModelProperty(value = "Calculation Method.  Methods : Active Spread, Actual Spread, Actual Spread To Worst Call, OAS, Price, Yield, Yield To No Call, Act/Act Yield To No Call, Bond Equivalent Yield,  Yield To Worst Call, Discount Yield, Discount Margin, Implied Volatility, Bullet Spread, Bullet Spread To Worst Call, Pricing Matrix")
   @JsonProperty(JSON_PROPERTY_CALC_FROM_METHOD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

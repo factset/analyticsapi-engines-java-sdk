@@ -7,21 +7,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**directory** | **String** |  |  [optional]
-**id** | **String** |  |  [optional]
-**templateTypeId** | **String** |  |  [optional]
-**snapshot** | **Boolean** |  |  [optional]
-**accounts** | [**java.util.List&lt;PAIdentifier&gt;**](PAIdentifier.md) |  |  [optional]
-**benchmarks** | [**java.util.List&lt;PAIdentifier&gt;**](PAIdentifier.md) |  |  [optional]
-**columns** | [**java.util.List&lt;PACalculationColumn&gt;**](PACalculationColumn.md) |  |  [optional]
+**id** | **String** | Template id. |  [optional]
+**directory** | **String** | Template directory. |  [optional]
+**templateTypeId** | **String** | Template type id |  [optional]
+**snapshot** | **Boolean** | snapshot. |  [optional]
+**accounts** | [**java.util.List&lt;PAIdentifier&gt;**](PAIdentifier.md) | List of accounts |  [optional]
+**benchmarks** | [**java.util.List&lt;PAIdentifier&gt;**](PAIdentifier.md) | List of benchmarks |  [optional]
+**columns** | [**java.util.List&lt;PACalculationColumn&gt;**](PACalculationColumn.md) | List of columns for the PA calculation |  [optional]
 **dates** | [**PADateParameters**](PADateParameters.md) |  |  [optional]
-**groups** | [**java.util.List&lt;PACalculationGroup&gt;**](PACalculationGroup.md) |  |  [optional]
-**currencyisocode** | **String** |  |  [optional]
-**componentdetail** | **String** |  |  [optional]
+**groups** | [**java.util.List&lt;PACalculationGroup&gt;**](PACalculationGroup.md) | List of groupings for the PA calculation |  [optional]
+**currencyisocode** | **String** | Currency ISO code for calculation. |  [optional]
+**componentdetail** | **String** | PA storage type. It can be GROUPS or TOTALS or SECURITIES. |  [optional]
 **content** | [**TemplateContentTypes**](TemplateContentTypes.md) |  |  [optional]
-**description** | **String** |  |  [optional]
-**name** | **String** |  |  [optional]
-**category** | **String** |  |  [optional]
+**description** | **String** | Template description. |  [optional]
+**name** | **String** | Template name. |  [optional]
+**category** | **String** | Unlinked template category |  [optional]
 
 
 ## Implemented Interfaces

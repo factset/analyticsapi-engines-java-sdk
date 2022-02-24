@@ -23,9 +23,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.FPOAccount;
+import factset.analyticsapi.engines.models.FPOOptimizerStrategy;
 import factset.analyticsapi.engines.models.Optimization;
 import factset.analyticsapi.engines.models.OptimizerOutputTypes;
-import factset.analyticsapi.engines.models.OptimizerStrategy;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -50,7 +50,7 @@ public class FPOOptimizationParameters implements Serializable {
   private FPOAccount account;
 
   public static final String JSON_PROPERTY_STRATEGY = "strategy";
-  private OptimizerStrategy strategy;
+  private FPOOptimizerStrategy strategy;
 
   public static final String JSON_PROPERTY_OPTIMIZATION = "optimization";
   private Optimization optimization;
@@ -83,7 +83,7 @@ public class FPOOptimizationParameters implements Serializable {
   }
 
 
-  public FPOOptimizationParameters strategy(OptimizerStrategy strategy) {
+  public FPOOptimizationParameters strategy(FPOOptimizerStrategy strategy) {
     this.strategy = strategy;
     return this;
   }
@@ -96,12 +96,12 @@ public class FPOOptimizationParameters implements Serializable {
   @JsonProperty(JSON_PROPERTY_STRATEGY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public OptimizerStrategy getStrategy() {
+  public FPOOptimizerStrategy getStrategy() {
     return strategy;
   }
 
 
-  public void setStrategy(OptimizerStrategy strategy) {
+  public void setStrategy(FPOOptimizerStrategy strategy) {
     this.strategy = strategy;
   }
 
