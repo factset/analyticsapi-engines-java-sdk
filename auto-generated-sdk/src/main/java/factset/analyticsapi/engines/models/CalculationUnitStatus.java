@@ -37,8 +37,7 @@ import factset.analyticsapi.engines.JSON;
   CalculationUnitStatus.JSON_PROPERTY_STATUS,
   CalculationUnitStatus.JSON_PROPERTY_ERRORS,
   CalculationUnitStatus.JSON_PROPERTY_RESULT,
-  CalculationUnitStatus.JSON_PROPERTY_PROGRESS,
-  CalculationUnitStatus.JSON_PROPERTY_POINTS
+  CalculationUnitStatus.JSON_PROPERTY_PROGRESS
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class CalculationUnitStatus implements Serializable {
@@ -96,9 +95,6 @@ public class CalculationUnitStatus implements Serializable {
 
   public static final String JSON_PROPERTY_PROGRESS = "progress";
   private String progress;
-
-  public static final String JSON_PROPERTY_POINTS = "points";
-  private Integer points;
 
 
   public CalculationUnitStatus status(StatusEnum status) {
@@ -205,30 +201,6 @@ public class CalculationUnitStatus implements Serializable {
   }
 
 
-  public CalculationUnitStatus points(Integer points) {
-    this.points = points;
-    return this;
-  }
-
-   /**
-   * The points for the calculation unit.
-   * @return points
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The points for the calculation unit.")
-  @JsonProperty(JSON_PROPERTY_POINTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getPoints() {
-    return points;
-  }
-
-
-  public void setPoints(Integer points) {
-    this.points = points;
-  }
-
-
   /**
    * Return true if this CalculationUnitStatus object is equal to o.
    */
@@ -244,13 +216,12 @@ public class CalculationUnitStatus implements Serializable {
     return Objects.equals(this.status, calculationUnitStatus.status) &&
         Objects.equals(this.errors, calculationUnitStatus.errors) &&
         Objects.equals(this.result, calculationUnitStatus.result) &&
-        Objects.equals(this.progress, calculationUnitStatus.progress) &&
-        Objects.equals(this.points, calculationUnitStatus.points);
+        Objects.equals(this.progress, calculationUnitStatus.progress);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, errors, result, progress, points);
+    return Objects.hash(status, errors, result, progress);
   }
 
   @Override
@@ -261,7 +232,6 @@ public class CalculationUnitStatus implements Serializable {
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("    result: ").append(toIndentedString(result)).append("\n");
     sb.append("    progress: ").append(toIndentedString(progress)).append("\n");
-    sb.append("    points: ").append(toIndentedString(points)).append("\n");
     sb.append("}");
     return sb.toString();
   }

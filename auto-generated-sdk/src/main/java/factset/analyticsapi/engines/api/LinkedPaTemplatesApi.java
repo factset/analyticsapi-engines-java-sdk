@@ -16,7 +16,6 @@ import java.io.File;
 
 import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.LinkedPATemplateParametersRoot;
-import factset.analyticsapi.engines.models.LinkedPATemplatePostSummaryRoot;
 import factset.analyticsapi.engines.models.LinkedPATemplateRoot;
 import factset.analyticsapi.engines.models.LinkedPATemplateSummaryRoot;
 import factset.analyticsapi.engines.models.LinkedPATemplateUpdateParametersRoot;
@@ -52,9 +51,9 @@ public class LinkedPaTemplatesApi {
 
   /**
    * Create a linked PA template
-   * This endpoint creates a template from an **existing portfolio analysis tile**, allowing the user to replicate and fetch reports settings.    Remarks:    *   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary.       If no mandatory fields are passed, then we can use the template as a component and skip the component creation.        *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   We cannot override the Locked fields when creating the Component.    *   Mandatory and locked strings are mutually exclusive.    *   Multi-horizon frequencies are not supported through this endpoint.
+   * This endpoint creates a template from an **existing portfolio analysis tile**, allowing the user to replicate and fetch reports settings.    Remarks:    *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
    * @param linkedPATemplateParametersRoot Request Parameters (required)
-    @return LinkedPATemplatePostSummaryRoot
+    @return LinkedPATemplateSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -70,15 +69,15 @@ public class LinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public LinkedPATemplatePostSummaryRoot createLinkedPATemplates(LinkedPATemplateParametersRoot linkedPATemplateParametersRoot) throws ApiException {
+ public LinkedPATemplateSummaryRoot createLinkedPATemplates(LinkedPATemplateParametersRoot linkedPATemplateParametersRoot) throws ApiException {
     return createLinkedPATemplatesWithHttpInfo(linkedPATemplateParametersRoot).getData();
   }
 
   /**
    * Create a linked PA template
-   * This endpoint creates a template from an **existing portfolio analysis tile**, allowing the user to replicate and fetch reports settings.    Remarks:    *   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary.       If no mandatory fields are passed, then we can use the template as a component and skip the component creation.        *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   We cannot override the Locked fields when creating the Component.    *   Mandatory and locked strings are mutually exclusive.    *   Multi-horizon frequencies are not supported through this endpoint.
+   * This endpoint creates a template from an **existing portfolio analysis tile**, allowing the user to replicate and fetch reports settings.    Remarks:    *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
    * @param linkedPATemplateParametersRoot Request Parameters (required)
-    * @return ApiResponse&lt;LinkedPATemplatePostSummaryRoot&gt;
+    * @return ApiResponse&lt;LinkedPATemplateSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -94,7 +93,7 @@ public class LinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<LinkedPATemplatePostSummaryRoot> createLinkedPATemplatesWithHttpInfo(LinkedPATemplateParametersRoot linkedPATemplateParametersRoot) throws ApiException {
+  public ApiResponse<LinkedPATemplateSummaryRoot> createLinkedPATemplatesWithHttpInfo(LinkedPATemplateParametersRoot linkedPATemplateParametersRoot) throws ApiException {
     Object localVarPostBody = linkedPATemplateParametersRoot;
     
     // verify the required parameter 'linkedPATemplateParametersRoot' is set
@@ -127,13 +126,13 @@ public class LinkedPaTemplatesApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<LinkedPATemplatePostSummaryRoot> localVarReturnType = new GenericType<LinkedPATemplatePostSummaryRoot>() {};
+    GenericType<LinkedPATemplateSummaryRoot> localVarReturnType = new GenericType<LinkedPATemplateSummaryRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(201, new GenericType<LinkedPATemplatePostSummaryRoot>(){});
+        returnTypeMap.put(201, new GenericType<LinkedPATemplateSummaryRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<LinkedPATemplatePostSummaryRoot>invokeAPIWithReturnMap("LinkedPaTemplatesApi.createLinkedPATemplates", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+      return apiClient.<LinkedPATemplateSummaryRoot>invokeAPIWithReturnMap("LinkedPaTemplatesApi.createLinkedPATemplates", localVarPath, "POST", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -403,10 +402,10 @@ public class LinkedPaTemplatesApi {
   }
   /**
    * Update a linked PA template
-   * This endpoint allows the user to change the request body and description from an existing template.    Remarks:    *   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary.       If no mandatory fields are passed, then we can use the template as a component and skip the component creation.        *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   We cannot override the Locked fields when creating the Component.    *   Mandatory and locked strings are mutually exclusive.    *   Multi-horizon frequencies are not supported through this endpoint.
+   * This endpoint allows the user to change the request body and description from an existing template.    Remarks:    *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
    * @param id Unique identifier for a linked PA template (required)
    * @param linkedPATemplateUpdateParametersRoot Request Parameters (required)
-    @return LinkedPATemplatePostSummaryRoot
+    @return LinkedPATemplateSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -422,16 +421,16 @@ public class LinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public LinkedPATemplatePostSummaryRoot updateLinkedPATemplates(String id, LinkedPATemplateUpdateParametersRoot linkedPATemplateUpdateParametersRoot) throws ApiException {
+ public LinkedPATemplateSummaryRoot updateLinkedPATemplates(String id, LinkedPATemplateUpdateParametersRoot linkedPATemplateUpdateParametersRoot) throws ApiException {
     return updateLinkedPATemplatesWithHttpInfo(id, linkedPATemplateUpdateParametersRoot).getData();
   }
 
   /**
    * Update a linked PA template
-   * This endpoint allows the user to change the request body and description from an existing template.    Remarks:    *   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary.       If no mandatory fields are passed, then we can use the template as a component and skip the component creation.        *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   We cannot override the Locked fields when creating the Component.    *   Mandatory and locked strings are mutually exclusive.    *   Multi-horizon frequencies are not supported through this endpoint.
+   * This endpoint allows the user to change the request body and description from an existing template.    Remarks:    *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
    * @param id Unique identifier for a linked PA template (required)
    * @param linkedPATemplateUpdateParametersRoot Request Parameters (required)
-    * @return ApiResponse&lt;LinkedPATemplatePostSummaryRoot&gt;
+    * @return ApiResponse&lt;LinkedPATemplateSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -447,7 +446,7 @@ public class LinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<LinkedPATemplatePostSummaryRoot> updateLinkedPATemplatesWithHttpInfo(String id, LinkedPATemplateUpdateParametersRoot linkedPATemplateUpdateParametersRoot) throws ApiException {
+  public ApiResponse<LinkedPATemplateSummaryRoot> updateLinkedPATemplatesWithHttpInfo(String id, LinkedPATemplateUpdateParametersRoot linkedPATemplateUpdateParametersRoot) throws ApiException {
     Object localVarPostBody = linkedPATemplateUpdateParametersRoot;
     
     // verify the required parameter 'id' is set
@@ -486,14 +485,14 @@ public class LinkedPaTemplatesApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<LinkedPATemplatePostSummaryRoot> localVarReturnType = new GenericType<LinkedPATemplatePostSummaryRoot>() {};
+    GenericType<LinkedPATemplateSummaryRoot> localVarReturnType = new GenericType<LinkedPATemplateSummaryRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<LinkedPATemplatePostSummaryRoot>(){});
+        returnTypeMap.put(200, new GenericType<LinkedPATemplateSummaryRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<LinkedPATemplatePostSummaryRoot>invokeAPIWithReturnMap("LinkedPaTemplatesApi.updateLinkedPATemplates", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
+      return apiClient.<LinkedPATemplateSummaryRoot>invokeAPIWithReturnMap("LinkedPaTemplatesApi.updateLinkedPATemplates", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

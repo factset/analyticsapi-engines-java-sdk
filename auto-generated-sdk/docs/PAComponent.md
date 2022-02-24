@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 **currencyisocode** | **String** |  |  [optional]
 **dates** | [**PADateParameters**](PADateParameters.md) |  |  [optional]
 **snapshot** | **Boolean** | Is the component type snapshot or subperiod. |  [optional]
-**path** | **String** | The path to the document |  [optional]
 **name** | **String** | Component name. |  [optional]
 **category** | **String** | Component category. |  [optional]
+**type** | **String** | Component type. |  [optional]
 
 
 ## Implemented Interfaces

@@ -41,9 +41,9 @@ import factset.analyticsapi.engines.JSON;
   PAComponent.JSON_PROPERTY_CURRENCYISOCODE,
   PAComponent.JSON_PROPERTY_DATES,
   PAComponent.JSON_PROPERTY_SNAPSHOT,
-  PAComponent.JSON_PROPERTY_PATH,
   PAComponent.JSON_PROPERTY_NAME,
-  PAComponent.JSON_PROPERTY_CATEGORY
+  PAComponent.JSON_PROPERTY_CATEGORY,
+  PAComponent.JSON_PROPERTY_TYPE
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class PAComponent implements Serializable {
@@ -67,14 +67,14 @@ public class PAComponent implements Serializable {
   public static final String JSON_PROPERTY_SNAPSHOT = "snapshot";
   private Boolean snapshot;
 
-  public static final String JSON_PROPERTY_PATH = "path";
-  private String path;
-
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
   public static final String JSON_PROPERTY_CATEGORY = "category";
   private String category;
+
+  public static final String JSON_PROPERTY_TYPE = "type";
+  private String type;
 
 
   public PAComponent id(String id) {
@@ -237,30 +237,6 @@ public class PAComponent implements Serializable {
   }
 
 
-  public PAComponent path(String path) {
-    this.path = path;
-    return this;
-  }
-
-   /**
-   * The path to the document
-   * @return path
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The path to the document")
-  @JsonProperty(JSON_PROPERTY_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getPath() {
-    return path;
-  }
-
-
-  public void setPath(String path) {
-    this.path = path;
-  }
-
-
   public PAComponent name(String name) {
     this.name = name;
     return this;
@@ -309,6 +285,30 @@ public class PAComponent implements Serializable {
   }
 
 
+  public PAComponent type(String type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Component type.
+   * @return type
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Component type.")
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getType() {
+    return type;
+  }
+
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+
   /**
    * Return true if this PAComponent object is equal to o.
    */
@@ -327,14 +327,14 @@ public class PAComponent implements Serializable {
         Objects.equals(this.currencyisocode, paComponent.currencyisocode) &&
         Objects.equals(this.dates, paComponent.dates) &&
         Objects.equals(this.snapshot, paComponent.snapshot) &&
-        Objects.equals(this.path, paComponent.path) &&
         Objects.equals(this.name, paComponent.name) &&
-        Objects.equals(this.category, paComponent.category);
+        Objects.equals(this.category, paComponent.category) &&
+        Objects.equals(this.type, paComponent.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, accounts, benchmarks, currencyisocode, dates, snapshot, path, name, category);
+    return Objects.hash(id, accounts, benchmarks, currencyisocode, dates, snapshot, name, category, type);
   }
 
   @Override
@@ -347,9 +347,9 @@ public class PAComponent implements Serializable {
     sb.append("    currencyisocode: ").append(toIndentedString(currencyisocode)).append("\n");
     sb.append("    dates: ").append(toIndentedString(dates)).append("\n");
     sb.append("    snapshot: ").append(toIndentedString(snapshot)).append("\n");
-    sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

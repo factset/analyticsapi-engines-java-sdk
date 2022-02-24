@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import factset.analyticsapi.engines.models.QuantFormula;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -35,8 +34,7 @@ import factset.analyticsapi.engines.JSON;
  */
 @JsonPropertyOrder({
   QuantUniversalScreenParameter.JSON_PROPERTY_REFERENCE_NAME,
-  QuantUniversalScreenParameter.JSON_PROPERTY_NAME,
-  QuantUniversalScreenParameter.JSON_PROPERTY_SOURCE
+  QuantUniversalScreenParameter.JSON_PROPERTY_NAME
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class QuantUniversalScreenParameter implements Serializable {
@@ -47,48 +45,6 @@ public class QuantUniversalScreenParameter implements Serializable {
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
-
-  /**
-   * Gets or Sets source
-   */
-  public enum SourceEnum {
-    SCREENINGEXPRESSION("ScreeningExpression"),
-    
-    FQLEXPRESSION("FqlExpression"),
-    
-    UNIVERSALSCREENPARAMETER("UniversalScreenParameter"),
-    
-    ALLUNIVERSALSCREENPARAMETERS("AllUniversalScreenParameters");
-
-    private String value;
-
-    SourceEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static SourceEnum fromValue(String value) {
-      for (SourceEnum b : SourceEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_SOURCE = "source";
-  private SourceEnum source;
 
 
   public QuantUniversalScreenParameter referenceName(String referenceName) {
@@ -137,29 +93,6 @@ public class QuantUniversalScreenParameter implements Serializable {
   }
 
 
-  public QuantUniversalScreenParameter source(SourceEnum source) {
-    this.source = source;
-    return this;
-  }
-
-   /**
-   * Get source
-   * @return source
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public SourceEnum getSource() {
-    return source;
-  }
-
-
-  public void setSource(SourceEnum source) {
-    this.source = source;
-  }
-
-
   /**
    * Return true if this QuantUniversalScreenParameter object is equal to o.
    */
@@ -173,13 +106,12 @@ public class QuantUniversalScreenParameter implements Serializable {
     }
     QuantUniversalScreenParameter quantUniversalScreenParameter = (QuantUniversalScreenParameter) o;
     return Objects.equals(this.referenceName, quantUniversalScreenParameter.referenceName) &&
-        Objects.equals(this.name, quantUniversalScreenParameter.name) &&
-        Objects.equals(this.source, quantUniversalScreenParameter.source);
+        Objects.equals(this.name, quantUniversalScreenParameter.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(referenceName, name, source);
+    return Objects.hash(referenceName, name);
   }
 
   @Override
@@ -188,7 +120,6 @@ public class QuantUniversalScreenParameter implements Serializable {
     sb.append("class QuantUniversalScreenParameter {\n");
     sb.append("    referenceName: ").append(toIndentedString(referenceName)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("}");
     return sb.toString();
   }

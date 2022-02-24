@@ -57,11 +57,11 @@ public class UnlinkedPATemplateSummary implements Serializable {
   }
 
    /**
-   * Template description.
+   * Get description
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Template description.")
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -81,11 +81,11 @@ public class UnlinkedPATemplateSummary implements Serializable {
   }
 
    /**
-   * Template name.
+   * Get name
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Template name.")
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -105,11 +105,11 @@ public class UnlinkedPATemplateSummary implements Serializable {
   }
 
    /**
-   * Unlinked template category
+   * Get category
    * @return category
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Unlinked template category")
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CATEGORY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

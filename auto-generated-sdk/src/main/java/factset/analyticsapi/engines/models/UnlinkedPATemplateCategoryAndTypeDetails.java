@@ -22,8 +22,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import factset.analyticsapi.engines.models.UnlinkedPATemplateColumnDetails;
-import factset.analyticsapi.engines.models.UnlinkedPATemplateGroupDetails;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -36,9 +34,6 @@ import factset.analyticsapi.engines.JSON;
  */
 @JsonPropertyOrder({
   UnlinkedPATemplateCategoryAndTypeDetails.JSON_PROPERTY_ID,
-  UnlinkedPATemplateCategoryAndTypeDetails.JSON_PROPERTY_COLUMNS,
-  UnlinkedPATemplateCategoryAndTypeDetails.JSON_PROPERTY_GROUPS,
-  UnlinkedPATemplateCategoryAndTypeDetails.JSON_PROPERTY_SNAPSHOT,
   UnlinkedPATemplateCategoryAndTypeDetails.JSON_PROPERTY_CATEGORY,
   UnlinkedPATemplateCategoryAndTypeDetails.JSON_PROPERTY_NAME
 })
@@ -48,15 +43,6 @@ public class UnlinkedPATemplateCategoryAndTypeDetails implements Serializable {
 
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
-
-  public static final String JSON_PROPERTY_COLUMNS = "columns";
-  private java.util.List<UnlinkedPATemplateColumnDetails> columns = null;
-
-  public static final String JSON_PROPERTY_GROUPS = "groups";
-  private java.util.List<UnlinkedPATemplateGroupDetails> groups = null;
-
-  public static final String JSON_PROPERTY_SNAPSHOT = "snapshot";
-  private Boolean snapshot;
 
   public static final String JSON_PROPERTY_CATEGORY = "category";
   private String category;
@@ -86,94 +72,6 @@ public class UnlinkedPATemplateCategoryAndTypeDetails implements Serializable {
 
   public void setId(String id) {
     this.id = id;
-  }
-
-
-  public UnlinkedPATemplateCategoryAndTypeDetails columns(java.util.List<UnlinkedPATemplateColumnDetails> columns) {
-    this.columns = columns;
-    return this;
-  }
-
-  public UnlinkedPATemplateCategoryAndTypeDetails addColumnsItem(UnlinkedPATemplateColumnDetails columnsItem) {
-    if (this.columns == null) {
-      this.columns = new java.util.ArrayList<UnlinkedPATemplateColumnDetails>();
-    }
-    this.columns.add(columnsItem);
-    return this;
-  }
-
-   /**
-   * List of default columns
-   * @return columns
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "List of default columns")
-  @JsonProperty(JSON_PROPERTY_COLUMNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public java.util.List<UnlinkedPATemplateColumnDetails> getColumns() {
-    return columns;
-  }
-
-
-  public void setColumns(java.util.List<UnlinkedPATemplateColumnDetails> columns) {
-    this.columns = columns;
-  }
-
-
-  public UnlinkedPATemplateCategoryAndTypeDetails groups(java.util.List<UnlinkedPATemplateGroupDetails> groups) {
-    this.groups = groups;
-    return this;
-  }
-
-  public UnlinkedPATemplateCategoryAndTypeDetails addGroupsItem(UnlinkedPATemplateGroupDetails groupsItem) {
-    if (this.groups == null) {
-      this.groups = new java.util.ArrayList<UnlinkedPATemplateGroupDetails>();
-    }
-    this.groups.add(groupsItem);
-    return this;
-  }
-
-   /**
-   * List of default groupings
-   * @return groups
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "List of default groupings")
-  @JsonProperty(JSON_PROPERTY_GROUPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public java.util.List<UnlinkedPATemplateGroupDetails> getGroups() {
-    return groups;
-  }
-
-
-  public void setGroups(java.util.List<UnlinkedPATemplateGroupDetails> groups) {
-    this.groups = groups;
-  }
-
-
-  public UnlinkedPATemplateCategoryAndTypeDetails snapshot(Boolean snapshot) {
-    this.snapshot = snapshot;
-    return this;
-  }
-
-   /**
-   * Snapshot
-   * @return snapshot
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Snapshot")
-  @JsonProperty(JSON_PROPERTY_SNAPSHOT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getSnapshot() {
-    return snapshot;
-  }
-
-
-  public void setSnapshot(Boolean snapshot) {
-    this.snapshot = snapshot;
   }
 
 
@@ -238,16 +136,13 @@ public class UnlinkedPATemplateCategoryAndTypeDetails implements Serializable {
     }
     UnlinkedPATemplateCategoryAndTypeDetails unlinkedPATemplateCategoryAndTypeDetails = (UnlinkedPATemplateCategoryAndTypeDetails) o;
     return Objects.equals(this.id, unlinkedPATemplateCategoryAndTypeDetails.id) &&
-        Objects.equals(this.columns, unlinkedPATemplateCategoryAndTypeDetails.columns) &&
-        Objects.equals(this.groups, unlinkedPATemplateCategoryAndTypeDetails.groups) &&
-        Objects.equals(this.snapshot, unlinkedPATemplateCategoryAndTypeDetails.snapshot) &&
         Objects.equals(this.category, unlinkedPATemplateCategoryAndTypeDetails.category) &&
         Objects.equals(this.name, unlinkedPATemplateCategoryAndTypeDetails.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, columns, groups, snapshot, category, name);
+    return Objects.hash(id, category, name);
   }
 
   @Override
@@ -255,9 +150,6 @@ public class UnlinkedPATemplateCategoryAndTypeDetails implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class UnlinkedPATemplateCategoryAndTypeDetails {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    columns: ").append(toIndentedString(columns)).append("\n");
-    sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
-    sb.append("    snapshot: ").append(toIndentedString(snapshot)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");

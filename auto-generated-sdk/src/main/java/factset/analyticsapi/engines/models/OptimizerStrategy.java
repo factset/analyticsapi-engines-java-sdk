@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import factset.analyticsapi.engines.models.TemplatedPAComponentPostSummary;
+import factset.analyticsapi.engines.models.OptimizerStrategyOverrides;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -31,72 +31,72 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * TemplatedPAComponentPostSummaryRoot
+ * OptimizerStrategy
  */
 @JsonPropertyOrder({
-  TemplatedPAComponentPostSummaryRoot.JSON_PROPERTY_DATA,
-  TemplatedPAComponentPostSummaryRoot.JSON_PROPERTY_META
+  OptimizerStrategy.JSON_PROPERTY_ID,
+  OptimizerStrategy.JSON_PROPERTY_OVERRIDES
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class TemplatedPAComponentPostSummaryRoot implements Serializable {
+public class OptimizerStrategy implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_DATA = "data";
-  private TemplatedPAComponentPostSummary data;
+  public static final String JSON_PROPERTY_ID = "id";
+  private String id;
 
-  public static final String JSON_PROPERTY_META = "meta";
-  private Object meta;
+  public static final String JSON_PROPERTY_OVERRIDES = "overrides";
+  private OptimizerStrategyOverrides overrides;
 
 
-  public TemplatedPAComponentPostSummaryRoot data(TemplatedPAComponentPostSummary data) {
-    this.data = data;
+  public OptimizerStrategy id(String id) {
+    this.id = id;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * OptimizerStrategy document path
+   * @return id
   **/
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_DATA)
+  @ApiModelProperty(required = true, value = "OptimizerStrategy document path")
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public TemplatedPAComponentPostSummary getData() {
-    return data;
+  public String getId() {
+    return id;
   }
 
 
-  public void setData(TemplatedPAComponentPostSummary data) {
-    this.data = data;
+  public void setId(String id) {
+    this.id = id;
   }
 
 
-  public TemplatedPAComponentPostSummaryRoot meta(Object meta) {
-    this.meta = meta;
+  public OptimizerStrategy overrides(OptimizerStrategyOverrides overrides) {
+    this.overrides = overrides;
     return this;
   }
 
    /**
-   * Get meta
-   * @return meta
+   * Get overrides
+   * @return overrides
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_META)
+  @JsonProperty(JSON_PROPERTY_OVERRIDES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Object getMeta() {
-    return meta;
+  public OptimizerStrategyOverrides getOverrides() {
+    return overrides;
   }
 
 
-  public void setMeta(Object meta) {
-    this.meta = meta;
+  public void setOverrides(OptimizerStrategyOverrides overrides) {
+    this.overrides = overrides;
   }
 
 
   /**
-   * Return true if this TemplatedPAComponentPostSummaryRoot object is equal to o.
+   * Return true if this OptimizerStrategy object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -106,22 +106,22 @@ public class TemplatedPAComponentPostSummaryRoot implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TemplatedPAComponentPostSummaryRoot templatedPAComponentPostSummaryRoot = (TemplatedPAComponentPostSummaryRoot) o;
-    return Objects.equals(this.data, templatedPAComponentPostSummaryRoot.data) &&
-        Objects.equals(this.meta, templatedPAComponentPostSummaryRoot.meta);
+    OptimizerStrategy optimizerStrategy = (OptimizerStrategy) o;
+    return Objects.equals(this.id, optimizerStrategy.id) &&
+        Objects.equals(this.overrides, optimizerStrategy.overrides);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, meta);
+    return Objects.hash(id, overrides);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TemplatedPAComponentPostSummaryRoot {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
+    sb.append("class OptimizerStrategy {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    overrides: ").append(toIndentedString(overrides)).append("\n");
     sb.append("}");
     return sb.toString();
   }

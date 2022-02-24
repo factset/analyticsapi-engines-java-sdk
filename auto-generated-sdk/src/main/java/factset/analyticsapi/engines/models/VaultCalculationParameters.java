@@ -160,11 +160,11 @@ public class VaultCalculationParameters implements Serializable {
   }
 
    /**
-   * Component detail type for the Vault component. It can be GROUPS or TOTALS or SECURITIES.
+   * Component detail type for the Vault component. It can be GROUPS or TOTALS.
    * @return componentdetail
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Component detail type for the Vault component. It can be GROUPS or TOTALS or SECURITIES.")
+  @ApiModelProperty(value = "Component detail type for the Vault component. It can be GROUPS or TOTALS.")
   @JsonProperty(JSON_PROPERTY_COMPONENTDETAIL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

@@ -1,13 +1,13 @@
 
 
-# FPOOptimizerStrategyOverrides
+# OptimizerStrategyOverrides
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**objective** | [**FPOObjective**](FPOObjective.md) |  |  [optional]
+**tax** | **String** | Tax |  [optional]
 **constraints** | [**java.util.Map&lt;String, InnerEnum&gt;**](#java.util.Map&lt;String, InnerEnum&gt;) | List of constraints |  [optional]
 **alpha** | **String** | Alpha |  [optional]
 **transactionCost** | **String** | Transaction cost |  [optional]

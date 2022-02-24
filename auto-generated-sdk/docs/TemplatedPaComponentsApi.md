@@ -7,27 +7,17 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createTemplatedPAComponents**](TemplatedPaComponentsApi.md#createTemplatedPAComponents) | **POST** /analytics/engines/pa/v3/templated-components | Create templated PA component
 [**deleteTemplatedPAComponents**](TemplatedPaComponentsApi.md#deleteTemplatedPAComponents) | **DELETE** /analytics/engines/pa/v3/templated-components/{id} | Delete templated PA component
-[**getTemplatedPAComponentById**](TemplatedPaComponentsApi.md#getTemplatedPAComponentById) | **GET** /analytics/engines/pa/v3/templated-components/{id} | Get templated PA component by id
-[**getTemplatedPAComponentsInPath**](TemplatedPaComponentsApi.md#getTemplatedPAComponentsInPath) | **GET** /analytics/engines/pa/v3/templated-components | Get templated PA components in path
 [**updateTemplatedPAComponents**](TemplatedPaComponentsApi.md#updateTemplatedPAComponents) | **PUT** /analytics/engines/pa/v3/templated-components/{id} | Update templated PA component
 
 
 
 ## createTemplatedPAComponents
 
-> TemplatedPAComponentPostSummaryRoot createTemplatedPAComponents(templatedPAComponentParametersRoot)
+> TemplatedPAComponentSummaryRoot createTemplatedPAComponents(templatedPAComponentParametersRoot)
 
 Create templated PA component
 
 This endpoint creates new component based off of linked PA template or unlinked PA template.
-
-Remarks:
-
-*   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.
-
-*   Multi-horizon frequencies are not supported through this endpoint.
-
-*   Componentdetail supports securities, groups, and totals as well but if we don't pass anything that defaults to securities.
 
 ### Example
 
@@ -57,7 +47,7 @@ public class Example {
         TemplatedPaComponentsApi apiInstance = new TemplatedPaComponentsApi(defaultClient);
         TemplatedPAComponentParametersRoot templatedPAComponentParametersRoot = new TemplatedPAComponentParametersRoot(); // TemplatedPAComponentParametersRoot | Request Parameters
         try {
-            TemplatedPAComponentPostSummaryRoot result = apiInstance.createTemplatedPAComponents(templatedPAComponentParametersRoot);
+            TemplatedPAComponentSummaryRoot result = apiInstance.createTemplatedPAComponents(templatedPAComponentParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatedPaComponentsApi#createTemplatedPAComponents");
@@ -79,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TemplatedPAComponentPostSummaryRoot**](TemplatedPAComponentPostSummaryRoot.md)
+[**TemplatedPAComponentSummaryRoot**](TemplatedPAComponentSummaryRoot.md)
 
 ### Authorization
 
@@ -186,186 +176,13 @@ null (empty response body)
 | **503** | Request timed out. Retry the request in sometime. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  |
 
 
-## getTemplatedPAComponentById
-
-> TemplatedPAComponentRoot getTemplatedPAComponentById(id)
-
-Get templated PA component by id
-
-This endpoint fetches the templated PA component settings.
-
-### Example
-
-```java
-// Import classes:
-import factset.analyticsapi.engines.ApiClient;
-import factset.analyticsapi.engines.ApiException;
-import factset.analyticsapi.engines.Configuration;
-import factset.analyticsapi.engines.auth.*;
-import factset.analyticsapi.engines.model.*;
-import factset.analyticsapi.engines.api.TemplatedPaComponentsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
-        
-        // Configure HTTP basic authorization: Basic
-        HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
-        Basic.setUsername("YOUR USERNAME");
-        Basic.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: Bearer
-        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setBearerToken("BEARER TOKEN");
-
-        TemplatedPaComponentsApi apiInstance = new TemplatedPaComponentsApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier for a templated PA component
-        try {
-            TemplatedPAComponentRoot result = apiInstance.getTemplatedPAComponentById(id);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling TemplatedPaComponentsApi#getTemplatedPAComponentById");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getClientErrorResponse());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier for a templated PA component |
-
-### Return type
-
-[**TemplatedPAComponentRoot**](TemplatedPAComponentRoot.md)
-
-### Authorization
-
-[Basic](../README.md#Basic), [Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Expected response, templated PA component details. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
-| **400** | Invalid data provided. Please check the request parameters before attempting again. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
-| **404** | Templated PA component not found. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
-| **401** | Missing or invalid authentication. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  |
-| **403** | User is forbidden with current credentials |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
-| **406** | Unsupported Accept header. Header needs to be set to application/json. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
-| **429** | Rate limit reached. Wait till the time specified in Retry-After header value to make further requests. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * Retry-After - Time to wait in seconds before making a new request as the rate limit has reached. <br>  |
-| **500** | Server error. Log the X-DataDirect-Request-Key header to assist in troubleshooting. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  |
-| **503** | Request timed out. Retry the request in sometime. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  |
-
-
-## getTemplatedPAComponentsInPath
-
-> TemplatedPAComponentSummaryRoot getTemplatedPAComponentsInPath(directory)
-
-Get templated PA components in path
-
-This endpoint returns the list of templated PA components in path.
-
-### Example
-
-```java
-// Import classes:
-import factset.analyticsapi.engines.ApiClient;
-import factset.analyticsapi.engines.ApiException;
-import factset.analyticsapi.engines.Configuration;
-import factset.analyticsapi.engines.auth.*;
-import factset.analyticsapi.engines.model.*;
-import factset.analyticsapi.engines.api.TemplatedPaComponentsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.factset.com");
-        
-        // Configure HTTP basic authorization: Basic
-        HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
-        Basic.setUsername("YOUR USERNAME");
-        Basic.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: Bearer
-        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setBearerToken("BEARER TOKEN");
-
-        TemplatedPaComponentsApi apiInstance = new TemplatedPaComponentsApi(defaultClient);
-        String directory = "directory_example"; // String | Get templated PA components in path
-        try {
-            TemplatedPAComponentSummaryRoot result = apiInstance.getTemplatedPAComponentsInPath(directory);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling TemplatedPaComponentsApi#getTemplatedPAComponentsInPath");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getClientErrorResponse());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **directory** | **String**| Get templated PA components in path |
-
-### Return type
-
-[**TemplatedPAComponentSummaryRoot**](TemplatedPAComponentSummaryRoot.md)
-
-### Authorization
-
-[Basic](../README.md#Basic), [Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Expected response, returns a list templated PA components. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
-| **400** | Invalid data provided. Please check the request parameters before attempting again. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
-| **401** | Missing or invalid authentication. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  |
-| **403** | User is forbidden with current credentials |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
-| **406** | Unsupported Accept header. Header needs to be set to application/json. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
-| **429** | Rate limit reached. Wait till the time specified in Retry-After header value to make further requests. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * Retry-After - Time to wait in seconds before making a new request as the rate limit has reached. <br>  |
-| **500** | Server error. Log the X-DataDirect-Request-Key header to assist in troubleshooting. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  |
-| **503** | Request timed out. Retry the request in sometime. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  |
-
-
 ## updateTemplatedPAComponents
 
-> TemplatedPAComponentPostSummaryRoot updateTemplatedPAComponents(id, templatedPAComponentUpdateParametersRoot)
+> TemplatedPAComponentSummaryRoot updateTemplatedPAComponents(id, templatedPAComponentUpdateParametersRoot)
 
 Update templated PA component
 
 This endpoint allows the user to change the request body from an existing templated PA component.
-
-Remarks:
-
-*   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.
-
-*   Multi-horizon frequencies are not supported through this endpoint.
-
-*   Componentdetail supports securities, groups, and totals as well but if we don't pass anything that defaults to securities.
 
 ### Example
 
@@ -396,7 +213,7 @@ public class Example {
         String id = "id_example"; // String | Unique identifier for a templated PA component
         TemplatedPAComponentUpdateParametersRoot templatedPAComponentUpdateParametersRoot = new TemplatedPAComponentUpdateParametersRoot(); // TemplatedPAComponentUpdateParametersRoot | Request Parameters
         try {
-            TemplatedPAComponentPostSummaryRoot result = apiInstance.updateTemplatedPAComponents(id, templatedPAComponentUpdateParametersRoot);
+            TemplatedPAComponentSummaryRoot result = apiInstance.updateTemplatedPAComponents(id, templatedPAComponentUpdateParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatedPaComponentsApi#updateTemplatedPAComponents");
@@ -419,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TemplatedPAComponentPostSummaryRoot**](TemplatedPAComponentPostSummaryRoot.md)
+[**TemplatedPAComponentSummaryRoot**](TemplatedPAComponentSummaryRoot.md)
 
 ### Authorization
 

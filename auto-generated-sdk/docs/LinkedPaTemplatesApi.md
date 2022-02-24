@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## createLinkedPATemplates
 
-> LinkedPATemplatePostSummaryRoot createLinkedPATemplates(linkedPATemplateParametersRoot)
+> LinkedPATemplateSummaryRoot createLinkedPATemplates(linkedPATemplateParametersRoot)
 
 Create a linked PA template
 
@@ -23,16 +23,9 @@ This endpoint creates a template from an **existing portfolio analysis tile**, a
 
 Remarks:
 
-*   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary. 
-    If no mandatory fields are passed, then we can use the template as a component and skip the component creation.
-    
 *   Mandatory, optional and locked fields can be  "accounts", "benchmarks", "groups", "columns", "dates", "currencyisocode" and "componentdetail".
 
-*   We cannot override the Locked fields when creating the Component.
-
 *   Mandatory and locked strings are mutually exclusive.
-
-*   Multi-horizon frequencies are not supported through this endpoint.
 
 ### Example
 
@@ -62,7 +55,7 @@ public class Example {
         LinkedPaTemplatesApi apiInstance = new LinkedPaTemplatesApi(defaultClient);
         LinkedPATemplateParametersRoot linkedPATemplateParametersRoot = new LinkedPATemplateParametersRoot(); // LinkedPATemplateParametersRoot | Request Parameters
         try {
-            LinkedPATemplatePostSummaryRoot result = apiInstance.createLinkedPATemplates(linkedPATemplateParametersRoot);
+            LinkedPATemplateSummaryRoot result = apiInstance.createLinkedPATemplates(linkedPATemplateParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling LinkedPaTemplatesApi#createLinkedPATemplates");
@@ -84,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LinkedPATemplatePostSummaryRoot**](LinkedPATemplatePostSummaryRoot.md)
+[**LinkedPATemplateSummaryRoot**](LinkedPATemplateSummaryRoot.md)
 
 ### Authorization
 
@@ -363,7 +356,7 @@ Name | Type | Description  | Notes
 
 ## updateLinkedPATemplates
 
-> LinkedPATemplatePostSummaryRoot updateLinkedPATemplates(id, linkedPATemplateUpdateParametersRoot)
+> LinkedPATemplateSummaryRoot updateLinkedPATemplates(id, linkedPATemplateUpdateParametersRoot)
 
 Update a linked PA template
 
@@ -371,16 +364,9 @@ This endpoint allows the user to change the request body and description from an
 
 Remarks:
 
-*   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary. 
-    If no mandatory fields are passed, then we can use the template as a component and skip the component creation.
-    
 *   Mandatory, optional and locked fields can be  "accounts", "benchmarks", "groups", "columns", "dates", "currencyisocode" and "componentdetail".
 
-*   We cannot override the Locked fields when creating the Component.
-
 *   Mandatory and locked strings are mutually exclusive.
-
-*   Multi-horizon frequencies are not supported through this endpoint.
 
 ### Example
 
@@ -411,7 +397,7 @@ public class Example {
         String id = "id_example"; // String | Unique identifier for a linked PA template
         LinkedPATemplateUpdateParametersRoot linkedPATemplateUpdateParametersRoot = new LinkedPATemplateUpdateParametersRoot(); // LinkedPATemplateUpdateParametersRoot | Request Parameters
         try {
-            LinkedPATemplatePostSummaryRoot result = apiInstance.updateLinkedPATemplates(id, linkedPATemplateUpdateParametersRoot);
+            LinkedPATemplateSummaryRoot result = apiInstance.updateLinkedPATemplates(id, linkedPATemplateUpdateParametersRoot);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling LinkedPaTemplatesApi#updateLinkedPATemplates");
@@ -434,7 +420,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LinkedPATemplatePostSummaryRoot**](LinkedPATemplatePostSummaryRoot.md)
+[**LinkedPATemplateSummaryRoot**](LinkedPATemplateSummaryRoot.md)
 
 ### Authorization
 

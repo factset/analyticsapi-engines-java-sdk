@@ -41,9 +41,9 @@ import factset.analyticsapi.engines.JSON;
   VaultComponent.JSON_PROPERTY_CURRENCYISOCODE,
   VaultComponent.JSON_PROPERTY_DATES,
   VaultComponent.JSON_PROPERTY_SNAPSHOT,
-  VaultComponent.JSON_PROPERTY_PATH,
   VaultComponent.JSON_PROPERTY_NAME,
-  VaultComponent.JSON_PROPERTY_CATEGORY
+  VaultComponent.JSON_PROPERTY_CATEGORY,
+  VaultComponent.JSON_PROPERTY_TYPE
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class VaultComponent implements Serializable {
@@ -67,14 +67,14 @@ public class VaultComponent implements Serializable {
   public static final String JSON_PROPERTY_SNAPSHOT = "snapshot";
   private Boolean snapshot;
 
-  public static final String JSON_PROPERTY_PATH = "path";
-  private String path;
-
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
   public static final String JSON_PROPERTY_CATEGORY = "category";
   private String category;
+
+  public static final String JSON_PROPERTY_TYPE = "type";
+  private String type;
 
 
   public VaultComponent id(String id) {
@@ -221,30 +221,6 @@ public class VaultComponent implements Serializable {
   }
 
 
-  public VaultComponent path(String path) {
-    this.path = path;
-    return this;
-  }
-
-   /**
-   * The path to the document
-   * @return path
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The path to the document")
-  @JsonProperty(JSON_PROPERTY_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getPath() {
-    return path;
-  }
-
-
-  public void setPath(String path) {
-    this.path = path;
-  }
-
-
   public VaultComponent name(String name) {
     this.name = name;
     return this;
@@ -293,6 +269,30 @@ public class VaultComponent implements Serializable {
   }
 
 
+  public VaultComponent type(String type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Component type.
+   * @return type
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Component type.")
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getType() {
+    return type;
+  }
+
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+
   /**
    * Return true if this VaultComponent object is equal to o.
    */
@@ -311,14 +311,14 @@ public class VaultComponent implements Serializable {
         Objects.equals(this.currencyisocode, vaultComponent.currencyisocode) &&
         Objects.equals(this.dates, vaultComponent.dates) &&
         Objects.equals(this.snapshot, vaultComponent.snapshot) &&
-        Objects.equals(this.path, vaultComponent.path) &&
         Objects.equals(this.name, vaultComponent.name) &&
-        Objects.equals(this.category, vaultComponent.category);
+        Objects.equals(this.category, vaultComponent.category) &&
+        Objects.equals(this.type, vaultComponent.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, account, benchmark, currencyisocode, dates, snapshot, path, name, category);
+    return Objects.hash(id, account, benchmark, currencyisocode, dates, snapshot, name, category, type);
   }
 
   @Override
@@ -331,9 +331,9 @@ public class VaultComponent implements Serializable {
     sb.append("    currencyisocode: ").append(toIndentedString(currencyisocode)).append("\n");
     sb.append("    dates: ").append(toIndentedString(dates)).append("\n");
     sb.append("    snapshot: ").append(toIndentedString(snapshot)).append("\n");
-    sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

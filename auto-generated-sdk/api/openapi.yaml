@@ -7498,16 +7498,27 @@ paths:
       x-accepts: application/json
   /analytics/engines/pa/v3/components:
     get:
-      description: This endpoint returns the list of PA components in a given PA document.
+      description: "This endpoint returns  \r\n\r\n1.List of PA components in a given\
+        \ PA document if document name is provided.\r\n\r\n2.List of components in\
+        \ given directory if directory is provided."
       operationId: getPAComponents
       parameters:
       - description: Document Name
         explode: true
         in: query
         name: document
-        required: true
+        required: false
         schema:
           description: Document Name
+          type: string
+        style: form
+      - description: Directory to get the components
+        explode: true
+        in: query
+        name: directory
+        required: false
+        schema:
+          description: Directory to get the components
           type: string
         style: form
       responses:
@@ -17976,15 +17987,10 @@ paths:
     post:
       description: "This endpoint creates a template from an **existing portfolio\
         \ analysis tile**, allowing the user to replicate and fetch reports settings.\r\
-        \n\r\nRemarks:\r\n\r\n*   Mandatory fields are required to be passed in POST\
-        \ requests and Optional fields are not necessary. \r\n    If no mandatory\
-        \ fields are passed, then we can use the template as a component and skip\
-        \ the component creation.\r\n    \r\n*   Mandatory, optional and locked fields\
-        \ can be  \"accounts\", \"benchmarks\", \"groups\", \"columns\", \"dates\"\
-        , \"currencyisocode\" and \"componentdetail\".\r\n\r\n*   We cannot override\
-        \ the Locked fields when creating the Component.\r\n\r\n*   Mandatory and\
-        \ locked strings are mutually exclusive.\r\n\r\n*   Multi-horizon frequencies\
-        \ are not supported through this endpoint."
+        \n\r\nRemarks:\r\n\r\n*   Mandatory, optional and locked fields can be  \"\
+        accounts\", \"benchmarks\", \"groups\", \"columns\", \"dates\", \"currencyisocode\"\
+        \ and \"componentdetail\".\r\n\r\n*   Mandatory and locked strings are mutually\
+        \ exclusive."
       operationId: createLinkedPATemplates
       requestBody:
         content:
@@ -17998,7 +18004,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LinkedPATemplatePostSummaryRoot'
+                $ref: '#/components/schemas/LinkedPATemplateSummaryRoot'
           description: Expected response, created a template linked to a PA3 tile.
           headers:
             X-DataDirect-Request-Key:
@@ -18279,7 +18285,7 @@ paths:
       x-are-multiple-success-responses-different: false
       x-success-response-types:
       - status-code: "201"
-        response-type: LinkedPATemplatePostSummaryRoot
+        response-type: LinkedPATemplateSummaryRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/pa/v3/linked-templates/{id}:
@@ -18902,15 +18908,10 @@ paths:
       x-accepts: application/json
     put:
       description: "This endpoint allows the user to change the request body and description\
-        \ from an existing template.\r\n\r\nRemarks:\r\n\r\n*   Mandatory fields are\
-        \ required to be passed in POST requests and Optional fields are not necessary.\
-        \ \r\n    If no mandatory fields are passed, then we can use the template\
-        \ as a component and skip the component creation.\r\n    \r\n*   Mandatory,\
-        \ optional and locked fields can be  \"accounts\", \"benchmarks\", \"groups\"\
-        , \"columns\", \"dates\", \"currencyisocode\" and \"componentdetail\".\r\n\
-        \r\n*   We cannot override the Locked fields when creating the Component.\r\
-        \n\r\n*   Mandatory and locked strings are mutually exclusive.\r\n\r\n*  \
-        \ Multi-horizon frequencies are not supported through this endpoint."
+        \ from an existing template.\r\n\r\nRemarks:\r\n\r\n*   Mandatory, optional\
+        \ and locked fields can be  \"accounts\", \"benchmarks\", \"groups\", \"columns\"\
+        , \"dates\", \"currencyisocode\" and \"componentdetail\".\r\n\r\n*   Mandatory\
+        \ and locked strings are mutually exclusive."
       operationId: updateLinkedPATemplates
       parameters:
       - description: Unique identifier for a linked PA template
@@ -18934,7 +18935,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LinkedPATemplatePostSummaryRoot'
+                $ref: '#/components/schemas/LinkedPATemplateSummaryRoot'
           description: Expected response, updated a template linked to a PA3 tile.
           headers:
             X-DataDirect-Request-Key:
@@ -19219,7 +19220,7 @@ paths:
       x-are-multiple-success-responses-different: false
       x-success-response-types:
       - status-code: "200"
-        response-type: LinkedPATemplatePostSummaryRoot
+        response-type: LinkedPATemplateSummaryRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/npo/v3/optimizations:
@@ -31568,277 +31569,9 @@ paths:
         response-type: DocumentDirectoriesRoot
       x-accepts: application/json
   /analytics/engines/pa/v3/templated-components:
-    get:
-      description: This endpoint returns the list of templated PA components in path.
-      operationId: getTemplatedPAComponentsInPath
-      parameters:
-      - description: Get templated PA components in path
-        explode: true
-        in: query
-        name: directory
-        required: true
-        schema:
-          description: Get templated PA components in path
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TemplatedPAComponentSummaryRoot'
-          description: Expected response, returns a list templated PA components.
-          headers:
-            X-DataDirect-Request-Key:
-              description: FactSet's request key header.
-              explode: false
-              schema:
-                description: FactSet's request key header.
-                type: string
-              style: simple
-            X-FactSet-Api-Request-Key:
-              description: Key to uniquely identify an Analytics API request. Only
-                available after successful authentication.
-              explode: false
-              schema:
-                description: Key to uniquely identify an Analytics API request. Only
-                  available after successful authentication.
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Limit:
-              description: Number of allowed requests for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Remaining:
-              description: Number of requests left for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Reset:
-              description: Number of seconds remaining till rate limit resets.
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ClientErrorResponse'
-          description: Invalid data provided. Please check the request parameters
-            before attempting again.
-          headers:
-            X-DataDirect-Request-Key:
-              description: FactSet's request key header.
-              explode: false
-              schema:
-                description: FactSet's request key header.
-                type: string
-              style: simple
-            X-FactSet-Api-Request-Key:
-              description: Key to uniquely identify an Analytics API request. Only
-                available after successful authentication.
-              explode: false
-              schema:
-                description: Key to uniquely identify an Analytics API request. Only
-                  available after successful authentication.
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Limit:
-              description: Number of allowed requests for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Remaining:
-              description: Number of requests left for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Reset:
-              description: Number of seconds remaining till rate limit resets.
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "401":
-          description: Missing or invalid authentication.
-          headers:
-            X-DataDirect-Request-Key:
-              description: FactSet's request key header.
-              explode: false
-              schema:
-                description: FactSet's request key header.
-                type: string
-              style: simple
-            X-FactSet-Api-Request-Key:
-              description: Key to uniquely identify an Analytics API request. Only
-                available after successful authentication.
-              explode: false
-              schema:
-                description: Key to uniquely identify an Analytics API request. Only
-                  available after successful authentication.
-                type: string
-              style: simple
-        "403":
-          description: User is forbidden with current credentials
-          headers:
-            X-DataDirect-Request-Key:
-              description: FactSet's request key header.
-              explode: false
-              schema:
-                description: FactSet's request key header.
-                type: string
-              style: simple
-            X-FactSet-Api-Request-Key:
-              description: Key to uniquely identify an Analytics API request. Only
-                available after successful authentication.
-              explode: false
-              schema:
-                description: Key to uniquely identify an Analytics API request. Only
-                  available after successful authentication.
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Limit:
-              description: Number of allowed requests for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Remaining:
-              description: Number of requests left for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Reset:
-              description: Number of seconds remaining till rate limit resets.
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "406":
-          description: Unsupported Accept header. Header needs to be set to application/json.
-          headers:
-            X-DataDirect-Request-Key:
-              description: FactSet's request key header.
-              explode: false
-              schema:
-                description: FactSet's request key header.
-                type: string
-              style: simple
-            X-FactSet-Api-Request-Key:
-              description: Key to uniquely identify an Analytics API request. Only
-                available after successful authentication.
-              explode: false
-              schema:
-                description: Key to uniquely identify an Analytics API request. Only
-                  available after successful authentication.
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Limit:
-              description: Number of allowed requests for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Remaining:
-              description: Number of requests left for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Reset:
-              description: Number of seconds remaining till rate limit resets.
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "429":
-          description: Rate limit reached. Wait till the time specified in Retry-After
-            header value to make further requests.
-          headers:
-            X-DataDirect-Request-Key:
-              description: FactSet's request key header.
-              explode: false
-              schema:
-                description: FactSet's request key header.
-                type: string
-              style: simple
-            X-FactSet-Api-Request-Key:
-              description: Key to uniquely identify an Analytics API request. Only
-                available after successful authentication.
-              explode: false
-              schema:
-                description: Key to uniquely identify an Analytics API request. Only
-                  available after successful authentication.
-                type: string
-              style: simple
-            Retry-After:
-              description: Time to wait in seconds before making a new request as
-                the rate limit has reached.
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "500":
-          description: Server error. Log the X-DataDirect-Request-Key header to assist
-            in troubleshooting.
-          headers:
-            X-DataDirect-Request-Key:
-              description: FactSet's request key header.
-              explode: false
-              schema:
-                description: FactSet's request key header.
-                type: string
-              style: simple
-            X-FactSet-Api-Request-Key:
-              description: Key to uniquely identify an Analytics API request. Only
-                available after successful authentication.
-              explode: false
-              schema:
-                description: Key to uniquely identify an Analytics API request. Only
-                  available after successful authentication.
-                type: string
-              style: simple
-        "503":
-          description: Request timed out. Retry the request in sometime.
-          headers:
-            X-DataDirect-Request-Key:
-              description: FactSet's request key header.
-              explode: false
-              schema:
-                description: FactSet's request key header.
-                type: string
-              style: simple
-            X-FactSet-Api-Request-Key:
-              description: Key to uniquely identify an Analytics API request. Only
-                available after successful authentication.
-              explode: false
-              schema:
-                description: Key to uniquely identify an Analytics API request. Only
-                  available after successful authentication.
-                type: string
-              style: simple
-      summary: Get templated PA components in path
-      tags:
-      - TemplatedPAComponents
-      x-are-multiple-success-responses-different: false
-      x-success-response-types:
-      - status-code: "200"
-        response-type: TemplatedPAComponentSummaryRoot
-      x-accepts: application/json
     post:
-      description: "This endpoint creates new component based off of linked PA template\
-        \ or unlinked PA template.\r\n\r\nRemarks:\r\n\r\n*   Any settings in the\
-        \ POST body will act as a one-time override over the settings saved in the\
-        \ PA template.\r\n\r\n*   Multi-horizon frequencies are not supported through\
-        \ this endpoint.\r\n\r\n*   Componentdetail supports securities, groups, and\
-        \ totals as well but if we don't pass anything that defaults to securities."
+      description: This endpoint creates new component based off of linked PA template
+        or unlinked PA template.
       operationId: createTemplatedPAComponents
       requestBody:
         content:
@@ -31852,13 +31585,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/TemplatedPAComponentPostSummaryRoot'
+                $ref: '#/components/schemas/TemplatedPAComponentSummaryRoot'
             application/json:
               schema:
-                $ref: '#/components/schemas/TemplatedPAComponentPostSummaryRoot'
+                $ref: '#/components/schemas/TemplatedPAComponentSummaryRoot'
             text/json:
               schema:
-                $ref: '#/components/schemas/TemplatedPAComponentPostSummaryRoot'
+                $ref: '#/components/schemas/TemplatedPAComponentSummaryRoot'
           description: Expected response, templated PA component created successfully.
           headers:
             X-DataDirect-Request-Key:
@@ -32145,7 +31878,7 @@ paths:
       x-are-multiple-success-responses-different: false
       x-success-response-types:
       - status-code: "201"
-        response-type: TemplatedPAComponentPostSummaryRoot
+        response-type: TemplatedPAComponentSummaryRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/pa/v3/templated-components/{id}:
@@ -32461,318 +32194,9 @@ paths:
       x-success-response-types:
       - status-code: "204"
       x-accepts: application/json
-    get:
-      description: This endpoint fetches the templated PA component settings.
-      operationId: getTemplatedPAComponentById
-      parameters:
-      - description: Unique identifier for a templated PA component
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          description: Unique identifier for a templated PA component
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TemplatedPAComponentRoot'
-          description: Expected response, templated PA component details.
-          headers:
-            X-DataDirect-Request-Key:
-              description: FactSet's request key header.
-              explode: false
-              schema:
-                description: FactSet's request key header.
-                type: string
-              style: simple
-            X-FactSet-Api-Request-Key:
-              description: Key to uniquely identify an Analytics API request. Only
-                available after successful authentication.
-              explode: false
-              schema:
-                description: Key to uniquely identify an Analytics API request. Only
-                  available after successful authentication.
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Limit:
-              description: Number of allowed requests for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Remaining:
-              description: Number of requests left for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Reset:
-              description: Number of seconds remaining till rate limit resets.
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ClientErrorResponse'
-          description: Invalid data provided. Please check the request parameters
-            before attempting again.
-          headers:
-            X-DataDirect-Request-Key:
-              description: FactSet's request key header.
-              explode: false
-              schema:
-                description: FactSet's request key header.
-                type: string
-              style: simple
-            X-FactSet-Api-Request-Key:
-              description: Key to uniquely identify an Analytics API request. Only
-                available after successful authentication.
-              explode: false
-              schema:
-                description: Key to uniquely identify an Analytics API request. Only
-                  available after successful authentication.
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Limit:
-              description: Number of allowed requests for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Remaining:
-              description: Number of requests left for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Reset:
-              description: Number of seconds remaining till rate limit resets.
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ClientErrorResponse'
-          description: Templated PA component not found.
-          headers:
-            X-DataDirect-Request-Key:
-              description: FactSet's request key header.
-              explode: false
-              schema:
-                description: FactSet's request key header.
-                type: string
-              style: simple
-            X-FactSet-Api-Request-Key:
-              description: Key to uniquely identify an Analytics API request. Only
-                available after successful authentication.
-              explode: false
-              schema:
-                description: Key to uniquely identify an Analytics API request. Only
-                  available after successful authentication.
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Limit:
-              description: Number of allowed requests for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Remaining:
-              description: Number of requests left for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Reset:
-              description: Number of seconds remaining till rate limit resets.
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "401":
-          description: Missing or invalid authentication.
-          headers:
-            X-DataDirect-Request-Key:
-              description: FactSet's request key header.
-              explode: false
-              schema:
-                description: FactSet's request key header.
-                type: string
-              style: simple
-            X-FactSet-Api-Request-Key:
-              description: Key to uniquely identify an Analytics API request. Only
-                available after successful authentication.
-              explode: false
-              schema:
-                description: Key to uniquely identify an Analytics API request. Only
-                  available after successful authentication.
-                type: string
-              style: simple
-        "403":
-          description: User is forbidden with current credentials
-          headers:
-            X-DataDirect-Request-Key:
-              description: FactSet's request key header.
-              explode: false
-              schema:
-                description: FactSet's request key header.
-                type: string
-              style: simple
-            X-FactSet-Api-Request-Key:
-              description: Key to uniquely identify an Analytics API request. Only
-                available after successful authentication.
-              explode: false
-              schema:
-                description: Key to uniquely identify an Analytics API request. Only
-                  available after successful authentication.
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Limit:
-              description: Number of allowed requests for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Remaining:
-              description: Number of requests left for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Reset:
-              description: Number of seconds remaining till rate limit resets.
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "406":
-          description: Unsupported Accept header. Header needs to be set to application/json.
-          headers:
-            X-DataDirect-Request-Key:
-              description: FactSet's request key header.
-              explode: false
-              schema:
-                description: FactSet's request key header.
-                type: string
-              style: simple
-            X-FactSet-Api-Request-Key:
-              description: Key to uniquely identify an Analytics API request. Only
-                available after successful authentication.
-              explode: false
-              schema:
-                description: Key to uniquely identify an Analytics API request. Only
-                  available after successful authentication.
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Limit:
-              description: Number of allowed requests for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Remaining:
-              description: Number of requests left for the time window.
-              explode: false
-              schema:
-                type: string
-              style: simple
-            X-FactSet-Api-RateLimit-Reset:
-              description: Number of seconds remaining till rate limit resets.
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "429":
-          description: Rate limit reached. Wait till the time specified in Retry-After
-            header value to make further requests.
-          headers:
-            X-DataDirect-Request-Key:
-              description: FactSet's request key header.
-              explode: false
-              schema:
-                description: FactSet's request key header.
-                type: string
-              style: simple
-            X-FactSet-Api-Request-Key:
-              description: Key to uniquely identify an Analytics API request. Only
-                available after successful authentication.
-              explode: false
-              schema:
-                description: Key to uniquely identify an Analytics API request. Only
-                  available after successful authentication.
-                type: string
-              style: simple
-            Retry-After:
-              description: Time to wait in seconds before making a new request as
-                the rate limit has reached.
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "500":
-          description: Server error. Log the X-DataDirect-Request-Key header to assist
-            in troubleshooting.
-          headers:
-            X-DataDirect-Request-Key:
-              description: FactSet's request key header.
-              explode: false
-              schema:
-                description: FactSet's request key header.
-                type: string
-              style: simple
-            X-FactSet-Api-Request-Key:
-              description: Key to uniquely identify an Analytics API request. Only
-                available after successful authentication.
-              explode: false
-              schema:
-                description: Key to uniquely identify an Analytics API request. Only
-                  available after successful authentication.
-                type: string
-              style: simple
-        "503":
-          description: Request timed out. Retry the request in sometime.
-          headers:
-            X-DataDirect-Request-Key:
-              description: FactSet's request key header.
-              explode: false
-              schema:
-                description: FactSet's request key header.
-                type: string
-              style: simple
-            X-FactSet-Api-Request-Key:
-              description: Key to uniquely identify an Analytics API request. Only
-                available after successful authentication.
-              explode: false
-              schema:
-                description: Key to uniquely identify an Analytics API request. Only
-                  available after successful authentication.
-                type: string
-              style: simple
-      summary: Get templated PA component by id
-      tags:
-      - TemplatedPAComponents
-      x-are-multiple-success-responses-different: false
-      x-success-response-types:
-      - status-code: "200"
-        response-type: TemplatedPAComponentRoot
-      x-accepts: application/json
     put:
-      description: "This endpoint allows the user to change the request body from\
-        \ an existing templated PA component.\r\n\r\nRemarks:\r\n\r\n*   Any settings\
-        \ in the POST body will act as a one-time override over the settings saved\
-        \ in the PA template.\r\n\r\n*   Multi-horizon frequencies are not supported\
-        \ through this endpoint.\r\n\r\n*   Componentdetail supports securities, groups,\
-        \ and totals as well but if we don't pass anything that defaults to securities."
+      description: This endpoint allows the user to change the request body from an
+        existing templated PA component.
       operationId: updateTemplatedPAComponents
       parameters:
       - description: Unique identifier for a templated PA component
@@ -32796,7 +32220,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TemplatedPAComponentPostSummaryRoot'
+                $ref: '#/components/schemas/TemplatedPAComponentSummaryRoot'
           description: Expected response, updated successfully.
           headers:
             X-DataDirect-Request-Key:
@@ -33081,7 +32505,7 @@ paths:
       x-are-multiple-success-responses-different: false
       x-success-response-types:
       - status-code: "200"
-        response-type: TemplatedPAComponentPostSummaryRoot
+        response-type: TemplatedPAComponentSummaryRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/pa/v3/unlinked-templates:
@@ -33360,18 +32784,10 @@ paths:
       x-accepts: application/json
     post:
       description: "This endpoint creates a template which is not linked to any specific\
-        \ PA3 tile. \r\n\r\nRemarks:\r\n\r\n*   Mandatory fields are required to be\
-        \ passed in POST requests and Optional fields are not necessary. \r\n    If\
-        \ no mandatory fields are passed, then we can use the template as a component\
-        \ and skip the component creation.\r\n    \r\n*   Mandatory, optional and\
-        \ locked fields can be  \"accounts\", \"benchmarks\", \"groups\", \"columns\"\
-        , \"dates\", \"currencyisocode\" and \"componentdetail\".\r\n\r\n*   We cannot\
-        \ override the Locked fields when creating the Component.\r\n\r\n*   Mandatory\
-        \ and locked strings are mutually exclusive.\r\n\r\n*   Any settings in the\
-        \ POST body will act as a one-time override over the settings saved in the\
-        \ PA template.\r\n\r\n*   Multi-horizon frequencies are not supported through\
-        \ this endpoint.\r\n\r\n*   Componentdetail supports securities, groups, and\
-        \ totals as well but if we don't pass anything that defaults to securities."
+        \ PA3 tile. \r\n\r\nRemarks:\r\n\r\n*   Mandatory, optional and locked fields\
+        \ can be  \"accounts\", \"benchmarks\", \"groups\", \"columns\", \"dates\"\
+        , \"currencyisocode\" and \"componentdetail\".\r\n\r\n*   Mandatory and locked\
+        \ strings are mutually exclusive."
       operationId: createUnlinkedPATemplates
       requestBody:
         content:
@@ -33385,7 +32801,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UnlinkedPATemplatePostSummaryRoot'
+                $ref: '#/components/schemas/UnlinkedPATemplateSummaryRoot'
           description: Expected response, created a unlinked PA template.
           headers:
             X-DataDirect-Request-Key:
@@ -33629,7 +33045,7 @@ paths:
       x-are-multiple-success-responses-different: false
       x-success-response-types:
       - status-code: "201"
-        response-type: UnlinkedPATemplatePostSummaryRoot
+        response-type: UnlinkedPATemplateSummaryRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/pa/v3/unlinked-templates/{id}:
@@ -34240,18 +33656,10 @@ paths:
       x-accepts: application/json
     put:
       description: "This endpoint updates an existing unlinked PA template.\r\n\r\n\
-        Remarks:\r\n            \r\n*   Mandatory fields are required to be passed\
-        \ in POST requests and Optional fields are not necessary. \r\n    If no mandatory\
-        \ fields are passed, then we can use the template as a component and skip\
-        \ the component creation.\r\n    \r\n*   Mandatory, optional and locked fields\
-        \ can be  \"accounts\", \"benchmarks\", \"groups\", \"columns\", \"dates\"\
-        , \"currencyisocode\" and \"componentdetail\".\r\n\r\n*   We cannot override\
-        \ the Locked fields when creating the Component.\r\n\r\n*   Mandatory and\
-        \ locked strings are mutually exclusive.\r\n\r\n*   Any settings in the POST\
-        \ body will act as a one-time override over the settings saved in the PA template.\r\
-        \n\r\n*   Multi-horizon frequencies are not supported through this endpoint.\r\
-        \n\r\n*   Componentdetail supports securities, groups, and totals as well\
-        \ but if we don't pass anything that defaults to securities."
+        Remarks:\r\n            \r\n*   Mandatory, optional and locked fields can\
+        \ be  \"accounts\", \"benchmarks\", \"groups\", \"columns\", \"dates\", \"\
+        currencyisocode\" and \"componentdetail\".\r\n\r\n*   Mandatory and locked\
+        \ strings are mutually exclusive."
       operationId: updateUnlinkedPATemplates
       parameters:
       - description: Unique identifier for an unlinked PA template
@@ -34275,7 +33683,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UnlinkedPATemplatePostSummaryRoot'
+                $ref: '#/components/schemas/UnlinkedPATemplateSummaryRoot'
           description: Expected response, updated the unlinked PA template.
           headers:
             X-DataDirect-Request-Key:
@@ -34560,7 +33968,7 @@ paths:
       x-are-multiple-success-responses-different: false
       x-success-response-types:
       - status-code: "200"
-        response-type: UnlinkedPATemplatePostSummaryRoot
+        response-type: UnlinkedPATemplateSummaryRoot
       x-contentType: application/json
       x-accepts: application/json
   /analytics/engines/pa/v3/unlinked-templates/template-types:
@@ -37187,7 +36595,6 @@ paths:
 components:
   schemas:
     ReturnType:
-      additionalProperties: false
       example:
         name: name
         id: id
@@ -37198,7 +36605,6 @@ components:
           type: string
       type: object
     SPARAccounts:
-      additionalProperties: false
       example:
         returnsType:
         - name: name
@@ -37213,7 +36619,6 @@ components:
           type: array
       type: object
     SPARAccountsRoot:
-      additionalProperties: false
       example:
         data:
           returnsType:
@@ -37231,7 +36636,6 @@ components:
       - data
       type: object
     ErrorSource:
-      additionalProperties: false
       example:
         pointer: pointer
         parameter: parameter
@@ -37242,7 +36646,6 @@ components:
           type: string
       type: object
     Error:
-      additionalProperties: false
       example:
         id: id
         detail: detail
@@ -37258,7 +36661,6 @@ components:
           $ref: '#/components/schemas/ErrorSource'
       type: object
     ClientErrorResponse:
-      additionalProperties: false
       properties:
         errors:
           items:
@@ -37266,7 +36668,6 @@ components:
           type: array
       type: object
     AccountDirectories:
-      additionalProperties: false
       example:
         directories:
         - directories
@@ -37287,7 +36688,6 @@ components:
           type: array
       type: object
     AccountDirectoriesRoot:
-      additionalProperties: false
       example:
         data:
           directories:
@@ -37306,7 +36706,6 @@ components:
       - data
       type: object
     AFIOptimizerStrategyOverrides:
-      additionalProperties: false
       example:
         alpha: alpha
         tax: tax
@@ -37337,7 +36736,6 @@ components:
           type: string
       type: object
     AFIOptimizerStrategy:
-      additionalProperties: false
       example:
         overrides:
           alpha: alpha
@@ -37357,7 +36755,6 @@ components:
       - id
       type: object
     OptimizerAccountOverrides:
-      additionalProperties: false
       example:
         portfolio: portfolio
         riskModelId: riskModelId
@@ -37378,7 +36775,6 @@ components:
           type: string
       type: object
     OptimizerAccount:
-      additionalProperties: false
       example:
         id: id
         overrides:
@@ -37394,7 +36790,6 @@ components:
           $ref: '#/components/schemas/OptimizerAccountOverrides'
       type: object
     Optimization:
-      additionalProperties: false
       example:
         cashflow: cashflow
         riskModelDate: riskModelDate
@@ -37411,7 +36806,6 @@ components:
           type: string
       type: object
     OptimizerTradesList:
-      additionalProperties: false
       example:
         includeCash: true
         identifierType: Asset
@@ -37435,7 +36829,6 @@ components:
           type: boolean
       type: object
     OptimizerOptimalHoldings:
-      additionalProperties: false
       example:
         includeCash: true
         excludeZero: true
@@ -37463,7 +36856,6 @@ components:
           type: boolean
       type: object
     OptimalPortfolio:
-      additionalProperties: false
       example:
         ifOfdbDateExists: abort
         excludeZero: true
@@ -37496,10 +36888,8 @@ components:
           type: string
       type: object
     OptimizerStats:
-      additionalProperties: false
       type: object
     OptimizerOutputTypes:
-      additionalProperties: false
       example:
         optimal:
           includeCash: true
@@ -37523,11 +36913,9 @@ components:
         account:
           $ref: '#/components/schemas/OptimalPortfolio'
         stats:
-          additionalProperties: false
           type: object
       type: object
     AFIOptimizationParameters:
-      additionalProperties: false
       example:
         optimization:
           cashflow: cashflow
@@ -37578,10 +36966,8 @@ components:
       - strategy
       type: object
     OptimizerCalculationMeta:
-      additionalProperties: false
       type: object
     AFIOptimizationParametersRoot:
-      additionalProperties: false
       example:
         data:
           optimization:
@@ -37624,18 +37010,15 @@ components:
         data:
           $ref: '#/components/schemas/AFIOptimizationParameters'
         meta:
-          additionalProperties: false
           type: object
       type: object
     CalculationInfo:
-      additionalProperties: false
       properties:
         calculationId:
           description: Calculation identifier
           type: string
       type: object
     CalculationInfoRoot:
-      additionalProperties: false
       properties:
         data:
           $ref: '#/components/schemas/CalculationInfo'
@@ -37645,7 +37028,6 @@ components:
       - data
       type: object
     ObjectRoot:
-      additionalProperties: false
       example:
         data: '{}'
         meta: '{}'
@@ -37658,7 +37040,6 @@ components:
       - data
       type: object
     AxiomaEquityOptimizerStrategyOverrides:
-      additionalProperties: false
       example:
         alpha: alpha
         tax: tax
@@ -37689,7 +37070,6 @@ components:
           type: string
       type: object
     AxiomaEquityOptimizerStrategy:
-      additionalProperties: false
       example:
         overrides:
           alpha: alpha
@@ -37709,7 +37089,6 @@ components:
       - id
       type: object
     AxiomaEquityOptimizationParameters:
-      additionalProperties: false
       example:
         optimization:
           cashflow: cashflow
@@ -37760,7 +37139,6 @@ components:
       - strategy
       type: object
     AxiomaEquityOptimizationParametersRoot:
-      additionalProperties: false
       example:
         data:
           optimization:
@@ -37803,11 +37181,9 @@ components:
         data:
           $ref: '#/components/schemas/AxiomaEquityOptimizationParameters'
         meta:
-          additionalProperties: false
           type: object
       type: object
     SPARIdentifier:
-      additionalProperties: false
       description: The account/benchmark parameter for SPAR calculation.
       example:
         prefix: prefix
@@ -37827,7 +37203,6 @@ components:
       - id
       type: object
     SPARBenchmark:
-      additionalProperties: false
       example:
         identifiers:
         - prefix: prefix
@@ -37852,7 +37227,6 @@ components:
           type: array
       type: object
     SPARBenchmarkRoot:
-      additionalProperties: false
       example:
         data:
           identifiers:
@@ -37874,7 +37248,6 @@ components:
       - data
       type: object
     ConstraintAction:
-      additionalProperties: false
       example:
         item2: Disable
         item1: item1
@@ -37888,7 +37261,6 @@ components:
           type: string
       type: object
     BPMOptimizerStrategyAlphaOverride:
-      additionalProperties: false
       example:
         returnMultiplier: returnMultiplier
         formula: formula
@@ -37908,7 +37280,6 @@ components:
           type: string
       type: object
     BPMOptimizerStrategyOverrides:
-      additionalProperties: false
       example:
         alpha:
           returnMultiplier: returnMultiplier
@@ -37937,7 +37308,6 @@ components:
           type: string
       type: object
     BPMOptimizerStrategy:
-      additionalProperties: false
       example:
         overrides:
           alpha:
@@ -37962,7 +37332,6 @@ components:
       - id
       type: object
     BPMOptimization:
-      additionalProperties: false
       example:
         market: market
         investAllCash: true
@@ -37987,7 +37356,6 @@ components:
           type: string
       type: object
     BPMOptimizationParameters:
-      additionalProperties: false
       example:
         optimization:
           market: market
@@ -38045,7 +37413,6 @@ components:
       - strategy
       type: object
     BPMOptimizationParametersRoot:
-      additionalProperties: false
       example:
         data:
           optimization:
@@ -38095,11 +37462,9 @@ components:
         data:
           $ref: '#/components/schemas/BPMOptimizationParameters'
         meta:
-          additionalProperties: false
           type: object
       type: object
     ColumnSummary:
-      additionalProperties: false
       description: Column settings (name, directory, category)
       example:
         name: name
@@ -38117,7 +37482,6 @@ components:
           type: string
       type: object
     ColumnSummaryRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -38136,7 +37500,6 @@ components:
       - data
       type: object
     Column:
-      additionalProperties: false
       example:
         defaultstatisticsids:
         - defaultstatisticsids
@@ -38161,7 +37524,6 @@ components:
           type: string
       type: object
     ColumnRoot:
-      additionalProperties: false
       example:
         data:
           defaultstatisticsids:
@@ -38180,7 +37542,6 @@ components:
       - data
       type: object
     ColumnStatistic:
-      additionalProperties: false
       example:
         name: name
       properties:
@@ -38189,7 +37550,6 @@ components:
           type: string
       type: object
     ColumnStatisticRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -38206,10 +37566,10 @@ components:
       - data
       type: object
     ComponentSummary:
-      additionalProperties: false
       example:
         name: name
         category: category
+        type: type
       properties:
         name:
           description: Component name.
@@ -38217,14 +37577,17 @@ components:
         category:
           description: Component category.
           type: string
+        type:
+          description: Component type.
+          type: string
       type: object
     ComponentSummaryRoot:
-      additionalProperties: false
       example:
         data:
           key:
             name: name
             category: category
+            type: type
         meta: '{}'
       properties:
         data:
@@ -38237,7 +37600,6 @@ components:
       - data
       type: object
     PAIdentifier:
-      additionalProperties: false
       example:
         id: id
         holdingsmode: holdingsmode
@@ -38252,7 +37614,6 @@ components:
       - id
       type: object
     PADateParameters:
-      additionalProperties: false
       description: The date parameters for PA calculation.
       example:
         enddate: enddate
@@ -38273,10 +37634,8 @@ components:
       - frequency
       type: object
     PAComponent:
-      additionalProperties: false
       example:
         currencyisocode: currencyisocode
-        path: path
         name: name
         dates:
           enddate: enddate
@@ -38294,6 +37653,7 @@ components:
         - id: id
           holdingsmode: holdingsmode
         category: category
+        type: type
         snapshot: true
       properties:
         id:
@@ -38316,22 +37676,20 @@ components:
         snapshot:
           description: Is the component type snapshot or subperiod.
           type: boolean
-        path:
-          description: The path to the document
-          type: string
         name:
           description: Component name.
           type: string
         category:
           description: Component category.
           type: string
+        type:
+          description: Component type.
+          type: string
       type: object
     PAComponentRoot:
-      additionalProperties: false
       example:
         data:
           currencyisocode: currencyisocode
-          path: path
           name: name
           dates:
             enddate: enddate
@@ -38349,6 +37707,7 @@ components:
           - id: id
             holdingsmode: holdingsmode
           category: category
+          type: type
           snapshot: true
         meta: '{}'
       properties:
@@ -38360,7 +37719,6 @@ components:
       - data
       type: object
     VaultIdentifier:
-      additionalProperties: false
       description: The account/benchmark parameter for Vault calculation.
       example:
         id: id
@@ -38372,7 +37730,6 @@ components:
       - id
       type: object
     VaultDateParameters:
-      additionalProperties: false
       description: The date parameters for Vault calculation
       example:
         enddate: enddate
@@ -38393,10 +37750,8 @@ components:
       - frequency
       type: object
     VaultComponent:
-      additionalProperties: false
       example:
         currencyisocode: currencyisocode
-        path: path
         name: name
         dates:
           enddate: enddate
@@ -38404,6 +37759,7 @@ components:
           frequency: frequency
         id: id
         category: category
+        type: type
         account:
           id: id
         benchmark:
@@ -38425,22 +37781,20 @@ components:
         snapshot:
           description: Snapshot
           type: boolean
-        path:
-          description: The path to the document
-          type: string
         name:
           description: Component name.
           type: string
         category:
           description: Component category.
           type: string
+        type:
+          description: Component type.
+          type: string
       type: object
     VaultComponentRoot:
-      additionalProperties: false
       example:
         data:
           currencyisocode: currencyisocode
-          path: path
           name: name
           dates:
             enddate: enddate
@@ -38448,6 +37802,7 @@ components:
             frequency: frequency
           id: id
           category: category
+          type: type
           account:
             id: id
           benchmark:
@@ -38463,7 +37818,6 @@ components:
       - data
       type: object
     VaultConfigurationSummary:
-      additionalProperties: false
       example:
         name: name
       properties:
@@ -38472,7 +37826,6 @@ components:
           type: string
       type: object
     VaultConfigurationSummaryRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -38489,7 +37842,6 @@ components:
       - data
       type: object
     ConfigurationAccount:
-      additionalProperties: false
       example:
         maxEndDate: maxEndDate
         minStartDate: minStartDate
@@ -38518,7 +37870,6 @@ components:
           type: string
       type: object
     VaultConfiguration:
-      additionalProperties: false
       example:
         name: name
         accounts:
@@ -38539,7 +37890,6 @@ components:
           type: object
       type: object
     VaultConfigurationRoot:
-      additionalProperties: false
       example:
         data:
           name: name
@@ -38561,7 +37911,6 @@ components:
       - data
       type: object
     Currency:
-      additionalProperties: false
       example:
         name: name
       properties:
@@ -38570,7 +37919,6 @@ components:
           type: string
       type: object
     CurrencyRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -38587,7 +37935,6 @@ components:
       - data
       type: object
     DateParametersSummary:
-      additionalProperties: false
       example:
         enddate: enddate
         startdate: startdate
@@ -38600,7 +37947,6 @@ components:
           type: string
       type: object
     DateParametersSummaryRoot:
-      additionalProperties: false
       example:
         data:
           enddate: enddate
@@ -38615,7 +37961,6 @@ components:
       - data
       type: object
     DocumentDirectories:
-      additionalProperties: false
       example:
         documents:
         - documents
@@ -38636,7 +37981,6 @@ components:
           type: array
       type: object
     DocumentDirectoriesRoot:
-      additionalProperties: false
       example:
         data:
           documents:
@@ -38655,7 +37999,6 @@ components:
       - data
       type: object
     FIABIdentifier:
-      additionalProperties: false
       example:
         id: id
       properties:
@@ -38666,7 +38009,6 @@ components:
       - id
       type: object
     FIABDateParameters:
-      additionalProperties: false
       description: The date parameters for FIAB calculations.
       example:
         enddate: enddate
@@ -38683,7 +38025,6 @@ components:
       - startdate
       type: object
     FIABCalculationParameters:
-      additionalProperties: false
       example:
         fiabdocument: fiabdocument
         msl: msl
@@ -38716,7 +38057,6 @@ components:
       - dates
       type: object
     FIABCalculationStatusSummary:
-      additionalProperties: false
       properties:
         requesttime:
           description: Request time of calculation.
@@ -38728,7 +38068,6 @@ components:
           type: string
       type: object
     EventSummary:
-      additionalProperties: false
       example:
         submissiondatetime: 2000-01-23T04:56:07.000+00:00
         message: message
@@ -38746,7 +38085,6 @@ components:
           type: string
       type: object
     FIABCalculationStatus:
-      additionalProperties: false
       example:
         completiondatetime: 2000-01-23T04:56:07.000+00:00
         batchevents:
@@ -38792,92 +38130,16 @@ components:
             $ref: '#/components/schemas/EventSummary'
           type: array
       type: object
-    FIReferencePrepay:
-      additionalProperties: false
-      example:
-        prepayName: prepayName
-      properties:
-        prepayName:
-          description: Reference Prepay Name
-          type: string
-      type: object
-    FIReferenceSecurity:
-      additionalProperties: false
-      example:
-        calcFromMethod: calcFromMethod
-        prepay:
-          prepayName: prepayName
-        securityName: securityName
-        calcFromValue: 0.8008281904610115
-        securityType: securityType
-        settlement: settlement
-      properties:
-        securityType:
-          description: Reference Security Type
-          type: string
-        securityName:
-          description: Reference Security Name
-          type: string
-        calcFromMethod:
-          description: "Reference Calculation Method.\r\nMethods : Active Spread,\
-            \ Actual Spread, Actual Spread To Worst Call, OAS, Price, Yield, Yield\
-            \ To No Call, Act/Act Yield To No Call, Bond Equivalent Yield,\r\nYield\
-            \ To Worst Call, Discount Yield, Discount Margin, Implied Volatility,\
-            \ Bullet Spread, Bullet Spread To Worst Call, Pricing Matrix"
-          type: string
-        calcFromValue:
-          description: Reference CalcFromValue
-          format: double
-          type: number
-        prepay:
-          $ref: '#/components/schemas/FIReferencePrepay'
-        settlement:
-          description: Reference Settlement Date
-          type: string
-      type: object
-    FILoss:
-      additionalProperties: false
-      example:
-        lossName: lossName
-      properties:
-        lossName:
-          description: Loss Name
-          type: string
-      type: object
-    FIPrepay:
-      additionalProperties: false
-      example:
-        prepayName: prepayName
-      properties:
-        prepayName:
-          description: Prepay Name
-          type: string
-      type: object
     FISecurity:
-      additionalProperties: false
       example:
         callMethod: No Call
-        symbol: symbol
-        matrixMultiplier: 1.4658129805029452
-        discountCurve: discountCurve
-        calcFromValue: 5.962133916683182
-        faceType: Current
-        referenceSecurity:
-          calcFromMethod: calcFromMethod
-          prepay:
-            prepayName: prepayName
-          securityName: securityName
-          calcFromValue: 0.8008281904610115
-          securityType: securityType
-          settlement: settlement
-        settlement: settlement
         calcFromMethod: calcFromMethod
-        loss:
-          lossName: lossName
-        prepay:
-          prepayName: prepayName
-        face: 5.637376656633329
-        matrixSpreadAdjustment: 6.027456183070403
+        symbol: symbol
+        face: 6.027456183070403
+        discountCurve: discountCurve
+        calcFromValue: 0.8008281904610115
+        faceType: Current
+        settlement: settlement
       properties:
         settlement:
           description: Settlement date
@@ -38890,26 +38152,8 @@ components:
           - First Call
           - First Par
           type: string
-        referenceSecurity:
-          $ref: '#/components/schemas/FIReferenceSecurity'
-        loss:
-          $ref: '#/components/schemas/FILoss'
-        prepay:
-          $ref: '#/components/schemas/FIPrepay'
-        matrixSpreadAdjustment:
-          description: Matrix Spread Adjustment
-          format: double
-          type: number
-        matrixMultiplier:
-          description: Matrix Multiplier
-          format: double
-          type: number
         calcFromMethod:
-          description: "Calculation Method.\r\nMethods : Active Spread, Actual Spread,\
-            \ Actual Spread To Worst Call, OAS, Price, Yield, Yield To No Call, Act/Act\
-            \ Yield To No Call, Bond Equivalent Yield,\r\nYield To Worst Call, Discount\
-            \ Yield, Discount Margin, Implied Volatility, Bullet Spread, Bullet Spread\
-            \ To Worst Call, Pricing Matrix"
+          description: Calculation from method
           type: string
         calcFromValue:
           description: Calculation from value
@@ -38938,14 +38182,13 @@ components:
       - symbol
       type: object
     FIJobSettings:
-      additionalProperties: false
       example:
         callMethod: No Call
         calcFromMethod: calcFromMethod
         asOfDate: asOfDate
         partialDurationMonths:
-        - 2
-        - 2
+        - 1
+        - 1
         settlement: settlement
       properties:
         asOfDate:
@@ -38969,74 +38212,41 @@ components:
           description: Settlement Date
           type: string
         calcFromMethod:
-          description: "Calculation Method.\r\nMethods : Active Spread, Actual Spread,\
-            \ Actual Spread To Worst Call, OAS, Price, Yield, Yield To No Call, Act/Act\
-            \ Yield To No Call, Bond Equivalent Yield,\r\nYield To Worst Call, Discount\
-            \ Yield, Discount Margin, Implied Volatility, Bullet Spread, Bullet Spread\
-            \ To Worst Call, Pricing Matrix"
+          description: Calculation from method
           type: string
       required:
       - asOfDate
       type: object
     FICalculationParameters:
-      additionalProperties: false
       example:
         jobSettings:
           callMethod: No Call
           calcFromMethod: calcFromMethod
           asOfDate: asOfDate
           partialDurationMonths:
-          - 2
-          - 2
+          - 1
+          - 1
           settlement: settlement
         calculations:
         - calculations
         - calculations
         securities:
         - callMethod: No Call
-          symbol: symbol
-          matrixMultiplier: 1.4658129805029452
-          discountCurve: discountCurve
-          calcFromValue: 5.962133916683182
-          faceType: Current
-          referenceSecurity:
-            calcFromMethod: calcFromMethod
-            prepay:
-              prepayName: prepayName
-            securityName: securityName
-            calcFromValue: 0.8008281904610115
-            securityType: securityType
-            settlement: settlement
-          settlement: settlement
           calcFromMethod: calcFromMethod
-          loss:
-            lossName: lossName
-          prepay:
-            prepayName: prepayName
-          face: 5.637376656633329
-          matrixSpreadAdjustment: 6.027456183070403
+          symbol: symbol
+          face: 6.027456183070403
+          discountCurve: discountCurve
+          calcFromValue: 0.8008281904610115
+          faceType: Current
+          settlement: settlement
         - callMethod: No Call
-          symbol: symbol
-          matrixMultiplier: 1.4658129805029452
-          discountCurve: discountCurve
-          calcFromValue: 5.962133916683182
-          faceType: Current
-          referenceSecurity:
-            calcFromMethod: calcFromMethod
-            prepay:
-              prepayName: prepayName
-            securityName: securityName
-            calcFromValue: 0.8008281904610115
-            securityType: securityType
-            settlement: settlement
-          settlement: settlement
           calcFromMethod: calcFromMethod
-          loss:
-            lossName: lossName
-          prepay:
-            prepayName: prepayName
-          face: 5.637376656633329
-          matrixSpreadAdjustment: 6.027456183070403
+          symbol: symbol
+          face: 6.027456183070403
+          discountCurve: discountCurve
+          calcFromValue: 0.8008281904610115
+          faceType: Current
+          settlement: settlement
       properties:
         securities:
           description: List of securities
@@ -39056,7 +38266,6 @@ components:
       - securities
       type: object
     CalculationMeta:
-      additionalProperties: false
       example:
         contentorganization: SimplifiedRow
         format: JsonStach
@@ -39102,7 +38311,6 @@ components:
           type: string
       type: object
     FICalculationParametersRoot:
-      additionalProperties: false
       example:
         data:
           jobSettings:
@@ -39110,57 +38318,29 @@ components:
             calcFromMethod: calcFromMethod
             asOfDate: asOfDate
             partialDurationMonths:
-            - 2
-            - 2
+            - 1
+            - 1
             settlement: settlement
           calculations:
           - calculations
           - calculations
           securities:
           - callMethod: No Call
-            symbol: symbol
-            matrixMultiplier: 1.4658129805029452
-            discountCurve: discountCurve
-            calcFromValue: 5.962133916683182
-            faceType: Current
-            referenceSecurity:
-              calcFromMethod: calcFromMethod
-              prepay:
-                prepayName: prepayName
-              securityName: securityName
-              calcFromValue: 0.8008281904610115
-              securityType: securityType
-              settlement: settlement
-            settlement: settlement
             calcFromMethod: calcFromMethod
-            loss:
-              lossName: lossName
-            prepay:
-              prepayName: prepayName
-            face: 5.637376656633329
-            matrixSpreadAdjustment: 6.027456183070403
+            symbol: symbol
+            face: 6.027456183070403
+            discountCurve: discountCurve
+            calcFromValue: 0.8008281904610115
+            faceType: Current
+            settlement: settlement
           - callMethod: No Call
-            symbol: symbol
-            matrixMultiplier: 1.4658129805029452
-            discountCurve: discountCurve
-            calcFromValue: 5.962133916683182
-            faceType: Current
-            referenceSecurity:
-              calcFromMethod: calcFromMethod
-              prepay:
-                prepayName: prepayName
-              securityName: securityName
-              calcFromValue: 0.8008281904610115
-              securityType: securityType
-              settlement: settlement
-            settlement: settlement
             calcFromMethod: calcFromMethod
-            loss:
-              lossName: lossName
-            prepay:
-              prepayName: prepayName
-            face: 5.637376656633329
-            matrixSpreadAdjustment: 6.027456183070403
+            symbol: symbol
+            face: 6.027456183070403
+            discountCurve: discountCurve
+            calcFromValue: 0.8008281904610115
+            faceType: Current
+            settlement: settlement
         meta:
           contentorganization: SimplifiedRow
           format: JsonStach
@@ -39173,7 +38353,6 @@ components:
           $ref: '#/components/schemas/CalculationMeta'
       type: object
     PaDoc:
-      additionalProperties: false
       example:
         id: id
       properties:
@@ -39184,7 +38363,6 @@ components:
       - id
       type: object
     FPOAccount:
-      additionalProperties: false
       example:
         paDocument:
           id: id
@@ -39205,37 +38383,17 @@ components:
       required:
       - paDocument
       type: object
-    FPOObjective:
-      additionalProperties: false
-      example:
-        terms:
-          key: Disable
-        active: active
-      properties:
-        active:
-          type: string
-        terms:
-          additionalProperties:
-            enum:
-            - Disable
-            - Enable
-            type: string
-          type: object
-      type: object
-    FPOOptimizerStrategyOverrides:
-      additionalProperties: false
+    OptimizerStrategyOverrides:
       example:
         alpha: alpha
+        tax: tax
         transactionCost: transactionCost
         constraints:
           key: Disable
-        objective:
-          terms:
-            key: Disable
-          active: active
       properties:
-        objective:
-          $ref: '#/components/schemas/FPOObjective'
+        tax:
+          description: Tax
+          type: string
         constraints:
           additionalProperties:
             enum:
@@ -39251,30 +38409,25 @@ components:
           description: Transaction cost
           type: string
       type: object
-    FPOOptimizerStrategy:
-      additionalProperties: false
+    OptimizerStrategy:
       example:
+        id: id
         overrides:
           alpha: alpha
+          tax: tax
           transactionCost: transactionCost
           constraints:
             key: Disable
-          objective:
-            terms:
-              key: Disable
-            active: active
-        id: id
       properties:
-        overrides:
-          $ref: '#/components/schemas/FPOOptimizerStrategyOverrides'
         id:
           description: OptimizerStrategy document path
           type: string
+        overrides:
+          $ref: '#/components/schemas/OptimizerStrategyOverrides'
       required:
       - id
       type: object
     FPOOptimizationParameters:
-      additionalProperties: false
       example:
         optimization:
           cashflow: cashflow
@@ -39296,16 +38449,13 @@ components:
             archiveDate: archiveDate
             acctName: acctName
         strategy:
+          id: id
           overrides:
             alpha: alpha
+            tax: tax
             transactionCost: transactionCost
             constraints:
               key: Disable
-            objective:
-              terms:
-                key: Disable
-              active: active
-          id: id
         account:
           paDocument:
             id: id
@@ -39319,7 +38469,7 @@ components:
         account:
           $ref: '#/components/schemas/FPOAccount'
         strategy:
-          $ref: '#/components/schemas/FPOOptimizerStrategy'
+          $ref: '#/components/schemas/OptimizerStrategy'
         optimization:
           $ref: '#/components/schemas/Optimization'
         outputTypes:
@@ -39329,7 +38479,6 @@ components:
       - strategy
       type: object
     FPOOptimizationParametersRoot:
-      additionalProperties: false
       example:
         data:
           optimization:
@@ -39352,16 +38501,13 @@ components:
               archiveDate: archiveDate
               acctName: acctName
           strategy:
+            id: id
             overrides:
               alpha: alpha
+              tax: tax
               transactionCost: transactionCost
               constraints:
                 key: Disable
-              objective:
-                terms:
-                  key: Disable
-                active: active
-            id: id
           account:
             paDocument:
               id: id
@@ -39376,11 +38522,9 @@ components:
         data:
           $ref: '#/components/schemas/FPOOptimizationParameters'
         meta:
-          additionalProperties: false
           type: object
       type: object
     Frequency:
-      additionalProperties: false
       example:
         name: name
       properties:
@@ -39389,7 +38533,6 @@ components:
           type: string
       type: object
     FrequencyRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -39406,7 +38549,6 @@ components:
       - data
       type: object
     Group:
-      additionalProperties: false
       example:
         name: name
         category: category
@@ -39423,7 +38565,6 @@ components:
           type: string
       type: object
     GroupRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -39442,7 +38583,6 @@ components:
       - data
       type: object
     TemplateContentTypes:
-      additionalProperties: false
       example:
         optional:
         - optional
@@ -39471,7 +38611,6 @@ components:
           type: array
       type: object
     LinkedPATemplateParameters:
-      additionalProperties: false
       example:
         parentComponentId: parentComponentId
         description: description
@@ -39503,7 +38642,6 @@ components:
       - parentComponentId
       type: object
     LinkedPATemplateParametersRoot:
-      additionalProperties: false
       example:
         data:
           parentComponentId: parentComponentId
@@ -39528,46 +38666,7 @@ components:
       required:
       - data
       type: object
-    LinkedPATemplatePostSummary:
-      additionalProperties: false
-      example:
-        parentComponentId: parentComponentId
-        name: name
-        description: description
-        id: id
-      properties:
-        id:
-          description: Template id.
-          type: string
-        description:
-          description: Template description.
-          type: string
-        name:
-          description: Template name.
-          type: string
-        parentComponentId:
-          description: Template parent tile.
-          type: string
-      type: object
-    LinkedPATemplatePostSummaryRoot:
-      additionalProperties: false
-      example:
-        data:
-          parentComponentId: parentComponentId
-          name: name
-          description: description
-          id: id
-        meta: '{}'
-      properties:
-        data:
-          $ref: '#/components/schemas/LinkedPATemplatePostSummary'
-        meta:
-          type: object
-      required:
-      - data
-      type: object
     LinkedPATemplateSummary:
-      additionalProperties: false
       example:
         parentComponentId: parentComponentId
         name: name
@@ -39584,7 +38683,6 @@ components:
           type: string
       type: object
     LinkedPATemplateSummaryRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -39603,7 +38701,6 @@ components:
       - data
       type: object
     LinkedPATemplateUpdateParameters:
-      additionalProperties: false
       example:
         parentComponentId: parentComponentId
         description: description
@@ -39628,7 +38725,6 @@ components:
           $ref: '#/components/schemas/TemplateContentTypes'
       type: object
     LinkedPATemplateUpdateParametersRoot:
-      additionalProperties: false
       example:
         data:
           parentComponentId: parentComponentId
@@ -39653,7 +38749,6 @@ components:
       - data
       type: object
     LinkedPATemplate:
-      additionalProperties: false
       example:
         parentComponentId: parentComponentId
         name: name
@@ -39694,7 +38789,6 @@ components:
           type: string
       type: object
     LinkedPATemplateRoot:
-      additionalProperties: false
       example:
         data:
           parentComponentId: parentComponentId
@@ -39723,7 +38817,6 @@ components:
       - data
       type: object
     NPOOptimizerStrategyOverrides:
-      additionalProperties: false
       example:
         alpha: alpha
         tax: tax
@@ -39757,7 +38850,6 @@ components:
           type: string
       type: object
     NPOOptimizerStrategy:
-      additionalProperties: false
       example:
         overrides:
           alpha: alpha
@@ -39781,7 +38873,6 @@ components:
       - id
       type: object
     NPOOptimizationParameters:
-      additionalProperties: false
       example:
         optimization:
           cashflow: cashflow
@@ -39836,7 +38927,6 @@ components:
       - strategy
       type: object
     NPOOptimizationParametersRoot:
-      additionalProperties: false
       example:
         data:
           optimization:
@@ -39883,11 +38973,9 @@ components:
         data:
           $ref: '#/components/schemas/NPOOptimizationParameters'
         meta:
-          additionalProperties: false
           type: object
       type: object
     PACalculationGroup:
-      additionalProperties: false
       example:
         id: id
       properties:
@@ -39896,7 +38984,6 @@ components:
           type: string
       type: object
     PACalculationColumn:
-      additionalProperties: false
       example:
         id: id
         statistics:
@@ -39913,7 +39000,6 @@ components:
           type: array
       type: object
     PACalculationParameters:
-      additionalProperties: false
       example:
         currencyisocode: currencyisocode
         componentdetail: componentdetail
@@ -39977,13 +39063,12 @@ components:
           type: array
         componentdetail:
           description: Component detail type for the PA component. It can be GROUPS
-            or TOTALS or SECURITIES.
+            or TOTALS.
           type: string
       required:
       - componentid
       type: object
     PACalculationParametersRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -40031,7 +39116,6 @@ components:
           $ref: '#/components/schemas/CalculationMeta'
       type: object
     CalculationUnitStatus:
-      additionalProperties: false
       example:
         result: result
         progress: progress
@@ -40047,7 +39131,6 @@ components:
             pointer: pointer
             parameter: parameter
         status: Queued
-        points: 0
       properties:
         status:
           description: The status of calculation unit.
@@ -40069,13 +39152,8 @@ components:
         progress:
           description: The progress of the calculation unit.
           type: string
-        points:
-          description: The points for the calculation unit.
-          format: int32
-          type: integer
       type: object
     CalculationStatus:
-      additionalProperties: false
       example:
         calculationid: calculationid
         units:
@@ -40094,7 +39172,6 @@ components:
                 pointer: pointer
                 parameter: parameter
             status: Queued
-            points: 0
         status: Queued
       properties:
         calculationid:
@@ -40115,7 +39192,6 @@ components:
           type: object
       type: object
     CalculationUnitStatusMeta:
-      additionalProperties: false
       example:
         info: info
       properties:
@@ -40124,7 +39200,6 @@ components:
           type: string
       type: object
     CalculationStatusMeta:
-      additionalProperties: false
       example:
         units:
           key:
@@ -40137,7 +39212,6 @@ components:
           type: object
       type: object
     CalculationStatusRoot:
-      additionalProperties: false
       example:
         data:
           calculationid: calculationid
@@ -40157,7 +39231,6 @@ components:
                   pointer: pointer
                   parameter: parameter
               status: Queued
-              points: 0
           status: Queued
         meta:
           units:
@@ -40172,7 +39245,6 @@ components:
       - data
       type: object
     PubIdentifier:
-      additionalProperties: false
       example:
         id: id
         holdingsmode: holdingsmode
@@ -40187,7 +39259,6 @@ components:
       - id
       type: object
     PubDateParameters:
-      additionalProperties: false
       description: The date parameters for Publisher calculation.
       example:
         enddate: enddate
@@ -40203,7 +39274,6 @@ components:
       - enddate
       type: object
     PubCalculationParameters:
-      additionalProperties: false
       example:
         document: document
         dates:
@@ -40226,10 +39296,8 @@ components:
       - document
       type: object
     PubCalculationMeta:
-      additionalProperties: false
       type: object
     PubCalculationParametersRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -40248,13 +39316,13 @@ components:
           description: List of calculation parameters.
           type: object
         meta:
-          additionalProperties: false
           type: object
       type: object
     QuantScreeningExpressionUniverse:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/QuantUniverse'
+      example:
+        universeExpr: universeExpr
+        securityExpr: securityExpr
+        universeType: Equity
       properties:
         universeExpr:
           type: string
@@ -40269,10 +39337,21 @@ components:
       - universeExpr
       - universeType
       type: object
+    QuantUniversalScreenUniverse:
+      example:
+        screen: screen
+      properties:
+        screen:
+          type: string
+      required:
+      - screen
+      type: object
     QuantIdentifierUniverse:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/QuantUniverse'
+      example:
+        identifiers:
+        - identifiers
+        - identifiers
+        universeType: Equity
       properties:
         universeType:
           enum:
@@ -40287,45 +39366,16 @@ components:
       - identifiers
       - universeType
       type: object
-    QuantUniverse:
-      additionalProperties: false
+    QuantFdsDate:
+      example:
+        calendar: calendar
+        endDate: endDate
+        startDate: startDate
+        frequency: frequency
       properties:
-        source:
-          enum:
-          - ScreeningExpressionUniverse
-          - UniversalScreenUniverse
-          - IdentifierUniverse
+        startDate:
           type: string
-      required:
-      - source
-      type: object
-    QuantUniversalScreenUniverse:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/QuantUniverse'
-      properties:
-        screen:
-          type: string
-      required:
-      - screen
-      type: object
-    QuantDateList:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/QuantDate'
-      properties:
-        dates:
-          items:
-            type: string
-          type: array
-      type: object
-    QuantDate:
-      additionalProperties: false
-      properties:
-        source:
-          enum:
-          - FdsDate
-          - DateList
+        endDate:
           type: string
         frequency:
           type: string
@@ -40333,26 +39383,47 @@ components:
           type: string
       required:
       - calendar
-      - frequency
-      - source
-      type: object
-    QuantFdsDate:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/QuantDate'
-      properties:
-        startDate:
-          type: string
-        endDate:
-          type: string
-      required:
       - endDate
+      - frequency
       - startDate
       type: object
+    QuantDateList:
+      example:
+        calendar: calendar
+        dates:
+        - dates
+        - dates
+        frequency: frequency
+      properties:
+        dates:
+          items:
+            type: string
+          type: array
+        frequency:
+          type: string
+        calendar:
+          type: string
+      required:
+      - calendar
+      - frequency
+      type: object
+    QuantScreeningExpression:
+      example:
+        name: name
+        expr: expr
+      properties:
+        expr:
+          type: string
+        name:
+          type: string
+      required:
+      - expr
+      - name
+      type: object
     QuantFqlExpression:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/QuantFormula'
+      example:
+        name: name
+        expr: expr
       properties:
         expr:
           type: string
@@ -40363,9 +39434,9 @@ components:
       - name
       type: object
     QuantUniversalScreenParameter:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/QuantFormula'
+      example:
+        name: name
+        referenceName: referenceName
       properties:
         referenceName:
           type: string
@@ -40376,217 +39447,78 @@ components:
       - referenceName
       type: object
     QuantAllUniversalScreenParameters:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/QuantFormula'
       type: object
-    QuantFormula:
-      additionalProperties: false
-      properties:
-        source:
-          enum:
-          - ScreeningExpression
-          - FqlExpression
-          - UniversalScreenParameter
-          - AllUniversalScreenParameters
-          type: string
-      required:
-      - source
-      type: object
-    QuantScreeningExpression:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/QuantFormula'
-      properties:
-        expr:
-          type: string
-        name:
-          type: string
-      required:
-      - expr
-      - name
-      type: object
-    QuantScreeningExpressionUniverseObsolete:
-      additionalProperties: false
-      properties:
-        universeExpr:
-          type: string
-        universeType:
-          enum:
-          - Equity
-          - Debt
-          type: string
-        securityExpr:
-          type: string
-        source:
-          enum:
-          - ScreeningExpressionUniverse
-          - UniversalScreenUniverse
-          - IdentifierUniverse
-          type: string
-      required:
-      - universeExpr
-      - universeType
-      type: object
-    QuantUniversalScreenUniverseObsolete:
-      additionalProperties: false
-      properties:
-        screen:
-          type: string
-        source:
-          enum:
-          - ScreeningExpressionUniverse
-          - UniversalScreenUniverse
-          - IdentifierUniverse
-          type: string
-      required:
-      - screen
-      type: object
-    QuantIdentifierUniverseObsolete:
-      additionalProperties: false
-      properties:
-        universeType:
-          enum:
-          - Equity
-          - Debt
-          type: string
-        identifiers:
-          items:
-            type: string
-          type: array
-        source:
-          enum:
-          - ScreeningExpressionUniverse
-          - UniversalScreenUniverse
-          - IdentifierUniverse
-          type: string
-      required:
-      - identifiers
-      - universeType
-      type: object
-    QuantFdsDateObsolete:
-      additionalProperties: false
-      properties:
-        startDate:
-          type: string
-        endDate:
-          type: string
-        frequency:
-          type: string
-        calendar:
-          type: string
-      required:
-      - calendar
-      - endDate
-      - frequency
-      - startDate
-      type: object
-    QuantDateListObsolete:
-      additionalProperties: false
-      properties:
-        dates:
-          items:
-            type: string
-          type: array
-        frequency:
-          type: string
-        calendar:
-          type: string
-      required:
-      - calendar
-      - frequency
-      type: object
-    QuantScreeningExpressionObsolete:
-      additionalProperties: false
-      properties:
-        expr:
-          type: string
-        name:
-          type: string
-      required:
-      - expr
-      - name
-      type: object
-    QuantFqlExpressionObsolete:
-      additionalProperties: false
-      properties:
-        expr:
-          type: string
-        name:
-          type: string
-      required:
-      - expr
-      - name
-      type: object
-    QuantUniversalScreenParameterObsolete:
-      additionalProperties: false
-      properties:
-        referenceName:
-          type: string
-        name:
-          type: string
-      required:
-      - name
-      - referenceName
-      type: object
-    QuantAllUniversalScreenParametersObsolete:
-      additionalProperties: false
-      type: object
-    OneOfQuantUniverse:
-      discriminator:
-        mapping:
-          UniversalScreenUniverse: '#/components/schemas/QuantUniversalScreenUniverse'
-          ScreeningExpressionUniverse: '#/components/schemas/QuantScreeningExpressionUniverse'
-          IdentifierUniverse: '#/components/schemas/QuantIdentifierUniverse'
-        propertyName: source
-      oneOf:
-      - $ref: '#/components/schemas/QuantUniversalScreenUniverse'
-      - $ref: '#/components/schemas/QuantScreeningExpressionUniverse'
-      - $ref: '#/components/schemas/QuantIdentifierUniverse'
-    OneOfQuantDates:
-      discriminator:
-        mapping:
-          FdsDate: '#/components/schemas/QuantFdsDate'
-          DateList: '#/components/schemas/QuantDateList'
-        propertyName: source
-      oneOf:
-      - $ref: '#/components/schemas/QuantFdsDate'
-      - $ref: '#/components/schemas/QuantDateList'
-    OneOfQuantFormulas:
-      discriminator:
-        mapping:
-          ScreeningExpression: '#/components/schemas/QuantScreeningExpression'
-          FqlExpression: '#/components/schemas/QuantFqlExpression'
-          UniversalScreenParameter: '#/components/schemas/QuantUniversalScreenParameter'
-          AllUniversalScreenParameters: '#/components/schemas/QuantAllUniversalScreenParameters'
-        propertyName: source
-      oneOf:
-      - $ref: '#/components/schemas/QuantScreeningExpression'
-      - $ref: '#/components/schemas/QuantFqlExpression'
-      - $ref: '#/components/schemas/QuantUniversalScreenParameter'
-      - $ref: '#/components/schemas/QuantAllUniversalScreenParameters'
-    OneOfQuantFormulasArray:
-      items:
-        $ref: '#/components/schemas/OneOfQuantFormulas'
-      type: array
     QuantCalculationParameters:
-      additionalProperties: false
       example:
-        formulas:
+        fdsDate:
+          calendar: calendar
+          endDate: endDate
+          startDate: startDate
+          frequency: frequency
+        identifierUniverse:
+          identifiers:
+          - identifiers
+          - identifiers
+          universeType: Equity
+        universalScreenParameter:
+        - name: name
+          referenceName: referenceName
+        - name: name
+          referenceName: referenceName
+        screeningExpression:
+        - name: name
+          expr: expr
+        - name: name
+          expr: expr
+        allUniversalScreenParameters:
         - null
         - null
+        dateList:
+          calendar: calendar
+          dates:
+          - dates
+          - dates
+          frequency: frequency
+        screeningExpressionUniverse:
+          universeExpr: universeExpr
+          securityExpr: securityExpr
+          universeType: Equity
+        universalScreenUniverse:
+          screen: screen
+        fqlExpression:
+        - name: name
+          expr: expr
+        - name: name
+          expr: expr
       properties:
-        universe:
-          $ref: '#/components/schemas/OneOfQuantUniverse'
-        dates:
-          $ref: '#/components/schemas/OneOfQuantDates'
-        formulas:
+        screeningExpressionUniverse:
+          $ref: '#/components/schemas/QuantScreeningExpressionUniverse'
+        universalScreenUniverse:
+          $ref: '#/components/schemas/QuantUniversalScreenUniverse'
+        identifierUniverse:
+          $ref: '#/components/schemas/QuantIdentifierUniverse'
+        fdsDate:
+          $ref: '#/components/schemas/QuantFdsDate'
+        dateList:
+          $ref: '#/components/schemas/QuantDateList'
+        screeningExpression:
           items:
-            $ref: '#/components/schemas/OneOfQuantFormulas'
+            $ref: '#/components/schemas/QuantScreeningExpression'
+          type: array
+        fqlExpression:
+          items:
+            $ref: '#/components/schemas/QuantFqlExpression'
+          type: array
+        universalScreenParameter:
+          items:
+            $ref: '#/components/schemas/QuantUniversalScreenParameter'
+          type: array
+        allUniversalScreenParameters:
+          items:
+            $ref: '#/components/schemas/QuantAllUniversalScreenParameters'
           type: array
       type: object
     QuantCalculationMeta:
-      additionalProperties: false
       example:
         contentorganization: SimplifiedRow
         allowArrayData: true
@@ -40635,13 +39567,49 @@ components:
           type: string
       type: object
     QuantCalculationParametersRoot:
-      additionalProperties: false
       example:
         data:
           key:
-            formulas:
+            fdsDate:
+              calendar: calendar
+              endDate: endDate
+              startDate: startDate
+              frequency: frequency
+            identifierUniverse:
+              identifiers:
+              - identifiers
+              - identifiers
+              universeType: Equity
+            universalScreenParameter:
+            - name: name
+              referenceName: referenceName
+            - name: name
+              referenceName: referenceName
+            screeningExpression:
+            - name: name
+              expr: expr
+            - name: name
+              expr: expr
+            allUniversalScreenParameters:
             - null
             - null
+            dateList:
+              calendar: calendar
+              dates:
+              - dates
+              - dates
+              frequency: frequency
+            screeningExpressionUniverse:
+              universeExpr: universeExpr
+              securityExpr: securityExpr
+              universeType: Equity
+            universalScreenUniverse:
+              screen: screen
+            fqlExpression:
+            - name: name
+              expr: expr
+            - name: name
+              expr: expr
         meta:
           contentorganization: SimplifiedRow
           allowArrayData: true
@@ -40658,7 +39626,6 @@ components:
           $ref: '#/components/schemas/QuantCalculationMeta'
       type: object
     SPARDateParameters:
-      additionalProperties: false
       description: The date parameters for SPAR calculation.
       example:
         enddate: enddate
@@ -40680,7 +39647,6 @@ components:
       - startdate
       type: object
     SPARCalculationParameters:
-      additionalProperties: false
       example:
         currencyisocode: currencyisocode
         componentid: componentid
@@ -40719,7 +39685,6 @@ components:
       - componentid
       type: object
     SPARCalculationParametersRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -40755,7 +39720,6 @@ components:
           $ref: '#/components/schemas/CalculationMeta'
       type: object
     PAComponentData:
-      additionalProperties: false
       example:
         currencyisocode: currencyisocode
         componentdetail: componentdetail
@@ -40818,7 +39782,6 @@ components:
           type: string
       type: object
     TemplatedPAComponentParameters:
-      additionalProperties: false
       example:
         parentTemplateId: parentTemplateId
         description: description
@@ -40869,7 +39832,6 @@ components:
       - parentTemplateId
       type: object
     TemplatedPAComponentParametersRoot:
-      additionalProperties: false
       example:
         data:
           parentTemplateId: parentTemplateId
@@ -40913,46 +39875,7 @@ components:
       required:
       - data
       type: object
-    TemplatedPAComponentPostSummary:
-      additionalProperties: false
-      example:
-        parentTemplateId: parentTemplateId
-        name: name
-        description: description
-        id: id
-        type: type
-      properties:
-        id:
-          type: string
-        description:
-          type: string
-        name:
-          type: string
-        parentTemplateId:
-          type: string
-        type:
-          type: string
-      type: object
-    TemplatedPAComponentPostSummaryRoot:
-      additionalProperties: false
-      example:
-        data:
-          parentTemplateId: parentTemplateId
-          name: name
-          description: description
-          id: id
-          type: type
-        meta: '{}'
-      properties:
-        data:
-          $ref: '#/components/schemas/TemplatedPAComponentPostSummary'
-        meta:
-          type: object
-      required:
-      - data
-      type: object
     TemplatedPAComponentSummary:
-      additionalProperties: false
       example:
         parentTemplateId: parentTemplateId
         name: name
@@ -40969,7 +39892,6 @@ components:
           type: string
       type: object
     TemplatedPAComponentSummaryRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -40989,7 +39911,6 @@ components:
       - data
       type: object
     TemplatedPAComponentUpdateParameters:
-      additionalProperties: false
       example:
         parentTemplateId: parentTemplateId
         description: description
@@ -41033,7 +39954,6 @@ components:
           $ref: '#/components/schemas/PAComponentData'
       type: object
     TemplatedPAComponentUpdateParametersRoot:
-      additionalProperties: false
       example:
         data:
           parentTemplateId: parentTemplateId
@@ -41076,114 +39996,7 @@ components:
       required:
       - data
       type: object
-    TemplatedPAComponent:
-      additionalProperties: false
-      example:
-        parentTemplateId: parentTemplateId
-        name: name
-        componentData:
-          currencyisocode: currencyisocode
-          componentdetail: componentdetail
-          columns:
-          - id: id
-            statistics:
-            - statistics
-            - statistics
-          - id: id
-            statistics:
-            - statistics
-            - statistics
-          groups:
-          - id: id
-          - id: id
-          dates:
-            enddate: enddate
-            startdate: startdate
-            frequency: frequency
-          accounts:
-          - id: id
-            holdingsmode: holdingsmode
-          - id: id
-            holdingsmode: holdingsmode
-          benchmarks:
-          - id: id
-            holdingsmode: holdingsmode
-          - id: id
-            holdingsmode: holdingsmode
-        description: description
-        id: id
-        type: type
-        directory: directory
-        snapshot: true
-      properties:
-        id:
-          type: string
-        directory:
-          type: string
-        snapshot:
-          type: boolean
-        componentData:
-          $ref: '#/components/schemas/PAComponentData'
-        description:
-          type: string
-        name:
-          type: string
-        parentTemplateId:
-          type: string
-        type:
-          type: string
-      type: object
-    TemplatedPAComponentRoot:
-      additionalProperties: false
-      example:
-        data:
-          parentTemplateId: parentTemplateId
-          name: name
-          componentData:
-            currencyisocode: currencyisocode
-            componentdetail: componentdetail
-            columns:
-            - id: id
-              statistics:
-              - statistics
-              - statistics
-            - id: id
-              statistics:
-              - statistics
-              - statistics
-            groups:
-            - id: id
-            - id: id
-            dates:
-              enddate: enddate
-              startdate: startdate
-              frequency: frequency
-            accounts:
-            - id: id
-              holdingsmode: holdingsmode
-            - id: id
-              holdingsmode: holdingsmode
-            benchmarks:
-            - id: id
-              holdingsmode: holdingsmode
-            - id: id
-              holdingsmode: holdingsmode
-          description: description
-          id: id
-          type: type
-          directory: directory
-          snapshot: true
-        meta: '{}'
-      properties:
-        data:
-          $ref: '#/components/schemas/TemplatedPAComponent'
-        meta:
-          type: object
-      required:
-      - data
-      type: object
     UnlinkedPATemplateParameters:
-      additionalProperties: false
       example:
         templateTypeId: templateTypeId
         currencyisocode: currencyisocode
@@ -41271,7 +40084,6 @@ components:
       - templateTypeId
       type: object
     UnlinkedPATemplateParametersRoot:
-      additionalProperties: false
       example:
         data:
           templateTypeId: templateTypeId
@@ -41324,63 +40136,20 @@ components:
       required:
       - data
       type: object
-    UnlinkedPATemplatePostSummary:
-      additionalProperties: false
-      example:
-        name: name
-        description: description
-        id: id
-        category: category
-      properties:
-        id:
-          description: Template id.
-          type: string
-        description:
-          description: Template description.
-          type: string
-        name:
-          description: Template name.
-          type: string
-        category:
-          description: Unlinked template category
-          type: string
-      type: object
-    UnlinkedPATemplatePostSummaryRoot:
-      additionalProperties: false
-      example:
-        data:
-          name: name
-          description: description
-          id: id
-          category: category
-        meta: '{}'
-      properties:
-        data:
-          $ref: '#/components/schemas/UnlinkedPATemplatePostSummary'
-        meta:
-          type: object
-      required:
-      - data
-      type: object
     UnlinkedPATemplateSummary:
-      additionalProperties: false
       example:
         name: name
         description: description
         category: category
       properties:
         description:
-          description: Template description.
           type: string
         name:
-          description: Template name.
           type: string
         category:
-          description: Unlinked template category
           type: string
       type: object
     UnlinkedPATemplateSummaryRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -41399,7 +40168,6 @@ components:
       - data
       type: object
     UnlinkedPATemplateUpdateParameters:
-      additionalProperties: false
       example:
         currencyisocode: currencyisocode
         componentdetail: componentdetail
@@ -41476,7 +40244,6 @@ components:
           $ref: '#/components/schemas/TemplateContentTypes'
       type: object
     UnlinkedPATemplateUpdateParametersRoot:
-      additionalProperties: false
       example:
         data:
           currencyisocode: currencyisocode
@@ -41528,7 +40295,6 @@ components:
       - data
       type: object
     UnlinkedPATemplate:
-      additionalProperties: false
       example:
         columns:
         - id: id
@@ -41576,60 +40342,46 @@ components:
         category: category
         snapshot: true
       properties:
-        id:
-          description: Template id.
-          type: string
         directory:
-          description: Template directory.
+          type: string
+        id:
           type: string
         templateTypeId:
-          description: Template type id
           type: string
         snapshot:
-          description: snapshot.
           type: boolean
         accounts:
-          description: List of accounts
           items:
             $ref: '#/components/schemas/PAIdentifier'
           type: array
         benchmarks:
-          description: List of benchmarks
           items:
             $ref: '#/components/schemas/PAIdentifier'
           type: array
         columns:
-          description: List of columns for the PA calculation
           items:
             $ref: '#/components/schemas/PACalculationColumn'
           type: array
         dates:
           $ref: '#/components/schemas/PADateParameters'
         groups:
-          description: List of groupings for the PA calculation
           items:
             $ref: '#/components/schemas/PACalculationGroup'
           type: array
         currencyisocode:
-          description: Currency ISO code for calculation.
           type: string
         componentdetail:
-          description: PA storage type. It can be GROUPS or TOTALS or SECURITIES.
           type: string
         content:
           $ref: '#/components/schemas/TemplateContentTypes'
         description:
-          description: Template description.
           type: string
         name:
-          description: Template name.
           type: string
         category:
-          description: Unlinked template category
           type: string
       type: object
     UnlinkedPATemplateRoot:
-      additionalProperties: false
       example:
         data:
           columns:
@@ -41687,7 +40439,6 @@ components:
       - data
       type: object
     UnlinkedPATemplateCategoryAndType:
-      additionalProperties: false
       example:
         name: name
         category: category
@@ -41700,7 +40451,6 @@ components:
           type: string
       type: object
     UnlinkedPATemplateCategoryAndTypeRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -41717,80 +40467,15 @@ components:
       required:
       - data
       type: object
-    UnlinkedPATemplateColumnDetails:
-      additionalProperties: false
-      example:
-        name: name
-        id: id
-        statistics:
-        - statistics
-        - statistics
-      properties:
-        name:
-          description: Unlinked template column name
-          type: string
-        id:
-          description: FactSet-defined or User-defined Column identifier.
-          type: string
-        statistics:
-          description: Column Statistic identifier
-          items:
-            type: string
-          type: array
-      type: object
-    UnlinkedPATemplateGroupDetails:
-      additionalProperties: false
-      example:
-        name: name
-        id: id
-      properties:
-        name:
-          description: Unlinked template group name
-          type: string
-        id:
-          description: FactSet-defined or User-defined Group identifier.
-          type: string
-      type: object
     UnlinkedPATemplateCategoryAndTypeDetails:
-      additionalProperties: false
       example:
-        columns:
-        - name: name
-          id: id
-          statistics:
-          - statistics
-          - statistics
-        - name: name
-          id: id
-          statistics:
-          - statistics
-          - statistics
         name: name
-        groups:
-        - name: name
-          id: id
-        - name: name
-          id: id
         id: id
         category: category
-        snapshot: true
       properties:
         id:
           description: Type Id
           type: string
-        columns:
-          description: List of default columns
-          items:
-            $ref: '#/components/schemas/UnlinkedPATemplateColumnDetails'
-          type: array
-        groups:
-          description: List of default groupings
-          items:
-            $ref: '#/components/schemas/UnlinkedPATemplateGroupDetails'
-          type: array
-        snapshot:
-          description: Snapshot
-          type: boolean
         category:
           description: Unlinked template category
           type: string
@@ -41799,29 +40484,11 @@ components:
           type: string
       type: object
     UnlinkedPATemplateCategoryAndTypeDetailsRoot:
-      additionalProperties: false
       example:
         data:
-          columns:
-          - name: name
-            id: id
-            statistics:
-            - statistics
-            - statistics
-          - name: name
-            id: id
-            statistics:
-            - statistics
-            - statistics
           name: name
-          groups:
-          - name: name
-            id: id
-          - name: name
-            id: id
           id: id
           category: category
-          snapshot: true
         meta: '{}'
       properties:
         data:
@@ -41832,7 +40499,6 @@ components:
       - data
       type: object
     VaultCalculationParameters:
-      additionalProperties: false
       example:
         componentdetail: componentdetail
         componentid: componentid
@@ -41856,7 +40522,7 @@ components:
           type: string
         componentdetail:
           description: Component detail type for the Vault component. It can be GROUPS
-            or TOTALS or SECURITIES.
+            or TOTALS.
           type: string
       required:
       - account
@@ -41864,7 +40530,6 @@ components:
       - configid
       type: object
     VaultCalculationParametersRoot:
-      additionalProperties: false
       example:
         data:
           key:

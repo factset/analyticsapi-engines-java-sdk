@@ -18,7 +18,6 @@ import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.UnlinkedPATemplateCategoryAndTypeDetailsRoot;
 import factset.analyticsapi.engines.models.UnlinkedPATemplateCategoryAndTypeRoot;
 import factset.analyticsapi.engines.models.UnlinkedPATemplateParametersRoot;
-import factset.analyticsapi.engines.models.UnlinkedPATemplatePostSummaryRoot;
 import factset.analyticsapi.engines.models.UnlinkedPATemplateRoot;
 import factset.analyticsapi.engines.models.UnlinkedPATemplateSummaryRoot;
 import factset.analyticsapi.engines.models.UnlinkedPATemplateUpdateParametersRoot;
@@ -54,9 +53,9 @@ public class UnlinkedPaTemplatesApi {
 
   /**
    * Create unlinked PA template
-   * This endpoint creates a template which is not linked to any specific PA3 tile.     Remarks:    *   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary.       If no mandatory fields are passed, then we can use the template as a component and skip the component creation.        *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   We cannot override the Locked fields when creating the Component.    *   Mandatory and locked strings are mutually exclusive.    *   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.    *   Multi-horizon frequencies are not supported through this endpoint.    *   Componentdetail supports securities, groups, and totals as well but if we don&#39;t pass anything that defaults to securities.
+   * This endpoint creates a template which is not linked to any specific PA3 tile.     Remarks:    *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
    * @param unlinkedPATemplateParametersRoot Request Parameters (required)
-    @return UnlinkedPATemplatePostSummaryRoot
+    @return UnlinkedPATemplateSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -71,15 +70,15 @@ public class UnlinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public UnlinkedPATemplatePostSummaryRoot createUnlinkedPATemplates(UnlinkedPATemplateParametersRoot unlinkedPATemplateParametersRoot) throws ApiException {
+ public UnlinkedPATemplateSummaryRoot createUnlinkedPATemplates(UnlinkedPATemplateParametersRoot unlinkedPATemplateParametersRoot) throws ApiException {
     return createUnlinkedPATemplatesWithHttpInfo(unlinkedPATemplateParametersRoot).getData();
   }
 
   /**
    * Create unlinked PA template
-   * This endpoint creates a template which is not linked to any specific PA3 tile.     Remarks:    *   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary.       If no mandatory fields are passed, then we can use the template as a component and skip the component creation.        *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   We cannot override the Locked fields when creating the Component.    *   Mandatory and locked strings are mutually exclusive.    *   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.    *   Multi-horizon frequencies are not supported through this endpoint.    *   Componentdetail supports securities, groups, and totals as well but if we don&#39;t pass anything that defaults to securities.
+   * This endpoint creates a template which is not linked to any specific PA3 tile.     Remarks:    *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
    * @param unlinkedPATemplateParametersRoot Request Parameters (required)
-    * @return ApiResponse&lt;UnlinkedPATemplatePostSummaryRoot&gt;
+    * @return ApiResponse&lt;UnlinkedPATemplateSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -94,7 +93,7 @@ public class UnlinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<UnlinkedPATemplatePostSummaryRoot> createUnlinkedPATemplatesWithHttpInfo(UnlinkedPATemplateParametersRoot unlinkedPATemplateParametersRoot) throws ApiException {
+  public ApiResponse<UnlinkedPATemplateSummaryRoot> createUnlinkedPATemplatesWithHttpInfo(UnlinkedPATemplateParametersRoot unlinkedPATemplateParametersRoot) throws ApiException {
     Object localVarPostBody = unlinkedPATemplateParametersRoot;
     
     // verify the required parameter 'unlinkedPATemplateParametersRoot' is set
@@ -127,13 +126,13 @@ public class UnlinkedPaTemplatesApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<UnlinkedPATemplatePostSummaryRoot> localVarReturnType = new GenericType<UnlinkedPATemplatePostSummaryRoot>() {};
+    GenericType<UnlinkedPATemplateSummaryRoot> localVarReturnType = new GenericType<UnlinkedPATemplateSummaryRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(201, new GenericType<UnlinkedPATemplatePostSummaryRoot>(){});
+        returnTypeMap.put(201, new GenericType<UnlinkedPATemplateSummaryRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<UnlinkedPATemplatePostSummaryRoot>invokeAPIWithReturnMap("UnlinkedPaTemplatesApi.createUnlinkedPATemplates", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+      return apiClient.<UnlinkedPATemplateSummaryRoot>invokeAPIWithReturnMap("UnlinkedPaTemplatesApi.createUnlinkedPATemplates", localVarPath, "POST", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }
@@ -561,10 +560,10 @@ public class UnlinkedPaTemplatesApi {
   }
   /**
    * Update unlinked PA template
-   * This endpoint updates an existing unlinked PA template.    Remarks:                *   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary.       If no mandatory fields are passed, then we can use the template as a component and skip the component creation.        *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   We cannot override the Locked fields when creating the Component.    *   Mandatory and locked strings are mutually exclusive.    *   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.    *   Multi-horizon frequencies are not supported through this endpoint.    *   Componentdetail supports securities, groups, and totals as well but if we don&#39;t pass anything that defaults to securities.
+   * This endpoint updates an existing unlinked PA template.    Remarks:                *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
    * @param id Unique identifier for an unlinked PA template (required)
    * @param unlinkedPATemplateUpdateParametersRoot Request Parameters (required)
-    @return UnlinkedPATemplatePostSummaryRoot
+    @return UnlinkedPATemplateSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -580,16 +579,16 @@ public class UnlinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public UnlinkedPATemplatePostSummaryRoot updateUnlinkedPATemplates(String id, UnlinkedPATemplateUpdateParametersRoot unlinkedPATemplateUpdateParametersRoot) throws ApiException {
+ public UnlinkedPATemplateSummaryRoot updateUnlinkedPATemplates(String id, UnlinkedPATemplateUpdateParametersRoot unlinkedPATemplateUpdateParametersRoot) throws ApiException {
     return updateUnlinkedPATemplatesWithHttpInfo(id, unlinkedPATemplateUpdateParametersRoot).getData();
   }
 
   /**
    * Update unlinked PA template
-   * This endpoint updates an existing unlinked PA template.    Remarks:                *   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary.       If no mandatory fields are passed, then we can use the template as a component and skip the component creation.        *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   We cannot override the Locked fields when creating the Component.    *   Mandatory and locked strings are mutually exclusive.    *   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.    *   Multi-horizon frequencies are not supported through this endpoint.    *   Componentdetail supports securities, groups, and totals as well but if we don&#39;t pass anything that defaults to securities.
+   * This endpoint updates an existing unlinked PA template.    Remarks:                *   Mandatory, optional and locked fields can be  \&quot;accounts\&quot;, \&quot;benchmarks\&quot;, \&quot;groups\&quot;, \&quot;columns\&quot;, \&quot;dates\&quot;, \&quot;currencyisocode\&quot; and \&quot;componentdetail\&quot;.    *   Mandatory and locked strings are mutually exclusive.
    * @param id Unique identifier for an unlinked PA template (required)
    * @param unlinkedPATemplateUpdateParametersRoot Request Parameters (required)
-    * @return ApiResponse&lt;UnlinkedPATemplatePostSummaryRoot&gt;
+    * @return ApiResponse&lt;UnlinkedPATemplateSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -605,7 +604,7 @@ public class UnlinkedPaTemplatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<UnlinkedPATemplatePostSummaryRoot> updateUnlinkedPATemplatesWithHttpInfo(String id, UnlinkedPATemplateUpdateParametersRoot unlinkedPATemplateUpdateParametersRoot) throws ApiException {
+  public ApiResponse<UnlinkedPATemplateSummaryRoot> updateUnlinkedPATemplatesWithHttpInfo(String id, UnlinkedPATemplateUpdateParametersRoot unlinkedPATemplateUpdateParametersRoot) throws ApiException {
     Object localVarPostBody = unlinkedPATemplateUpdateParametersRoot;
     
     // verify the required parameter 'id' is set
@@ -644,14 +643,14 @@ public class UnlinkedPaTemplatesApi {
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<UnlinkedPATemplatePostSummaryRoot> localVarReturnType = new GenericType<UnlinkedPATemplatePostSummaryRoot>() {};
+    GenericType<UnlinkedPATemplateSummaryRoot> localVarReturnType = new GenericType<UnlinkedPATemplateSummaryRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<UnlinkedPATemplatePostSummaryRoot>(){});
+        returnTypeMap.put(200, new GenericType<UnlinkedPATemplateSummaryRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
         returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<UnlinkedPATemplatePostSummaryRoot>invokeAPIWithReturnMap("UnlinkedPaTemplatesApi.updateUnlinkedPATemplates", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
+      return apiClient.<UnlinkedPATemplateSummaryRoot>invokeAPIWithReturnMap("UnlinkedPaTemplatesApi.updateUnlinkedPATemplates", localVarPath, "PUT", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

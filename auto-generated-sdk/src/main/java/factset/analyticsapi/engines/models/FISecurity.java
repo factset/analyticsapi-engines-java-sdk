@@ -22,9 +22,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import factset.analyticsapi.engines.models.FILoss;
-import factset.analyticsapi.engines.models.FIPrepay;
-import factset.analyticsapi.engines.models.FIReferenceSecurity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -38,11 +35,6 @@ import factset.analyticsapi.engines.JSON;
 @JsonPropertyOrder({
   FISecurity.JSON_PROPERTY_SETTLEMENT,
   FISecurity.JSON_PROPERTY_CALL_METHOD,
-  FISecurity.JSON_PROPERTY_REFERENCE_SECURITY,
-  FISecurity.JSON_PROPERTY_LOSS,
-  FISecurity.JSON_PROPERTY_PREPAY,
-  FISecurity.JSON_PROPERTY_MATRIX_SPREAD_ADJUSTMENT,
-  FISecurity.JSON_PROPERTY_MATRIX_MULTIPLIER,
   FISecurity.JSON_PROPERTY_CALC_FROM_METHOD,
   FISecurity.JSON_PROPERTY_CALC_FROM_VALUE,
   FISecurity.JSON_PROPERTY_FACE,
@@ -98,21 +90,6 @@ public class FISecurity implements Serializable {
 
   public static final String JSON_PROPERTY_CALL_METHOD = "callMethod";
   private CallMethodEnum callMethod;
-
-  public static final String JSON_PROPERTY_REFERENCE_SECURITY = "referenceSecurity";
-  private FIReferenceSecurity referenceSecurity;
-
-  public static final String JSON_PROPERTY_LOSS = "loss";
-  private FILoss loss;
-
-  public static final String JSON_PROPERTY_PREPAY = "prepay";
-  private FIPrepay prepay;
-
-  public static final String JSON_PROPERTY_MATRIX_SPREAD_ADJUSTMENT = "matrixSpreadAdjustment";
-  private Double matrixSpreadAdjustment;
-
-  public static final String JSON_PROPERTY_MATRIX_MULTIPLIER = "matrixMultiplier";
-  private Double matrixMultiplier;
 
   public static final String JSON_PROPERTY_CALC_FROM_METHOD = "calcFromMethod";
   private String calcFromMethod;
@@ -216,137 +193,17 @@ public class FISecurity implements Serializable {
   }
 
 
-  public FISecurity referenceSecurity(FIReferenceSecurity referenceSecurity) {
-    this.referenceSecurity = referenceSecurity;
-    return this;
-  }
-
-   /**
-   * Get referenceSecurity
-   * @return referenceSecurity
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_REFERENCE_SECURITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public FIReferenceSecurity getReferenceSecurity() {
-    return referenceSecurity;
-  }
-
-
-  public void setReferenceSecurity(FIReferenceSecurity referenceSecurity) {
-    this.referenceSecurity = referenceSecurity;
-  }
-
-
-  public FISecurity loss(FILoss loss) {
-    this.loss = loss;
-    return this;
-  }
-
-   /**
-   * Get loss
-   * @return loss
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_LOSS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public FILoss getLoss() {
-    return loss;
-  }
-
-
-  public void setLoss(FILoss loss) {
-    this.loss = loss;
-  }
-
-
-  public FISecurity prepay(FIPrepay prepay) {
-    this.prepay = prepay;
-    return this;
-  }
-
-   /**
-   * Get prepay
-   * @return prepay
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PREPAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public FIPrepay getPrepay() {
-    return prepay;
-  }
-
-
-  public void setPrepay(FIPrepay prepay) {
-    this.prepay = prepay;
-  }
-
-
-  public FISecurity matrixSpreadAdjustment(Double matrixSpreadAdjustment) {
-    this.matrixSpreadAdjustment = matrixSpreadAdjustment;
-    return this;
-  }
-
-   /**
-   * Matrix Spread Adjustment
-   * @return matrixSpreadAdjustment
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Matrix Spread Adjustment")
-  @JsonProperty(JSON_PROPERTY_MATRIX_SPREAD_ADJUSTMENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Double getMatrixSpreadAdjustment() {
-    return matrixSpreadAdjustment;
-  }
-
-
-  public void setMatrixSpreadAdjustment(Double matrixSpreadAdjustment) {
-    this.matrixSpreadAdjustment = matrixSpreadAdjustment;
-  }
-
-
-  public FISecurity matrixMultiplier(Double matrixMultiplier) {
-    this.matrixMultiplier = matrixMultiplier;
-    return this;
-  }
-
-   /**
-   * Matrix Multiplier
-   * @return matrixMultiplier
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Matrix Multiplier")
-  @JsonProperty(JSON_PROPERTY_MATRIX_MULTIPLIER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Double getMatrixMultiplier() {
-    return matrixMultiplier;
-  }
-
-
-  public void setMatrixMultiplier(Double matrixMultiplier) {
-    this.matrixMultiplier = matrixMultiplier;
-  }
-
-
   public FISecurity calcFromMethod(String calcFromMethod) {
     this.calcFromMethod = calcFromMethod;
     return this;
   }
 
    /**
-   * Calculation Method.  Methods : Active Spread, Actual Spread, Actual Spread To Worst Call, OAS, Price, Yield, Yield To No Call, Act/Act Yield To No Call, Bond Equivalent Yield,  Yield To Worst Call, Discount Yield, Discount Margin, Implied Volatility, Bullet Spread, Bullet Spread To Worst Call, Pricing Matrix
+   * Calculation from method
    * @return calcFromMethod
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Calculation Method.  Methods : Active Spread, Actual Spread, Actual Spread To Worst Call, OAS, Price, Yield, Yield To No Call, Act/Act Yield To No Call, Bond Equivalent Yield,  Yield To Worst Call, Discount Yield, Discount Margin, Implied Volatility, Bullet Spread, Bullet Spread To Worst Call, Pricing Matrix")
+  @ApiModelProperty(value = "Calculation from method")
   @JsonProperty(JSON_PROPERTY_CALC_FROM_METHOD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -492,11 +349,6 @@ public class FISecurity implements Serializable {
     FISecurity fiSecurity = (FISecurity) o;
     return Objects.equals(this.settlement, fiSecurity.settlement) &&
         Objects.equals(this.callMethod, fiSecurity.callMethod) &&
-        Objects.equals(this.referenceSecurity, fiSecurity.referenceSecurity) &&
-        Objects.equals(this.loss, fiSecurity.loss) &&
-        Objects.equals(this.prepay, fiSecurity.prepay) &&
-        Objects.equals(this.matrixSpreadAdjustment, fiSecurity.matrixSpreadAdjustment) &&
-        Objects.equals(this.matrixMultiplier, fiSecurity.matrixMultiplier) &&
         Objects.equals(this.calcFromMethod, fiSecurity.calcFromMethod) &&
         Objects.equals(this.calcFromValue, fiSecurity.calcFromValue) &&
         Objects.equals(this.face, fiSecurity.face) &&
@@ -507,7 +359,7 @@ public class FISecurity implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(settlement, callMethod, referenceSecurity, loss, prepay, matrixSpreadAdjustment, matrixMultiplier, calcFromMethod, calcFromValue, face, faceType, symbol, discountCurve);
+    return Objects.hash(settlement, callMethod, calcFromMethod, calcFromValue, face, faceType, symbol, discountCurve);
   }
 
   @Override
@@ -516,11 +368,6 @@ public class FISecurity implements Serializable {
     sb.append("class FISecurity {\n");
     sb.append("    settlement: ").append(toIndentedString(settlement)).append("\n");
     sb.append("    callMethod: ").append(toIndentedString(callMethod)).append("\n");
-    sb.append("    referenceSecurity: ").append(toIndentedString(referenceSecurity)).append("\n");
-    sb.append("    loss: ").append(toIndentedString(loss)).append("\n");
-    sb.append("    prepay: ").append(toIndentedString(prepay)).append("\n");
-    sb.append("    matrixSpreadAdjustment: ").append(toIndentedString(matrixSpreadAdjustment)).append("\n");
-    sb.append("    matrixMultiplier: ").append(toIndentedString(matrixMultiplier)).append("\n");
     sb.append("    calcFromMethod: ").append(toIndentedString(calcFromMethod)).append("\n");
     sb.append("    calcFromValue: ").append(toIndentedString(calcFromValue)).append("\n");
     sb.append("    face: ").append(toIndentedString(face)).append("\n");

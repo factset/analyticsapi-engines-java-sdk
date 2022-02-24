@@ -8,7 +8,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account** | [**FPOAccount**](FPOAccount.md) |  |  [optional]
-**strategy** | [**FPOOptimizerStrategy**](FPOOptimizerStrategy.md) |  | 
+**strategy** | [**OptimizerStrategy**](OptimizerStrategy.md) |  | 
 **optimization** | [**Optimization**](Optimization.md) |  |  [optional]
 **outputTypes** | [**OptimizerOutputTypes**](OptimizerOutputTypes.md) |  | 
 

@@ -7,9 +7,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**description** | **String** | Template description. |  [optional]
-**name** | **String** | Template name. |  [optional]
-**category** | **String** | Unlinked template category |  [optional]
+**description** | **String** |  |  [optional]
+**name** | **String** |  |  [optional]
+**category** | **String** |  |  [optional]
 
 
 ## Implemented Interfaces
