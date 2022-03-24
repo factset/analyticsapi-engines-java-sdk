@@ -54,12 +54,8 @@ public class FiDiscountCurvesApiTests {
   
   @Test
   public void getAllFiDiscountCurves_Invalid_Currency() throws ApiException {
-    ApiResponse<FIDiscountCurveInfoRoot> getAllFiDiscountCurvesResponse = null;
-
     try {
-      getAllFiDiscountCurvesResponse = apiInstance.getAllFIDiscountCurvesWithHttpInfo("InvalidCurrency");
-
-      Assert.assertTrue("Response should be 400 - Not Found", getAllFiDiscountCurvesResponse.getStatusCode() == 404);
+      apiInstance.getAllFIDiscountCurvesWithHttpInfo("InvalidCurrency");
     } catch (ApiException e) {
       Assert.assertTrue("Error getting discount curves for given currency", e.getCode() == 404);
     }
