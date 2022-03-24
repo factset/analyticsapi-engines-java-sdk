@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.FIMarketEnvironment;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -37,7 +38,8 @@ import factset.analyticsapi.engines.JSON;
   FIJobSettings.JSON_PROPERTY_PARTIAL_DURATION_MONTHS,
   FIJobSettings.JSON_PROPERTY_CALL_METHOD,
   FIJobSettings.JSON_PROPERTY_SETTLEMENT,
-  FIJobSettings.JSON_PROPERTY_CALC_FROM_METHOD
+  FIJobSettings.JSON_PROPERTY_CALC_FROM_METHOD,
+  FIJobSettings.JSON_PROPERTY_MARKET_ENVIRONMENT
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class FIJobSettings implements Serializable {
@@ -96,6 +98,9 @@ public class FIJobSettings implements Serializable {
 
   public static final String JSON_PROPERTY_CALC_FROM_METHOD = "calcFromMethod";
   private String calcFromMethod;
+
+  public static final String JSON_PROPERTY_MARKET_ENVIRONMENT = "marketEnvironment";
+  private FIMarketEnvironment marketEnvironment;
 
 
   public FIJobSettings asOfDate(String asOfDate) {
@@ -225,6 +230,30 @@ public class FIJobSettings implements Serializable {
   }
 
 
+  public FIJobSettings marketEnvironment(FIMarketEnvironment marketEnvironment) {
+    this.marketEnvironment = marketEnvironment;
+    return this;
+  }
+
+   /**
+   * Get marketEnvironment
+   * @return marketEnvironment
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_MARKET_ENVIRONMENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public FIMarketEnvironment getMarketEnvironment() {
+    return marketEnvironment;
+  }
+
+
+  public void setMarketEnvironment(FIMarketEnvironment marketEnvironment) {
+    this.marketEnvironment = marketEnvironment;
+  }
+
+
   /**
    * Return true if this FIJobSettings object is equal to o.
    */
@@ -241,12 +270,13 @@ public class FIJobSettings implements Serializable {
         Objects.equals(this.partialDurationMonths, fiJobSettings.partialDurationMonths) &&
         Objects.equals(this.callMethod, fiJobSettings.callMethod) &&
         Objects.equals(this.settlement, fiJobSettings.settlement) &&
-        Objects.equals(this.calcFromMethod, fiJobSettings.calcFromMethod);
+        Objects.equals(this.calcFromMethod, fiJobSettings.calcFromMethod) &&
+        Objects.equals(this.marketEnvironment, fiJobSettings.marketEnvironment);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(asOfDate, partialDurationMonths, callMethod, settlement, calcFromMethod);
+    return Objects.hash(asOfDate, partialDurationMonths, callMethod, settlement, calcFromMethod, marketEnvironment);
   }
 
   @Override
@@ -258,6 +288,7 @@ public class FIJobSettings implements Serializable {
     sb.append("    callMethod: ").append(toIndentedString(callMethod)).append("\n");
     sb.append("    settlement: ").append(toIndentedString(settlement)).append("\n");
     sb.append("    calcFromMethod: ").append(toIndentedString(calcFromMethod)).append("\n");
+    sb.append("    marketEnvironment: ").append(toIndentedString(marketEnvironment)).append("\n");
     sb.append("}");
     return sb.toString();
   }

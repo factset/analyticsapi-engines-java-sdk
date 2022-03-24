@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.factset.analyticsapi</groupId>
   <artifactId>engines-sdk</artifactId>
-  <version>5.2.1</version>
+  <version>5.3.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +52,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.factset.analyticsapi:engines-sdk:5.2.1"
+compile "com.factset.analyticsapi:engines-sdk:5.3.0"
 ```
 
 ### Others
@@ -65,7 +65,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/engines-sdk-5.2.1.jar`
+- `target/engines-sdk-5.3.0.jar`
 - `target/lib/*.jar`
 
 ## Usage
@@ -175,6 +175,7 @@ Class | Method | HTTP request | Description
 *CurrenciesApi* | [**getCurrencies**](docs/CurrenciesApi.md#getCurrencies) | **GET** /analytics/lookups/v3/currencies | Get currencies
 *DatesApi* | [**convertPADatesToAbsoluteFormat**](docs/DatesApi.md#convertPADatesToAbsoluteFormat) | **GET** /analytics/engines/pa/v3/dates | Convert PA dates to absolute format
 *DatesApi* | [**convertVaultDatesToAbsoluteFormat**](docs/DatesApi.md#convertVaultDatesToAbsoluteFormat) | **GET** /analytics/engines/vault/v3/dates | Convert Vault dates to absolute format
+*DiscountCurvesApi* | [**getAllFIDiscountCurves**](docs/DiscountCurvesApi.md#getAllFIDiscountCurves) | **GET** /analytics/engines/fi/v3/discount-curves | Get Discount Curves
 *DocumentsApi* | [**getPA3Documents**](docs/DocumentsApi.md#getPA3Documents) | **GET** /analytics/engines/pa/v3/documents/{path} | Get PA3 documents and sub-directories in a directory
 *DocumentsApi* | [**getPubDocuments**](docs/DocumentsApi.md#getPubDocuments) | **GET** /analytics/engines/pub/v3/documents/{path} | Gets Publisher documents and sub-directories in a directory
 *DocumentsApi* | [**getSPAR3Documents**](docs/DocumentsApi.md#getSPAR3Documents) | **GET** /analytics/engines/spar/v3/documents/{path} | Gets SPAR3 documents and sub-directories in a directory
@@ -312,8 +313,11 @@ Class | Method | HTTP request | Description
  - [FIABIdentifier](docs/FIABIdentifier.md)
  - [FICalculationParameters](docs/FICalculationParameters.md)
  - [FICalculationParametersRoot](docs/FICalculationParametersRoot.md)
+ - [FIDiscountCurveInfo](docs/FIDiscountCurveInfo.md)
+ - [FIDiscountCurveInfoRoot](docs/FIDiscountCurveInfoRoot.md)
  - [FIJobSettings](docs/FIJobSettings.md)
  - [FILoss](docs/FILoss.md)
+ - [FIMarketEnvironment](docs/FIMarketEnvironment.md)
  - [FIPrepay](docs/FIPrepay.md)
  - [FIReferencePrepay](docs/FIReferencePrepay.md)
  - [FIReferenceSecurity](docs/FIReferenceSecurity.md)

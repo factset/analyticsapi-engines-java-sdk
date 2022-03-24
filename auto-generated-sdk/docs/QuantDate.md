@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **source** | [**SourceEnum**](#SourceEnum) |  | 
 **frequency** | **String** |  | 
 **calendar** | **String** |  | 
+**overrideUniversalScreenCalendar** | **Boolean** |  |  [optional]
 
 
 

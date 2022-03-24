@@ -55,6 +55,7 @@ docs/CurrencyRoot.md
 docs/DateParametersSummary.md
 docs/DateParametersSummaryRoot.md
 docs/DatesApi.md
+docs/DiscountCurvesApi.md
 docs/DocumentDirectories.md
 docs/DocumentDirectoriesRoot.md
 docs/DocumentsApi.md
@@ -68,8 +69,11 @@ docs/FIABDateParameters.md
 docs/FIABIdentifier.md
 docs/FICalculationParameters.md
 docs/FICalculationParametersRoot.md
+docs/FIDiscountCurveInfo.md
+docs/FIDiscountCurveInfoRoot.md
 docs/FIJobSettings.md
 docs/FILoss.md
+docs/FIMarketEnvironment.md
 docs/FIPrepay.md
 docs/FIReferencePrepay.md
 docs/FIReferenceSecurity.md
@@ -239,6 +243,7 @@ src/main/java/factset/analyticsapi/engines/api/ComponentsApi.java
 src/main/java/factset/analyticsapi/engines/api/ConfigurationsApi.java
 src/main/java/factset/analyticsapi/engines/api/CurrenciesApi.java
 src/main/java/factset/analyticsapi/engines/api/DatesApi.java
+src/main/java/factset/analyticsapi/engines/api/DiscountCurvesApi.java
 src/main/java/factset/analyticsapi/engines/api/DocumentsApi.java
 src/main/java/factset/analyticsapi/engines/api/FiCalculationsApi.java
 src/main/java/factset/analyticsapi/engines/api/FiabCalculationsApi.java
@@ -311,8 +316,11 @@ src/main/java/factset/analyticsapi/engines/models/FIABDateParameters.java
 src/main/java/factset/analyticsapi/engines/models/FIABIdentifier.java
 src/main/java/factset/analyticsapi/engines/models/FICalculationParameters.java
 src/main/java/factset/analyticsapi/engines/models/FICalculationParametersRoot.java
+src/main/java/factset/analyticsapi/engines/models/FIDiscountCurveInfo.java
+src/main/java/factset/analyticsapi/engines/models/FIDiscountCurveInfoRoot.java
 src/main/java/factset/analyticsapi/engines/models/FIJobSettings.java
 src/main/java/factset/analyticsapi/engines/models/FILoss.java
+src/main/java/factset/analyticsapi/engines/models/FIMarketEnvironment.java
 src/main/java/factset/analyticsapi/engines/models/FIPrepay.java
 src/main/java/factset/analyticsapi/engines/models/FIReferencePrepay.java
 src/main/java/factset/analyticsapi/engines/models/FIReferenceSecurity.java

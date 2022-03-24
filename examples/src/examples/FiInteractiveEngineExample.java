@@ -14,6 +14,8 @@ import com.factset.protobuf.stach.extensions.v2.StachUtilities;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Value;
 import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.models.FIMarketEnvironment.RatePathEnum;
+
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -84,8 +86,12 @@ public class FiInteractiveEngineExample {
         calc.add(FI_CALCULATIONS[i]);
       calcParameters.setCalculations(calc);
       
+      FIMarketEnvironment fiMarketEnvironment = new FIMarketEnvironment();
+      fiMarketEnvironment.ratePath(RatePathEnum.FLAT_FORWARD);
+      
       FIJobSettings jobSettings = new FIJobSettings();
       jobSettings.setAsOfDate(FI_AS_OF_DATE);
+      jobSettings.marketEnvironment(fiMarketEnvironment);
       calcParameters.setJobSettings(jobSettings);
       
       FICalculationParametersRoot fiCalcParam = new FICalculationParametersRoot();

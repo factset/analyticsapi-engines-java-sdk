@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **endDate** | **String** |  | 
 **frequency** | **String** |  | 
 **calendar** | **String** |  | 
+**overrideUniversalScreenCalendar** | **Boolean** |  |  [optional]
 
 
 ## Implemented Interfaces

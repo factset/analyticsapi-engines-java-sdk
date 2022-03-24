@@ -53,6 +53,7 @@ public class QuantEngineSingleUnitExample {
   private static String FQL_EXPR = "P_PRICE";
   private static String FQL_NAME = "Price (SCR)";
   private static String CALCULATION_UNIT_ID = "1";
+  private static Boolean OVERRIDE_UNIVERSAL_SCREEN_CALENDAR = true;
   
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
@@ -64,6 +65,7 @@ public class QuantEngineSingleUnitExample {
       fdsDate.setEndDate(QUANT_END_DATE);
       fdsDate.setFrequency(QUANT_FREQUENCY);
       fdsDate.setCalendar(QUANT_CALENDAR);
+      fdsDate.setOverrideUniversalScreenCalendar(OVERRIDE_UNIVERSAL_SCREEN_CALENDAR);
       fdsDate.setSource(QuantFdsDate.SourceEnum.FDSDATE);
       
       OneOfQuantDates dates = new OneOfQuantDates(fdsDate);

@@ -38,7 +38,8 @@ import factset.analyticsapi.engines.JSON;
   QuantFdsDate.JSON_PROPERTY_END_DATE,
   QuantFdsDate.JSON_PROPERTY_SOURCE,
   QuantFdsDate.JSON_PROPERTY_FREQUENCY,
-  QuantFdsDate.JSON_PROPERTY_CALENDAR
+  QuantFdsDate.JSON_PROPERTY_CALENDAR,
+  QuantFdsDate.JSON_PROPERTY_OVERRIDE_UNIVERSAL_SCREEN_CALENDAR
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class QuantFdsDate implements Serializable {
@@ -93,6 +94,9 @@ public class QuantFdsDate implements Serializable {
 
   public static final String JSON_PROPERTY_CALENDAR = "calendar";
   private String calendar;
+
+  public static final String JSON_PROPERTY_OVERRIDE_UNIVERSAL_SCREEN_CALENDAR = "overrideUniversalScreenCalendar";
+  private Boolean overrideUniversalScreenCalendar;
 
 
   public QuantFdsDate startDate(String startDate) {
@@ -210,6 +214,30 @@ public class QuantFdsDate implements Serializable {
   }
 
 
+  public QuantFdsDate overrideUniversalScreenCalendar(Boolean overrideUniversalScreenCalendar) {
+    this.overrideUniversalScreenCalendar = overrideUniversalScreenCalendar;
+    return this;
+  }
+
+   /**
+   * Get overrideUniversalScreenCalendar
+   * @return overrideUniversalScreenCalendar
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_OVERRIDE_UNIVERSAL_SCREEN_CALENDAR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getOverrideUniversalScreenCalendar() {
+    return overrideUniversalScreenCalendar;
+  }
+
+
+  public void setOverrideUniversalScreenCalendar(Boolean overrideUniversalScreenCalendar) {
+    this.overrideUniversalScreenCalendar = overrideUniversalScreenCalendar;
+  }
+
+
   /**
    * Return true if this QuantFdsDate object is equal to o.
    */
@@ -226,12 +254,13 @@ public class QuantFdsDate implements Serializable {
         Objects.equals(this.endDate, quantFdsDate.endDate) &&
         Objects.equals(this.source, quantFdsDate.source) &&
         Objects.equals(this.frequency, quantFdsDate.frequency) &&
-        Objects.equals(this.calendar, quantFdsDate.calendar);
+        Objects.equals(this.calendar, quantFdsDate.calendar) &&
+        Objects.equals(this.overrideUniversalScreenCalendar, quantFdsDate.overrideUniversalScreenCalendar);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(startDate, endDate, source, frequency, calendar);
+    return Objects.hash(startDate, endDate, source, frequency, calendar, overrideUniversalScreenCalendar);
   }
 
   @Override
@@ -243,6 +272,7 @@ public class QuantFdsDate implements Serializable {
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("    frequency: ").append(toIndentedString(frequency)).append("\n");
     sb.append("    calendar: ").append(toIndentedString(calendar)).append("\n");
+    sb.append("    overrideUniversalScreenCalendar: ").append(toIndentedString(overrideUniversalScreenCalendar)).append("\n");
     sb.append("}");
     return sb.toString();
   }
