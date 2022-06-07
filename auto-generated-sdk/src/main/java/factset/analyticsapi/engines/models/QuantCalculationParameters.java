@@ -38,7 +38,8 @@ import factset.analyticsapi.engines.JSON;
 @JsonPropertyOrder({
   QuantCalculationParameters.JSON_PROPERTY_UNIVERSE,
   QuantCalculationParameters.JSON_PROPERTY_DATES,
-  QuantCalculationParameters.JSON_PROPERTY_FORMULAS
+  QuantCalculationParameters.JSON_PROPERTY_FORMULAS,
+  QuantCalculationParameters.JSON_PROPERTY_JOB_DESCRIPTION
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class QuantCalculationParameters implements Serializable {
@@ -52,6 +53,9 @@ public class QuantCalculationParameters implements Serializable {
 
   public static final String JSON_PROPERTY_FORMULAS = "formulas";
   private java.util.List<OneOfQuantFormulas> formulas = null;
+
+  public static final String JSON_PROPERTY_JOB_DESCRIPTION = "jobDescription";
+  private String jobDescription;
 
 
   public QuantCalculationParameters universe(OneOfQuantUniverse universe) {
@@ -134,6 +138,30 @@ public class QuantCalculationParameters implements Serializable {
   }
 
 
+  public QuantCalculationParameters jobDescription(String jobDescription) {
+    this.jobDescription = jobDescription;
+    return this;
+  }
+
+   /**
+   * Get jobDescription
+   * @return jobDescription
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_JOB_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getJobDescription() {
+    return jobDescription;
+  }
+
+
+  public void setJobDescription(String jobDescription) {
+    this.jobDescription = jobDescription;
+  }
+
+
   /**
    * Return true if this QuantCalculationParameters object is equal to o.
    */
@@ -148,12 +176,13 @@ public class QuantCalculationParameters implements Serializable {
     QuantCalculationParameters quantCalculationParameters = (QuantCalculationParameters) o;
     return Objects.equals(this.universe, quantCalculationParameters.universe) &&
         Objects.equals(this.dates, quantCalculationParameters.dates) &&
-        Objects.equals(this.formulas, quantCalculationParameters.formulas);
+        Objects.equals(this.formulas, quantCalculationParameters.formulas) &&
+        Objects.equals(this.jobDescription, quantCalculationParameters.jobDescription);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(universe, dates, formulas);
+    return Objects.hash(universe, dates, formulas, jobDescription);
   }
 
   @Override
@@ -163,6 +192,7 @@ public class QuantCalculationParameters implements Serializable {
     sb.append("    universe: ").append(toIndentedString(universe)).append("\n");
     sb.append("    dates: ").append(toIndentedString(dates)).append("\n");
     sb.append("    formulas: ").append(toIndentedString(formulas)).append("\n");
+    sb.append("    jobDescription: ").append(toIndentedString(jobDescription)).append("\n");
     sb.append("}");
     return sb.toString();
   }

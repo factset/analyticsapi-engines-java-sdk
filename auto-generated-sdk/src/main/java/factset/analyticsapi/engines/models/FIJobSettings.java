@@ -22,7 +22,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.FIBankLoans;
 import factset.analyticsapi.engines.models.FIMarketEnvironment;
+import factset.analyticsapi.engines.models.FIMunicipalBondsForJobSettings;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -39,6 +41,8 @@ import factset.analyticsapi.engines.JSON;
   FIJobSettings.JSON_PROPERTY_CALL_METHOD,
   FIJobSettings.JSON_PROPERTY_SETTLEMENT,
   FIJobSettings.JSON_PROPERTY_CALC_FROM_METHOD,
+  FIJobSettings.JSON_PROPERTY_BANK_LOANS,
+  FIJobSettings.JSON_PROPERTY_MUNICIPAL_BONDS,
   FIJobSettings.JSON_PROPERTY_MARKET_ENVIRONMENT
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
@@ -98,6 +102,12 @@ public class FIJobSettings implements Serializable {
 
   public static final String JSON_PROPERTY_CALC_FROM_METHOD = "calcFromMethod";
   private String calcFromMethod;
+
+  public static final String JSON_PROPERTY_BANK_LOANS = "bankLoans";
+  private FIBankLoans bankLoans;
+
+  public static final String JSON_PROPERTY_MUNICIPAL_BONDS = "municipalBonds";
+  private FIMunicipalBondsForJobSettings municipalBonds;
 
   public static final String JSON_PROPERTY_MARKET_ENVIRONMENT = "marketEnvironment";
   private FIMarketEnvironment marketEnvironment;
@@ -230,6 +240,54 @@ public class FIJobSettings implements Serializable {
   }
 
 
+  public FIJobSettings bankLoans(FIBankLoans bankLoans) {
+    this.bankLoans = bankLoans;
+    return this;
+  }
+
+   /**
+   * Get bankLoans
+   * @return bankLoans
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_BANK_LOANS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public FIBankLoans getBankLoans() {
+    return bankLoans;
+  }
+
+
+  public void setBankLoans(FIBankLoans bankLoans) {
+    this.bankLoans = bankLoans;
+  }
+
+
+  public FIJobSettings municipalBonds(FIMunicipalBondsForJobSettings municipalBonds) {
+    this.municipalBonds = municipalBonds;
+    return this;
+  }
+
+   /**
+   * Get municipalBonds
+   * @return municipalBonds
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_MUNICIPAL_BONDS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public FIMunicipalBondsForJobSettings getMunicipalBonds() {
+    return municipalBonds;
+  }
+
+
+  public void setMunicipalBonds(FIMunicipalBondsForJobSettings municipalBonds) {
+    this.municipalBonds = municipalBonds;
+  }
+
+
   public FIJobSettings marketEnvironment(FIMarketEnvironment marketEnvironment) {
     this.marketEnvironment = marketEnvironment;
     return this;
@@ -271,12 +329,14 @@ public class FIJobSettings implements Serializable {
         Objects.equals(this.callMethod, fiJobSettings.callMethod) &&
         Objects.equals(this.settlement, fiJobSettings.settlement) &&
         Objects.equals(this.calcFromMethod, fiJobSettings.calcFromMethod) &&
+        Objects.equals(this.bankLoans, fiJobSettings.bankLoans) &&
+        Objects.equals(this.municipalBonds, fiJobSettings.municipalBonds) &&
         Objects.equals(this.marketEnvironment, fiJobSettings.marketEnvironment);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(asOfDate, partialDurationMonths, callMethod, settlement, calcFromMethod, marketEnvironment);
+    return Objects.hash(asOfDate, partialDurationMonths, callMethod, settlement, calcFromMethod, bankLoans, municipalBonds, marketEnvironment);
   }
 
   @Override
@@ -288,6 +348,8 @@ public class FIJobSettings implements Serializable {
     sb.append("    callMethod: ").append(toIndentedString(callMethod)).append("\n");
     sb.append("    settlement: ").append(toIndentedString(settlement)).append("\n");
     sb.append("    calcFromMethod: ").append(toIndentedString(calcFromMethod)).append("\n");
+    sb.append("    bankLoans: ").append(toIndentedString(bankLoans)).append("\n");
+    sb.append("    municipalBonds: ").append(toIndentedString(municipalBonds)).append("\n");
     sb.append("    marketEnvironment: ").append(toIndentedString(marketEnvironment)).append("\n");
     sb.append("}");
     return sb.toString();

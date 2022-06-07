@@ -22,7 +22,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.FIBankLoans;
 import factset.analyticsapi.engines.models.FILoss;
+import factset.analyticsapi.engines.models.FIMunicipalBonds;
 import factset.analyticsapi.engines.models.FIPrepay;
 import factset.analyticsapi.engines.models.FIReferenceSecurity;
 import io.swagger.annotations.ApiModel;
@@ -39,6 +41,8 @@ import factset.analyticsapi.engines.JSON;
   FISecurity.JSON_PROPERTY_SETTLEMENT,
   FISecurity.JSON_PROPERTY_CALL_METHOD,
   FISecurity.JSON_PROPERTY_REFERENCE_SECURITY,
+  FISecurity.JSON_PROPERTY_BANK_LOANS,
+  FISecurity.JSON_PROPERTY_MUNICIPAL_BONDS,
   FISecurity.JSON_PROPERTY_LOSS,
   FISecurity.JSON_PROPERTY_PREPAY,
   FISecurity.JSON_PROPERTY_MATRIX_SPREAD_ADJUSTMENT,
@@ -101,6 +105,12 @@ public class FISecurity implements Serializable {
 
   public static final String JSON_PROPERTY_REFERENCE_SECURITY = "referenceSecurity";
   private FIReferenceSecurity referenceSecurity;
+
+  public static final String JSON_PROPERTY_BANK_LOANS = "bankLoans";
+  private FIBankLoans bankLoans;
+
+  public static final String JSON_PROPERTY_MUNICIPAL_BONDS = "municipalBonds";
+  private FIMunicipalBonds municipalBonds;
 
   public static final String JSON_PROPERTY_LOSS = "loss";
   private FILoss loss;
@@ -237,6 +247,54 @@ public class FISecurity implements Serializable {
 
   public void setReferenceSecurity(FIReferenceSecurity referenceSecurity) {
     this.referenceSecurity = referenceSecurity;
+  }
+
+
+  public FISecurity bankLoans(FIBankLoans bankLoans) {
+    this.bankLoans = bankLoans;
+    return this;
+  }
+
+   /**
+   * Get bankLoans
+   * @return bankLoans
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_BANK_LOANS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public FIBankLoans getBankLoans() {
+    return bankLoans;
+  }
+
+
+  public void setBankLoans(FIBankLoans bankLoans) {
+    this.bankLoans = bankLoans;
+  }
+
+
+  public FISecurity municipalBonds(FIMunicipalBonds municipalBonds) {
+    this.municipalBonds = municipalBonds;
+    return this;
+  }
+
+   /**
+   * Get municipalBonds
+   * @return municipalBonds
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_MUNICIPAL_BONDS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public FIMunicipalBonds getMunicipalBonds() {
+    return municipalBonds;
+  }
+
+
+  public void setMunicipalBonds(FIMunicipalBonds municipalBonds) {
+    this.municipalBonds = municipalBonds;
   }
 
 
@@ -493,6 +551,8 @@ public class FISecurity implements Serializable {
     return Objects.equals(this.settlement, fiSecurity.settlement) &&
         Objects.equals(this.callMethod, fiSecurity.callMethod) &&
         Objects.equals(this.referenceSecurity, fiSecurity.referenceSecurity) &&
+        Objects.equals(this.bankLoans, fiSecurity.bankLoans) &&
+        Objects.equals(this.municipalBonds, fiSecurity.municipalBonds) &&
         Objects.equals(this.loss, fiSecurity.loss) &&
         Objects.equals(this.prepay, fiSecurity.prepay) &&
         Objects.equals(this.matrixSpreadAdjustment, fiSecurity.matrixSpreadAdjustment) &&
@@ -507,7 +567,7 @@ public class FISecurity implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(settlement, callMethod, referenceSecurity, loss, prepay, matrixSpreadAdjustment, matrixMultiplier, calcFromMethod, calcFromValue, face, faceType, symbol, discountCurve);
+    return Objects.hash(settlement, callMethod, referenceSecurity, bankLoans, municipalBonds, loss, prepay, matrixSpreadAdjustment, matrixMultiplier, calcFromMethod, calcFromValue, face, faceType, symbol, discountCurve);
   }
 
   @Override
@@ -517,6 +577,8 @@ public class FISecurity implements Serializable {
     sb.append("    settlement: ").append(toIndentedString(settlement)).append("\n");
     sb.append("    callMethod: ").append(toIndentedString(callMethod)).append("\n");
     sb.append("    referenceSecurity: ").append(toIndentedString(referenceSecurity)).append("\n");
+    sb.append("    bankLoans: ").append(toIndentedString(bankLoans)).append("\n");
+    sb.append("    municipalBonds: ").append(toIndentedString(municipalBonds)).append("\n");
     sb.append("    loss: ").append(toIndentedString(loss)).append("\n");
     sb.append("    prepay: ").append(toIndentedString(prepay)).append("\n");
     sb.append("    matrixSpreadAdjustment: ").append(toIndentedString(matrixSpreadAdjustment)).append("\n");

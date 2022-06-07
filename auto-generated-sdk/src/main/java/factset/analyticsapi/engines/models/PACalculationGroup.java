@@ -33,7 +33,8 @@ import factset.analyticsapi.engines.JSON;
  * PACalculationGroup
  */
 @JsonPropertyOrder({
-  PACalculationGroup.JSON_PROPERTY_ID
+  PACalculationGroup.JSON_PROPERTY_ID,
+  PACalculationGroup.JSON_PROPERTY_FREQUENCY
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class PACalculationGroup implements Serializable {
@@ -41,6 +42,9 @@ public class PACalculationGroup implements Serializable {
 
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
+
+  public static final String JSON_PROPERTY_FREQUENCY = "frequency";
+  private String frequency;
 
 
   public PACalculationGroup id(String id) {
@@ -67,6 +71,30 @@ public class PACalculationGroup implements Serializable {
   }
 
 
+  public PACalculationGroup frequency(String frequency) {
+    this.frequency = frequency;
+    return this;
+  }
+
+   /**
+   * Grouping frequency
+   * @return frequency
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Grouping frequency")
+  @JsonProperty(JSON_PROPERTY_FREQUENCY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getFrequency() {
+    return frequency;
+  }
+
+
+  public void setFrequency(String frequency) {
+    this.frequency = frequency;
+  }
+
+
   /**
    * Return true if this PACalculationGroup object is equal to o.
    */
@@ -79,12 +107,13 @@ public class PACalculationGroup implements Serializable {
       return false;
     }
     PACalculationGroup paCalculationGroup = (PACalculationGroup) o;
-    return Objects.equals(this.id, paCalculationGroup.id);
+    return Objects.equals(this.id, paCalculationGroup.id) &&
+        Objects.equals(this.frequency, paCalculationGroup.frequency);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(id, frequency);
   }
 
   @Override
@@ -92,6 +121,7 @@ public class PACalculationGroup implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class PACalculationGroup {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    frequency: ").append(toIndentedString(frequency)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **expr** | **String** |  | 
 **name** | **String** |  | 
+**dateOffset** | **String** |  |  [optional]
 **source** | [**SourceEnum**](#SourceEnum) |  | 
 
 
