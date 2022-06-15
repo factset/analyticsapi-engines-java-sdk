@@ -37,4 +37,18 @@ public class GroupsApiTests {
       CommonFunctions.handleException("GroupsApi#getPAGroupsWithHttpInfo", e);
     }
   }
+  
+  @Test
+  public void getAllGroupingFrequenciesSuccess() throws ApiException {
+    ApiResponse<FrequencyRoot> getAllGroupingFrequenciesResponse = null;
+
+    try {
+      getAllGroupingFrequenciesResponse = apiInstance.getPAGroupingFrequenciesWithHttpInfo();
+
+      Assert.assertTrue("Response should be 200 - Success", getAllGroupingFrequenciesResponse.getStatusCode() == 200);
+      Assert.assertTrue("Response data should not be null.", getAllGroupingFrequenciesResponse.getData() != null);
+    } catch (ApiException e) {
+      CommonFunctions.handleException("GroupsApi#getPAGroupingFrequenciesWithHttpInfo", e);
+    }
+  }
 }
