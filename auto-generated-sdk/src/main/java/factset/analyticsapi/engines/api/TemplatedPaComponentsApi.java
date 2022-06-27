@@ -52,7 +52,7 @@ public class TemplatedPaComponentsApi {
 
   /**
    * Create templated PA component
-   * This endpoint creates new component based off of linked PA template or unlinked PA template.    Remarks:    *   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.    *   Multi-horizon frequencies are not supported through this endpoint.    *   Componentdetail supports securities, groups, and totals as well but if we don&#39;t pass anything that defaults to securities.
+   * This endpoint creates new component based off of linked PA template or unlinked PA template.    Remarks:    *   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.    *   Multi-horizon frequencies are not supported through this endpoint.    *   Componentdetail supports securities, groups, and totals as well but if we don&#39;t pass anything that defaults to securities.    *   If we are overriding the grouping with a frequency, we will be overriding the grouping saved to the original component and also overriding       the default frequency of the Beginning of Period to whatever we pass in the request body.        *   If we are overriding gouping frequency without overriding the group id it will not be applied to the default groupings saved to the original component.
    * @param templatedPAComponentParametersRoot Request Parameters (required)
     @return TemplatedPAComponentPostSummaryRoot
    * @throws ApiException if fails to make API call
@@ -76,7 +76,7 @@ public class TemplatedPaComponentsApi {
 
   /**
    * Create templated PA component
-   * This endpoint creates new component based off of linked PA template or unlinked PA template.    Remarks:    *   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.    *   Multi-horizon frequencies are not supported through this endpoint.    *   Componentdetail supports securities, groups, and totals as well but if we don&#39;t pass anything that defaults to securities.
+   * This endpoint creates new component based off of linked PA template or unlinked PA template.    Remarks:    *   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.    *   Multi-horizon frequencies are not supported through this endpoint.    *   Componentdetail supports securities, groups, and totals as well but if we don&#39;t pass anything that defaults to securities.    *   If we are overriding the grouping with a frequency, we will be overriding the grouping saved to the original component and also overriding       the default frequency of the Beginning of Period to whatever we pass in the request body.        *   If we are overriding gouping frequency without overriding the group id it will not be applied to the default groupings saved to the original component.
    * @param templatedPAComponentParametersRoot Request Parameters (required)
     * @return ApiResponse&lt;TemplatedPAComponentPostSummaryRoot&gt;
    * @throws ApiException if fails to make API call
@@ -399,7 +399,7 @@ public class TemplatedPaComponentsApi {
   }
   /**
    * Update templated PA component
-   * This endpoint allows the user to change the request body from an existing templated PA component.    Remarks:    *   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.    *   Multi-horizon frequencies are not supported through this endpoint.    *   Componentdetail supports securities, groups, and totals as well but if we don&#39;t pass anything that defaults to securities.
+   * This endpoint allows the user to change the request body from an existing templated PA component.    Remarks:    *   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.    *   Multi-horizon frequencies are not supported through this endpoint.    *   Componentdetail supports securities, groups, and totals as well but if we don&#39;t pass anything that defaults to securities.    *   If we are overriding the grouping with a frequency, we will be overriding the grouping saved to the original component and also overriding       the default frequency of the Beginning of Period to whatever we pass in the request body.        *   If we are overriding gouping frequency without overriding the group id it will not be applied to the default groupings saved to the original component.
    * @param id Unique identifier for a templated PA component (required)
    * @param templatedPAComponentUpdateParametersRoot Request Parameters (required)
     @return TemplatedPAComponentPostSummaryRoot
@@ -424,7 +424,7 @@ public class TemplatedPaComponentsApi {
 
   /**
    * Update templated PA component
-   * This endpoint allows the user to change the request body from an existing templated PA component.    Remarks:    *   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.    *   Multi-horizon frequencies are not supported through this endpoint.    *   Componentdetail supports securities, groups, and totals as well but if we don&#39;t pass anything that defaults to securities.
+   * This endpoint allows the user to change the request body from an existing templated PA component.    Remarks:    *   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.    *   Multi-horizon frequencies are not supported through this endpoint.    *   Componentdetail supports securities, groups, and totals as well but if we don&#39;t pass anything that defaults to securities.    *   If we are overriding the grouping with a frequency, we will be overriding the grouping saved to the original component and also overriding       the default frequency of the Beginning of Period to whatever we pass in the request body.        *   If we are overriding gouping frequency without overriding the group id it will not be applied to the default groupings saved to the original component.
    * @param id Unique identifier for a templated PA component (required)
    * @param templatedPAComponentUpdateParametersRoot Request Parameters (required)
     * @return ApiResponse&lt;TemplatedPAComponentPostSummaryRoot&gt;

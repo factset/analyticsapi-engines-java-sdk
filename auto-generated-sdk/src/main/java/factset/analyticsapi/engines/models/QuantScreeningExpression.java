@@ -36,6 +36,7 @@ import factset.analyticsapi.engines.JSON;
 @JsonPropertyOrder({
   QuantScreeningExpression.JSON_PROPERTY_EXPR,
   QuantScreeningExpression.JSON_PROPERTY_NAME,
+  QuantScreeningExpression.JSON_PROPERTY_DATE_OFFSET,
   QuantScreeningExpression.JSON_PROPERTY_SOURCE
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
@@ -47,6 +48,9 @@ public class QuantScreeningExpression implements Serializable {
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
+
+  public static final String JSON_PROPERTY_DATE_OFFSET = "dateOffset";
+  private String dateOffset;
 
   /**
    * Gets or Sets source
@@ -137,6 +141,30 @@ public class QuantScreeningExpression implements Serializable {
   }
 
 
+  public QuantScreeningExpression dateOffset(String dateOffset) {
+    this.dateOffset = dateOffset;
+    return this;
+  }
+
+   /**
+   * Get dateOffset
+   * @return dateOffset
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DATE_OFFSET)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDateOffset() {
+    return dateOffset;
+  }
+
+
+  public void setDateOffset(String dateOffset) {
+    this.dateOffset = dateOffset;
+  }
+
+
   public QuantScreeningExpression source(SourceEnum source) {
     this.source = source;
     return this;
@@ -174,12 +202,13 @@ public class QuantScreeningExpression implements Serializable {
     QuantScreeningExpression quantScreeningExpression = (QuantScreeningExpression) o;
     return Objects.equals(this.expr, quantScreeningExpression.expr) &&
         Objects.equals(this.name, quantScreeningExpression.name) &&
+        Objects.equals(this.dateOffset, quantScreeningExpression.dateOffset) &&
         Objects.equals(this.source, quantScreeningExpression.source);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expr, name, source);
+    return Objects.hash(expr, name, dateOffset, source);
   }
 
   @Override
@@ -188,6 +217,7 @@ public class QuantScreeningExpression implements Serializable {
     sb.append("class QuantScreeningExpression {\n");
     sb.append("    expr: ").append(toIndentedString(expr)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    dateOffset: ").append(toIndentedString(dateOffset)).append("\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("}");
     return sb.toString();

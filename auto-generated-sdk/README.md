@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.factset.analyticsapi</groupId>
   <artifactId>engines-sdk</artifactId>
-  <version>5.3.0</version>
+  <version>5.4.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +52,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.factset.analyticsapi:engines-sdk:5.3.0"
+compile "com.factset.analyticsapi:engines-sdk:5.4.0"
 ```
 
 ### Others
@@ -65,7 +65,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/engines-sdk-5.3.0.jar`
+- `target/engines-sdk-5.4.0.jar`
 - `target/lib/*.jar`
 
 ## Usage
@@ -198,6 +198,7 @@ Class | Method | HTTP request | Description
 *FrequenciesApi* | [**getPAFrequencies**](docs/FrequenciesApi.md#getPAFrequencies) | **GET** /analytics/engines/pa/v3/frequencies | Get PA frequencies
 *FrequenciesApi* | [**getSPARFrequencies**](docs/FrequenciesApi.md#getSPARFrequencies) | **GET** /analytics/engines/spar/v3/frequencies | Get SPAR frequencies
 *FrequenciesApi* | [**getVaultFrequencies**](docs/FrequenciesApi.md#getVaultFrequencies) | **GET** /analytics/engines/vault/v3/frequencies | Get Vault frequencies
+*GroupsApi* | [**getPAGroupingFrequencies**](docs/GroupsApi.md#getPAGroupingFrequencies) | **GET** /analytics/engines/pa/v3/grouping-frequencies | Get PA grouping frequencies
 *GroupsApi* | [**getPAGroups**](docs/GroupsApi.md#getPAGroups) | **GET** /analytics/engines/pa/v3/groups | Get PA groups
 *LinkedPaTemplatesApi* | [**createLinkedPATemplates**](docs/LinkedPaTemplatesApi.md#createLinkedPATemplates) | **POST** /analytics/engines/pa/v3/linked-templates | Create a linked PA template
 *LinkedPaTemplatesApi* | [**deleteLinkedPATemplates**](docs/LinkedPaTemplatesApi.md#deleteLinkedPATemplates) | **DELETE** /analytics/engines/pa/v3/linked-templates/{id} | Delete a linked PA template.
@@ -211,18 +212,22 @@ Class | Method | HTTP request | Description
 *NpoOptimizerApi* | [**postAndOptimize**](docs/NpoOptimizerApi.md#postAndOptimize) | **POST** /analytics/engines/npo/v3/optimizations | Create and Run NPO optimization
 *NpoOptimizerApi* | [**putAndOptimize**](docs/NpoOptimizerApi.md#putAndOptimize) | **PUT** /analytics/engines/npo/v3/optimizations/{id} | Create or Update NPO optimization and run it.
 *PaCalculationsApi* | [**cancelCalculationById**](docs/PaCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/pa/v3/calculations/{id} | Cancel PA calculation by id
+*PaCalculationsApi* | [**getAllCalculations**](docs/PaCalculationsApi.md#getAllCalculations) | **GET** /analytics/engines/pa/v3/calculations | Get all calculations
 *PaCalculationsApi* | [**getCalculationParameters**](docs/PaCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/pa/v3/calculations/{id} | Get PA calculation parameters by id
 *PaCalculationsApi* | [**getCalculationStatusById**](docs/PaCalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/pa/v3/calculations/{id}/status | Get PA calculation status by id
 *PaCalculationsApi* | [**getCalculationUnitResultById**](docs/PaCalculationsApi.md#getCalculationUnitResultById) | **GET** /analytics/engines/pa/v3/calculations/{id}/units/{unitId}/result | Get PA calculation result by id
 *PaCalculationsApi* | [**postAndCalculate**](docs/PaCalculationsApi.md#postAndCalculate) | **POST** /analytics/engines/pa/v3/calculations | Create and Run PA calculation
 *PaCalculationsApi* | [**putAndCalculate**](docs/PaCalculationsApi.md#putAndCalculate) | **PUT** /analytics/engines/pa/v3/calculations/{id} | Create or Update PA calculation and run it.
+*PricingSourcesApi* | [**getPAPricingSources**](docs/PricingSourcesApi.md#getPAPricingSources) | **GET** /analytics/engines/pa/v3/pricing-sources | Get PA pricing sources
 *PubCalculationsApi* | [**cancelCalculationById**](docs/PubCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/pub/v3/calculations/{id} | Cancel Pub calculation by id
+*PubCalculationsApi* | [**getAllCalculations**](docs/PubCalculationsApi.md#getAllCalculations) | **GET** /analytics/engines/pub/v3/calculations | Get all calculations
 *PubCalculationsApi* | [**getCalculationParameters**](docs/PubCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/pub/v3/calculations/{id} | Get Pub calculation parameters by id
 *PubCalculationsApi* | [**getCalculationStatusById**](docs/PubCalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/pub/v3/calculations/{id}/status | Get Pub calculation status by id
 *PubCalculationsApi* | [**getCalculationUnitResultById**](docs/PubCalculationsApi.md#getCalculationUnitResultById) | **GET** /analytics/engines/pub/v3/calculations/{id}/units/{unitId}/result | Get Pub calculation result by id
 *PubCalculationsApi* | [**postAndCalculate**](docs/PubCalculationsApi.md#postAndCalculate) | **POST** /analytics/engines/pub/v3/calculations | Create and Run Pub calculation
 *PubCalculationsApi* | [**putAndCalculate**](docs/PubCalculationsApi.md#putAndCalculate) | **PUT** /analytics/engines/pub/v3/calculations/{id} | Create or Update Pub calculation and run it.
 *QuantCalculationsApi* | [**cancelCalculationById**](docs/QuantCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/quant/v3/calculations/{id} | Cancel Quant calculation by id
+*QuantCalculationsApi* | [**getAllCalculations**](docs/QuantCalculationsApi.md#getAllCalculations) | **GET** /analytics/engines/quant/v3/calculations | Get all calculations
 *QuantCalculationsApi* | [**getCalculationParameters**](docs/QuantCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/quant/v3/calculations/{id} | Get Quant Engine calculation parameters by id
 *QuantCalculationsApi* | [**getCalculationStatusById**](docs/QuantCalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/quant/v3/calculations/{id}/status | Get Quant Engine calculation status by id
 *QuantCalculationsApi* | [**getCalculationUnitInfoById**](docs/QuantCalculationsApi.md#getCalculationUnitInfoById) | **GET** /analytics/engines/quant/v3/calculations/{id}/units/{unitId}/info | Get Quant Engine calculation metadata information by id
@@ -230,6 +235,7 @@ Class | Method | HTTP request | Description
 *QuantCalculationsApi* | [**postAndCalculate**](docs/QuantCalculationsApi.md#postAndCalculate) | **POST** /analytics/engines/quant/v3/calculations | Create and Run Quant Engine calculation
 *QuantCalculationsApi* | [**putAndCalculate**](docs/QuantCalculationsApi.md#putAndCalculate) | **PUT** /analytics/engines/quant/v3/calculations/{id} | Create or update Quant Engine calculation and run it.
 *SparCalculationsApi* | [**cancelCalculationById**](docs/SparCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/spar/v3/calculations/{id} | Cancel SPAR calculation
+*SparCalculationsApi* | [**getAllCalculations**](docs/SparCalculationsApi.md#getAllCalculations) | **GET** /analytics/engines/spar/v3/calculations | Get all calculations
 *SparCalculationsApi* | [**getCalculationParameters**](docs/SparCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/spar/v3/calculations/{id} | Get SPAR calculation parameters by id
 *SparCalculationsApi* | [**getCalculationStatusById**](docs/SparCalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/spar/v3/calculations/{id}/status | Get SPAR calculation status by id
 *SparCalculationsApi* | [**getCalculationUnitResultById**](docs/SparCalculationsApi.md#getCalculationUnitResultById) | **GET** /analytics/engines/spar/v3/calculations/{id}/units/{unitId}/result | Get SPAR calculation result by id
@@ -253,6 +259,7 @@ Class | Method | HTTP request | Description
 *UnlinkedPaTemplatesApi* | [**getUnlinkedPATemplatesById**](docs/UnlinkedPaTemplatesApi.md#getUnlinkedPATemplatesById) | **GET** /analytics/engines/pa/v3/unlinked-templates/{id} | Get unlinked PA template details by id
 *UnlinkedPaTemplatesApi* | [**updateUnlinkedPATemplates**](docs/UnlinkedPaTemplatesApi.md#updateUnlinkedPATemplates) | **PUT** /analytics/engines/pa/v3/unlinked-templates/{id} | Update unlinked PA template
 *VaultCalculationsApi* | [**cancelCalculationById**](docs/VaultCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/vault/v3/calculations/{id} | Cancel Vault calculation by id
+*VaultCalculationsApi* | [**getAllCalculations**](docs/VaultCalculationsApi.md#getAllCalculations) | **GET** /analytics/engines/vault/v3/calculations | Get all calculations
 *VaultCalculationsApi* | [**getCalculationParameters**](docs/VaultCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/vault/v3/calculations/{id} | Get Vault calculation parameters by id
 *VaultCalculationsApi* | [**getCalculationStatusById**](docs/VaultCalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/vault/v3/calculations/{id}/status | Get Vault calculation status by id
 *VaultCalculationsApi* | [**getCalculationUnitResultById**](docs/VaultCalculationsApi.md#getCalculationUnitResultById) | **GET** /analytics/engines/vault/v3/calculations/{id}/units/{unitId}/result | Get Vault calculation result by id
@@ -286,6 +293,8 @@ Class | Method | HTTP request | Description
  - [CalculationStatusRoot](docs/CalculationStatusRoot.md)
  - [CalculationUnitStatus](docs/CalculationUnitStatus.md)
  - [CalculationUnitStatusMeta](docs/CalculationUnitStatusMeta.md)
+ - [CalculationsSummary](docs/CalculationsSummary.md)
+ - [CalculationsSummaryRoot](docs/CalculationsSummaryRoot.md)
  - [ClientErrorResponse](docs/ClientErrorResponse.md)
  - [Column](docs/Column.md)
  - [ColumnRoot](docs/ColumnRoot.md)
@@ -311,6 +320,7 @@ Class | Method | HTTP request | Description
  - [FIABCalculationStatusSummary](docs/FIABCalculationStatusSummary.md)
  - [FIABDateParameters](docs/FIABDateParameters.md)
  - [FIABIdentifier](docs/FIABIdentifier.md)
+ - [FIBankLoans](docs/FIBankLoans.md)
  - [FICalculationParameters](docs/FICalculationParameters.md)
  - [FICalculationParametersRoot](docs/FICalculationParametersRoot.md)
  - [FIDiscountCurveInfo](docs/FIDiscountCurveInfo.md)
@@ -318,6 +328,8 @@ Class | Method | HTTP request | Description
  - [FIJobSettings](docs/FIJobSettings.md)
  - [FILoss](docs/FILoss.md)
  - [FIMarketEnvironment](docs/FIMarketEnvironment.md)
+ - [FIMunicipalBonds](docs/FIMunicipalBonds.md)
+ - [FIMunicipalBondsForJobSettings](docs/FIMunicipalBondsForJobSettings.md)
  - [FIPrepay](docs/FIPrepay.md)
  - [FIReferencePrepay](docs/FIReferencePrepay.md)
  - [FIReferenceSecurity](docs/FIReferenceSecurity.md)
@@ -358,15 +370,21 @@ Class | Method | HTTP request | Description
  - [OptimizerOutputTypes](docs/OptimizerOutputTypes.md)
  - [OptimizerTradesList](docs/OptimizerTradesList.md)
  - [PACalculationColumn](docs/PACalculationColumn.md)
+ - [PACalculationDataSources](docs/PACalculationDataSources.md)
  - [PACalculationGroup](docs/PACalculationGroup.md)
  - [PACalculationParameters](docs/PACalculationParameters.md)
  - [PACalculationParametersRoot](docs/PACalculationParametersRoot.md)
+ - [PACalculationPricingSource](docs/PACalculationPricingSource.md)
  - [PAComponent](docs/PAComponent.md)
  - [PAComponentData](docs/PAComponentData.md)
  - [PAComponentRoot](docs/PAComponentRoot.md)
  - [PADateParameters](docs/PADateParameters.md)
  - [PAIdentifier](docs/PAIdentifier.md)
+ - [PAPricingSource](docs/PAPricingSource.md)
+ - [PAPricingSourceRoot](docs/PAPricingSourceRoot.md)
  - [PaDoc](docs/PaDoc.md)
+ - [PaginationInfo](docs/PaginationInfo.md)
+ - [PaginationMeta](docs/PaginationMeta.md)
  - [PubCalculationParameters](docs/PubCalculationParameters.md)
  - [PubCalculationParametersRoot](docs/PubCalculationParametersRoot.md)
  - [PubDateParameters](docs/PubDateParameters.md)

@@ -16,10 +16,12 @@ public class PubEngineApiTests {
 
   private static ApiClient apiClient;
   private PubCalculationsApi apiInstance;
+  private static int pageNumber;
 
   @BeforeClass
   public static void beforeClass() throws ApiException {
     apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
+    pageNumber = 1;
   }
 
   @Before
@@ -168,5 +170,18 @@ public class PubEngineApiTests {
 
     Assert.assertTrue("Delete response status code should be 204 - No Content.", deleteResponse.getStatusCode() == 204);
     Assert.assertTrue("Response data should be null.", deleteResponse.getData() == null);
+  }
+  
+  @Test
+  public void enginesApiGetAllCalculationsSuccess() throws ApiException
+  {
+	  ApiResponse<CalculationsSummaryRoot> resultResponse = null;
+	  try {
+	        resultResponse = apiInstance.getAllCalculationsWithHttpInfo(pageNumber);
+	      } catch (ApiException e) {
+	        CommonFunctions.handleException("EngineApi#getAllCalculationsWithHttpInfo", e);
+	      }
+	      Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
+	      Assert.assertTrue("Result response data should not be null.", resultResponse.getData() != null);
   }
 }

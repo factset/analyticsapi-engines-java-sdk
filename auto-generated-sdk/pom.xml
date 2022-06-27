@@ -5,7 +5,7 @@
     <artifactId>engines-sdk</artifactId>
     <packaging>jar</packaging>
     <name>engines-sdk</name>
-    <version>5.3.0</version>
+    <version>5.4.0</version>
     <url>https://github.com/factset/analyticsapi-engines-java-sdk</url>
     <description>SDK for FactSet Analytics Engines API</description>
     <distributionManagement>
