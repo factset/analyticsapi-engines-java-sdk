@@ -193,15 +193,14 @@ public class VaultEngineApiTests {
   }
   
   @Test
-  public void enginesApiGetAllCalculationsSuccess() throws ApiException
-  {
-	  ApiResponse<CalculationsSummaryRoot> resultResponse = null;
-	  try {
-	        resultResponse = vaultCalculations.getAllCalculationsWithHttpInfo(pageNumber);
-	      } catch (ApiException e) {
-	        CommonFunctions.handleException("EngineApi#getAllCalculationsWithHttpInfo", e);
-	      }
-	      Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
-	      Assert.assertTrue("Result response data should not be null.", resultResponse.getData() != null);
+  public void enginesApiGetAllCalculationsSuccess() throws ApiException	{
+	ApiResponse<CalculationsSummaryRoot> resultResponse = null;
+	try {
+	  resultResponse = vaultCalculations.getAllCalculationsWithHttpInfo(pageNumber);
+	} catch (ApiException e) {
+	  CommonFunctions.handleException("EngineApi#getAllCalculationsWithHttpInfo", e);
+	}
+	Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
+	Assert.assertTrue("Result response data should not be null.", resultResponse.getData() != null);
   }
 }
