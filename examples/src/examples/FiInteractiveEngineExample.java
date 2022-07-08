@@ -63,6 +63,15 @@ public class FiInteractiveEngineExample {
       FiCalculationsApi apiInstance = new FiCalculationsApi(getApiClient());
       FICalculationParameters calcParameters = new FICalculationParameters();
       
+      FIBankLoans fibankloans = new FIBankLoans();
+      fibankloans.ignoreSinkingFund(true);
+      
+      FIMunicipalBonds fimunicipalbonds = new FIMunicipalBonds();
+      fimunicipalbonds.ignoreSinkingFund(true);
+      
+      FIMunicipalBondsForJobSettings fimunicipalbondsforjobsettings = new FIMunicipalBondsForJobSettings();
+      fimunicipalbondsforjobsettings.ignoreSinkingFund(true);
+      
       FISecurity security1 = new FISecurity();
       security1.setCalcFromMethod(FI_CALC_FROM_METHOD);
       security1.setCalcFromValue(FI_CALC_FROM_VALUE);
@@ -70,6 +79,8 @@ public class FiInteractiveEngineExample {
       security1.setSettlement(FI_SETTLEMENT);
       security1.setDiscountCurve(FI_DISCOUNT_CURVE);
       security1.setSymbol(FI_SYMBOL);
+      security1.setBankLoans(fibankloans);
+      security1.setMunicipalBonds(fimunicipalbonds);
       calcParameters.addSecuritiesItem(security1);
       
       FISecurity security2 = new FISecurity();
@@ -79,6 +90,8 @@ public class FiInteractiveEngineExample {
       security2.setSettlement(FI_SETTLEMENT_2);
       security2.setDiscountCurve(FI_DISCOUNT_CURVE_2);
       security2.setSymbol(FI_SYMBOL_2);
+      security1.setBankLoans(fibankloans);
+      security1.setMunicipalBonds(fimunicipalbonds);
       calcParameters.addSecuritiesItem(security2);
       
       ArrayList<String> calc = new ArrayList<String>();
@@ -92,6 +105,8 @@ public class FiInteractiveEngineExample {
       FIJobSettings jobSettings = new FIJobSettings();
       jobSettings.setAsOfDate(FI_AS_OF_DATE);
       jobSettings.marketEnvironment(fiMarketEnvironment);
+      jobSettings.setBankLoans(fibankloans);
+      jobSettings.setMunicipalBonds(fimunicipalbondsforjobsettings);
       calcParameters.setJobSettings(jobSettings);
       
       FICalculationParametersRoot fiCalcParam = new FICalculationParametersRoot();
