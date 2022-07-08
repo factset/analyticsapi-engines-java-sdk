@@ -20,10 +20,12 @@ import java.util.concurrent.TimeUnit;
 public class QuantInteractiveEngineTests {
     private static ApiClient apiClient;
     private QuantCalculationsApi apiInstance;
+    private static int pageNumber;
 
     @BeforeClass
     public static void beforeClass() throws ApiException {
         apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
+        pageNumber = 1;
     }
 
     @Before
@@ -137,5 +139,18 @@ public class QuantInteractiveEngineTests {
             CommonFunctions.handleException("EngineApi#getByUrlWithHttpInfo", e);
         }
         return resultResponse;
+    }
+    
+    @Test
+    public void enginesApiGetAllCalculationsSuccess() throws ApiException
+    {
+  	  ApiResponse<CalculationsSummaryRoot> resultResponse = null;
+  	  try {
+  	        resultResponse = apiInstance.getAllCalculationsWithHttpInfo(pageNumber);
+  	      } catch (ApiException e) {
+  	        CommonFunctions.handleException("EngineApi#getAllCalculationsWithHttpInfo", e);
+  	      }
+  	      Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
+  	      Assert.assertTrue("Result response data should not be null.", resultResponse.getData() != null);
     }
 }

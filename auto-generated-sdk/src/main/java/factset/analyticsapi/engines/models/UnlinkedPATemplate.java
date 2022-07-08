@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.PACalculationColumn;
+import factset.analyticsapi.engines.models.PACalculationDataSources;
 import factset.analyticsapi.engines.models.PACalculationGroup;
 import factset.analyticsapi.engines.models.PADateParameters;
 import factset.analyticsapi.engines.models.PAIdentifier;
@@ -47,6 +48,7 @@ import factset.analyticsapi.engines.JSON;
   UnlinkedPATemplate.JSON_PROPERTY_COLUMNS,
   UnlinkedPATemplate.JSON_PROPERTY_DATES,
   UnlinkedPATemplate.JSON_PROPERTY_GROUPS,
+  UnlinkedPATemplate.JSON_PROPERTY_DATASOURCES,
   UnlinkedPATemplate.JSON_PROPERTY_CURRENCYISOCODE,
   UnlinkedPATemplate.JSON_PROPERTY_COMPONENTDETAIL,
   UnlinkedPATemplate.JSON_PROPERTY_CONTENT,
@@ -84,6 +86,9 @@ public class UnlinkedPATemplate implements Serializable {
 
   public static final String JSON_PROPERTY_GROUPS = "groups";
   private java.util.List<PACalculationGroup> groups = null;
+
+  public static final String JSON_PROPERTY_DATASOURCES = "datasources";
+  private PACalculationDataSources datasources;
 
   public static final String JSON_PROPERTY_CURRENCYISOCODE = "currencyisocode";
   private String currencyisocode;
@@ -352,6 +357,30 @@ public class UnlinkedPATemplate implements Serializable {
   }
 
 
+  public UnlinkedPATemplate datasources(PACalculationDataSources datasources) {
+    this.datasources = datasources;
+    return this;
+  }
+
+   /**
+   * Get datasources
+   * @return datasources
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DATASOURCES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public PACalculationDataSources getDatasources() {
+    return datasources;
+  }
+
+
+  public void setDatasources(PACalculationDataSources datasources) {
+    this.datasources = datasources;
+  }
+
+
   public UnlinkedPATemplate currencyisocode(String currencyisocode) {
     this.currencyisocode = currencyisocode;
     return this;
@@ -517,6 +546,7 @@ public class UnlinkedPATemplate implements Serializable {
         Objects.equals(this.columns, unlinkedPATemplate.columns) &&
         Objects.equals(this.dates, unlinkedPATemplate.dates) &&
         Objects.equals(this.groups, unlinkedPATemplate.groups) &&
+        Objects.equals(this.datasources, unlinkedPATemplate.datasources) &&
         Objects.equals(this.currencyisocode, unlinkedPATemplate.currencyisocode) &&
         Objects.equals(this.componentdetail, unlinkedPATemplate.componentdetail) &&
         Objects.equals(this.content, unlinkedPATemplate.content) &&
@@ -527,7 +557,7 @@ public class UnlinkedPATemplate implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, directory, templateTypeId, snapshot, accounts, benchmarks, columns, dates, groups, currencyisocode, componentdetail, content, description, name, category);
+    return Objects.hash(id, directory, templateTypeId, snapshot, accounts, benchmarks, columns, dates, groups, datasources, currencyisocode, componentdetail, content, description, name, category);
   }
 
   @Override
@@ -543,6 +573,7 @@ public class UnlinkedPATemplate implements Serializable {
     sb.append("    columns: ").append(toIndentedString(columns)).append("\n");
     sb.append("    dates: ").append(toIndentedString(dates)).append("\n");
     sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
+    sb.append("    datasources: ").append(toIndentedString(datasources)).append("\n");
     sb.append("    currencyisocode: ").append(toIndentedString(currencyisocode)).append("\n");
     sb.append("    componentdetail: ").append(toIndentedString(componentdetail)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");

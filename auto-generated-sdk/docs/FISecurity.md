@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **settlement** | **String** | Settlement date |  [optional]
 **callMethod** | [**CallMethodEnum**](#CallMethodEnum) | Call Method |  [optional]
 **referenceSecurity** | [**FIReferenceSecurity**](FIReferenceSecurity.md) |  |  [optional]
+**bankLoans** | [**FIBankLoans**](FIBankLoans.md) |  |  [optional]
+**municipalBonds** | [**FIMunicipalBonds**](FIMunicipalBonds.md) |  |  [optional]
 **loss** | [**FILoss**](FILoss.md) |  |  [optional]
 **prepay** | [**FIPrepay**](FIPrepay.md) |  |  [optional]
 **matrixSpreadAdjustment** | **Double** | Matrix Spread Adjustment |  [optional]

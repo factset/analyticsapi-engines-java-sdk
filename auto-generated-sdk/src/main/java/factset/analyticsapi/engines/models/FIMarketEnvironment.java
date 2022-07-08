@@ -40,7 +40,7 @@ public class FIMarketEnvironment implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /**
-   * Gets or Sets ratePath
+   * Rate Path
    */
   public enum RatePathEnum {
     FLAT("FLAT"),
@@ -86,11 +86,11 @@ public class FIMarketEnvironment implements Serializable {
   }
 
    /**
-   * Get ratePath
+   * Rate Path
    * @return ratePath
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Rate Path")
   @JsonProperty(JSON_PROPERTY_RATE_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

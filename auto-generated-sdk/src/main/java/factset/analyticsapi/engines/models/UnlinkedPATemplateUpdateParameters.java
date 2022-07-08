@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.PACalculationColumn;
+import factset.analyticsapi.engines.models.PACalculationDataSources;
 import factset.analyticsapi.engines.models.PACalculationGroup;
 import factset.analyticsapi.engines.models.PADateParameters;
 import factset.analyticsapi.engines.models.PAIdentifier;
@@ -44,6 +45,7 @@ import factset.analyticsapi.engines.JSON;
   UnlinkedPATemplateUpdateParameters.JSON_PROPERTY_COLUMNS,
   UnlinkedPATemplateUpdateParameters.JSON_PROPERTY_DATES,
   UnlinkedPATemplateUpdateParameters.JSON_PROPERTY_GROUPS,
+  UnlinkedPATemplateUpdateParameters.JSON_PROPERTY_DATASOURCES,
   UnlinkedPATemplateUpdateParameters.JSON_PROPERTY_CURRENCYISOCODE,
   UnlinkedPATemplateUpdateParameters.JSON_PROPERTY_COMPONENTDETAIL,
   UnlinkedPATemplateUpdateParameters.JSON_PROPERTY_CONTENT
@@ -69,6 +71,9 @@ public class UnlinkedPATemplateUpdateParameters implements Serializable {
 
   public static final String JSON_PROPERTY_GROUPS = "groups";
   private java.util.List<PACalculationGroup> groups = null;
+
+  public static final String JSON_PROPERTY_DATASOURCES = "datasources";
+  private PACalculationDataSources datasources;
 
   public static final String JSON_PROPERTY_CURRENCYISOCODE = "currencyisocode";
   private String currencyisocode;
@@ -256,6 +261,30 @@ public class UnlinkedPATemplateUpdateParameters implements Serializable {
   }
 
 
+  public UnlinkedPATemplateUpdateParameters datasources(PACalculationDataSources datasources) {
+    this.datasources = datasources;
+    return this;
+  }
+
+   /**
+   * Get datasources
+   * @return datasources
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DATASOURCES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public PACalculationDataSources getDatasources() {
+    return datasources;
+  }
+
+
+  public void setDatasources(PACalculationDataSources datasources) {
+    this.datasources = datasources;
+  }
+
+
   public UnlinkedPATemplateUpdateParameters currencyisocode(String currencyisocode) {
     this.currencyisocode = currencyisocode;
     return this;
@@ -346,6 +375,7 @@ public class UnlinkedPATemplateUpdateParameters implements Serializable {
         Objects.equals(this.columns, unlinkedPATemplateUpdateParameters.columns) &&
         Objects.equals(this.dates, unlinkedPATemplateUpdateParameters.dates) &&
         Objects.equals(this.groups, unlinkedPATemplateUpdateParameters.groups) &&
+        Objects.equals(this.datasources, unlinkedPATemplateUpdateParameters.datasources) &&
         Objects.equals(this.currencyisocode, unlinkedPATemplateUpdateParameters.currencyisocode) &&
         Objects.equals(this.componentdetail, unlinkedPATemplateUpdateParameters.componentdetail) &&
         Objects.equals(this.content, unlinkedPATemplateUpdateParameters.content);
@@ -353,7 +383,7 @@ public class UnlinkedPATemplateUpdateParameters implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, accounts, benchmarks, columns, dates, groups, currencyisocode, componentdetail, content);
+    return Objects.hash(description, accounts, benchmarks, columns, dates, groups, datasources, currencyisocode, componentdetail, content);
   }
 
   @Override
@@ -366,6 +396,7 @@ public class UnlinkedPATemplateUpdateParameters implements Serializable {
     sb.append("    columns: ").append(toIndentedString(columns)).append("\n");
     sb.append("    dates: ").append(toIndentedString(dates)).append("\n");
     sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
+    sb.append("    datasources: ").append(toIndentedString(datasources)).append("\n");
     sb.append("    currencyisocode: ").append(toIndentedString(currencyisocode)).append("\n");
     sb.append("    componentdetail: ").append(toIndentedString(componentdetail)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");

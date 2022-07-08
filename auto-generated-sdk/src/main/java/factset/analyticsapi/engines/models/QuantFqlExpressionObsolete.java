@@ -34,7 +34,8 @@ import factset.analyticsapi.engines.JSON;
  */
 @JsonPropertyOrder({
   QuantFqlExpressionObsolete.JSON_PROPERTY_EXPR,
-  QuantFqlExpressionObsolete.JSON_PROPERTY_NAME
+  QuantFqlExpressionObsolete.JSON_PROPERTY_NAME,
+  QuantFqlExpressionObsolete.JSON_PROPERTY_DATE_OFFSET
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class QuantFqlExpressionObsolete implements Serializable {
@@ -45,6 +46,9 @@ public class QuantFqlExpressionObsolete implements Serializable {
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
+
+  public static final String JSON_PROPERTY_DATE_OFFSET = "dateOffset";
+  private String dateOffset;
 
 
   public QuantFqlExpressionObsolete expr(String expr) {
@@ -93,6 +97,30 @@ public class QuantFqlExpressionObsolete implements Serializable {
   }
 
 
+  public QuantFqlExpressionObsolete dateOffset(String dateOffset) {
+    this.dateOffset = dateOffset;
+    return this;
+  }
+
+   /**
+   * Get dateOffset
+   * @return dateOffset
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DATE_OFFSET)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDateOffset() {
+    return dateOffset;
+  }
+
+
+  public void setDateOffset(String dateOffset) {
+    this.dateOffset = dateOffset;
+  }
+
+
   /**
    * Return true if this QuantFqlExpressionObsolete object is equal to o.
    */
@@ -106,12 +134,13 @@ public class QuantFqlExpressionObsolete implements Serializable {
     }
     QuantFqlExpressionObsolete quantFqlExpressionObsolete = (QuantFqlExpressionObsolete) o;
     return Objects.equals(this.expr, quantFqlExpressionObsolete.expr) &&
-        Objects.equals(this.name, quantFqlExpressionObsolete.name);
+        Objects.equals(this.name, quantFqlExpressionObsolete.name) &&
+        Objects.equals(this.dateOffset, quantFqlExpressionObsolete.dateOffset);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expr, name);
+    return Objects.hash(expr, name, dateOffset);
   }
 
   @Override
@@ -120,6 +149,7 @@ public class QuantFqlExpressionObsolete implements Serializable {
     sb.append("class QuantFqlExpressionObsolete {\n");
     sb.append("    expr: ").append(toIndentedString(expr)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    dateOffset: ").append(toIndentedString(dateOffset)).append("\n");
     sb.append("}");
     return sb.toString();
   }
