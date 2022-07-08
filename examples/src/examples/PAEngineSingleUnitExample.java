@@ -47,6 +47,9 @@ public class PAEngineSingleUnitExample {
   private static String GROUP_NAME = "Economic Sector - FactSet";
   private static String GROUP_CATEGORY = "FactSet";
   private static String GROUP_DIRECTORY = "Factset";
+  private static String Pricing_Source_Name = "MSCI - Gross";
+  private static String Pricing_Source_Category = "MSCI";
+  private static String Pricing_Source_Directory = "Equity";
 
   private static String CALCULATION_UNIT_ID = "1";
 
@@ -99,7 +102,25 @@ public class PAEngineSingleUnitExample {
 
       // To add component detail.
       // paItem.setComponentdetail("GROUPS"); // It can be GROUPS or TOTALS
-
+      
+      // Get PA pricing sources with PricingSourceName, PricingSourceCategory & PricingSourceDirectory
+      
+      PricingSourcesApi pricingSourcesApi = new PricingSourcesApi(getApiClient());
+      Map<String, PAPricingSource> pricingSources = pricingSourcesApi.getPAPricingSources(Pricing_Source_Name, Pricing_Source_Category, Pricing_Source_Directory).getData();
+      String pricingSourceId = pricingSources.entrySet().stream().filter(
+                      c -> c.getValue().getName().equals(Pricing_Source_Name) && c.getValue().getCategory().equals(Pricing_Source_Category) && c.getValue().getDirectory().equals(Pricing_Source_Directory))
+              .iterator().next().getKey();
+      System.out.println("ID of pricing source with Name '" + Pricing_Source_Name + "' and category '" + Pricing_Source_Category
+              + "' and directory '" + Pricing_Source_Directory + "': " + pricingSourceId);
+      
+      PACalculationPricingSource pricingsource = new PACalculationPricingSource();
+      pricingsource.setId(pricingSourceId);
+      
+      PACalculationDataSources datasources = new PACalculationDataSources();
+      datasources.addPortfoliopricingsourcesItem(pricingsource);
+      datasources.useportfoliopricingsourcesforbenchmark(true);
+      paItem.setDatasources(datasources);
+      
       PACalculationParametersRoot calcParameters = new PACalculationParametersRoot();
       calcParameters.putDataItem(CALCULATION_UNIT_ID, paItem);
 
@@ -173,7 +194,6 @@ public class PAEngineSingleUnitExample {
         List<Row> rows = table.getRows();
         String json = mapper.writeValueAsString(rows);
         System.out.println(json);
-
         // Prints the metadata
         if (table.getRawMetadata().size() > 0) System.out.println("Printing metadata...");
         for (Map.Entry<String, List<Value>> rawMetadata : table.getRawMetadata().entrySet()) {
