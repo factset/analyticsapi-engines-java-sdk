@@ -90,8 +90,8 @@ public class FiInteractiveEngineExample {
       security2.setSettlement(FI_SETTLEMENT_2);
       security2.setDiscountCurve(FI_DISCOUNT_CURVE_2);
       security2.setSymbol(FI_SYMBOL_2);
-      security1.setBankLoans(fibankloans);
-      security1.setMunicipalBonds(fimunicipalbonds);
+      security2.setBankLoans(fibankloans);
+      security2.setMunicipalBonds(fimunicipalbonds);
       calcParameters.addSecuritiesItem(security2);
       
       ArrayList<String> calc = new ArrayList<String>();
