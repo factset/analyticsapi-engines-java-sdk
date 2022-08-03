@@ -21627,7 +21627,7 @@ paths:
       x-accepts: application/json
   /analytics/engines/pa/v3/calculations:
     get:
-      description: This endpoints returns all active calculation requests.
+      description: This endpoints returns all calculation requests.
       operationId: getAllCalculations
       parameters:
       - explode: true
@@ -21645,7 +21645,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CalculationsSummaryRoot'
-          description: List of active calculation requests.
+          description: List of calculation requests.
           headers:
             X-DataDirect-Request-Key:
               description: FactSet's request key header.
@@ -21727,7 +21727,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ClientErrorResponse'
-          description: No active calculation.
+          description: No calculation found.
           headers:
             X-DataDirect-Request-Key:
               description: FactSet's request key header.
@@ -24385,7 +24385,7 @@ paths:
       x-accepts: application/json
   /analytics/engines/pub/v3/calculations:
     get:
-      description: This endpoints returns all active calculation requests.
+      description: This endpoints returns all calculation requests.
       operationId: getAllCalculations
       parameters:
       - explode: true
@@ -24403,7 +24403,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CalculationsSummaryRoot'
-          description: List of active calculation requests.
+          description: List of calculation requests.
           headers:
             X-DataDirect-Request-Key:
               description: FactSet's request key header.
@@ -24485,7 +24485,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ClientErrorResponse'
-          description: No active calculation.
+          description: No calculation found.
           headers:
             X-DataDirect-Request-Key:
               description: FactSet's request key header.
@@ -26954,7 +26954,7 @@ paths:
       x-accepts: application/json
   /analytics/engines/quant/v3/calculations:
     get:
-      description: This endpoints returns all active calculation requests.
+      description: This endpoints returns all calculation requests.
       operationId: getAllCalculations
       parameters:
       - explode: true
@@ -26972,7 +26972,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CalculationsSummaryRoot'
-          description: List of active calculation requests.
+          description: List of calculation requests.
           headers:
             X-DataDirect-Request-Key:
               description: FactSet's request key header.
@@ -27054,7 +27054,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ClientErrorResponse'
-          description: No active calculation.
+          description: No calculation found.
           headers:
             X-DataDirect-Request-Key:
               description: FactSet's request key header.
@@ -29654,7 +29654,7 @@ paths:
       x-accepts: application/json
   /analytics/engines/spar/v3/calculations:
     get:
-      description: This endpoints returns all active calculation requests.
+      description: This endpoints returns all calculation requests.
       operationId: getAllCalculations
       parameters:
       - explode: true
@@ -29672,7 +29672,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CalculationsSummaryRoot'
-          description: List of active calculation requests.
+          description: List of calculation requests.
           headers:
             X-DataDirect-Request-Key:
               description: FactSet's request key header.
@@ -29754,7 +29754,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ClientErrorResponse'
-          description: No active calculation.
+          description: No calculation found.
           headers:
             X-DataDirect-Request-Key:
               description: FactSet's request key header.
@@ -37150,7 +37150,7 @@ paths:
       x-accepts: application/json
   /analytics/engines/vault/v3/calculations:
     get:
-      description: This endpoints returns all active calculation requests.
+      description: This endpoints returns all calculation requests.
       operationId: getAllCalculations
       parameters:
       - explode: true
@@ -37168,7 +37168,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CalculationsSummaryRoot'
-          description: List of active calculation requests.
+          description: List of calculation requests.
           headers:
             X-DataDirect-Request-Key:
               description: FactSet's request key header.
@@ -37250,7 +37250,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ClientErrorResponse'
-          description: No active calculation.
+          description: No calculation found.
           headers:
             X-DataDirect-Request-Key:
               description: FactSet's request key header.
@@ -41897,18 +41897,62 @@ components:
     Frequency:
       additionalProperties: false
       example:
+        inperiodicMultipliers:
+        - 5
+        - 5
+        iperiodicMultipliers:
+        - 1
+        - 1
         name: name
+        periodicMultipliers:
+        - 0.8008281904610115
+        - 0.8008281904610115
+        nperiodicMultipliers:
+        - 6.027456183070403
+        - 6.027456183070403
       properties:
         name:
           description: Frequency name.
           type: string
+        periodicMultipliers:
+          items:
+            format: double
+            type: number
+          type: array
+        nperiodicMultipliers:
+          items:
+            format: double
+            type: number
+          type: array
+        iperiodicMultipliers:
+          items:
+            format: int32
+            type: integer
+          type: array
+        inperiodicMultipliers:
+          items:
+            format: int32
+            type: integer
+          type: array
       type: object
     FrequencyRoot:
       additionalProperties: false
       example:
         data:
           key:
+            inperiodicMultipliers:
+            - 5
+            - 5
+            iperiodicMultipliers:
+            - 1
+            - 1
             name: name
+            periodicMultipliers:
+            - 0.8008281904610115
+            - 0.8008281904610115
+            nperiodicMultipliers:
+            - 6.027456183070403
+            - 6.027456183070403
         meta: '{}'
       properties:
         data:
@@ -42468,17 +42512,7 @@ components:
     PACalculationParameters:
       additionalProperties: false
       example:
-        currencyisocode: currencyisocode
-        componentdetail: componentdetail
         componentid: componentid
-        datasources:
-          benchmarkpricingsources:
-          - id: id
-          - id: id
-          useportfoliopricingsourcesforbenchmark: true
-          portfoliopricingsources:
-          - id: id
-          - id: id
         columns:
         - id: id
           statistics:
@@ -42497,6 +42531,28 @@ components:
           enddate: enddate
           startdate: startdate
           frequency: frequency
+        periodicMultipliers:
+        - 0.8008281904610115
+        - 0.8008281904610115
+        nperiodicMultipliers:
+        - 6.027456183070403
+        - 6.027456183070403
+        currencyisocode: currencyisocode
+        componentdetail: componentdetail
+        inperiodicMultipliers:
+        - 5
+        - 5
+        datasources:
+          benchmarkpricingsources:
+          - id: id
+          - id: id
+          useportfoliopricingsourcesforbenchmark: true
+          portfoliopricingsources:
+          - id: id
+          - id: id
+        iperiodicMultipliers:
+        - 1
+        - 1
         accounts:
         - id: id
           holdingsmode: holdingsmode
@@ -42544,6 +42600,26 @@ components:
           description: Component detail type for the PA component. It can be GROUPS
             or TOTALS or SECURITIES.
           type: string
+        periodicMultipliers:
+          items:
+            format: double
+            type: number
+          type: array
+        nperiodicMultipliers:
+          items:
+            format: double
+            type: number
+          type: array
+        iperiodicMultipliers:
+          items:
+            format: int32
+            type: integer
+          type: array
+        inperiodicMultipliers:
+          items:
+            format: int32
+            type: integer
+          type: array
       required:
       - componentid
       type: object
@@ -42552,17 +42628,7 @@ components:
       example:
         data:
           key:
-            currencyisocode: currencyisocode
-            componentdetail: componentdetail
             componentid: componentid
-            datasources:
-              benchmarkpricingsources:
-              - id: id
-              - id: id
-              useportfoliopricingsourcesforbenchmark: true
-              portfoliopricingsources:
-              - id: id
-              - id: id
             columns:
             - id: id
               statistics:
@@ -42581,6 +42647,28 @@ components:
               enddate: enddate
               startdate: startdate
               frequency: frequency
+            periodicMultipliers:
+            - 0.8008281904610115
+            - 0.8008281904610115
+            nperiodicMultipliers:
+            - 6.027456183070403
+            - 6.027456183070403
+            currencyisocode: currencyisocode
+            componentdetail: componentdetail
+            inperiodicMultipliers:
+            - 5
+            - 5
+            datasources:
+              benchmarkpricingsources:
+              - id: id
+              - id: id
+              useportfoliopricingsourcesforbenchmark: true
+              portfoliopricingsources:
+              - id: id
+              - id: id
+            iperiodicMultipliers:
+            - 1
+            - 1
             accounts:
             - id: id
               holdingsmode: holdingsmode
