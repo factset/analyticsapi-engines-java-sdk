@@ -41898,18 +41898,18 @@ components:
       additionalProperties: false
       example:
         inperiodicMultipliers:
-        - 5
-        - 5
+        - ""
+        - ""
         iperiodicMultipliers:
-        - 1
-        - 1
+        - 6
+        - 6
         name: name
         periodicMultipliers:
         - 0.8008281904610115
         - 0.8008281904610115
         nperiodicMultipliers:
-        - 6.027456183070403
-        - 6.027456183070403
+        - ""
+        - ""
       properties:
         name:
           description: Frequency name.
@@ -41922,7 +41922,6 @@ components:
         nperiodicMultipliers:
           items:
             format: double
-            type: number
           type: array
         iperiodicMultipliers:
           items:
@@ -41932,7 +41931,6 @@ components:
         inperiodicMultipliers:
           items:
             format: int32
-            type: integer
           type: array
       type: object
     FrequencyRoot:
@@ -41941,18 +41939,18 @@ components:
         data:
           key:
             inperiodicMultipliers:
-            - 5
-            - 5
+            - ""
+            - ""
             iperiodicMultipliers:
-            - 1
-            - 1
+            - 6
+            - 6
             name: name
             periodicMultipliers:
             - 0.8008281904610115
             - 0.8008281904610115
             nperiodicMultipliers:
-            - 6.027456183070403
-            - 6.027456183070403
+            - ""
+            - ""
         meta: '{}'
       properties:
         data:
