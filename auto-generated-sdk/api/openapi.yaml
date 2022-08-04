@@ -42533,13 +42533,13 @@ components:
         - 0.8008281904610115
         - 0.8008281904610115
         nperiodicMultipliers:
-        - 6.027456183070403
-        - 6.027456183070403
+        - ""
+        - ""
         currencyisocode: currencyisocode
         componentdetail: componentdetail
         inperiodicMultipliers:
-        - 5
-        - 5
+        - ""
+        - ""
         datasources:
           benchmarkpricingsources:
           - id: id
@@ -42549,8 +42549,8 @@ components:
           - id: id
           - id: id
         iperiodicMultipliers:
-        - 1
-        - 1
+        - 6
+        - 6
         accounts:
         - id: id
           holdingsmode: holdingsmode
@@ -42606,7 +42606,6 @@ components:
         nperiodicMultipliers:
           items:
             format: double
-            type: number
           type: array
         iperiodicMultipliers:
           items:
@@ -42616,7 +42615,6 @@ components:
         inperiodicMultipliers:
           items:
             format: int32
-            type: integer
           type: array
       required:
       - componentid
@@ -42649,13 +42647,13 @@ components:
             - 0.8008281904610115
             - 0.8008281904610115
             nperiodicMultipliers:
-            - 6.027456183070403
-            - 6.027456183070403
+            - ""
+            - ""
             currencyisocode: currencyisocode
             componentdetail: componentdetail
             inperiodicMultipliers:
-            - 5
-            - 5
+            - ""
+            - ""
             datasources:
               benchmarkpricingsources:
               - id: id
@@ -42665,8 +42663,8 @@ components:
               - id: id
               - id: id
             iperiodicMultipliers:
-            - 1
-            - 1
+            - 6
+            - 6
             accounts:
             - id: id
               holdingsmode: holdingsmode
