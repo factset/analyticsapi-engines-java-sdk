@@ -42526,8 +42526,8 @@ components:
         - id: id
           frequency: frequency
         ihistRcvAssumpRates:
-        - 1.4658129805029452
-        - 1.4658129805029452
+        - 1
+        - 1
         dates:
           enddate: enddate
           startdate: startdate
@@ -42623,7 +42623,7 @@ components:
           items:
             format: int32
             nullable: true
-            type: number
+            type: integer
           type: array
         iperiodicMultipliers:
           items:
@@ -42658,8 +42658,8 @@ components:
             - id: id
               frequency: frequency
             ihistRcvAssumpRates:
-            - 1.4658129805029452
-            - 1.4658129805029452
+            - 1
+            - 1
             dates:
               enddate: enddate
               startdate: startdate
@@ -42719,8 +42719,8 @@ components:
         result: result
         progress: progress
         ihistRcvAssumpRates:
-        - 1.4658129805029452
-        - 1.4658129805029452
+        - 1
+        - 1
         dhistRcvAssumpRates:
         - 6.027456183070403
         - 6.027456183070403
@@ -42772,7 +42772,7 @@ components:
           items:
             format: int32
             nullable: true
-            type: number
+            type: integer
           type: array
       type: object
     CalculationStatus:
@@ -42784,8 +42784,8 @@ components:
             result: result
             progress: progress
             ihistRcvAssumpRates:
-            - 1.4658129805029452
-            - 1.4658129805029452
+            - 1
+            - 1
             dhistRcvAssumpRates:
             - 6.027456183070403
             - 6.027456183070403
@@ -42853,8 +42853,8 @@ components:
               result: result
               progress: progress
               ihistRcvAssumpRates:
-              - 1.4658129805029452
-              - 1.4658129805029452
+              - 1
+              - 1
               dhistRcvAssumpRates:
               - 6.027456183070403
               - 6.027456183070403

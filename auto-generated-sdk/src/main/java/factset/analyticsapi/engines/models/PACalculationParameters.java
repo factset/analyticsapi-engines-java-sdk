@@ -29,7 +29,6 @@ import factset.analyticsapi.engines.models.PADateParameters;
 import factset.analyticsapi.engines.models.PAIdentifier;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.math.BigDecimal;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import factset.analyticsapi.engines.JSON;
@@ -96,7 +95,7 @@ public class PACalculationParameters implements Serializable {
   private java.util.List<Double> dhistRcvAssumpRates = null;
 
   public static final String JSON_PROPERTY_IHIST_RCV_ASSUMP_RATES = "ihistRcvAssumpRates";
-  private java.util.List<BigDecimal> ihistRcvAssumpRates = null;
+  private java.util.List<Integer> ihistRcvAssumpRates = null;
 
   public static final String JSON_PROPERTY_IPERIODIC_MULTIPLIERS = "iperiodicMultipliers";
   private java.util.List<Integer> iperiodicMultipliers = null;
@@ -448,14 +447,14 @@ public class PACalculationParameters implements Serializable {
   }
 
 
-  public PACalculationParameters ihistRcvAssumpRates(java.util.List<BigDecimal> ihistRcvAssumpRates) {
+  public PACalculationParameters ihistRcvAssumpRates(java.util.List<Integer> ihistRcvAssumpRates) {
     this.ihistRcvAssumpRates = ihistRcvAssumpRates;
     return this;
   }
 
-  public PACalculationParameters addIhistRcvAssumpRatesItem(BigDecimal ihistRcvAssumpRatesItem) {
+  public PACalculationParameters addIhistRcvAssumpRatesItem(Integer ihistRcvAssumpRatesItem) {
     if (this.ihistRcvAssumpRates == null) {
-      this.ihistRcvAssumpRates = new java.util.ArrayList<BigDecimal>();
+      this.ihistRcvAssumpRates = new java.util.ArrayList<Integer>();
     }
     this.ihistRcvAssumpRates.add(ihistRcvAssumpRatesItem);
     return this;
@@ -470,12 +469,12 @@ public class PACalculationParameters implements Serializable {
   @JsonProperty(JSON_PROPERTY_IHIST_RCV_ASSUMP_RATES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public java.util.List<BigDecimal> getIhistRcvAssumpRates() {
+  public java.util.List<Integer> getIhistRcvAssumpRates() {
     return ihistRcvAssumpRates;
   }
 
 
-  public void setIhistRcvAssumpRates(java.util.List<BigDecimal> ihistRcvAssumpRates) {
+  public void setIhistRcvAssumpRates(java.util.List<Integer> ihistRcvAssumpRates) {
     this.ihistRcvAssumpRates = ihistRcvAssumpRates;
   }
 

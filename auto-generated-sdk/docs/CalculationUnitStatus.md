@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **progress** | **String** | The progress of the calculation unit. |  [optional]
 **points** | **Integer** | The points for the calculation unit. |  [optional]
 **dhistRcvAssumpRates** | **java.util.List&lt;Double&gt;** |  |  [optional]
-**ihistRcvAssumpRates** | **java.util.List&lt;BigDecimal&gt;** |  |  [optional]
+**ihistRcvAssumpRates** | **java.util.List&lt;Integer&gt;** |  |  [optional]
 
 
 
