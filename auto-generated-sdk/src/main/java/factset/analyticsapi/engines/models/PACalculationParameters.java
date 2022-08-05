@@ -50,7 +50,8 @@ import factset.analyticsapi.engines.JSON;
   PACalculationParameters.JSON_PROPERTY_COMPONENTDETAIL,
   PACalculationParameters.JSON_PROPERTY_PERIODIC_MULTIPLIERS,
   PACalculationParameters.JSON_PROPERTY_NPERIODIC_MULTIPLIERS,
-  PACalculationParameters.JSON_PROPERTY_HIST_RCV_ASSUMP_RATES,
+  PACalculationParameters.JSON_PROPERTY_DHIST_RCV_ASSUMP_RATES,
+  PACalculationParameters.JSON_PROPERTY_IHIST_RCV_ASSUMP_RATES,
   PACalculationParameters.JSON_PROPERTY_IPERIODIC_MULTIPLIERS,
   PACalculationParameters.JSON_PROPERTY_INPERIODIC_MULTIPLIERS
 })
@@ -91,8 +92,11 @@ public class PACalculationParameters implements Serializable {
   public static final String JSON_PROPERTY_NPERIODIC_MULTIPLIERS = "nperiodicMultipliers";
   private java.util.List<Object> nperiodicMultipliers = null;
 
-  public static final String JSON_PROPERTY_HIST_RCV_ASSUMP_RATES = "histRcvAssumpRates";
-  private java.util.List<BigDecimal> histRcvAssumpRates = null;
+  public static final String JSON_PROPERTY_DHIST_RCV_ASSUMP_RATES = "dhistRcvAssumpRates";
+  private java.util.List<Double> dhistRcvAssumpRates = null;
+
+  public static final String JSON_PROPERTY_IHIST_RCV_ASSUMP_RATES = "ihistRcvAssumpRates";
+  private java.util.List<BigDecimal> ihistRcvAssumpRates = null;
 
   public static final String JSON_PROPERTY_IPERIODIC_MULTIPLIERS = "iperiodicMultipliers";
   private java.util.List<Integer> iperiodicMultipliers = null;
@@ -412,35 +416,67 @@ public class PACalculationParameters implements Serializable {
   }
 
 
-  public PACalculationParameters histRcvAssumpRates(java.util.List<BigDecimal> histRcvAssumpRates) {
-    this.histRcvAssumpRates = histRcvAssumpRates;
+  public PACalculationParameters dhistRcvAssumpRates(java.util.List<Double> dhistRcvAssumpRates) {
+    this.dhistRcvAssumpRates = dhistRcvAssumpRates;
     return this;
   }
 
-  public PACalculationParameters addHistRcvAssumpRatesItem(BigDecimal histRcvAssumpRatesItem) {
-    if (this.histRcvAssumpRates == null) {
-      this.histRcvAssumpRates = new java.util.ArrayList<BigDecimal>();
+  public PACalculationParameters addDhistRcvAssumpRatesItem(Double dhistRcvAssumpRatesItem) {
+    if (this.dhistRcvAssumpRates == null) {
+      this.dhistRcvAssumpRates = new java.util.ArrayList<Double>();
     }
-    this.histRcvAssumpRates.add(histRcvAssumpRatesItem);
+    this.dhistRcvAssumpRates.add(dhistRcvAssumpRatesItem);
     return this;
   }
 
    /**
-   * Get histRcvAssumpRates
-   * @return histRcvAssumpRates
+   * Get dhistRcvAssumpRates
+   * @return dhistRcvAssumpRates
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_HIST_RCV_ASSUMP_RATES)
+  @JsonProperty(JSON_PROPERTY_DHIST_RCV_ASSUMP_RATES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public java.util.List<BigDecimal> getHistRcvAssumpRates() {
-    return histRcvAssumpRates;
+  public java.util.List<Double> getDhistRcvAssumpRates() {
+    return dhistRcvAssumpRates;
   }
 
 
-  public void setHistRcvAssumpRates(java.util.List<BigDecimal> histRcvAssumpRates) {
-    this.histRcvAssumpRates = histRcvAssumpRates;
+  public void setDhistRcvAssumpRates(java.util.List<Double> dhistRcvAssumpRates) {
+    this.dhistRcvAssumpRates = dhistRcvAssumpRates;
+  }
+
+
+  public PACalculationParameters ihistRcvAssumpRates(java.util.List<BigDecimal> ihistRcvAssumpRates) {
+    this.ihistRcvAssumpRates = ihistRcvAssumpRates;
+    return this;
+  }
+
+  public PACalculationParameters addIhistRcvAssumpRatesItem(BigDecimal ihistRcvAssumpRatesItem) {
+    if (this.ihistRcvAssumpRates == null) {
+      this.ihistRcvAssumpRates = new java.util.ArrayList<BigDecimal>();
+    }
+    this.ihistRcvAssumpRates.add(ihistRcvAssumpRatesItem);
+    return this;
+  }
+
+   /**
+   * Get ihistRcvAssumpRates
+   * @return ihistRcvAssumpRates
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_IHIST_RCV_ASSUMP_RATES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public java.util.List<BigDecimal> getIhistRcvAssumpRates() {
+    return ihistRcvAssumpRates;
+  }
+
+
+  public void setIhistRcvAssumpRates(java.util.List<BigDecimal> ihistRcvAssumpRates) {
+    this.ihistRcvAssumpRates = ihistRcvAssumpRates;
   }
 
 
@@ -531,14 +567,15 @@ public class PACalculationParameters implements Serializable {
         Objects.equals(this.componentdetail, paCalculationParameters.componentdetail) &&
         Objects.equals(this.periodicMultipliers, paCalculationParameters.periodicMultipliers) &&
         Objects.equals(this.nperiodicMultipliers, paCalculationParameters.nperiodicMultipliers) &&
-        Objects.equals(this.histRcvAssumpRates, paCalculationParameters.histRcvAssumpRates) &&
+        Objects.equals(this.dhistRcvAssumpRates, paCalculationParameters.dhistRcvAssumpRates) &&
+        Objects.equals(this.ihistRcvAssumpRates, paCalculationParameters.ihistRcvAssumpRates) &&
         Objects.equals(this.iperiodicMultipliers, paCalculationParameters.iperiodicMultipliers) &&
         Objects.equals(this.inperiodicMultipliers, paCalculationParameters.inperiodicMultipliers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(componentid, accounts, benchmarks, dates, groups, currencyisocode, columns, datasources, componentdetail, periodicMultipliers, nperiodicMultipliers, histRcvAssumpRates, iperiodicMultipliers, inperiodicMultipliers);
+    return Objects.hash(componentid, accounts, benchmarks, dates, groups, currencyisocode, columns, datasources, componentdetail, periodicMultipliers, nperiodicMultipliers, dhistRcvAssumpRates, ihistRcvAssumpRates, iperiodicMultipliers, inperiodicMultipliers);
   }
 
   @Override
@@ -556,7 +593,8 @@ public class PACalculationParameters implements Serializable {
     sb.append("    componentdetail: ").append(toIndentedString(componentdetail)).append("\n");
     sb.append("    periodicMultipliers: ").append(toIndentedString(periodicMultipliers)).append("\n");
     sb.append("    nperiodicMultipliers: ").append(toIndentedString(nperiodicMultipliers)).append("\n");
-    sb.append("    histRcvAssumpRates: ").append(toIndentedString(histRcvAssumpRates)).append("\n");
+    sb.append("    dhistRcvAssumpRates: ").append(toIndentedString(dhistRcvAssumpRates)).append("\n");
+    sb.append("    ihistRcvAssumpRates: ").append(toIndentedString(ihistRcvAssumpRates)).append("\n");
     sb.append("    iperiodicMultipliers: ").append(toIndentedString(iperiodicMultipliers)).append("\n");
     sb.append("    inperiodicMultipliers: ").append(toIndentedString(inperiodicMultipliers)).append("\n");
     sb.append("}");

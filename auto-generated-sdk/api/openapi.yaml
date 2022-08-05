@@ -42525,19 +42525,22 @@ components:
           frequency: frequency
         - id: id
           frequency: frequency
+        ihistRcvAssumpRates:
+        - 1.4658129805029452
+        - 1.4658129805029452
         dates:
           enddate: enddate
           startdate: startdate
           frequency: frequency
+        dhistRcvAssumpRates:
+        - 6.027456183070403
+        - 6.027456183070403
         periodicMultipliers:
         - 0.8008281904610115
         - 0.8008281904610115
         nperiodicMultipliers:
         - ""
         - ""
-        histRcvAssumpRates:
-        - 6.027456183070403
-        - 6.027456183070403
         currencyisocode: currencyisocode
         componentdetail: componentdetail
         inperiodicMultipliers:
@@ -42552,8 +42555,8 @@ components:
           - id: id
           - id: id
         iperiodicMultipliers:
-        - 1
-        - 1
+        - 5
+        - 5
         accounts:
         - id: id
           holdingsmode: holdingsmode
@@ -42610,8 +42613,15 @@ components:
           items:
             format: double
           type: array
-        histRcvAssumpRates:
+        dhistRcvAssumpRates:
           items:
+            format: double
+            nullable: true
+            type: number
+          type: array
+        ihistRcvAssumpRates:
+          items:
+            format: int32
             nullable: true
             type: number
           type: array
@@ -42647,19 +42657,22 @@ components:
               frequency: frequency
             - id: id
               frequency: frequency
+            ihistRcvAssumpRates:
+            - 1.4658129805029452
+            - 1.4658129805029452
             dates:
               enddate: enddate
               startdate: startdate
               frequency: frequency
+            dhistRcvAssumpRates:
+            - 6.027456183070403
+            - 6.027456183070403
             periodicMultipliers:
             - 0.8008281904610115
             - 0.8008281904610115
             nperiodicMultipliers:
             - ""
             - ""
-            histRcvAssumpRates:
-            - 6.027456183070403
-            - 6.027456183070403
             currencyisocode: currencyisocode
             componentdetail: componentdetail
             inperiodicMultipliers:
@@ -42674,8 +42687,8 @@ components:
               - id: id
               - id: id
             iperiodicMultipliers:
-            - 1
-            - 1
+            - 5
+            - 5
             accounts:
             - id: id
               holdingsmode: holdingsmode
@@ -42705,6 +42718,12 @@ components:
       example:
         result: result
         progress: progress
+        ihistRcvAssumpRates:
+        - 1.4658129805029452
+        - 1.4658129805029452
+        dhistRcvAssumpRates:
+        - 6.027456183070403
+        - 6.027456183070403
         errors:
         - id: id
           detail: detail
@@ -42743,6 +42762,18 @@ components:
           description: The points for the calculation unit.
           format: int32
           type: integer
+        dhistRcvAssumpRates:
+          items:
+            format: double
+            nullable: true
+            type: number
+          type: array
+        ihistRcvAssumpRates:
+          items:
+            format: int32
+            nullable: true
+            type: number
+          type: array
       type: object
     CalculationStatus:
       additionalProperties: false
@@ -42752,6 +42783,12 @@ components:
           key:
             result: result
             progress: progress
+            ihistRcvAssumpRates:
+            - 1.4658129805029452
+            - 1.4658129805029452
+            dhistRcvAssumpRates:
+            - 6.027456183070403
+            - 6.027456183070403
             errors:
             - id: id
               detail: detail
@@ -42815,6 +42852,12 @@ components:
             key:
               result: result
               progress: progress
+              ihistRcvAssumpRates:
+              - 1.4658129805029452
+              - 1.4658129805029452
+              dhistRcvAssumpRates:
+              - 6.027456183070403
+              - 6.027456183070403
               errors:
               - id: id
                 detail: detail
