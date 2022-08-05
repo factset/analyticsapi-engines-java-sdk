@@ -42548,6 +42548,9 @@ components:
           portfoliopricingsources:
           - id: id
           - id: id
+        histCoupons:
+        - ""
+        - ""
         iperiodicMultipliers:
         - 6
         - 6
@@ -42607,6 +42610,11 @@ components:
           items:
             format: double
           type: array
+        histCoupons:
+          items:
+            oneOf:
+            - properties: {}
+          type: array
         iperiodicMultipliers:
           items:
             format: int32
@@ -42662,6 +42670,9 @@ components:
               portfoliopricingsources:
               - id: id
               - id: id
+            histCoupons:
+            - ""
+            - ""
             iperiodicMultipliers:
             - 6
             - 6

@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **componentdetail** | **String** | Component detail type for the PA component. It can be GROUPS or TOTALS or SECURITIES. |  [optional]
 **periodicMultipliers** | **java.util.List&lt;Double&gt;** |  |  [optional]
 **nperiodicMultipliers** | **java.util.List&lt;Object&gt;** |  |  [optional]
+**histCoupons** | [**java.util.List&lt;OneOfAnyType&gt;**](OneOfAnyType.md) |  |  [optional]
 **iperiodicMultipliers** | **java.util.List&lt;Integer&gt;** |  |  [optional]
 **inperiodicMultipliers** | **java.util.List&lt;Object&gt;** |  |  [optional]
 
