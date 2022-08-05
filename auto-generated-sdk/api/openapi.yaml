@@ -42616,14 +42616,14 @@ components:
         dhistRcvAssumpRates:
           items:
             format: double
-            nullable: true
             type: number
+          nullable: true
           type: array
         ihistRcvAssumpRates:
           items:
             format: int32
-            nullable: true
             type: integer
+          nullable: true
           type: array
         iperiodicMultipliers:
           items:
@@ -42765,14 +42765,14 @@ components:
         dhistRcvAssumpRates:
           items:
             format: double
-            nullable: true
             type: number
+          nullable: true
           type: array
         ihistRcvAssumpRates:
           items:
             format: int32
-            nullable: true
             type: integer
+          nullable: true
           type: array
       type: object
     CalculationStatus:
