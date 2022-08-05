@@ -42535,6 +42535,9 @@ components:
         nperiodicMultipliers:
         - ""
         - ""
+        histRcvAssumpRates:
+        - 6.027456183070403
+        - 6.027456183070403
         currencyisocode: currencyisocode
         componentdetail: componentdetail
         inperiodicMultipliers:
@@ -42548,12 +42551,9 @@ components:
           portfoliopricingsources:
           - id: id
           - id: id
-        histCoupons:
-        - ""
-        - ""
         iperiodicMultipliers:
-        - 6
-        - 6
+        - 1
+        - 1
         accounts:
         - id: id
           holdingsmode: holdingsmode
@@ -42610,10 +42610,10 @@ components:
           items:
             format: double
           type: array
-        histCoupons:
+        histRcvAssumpRates:
           items:
-            oneOf:
-            - properties: {}
+            nullable: true
+            type: number
           type: array
         iperiodicMultipliers:
           items:
@@ -42657,6 +42657,9 @@ components:
             nperiodicMultipliers:
             - ""
             - ""
+            histRcvAssumpRates:
+            - 6.027456183070403
+            - 6.027456183070403
             currencyisocode: currencyisocode
             componentdetail: componentdetail
             inperiodicMultipliers:
@@ -42670,12 +42673,9 @@ components:
               portfoliopricingsources:
               - id: id
               - id: id
-            histCoupons:
-            - ""
-            - ""
             iperiodicMultipliers:
-            - 6
-            - 6
+            - 1
+            - 1
             accounts:
             - id: id
               holdingsmode: holdingsmode

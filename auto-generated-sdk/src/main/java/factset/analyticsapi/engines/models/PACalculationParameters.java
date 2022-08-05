@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import factset.analyticsapi.engines.models.OneOfAnyType;
 import factset.analyticsapi.engines.models.PACalculationColumn;
 import factset.analyticsapi.engines.models.PACalculationDataSources;
 import factset.analyticsapi.engines.models.PACalculationGroup;
@@ -30,6 +29,7 @@ import factset.analyticsapi.engines.models.PADateParameters;
 import factset.analyticsapi.engines.models.PAIdentifier;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.math.BigDecimal;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import factset.analyticsapi.engines.JSON;
@@ -50,7 +50,7 @@ import factset.analyticsapi.engines.JSON;
   PACalculationParameters.JSON_PROPERTY_COMPONENTDETAIL,
   PACalculationParameters.JSON_PROPERTY_PERIODIC_MULTIPLIERS,
   PACalculationParameters.JSON_PROPERTY_NPERIODIC_MULTIPLIERS,
-  PACalculationParameters.JSON_PROPERTY_HIST_COUPONS,
+  PACalculationParameters.JSON_PROPERTY_HIST_RCV_ASSUMP_RATES,
   PACalculationParameters.JSON_PROPERTY_IPERIODIC_MULTIPLIERS,
   PACalculationParameters.JSON_PROPERTY_INPERIODIC_MULTIPLIERS
 })
@@ -91,8 +91,8 @@ public class PACalculationParameters implements Serializable {
   public static final String JSON_PROPERTY_NPERIODIC_MULTIPLIERS = "nperiodicMultipliers";
   private java.util.List<Object> nperiodicMultipliers = null;
 
-  public static final String JSON_PROPERTY_HIST_COUPONS = "histCoupons";
-  private java.util.List<OneOfAnyType> histCoupons = null;
+  public static final String JSON_PROPERTY_HIST_RCV_ASSUMP_RATES = "histRcvAssumpRates";
+  private java.util.List<BigDecimal> histRcvAssumpRates = null;
 
   public static final String JSON_PROPERTY_IPERIODIC_MULTIPLIERS = "iperiodicMultipliers";
   private java.util.List<Integer> iperiodicMultipliers = null;
@@ -412,35 +412,35 @@ public class PACalculationParameters implements Serializable {
   }
 
 
-  public PACalculationParameters histCoupons(java.util.List<OneOfAnyType> histCoupons) {
-    this.histCoupons = histCoupons;
+  public PACalculationParameters histRcvAssumpRates(java.util.List<BigDecimal> histRcvAssumpRates) {
+    this.histRcvAssumpRates = histRcvAssumpRates;
     return this;
   }
 
-  public PACalculationParameters addHistCouponsItem(OneOfAnyType histCouponsItem) {
-    if (this.histCoupons == null) {
-      this.histCoupons = new java.util.ArrayList<OneOfAnyType>();
+  public PACalculationParameters addHistRcvAssumpRatesItem(BigDecimal histRcvAssumpRatesItem) {
+    if (this.histRcvAssumpRates == null) {
+      this.histRcvAssumpRates = new java.util.ArrayList<BigDecimal>();
     }
-    this.histCoupons.add(histCouponsItem);
+    this.histRcvAssumpRates.add(histRcvAssumpRatesItem);
     return this;
   }
 
    /**
-   * Get histCoupons
-   * @return histCoupons
+   * Get histRcvAssumpRates
+   * @return histRcvAssumpRates
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_HIST_COUPONS)
+  @JsonProperty(JSON_PROPERTY_HIST_RCV_ASSUMP_RATES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public java.util.List<OneOfAnyType> getHistCoupons() {
-    return histCoupons;
+  public java.util.List<BigDecimal> getHistRcvAssumpRates() {
+    return histRcvAssumpRates;
   }
 
 
-  public void setHistCoupons(java.util.List<OneOfAnyType> histCoupons) {
-    this.histCoupons = histCoupons;
+  public void setHistRcvAssumpRates(java.util.List<BigDecimal> histRcvAssumpRates) {
+    this.histRcvAssumpRates = histRcvAssumpRates;
   }
 
 
@@ -531,14 +531,14 @@ public class PACalculationParameters implements Serializable {
         Objects.equals(this.componentdetail, paCalculationParameters.componentdetail) &&
         Objects.equals(this.periodicMultipliers, paCalculationParameters.periodicMultipliers) &&
         Objects.equals(this.nperiodicMultipliers, paCalculationParameters.nperiodicMultipliers) &&
-        Objects.equals(this.histCoupons, paCalculationParameters.histCoupons) &&
+        Objects.equals(this.histRcvAssumpRates, paCalculationParameters.histRcvAssumpRates) &&
         Objects.equals(this.iperiodicMultipliers, paCalculationParameters.iperiodicMultipliers) &&
         Objects.equals(this.inperiodicMultipliers, paCalculationParameters.inperiodicMultipliers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(componentid, accounts, benchmarks, dates, groups, currencyisocode, columns, datasources, componentdetail, periodicMultipliers, nperiodicMultipliers, histCoupons, iperiodicMultipliers, inperiodicMultipliers);
+    return Objects.hash(componentid, accounts, benchmarks, dates, groups, currencyisocode, columns, datasources, componentdetail, periodicMultipliers, nperiodicMultipliers, histRcvAssumpRates, iperiodicMultipliers, inperiodicMultipliers);
   }
 
   @Override
@@ -556,7 +556,7 @@ public class PACalculationParameters implements Serializable {
     sb.append("    componentdetail: ").append(toIndentedString(componentdetail)).append("\n");
     sb.append("    periodicMultipliers: ").append(toIndentedString(periodicMultipliers)).append("\n");
     sb.append("    nperiodicMultipliers: ").append(toIndentedString(nperiodicMultipliers)).append("\n");
-    sb.append("    histCoupons: ").append(toIndentedString(histCoupons)).append("\n");
+    sb.append("    histRcvAssumpRates: ").append(toIndentedString(histRcvAssumpRates)).append("\n");
     sb.append("    iperiodicMultipliers: ").append(toIndentedString(iperiodicMultipliers)).append("\n");
     sb.append("    inperiodicMultipliers: ").append(toIndentedString(inperiodicMultipliers)).append("\n");
     sb.append("}");
