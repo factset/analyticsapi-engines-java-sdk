@@ -69,9 +69,6 @@ public class FiInteractiveEngineExample {
       FIMunicipalBonds fimunicipalbonds = new FIMunicipalBonds();
       fimunicipalbonds.ignoreSinkingFund(true);
       
-      FIMunicipalBondsForJobSettings fimunicipalbondsforjobsettings = new FIMunicipalBondsForJobSettings();
-      fimunicipalbondsforjobsettings.ignoreSinkingFund(true);
-      
       FISecurity security1 = new FISecurity();
       security1.setCalcFromMethod(FI_CALC_FROM_METHOD);
       security1.setCalcFromValue(FI_CALC_FROM_VALUE);
@@ -101,6 +98,9 @@ public class FiInteractiveEngineExample {
       
       FIMarketEnvironment fiMarketEnvironment = new FIMarketEnvironment();
       fiMarketEnvironment.ratePath(RatePathEnum.FLAT_FORWARD);
+      
+      FIMunicipalBondsForJobSettings fimunicipalbondsforjobsettings = new FIMunicipalBondsForJobSettings();
+      fimunicipalbondsforjobsettings.ignoreSinkingFund(true);
       
       FIJobSettings jobSettings = new FIJobSettings();
       jobSettings.setAsOfDate(FI_AS_OF_DATE);
