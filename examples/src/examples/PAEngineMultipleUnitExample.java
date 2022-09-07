@@ -51,9 +51,9 @@ public class PAEngineMultipleUnitExample {
   private static String GROUP_NAME = "Economic Sector - FactSet";
   private static String GROUP_CATEGORY = "FactSet";
   private static String GROUP_DIRECTORY = "Factset";
-  private static String Pricing_Source_Name = "MSCI - Gross";
-  private static String Pricing_Source_Category = "MSCI";
-  private static String Pricing_Source_Directory = "Equity";
+  private static String PRICING_SOURCE_NAME = "MSCI - Gross";
+  private static String PRICING_SOURCE_CATEGORY = "MSCI";
+  private static String PRICING_SOURCE_DIRECTORY = "Equity";
   
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
@@ -114,12 +114,12 @@ public class PAEngineMultipleUnitExample {
       // Get PA pricing sources with PricingSourceName, PricingSourceCategory & PricingSourceDirectory
       
       PricingSourcesApi pricingSourcesApi = new PricingSourcesApi(getApiClient());
-      Map<String, PAPricingSource> pricingSources = pricingSourcesApi.getPAPricingSources(Pricing_Source_Name, Pricing_Source_Category, Pricing_Source_Directory).getData();
+      Map<String, PAPricingSource> pricingSources = pricingSourcesApi.getPAPricingSources(PRICING_SOURCE_NAME, PRICING_SOURCE_CATEGORY, PRICING_SOURCE_DIRECTORY).getData();
       String pricingSourceId = pricingSources.entrySet().stream().filter(
-                      c -> c.getValue().getName().equals(Pricing_Source_Name) && c.getValue().getCategory().equals(Pricing_Source_Category) && c.getValue().getDirectory().equals(Pricing_Source_Directory))
+                      c -> c.getValue().getName().equals(PRICING_SOURCE_NAME) && c.getValue().getCategory().equals(PRICING_SOURCE_CATEGORY) && c.getValue().getDirectory().equals(PRICING_SOURCE_DIRECTORY))
               .iterator().next().getKey();
-      System.out.println("ID of pricing source with Name '" + Pricing_Source_Name + "' and category '" + Pricing_Source_Category
-              + "' and directory '" + Pricing_Source_Directory + "': " + pricingSourceId);
+      System.out.println("ID of pricing source with Name '" + PRICING_SOURCE_NAME + "' and category '" + PRICING_SOURCE_CATEGORY
+              + "' and directory '" + PRICING_SOURCE_DIRECTORY + "': " + pricingSourceId);
       
       PACalculationPricingSource pricingsource = new PACalculationPricingSource();
       pricingsource.setId(pricingSourceId);
