@@ -51,6 +51,9 @@ public class PAEngineMultipleUnitExample {
   private static String GROUP_NAME = "Economic Sector - FactSet";
   private static String GROUP_CATEGORY = "FactSet";
   private static String GROUP_DIRECTORY = "Factset";
+  private static String PRICING_SOURCE_NAME = "MSCI - Gross";
+  private static String PRICING_SOURCE_CATEGORY = "MSCI";
+  private static String PRICING_SOURCE_DIRECTORY = "Equity";
   
   public static void main(String[] args) throws InterruptedException, JsonProcessingException {
     try {
@@ -107,6 +110,24 @@ public class PAEngineMultipleUnitExample {
       
       // To add component detail.
       // paItem.setComponentdetail("GROUPS"); // It can be GROUPS or TOTALS
+      
+      // Get PA pricing sources with PricingSourceName, PricingSourceCategory & PricingSourceDirectory
+      
+      PricingSourcesApi pricingSourcesApi = new PricingSourcesApi(getApiClient());
+      Map<String, PAPricingSource> pricingSources = pricingSourcesApi.getPAPricingSources(PRICING_SOURCE_NAME, PRICING_SOURCE_CATEGORY, PRICING_SOURCE_DIRECTORY).getData();
+      String pricingSourceId = pricingSources.entrySet().stream().filter(
+                      c -> c.getValue().getName().equals(PRICING_SOURCE_NAME) && c.getValue().getCategory().equals(PRICING_SOURCE_CATEGORY) && c.getValue().getDirectory().equals(PRICING_SOURCE_DIRECTORY))
+              .iterator().next().getKey();
+      System.out.println("ID of pricing source with Name '" + PRICING_SOURCE_NAME + "' and category '" + PRICING_SOURCE_CATEGORY
+              + "' and directory '" + PRICING_SOURCE_DIRECTORY + "': " + pricingSourceId);
+      
+      PACalculationPricingSource pricingsource = new PACalculationPricingSource();
+      pricingsource.setId(pricingSourceId);
+      
+      PACalculationDataSources datasources = new PACalculationDataSources();
+      datasources.addPortfoliopricingsourcesItem(pricingsource);
+      datasources.useportfoliopricingsourcesforbenchmark(true);
+      paItem.setDatasources(datasources);
       
       calcParameters.putDataItem("1", paItem);
       calcParameters.putDataItem("2", paItem);
