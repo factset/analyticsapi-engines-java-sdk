@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.factset.analyticsapi</groupId>
   <artifactId>engines-sdk</artifactId>
-  <version>5.4.0</version>
+  <version>5.5.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +52,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.factset.analyticsapi:engines-sdk:5.4.0"
+compile "com.factset.analyticsapi:engines-sdk:5.5.0"
 ```
 
 ### Others
@@ -65,7 +65,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/engines-sdk-5.4.0.jar`
+- `target/engines-sdk-5.5.0.jar`
 - `target/lib/*.jar`
 
 ## Usage
@@ -320,9 +320,11 @@ Class | Method | HTTP request | Description
  - [FIABCalculationStatusSummary](docs/FIABCalculationStatusSummary.md)
  - [FIABDateParameters](docs/FIABDateParameters.md)
  - [FIABIdentifier](docs/FIABIdentifier.md)
+ - [FIBalloonExtension](docs/FIBalloonExtension.md)
  - [FIBankLoans](docs/FIBankLoans.md)
  - [FICalculationParameters](docs/FICalculationParameters.md)
  - [FICalculationParametersRoot](docs/FICalculationParametersRoot.md)
+ - [FICashflows](docs/FICashflows.md)
  - [FIDiscountCurveInfo](docs/FIDiscountCurveInfo.md)
  - [FIDiscountCurveInfoRoot](docs/FIDiscountCurveInfoRoot.md)
  - [FIJobSettings](docs/FIJobSettings.md)
@@ -331,9 +333,14 @@ Class | Method | HTTP request | Description
  - [FIMunicipalBonds](docs/FIMunicipalBonds.md)
  - [FIMunicipalBondsForJobSettings](docs/FIMunicipalBondsForJobSettings.md)
  - [FIPrepay](docs/FIPrepay.md)
+ - [FIPrepayLockout](docs/FIPrepayLockout.md)
  - [FIReferencePrepay](docs/FIReferencePrepay.md)
  - [FIReferenceSecurity](docs/FIReferenceSecurity.md)
  - [FISecurity](docs/FISecurity.md)
+ - [FIServicerAdvances](docs/FIServicerAdvances.md)
+ - [FIServicerAdvancesForSecurities](docs/FIServicerAdvancesForSecurities.md)
+ - [FIStructuredProductsForJobSettings](docs/FIStructuredProductsForJobSettings.md)
+ - [FIStructuredProductsForSecurities](docs/FIStructuredProductsForSecurities.md)
  - [FPOAccount](docs/FPOAccount.md)
  - [FPOObjective](docs/FPOObjective.md)
  - [FPOOptimizationParameters](docs/FPOOptimizationParameters.md)
@@ -359,9 +366,6 @@ Class | Method | HTTP request | Description
  - [NPOOptimizerStrategy](docs/NPOOptimizerStrategy.md)
  - [NPOOptimizerStrategyOverrides](docs/NPOOptimizerStrategyOverrides.md)
  - [ObjectRoot](docs/ObjectRoot.md)
- - [OneOfQuantDates](docs/OneOfQuantDates.md)
- - [OneOfQuantFormulas](docs/OneOfQuantFormulas.md)
- - [OneOfQuantUniverse](docs/OneOfQuantUniverse.md)
  - [OptimalPortfolio](docs/OptimalPortfolio.md)
  - [Optimization](docs/Optimization.md)
  - [OptimizerAccount](docs/OptimizerAccount.md)
@@ -480,4 +484,4 @@ It's recommended to create an instance of `ApiClient` per thread in a multithrea
 
 ## Author
 
-analytics.api.support@factset.com
+api@factset.com
