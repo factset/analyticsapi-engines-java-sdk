@@ -22,9 +22,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import factset.analyticsapi.engines.models.OneOfQuantFdsDateQuantDateList;
-import factset.analyticsapi.engines.models.OneOfQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters;
-import factset.analyticsapi.engines.models.OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse;
+import factset.analyticsapi.engines.models.OneOfQuantDates;
+import factset.analyticsapi.engines.models.OneOfQuantFormulas;
+import factset.analyticsapi.engines.models.OneOfQuantUniverse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -46,19 +46,19 @@ public class QuantCalculationParameters implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_UNIVERSE = "universe";
-  private OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse universe = null;
+  private OneOfQuantUniverse universe = null;
 
   public static final String JSON_PROPERTY_DATES = "dates";
-  private OneOfQuantFdsDateQuantDateList dates = null;
+  private OneOfQuantDates dates = null;
 
   public static final String JSON_PROPERTY_FORMULAS = "formulas";
-  private java.util.List<OneOfQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters> formulas = null;
+  private java.util.List<OneOfQuantFormulas> formulas = null;
 
   public static final String JSON_PROPERTY_JOB_DESCRIPTION = "jobDescription";
   private String jobDescription;
 
 
-  public QuantCalculationParameters universe(OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse universe) {
+  public QuantCalculationParameters universe(OneOfQuantUniverse universe) {
     this.universe = universe;
     return this;
   }
@@ -72,17 +72,17 @@ public class QuantCalculationParameters implements Serializable {
   @JsonProperty(JSON_PROPERTY_UNIVERSE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse getUniverse() {
+  public OneOfQuantUniverse getUniverse() {
     return universe;
   }
 
 
-  public void setUniverse(OneOfQuantUniversalScreenUniverseQuantScreeningExpressionUniverseQuantIdentifierUniverse universe) {
+  public void setUniverse(OneOfQuantUniverse universe) {
     this.universe = universe;
   }
 
 
-  public QuantCalculationParameters dates(OneOfQuantFdsDateQuantDateList dates) {
+  public QuantCalculationParameters dates(OneOfQuantDates dates) {
     this.dates = dates;
     return this;
   }
@@ -96,24 +96,24 @@ public class QuantCalculationParameters implements Serializable {
   @JsonProperty(JSON_PROPERTY_DATES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public OneOfQuantFdsDateQuantDateList getDates() {
+  public OneOfQuantDates getDates() {
     return dates;
   }
 
 
-  public void setDates(OneOfQuantFdsDateQuantDateList dates) {
+  public void setDates(OneOfQuantDates dates) {
     this.dates = dates;
   }
 
 
-  public QuantCalculationParameters formulas(java.util.List<OneOfQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters> formulas) {
+  public QuantCalculationParameters formulas(java.util.List<OneOfQuantFormulas> formulas) {
     this.formulas = formulas;
     return this;
   }
 
-  public QuantCalculationParameters addFormulasItem(OneOfQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters formulasItem) {
+  public QuantCalculationParameters addFormulasItem(OneOfQuantFormulas formulasItem) {
     if (this.formulas == null) {
-      this.formulas = new java.util.ArrayList<OneOfQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters>();
+      this.formulas = new java.util.ArrayList<OneOfQuantFormulas>();
     }
     this.formulas.add(formulasItem);
     return this;
@@ -128,12 +128,12 @@ public class QuantCalculationParameters implements Serializable {
   @JsonProperty(JSON_PROPERTY_FORMULAS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public java.util.List<OneOfQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters> getFormulas() {
+  public java.util.List<OneOfQuantFormulas> getFormulas() {
     return formulas;
   }
 
 
-  public void setFormulas(java.util.List<OneOfQuantScreeningExpressionQuantFqlExpressionQuantUniversalScreenParameterQuantAllUniversalScreenParameters> formulas) {
+  public void setFormulas(java.util.List<OneOfQuantFormulas> formulas) {
     this.formulas = formulas;
   }
 
