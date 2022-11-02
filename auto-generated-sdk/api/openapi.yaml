@@ -43437,6 +43437,8 @@ components:
           type: string
         dateOffset:
           type: string
+        isArrayReturnType:
+          type: boolean
       required:
       - expr
       - name
@@ -43603,6 +43605,8 @@ components:
           type: string
         dateOffset:
           type: string
+        isArrayReturnType:
+          type: boolean
       required:
       - expr
       - name

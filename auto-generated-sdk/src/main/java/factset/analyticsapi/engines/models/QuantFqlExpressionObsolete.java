@@ -35,7 +35,8 @@ import factset.analyticsapi.engines.JSON;
 @JsonPropertyOrder({
   QuantFqlExpressionObsolete.JSON_PROPERTY_EXPR,
   QuantFqlExpressionObsolete.JSON_PROPERTY_NAME,
-  QuantFqlExpressionObsolete.JSON_PROPERTY_DATE_OFFSET
+  QuantFqlExpressionObsolete.JSON_PROPERTY_DATE_OFFSET,
+  QuantFqlExpressionObsolete.JSON_PROPERTY_IS_ARRAY_RETURN_TYPE
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class QuantFqlExpressionObsolete implements Serializable {
@@ -49,6 +50,9 @@ public class QuantFqlExpressionObsolete implements Serializable {
 
   public static final String JSON_PROPERTY_DATE_OFFSET = "dateOffset";
   private String dateOffset;
+
+  public static final String JSON_PROPERTY_IS_ARRAY_RETURN_TYPE = "isArrayReturnType";
+  private Boolean isArrayReturnType;
 
 
   public QuantFqlExpressionObsolete expr(String expr) {
@@ -121,6 +125,30 @@ public class QuantFqlExpressionObsolete implements Serializable {
   }
 
 
+  public QuantFqlExpressionObsolete isArrayReturnType(Boolean isArrayReturnType) {
+    this.isArrayReturnType = isArrayReturnType;
+    return this;
+  }
+
+   /**
+   * Get isArrayReturnType
+   * @return isArrayReturnType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_IS_ARRAY_RETURN_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsArrayReturnType() {
+    return isArrayReturnType;
+  }
+
+
+  public void setIsArrayReturnType(Boolean isArrayReturnType) {
+    this.isArrayReturnType = isArrayReturnType;
+  }
+
+
   /**
    * Return true if this QuantFqlExpressionObsolete object is equal to o.
    */
@@ -135,12 +163,13 @@ public class QuantFqlExpressionObsolete implements Serializable {
     QuantFqlExpressionObsolete quantFqlExpressionObsolete = (QuantFqlExpressionObsolete) o;
     return Objects.equals(this.expr, quantFqlExpressionObsolete.expr) &&
         Objects.equals(this.name, quantFqlExpressionObsolete.name) &&
-        Objects.equals(this.dateOffset, quantFqlExpressionObsolete.dateOffset);
+        Objects.equals(this.dateOffset, quantFqlExpressionObsolete.dateOffset) &&
+        Objects.equals(this.isArrayReturnType, quantFqlExpressionObsolete.isArrayReturnType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expr, name, dateOffset);
+    return Objects.hash(expr, name, dateOffset, isArrayReturnType);
   }
 
   @Override
@@ -150,6 +179,7 @@ public class QuantFqlExpressionObsolete implements Serializable {
     sb.append("    expr: ").append(toIndentedString(expr)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    dateOffset: ").append(toIndentedString(dateOffset)).append("\n");
+    sb.append("    isArrayReturnType: ").append(toIndentedString(isArrayReturnType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
