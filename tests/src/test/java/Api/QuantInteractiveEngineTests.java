@@ -6,6 +6,8 @@ import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.ApiResponse;
 import factset.analyticsapi.engines.api.QuantCalculationsApi;
 import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.models.QuantCalculationMeta.FormatEnum;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -82,8 +84,13 @@ public class QuantInteractiveEngineTests {
         try {
             QuantCalculationParameters calculationUnit = createUnitCalculation();
             QuantCalculationParametersRoot parameters = new QuantCalculationParametersRoot();
-            parameters.putDataItem("1", calculationUnit);
-            response = apiInstance.postAndCalculateWithHttpInfo(null, parameters);
+            
+            QuantCalculationMeta meta = new QuantCalculationMeta();
+            meta.setFormat(FormatEnum.FEATHER);
+            parameters.setMeta(meta);
+            
+            parameters.putDataItem("1", calculationUnit);            
+            response = apiInstance.postAndCalculateWithHttpInfo("max-stale=0", parameters);
             headers = response.getHeaders();
         } catch (ApiException e) {
             CommonFunctions.handleException("EngineApi#runCalculation", e);
@@ -152,5 +159,116 @@ public class QuantInteractiveEngineTests {
   	      }
   	      Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
   	      Assert.assertTrue("Result response data should not be null.", resultResponse.getData() != null);
+    }
+    
+    private QuantCalculationParameters enginesApi_isArrayReturnType_createUnitCalculation() throws ApiException {
+        QuantCalculationParameters quantItem = new QuantCalculationParameters();
+
+        QuantFdsDate fdsDate = new QuantFdsDate();
+        fdsDate.setStartDate(CommonParameters.QuantStartDate);
+        fdsDate.setEndDate(CommonParameters.QuantEndDate);
+        fdsDate.setFrequency(CommonParameters.QuantFrequency);
+        fdsDate.setCalendar(CommonParameters.QuantCalender);
+        fdsDate.setSource(QuantFdsDate.SourceEnum.FDSDATE);
+        
+        OneOfQuantDates dates = new OneOfQuantDates(fdsDate);
+        
+        List<String> identifiers = new ArrayList<String>();
+        identifiers.add("03748R74");
+        identifiers.add("S8112735");
+        
+        QuantIdentifierUniverse identifierUniverse = new QuantIdentifierUniverse();      
+        identifierUniverse.setUniverseType(QuantIdentifierUniverse.UniverseTypeEnum.EQUITY);
+        identifierUniverse.setIdentifiers(identifiers);
+        identifierUniverse.setSource(QuantIdentifierUniverse.SourceEnum.IDENTIFIERUNIVERSE);
+        
+        OneOfQuantUniverse universe = new OneOfQuantUniverse(identifierUniverse);
+
+        QuantScreeningExpression screeningExpression = new QuantScreeningExpression();
+        screeningExpression.setExpr(CommonParameters.QuantScreeningExpr);
+        screeningExpression.setName(CommonParameters.QuantScreeningName);
+        screeningExpression.setSource(QuantScreeningExpression.SourceEnum.SCREENINGEXPRESSION);
+
+        QuantFqlExpression fqlExpression = new QuantFqlExpression();
+        fqlExpression.setExpr(CommonParameters.QuantFqlExpr);
+        fqlExpression.setName(CommonParameters.QuantFqlName);
+        fqlExpression.setSource(QuantFqlExpression.SourceEnum.FQLEXPRESSION);
+        
+        QuantFqlExpression fqlExpression_isArrayReturnType = new QuantFqlExpression();
+        fqlExpression_isArrayReturnType.setExpr(CommonParameters.QuantFqlExpr_Price_Range);
+        fqlExpression_isArrayReturnType.setName(CommonParameters.QuantFqlName_Price_Label);
+        fqlExpression_isArrayReturnType.setIsArrayReturnType(true);
+        fqlExpression_isArrayReturnType.setSource(QuantFqlExpression.SourceEnum.FQLEXPRESSION);
+        
+        List<OneOfQuantFormulas> formulas = new ArrayList<OneOfQuantFormulas>();
+        formulas.add(new OneOfQuantFormulas(screeningExpression));
+        formulas.add(new OneOfQuantFormulas(fqlExpression));
+        formulas.add(new OneOfQuantFormulas(fqlExpression_isArrayReturnType));
+
+        quantItem.setDates(dates);
+        quantItem.setUniverse(universe);
+        quantItem.setFormulas(formulas);
+
+        return quantItem;
+    }
+    
+    @Test
+    public void enginesApi_isArrayReturnType_GetCalculationSuccess() throws ApiException, JsonProcessingException, InterruptedException {
+        ApiResponse<Object> response = null;
+        CalculationStatusRoot resultStatus = null;
+        Map<String, List<String>> headers = null;
+        try {
+            QuantCalculationParameters calculationUnit = enginesApi_isArrayReturnType_createUnitCalculation();
+            QuantCalculationParametersRoot parameters = new QuantCalculationParametersRoot();
+            
+            QuantCalculationMeta meta = new QuantCalculationMeta();
+            meta.setFormat(FormatEnum.FEATHER);
+            parameters.setMeta(meta);
+            
+            parameters.putDataItem("1", calculationUnit);           
+            response = apiInstance.postAndCalculateWithHttpInfo("max-stale=0", parameters);
+            headers = response.getHeaders();
+        } catch (ApiException e) {
+            CommonFunctions.handleException("EngineApi#runCalculation", e);
+        }
+
+        Assert.assertTrue("Create response status code should be 201 or 202",
+                response.getStatusCode() == 201 || response.getStatusCode() == 202);
+        ApiResponse<File> resultResponse = null;
+        File resultObject = null;
+
+        switch(response.getStatusCode()) {
+            case 201:
+                resultObject = (File)response.getData();
+                Assert.assertTrue("Result response data should not be null.", resultObject != null);
+                break;
+            case 202:
+                String[] locationList = headers.get("Location").get(0).split("/");
+                String requestId = locationList[locationList.length - 2];
+                ApiResponse<CalculationStatusRoot> resultStatusResponse =null;
+                do {
+                    resultStatusResponse = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
+                    headers = resultStatusResponse.getHeaders();
+                    resultStatus = (CalculationStatusRoot)resultStatusResponse.getData();
+                    Assert.assertTrue("Get status response status code should be 200 or 202",
+                            resultStatusResponse.getStatusCode() == 200 || resultStatusResponse.getStatusCode() == 202);
+                    int waitTimeInSeconds = 10;
+                    try {
+                        System.out.println("\n **** Waiting for " + waitTimeInSeconds + " seconds **** \n");
+                        TimeUnit.SECONDS.sleep(waitTimeInSeconds);
+                    } catch (InterruptedException ex) {
+                        Thread.currentThread().interrupt();
+                    }
+                } while(resultStatusResponse.getStatusCode() == 202);
+                for(CalculationUnitStatus unitStatus : resultStatus.getData().getUnits().values()) {
+                    String[] location = unitStatus.getResult().split("/");
+                    resultResponse = GetCalculationResult(location);
+                    headers = resultResponse.getHeaders();
+                    resultObject = resultResponse.getData();
+                }
+                Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
+                Assert.assertTrue("Result response data should not be null.", resultObject != null);
+                break;
+        }
     }
 }
