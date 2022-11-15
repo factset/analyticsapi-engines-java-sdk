@@ -35,7 +35,7 @@ public class QuantInteractiveEngineTests {
         apiInstance = new QuantCalculationsApi(apiClient);
     }
 
-    private QuantCalculationParameters createUnitCalculation() throws ApiException {
+    private QuantCalculationParameters enginesApi_createUnitCalculation() throws ApiException {
         QuantCalculationParameters quantItem = new QuantCalculationParameters();
 
         QuantFdsDate fdsDate = new QuantFdsDate();
@@ -75,67 +75,7 @@ public class QuantInteractiveEngineTests {
 
         return quantItem;
     }
-
-    @Test
-    public void enginesApiGetCalculationSuccess() throws ApiException, JsonProcessingException, InterruptedException {
-        ApiResponse<Object> response = null;
-        CalculationStatusRoot resultStatus = null;
-        Map<String, List<String>> headers = null;
-        try {
-            QuantCalculationParameters calculationUnit = createUnitCalculation();
-            QuantCalculationParametersRoot parameters = new QuantCalculationParametersRoot();
-            
-            QuantCalculationMeta meta = new QuantCalculationMeta();
-            meta.setFormat(FormatEnum.FEATHER);
-            parameters.setMeta(meta);
-            
-            parameters.putDataItem("1", calculationUnit);            
-            response = apiInstance.postAndCalculateWithHttpInfo("max-stale=0", parameters);
-            headers = response.getHeaders();
-        } catch (ApiException e) {
-            CommonFunctions.handleException("EngineApi#runCalculation", e);
-        }
-
-        Assert.assertTrue("Create response status code should be 201 or 202",
-                response.getStatusCode() == 201 || response.getStatusCode() == 202);
-        ApiResponse<File> resultResponse = null;
-        File resultObject = null;
-
-        switch(response.getStatusCode()) {
-            case 201:
-                resultObject = (File)response.getData();
-                Assert.assertTrue("Result response data should not be null.", resultObject != null);
-                break;
-            case 202:
-                String[] locationList = headers.get("Location").get(0).split("/");
-                String requestId = locationList[locationList.length - 2];
-                ApiResponse<CalculationStatusRoot> resultStatusResponse =null;
-                do {
-                    resultStatusResponse = apiInstance.getCalculationStatusByIdWithHttpInfo(requestId);
-                    headers = resultStatusResponse.getHeaders();
-                    resultStatus = (CalculationStatusRoot)resultStatusResponse.getData();
-                    Assert.assertTrue("Get status response status code should be 200 or 202",
-                            resultStatusResponse.getStatusCode() == 200 || resultStatusResponse.getStatusCode() == 202);
-                    int waitTimeInSeconds = 10;
-                    try {
-                        System.out.println("\n **** Waiting for " + waitTimeInSeconds + " seconds **** \n");
-                        TimeUnit.SECONDS.sleep(waitTimeInSeconds);
-                    } catch (InterruptedException ex) {
-                        Thread.currentThread().interrupt();
-                    }
-                } while(resultStatusResponse.getStatusCode() == 202);
-                for(CalculationUnitStatus unitStatus : resultStatus.getData().getUnits().values()) {
-                    String[] location = unitStatus.getResult().split("/");
-                    resultResponse = GetCalculationResult(location);
-                    headers = resultResponse.getHeaders();
-                    resultObject = resultResponse.getData();
-                }
-                Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
-                Assert.assertTrue("Result response data should not be null.", resultObject != null);
-                break;
-        }
-    }
-
+   
     private ApiResponse<File> GetCalculationResult(String[] location) throws ApiException {
         ApiResponse<File> resultResponse = null;
         try {
@@ -147,20 +87,7 @@ public class QuantInteractiveEngineTests {
         }
         return resultResponse;
     }
-    
-    @Test
-    public void enginesApiGetAllCalculationsSuccess() throws ApiException
-    {
-  	  ApiResponse<CalculationsSummaryRoot> resultResponse = null;
-  	  try {
-  	        resultResponse = apiInstance.getAllCalculationsWithHttpInfo(pageNumber);
-  	      } catch (ApiException e) {
-  	        CommonFunctions.handleException("EngineApi#getAllCalculationsWithHttpInfo", e);
-  	      }
-  	      Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
-  	      Assert.assertTrue("Result response data should not be null.", resultResponse.getData() != null);
-    }
-    
+     
     private QuantCalculationParameters enginesApi_isArrayReturnType_createUnitCalculation() throws ApiException {
         QuantCalculationParameters quantItem = new QuantCalculationParameters();
 
@@ -212,13 +139,12 @@ public class QuantInteractiveEngineTests {
         return quantItem;
     }
     
-    @Test
-    public void enginesApi_isArrayReturnType_GetCalculationSuccess() throws ApiException, JsonProcessingException, InterruptedException {
-        ApiResponse<Object> response = null;
+    private void ProcessCalculations(QuantCalculationParameters calculationUnit) throws ApiException, JsonProcessingException, InterruptedException {
+    	ApiResponse<Object> response = null;
         CalculationStatusRoot resultStatus = null;
         Map<String, List<String>> headers = null;
         try {
-            QuantCalculationParameters calculationUnit = enginesApi_isArrayReturnType_createUnitCalculation();
+        	
             QuantCalculationParametersRoot parameters = new QuantCalculationParametersRoot();
             
             QuantCalculationMeta meta = new QuantCalculationMeta();
@@ -270,5 +196,38 @@ public class QuantInteractiveEngineTests {
                 Assert.assertTrue("Result response data should not be null.", resultObject != null);
                 break;
         }
+    }   
+    
+    @Test
+    public void enginesApi_isArrayReturnType_GetCalculationSuccess() throws ApiException, JsonProcessingException, InterruptedException {
+    	try {
+            QuantCalculationParameters calculationUnit = enginesApi_isArrayReturnType_createUnitCalculation();
+            ProcessCalculations(calculationUnit);
+        } catch (ApiException e) {
+            CommonFunctions.handleException("EngineApi#runCalculation", e);
+        }
+    }
+
+    @Test
+    public void enginesApiGetCalculationSuccess() throws ApiException, JsonProcessingException, InterruptedException {
+    	try {
+            QuantCalculationParameters calculationUnit = enginesApi_createUnitCalculation();
+            ProcessCalculations(calculationUnit);
+        } catch (ApiException e) {
+            CommonFunctions.handleException("EngineApi#runCalculation", e);
+        }
+    }
+
+    @Test
+    public void enginesApiGetAllCalculationsSuccess() throws ApiException
+    {
+  	  ApiResponse<CalculationsSummaryRoot> resultResponse = null;
+  	  try {
+  	        resultResponse = apiInstance.getAllCalculationsWithHttpInfo(pageNumber);
+  	      } catch (ApiException e) {
+  	        CommonFunctions.handleException("EngineApi#getAllCalculationsWithHttpInfo", e);
+  	      }
+  	      Assert.assertTrue("Result response status code should be 200 - OK.", resultResponse.getStatusCode() == 200);
+  	      Assert.assertTrue("Result response data should not be null.", resultResponse.getData() != null);
     }
 }
