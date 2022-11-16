@@ -6,6 +6,8 @@ import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.ApiResponse;
 import factset.analyticsapi.engines.api.QuantCalculationsApi;
 import factset.analyticsapi.engines.models.*;
+import factset.analyticsapi.engines.models.QuantCalculationMeta.FormatEnum;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -33,7 +35,7 @@ public class QuantInteractiveEngineTests {
         apiInstance = new QuantCalculationsApi(apiClient);
     }
 
-    private QuantCalculationParameters createUnitCalculation() throws ApiException {
+    private QuantCalculationParameters enginesApi_createUnitCalculation() throws ApiException {
         QuantCalculationParameters quantItem = new QuantCalculationParameters();
 
         QuantFdsDate fdsDate = new QuantFdsDate();
@@ -73,17 +75,84 @@ public class QuantInteractiveEngineTests {
 
         return quantItem;
     }
+   
+    private ApiResponse<File> GetCalculationResult(String[] location) throws ApiException {
+        ApiResponse<File> resultResponse = null;
+        try {
+            String calcId = location[location.length-4];
+            String unitId = location[location.length-2];
+            resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(calcId, unitId);
+        } catch (ApiException e) {
+            CommonFunctions.handleException("EngineApi#getByUrlWithHttpInfo", e);
+        }
+        return resultResponse;
+    }
+     
+    private QuantCalculationParameters enginesApi_isArrayReturnType_createUnitCalculation() throws ApiException {
+        QuantCalculationParameters quantItem = new QuantCalculationParameters();
 
-    @Test
-    public void enginesApiGetCalculationSuccess() throws ApiException, JsonProcessingException, InterruptedException {
-        ApiResponse<Object> response = null;
+        QuantFdsDate fdsDate = new QuantFdsDate();
+        fdsDate.setStartDate(CommonParameters.QuantStartDate);
+        fdsDate.setEndDate(CommonParameters.QuantEndDate);
+        fdsDate.setFrequency(CommonParameters.QuantFrequency);
+        fdsDate.setCalendar(CommonParameters.QuantCalender);
+        fdsDate.setSource(QuantFdsDate.SourceEnum.FDSDATE);
+        
+        OneOfQuantDates dates = new OneOfQuantDates(fdsDate);
+        
+        List<String> identifiers = new ArrayList<String>();
+        identifiers.add("03748R74");
+        identifiers.add("S8112735");
+        
+        QuantIdentifierUniverse identifierUniverse = new QuantIdentifierUniverse();      
+        identifierUniverse.setUniverseType(QuantIdentifierUniverse.UniverseTypeEnum.EQUITY);
+        identifierUniverse.setIdentifiers(identifiers);
+        identifierUniverse.setSource(QuantIdentifierUniverse.SourceEnum.IDENTIFIERUNIVERSE);
+        
+        OneOfQuantUniverse universe = new OneOfQuantUniverse(identifierUniverse);
+
+        QuantScreeningExpression screeningExpression = new QuantScreeningExpression();
+        screeningExpression.setExpr(CommonParameters.QuantScreeningExpr);
+        screeningExpression.setName(CommonParameters.QuantScreeningName);
+        screeningExpression.setSource(QuantScreeningExpression.SourceEnum.SCREENINGEXPRESSION);
+
+        QuantFqlExpression fqlExpression = new QuantFqlExpression();
+        fqlExpression.setExpr(CommonParameters.QuantFqlExpr);
+        fqlExpression.setName(CommonParameters.QuantFqlName);
+        fqlExpression.setSource(QuantFqlExpression.SourceEnum.FQLEXPRESSION);
+        
+        QuantFqlExpression fqlExpression_isArrayReturnType = new QuantFqlExpression();
+        fqlExpression_isArrayReturnType.setExpr(CommonParameters.QuantFqlExpr_Price_Range);
+        fqlExpression_isArrayReturnType.setName(CommonParameters.QuantFqlName_Price_Label);
+        fqlExpression_isArrayReturnType.setIsArrayReturnType(true);
+        fqlExpression_isArrayReturnType.setSource(QuantFqlExpression.SourceEnum.FQLEXPRESSION);
+        
+        List<OneOfQuantFormulas> formulas = new ArrayList<OneOfQuantFormulas>();
+        formulas.add(new OneOfQuantFormulas(screeningExpression));
+        formulas.add(new OneOfQuantFormulas(fqlExpression));
+        formulas.add(new OneOfQuantFormulas(fqlExpression_isArrayReturnType));
+
+        quantItem.setDates(dates);
+        quantItem.setUniverse(universe);
+        quantItem.setFormulas(formulas);
+
+        return quantItem;
+    }
+    
+    private void ProcessCalculations(QuantCalculationParameters calculationUnit) throws ApiException, JsonProcessingException, InterruptedException {
+    	ApiResponse<Object> response = null;
         CalculationStatusRoot resultStatus = null;
         Map<String, List<String>> headers = null;
         try {
-            QuantCalculationParameters calculationUnit = createUnitCalculation();
+        	
             QuantCalculationParametersRoot parameters = new QuantCalculationParametersRoot();
-            parameters.putDataItem("1", calculationUnit);
-            response = apiInstance.postAndCalculateWithHttpInfo(null, parameters);
+            
+            QuantCalculationMeta meta = new QuantCalculationMeta();
+            meta.setFormat(FormatEnum.FEATHER);
+            parameters.setMeta(meta);
+            
+            parameters.putDataItem("1", calculationUnit);           
+            response = apiInstance.postAndCalculateWithHttpInfo("max-stale=0", parameters);
             headers = response.getHeaders();
         } catch (ApiException e) {
             CommonFunctions.handleException("EngineApi#runCalculation", e);
@@ -127,20 +196,28 @@ public class QuantInteractiveEngineTests {
                 Assert.assertTrue("Result response data should not be null.", resultObject != null);
                 break;
         }
+    }   
+    
+    @Test
+    public void enginesApi_isArrayReturnType_GetCalculationSuccess() throws ApiException, JsonProcessingException, InterruptedException {
+    	try {
+            QuantCalculationParameters calculationUnit = enginesApi_isArrayReturnType_createUnitCalculation();
+            ProcessCalculations(calculationUnit);
+        } catch (ApiException e) {
+            CommonFunctions.handleException("EngineApi#runCalculation", e);
+        }
     }
 
-    private ApiResponse<File> GetCalculationResult(String[] location) throws ApiException {
-        ApiResponse<File> resultResponse = null;
-        try {
-            String calcId = location[location.length-4];
-            String unitId = location[location.length-2];
-            resultResponse = apiInstance.getCalculationUnitResultByIdWithHttpInfo(calcId, unitId);
+    @Test
+    public void enginesApiGetCalculationSuccess() throws ApiException, JsonProcessingException, InterruptedException {
+    	try {
+            QuantCalculationParameters calculationUnit = enginesApi_createUnitCalculation();
+            ProcessCalculations(calculationUnit);
         } catch (ApiException e) {
-            CommonFunctions.handleException("EngineApi#getByUrlWithHttpInfo", e);
+            CommonFunctions.handleException("EngineApi#runCalculation", e);
         }
-        return resultResponse;
     }
-    
+
     @Test
     public void enginesApiGetAllCalculationsSuccess() throws ApiException
     {

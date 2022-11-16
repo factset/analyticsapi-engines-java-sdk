@@ -105,7 +105,7 @@
     </dependency>
     <dependency>
       <scope>system</scope>
-      <systemPath>${project.basedir}/../auto-generated-sdk/target/engines-sdk-5.4.0.jar</systemPath>
+      <systemPath>${project.basedir}/../auto-generated-sdk/target/engines-sdk-5.5.0.jar</systemPath>
       <groupId>com.factset.analyticsapi</groupId>
       <artifactId>engines-sdk</artifactId>
       <version>${engines-sdk-version}</version>
@@ -122,7 +122,7 @@
     <migbase64-version>2.2</migbase64-version>
     <protobuf-version>3.12.2</protobuf-version>
     <stach-extension-version>1.1.1</stach-extension-version>
-    <engines-sdk-version>5.4.0</engines-sdk-version>
+    <engines-sdk-version>5.5.0</engines-sdk-version>
     <poi-ooxml-version>4.0.1</poi-ooxml-version>
   </properties>
 </project>

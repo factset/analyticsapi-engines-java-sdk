@@ -106,4 +106,6 @@ public class CommonParameters {
   public static String QuantScreeningName = "Price (SCR)";
   public static String QuantFqlExpr = "P_PRICE";
   public static String QuantFqlName = "Price (SCR)";
+  public static String QuantFqlExpr_Price_Range = "P_PRICE(#DATE,#DATE-5D,#FREQ)";
+  public static String QuantFqlName_Price_Label = "Price";
 }

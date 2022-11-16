@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **bankLoans** | [**FIBankLoans**](FIBankLoans.md) |  |  [optional]
 **municipalBonds** | [**FIMunicipalBondsForJobSettings**](FIMunicipalBondsForJobSettings.md) |  |  [optional]
 **marketEnvironment** | [**FIMarketEnvironment**](FIMarketEnvironment.md) |  |  [optional]
+**structuredProducts** | [**FIStructuredProductsForJobSettings**](FIStructuredProductsForJobSettings.md) |  |  [optional]
 
 
 
