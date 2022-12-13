@@ -29,6 +29,9 @@ import factset.analyticsapi.engines.models.PADateParameters;
 import factset.analyticsapi.engines.models.PAIdentifier;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import factset.analyticsapi.engines.JSON;
@@ -46,7 +49,13 @@ import factset.analyticsapi.engines.JSON;
   PACalculationParameters.JSON_PROPERTY_CURRENCYISOCODE,
   PACalculationParameters.JSON_PROPERTY_COLUMNS,
   PACalculationParameters.JSON_PROPERTY_DATASOURCES,
-  PACalculationParameters.JSON_PROPERTY_COMPONENTDETAIL
+  PACalculationParameters.JSON_PROPERTY_COMPONENTDETAIL,
+  PACalculationParameters.JSON_PROPERTY_PERIODIC_MULTIPLIERS,
+  PACalculationParameters.JSON_PROPERTY_NPERIODIC_MULTIPLIERS,
+  PACalculationParameters.JSON_PROPERTY_DHIST_RCV_ASSUMP_RATES,
+  PACalculationParameters.JSON_PROPERTY_IHIST_RCV_ASSUMP_RATES,
+  PACalculationParameters.JSON_PROPERTY_IPERIODIC_MULTIPLIERS,
+  PACalculationParameters.JSON_PROPERTY_INPERIODIC_MULTIPLIERS
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class PACalculationParameters implements Serializable {
@@ -78,6 +87,24 @@ public class PACalculationParameters implements Serializable {
 
   public static final String JSON_PROPERTY_COMPONENTDETAIL = "componentdetail";
   private String componentdetail;
+
+  public static final String JSON_PROPERTY_PERIODIC_MULTIPLIERS = "periodicMultipliers";
+  private java.util.List<Double> periodicMultipliers = null;
+
+  public static final String JSON_PROPERTY_NPERIODIC_MULTIPLIERS = "nperiodicMultipliers";
+  private java.util.List<Object> nperiodicMultipliers = null;
+
+  public static final String JSON_PROPERTY_DHIST_RCV_ASSUMP_RATES = "dhistRcvAssumpRates";
+  private JsonNullable<java.util.List<Double>> dhistRcvAssumpRates = JsonNullable.<java.util.List<Double>>undefined();
+
+  public static final String JSON_PROPERTY_IHIST_RCV_ASSUMP_RATES = "ihistRcvAssumpRates";
+  private JsonNullable<java.util.List<Integer>> ihistRcvAssumpRates = JsonNullable.<java.util.List<Integer>>undefined();
+
+  public static final String JSON_PROPERTY_IPERIODIC_MULTIPLIERS = "iperiodicMultipliers";
+  private java.util.List<Integer> iperiodicMultipliers = null;
+
+  public static final String JSON_PROPERTY_INPERIODIC_MULTIPLIERS = "inperiodicMultipliers";
+  private java.util.List<Object> inperiodicMultipliers = null;
 
 
   public PACalculationParameters componentid(String componentid) {
@@ -327,6 +354,226 @@ public class PACalculationParameters implements Serializable {
   }
 
 
+  public PACalculationParameters periodicMultipliers(java.util.List<Double> periodicMultipliers) {
+    this.periodicMultipliers = periodicMultipliers;
+    return this;
+  }
+
+  public PACalculationParameters addPeriodicMultipliersItem(Double periodicMultipliersItem) {
+    if (this.periodicMultipliers == null) {
+      this.periodicMultipliers = new java.util.ArrayList<Double>();
+    }
+    this.periodicMultipliers.add(periodicMultipliersItem);
+    return this;
+  }
+
+   /**
+   * Get periodicMultipliers
+   * @return periodicMultipliers
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_PERIODIC_MULTIPLIERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public java.util.List<Double> getPeriodicMultipliers() {
+    return periodicMultipliers;
+  }
+
+
+  public void setPeriodicMultipliers(java.util.List<Double> periodicMultipliers) {
+    this.periodicMultipliers = periodicMultipliers;
+  }
+
+
+  public PACalculationParameters nperiodicMultipliers(java.util.List<Object> nperiodicMultipliers) {
+    this.nperiodicMultipliers = nperiodicMultipliers;
+    return this;
+  }
+
+  public PACalculationParameters addNperiodicMultipliersItem(Object nperiodicMultipliersItem) {
+    if (this.nperiodicMultipliers == null) {
+      this.nperiodicMultipliers = new java.util.ArrayList<Object>();
+    }
+    this.nperiodicMultipliers.add(nperiodicMultipliersItem);
+    return this;
+  }
+
+   /**
+   * Get nperiodicMultipliers
+   * @return nperiodicMultipliers
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_NPERIODIC_MULTIPLIERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public java.util.List<Object> getNperiodicMultipliers() {
+    return nperiodicMultipliers;
+  }
+
+
+  public void setNperiodicMultipliers(java.util.List<Object> nperiodicMultipliers) {
+    this.nperiodicMultipliers = nperiodicMultipliers;
+  }
+
+
+  public PACalculationParameters dhistRcvAssumpRates(java.util.List<Double> dhistRcvAssumpRates) {
+    this.dhistRcvAssumpRates = JsonNullable.<java.util.List<Double>>of(dhistRcvAssumpRates);
+    return this;
+  }
+
+  public PACalculationParameters addDhistRcvAssumpRatesItem(Double dhistRcvAssumpRatesItem) {
+    if (this.dhistRcvAssumpRates == null || !this.dhistRcvAssumpRates.isPresent()) {
+      this.dhistRcvAssumpRates = JsonNullable.<java.util.List<Double>>of(new java.util.ArrayList<Double>());
+    }
+    try {
+      this.dhistRcvAssumpRates.get().add(dhistRcvAssumpRatesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+   /**
+   * Get dhistRcvAssumpRates
+   * @return dhistRcvAssumpRates
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public java.util.List<Double> getDhistRcvAssumpRates() {
+        return dhistRcvAssumpRates.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_DHIST_RCV_ASSUMP_RATES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<java.util.List<Double>> getDhistRcvAssumpRates_JsonNullable() {
+    return dhistRcvAssumpRates;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DHIST_RCV_ASSUMP_RATES)
+  public void setDhistRcvAssumpRates_JsonNullable(JsonNullable<java.util.List<Double>> dhistRcvAssumpRates) {
+    this.dhistRcvAssumpRates = dhistRcvAssumpRates;
+  }
+
+  public void setDhistRcvAssumpRates(java.util.List<Double> dhistRcvAssumpRates) {
+    this.dhistRcvAssumpRates = JsonNullable.<java.util.List<Double>>of(dhistRcvAssumpRates);
+  }
+
+
+  public PACalculationParameters ihistRcvAssumpRates(java.util.List<Integer> ihistRcvAssumpRates) {
+    this.ihistRcvAssumpRates = JsonNullable.<java.util.List<Integer>>of(ihistRcvAssumpRates);
+    return this;
+  }
+
+  public PACalculationParameters addIhistRcvAssumpRatesItem(Integer ihistRcvAssumpRatesItem) {
+    if (this.ihistRcvAssumpRates == null || !this.ihistRcvAssumpRates.isPresent()) {
+      this.ihistRcvAssumpRates = JsonNullable.<java.util.List<Integer>>of(new java.util.ArrayList<Integer>());
+    }
+    try {
+      this.ihistRcvAssumpRates.get().add(ihistRcvAssumpRatesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+   /**
+   * Get ihistRcvAssumpRates
+   * @return ihistRcvAssumpRates
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public java.util.List<Integer> getIhistRcvAssumpRates() {
+        return ihistRcvAssumpRates.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_IHIST_RCV_ASSUMP_RATES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<java.util.List<Integer>> getIhistRcvAssumpRates_JsonNullable() {
+    return ihistRcvAssumpRates;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_IHIST_RCV_ASSUMP_RATES)
+  public void setIhistRcvAssumpRates_JsonNullable(JsonNullable<java.util.List<Integer>> ihistRcvAssumpRates) {
+    this.ihistRcvAssumpRates = ihistRcvAssumpRates;
+  }
+
+  public void setIhistRcvAssumpRates(java.util.List<Integer> ihistRcvAssumpRates) {
+    this.ihistRcvAssumpRates = JsonNullable.<java.util.List<Integer>>of(ihistRcvAssumpRates);
+  }
+
+
+  public PACalculationParameters iperiodicMultipliers(java.util.List<Integer> iperiodicMultipliers) {
+    this.iperiodicMultipliers = iperiodicMultipliers;
+    return this;
+  }
+
+  public PACalculationParameters addIperiodicMultipliersItem(Integer iperiodicMultipliersItem) {
+    if (this.iperiodicMultipliers == null) {
+      this.iperiodicMultipliers = new java.util.ArrayList<Integer>();
+    }
+    this.iperiodicMultipliers.add(iperiodicMultipliersItem);
+    return this;
+  }
+
+   /**
+   * Get iperiodicMultipliers
+   * @return iperiodicMultipliers
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_IPERIODIC_MULTIPLIERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public java.util.List<Integer> getIperiodicMultipliers() {
+    return iperiodicMultipliers;
+  }
+
+
+  public void setIperiodicMultipliers(java.util.List<Integer> iperiodicMultipliers) {
+    this.iperiodicMultipliers = iperiodicMultipliers;
+  }
+
+
+  public PACalculationParameters inperiodicMultipliers(java.util.List<Object> inperiodicMultipliers) {
+    this.inperiodicMultipliers = inperiodicMultipliers;
+    return this;
+  }
+
+  public PACalculationParameters addInperiodicMultipliersItem(Object inperiodicMultipliersItem) {
+    if (this.inperiodicMultipliers == null) {
+      this.inperiodicMultipliers = new java.util.ArrayList<Object>();
+    }
+    this.inperiodicMultipliers.add(inperiodicMultipliersItem);
+    return this;
+  }
+
+   /**
+   * Get inperiodicMultipliers
+   * @return inperiodicMultipliers
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_INPERIODIC_MULTIPLIERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public java.util.List<Object> getInperiodicMultipliers() {
+    return inperiodicMultipliers;
+  }
+
+
+  public void setInperiodicMultipliers(java.util.List<Object> inperiodicMultipliers) {
+    this.inperiodicMultipliers = inperiodicMultipliers;
+  }
+
+
   /**
    * Return true if this PACalculationParameters object is equal to o.
    */
@@ -347,12 +594,18 @@ public class PACalculationParameters implements Serializable {
         Objects.equals(this.currencyisocode, paCalculationParameters.currencyisocode) &&
         Objects.equals(this.columns, paCalculationParameters.columns) &&
         Objects.equals(this.datasources, paCalculationParameters.datasources) &&
-        Objects.equals(this.componentdetail, paCalculationParameters.componentdetail);
+        Objects.equals(this.componentdetail, paCalculationParameters.componentdetail) &&
+        Objects.equals(this.periodicMultipliers, paCalculationParameters.periodicMultipliers) &&
+        Objects.equals(this.nperiodicMultipliers, paCalculationParameters.nperiodicMultipliers) &&
+        Objects.equals(this.dhistRcvAssumpRates, paCalculationParameters.dhistRcvAssumpRates) &&
+        Objects.equals(this.ihistRcvAssumpRates, paCalculationParameters.ihistRcvAssumpRates) &&
+        Objects.equals(this.iperiodicMultipliers, paCalculationParameters.iperiodicMultipliers) &&
+        Objects.equals(this.inperiodicMultipliers, paCalculationParameters.inperiodicMultipliers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(componentid, accounts, benchmarks, dates, groups, currencyisocode, columns, datasources, componentdetail);
+    return Objects.hash(componentid, accounts, benchmarks, dates, groups, currencyisocode, columns, datasources, componentdetail, periodicMultipliers, nperiodicMultipliers, dhistRcvAssumpRates, ihistRcvAssumpRates, iperiodicMultipliers, inperiodicMultipliers);
   }
 
   @Override
@@ -368,6 +621,12 @@ public class PACalculationParameters implements Serializable {
     sb.append("    columns: ").append(toIndentedString(columns)).append("\n");
     sb.append("    datasources: ").append(toIndentedString(datasources)).append("\n");
     sb.append("    componentdetail: ").append(toIndentedString(componentdetail)).append("\n");
+    sb.append("    periodicMultipliers: ").append(toIndentedString(periodicMultipliers)).append("\n");
+    sb.append("    nperiodicMultipliers: ").append(toIndentedString(nperiodicMultipliers)).append("\n");
+    sb.append("    dhistRcvAssumpRates: ").append(toIndentedString(dhistRcvAssumpRates)).append("\n");
+    sb.append("    ihistRcvAssumpRates: ").append(toIndentedString(ihistRcvAssumpRates)).append("\n");
+    sb.append("    iperiodicMultipliers: ").append(toIndentedString(iperiodicMultipliers)).append("\n");
+    sb.append("    inperiodicMultipliers: ").append(toIndentedString(inperiodicMultipliers)).append("\n");
     sb.append("}");
     return sb.toString();
   }

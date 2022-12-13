@@ -33,7 +33,11 @@ import factset.analyticsapi.engines.JSON;
  * Frequency
  */
 @JsonPropertyOrder({
-  Frequency.JSON_PROPERTY_NAME
+  Frequency.JSON_PROPERTY_NAME,
+  Frequency.JSON_PROPERTY_PERIODIC_MULTIPLIERS,
+  Frequency.JSON_PROPERTY_NPERIODIC_MULTIPLIERS,
+  Frequency.JSON_PROPERTY_IPERIODIC_MULTIPLIERS,
+  Frequency.JSON_PROPERTY_INPERIODIC_MULTIPLIERS
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class Frequency implements Serializable {
@@ -41,6 +45,18 @@ public class Frequency implements Serializable {
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
+
+  public static final String JSON_PROPERTY_PERIODIC_MULTIPLIERS = "periodicMultipliers";
+  private java.util.List<Double> periodicMultipliers = null;
+
+  public static final String JSON_PROPERTY_NPERIODIC_MULTIPLIERS = "nperiodicMultipliers";
+  private java.util.List<Object> nperiodicMultipliers = null;
+
+  public static final String JSON_PROPERTY_IPERIODIC_MULTIPLIERS = "iperiodicMultipliers";
+  private java.util.List<Integer> iperiodicMultipliers = null;
+
+  public static final String JSON_PROPERTY_INPERIODIC_MULTIPLIERS = "inperiodicMultipliers";
+  private java.util.List<Object> inperiodicMultipliers = null;
 
 
   public Frequency name(String name) {
@@ -67,6 +83,134 @@ public class Frequency implements Serializable {
   }
 
 
+  public Frequency periodicMultipliers(java.util.List<Double> periodicMultipliers) {
+    this.periodicMultipliers = periodicMultipliers;
+    return this;
+  }
+
+  public Frequency addPeriodicMultipliersItem(Double periodicMultipliersItem) {
+    if (this.periodicMultipliers == null) {
+      this.periodicMultipliers = new java.util.ArrayList<Double>();
+    }
+    this.periodicMultipliers.add(periodicMultipliersItem);
+    return this;
+  }
+
+   /**
+   * Get periodicMultipliers
+   * @return periodicMultipliers
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_PERIODIC_MULTIPLIERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public java.util.List<Double> getPeriodicMultipliers() {
+    return periodicMultipliers;
+  }
+
+
+  public void setPeriodicMultipliers(java.util.List<Double> periodicMultipliers) {
+    this.periodicMultipliers = periodicMultipliers;
+  }
+
+
+  public Frequency nperiodicMultipliers(java.util.List<Object> nperiodicMultipliers) {
+    this.nperiodicMultipliers = nperiodicMultipliers;
+    return this;
+  }
+
+  public Frequency addNperiodicMultipliersItem(Object nperiodicMultipliersItem) {
+    if (this.nperiodicMultipliers == null) {
+      this.nperiodicMultipliers = new java.util.ArrayList<Object>();
+    }
+    this.nperiodicMultipliers.add(nperiodicMultipliersItem);
+    return this;
+  }
+
+   /**
+   * Get nperiodicMultipliers
+   * @return nperiodicMultipliers
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_NPERIODIC_MULTIPLIERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public java.util.List<Object> getNperiodicMultipliers() {
+    return nperiodicMultipliers;
+  }
+
+
+  public void setNperiodicMultipliers(java.util.List<Object> nperiodicMultipliers) {
+    this.nperiodicMultipliers = nperiodicMultipliers;
+  }
+
+
+  public Frequency iperiodicMultipliers(java.util.List<Integer> iperiodicMultipliers) {
+    this.iperiodicMultipliers = iperiodicMultipliers;
+    return this;
+  }
+
+  public Frequency addIperiodicMultipliersItem(Integer iperiodicMultipliersItem) {
+    if (this.iperiodicMultipliers == null) {
+      this.iperiodicMultipliers = new java.util.ArrayList<Integer>();
+    }
+    this.iperiodicMultipliers.add(iperiodicMultipliersItem);
+    return this;
+  }
+
+   /**
+   * Get iperiodicMultipliers
+   * @return iperiodicMultipliers
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_IPERIODIC_MULTIPLIERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public java.util.List<Integer> getIperiodicMultipliers() {
+    return iperiodicMultipliers;
+  }
+
+
+  public void setIperiodicMultipliers(java.util.List<Integer> iperiodicMultipliers) {
+    this.iperiodicMultipliers = iperiodicMultipliers;
+  }
+
+
+  public Frequency inperiodicMultipliers(java.util.List<Object> inperiodicMultipliers) {
+    this.inperiodicMultipliers = inperiodicMultipliers;
+    return this;
+  }
+
+  public Frequency addInperiodicMultipliersItem(Object inperiodicMultipliersItem) {
+    if (this.inperiodicMultipliers == null) {
+      this.inperiodicMultipliers = new java.util.ArrayList<Object>();
+    }
+    this.inperiodicMultipliers.add(inperiodicMultipliersItem);
+    return this;
+  }
+
+   /**
+   * Get inperiodicMultipliers
+   * @return inperiodicMultipliers
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_INPERIODIC_MULTIPLIERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public java.util.List<Object> getInperiodicMultipliers() {
+    return inperiodicMultipliers;
+  }
+
+
+  public void setInperiodicMultipliers(java.util.List<Object> inperiodicMultipliers) {
+    this.inperiodicMultipliers = inperiodicMultipliers;
+  }
+
+
   /**
    * Return true if this Frequency object is equal to o.
    */
@@ -79,12 +223,16 @@ public class Frequency implements Serializable {
       return false;
     }
     Frequency frequency = (Frequency) o;
-    return Objects.equals(this.name, frequency.name);
+    return Objects.equals(this.name, frequency.name) &&
+        Objects.equals(this.periodicMultipliers, frequency.periodicMultipliers) &&
+        Objects.equals(this.nperiodicMultipliers, frequency.nperiodicMultipliers) &&
+        Objects.equals(this.iperiodicMultipliers, frequency.iperiodicMultipliers) &&
+        Objects.equals(this.inperiodicMultipliers, frequency.inperiodicMultipliers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(name, periodicMultipliers, nperiodicMultipliers, iperiodicMultipliers, inperiodicMultipliers);
   }
 
   @Override
@@ -92,6 +240,10 @@ public class Frequency implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class Frequency {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    periodicMultipliers: ").append(toIndentedString(periodicMultipliers)).append("\n");
+    sb.append("    nperiodicMultipliers: ").append(toIndentedString(nperiodicMultipliers)).append("\n");
+    sb.append("    iperiodicMultipliers: ").append(toIndentedString(iperiodicMultipliers)).append("\n");
+    sb.append("    inperiodicMultipliers: ").append(toIndentedString(inperiodicMultipliers)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -25,6 +25,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import factset.analyticsapi.engines.models.Error;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import factset.analyticsapi.engines.JSON;
@@ -38,7 +41,9 @@ import factset.analyticsapi.engines.JSON;
   CalculationUnitStatus.JSON_PROPERTY_ERRORS,
   CalculationUnitStatus.JSON_PROPERTY_RESULT,
   CalculationUnitStatus.JSON_PROPERTY_PROGRESS,
-  CalculationUnitStatus.JSON_PROPERTY_POINTS
+  CalculationUnitStatus.JSON_PROPERTY_POINTS,
+  CalculationUnitStatus.JSON_PROPERTY_DHIST_RCV_ASSUMP_RATES,
+  CalculationUnitStatus.JSON_PROPERTY_IHIST_RCV_ASSUMP_RATES
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class CalculationUnitStatus implements Serializable {
@@ -99,6 +104,12 @@ public class CalculationUnitStatus implements Serializable {
 
   public static final String JSON_PROPERTY_POINTS = "points";
   private Integer points;
+
+  public static final String JSON_PROPERTY_DHIST_RCV_ASSUMP_RATES = "dhistRcvAssumpRates";
+  private JsonNullable<java.util.List<Double>> dhistRcvAssumpRates = JsonNullable.<java.util.List<Double>>undefined();
+
+  public static final String JSON_PROPERTY_IHIST_RCV_ASSUMP_RATES = "ihistRcvAssumpRates";
+  private JsonNullable<java.util.List<Integer>> ihistRcvAssumpRates = JsonNullable.<java.util.List<Integer>>undefined();
 
 
   public CalculationUnitStatus status(StatusEnum status) {
@@ -229,6 +240,98 @@ public class CalculationUnitStatus implements Serializable {
   }
 
 
+  public CalculationUnitStatus dhistRcvAssumpRates(java.util.List<Double> dhistRcvAssumpRates) {
+    this.dhistRcvAssumpRates = JsonNullable.<java.util.List<Double>>of(dhistRcvAssumpRates);
+    return this;
+  }
+
+  public CalculationUnitStatus addDhistRcvAssumpRatesItem(Double dhistRcvAssumpRatesItem) {
+    if (this.dhistRcvAssumpRates == null || !this.dhistRcvAssumpRates.isPresent()) {
+      this.dhistRcvAssumpRates = JsonNullable.<java.util.List<Double>>of(new java.util.ArrayList<Double>());
+    }
+    try {
+      this.dhistRcvAssumpRates.get().add(dhistRcvAssumpRatesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+   /**
+   * Get dhistRcvAssumpRates
+   * @return dhistRcvAssumpRates
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public java.util.List<Double> getDhistRcvAssumpRates() {
+        return dhistRcvAssumpRates.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_DHIST_RCV_ASSUMP_RATES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<java.util.List<Double>> getDhistRcvAssumpRates_JsonNullable() {
+    return dhistRcvAssumpRates;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DHIST_RCV_ASSUMP_RATES)
+  public void setDhistRcvAssumpRates_JsonNullable(JsonNullable<java.util.List<Double>> dhistRcvAssumpRates) {
+    this.dhistRcvAssumpRates = dhistRcvAssumpRates;
+  }
+
+  public void setDhistRcvAssumpRates(java.util.List<Double> dhistRcvAssumpRates) {
+    this.dhistRcvAssumpRates = JsonNullable.<java.util.List<Double>>of(dhistRcvAssumpRates);
+  }
+
+
+  public CalculationUnitStatus ihistRcvAssumpRates(java.util.List<Integer> ihistRcvAssumpRates) {
+    this.ihistRcvAssumpRates = JsonNullable.<java.util.List<Integer>>of(ihistRcvAssumpRates);
+    return this;
+  }
+
+  public CalculationUnitStatus addIhistRcvAssumpRatesItem(Integer ihistRcvAssumpRatesItem) {
+    if (this.ihistRcvAssumpRates == null || !this.ihistRcvAssumpRates.isPresent()) {
+      this.ihistRcvAssumpRates = JsonNullable.<java.util.List<Integer>>of(new java.util.ArrayList<Integer>());
+    }
+    try {
+      this.ihistRcvAssumpRates.get().add(ihistRcvAssumpRatesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+   /**
+   * Get ihistRcvAssumpRates
+   * @return ihistRcvAssumpRates
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public java.util.List<Integer> getIhistRcvAssumpRates() {
+        return ihistRcvAssumpRates.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_IHIST_RCV_ASSUMP_RATES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<java.util.List<Integer>> getIhistRcvAssumpRates_JsonNullable() {
+    return ihistRcvAssumpRates;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_IHIST_RCV_ASSUMP_RATES)
+  public void setIhistRcvAssumpRates_JsonNullable(JsonNullable<java.util.List<Integer>> ihistRcvAssumpRates) {
+    this.ihistRcvAssumpRates = ihistRcvAssumpRates;
+  }
+
+  public void setIhistRcvAssumpRates(java.util.List<Integer> ihistRcvAssumpRates) {
+    this.ihistRcvAssumpRates = JsonNullable.<java.util.List<Integer>>of(ihistRcvAssumpRates);
+  }
+
+
   /**
    * Return true if this CalculationUnitStatus object is equal to o.
    */
@@ -245,12 +348,14 @@ public class CalculationUnitStatus implements Serializable {
         Objects.equals(this.errors, calculationUnitStatus.errors) &&
         Objects.equals(this.result, calculationUnitStatus.result) &&
         Objects.equals(this.progress, calculationUnitStatus.progress) &&
-        Objects.equals(this.points, calculationUnitStatus.points);
+        Objects.equals(this.points, calculationUnitStatus.points) &&
+        Objects.equals(this.dhistRcvAssumpRates, calculationUnitStatus.dhistRcvAssumpRates) &&
+        Objects.equals(this.ihistRcvAssumpRates, calculationUnitStatus.ihistRcvAssumpRates);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, errors, result, progress, points);
+    return Objects.hash(status, errors, result, progress, points, dhistRcvAssumpRates, ihistRcvAssumpRates);
   }
 
   @Override
@@ -262,6 +367,8 @@ public class CalculationUnitStatus implements Serializable {
     sb.append("    result: ").append(toIndentedString(result)).append("\n");
     sb.append("    progress: ").append(toIndentedString(progress)).append("\n");
     sb.append("    points: ").append(toIndentedString(points)).append("\n");
+    sb.append("    dhistRcvAssumpRates: ").append(toIndentedString(dhistRcvAssumpRates)).append("\n");
+    sb.append("    ihistRcvAssumpRates: ").append(toIndentedString(ihistRcvAssumpRates)).append("\n");
     sb.append("}");
     return sb.toString();
   }

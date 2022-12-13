@@ -42267,18 +42267,60 @@ components:
     Frequency:
       additionalProperties: false
       example:
+        inperiodicMultipliers:
+        - ""
+        - ""
+        iperiodicMultipliers:
+        - 6
+        - 6
         name: name
+        periodicMultipliers:
+        - 0.8008281904610115
+        - 0.8008281904610115
+        nperiodicMultipliers:
+        - ""
+        - ""
       properties:
         name:
           description: Frequency name.
           type: string
+        periodicMultipliers:
+          items:
+            format: double
+            type: number
+          type: array
+        nperiodicMultipliers:
+          items:
+            format: double
+          type: array
+        iperiodicMultipliers:
+          items:
+            format: int32
+            type: integer
+          type: array
+        inperiodicMultipliers:
+          items:
+            format: int32
+          type: array
       type: object
     FrequencyRoot:
       additionalProperties: false
       example:
         data:
           key:
+            inperiodicMultipliers:
+            - ""
+            - ""
+            iperiodicMultipliers:
+            - 6
+            - 6
             name: name
+            periodicMultipliers:
+            - 0.8008281904610115
+            - 0.8008281904610115
+            nperiodicMultipliers:
+            - ""
+            - ""
         meta: '{}'
       properties:
         data:
@@ -42838,17 +42880,7 @@ components:
     PACalculationParameters:
       additionalProperties: false
       example:
-        currencyisocode: currencyisocode
-        componentdetail: componentdetail
         componentid: componentid
-        datasources:
-          benchmarkpricingsources:
-          - id: id
-          - id: id
-          useportfoliopricingsourcesforbenchmark: true
-          portfoliopricingsources:
-          - id: id
-          - id: id
         columns:
         - id: id
           statistics:
@@ -42863,10 +42895,38 @@ components:
           frequency: frequency
         - id: id
           frequency: frequency
+        ihistRcvAssumpRates:
+        - 1
+        - 1
         dates:
           enddate: enddate
           startdate: startdate
           frequency: frequency
+        dhistRcvAssumpRates:
+        - 6.027456183070403
+        - 6.027456183070403
+        periodicMultipliers:
+        - 0.8008281904610115
+        - 0.8008281904610115
+        nperiodicMultipliers:
+        - ""
+        - ""
+        currencyisocode: currencyisocode
+        componentdetail: componentdetail
+        inperiodicMultipliers:
+        - ""
+        - ""
+        datasources:
+          benchmarkpricingsources:
+          - id: id
+          - id: id
+          useportfoliopricingsourcesforbenchmark: true
+          portfoliopricingsources:
+          - id: id
+          - id: id
+        iperiodicMultipliers:
+        - 5
+        - 5
         accounts:
         - id: id
           holdingsmode: holdingsmode
@@ -42914,6 +42974,36 @@ components:
           description: Component detail type for the PA component. It can be GROUPS
             or TOTALS or SECURITIES.
           type: string
+        periodicMultipliers:
+          items:
+            format: double
+            type: number
+          type: array
+        nperiodicMultipliers:
+          items:
+            format: double
+          type: array
+        dhistRcvAssumpRates:
+          items:
+            format: double
+            type: number
+          nullable: true
+          type: array
+        ihistRcvAssumpRates:
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+        iperiodicMultipliers:
+          items:
+            format: int32
+            type: integer
+          type: array
+        inperiodicMultipliers:
+          items:
+            format: int32
+          type: array
       required:
       - componentid
       type: object
@@ -42922,17 +43012,7 @@ components:
       example:
         data:
           key:
-            currencyisocode: currencyisocode
-            componentdetail: componentdetail
             componentid: componentid
-            datasources:
-              benchmarkpricingsources:
-              - id: id
-              - id: id
-              useportfoliopricingsourcesforbenchmark: true
-              portfoliopricingsources:
-              - id: id
-              - id: id
             columns:
             - id: id
               statistics:
@@ -42947,10 +43027,38 @@ components:
               frequency: frequency
             - id: id
               frequency: frequency
+            ihistRcvAssumpRates:
+            - 1
+            - 1
             dates:
               enddate: enddate
               startdate: startdate
               frequency: frequency
+            dhistRcvAssumpRates:
+            - 6.027456183070403
+            - 6.027456183070403
+            periodicMultipliers:
+            - 0.8008281904610115
+            - 0.8008281904610115
+            nperiodicMultipliers:
+            - ""
+            - ""
+            currencyisocode: currencyisocode
+            componentdetail: componentdetail
+            inperiodicMultipliers:
+            - ""
+            - ""
+            datasources:
+              benchmarkpricingsources:
+              - id: id
+              - id: id
+              useportfoliopricingsourcesforbenchmark: true
+              portfoliopricingsources:
+              - id: id
+              - id: id
+            iperiodicMultipliers:
+            - 5
+            - 5
             accounts:
             - id: id
               holdingsmode: holdingsmode
@@ -42980,6 +43088,12 @@ components:
       example:
         result: result
         progress: progress
+        ihistRcvAssumpRates:
+        - 1
+        - 1
+        dhistRcvAssumpRates:
+        - 6.027456183070403
+        - 6.027456183070403
         errors:
         - id: id
           detail: detail
@@ -43018,6 +43132,18 @@ components:
           description: The points for the calculation unit.
           format: int32
           type: integer
+        dhistRcvAssumpRates:
+          items:
+            format: double
+            type: number
+          nullable: true
+          type: array
+        ihistRcvAssumpRates:
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
       type: object
     CalculationStatus:
       additionalProperties: false
@@ -43027,6 +43153,12 @@ components:
           key:
             result: result
             progress: progress
+            ihistRcvAssumpRates:
+            - 1
+            - 1
+            dhistRcvAssumpRates:
+            - 6.027456183070403
+            - 6.027456183070403
             errors:
             - id: id
               detail: detail
@@ -43090,6 +43222,12 @@ components:
             key:
               result: result
               progress: progress
+              ihistRcvAssumpRates:
+              - 1
+              - 1
+              dhistRcvAssumpRates:
+              - 6.027456183070403
+              - 6.027456183070403
               errors:
               - id: id
                 detail: detail
