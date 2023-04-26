@@ -143,7 +143,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         TemplatedPaComponentsApi apiInstance = new TemplatedPaComponentsApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier for a templated PA component
+        String id = "01234567890123456789012345678901"; // String | Unique identifier for a templated PA component
         try {
             apiInstance.deleteTemplatedPAComponents(id);
         } catch (ApiException e) {
@@ -225,7 +225,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         TemplatedPaComponentsApi apiInstance = new TemplatedPaComponentsApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier for a templated PA component
+        String id = "01234567890123456789012345678901"; // String | Unique identifier for a templated PA component
         try {
             TemplatedPAComponentRoot result = apiInstance.getTemplatedPAComponentById(id);
             System.out.println(result);
@@ -308,7 +308,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         TemplatedPaComponentsApi apiInstance = new TemplatedPaComponentsApi(defaultClient);
-        String directory = "directory_example"; // String | Get templated PA components in path
+        String directory = "Personal:TemplatedPAComponents/"; // String | Get templated PA components in path
         try {
             TemplatedPAComponentSummaryRoot result = apiInstance.getTemplatedPAComponentsInPath(directory);
             System.out.println(result);
@@ -403,7 +403,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         TemplatedPaComponentsApi apiInstance = new TemplatedPaComponentsApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier for a templated PA component
+        String id = "01234567890123456789012345678901"; // String | Unique identifier for a templated PA component
         TemplatedPAComponentUpdateParametersRoot templatedPAComponentUpdateParametersRoot = new TemplatedPAComponentUpdateParametersRoot(); // TemplatedPAComponentUpdateParametersRoot | Request Parameters
         try {
             TemplatedPAComponentPostSummaryRoot result = apiInstance.updateTemplatedPAComponents(id, templatedPAComponentUpdateParametersRoot);
