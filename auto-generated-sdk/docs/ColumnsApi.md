@@ -44,7 +44,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         ColumnsApi apiInstance = new ColumnsApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier for a column
+        String id = "2DBD317E3C235BC96E2FF8CA36CE036AF2F7F55525479B524AE78FD7D6BBC4A7"; // String | Unique identifier for a column
         try {
             ColumnRoot result = apiInstance.getPAColumnById(id);
             System.out.println(result);

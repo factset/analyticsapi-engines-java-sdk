@@ -3,7 +3,7 @@
 
 Engines API
 
-- API version: v3:[pa,spar,vault,pub,quant,fi,axp,afi,npo,bpm,fpo,others],v1:[fiab]
+- API version: v3:[pa,vault,pub,quant,fi,axp,afi,npo,bpm,fpo,security-modeling,others],v1:[fiab]
 
 Allow clients to fetch Analytics through APIs.
 
@@ -119,7 +119,7 @@ public class AccountsApiExample {
         Bearer.setBearerToken("BEARER TOKEN");
 
         AccountsApi apiInstance = new AccountsApi(defaultClient);
-        String path = ""; // String | The directory to get the accounts and sub-directories in
+        String path = ""; // String | The directory to get the accounts and sub-directories.
         try {
             AccountDirectoriesRoot result = apiInstance.getAccounts(path);
             System.out.println(result);
@@ -142,7 +142,6 @@ All URIs are relative to *https://api.factset.com*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AccountsApi* | [**getAccounts**](docs/AccountsApi.md#getAccounts) | **GET** /analytics/lookups/v3/accounts/{path} | Get accounts and sub-directories in a directory
-*AccountsApi* | [**getSPARReturnsType**](docs/AccountsApi.md#getSPARReturnsType) | **GET** /analytics/engines/spar/v3/accounts/{accountPath}/returns-type | Get SPAR account returns type details
 *AfiOptimizerApi* | [**cancelOptimizationById**](docs/AfiOptimizerApi.md#cancelOptimizationById) | **DELETE** /analytics/engines/afi/v3/optimizations/{id} | Cancel AFI optimization by id
 *AfiOptimizerApi* | [**getOptimizationParameters**](docs/AfiOptimizerApi.md#getOptimizationParameters) | **GET** /analytics/engines/afi/v3/optimizations/{id} | Get AFI optimization parameters by id
 *AfiOptimizerApi* | [**getOptimizationResult**](docs/AfiOptimizerApi.md#getOptimizationResult) | **GET** /analytics/engines/afi/v3/optimizations/{id}/result | Get AFI optimization result by id
@@ -155,7 +154,6 @@ Class | Method | HTTP request | Description
 *AxpOptimizerApi* | [**getOptimizationStatusById**](docs/AxpOptimizerApi.md#getOptimizationStatusById) | **GET** /analytics/engines/axp/v3/optimizations/{id}/status | Get Axioma optimization status by id
 *AxpOptimizerApi* | [**postAndOptimize**](docs/AxpOptimizerApi.md#postAndOptimize) | **POST** /analytics/engines/axp/v3/optimizations | Create and Run Axioma optimization
 *AxpOptimizerApi* | [**putAndOptimize**](docs/AxpOptimizerApi.md#putAndOptimize) | **PUT** /analytics/engines/axp/v3/optimizations/{id} | Create or Update Axioma optimization and run it.
-*BenchmarksApi* | [**getSPARBenchmarkById**](docs/BenchmarksApi.md#getSPARBenchmarkById) | **GET** /analytics/engines/spar/v3/benchmarks | Get SPAR benchmark details
 *BpmOptimizerApi* | [**cancelOptimizationById**](docs/BpmOptimizerApi.md#cancelOptimizationById) | **DELETE** /analytics/engines/bpm/v3/optimizations/{id} | Cancel BPM optimization by id
 *BpmOptimizerApi* | [**getOptimizationParameters**](docs/BpmOptimizerApi.md#getOptimizationParameters) | **GET** /analytics/engines/bpm/v3/optimizations/{id} | Get BPM optimization parameters by id
 *BpmOptimizerApi* | [**getOptimizationResult**](docs/BpmOptimizerApi.md#getOptimizationResult) | **GET** /analytics/engines/bpm/v3/optimizations/{id}/result | Get BPM optimization result by id
@@ -167,7 +165,6 @@ Class | Method | HTTP request | Description
 *ColumnsApi* | [**getPAColumns**](docs/ColumnsApi.md#getPAColumns) | **GET** /analytics/engines/pa/v3/columns | Get PA columns
 *ComponentsApi* | [**getPAComponentById**](docs/ComponentsApi.md#getPAComponentById) | **GET** /analytics/engines/pa/v3/components/{id} | Get PA component by id
 *ComponentsApi* | [**getPAComponents**](docs/ComponentsApi.md#getPAComponents) | **GET** /analytics/engines/pa/v3/components | Get PA components
-*ComponentsApi* | [**getSPARComponents**](docs/ComponentsApi.md#getSPARComponents) | **GET** /analytics/engines/spar/v3/components | Get SPAR components
 *ComponentsApi* | [**getVaultComponentById**](docs/ComponentsApi.md#getVaultComponentById) | **GET** /analytics/engines/vault/v3/components/{id} | Get Vault component by id
 *ComponentsApi* | [**getVaultComponents**](docs/ComponentsApi.md#getVaultComponents) | **GET** /analytics/engines/vault/v3/components | Get Vault components
 *ConfigurationsApi* | [**getVaultConfigurationById**](docs/ConfigurationsApi.md#getVaultConfigurationById) | **GET** /analytics/engines/vault/v3/configurations/{id} | Get Vault configuration by id
@@ -178,7 +175,6 @@ Class | Method | HTTP request | Description
 *DiscountCurvesApi* | [**getAllFIDiscountCurves**](docs/DiscountCurvesApi.md#getAllFIDiscountCurves) | **GET** /analytics/engines/fi/v3/discount-curves | Get Discount Curves
 *DocumentsApi* | [**getPA3Documents**](docs/DocumentsApi.md#getPA3Documents) | **GET** /analytics/engines/pa/v3/documents/{path} | Get PA3 documents and sub-directories in a directory
 *DocumentsApi* | [**getPubDocuments**](docs/DocumentsApi.md#getPubDocuments) | **GET** /analytics/engines/pub/v3/documents/{path} | Gets Publisher documents and sub-directories in a directory
-*DocumentsApi* | [**getSPAR3Documents**](docs/DocumentsApi.md#getSPAR3Documents) | **GET** /analytics/engines/spar/v3/documents/{path} | Gets SPAR3 documents and sub-directories in a directory
 *DocumentsApi* | [**getVaultDocuments**](docs/DocumentsApi.md#getVaultDocuments) | **GET** /analytics/engines/vault/v3/documents/{path} | Get Vault documents and sub-directories in a directory
 *FiCalculationsApi* | [**cancelCalculationById**](docs/FiCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/fi/v3/calculations/{id} | Cancel FI calculation by id
 *FiCalculationsApi* | [**getCalculationParameters**](docs/FiCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/fi/v3/calculations/{id} | Get FI calculation parameters by id
@@ -196,7 +192,6 @@ Class | Method | HTTP request | Description
 *FpoOptimizerApi* | [**postAndOptimize**](docs/FpoOptimizerApi.md#postAndOptimize) | **POST** /analytics/engines/fpo/v3/optimizations | Create and Run FPO optimization
 *FpoOptimizerApi* | [**putAndOptimize**](docs/FpoOptimizerApi.md#putAndOptimize) | **PUT** /analytics/engines/fpo/v3/optimizations/{id} | Create or Update FPO optimization and run it.
 *FrequenciesApi* | [**getPAFrequencies**](docs/FrequenciesApi.md#getPAFrequencies) | **GET** /analytics/engines/pa/v3/frequencies | Get PA frequencies
-*FrequenciesApi* | [**getSPARFrequencies**](docs/FrequenciesApi.md#getSPARFrequencies) | **GET** /analytics/engines/spar/v3/frequencies | Get SPAR frequencies
 *FrequenciesApi* | [**getVaultFrequencies**](docs/FrequenciesApi.md#getVaultFrequencies) | **GET** /analytics/engines/vault/v3/frequencies | Get Vault frequencies
 *GroupsApi* | [**getPAGroupingFrequencies**](docs/GroupsApi.md#getPAGroupingFrequencies) | **GET** /analytics/engines/pa/v3/grouping-frequencies | Get PA grouping frequencies
 *GroupsApi* | [**getPAGroups**](docs/GroupsApi.md#getPAGroups) | **GET** /analytics/engines/pa/v3/groups | Get PA groups
@@ -234,13 +229,10 @@ Class | Method | HTTP request | Description
 *QuantCalculationsApi* | [**getCalculationUnitResultById**](docs/QuantCalculationsApi.md#getCalculationUnitResultById) | **GET** /analytics/engines/quant/v3/calculations/{id}/units/{unitId}/result | Get Quant Engine calculation result by id
 *QuantCalculationsApi* | [**postAndCalculate**](docs/QuantCalculationsApi.md#postAndCalculate) | **POST** /analytics/engines/quant/v3/calculations | Create and Run Quant Engine calculation
 *QuantCalculationsApi* | [**putAndCalculate**](docs/QuantCalculationsApi.md#putAndCalculate) | **PUT** /analytics/engines/quant/v3/calculations/{id} | Create or update Quant Engine calculation and run it.
-*SparCalculationsApi* | [**cancelCalculationById**](docs/SparCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/spar/v3/calculations/{id} | Cancel SPAR calculation
-*SparCalculationsApi* | [**getAllCalculations**](docs/SparCalculationsApi.md#getAllCalculations) | **GET** /analytics/engines/spar/v3/calculations | Get all calculations
-*SparCalculationsApi* | [**getCalculationParameters**](docs/SparCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/spar/v3/calculations/{id} | Get SPAR calculation parameters by id
-*SparCalculationsApi* | [**getCalculationStatusById**](docs/SparCalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/spar/v3/calculations/{id}/status | Get SPAR calculation status by id
-*SparCalculationsApi* | [**getCalculationUnitResultById**](docs/SparCalculationsApi.md#getCalculationUnitResultById) | **GET** /analytics/engines/spar/v3/calculations/{id}/units/{unitId}/result | Get SPAR calculation result by id
-*SparCalculationsApi* | [**postAndCalculate**](docs/SparCalculationsApi.md#postAndCalculate) | **POST** /analytics/engines/spar/v3/calculations | Create and Run SPAR calculation
-*SparCalculationsApi* | [**putAndCalculate**](docs/SparCalculationsApi.md#putAndCalculate) | **PUT** /analytics/engines/spar/v3/calculations/{id} | Create or Update SPAR calculation and run it.
+*SecurityModelingApi* | [**deleteSecurities**](docs/SecurityModelingApi.md#deleteSecurities) | **POST** /analytics/security-modeling/v3/securities/delete | Delete existing securities
+*SecurityModelingApi* | [**getSecurities**](docs/SecurityModelingApi.md#getSecurities) | **POST** /analytics/security-modeling/v3/securities/retrieve | Get existing securities
+*SecurityModelingApi* | [**getTemplateFields**](docs/SecurityModelingApi.md#getTemplateFields) | **GET** /analytics/security-modeling/v3/templates/{template}/fields | Get template fields
+*SecurityModelingApi* | [**upsertSecurities**](docs/SecurityModelingApi.md#upsertSecurities) | **POST** /analytics/security-modeling/v3/securities/upsert | Create or update securities
 *StrategyDocumentsApi* | [**getAxiomaEquityStrategyDocuments**](docs/StrategyDocumentsApi.md#getAxiomaEquityStrategyDocuments) | **GET** /analytics/engines/axp/v3/strategies/{path} | Get Axioma Equity strategy documents and sub-directories in a directory
 *StrategyDocumentsApi* | [**getAxiomaFIStrategyDocuments**](docs/StrategyDocumentsApi.md#getAxiomaFIStrategyDocuments) | **GET** /analytics/engines/afi/v3/strategies/{path} | Get Axioma FI strategy documents and sub-directories in a directory
 *StrategyDocumentsApi* | [**getBarraStrategyDocuments**](docs/StrategyDocumentsApi.md#getBarraStrategyDocuments) | **GET** /analytics/engines/bpm/v3/strategies/{path} | Get Barra strategy documents and sub-directories in a directory
@@ -258,6 +250,7 @@ Class | Method | HTTP request | Description
 *UnlinkedPaTemplatesApi* | [**getUnlinkedPATemplates**](docs/UnlinkedPaTemplatesApi.md#getUnlinkedPATemplates) | **GET** /analytics/engines/pa/v3/unlinked-templates | Get unlinked PA templates
 *UnlinkedPaTemplatesApi* | [**getUnlinkedPATemplatesById**](docs/UnlinkedPaTemplatesApi.md#getUnlinkedPATemplatesById) | **GET** /analytics/engines/pa/v3/unlinked-templates/{id} | Get unlinked PA template details by id
 *UnlinkedPaTemplatesApi* | [**updateUnlinkedPATemplates**](docs/UnlinkedPaTemplatesApi.md#updateUnlinkedPATemplates) | **PUT** /analytics/engines/pa/v3/unlinked-templates/{id} | Update unlinked PA template
+*VaultAttributionLoaderApi* | [**vaultAttributionLoader**](docs/VaultAttributionLoaderApi.md#vaultAttributionLoader) | **POST** /analytics/engines/vault/v3/load/{batchId} | Vault - External Attribution Loader
 *VaultCalculationsApi* | [**cancelCalculationById**](docs/VaultCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/vault/v3/calculations/{id} | Cancel Vault calculation by id
 *VaultCalculationsApi* | [**getAllCalculations**](docs/VaultCalculationsApi.md#getAllCalculations) | **GET** /analytics/engines/vault/v3/calculations | Get all calculations
 *VaultCalculationsApi* | [**getCalculationParameters**](docs/VaultCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/vault/v3/calculations/{id} | Get Vault calculation parameters by id
@@ -366,9 +359,11 @@ Class | Method | HTTP request | Description
  - [NPOOptimizerStrategy](docs/NPOOptimizerStrategy.md)
  - [NPOOptimizerStrategyOverrides](docs/NPOOptimizerStrategyOverrides.md)
  - [ObjectRoot](docs/ObjectRoot.md)
+ - [OneOfFieldsFields](docs/OneOfFieldsFields.md)
  - [OneOfQuantDates](docs/OneOfQuantDates.md)
  - [OneOfQuantFormulas](docs/OneOfQuantFormulas.md)
  - [OneOfQuantUniverse](docs/OneOfQuantUniverse.md)
+ - [OneOfSMFields](docs/OneOfSMFields.md)
  - [OptimalPortfolio](docs/OptimalPortfolio.md)
  - [Optimization](docs/Optimization.md)
  - [OptimizerAccount](docs/OptimizerAccount.md)
@@ -419,15 +414,25 @@ Class | Method | HTTP request | Description
  - [QuantUniversalScreenUniverse](docs/QuantUniversalScreenUniverse.md)
  - [QuantUniversalScreenUniverseObsolete](docs/QuantUniversalScreenUniverseObsolete.md)
  - [QuantUniverse](docs/QuantUniverse.md)
- - [ReturnType](docs/ReturnType.md)
- - [SPARAccounts](docs/SPARAccounts.md)
- - [SPARAccountsRoot](docs/SPARAccountsRoot.md)
- - [SPARBenchmark](docs/SPARBenchmark.md)
- - [SPARBenchmarkRoot](docs/SPARBenchmarkRoot.md)
- - [SPARCalculationParameters](docs/SPARCalculationParameters.md)
- - [SPARCalculationParametersRoot](docs/SPARCalculationParametersRoot.md)
- - [SPARDateParameters](docs/SPARDateParameters.md)
- - [SPARIdentifier](docs/SPARIdentifier.md)
+ - [SMBondFields](docs/SMBondFields.md)
+ - [SMCreateParameters](docs/SMCreateParameters.md)
+ - [SMCreateParametersRoot](docs/SMCreateParametersRoot.md)
+ - [SMCreateResponse](docs/SMCreateResponse.md)
+ - [SMCreateResponseRoot](docs/SMCreateResponseRoot.md)
+ - [SMCustomCashFlowFields](docs/SMCustomCashFlowFields.md)
+ - [SMDeleteParameters](docs/SMDeleteParameters.md)
+ - [SMDeleteParametersRoot](docs/SMDeleteParametersRoot.md)
+ - [SMDeleteResponse](docs/SMDeleteResponse.md)
+ - [SMDeleteResponseRoot](docs/SMDeleteResponseRoot.md)
+ - [SMError](docs/SMError.md)
+ - [SMFields](docs/SMFields.md)
+ - [SMRetrieveParameters](docs/SMRetrieveParameters.md)
+ - [SMRetrieveParametersRoot](docs/SMRetrieveParametersRoot.md)
+ - [SMRetrieveResponse](docs/SMRetrieveResponse.md)
+ - [SMRetrieveResponseRoot](docs/SMRetrieveResponseRoot.md)
+ - [SMTemplateFieldProperties](docs/SMTemplateFieldProperties.md)
+ - [SMTemplateFieldPropertiesRoot](docs/SMTemplateFieldPropertiesRoot.md)
+ - [SMWarning](docs/SMWarning.md)
  - [TemplateContentTypes](docs/TemplateContentTypes.md)
  - [TemplatedPAComponent](docs/TemplatedPAComponent.md)
  - [TemplatedPAComponentParameters](docs/TemplatedPAComponentParameters.md)
@@ -455,6 +460,8 @@ Class | Method | HTTP request | Description
  - [UnlinkedPATemplateSummaryRoot](docs/UnlinkedPATemplateSummaryRoot.md)
  - [UnlinkedPATemplateUpdateParameters](docs/UnlinkedPATemplateUpdateParameters.md)
  - [UnlinkedPATemplateUpdateParametersRoot](docs/UnlinkedPATemplateUpdateParametersRoot.md)
+ - [VaultAttributionLoaderResponse](docs/VaultAttributionLoaderResponse.md)
+ - [VaultAttributionLoaderResponseRoot](docs/VaultAttributionLoaderResponseRoot.md)
  - [VaultCalculationParameters](docs/VaultCalculationParameters.md)
  - [VaultCalculationParametersRoot](docs/VaultCalculationParametersRoot.md)
  - [VaultComponent](docs/VaultComponent.md)
