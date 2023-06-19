@@ -153,7 +153,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         UnlinkedPaTemplatesApi apiInstance = new UnlinkedPaTemplatesApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier for an unlinked PA template
+        String id = "01234567890123456789012345678901"; // String | Unique identifier for an unlinked PA template
         try {
             apiInstance.deleteUnlinkedPATemplates(id);
         } catch (ApiException e) {
@@ -395,8 +395,8 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         UnlinkedPaTemplatesApi apiInstance = new UnlinkedPaTemplatesApi(defaultClient);
-        String directory = "directory_example"; // String | Get unlinked PA templates in path.
-        String category = "category_example"; // String | Get unlinked PA templates by category.
+        String directory = "Personal:UninkedPATemplates/"; // String | Get unlinked PA templates in path.
+        String category = "Weights"; // String | Get unlinked PA templates by category.
         try {
             UnlinkedPATemplateSummaryRoot result = apiInstance.getUnlinkedPATemplates(directory, category);
             System.out.println(result);
@@ -479,7 +479,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         UnlinkedPaTemplatesApi apiInstance = new UnlinkedPaTemplatesApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier for an unlinked PA template
+        String id = "01234567890123456789012345678901"; // String | Unique identifier for an unlinked PA template
         try {
             UnlinkedPATemplateRoot result = apiInstance.getUnlinkedPATemplatesById(id);
             System.out.println(result);
@@ -584,7 +584,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         UnlinkedPaTemplatesApi apiInstance = new UnlinkedPaTemplatesApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier for an unlinked PA template
+        String id = "01234567890123456789012345678901"; // String | Unique identifier for an unlinked PA template
         UnlinkedPATemplateUpdateParametersRoot unlinkedPATemplateUpdateParametersRoot = new UnlinkedPATemplateUpdateParametersRoot(); // UnlinkedPATemplateUpdateParametersRoot | Request Parameters
         try {
             UnlinkedPATemplatePostSummaryRoot result = apiInstance.updateUnlinkedPATemplates(id, unlinkedPATemplateUpdateParametersRoot);

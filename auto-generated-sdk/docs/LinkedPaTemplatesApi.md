@@ -143,7 +143,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         LinkedPaTemplatesApi apiInstance = new LinkedPaTemplatesApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier for a linked PA template
+        String id = "01234567890123456789012345678901"; // String | Unique identifier for a linked PA template
         try {
             apiInstance.deleteLinkedPATemplates(id);
         } catch (ApiException e) {
@@ -225,7 +225,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         LinkedPaTemplatesApi apiInstance = new LinkedPaTemplatesApi(defaultClient);
-        String directory = "directory_example"; // String | Get linked PA templates in path.
+        String directory = "Personal:LinkedPATemplates/"; // String | Get linked PA templates in path.
         String documentDirectory = "documentDirectory_example"; // String | Get linked PA templates for documents in document path
         String documentName = "documentName_example"; // String | Get linked PA templates for documents by document name
         try {
@@ -312,7 +312,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         LinkedPaTemplatesApi apiInstance = new LinkedPaTemplatesApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier for a linked PA template
+        String id = "01234567890123456789012345678901"; // String | Unique identifier for a linked PA template
         try {
             LinkedPATemplateRoot result = apiInstance.getLinkedPATemplatesById(id);
             System.out.println(result);
@@ -408,7 +408,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         LinkedPaTemplatesApi apiInstance = new LinkedPaTemplatesApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier for a linked PA template
+        String id = "01234567890123456789012345678901"; // String | Unique identifier for a linked PA template
         LinkedPATemplateUpdateParametersRoot linkedPATemplateUpdateParametersRoot = new LinkedPATemplateUpdateParametersRoot(); // LinkedPATemplateUpdateParametersRoot | Request Parameters
         try {
             LinkedPATemplatePostSummaryRoot result = apiInstance.updateLinkedPATemplates(id, linkedPATemplateUpdateParametersRoot);
