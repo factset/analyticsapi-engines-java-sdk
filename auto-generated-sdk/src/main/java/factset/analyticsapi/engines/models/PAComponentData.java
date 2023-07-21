@@ -282,11 +282,11 @@ public class PAComponentData implements Serializable {
   }
 
    /**
-   * PA Storage type. It can be GROUPS or TOTALS or SECURITIES.
+   * PA Storage type. It can be GROUPS or GROUPSALL or TOTALS or SECURITIES.
    * @return componentdetail
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "PA Storage type. It can be GROUPS or TOTALS or SECURITIES.")
+  @ApiModelProperty(value = "PA Storage type. It can be GROUPS or GROUPSALL or TOTALS or SECURITIES.")
   @JsonProperty(JSON_PROPERTY_COMPONENTDETAIL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
