@@ -35,6 +35,8 @@ import factset.analyticsapi.engines.JSON;
  */
 @JsonPropertyOrder({
   Error.JSON_PROPERTY_ID,
+  Error.JSON_PROPERTY_CODE,
+  Error.JSON_PROPERTY_TITLE,
   Error.JSON_PROPERTY_DETAIL,
   Error.JSON_PROPERTY_SOURCE
 })
@@ -44,6 +46,12 @@ public class Error implements Serializable {
 
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
+
+  public static final String JSON_PROPERTY_CODE = "code";
+  private String code;
+
+  public static final String JSON_PROPERTY_TITLE = "title";
+  private String title;
 
   public static final String JSON_PROPERTY_DETAIL = "detail";
   private String detail;
@@ -73,6 +81,54 @@ public class Error implements Serializable {
 
   public void setId(String id) {
     this.id = id;
+  }
+
+
+  public Error code(String code) {
+    this.code = code;
+    return this;
+  }
+
+   /**
+   * Get code
+   * @return code
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getCode() {
+    return code;
+  }
+
+
+  public void setCode(String code) {
+    this.code = code;
+  }
+
+
+  public Error title(String title) {
+    this.title = title;
+    return this;
+  }
+
+   /**
+   * Get title
+   * @return title
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_TITLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getTitle() {
+    return title;
+  }
+
+
+  public void setTitle(String title) {
+    this.title = title;
   }
 
 
@@ -137,13 +193,15 @@ public class Error implements Serializable {
     }
     Error error = (Error) o;
     return Objects.equals(this.id, error.id) &&
+        Objects.equals(this.code, error.code) &&
+        Objects.equals(this.title, error.title) &&
         Objects.equals(this.detail, error.detail) &&
         Objects.equals(this.source, error.source);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, detail, source);
+    return Objects.hash(id, code, title, detail, source);
   }
 
   @Override
@@ -151,6 +209,8 @@ public class Error implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class Error {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("}");
