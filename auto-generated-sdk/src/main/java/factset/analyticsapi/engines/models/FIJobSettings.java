@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.FIAttributionForJobSettings;
 import factset.analyticsapi.engines.models.FIBankLoans;
 import factset.analyticsapi.engines.models.FIMarketEnvironment;
 import factset.analyticsapi.engines.models.FIMunicipalBondsForJobSettings;
@@ -45,7 +46,8 @@ import factset.analyticsapi.engines.JSON;
   FIJobSettings.JSON_PROPERTY_BANK_LOANS,
   FIJobSettings.JSON_PROPERTY_MUNICIPAL_BONDS,
   FIJobSettings.JSON_PROPERTY_MARKET_ENVIRONMENT,
-  FIJobSettings.JSON_PROPERTY_STRUCTURED_PRODUCTS
+  FIJobSettings.JSON_PROPERTY_STRUCTURED_PRODUCTS,
+  FIJobSettings.JSON_PROPERTY_ATTRIBUTION
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class FIJobSettings implements Serializable {
@@ -116,6 +118,9 @@ public class FIJobSettings implements Serializable {
 
   public static final String JSON_PROPERTY_STRUCTURED_PRODUCTS = "structuredProducts";
   private FIStructuredProductsForJobSettings structuredProducts;
+
+  public static final String JSON_PROPERTY_ATTRIBUTION = "attribution";
+  private FIAttributionForJobSettings attribution;
 
 
   public FIJobSettings asOfDate(String asOfDate) {
@@ -341,6 +346,30 @@ public class FIJobSettings implements Serializable {
   }
 
 
+  public FIJobSettings attribution(FIAttributionForJobSettings attribution) {
+    this.attribution = attribution;
+    return this;
+  }
+
+   /**
+   * Get attribution
+   * @return attribution
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_ATTRIBUTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public FIAttributionForJobSettings getAttribution() {
+    return attribution;
+  }
+
+
+  public void setAttribution(FIAttributionForJobSettings attribution) {
+    this.attribution = attribution;
+  }
+
+
   /**
    * Return true if this FIJobSettings object is equal to o.
    */
@@ -361,12 +390,13 @@ public class FIJobSettings implements Serializable {
         Objects.equals(this.bankLoans, fiJobSettings.bankLoans) &&
         Objects.equals(this.municipalBonds, fiJobSettings.municipalBonds) &&
         Objects.equals(this.marketEnvironment, fiJobSettings.marketEnvironment) &&
-        Objects.equals(this.structuredProducts, fiJobSettings.structuredProducts);
+        Objects.equals(this.structuredProducts, fiJobSettings.structuredProducts) &&
+        Objects.equals(this.attribution, fiJobSettings.attribution);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(asOfDate, partialDurationMonths, callMethod, settlement, calcFromMethod, bankLoans, municipalBonds, marketEnvironment, structuredProducts);
+    return Objects.hash(asOfDate, partialDurationMonths, callMethod, settlement, calcFromMethod, bankLoans, municipalBonds, marketEnvironment, structuredProducts, attribution);
   }
 
   @Override
@@ -382,6 +412,7 @@ public class FIJobSettings implements Serializable {
     sb.append("    municipalBonds: ").append(toIndentedString(municipalBonds)).append("\n");
     sb.append("    marketEnvironment: ").append(toIndentedString(marketEnvironment)).append("\n");
     sb.append("    structuredProducts: ").append(toIndentedString(structuredProducts)).append("\n");
+    sb.append("    attribution: ").append(toIndentedString(attribution)).append("\n");
     sb.append("}");
     return sb.toString();
   }

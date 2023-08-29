@@ -332,14 +332,14 @@ paths:
         in a given directory.
       operationId: getAccounts
       parameters:
-      - description: The directory to get the accounts and sub-directories in
+      - description: The directory to get the accounts and sub-directories.
         explode: false
         in: path
         name: path
         required: true
         schema:
-          default: ""
-          description: The directory to get the accounts and sub-directories in
+          description: The directory to get the accounts and sub-directories.
+          example: 'Client:'
           type: string
         style: simple
       responses:
@@ -4497,6 +4497,7 @@ paths:
         required: true
         schema:
           description: Benchmark Identifier
+          example: R.1000
           type: string
         style: form
       responses:
@@ -6731,6 +6732,7 @@ paths:
         schema:
           default: ""
           description: Column name
+          example: Security Name
           type: string
         style: form
       - description: Column category
@@ -6751,6 +6753,7 @@ paths:
         schema:
           default: ""
           description: The directory to get the columns in
+          example: Client
           type: string
         style: form
       responses:
@@ -6983,6 +6986,7 @@ paths:
         required: true
         schema:
           description: Unique identifier for a column
+          example: 2DBD317E3C235BC96E2FF8CA36CE036AF2F7F55525479B524AE78FD7D6BBC4A7
           type: string
         style: simple
       responses:
@@ -7511,6 +7515,7 @@ paths:
         required: true
         schema:
           description: Document Name
+          example: PA3_DOCUMENTS:DEFAULT
           type: string
         style: form
       responses:
@@ -7816,6 +7821,7 @@ paths:
         required: true
         schema:
           description: Unique identifier for a PA component
+          example: 801B800245E468A52AEBEC4BE31CFF5AF82F371DAEF5F158AC2E98C2FA324B46
           type: string
         style: simple
       responses:
@@ -8122,6 +8128,7 @@ paths:
         required: true
         schema:
           description: Document Name
+          example: SPAR_DOCUMENTS:Factset Default Document
           type: string
         style: form
       responses:
@@ -8414,6 +8421,311 @@ paths:
       x-success-response-types:
       - status-code: "200"
         response-type: ComponentSummaryRoot
+      x-accepts: application/json
+  /analytics/engines/spar/v3/components/{id}:
+    get:
+      description: This endpoint returns the default settings of a SPAR component.
+      operationId: getSPARComponentById
+      parameters:
+      - description: Unique identifier for a SPAR component
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          description: Unique identifier for a SPAR component
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SPARComponentRoot'
+          description: Expected response, returns the default settings of a SPAR component.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+          description: Invalid SPAR component id.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+          description: Component not found.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Missing or invalid authentication.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+        "403":
+          description: User is forbidden with current credentials
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "406":
+          description: Unsupported Accept header. Header needs to be set to application/json.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "429":
+          description: Rate limit reached. Wait till the time specified in Retry-After
+            header value to make further requests.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            Retry-After:
+              description: Time to wait in seconds before making a new request as
+                the rate limit has reached.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          description: Server error. Log the X-DataDirect-Request-Key header to assist
+            in troubleshooting.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+        "503":
+          description: Request timed out. Retry the request in sometime.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+      summary: Get SPAR component by id
+      tags:
+      - Components
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: SPARComponentRoot
       x-accepts: application/json
   /analytics/engines/vault/v3/components:
     get:
@@ -9871,6 +10183,7 @@ paths:
         required: false
         schema:
           description: Start Date
+          example: -3AY
           type: string
         style: form
       - description: End Date
@@ -9880,6 +10193,7 @@ paths:
         required: true
         schema:
           description: End Date
+          example: -1AY
           type: string
         style: form
       - description: Component Id
@@ -9889,15 +10203,17 @@ paths:
         required: true
         schema:
           description: Component Id
+          example: 801B800245E468A52AEBEC4BE31CFF5AF82F371DAEF5F158AC2E98C2FA324B46
           type: string
         style: form
-      - description: Account
+      - description: Account ( Should be in Format - AccountName.ACCT )
         explode: true
         in: query
         name: account
         required: true
         schema:
-          description: Account
+          description: Account ( Should be in Format - AccountName.ACCT )
+          example: Account Name
           type: string
         style: form
       responses:
@@ -10803,8 +11119,8 @@ paths:
         name: path
         required: true
         schema:
-          default: ""
           description: The directory to get the documents and sub-directories in
+          example: 'Client:'
           type: string
         style: simple
       responses:
@@ -11419,6 +11735,7 @@ paths:
         schema:
           default: ""
           description: The directory to get the documents in
+          example: 'Client:'
           type: string
         style: simple
       responses:
@@ -18140,6 +18457,7 @@ paths:
         required: false
         schema:
           description: Get linked PA templates in path.
+          example: Personal:LinkedPATemplates/
           type: string
         style: form
       - description: Get linked PA templates for documents in document path
@@ -18774,6 +19092,7 @@ paths:
         required: true
         schema:
           description: Unique identifier for a linked PA template
+          example: "01234567890123456789012345678901"
           type: string
         style: simple
       responses:
@@ -19086,6 +19405,7 @@ paths:
         required: true
         schema:
           description: Unique identifier for a linked PA template
+          example: "01234567890123456789012345678901"
           type: string
         style: simple
       responses:
@@ -19400,6 +19720,7 @@ paths:
         required: true
         schema:
           description: Unique identifier for a linked PA template
+          example: "01234567890123456789012345678901"
           type: string
         style: simple
       requestBody:
@@ -21636,7 +21957,7 @@ paths:
       - explode: true
         in: query
         name: pageNumber
-        required: true
+        required: false
         schema:
           default: 1
           format: int32
@@ -21937,13 +22258,22 @@ paths:
       description: "This endpoint runs the PA calculation specified in the POST body\
         \ parameters.\r\nIt can take one or more calculation units as input.\r\n\r\
         \nRemarks:\r\n\r\n*\tAny settings in POST body will act as a one-time override\
-        \ over the settings saved in the PA template.\r\n\r\n*   If we are overriding\
-        \ the grouping with a frequency, we will be overriding the grouping saved\
-        \ to the original component and also overriding \r\n    the default frequency\
-        \ of the Beginning of Period to whatever we pass in the request body.\r\n\
-        \    \r\n*   If we are overriding gouping frequency without overriding the\
-        \ group id it will not be applied to the default groupings saved to the original\
-        \ component."
+        \ over the settings saved in the PA template.\r\n\r\n*   Account identifiers\
+        \ must have .ACCT or .ACTM extension or BENCH: prefix. Holdings mode can be\
+        \ optionally set for every account. \r\n    Possible values for holdings mode\
+        \ are B&H (Buy and Hold), TBR (Transaction based returns), OMS (Order Management\
+        \ System), \r\n    VLT (Vaulted returns) or EXT (External Returns Data). Default\
+        \ holdings mode value is B&H. \r\n\r\n*   If we are overriding the grouping\
+        \ with a frequency, we will be overriding the grouping saved to the original\
+        \ component and also overriding \r\n    the default frequency of the Beginning\
+        \ of Period to whatever we pass in the request body.\r\n    \r\n*   If we\
+        \ are overriding gouping frequency without overriding the group id it will\
+        \ not be applied to the default groupings saved to the original component.\r\
+        \n\r\n*   Componentdetail supports securities, groups, groupsall, and totals\
+        \ levels of granularity. However, if no value is passed, the default value\
+        \ is 'securities'.\r\n    Additionally, while 'groupsall' returns all the\
+        \ group levels in the PA component,\r\n    setting componentdetail to 'groups'\
+        \ only returns the expanded or collapsed group levels within the PA component."
       operationId: postAndCalculate
       parameters:
       - description: Long running deadline in seconds when only one unit is passed
@@ -22915,13 +23245,22 @@ paths:
         \ the PUT body parameters. This also allows creating new PA calculations with\
         \ custom ids.\r\nIt can take one or more calculation units as input.\r\n\r\
         \nRemarks:\r\n\r\n*\tAny settings in PUT body will act as a one-time override\
-        \ over the settings saved in the PA template.\r\n\r\n*   If we are overriding\
-        \ the grouping with a frequency, we will be overriding the grouping saved\
-        \ to the original component and also overriding \r\n    the default frequency\
-        \ of the Beginning of Period to whatever we pass in the request body.\r\n\
-        \    \r\n*   If we are overriding gouping frequency without overriding the\
-        \ group id it will not be applied to the default groupings saved to the original\
-        \ component."
+        \ over the settings saved in the PA template.\r\n\r\n*   Account identifiers\
+        \ must have .ACCT or .ACTM extension or BENCH: prefix. Holdings mode can be\
+        \ optionally set for every account. \r\n    Possible values for holdings mode\
+        \ are B&H (Buy and Hold), TBR (Transaction based returns), OMS (Order Management\
+        \ System), \r\n    VLT (Vaulted returns) or EXT (External Returns Data). Default\
+        \ holdings mode value is B&H.\r\n\r\n*   If we are overriding the grouping\
+        \ with a frequency, we will be overriding the grouping saved to the original\
+        \ component and also overriding \r\n    the default frequency of the Beginning\
+        \ of Period to whatever we pass in the request body.\r\n    \r\n*   If we\
+        \ are overriding gouping frequency without overriding the group id it will\
+        \ not be applied to the default groupings saved to the original component.\r\
+        \n\r\n*   Componentdetail supports securities, groups, groupsall, and totals\
+        \ levels of granularity. However, if no value is passed, the default value\
+        \ is 'securities'.\r\n    Additionally, while 'groupsall' returns all the\
+        \ group levels in the PA component,\r\n    setting componentdetail to 'groups'\
+        \ only returns the expanded or collapsed group levels within the PA component."
       operationId: putAndCalculate
       parameters:
       - description: from url, provided from the location header in the Create and
@@ -24394,7 +24733,7 @@ paths:
       - explode: true
         in: query
         name: pageNumber
-        required: true
+        required: false
         schema:
           default: 1
           format: int32
@@ -26963,7 +27302,7 @@ paths:
       - explode: true
         in: query
         name: pageNumber
-        required: true
+        required: false
         schema:
           default: 1
           format: int32
@@ -27474,6 +27813,50 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClientErrorResponse'
           description: One or more calculation settings were unavailable.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "413":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+            application/x-protobuf:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+          description: Request body too large
           headers:
             X-DataDirect-Request-Key:
               description: FactSet's request key header.
@@ -28490,6 +28873,50 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClientErrorResponse'
           description: Duplicate calculation exists with same parameters.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "413":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+            application/x-protobuf:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+          description: Request body too large
           headers:
             X-DataDirect-Request-Key:
               description: FactSet's request key header.
@@ -29663,7 +30090,7 @@ paths:
       - explode: true
         in: query
         name: pageNumber
-        required: true
+        required: false
         schema:
           default: 1
           format: int32
@@ -33624,6 +34051,7 @@ paths:
         required: true
         schema:
           description: Get templated PA components in path
+          example: Personal:TemplatedPAComponents/
           type: string
         style: form
       responses:
@@ -33881,9 +34309,17 @@ paths:
       description: "This endpoint creates new component based off of linked PA template\
         \ or unlinked PA template.\r\n\r\nRemarks:\r\n\r\n*   Any settings in the\
         \ POST body will act as a one-time override over the settings saved in the\
-        \ PA template.\r\n\r\n*   Multi-horizon frequencies are not supported through\
-        \ this endpoint.\r\n\r\n*   Componentdetail supports securities, groups, and\
-        \ totals as well but if we don't pass anything that defaults to securities.\r\
+        \ PA template.\r\n\r\n*   Account identifiers must have .ACCT or .ACTM extension\
+        \ or BENCH: prefix. Holdings mode can be optionally set for every account.\
+        \ \r\n    Possible values for holdings mode are B&H (Buy and Hold), TBR (Transaction\
+        \ based returns), OMS (Order Management System), \r\n    VLT (Vaulted returns)\
+        \ or EXT (External Returns Data). Default holdings mode value is B&H.\r\n\r\
+        \n*   Multi-horizon frequencies are not supported through this endpoint.\r\
+        \n\r\n*   Componentdetail supports securities, groups, groupsall, and totals\
+        \ levels of granularity. However, if no value is passed, the default value\
+        \ is 'securities'.\r\n    Additionally, while 'groupsall' returns all the\
+        \ group levels in the PA component,\r\n    setting componentdetail to 'groups'\
+        \ only returns the expanded or collapsed group levels within the PA component.\r\
         \n\r\n*   If we are overriding the grouping with a frequency, we will be overriding\
         \ the grouping saved to the original component and also overriding \r\n  \
         \  the default frequency of the Beginning of Period to whatever we pass in\
@@ -34211,6 +34647,7 @@ paths:
         required: true
         schema:
           description: Unique identifier for a templated PA component
+          example: "01234567890123456789012345678901"
           type: string
         style: simple
       responses:
@@ -34523,6 +34960,7 @@ paths:
         required: true
         schema:
           description: Unique identifier for a templated PA component
+          example: "01234567890123456789012345678901"
           type: string
         style: simple
       responses:
@@ -34821,15 +35259,23 @@ paths:
       description: "This endpoint allows the user to change the request body from\
         \ an existing templated PA component.\r\n\r\nRemarks:\r\n\r\n*   Any settings\
         \ in the POST body will act as a one-time override over the settings saved\
-        \ in the PA template.\r\n\r\n*   Multi-horizon frequencies are not supported\
-        \ through this endpoint.\r\n\r\n*   Componentdetail supports securities, groups,\
-        \ and totals as well but if we don't pass anything that defaults to securities.\r\
-        \n\r\n*   If we are overriding the grouping with a frequency, we will be overriding\
-        \ the grouping saved to the original component and also overriding \r\n  \
-        \  the default frequency of the Beginning of Period to whatever we pass in\
-        \ the request body.\r\n    \r\n*   If we are overriding gouping frequency\
-        \ without overriding the group id it will not be applied to the default groupings\
-        \ saved to the original component."
+        \ in the PA template.\r\n\r\n*   Account identifiers must have .ACCT or .ACTM\
+        \ extension or BENCH: prefix. Holdings mode can be optionally set for every\
+        \ account. \r\n    Possible values for holdings mode are B&H (Buy and Hold),\
+        \ TBR (Transaction based returns), OMS (Order Management System), \r\n   \
+        \ VLT (Vaulted returns) or EXT (External Returns Data). Default holdings mode\
+        \ value is B&H. \r\n\r\n*   Multi-horizon frequencies are not supported through\
+        \ this endpoint.\r\n\r\n*   Componentdetail supports securities, groups, groupsall,\
+        \ and totals levels of granularity. However, if no value is passed, the default\
+        \ value is 'securities'.\r\n    Additionally, while 'groupsall' returns all\
+        \ the group levels in the PA component,\r\n    setting componentdetail to\
+        \ 'groups' only returns the expanded or collapsed group levels within the\
+        \ PA component.\r\n\r\n*   If we are overriding the grouping with a frequency,\
+        \ we will be overriding the grouping saved to the original component and also\
+        \ overriding \r\n    the default frequency of the Beginning of Period to whatever\
+        \ we pass in the request body.\r\n    \r\n*   If we are overriding gouping\
+        \ frequency without overriding the group id it will not be applied to the\
+        \ default groupings saved to the original component."
       operationId: updateTemplatedPAComponents
       parameters:
       - description: Unique identifier for a templated PA component
@@ -34839,6 +35285,7 @@ paths:
         required: true
         schema:
           description: Unique identifier for a templated PA component
+          example: "01234567890123456789012345678901"
           type: string
         style: simple
       requestBody:
@@ -35153,6 +35600,7 @@ paths:
         required: false
         schema:
           description: Get unlinked PA templates in path.
+          example: Personal:UninkedPATemplates/
           type: string
         style: form
       - description: Get unlinked PA templates by category.
@@ -35162,6 +35610,7 @@ paths:
         required: false
         schema:
           description: Get unlinked PA templates by category.
+          example: Weights
           type: string
         style: form
       responses:
@@ -35426,15 +35875,23 @@ paths:
         .\r\n\r\n*   We cannot override the Locked fields when creating the Component.\r\
         \n\r\n*   Mandatory and locked strings are mutually exclusive.\r\n\r\n*  \
         \ Any settings in the POST body will act as a one-time override over the settings\
-        \ saved in the PA template.\r\n\r\n*   Multi-horizon frequencies are not supported\
+        \ saved in the PA template.\r\n\r\n*   Account identifiers must have .ACCT\
+        \ or .ACTM extension or BENCH: prefix. Holdings mode can be optionally set\
+        \ for every account. \r\n    Possible values for holdings mode are B&H (Buy\
+        \ and Hold), TBR (Transaction based returns), OMS (Order Management System),\
+        \ \r\n    VLT (Vaulted returns) or EXT (External Returns Data). Default holdings\
+        \ mode value is B&H.\r\n\r\n*   Multi-horizon frequencies are not supported\
         \ through this endpoint.\r\n\r\n*   Componentdetail supports securities, groups,\
-        \ and totals as well but if we don't pass anything that defaults to securities.\r\
-        \n\r\n*   If we are overriding the grouping with a frequency, we will be overriding\
-        \ the grouping saved to the original component and also \r\n    overriding\
-        \ the default frequency of the Beginning of Period to whatever we pass in\
-        \ the request body.\r\n    \r\n*   If we are overriding gouping frequency\
-        \ without overriding the group id it will not be applied to the default groupings\
-        \ saved to the original component."
+        \ groupsall, and totals levels of granularity. However, if no value is passed,\
+        \ the default value is 'securities'.\r\n    Additionally, while 'groupsall'\
+        \ returns all the group levels in the PA component,\r\n    setting componentdetail\
+        \ to 'groups' only returns the expanded or collapsed group levels within the\
+        \ PA component.\r\n\r\n*   If we are overriding the grouping with a frequency,\
+        \ we will be overriding the grouping saved to the original component and also\
+        \ \r\n    overriding the default frequency of the Beginning of Period to whatever\
+        \ we pass in the request body.\r\n    \r\n*   If we are overriding gouping\
+        \ frequency without overriding the group id it will not be applied to the\
+        \ default groupings saved to the original component."
       operationId: createUnlinkedPATemplates
       requestBody:
         content:
@@ -35707,6 +36164,7 @@ paths:
         required: true
         schema:
           description: Unique identifier for an unlinked PA template
+          example: "01234567890123456789012345678901"
           type: string
         style: simple
       responses:
@@ -36007,6 +36465,7 @@ paths:
         required: true
         schema:
           description: Unique identifier for an unlinked PA template
+          example: "01234567890123456789012345678901"
           type: string
         style: simple
       responses:
@@ -36312,9 +36771,17 @@ paths:
         \ override the Locked fields when creating the Component.\r\n\r\n*   Mandatory\
         \ and locked strings are mutually exclusive.\r\n\r\n*   Any settings in the\
         \ POST body will act as a one-time override over the settings saved in the\
-        \ PA template.\r\n\r\n*   Multi-horizon frequencies are not supported through\
-        \ this endpoint.\r\n\r\n*   Componentdetail supports securities, groups, and\
-        \ totals as well but if we don't pass anything that defaults to securities.\r\
+        \ PA template.\r\n\r\n*   Account identifiers must have .ACCT or .ACTM extension\
+        \ or BENCH: prefix. Holdings mode can be optionally set for every account.\
+        \ \r\n    Possible values for holdings mode are B&H (Buy and Hold), TBR (Transaction\
+        \ based returns), OMS (Order Management System), \r\n    VLT (Vaulted returns)\
+        \ or EXT (External Returns Data). Default holdings mode value is B&H.\r\n\r\
+        \n*   Multi-horizon frequencies are not supported through this endpoint.\r\
+        \n\r\n*   Componentdetail supports securities, groups, groupsall, and totals\
+        \ levels of granularity. However, if no value is passed, the default value\
+        \ is 'securities'.\r\n    Additionally, while 'groupsall' returns all the\
+        \ group levels in the PA component,\r\n    setting componentdetail to 'groups'\
+        \ only returns the expanded or collapsed group levels within the PA component.\r\
         \n\r\n*   If we are overriding the grouping with a frequency, we will be overriding\
         \ the grouping saved to the original component and also overriding \r\n  \
         \  the default frequency of the Beginning of Period to whatever we pass in\
@@ -36330,6 +36797,7 @@ paths:
         required: true
         schema:
           description: Unique identifier for an unlinked PA template
+          example: "01234567890123456789012345678901"
           type: string
         style: simple
       requestBody:
@@ -37151,6 +37619,284 @@ paths:
       - status-code: "200"
         response-type: UnlinkedPATemplateCategoryAndTypeDetailsRoot
       x-accepts: application/json
+  /analytics/engines/vault/v3/load/{batchId}:
+    post:
+      description: This endpoint loads Vault External Attributions.
+      operationId: vaultAttributionLoader
+      parameters:
+      - explode: false
+        in: path
+        name: batchId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/inline_object'
+        content:
+          multipart/form-data:
+            encoding:
+              file:
+                style: form
+            schema:
+              properties:
+                file:
+                  format: binary
+                  nullable: true
+                  type: string
+              type: object
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VaultAttributionLoaderResponseRoot'
+          description: Expected response, returns a status of operation along with
+            errors and warnings if found any.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+          description: Bad Request
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Missing or invalid authentication.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+        "403":
+          description: User is forbidden with current credentials
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "406":
+          description: Unsupported Accept header. Header needs to be set to application/json.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "429":
+          description: Rate limit reached. Wait till the time specified in Retry-After
+            header value to make further requests.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            Retry-After:
+              description: Time to wait in seconds before making a new request as
+                the rate limit has reached.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          description: Server error. Log the X-DataDirect-Request-Key header to assist
+            in troubleshooting.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+        "503":
+          description: Request timed out. Retry the request in sometime.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+      summary: Vault - External Attribution Loader
+      tags:
+      - Vault Attribution Loader
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: VaultAttributionLoaderResponseRoot
+      x-contentType: multipart/form-data
+      x-accepts: application/json
   /analytics/engines/vault/v3/calculations:
     get:
       description: This endpoints returns all calculation requests.
@@ -37159,7 +37905,7 @@ paths:
       - explode: true
         in: query
         name: pageNumber
-        required: true
+        required: false
         schema:
           default: 1
           format: int32
@@ -39558,9 +40304,14 @@ paths:
         response-type: ObjectRoot
       x-accepts: application/json
 components:
+  requestBodies:
+    inline_object:
+      content:
+        multipart/form-data:
+          schema:
+            $ref: '#/components/schemas/inline_object'
   schemas:
     ReturnType:
-      additionalProperties: false
       example:
         name: name
         id: id
@@ -39571,7 +40322,6 @@ components:
           type: string
       type: object
     SPARAccounts:
-      additionalProperties: false
       example:
         returnsType:
         - name: name
@@ -39586,7 +40336,6 @@ components:
           type: array
       type: object
     SPARAccountsRoot:
-      additionalProperties: false
       example:
         data:
           returnsType:
@@ -39604,7 +40353,6 @@ components:
       - data
       type: object
     ErrorSource:
-      additionalProperties: false
       example:
         pointer: pointer
         parameter: parameter
@@ -39615,15 +40363,20 @@ components:
           type: string
       type: object
     Error:
-      additionalProperties: false
       example:
+        code: code
         id: id
         detail: detail
         source:
           pointer: pointer
           parameter: parameter
+        title: title
       properties:
         id:
+          type: string
+        code:
+          type: string
+        title:
           type: string
         detail:
           type: string
@@ -39631,7 +40384,6 @@ components:
           $ref: '#/components/schemas/ErrorSource'
       type: object
     ClientErrorResponse:
-      additionalProperties: false
       properties:
         errors:
           items:
@@ -39639,7 +40391,6 @@ components:
           type: array
       type: object
     AccountDirectories:
-      additionalProperties: false
       example:
         directories:
         - directories
@@ -39660,7 +40411,6 @@ components:
           type: array
       type: object
     AccountDirectoriesRoot:
-      additionalProperties: false
       example:
         data:
           directories:
@@ -39679,7 +40429,6 @@ components:
       - data
       type: object
     AFIOptimizerStrategyOverrides:
-      additionalProperties: false
       example:
         alpha: alpha
         tax: tax
@@ -39710,7 +40459,6 @@ components:
           type: string
       type: object
     AFIOptimizerStrategy:
-      additionalProperties: false
       example:
         overrides:
           alpha: alpha
@@ -39730,7 +40478,6 @@ components:
       - id
       type: object
     OptimizerAccountOverrides:
-      additionalProperties: false
       example:
         portfolio: portfolio
         riskModelId: riskModelId
@@ -39751,7 +40498,6 @@ components:
           type: string
       type: object
     OptimizerAccount:
-      additionalProperties: false
       example:
         id: id
         overrides:
@@ -39767,7 +40513,6 @@ components:
           $ref: '#/components/schemas/OptimizerAccountOverrides'
       type: object
     Optimization:
-      additionalProperties: false
       example:
         cashflow: cashflow
         riskModelDate: riskModelDate
@@ -39784,7 +40529,6 @@ components:
           type: string
       type: object
     OptimizerTradesList:
-      additionalProperties: false
       example:
         includeCash: true
         identifierType: Asset
@@ -39808,7 +40552,6 @@ components:
           type: boolean
       type: object
     OptimizerOptimalHoldings:
-      additionalProperties: false
       example:
         includeCash: true
         excludeZero: true
@@ -39836,7 +40579,6 @@ components:
           type: boolean
       type: object
     OptimalPortfolio:
-      additionalProperties: false
       example:
         ifOfdbDateExists: abort
         excludeZero: true
@@ -39869,10 +40611,8 @@ components:
           type: string
       type: object
     OptimizerStats:
-      additionalProperties: false
       type: object
     OptimizerOutputTypes:
-      additionalProperties: false
       example:
         optimal:
           includeCash: true
@@ -39896,11 +40636,9 @@ components:
         account:
           $ref: '#/components/schemas/OptimalPortfolio'
         stats:
-          additionalProperties: false
           type: object
       type: object
     AFIOptimizationParameters:
-      additionalProperties: false
       example:
         optimization:
           cashflow: cashflow
@@ -39951,10 +40689,8 @@ components:
       - strategy
       type: object
     OptimizerCalculationMeta:
-      additionalProperties: false
       type: object
     AFIOptimizationParametersRoot:
-      additionalProperties: false
       example:
         data:
           optimization:
@@ -39997,18 +40733,15 @@ components:
         data:
           $ref: '#/components/schemas/AFIOptimizationParameters'
         meta:
-          additionalProperties: false
           type: object
       type: object
     CalculationInfo:
-      additionalProperties: false
       properties:
         calculationId:
           description: Calculation identifier
           type: string
       type: object
     CalculationInfoRoot:
-      additionalProperties: false
       properties:
         data:
           $ref: '#/components/schemas/CalculationInfo'
@@ -40018,7 +40751,6 @@ components:
       - data
       type: object
     ObjectRoot:
-      additionalProperties: false
       example:
         data: '{}'
         meta: '{}'
@@ -40031,7 +40763,6 @@ components:
       - data
       type: object
     AxiomaEquityOptimizerStrategyOverrides:
-      additionalProperties: false
       example:
         alpha: alpha
         tax: tax
@@ -40062,7 +40793,6 @@ components:
           type: string
       type: object
     AxiomaEquityOptimizerStrategy:
-      additionalProperties: false
       example:
         overrides:
           alpha: alpha
@@ -40082,7 +40812,6 @@ components:
       - id
       type: object
     AxiomaEquityOptimizationParameters:
-      additionalProperties: false
       example:
         optimization:
           cashflow: cashflow
@@ -40133,7 +40862,6 @@ components:
       - strategy
       type: object
     AxiomaEquityOptimizationParametersRoot:
-      additionalProperties: false
       example:
         data:
           optimization:
@@ -40176,11 +40904,9 @@ components:
         data:
           $ref: '#/components/schemas/AxiomaEquityOptimizationParameters'
         meta:
-          additionalProperties: false
           type: object
       type: object
     SPARIdentifier:
-      additionalProperties: false
       description: The account/benchmark parameter for SPAR calculation.
       example:
         prefix: prefix
@@ -40200,7 +40926,6 @@ components:
       - id
       type: object
     SPARBenchmark:
-      additionalProperties: false
       example:
         identifiers:
         - prefix: prefix
@@ -40225,7 +40950,6 @@ components:
           type: array
       type: object
     SPARBenchmarkRoot:
-      additionalProperties: false
       example:
         data:
           identifiers:
@@ -40247,7 +40971,6 @@ components:
       - data
       type: object
     ConstraintAction:
-      additionalProperties: false
       example:
         item2: Disable
         item1: item1
@@ -40261,7 +40984,6 @@ components:
           type: string
       type: object
     BPMOptimizerStrategyAlphaOverride:
-      additionalProperties: false
       example:
         returnMultiplier: returnMultiplier
         formula: formula
@@ -40281,7 +41003,6 @@ components:
           type: string
       type: object
     BPMOptimizerStrategyOverrides:
-      additionalProperties: false
       example:
         alpha:
           returnMultiplier: returnMultiplier
@@ -40310,7 +41031,6 @@ components:
           type: string
       type: object
     BPMOptimizerStrategy:
-      additionalProperties: false
       example:
         overrides:
           alpha:
@@ -40335,7 +41055,6 @@ components:
       - id
       type: object
     BPMOptimization:
-      additionalProperties: false
       example:
         market: market
         investAllCash: true
@@ -40360,7 +41079,6 @@ components:
           type: string
       type: object
     BPMOptimizationParameters:
-      additionalProperties: false
       example:
         optimization:
           market: market
@@ -40418,7 +41136,6 @@ components:
       - strategy
       type: object
     BPMOptimizationParametersRoot:
-      additionalProperties: false
       example:
         data:
           optimization:
@@ -40468,11 +41185,9 @@ components:
         data:
           $ref: '#/components/schemas/BPMOptimizationParameters'
         meta:
-          additionalProperties: false
           type: object
       type: object
     ColumnSummary:
-      additionalProperties: false
       description: Column settings (name, directory, category)
       example:
         name: name
@@ -40490,7 +41205,6 @@ components:
           type: string
       type: object
     ColumnSummaryRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -40509,7 +41223,6 @@ components:
       - data
       type: object
     Column:
-      additionalProperties: false
       example:
         defaultstatisticsids:
         - defaultstatisticsids
@@ -40534,7 +41247,6 @@ components:
           type: string
       type: object
     ColumnRoot:
-      additionalProperties: false
       example:
         data:
           defaultstatisticsids:
@@ -40553,7 +41265,6 @@ components:
       - data
       type: object
     ColumnStatistic:
-      additionalProperties: false
       example:
         name: name
       properties:
@@ -40562,7 +41273,6 @@ components:
           type: string
       type: object
     ColumnStatisticRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -40579,7 +41289,6 @@ components:
       - data
       type: object
     ComponentSummary:
-      additionalProperties: false
       example:
         name: name
         category: category
@@ -40592,7 +41301,6 @@ components:
           type: string
       type: object
     ComponentSummaryRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -40610,7 +41318,6 @@ components:
       - data
       type: object
     PAIdentifier:
-      additionalProperties: false
       example:
         id: id
         holdingsmode: holdingsmode
@@ -40619,13 +41326,12 @@ components:
           description: User's FactSet account path OR benchmark.
           type: string
         holdingsmode:
-          description: Holdings Mode can be B&H, TBR, OMS or EXT.
+          description: Holdings Mode can be B&H, TBR, OMS , EXT or VLT.
           type: string
       required:
       - id
       type: object
     PADateParameters:
-      additionalProperties: false
       description: The date parameters for PA calculation.
       example:
         enddate: enddate
@@ -40646,7 +41352,6 @@ components:
       - frequency
       type: object
     PAComponent:
-      additionalProperties: false
       example:
         currencyisocode: currencyisocode
         path: path
@@ -40700,7 +41405,6 @@ components:
           type: string
       type: object
     PAComponentRoot:
-      additionalProperties: false
       example:
         data:
           currencyisocode: currencyisocode
@@ -40732,8 +41436,72 @@ components:
       required:
       - data
       type: object
+    SPARComponent:
+      example:
+        path: path
+        name: name
+        id: id
+        accounts:
+        - prefix: prefix
+          returntype: returntype
+          id: id
+        - prefix: prefix
+          returntype: returntype
+          id: id
+        benchmarks:
+          prefix: prefix
+          returntype: returntype
+          id: id
+        currencyIsoCode: currencyIsoCode
+        category: category
+      properties:
+        id:
+          description: Component identifier.
+          type: string
+        accounts:
+          description: List of accounts in SPAR document.
+          items:
+            $ref: '#/components/schemas/SPARIdentifier'
+          type: array
+        benchmarks:
+          $ref: '#/components/schemas/SPARIdentifier'
+        currencyIsoCode:
+          description: CurrencyCode in SPAR document.
+          type: string
+        path:
+          description: The path to the document
+          type: string
+        name:
+          description: Component name.
+          type: string
+        category:
+          description: Component category.
+          type: string
+      type: object
+    SPARComponentRoot:
+      example:
+        data:
+          path: path
+          name: name
+          id: id
+          accounts:
+          - prefix: prefix
+            returntype: returntype
+            id: id
+          - prefix: prefix
+            returntype: returntype
+            id: id
+          benchmarks:
+            prefix: prefix
+            returntype: returntype
+            id: id
+          currencyIsoCode: currencyIsoCode
+          category: category
+      properties:
+        data:
+          $ref: '#/components/schemas/SPARComponent'
+      type: object
     VaultIdentifier:
-      additionalProperties: false
       description: The account/benchmark parameter for Vault calculation.
       example:
         id: id
@@ -40745,7 +41513,6 @@ components:
       - id
       type: object
     VaultDateParameters:
-      additionalProperties: false
       description: The date parameters for Vault calculation
       example:
         enddate: enddate
@@ -40766,7 +41533,6 @@ components:
       - frequency
       type: object
     VaultComponent:
-      additionalProperties: false
       example:
         currencyisocode: currencyisocode
         path: path
@@ -40809,7 +41575,6 @@ components:
           type: string
       type: object
     VaultComponentRoot:
-      additionalProperties: false
       example:
         data:
           currencyisocode: currencyisocode
@@ -40836,7 +41601,6 @@ components:
       - data
       type: object
     VaultConfigurationSummary:
-      additionalProperties: false
       example:
         name: name
       properties:
@@ -40845,7 +41609,6 @@ components:
           type: string
       type: object
     VaultConfigurationSummaryRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -40862,7 +41625,6 @@ components:
       - data
       type: object
     ConfigurationAccount:
-      additionalProperties: false
       example:
         maxEndDate: maxEndDate
         minStartDate: minStartDate
@@ -40891,7 +41653,6 @@ components:
           type: string
       type: object
     VaultConfiguration:
-      additionalProperties: false
       example:
         name: name
         accounts:
@@ -40912,7 +41673,6 @@ components:
           type: object
       type: object
     VaultConfigurationRoot:
-      additionalProperties: false
       example:
         data:
           name: name
@@ -40934,7 +41694,6 @@ components:
       - data
       type: object
     Currency:
-      additionalProperties: false
       example:
         name: name
       properties:
@@ -40943,7 +41702,6 @@ components:
           type: string
       type: object
     CurrencyRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -40960,7 +41718,6 @@ components:
       - data
       type: object
     DateParametersSummary:
-      additionalProperties: false
       example:
         enddate: enddate
         startdate: startdate
@@ -40973,7 +41730,6 @@ components:
           type: string
       type: object
     DateParametersSummaryRoot:
-      additionalProperties: false
       example:
         data:
           enddate: enddate
@@ -40988,7 +41744,6 @@ components:
       - data
       type: object
     FIDiscountCurveInfo:
-      additionalProperties: false
       example:
         name: name
         currency: currency
@@ -41002,7 +41757,6 @@ components:
           type: string
       type: object
     FIDiscountCurveInfoRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -41021,7 +41775,6 @@ components:
       - data
       type: object
     DocumentDirectories:
-      additionalProperties: false
       example:
         documents:
         - documents
@@ -41042,7 +41795,6 @@ components:
           type: array
       type: object
     DocumentDirectoriesRoot:
-      additionalProperties: false
       example:
         data:
           documents:
@@ -41061,7 +41813,6 @@ components:
       - data
       type: object
     FIABIdentifier:
-      additionalProperties: false
       example:
         id: id
       properties:
@@ -41072,7 +41823,6 @@ components:
       - id
       type: object
     FIABDateParameters:
-      additionalProperties: false
       description: The date parameters for FIAB calculations.
       example:
         enddate: enddate
@@ -41089,7 +41839,6 @@ components:
       - startdate
       type: object
     FIABCalculationParameters:
-      additionalProperties: false
       example:
         fiabdocument: fiabdocument
         msl: msl
@@ -41122,7 +41871,6 @@ components:
       - dates
       type: object
     FIABCalculationStatusSummary:
-      additionalProperties: false
       properties:
         requesttime:
           description: Request time of calculation.
@@ -41134,7 +41882,6 @@ components:
           type: string
       type: object
     EventSummary:
-      additionalProperties: false
       example:
         submissiondatetime: 2000-01-23T04:56:07.000+00:00
         message: message
@@ -41152,7 +41899,6 @@ components:
           type: string
       type: object
     FIABCalculationStatus:
-      additionalProperties: false
       example:
         completiondatetime: 2000-01-23T04:56:07.000+00:00
         batchevents:
@@ -41199,7 +41945,6 @@ components:
           type: array
       type: object
     FIReferencePrepay:
-      additionalProperties: false
       example:
         prepayName: prepayName
       properties:
@@ -41208,7 +41953,6 @@ components:
           type: string
       type: object
     FIReferenceSecurity:
-      additionalProperties: false
       example:
         calcFromMethod: calcFromMethod
         prepay:
@@ -41242,7 +41986,6 @@ components:
           type: string
       type: object
     FIBankLoans:
-      additionalProperties: false
       example:
         ignoreSinkingFund: true
       properties:
@@ -41251,7 +41994,6 @@ components:
           type: boolean
       type: object
     FIMunicipalBonds:
-      additionalProperties: false
       example:
         useAnticipatedSinkSchedule: true
         ignoreSinkingFund: true
@@ -41264,7 +42006,6 @@ components:
           type: boolean
       type: object
     FILoss:
-      additionalProperties: false
       example:
         lossName: lossName
       properties:
@@ -41273,7 +42014,6 @@ components:
           type: string
       type: object
     FIPrepay:
-      additionalProperties: false
       example:
         prepayName: prepayName
       properties:
@@ -41282,7 +42022,6 @@ components:
           type: string
       type: object
     FIServicerAdvancesForSecurities:
-      additionalProperties: false
       example:
         principal: 5.962133916683182
         interest: 5.637376656633329
@@ -41307,7 +42046,6 @@ components:
           type: string
       type: object
     FIPrepayLockout:
-      additionalProperties: false
       example:
         pointsAbove: ANY
         ymAbove: ANY
@@ -41328,7 +42066,6 @@ components:
           type: string
       type: object
     FICashflows:
-      additionalProperties: false
       example:
         optionalRedemptionCallWhenUnits: Manual
         optionalRedemptionCallWhen: 2
@@ -41354,7 +42091,6 @@ components:
           type: integer
       type: object
     FIBalloonExtension:
-      additionalProperties: false
       example:
         months: 9
         percentage: 3.616076749251911
@@ -41386,7 +42122,6 @@ components:
           type: number
       type: object
     FIStructuredProductsForSecurities:
-      additionalProperties: false
       example:
         balloonExtension:
           months: 9
@@ -41427,14 +42162,46 @@ components:
         balloonExtension:
           $ref: '#/components/schemas/FIBalloonExtension'
       type: object
+    FIAttributionForSecurities:
+      example:
+        startPrice: 4.145608029883936
+        pricingMethod: Inputted Price
+        startSpread: 1.2315135367772556
+        endPrice: 7.386281948385884
+        endSpread: 1.0246457001441578
+      properties:
+        startPrice:
+          description: Start Price
+          format: double
+          type: number
+        endPrice:
+          description: End Price
+          format: double
+          type: number
+        startSpread:
+          description: Start Spread
+          format: double
+          type: number
+        endSpread:
+          description: End Spread
+          format: double
+          type: number
+        pricingMethod:
+          description: Pricing Method
+          enum:
+          - Inputted Price
+          - Pricing Matrix
+          - Actual Spread
+          - OAS
+          type: string
+      type: object
     FISecurity:
-      additionalProperties: false
       example:
         callMethod: No Call
         symbol: symbol
         matrixMultiplier: 1.4658129805029452
         discountCurve: discountCurve
-        calcFromValue: 4.145608029883936
+        calcFromValue: 1.4894159098541704
         bankLoans:
           ignoreSinkingFund: true
         faceType: Current
@@ -41473,10 +42240,16 @@ components:
             optionalRedemptionCallWhenUnits: Manual
             optionalRedemptionCallWhen: 2
             recoveryLag: 7
-        face: 7.386281948385884
+        face: 6.84685269835264
         municipalBonds:
           useAnticipatedSinkSchedule: true
           ignoreSinkingFund: true
+        attribution:
+          startPrice: 4.145608029883936
+          pricingMethod: Inputted Price
+          startSpread: 1.2315135367772556
+          endPrice: 7.386281948385884
+          endSpread: 1.0246457001441578
         matrixSpreadAdjustment: 6.027456183070403
       properties:
         settlement:
@@ -41510,6 +42283,8 @@ components:
           type: number
         structuredProducts:
           $ref: '#/components/schemas/FIStructuredProductsForSecurities'
+        attribution:
+          $ref: '#/components/schemas/FIAttributionForSecurities'
         calcFromMethod:
           description: "Calculation Method.\r\nMethods : Active Spread, Actual Spread,\
             \ Actual Spread To Worst Call, OAS, Price, Yield, Yield To No Call, Act/Act\
@@ -41544,7 +42319,6 @@ components:
       - symbol
       type: object
     FIMunicipalBondsForJobSettings:
-      additionalProperties: false
       example:
         useAnticipatedSinkSchedule: true
         ignoreSinkingFund: true
@@ -41561,7 +42335,6 @@ components:
           type: boolean
       type: object
     FIMarketEnvironment:
-      additionalProperties: false
       example:
         ratePath: FLAT & FORWARD
       properties:
@@ -41575,7 +42348,6 @@ components:
           type: string
       type: object
     FIServicerAdvances:
-      additionalProperties: false
       example:
         advanceType: Advances All
       properties:
@@ -41590,7 +42362,6 @@ components:
           type: string
       type: object
     FIStructuredProductsForJobSettings:
-      additionalProperties: false
       example:
         balloonExtension:
           months: 9
@@ -41629,8 +42400,19 @@ components:
         balloonExtension:
           $ref: '#/components/schemas/FIBalloonExtension'
       type: object
+    FIAttributionForJobSettings:
+      example:
+        endDate: endDate
+        startDate: startDate
+      properties:
+        startDate:
+          description: Start Date
+          type: string
+        endDate:
+          description: End Date
+          type: string
+      type: object
     FIJobSettings:
-      additionalProperties: false
       example:
         callMethod: No Call
         calcFromMethod: calcFromMethod
@@ -41657,14 +42439,17 @@ components:
           useAnticipatedSinkSchedule: true
           ignoreSinkingFund: true
           allowSinkForInstallmentPayment: true
+        attribution:
+          endDate: endDate
+          startDate: startDate
         marketEnvironment:
           ratePath: FLAT & FORWARD
         asOfDate: asOfDate
         bankLoans:
           ignoreSinkingFund: true
         partialDurationMonths:
-        - 1
-        - 1
+        - 7
+        - 7
         settlement: settlement
       properties:
         asOfDate:
@@ -41702,11 +42487,12 @@ components:
           $ref: '#/components/schemas/FIMarketEnvironment'
         structuredProducts:
           $ref: '#/components/schemas/FIStructuredProductsForJobSettings'
+        attribution:
+          $ref: '#/components/schemas/FIAttributionForJobSettings'
       required:
       - asOfDate
       type: object
     FICalculationParameters:
-      additionalProperties: false
       example:
         jobSettings:
           callMethod: No Call
@@ -41734,14 +42520,17 @@ components:
             useAnticipatedSinkSchedule: true
             ignoreSinkingFund: true
             allowSinkForInstallmentPayment: true
+          attribution:
+            endDate: endDate
+            startDate: startDate
           marketEnvironment:
             ratePath: FLAT & FORWARD
           asOfDate: asOfDate
           bankLoans:
             ignoreSinkingFund: true
           partialDurationMonths:
-          - 1
-          - 1
+          - 7
+          - 7
           settlement: settlement
         calculations:
         - calculations
@@ -41751,7 +42540,7 @@ components:
           symbol: symbol
           matrixMultiplier: 1.4658129805029452
           discountCurve: discountCurve
-          calcFromValue: 4.145608029883936
+          calcFromValue: 1.4894159098541704
           bankLoans:
             ignoreSinkingFund: true
           faceType: Current
@@ -41790,16 +42579,22 @@ components:
               optionalRedemptionCallWhenUnits: Manual
               optionalRedemptionCallWhen: 2
               recoveryLag: 7
-          face: 7.386281948385884
+          face: 6.84685269835264
           municipalBonds:
             useAnticipatedSinkSchedule: true
             ignoreSinkingFund: true
+          attribution:
+            startPrice: 4.145608029883936
+            pricingMethod: Inputted Price
+            startSpread: 1.2315135367772556
+            endPrice: 7.386281948385884
+            endSpread: 1.0246457001441578
           matrixSpreadAdjustment: 6.027456183070403
         - callMethod: No Call
           symbol: symbol
           matrixMultiplier: 1.4658129805029452
           discountCurve: discountCurve
-          calcFromValue: 4.145608029883936
+          calcFromValue: 1.4894159098541704
           bankLoans:
             ignoreSinkingFund: true
           faceType: Current
@@ -41838,10 +42633,16 @@ components:
               optionalRedemptionCallWhenUnits: Manual
               optionalRedemptionCallWhen: 2
               recoveryLag: 7
-          face: 7.386281948385884
+          face: 6.84685269835264
           municipalBonds:
             useAnticipatedSinkSchedule: true
             ignoreSinkingFund: true
+          attribution:
+            startPrice: 4.145608029883936
+            pricingMethod: Inputted Price
+            startSpread: 1.2315135367772556
+            endPrice: 7.386281948385884
+            endSpread: 1.0246457001441578
           matrixSpreadAdjustment: 6.027456183070403
       properties:
         securities:
@@ -41862,7 +42663,6 @@ components:
       - securities
       type: object
     CalculationMeta:
-      additionalProperties: false
       example:
         contentorganization: SimplifiedRow
         format: JsonStach
@@ -41908,7 +42708,6 @@ components:
           type: string
       type: object
     FICalculationParametersRoot:
-      additionalProperties: false
       example:
         data:
           jobSettings:
@@ -41937,14 +42736,17 @@ components:
               useAnticipatedSinkSchedule: true
               ignoreSinkingFund: true
               allowSinkForInstallmentPayment: true
+            attribution:
+              endDate: endDate
+              startDate: startDate
             marketEnvironment:
               ratePath: FLAT & FORWARD
             asOfDate: asOfDate
             bankLoans:
               ignoreSinkingFund: true
             partialDurationMonths:
-            - 1
-            - 1
+            - 7
+            - 7
             settlement: settlement
           calculations:
           - calculations
@@ -41954,7 +42756,7 @@ components:
             symbol: symbol
             matrixMultiplier: 1.4658129805029452
             discountCurve: discountCurve
-            calcFromValue: 4.145608029883936
+            calcFromValue: 1.4894159098541704
             bankLoans:
               ignoreSinkingFund: true
             faceType: Current
@@ -41993,16 +42795,22 @@ components:
                 optionalRedemptionCallWhenUnits: Manual
                 optionalRedemptionCallWhen: 2
                 recoveryLag: 7
-            face: 7.386281948385884
+            face: 6.84685269835264
             municipalBonds:
               useAnticipatedSinkSchedule: true
               ignoreSinkingFund: true
+            attribution:
+              startPrice: 4.145608029883936
+              pricingMethod: Inputted Price
+              startSpread: 1.2315135367772556
+              endPrice: 7.386281948385884
+              endSpread: 1.0246457001441578
             matrixSpreadAdjustment: 6.027456183070403
           - callMethod: No Call
             symbol: symbol
             matrixMultiplier: 1.4658129805029452
             discountCurve: discountCurve
-            calcFromValue: 4.145608029883936
+            calcFromValue: 1.4894159098541704
             bankLoans:
               ignoreSinkingFund: true
             faceType: Current
@@ -42041,10 +42849,16 @@ components:
                 optionalRedemptionCallWhenUnits: Manual
                 optionalRedemptionCallWhen: 2
                 recoveryLag: 7
-            face: 7.386281948385884
+            face: 6.84685269835264
             municipalBonds:
               useAnticipatedSinkSchedule: true
               ignoreSinkingFund: true
+            attribution:
+              startPrice: 4.145608029883936
+              pricingMethod: Inputted Price
+              startSpread: 1.2315135367772556
+              endPrice: 7.386281948385884
+              endSpread: 1.0246457001441578
             matrixSpreadAdjustment: 6.027456183070403
         meta:
           contentorganization: SimplifiedRow
@@ -42058,7 +42872,6 @@ components:
           $ref: '#/components/schemas/CalculationMeta'
       type: object
     PaDoc:
-      additionalProperties: false
       example:
         id: id
       properties:
@@ -42069,7 +42882,6 @@ components:
       - id
       type: object
     FPOAccount:
-      additionalProperties: false
       example:
         paDocument:
           id: id
@@ -42091,7 +42903,6 @@ components:
       - paDocument
       type: object
     FPOObjective:
-      additionalProperties: false
       example:
         terms:
           key: Disable
@@ -42108,7 +42919,6 @@ components:
           type: object
       type: object
     FPOOptimizerStrategyOverrides:
-      additionalProperties: false
       example:
         alpha: alpha
         transactionCost: transactionCost
@@ -42137,7 +42947,6 @@ components:
           type: string
       type: object
     FPOOptimizerStrategy:
-      additionalProperties: false
       example:
         overrides:
           alpha: alpha
@@ -42159,7 +42968,6 @@ components:
       - id
       type: object
     FPOOptimizationParameters:
-      additionalProperties: false
       example:
         optimization:
           cashflow: cashflow
@@ -42214,7 +43022,6 @@ components:
       - strategy
       type: object
     FPOOptimizationParametersRoot:
-      additionalProperties: false
       example:
         data:
           optimization:
@@ -42261,11 +43068,9 @@ components:
         data:
           $ref: '#/components/schemas/FPOOptimizationParameters'
         meta:
-          additionalProperties: false
           type: object
       type: object
     Frequency:
-      additionalProperties: false
       example:
         name: name
       properties:
@@ -42274,7 +43079,6 @@ components:
           type: string
       type: object
     FrequencyRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -42291,7 +43095,6 @@ components:
       - data
       type: object
     Group:
-      additionalProperties: false
       example:
         name: name
         category: category
@@ -42308,7 +43111,6 @@ components:
           type: string
       type: object
     GroupRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -42327,7 +43129,6 @@ components:
       - data
       type: object
     TemplateContentTypes:
-      additionalProperties: false
       example:
         optional:
         - optional
@@ -42356,7 +43157,6 @@ components:
           type: array
       type: object
     LinkedPATemplateParameters:
-      additionalProperties: false
       example:
         parentComponentId: parentComponentId
         description: description
@@ -42388,7 +43188,6 @@ components:
       - parentComponentId
       type: object
     LinkedPATemplateParametersRoot:
-      additionalProperties: false
       example:
         data:
           parentComponentId: parentComponentId
@@ -42414,7 +43213,6 @@ components:
       - data
       type: object
     LinkedPATemplatePostSummary:
-      additionalProperties: false
       example:
         parentComponentId: parentComponentId
         name: name
@@ -42435,7 +43233,6 @@ components:
           type: string
       type: object
     LinkedPATemplatePostSummaryRoot:
-      additionalProperties: false
       example:
         data:
           parentComponentId: parentComponentId
@@ -42452,7 +43249,6 @@ components:
       - data
       type: object
     LinkedPATemplateSummary:
-      additionalProperties: false
       example:
         parentComponentId: parentComponentId
         name: name
@@ -42469,7 +43265,6 @@ components:
           type: string
       type: object
     LinkedPATemplateSummaryRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -42488,7 +43283,6 @@ components:
       - data
       type: object
     LinkedPATemplateUpdateParameters:
-      additionalProperties: false
       example:
         parentComponentId: parentComponentId
         description: description
@@ -42513,7 +43307,6 @@ components:
           $ref: '#/components/schemas/TemplateContentTypes'
       type: object
     LinkedPATemplateUpdateParametersRoot:
-      additionalProperties: false
       example:
         data:
           parentComponentId: parentComponentId
@@ -42538,7 +43331,6 @@ components:
       - data
       type: object
     LinkedPATemplate:
-      additionalProperties: false
       example:
         parentComponentId: parentComponentId
         name: name
@@ -42579,7 +43371,6 @@ components:
           type: string
       type: object
     LinkedPATemplateRoot:
-      additionalProperties: false
       example:
         data:
           parentComponentId: parentComponentId
@@ -42608,7 +43399,6 @@ components:
       - data
       type: object
     NPOOptimizerStrategyOverrides:
-      additionalProperties: false
       example:
         alpha: alpha
         tax: tax
@@ -42642,7 +43432,6 @@ components:
           type: string
       type: object
     NPOOptimizerStrategy:
-      additionalProperties: false
       example:
         overrides:
           alpha: alpha
@@ -42666,7 +43455,6 @@ components:
       - id
       type: object
     NPOOptimizationParameters:
-      additionalProperties: false
       example:
         optimization:
           cashflow: cashflow
@@ -42721,7 +43509,6 @@ components:
       - strategy
       type: object
     NPOOptimizationParametersRoot:
-      additionalProperties: false
       example:
         data:
           optimization:
@@ -42768,11 +43555,9 @@ components:
         data:
           $ref: '#/components/schemas/NPOOptimizationParameters'
         meta:
-          additionalProperties: false
           type: object
       type: object
     PACalculationGroup:
-      additionalProperties: false
       example:
         id: id
         frequency: frequency
@@ -42785,7 +43570,6 @@ components:
           type: string
       type: object
     PACalculationColumn:
-      additionalProperties: false
       example:
         id: id
         statistics:
@@ -42802,7 +43586,6 @@ components:
           type: array
       type: object
     PACalculationPricingSource:
-      additionalProperties: false
       example:
         id: id
       properties:
@@ -42811,7 +43594,6 @@ components:
           type: string
       type: object
     PACalculationDataSources:
-      additionalProperties: false
       example:
         benchmarkpricingsources:
         - id: id
@@ -42836,7 +43618,6 @@ components:
           type: boolean
       type: object
     PACalculationParameters:
-      additionalProperties: false
       example:
         currencyisocode: currencyisocode
         componentdetail: componentdetail
@@ -42912,13 +43693,12 @@ components:
           $ref: '#/components/schemas/PACalculationDataSources'
         componentdetail:
           description: Component detail type for the PA component. It can be GROUPS
-            or TOTALS or SECURITIES.
+            or GROUPSALL or TOTALS or SECURITIES.
           type: string
       required:
       - componentid
       type: object
     PACalculationParametersRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -42976,21 +43756,27 @@ components:
           $ref: '#/components/schemas/CalculationMeta'
       type: object
     CalculationUnitStatus:
-      additionalProperties: false
       example:
         result: result
+        warnings:
+        - warnings
+        - warnings
         progress: progress
         errors:
-        - id: id
+        - code: code
+          id: id
           detail: detail
           source:
             pointer: pointer
             parameter: parameter
-        - id: id
+          title: title
+        - code: code
+          id: id
           detail: detail
           source:
             pointer: pointer
             parameter: parameter
+          title: title
         status: Queued
         points: 0
       properties:
@@ -43018,26 +43804,37 @@ components:
           description: The points for the calculation unit.
           format: int32
           type: integer
+        warnings:
+          description: The warnings in a calculation unit.
+          items:
+            type: string
+          type: array
       type: object
     CalculationStatus:
-      additionalProperties: false
       example:
         calculationid: calculationid
         units:
           key:
             result: result
+            warnings:
+            - warnings
+            - warnings
             progress: progress
             errors:
-            - id: id
+            - code: code
+              id: id
               detail: detail
               source:
                 pointer: pointer
                 parameter: parameter
-            - id: id
+              title: title
+            - code: code
+              id: id
               detail: detail
               source:
                 pointer: pointer
                 parameter: parameter
+              title: title
             status: Queued
             points: 0
         status: Queued
@@ -43060,7 +43857,6 @@ components:
           type: object
       type: object
     CalculationUnitStatusMeta:
-      additionalProperties: false
       example:
         info: info
       properties:
@@ -43069,7 +43865,6 @@ components:
           type: string
       type: object
     CalculationStatusMeta:
-      additionalProperties: false
       example:
         units:
           key:
@@ -43082,25 +43877,31 @@ components:
           type: object
       type: object
     CalculationStatusRoot:
-      additionalProperties: false
       example:
         data:
           calculationid: calculationid
           units:
             key:
               result: result
+              warnings:
+              - warnings
+              - warnings
               progress: progress
               errors:
-              - id: id
+              - code: code
+                id: id
                 detail: detail
                 source:
                   pointer: pointer
                   parameter: parameter
-              - id: id
+                title: title
+              - code: code
+                id: id
                 detail: detail
                 source:
                   pointer: pointer
                   parameter: parameter
+                title: title
               status: Queued
               points: 0
           status: Queued
@@ -43117,7 +43918,6 @@ components:
       - data
       type: object
     CalculationsSummary:
-      additionalProperties: false
       example:
         requestTime: 2000-01-23T04:56:07.000+00:00
         lastPollTime: 2000-01-23T04:56:07.000+00:00
@@ -43146,7 +43946,6 @@ components:
           type: string
       type: object
     PaginationInfo:
-      additionalProperties: false
       example:
         pageNumber: 6
         previousPage: previousPage
@@ -43173,7 +43972,6 @@ components:
           type: string
       type: object
     PaginationMeta:
-      additionalProperties: false
       example:
         pagination:
           pageNumber: 6
@@ -43187,7 +43985,6 @@ components:
           $ref: '#/components/schemas/PaginationInfo'
       type: object
     CalculationsSummaryRoot:
-      additionalProperties: false
       example:
         data:
           requestTime: 2000-01-23T04:56:07.000+00:00
@@ -43211,7 +44008,6 @@ components:
       - data
       type: object
     PAPricingSource:
-      additionalProperties: false
       example:
         name: name
         category: category
@@ -43228,7 +44024,6 @@ components:
           type: string
       type: object
     PAPricingSourceRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -43247,7 +44042,6 @@ components:
       - data
       type: object
     PubIdentifier:
-      additionalProperties: false
       example:
         id: id
         holdingsmode: holdingsmode
@@ -43262,7 +44056,6 @@ components:
       - id
       type: object
     PubDateParameters:
-      additionalProperties: false
       description: The date parameters for Publisher calculation.
       example:
         enddate: enddate
@@ -43278,7 +44071,6 @@ components:
       - enddate
       type: object
     PubCalculationParameters:
-      additionalProperties: false
       example:
         document: document
         dates:
@@ -43301,10 +44093,8 @@ components:
       - document
       type: object
     PubCalculationMeta:
-      additionalProperties: false
       type: object
     PubCalculationParametersRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -43323,11 +44113,9 @@ components:
           description: List of calculation parameters.
           type: object
         meta:
-          additionalProperties: false
           type: object
       type: object
     QuantScreeningExpressionUniverse:
-      additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/QuantUniverse'
       properties:
@@ -43345,7 +44133,6 @@ components:
       - universeType
       type: object
     QuantIdentifierUniverse:
-      additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/QuantUniverse'
       properties:
@@ -43363,7 +44150,6 @@ components:
       - universeType
       type: object
     QuantUniverse:
-      additionalProperties: false
       properties:
         source:
           enum:
@@ -43375,7 +44161,6 @@ components:
       - source
       type: object
     QuantUniversalScreenUniverse:
-      additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/QuantUniverse'
       properties:
@@ -43385,7 +44170,6 @@ components:
       - screen
       type: object
     QuantDateList:
-      additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/QuantDate'
       properties:
@@ -43395,7 +44179,6 @@ components:
           type: array
       type: object
     QuantDate:
-      additionalProperties: false
       properties:
         source:
           enum:
@@ -43414,7 +44197,6 @@ components:
       - source
       type: object
     QuantFdsDate:
-      additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/QuantDate'
       properties:
@@ -43427,7 +44209,6 @@ components:
       - startDate
       type: object
     QuantFqlExpression:
-      additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/QuantFormula'
       properties:
@@ -43444,7 +44225,6 @@ components:
       - name
       type: object
     QuantUniversalScreenParameter:
-      additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/QuantFormula'
       properties:
@@ -43457,12 +44237,10 @@ components:
       - referenceName
       type: object
     QuantAllUniversalScreenParameters:
-      additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/QuantFormula'
       type: object
     QuantFormula:
-      additionalProperties: false
       properties:
         source:
           enum:
@@ -43475,7 +44253,6 @@ components:
       - source
       type: object
     QuantScreeningExpression:
-      additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/QuantFormula'
       properties:
@@ -43490,7 +44267,6 @@ components:
       - name
       type: object
     QuantScreeningExpressionUniverseObsolete:
-      additionalProperties: false
       properties:
         universeExpr:
           type: string
@@ -43512,7 +44288,6 @@ components:
       - universeType
       type: object
     QuantUniversalScreenUniverseObsolete:
-      additionalProperties: false
       properties:
         screen:
           type: string
@@ -43526,7 +44301,6 @@ components:
       - screen
       type: object
     QuantIdentifierUniverseObsolete:
-      additionalProperties: false
       properties:
         universeType:
           enum:
@@ -43548,7 +44322,6 @@ components:
       - universeType
       type: object
     QuantFdsDateObsolete:
-      additionalProperties: false
       properties:
         startDate:
           type: string
@@ -43567,7 +44340,6 @@ components:
       - startDate
       type: object
     QuantDateListObsolete:
-      additionalProperties: false
       properties:
         dates:
           items:
@@ -43584,7 +44356,6 @@ components:
       - frequency
       type: object
     QuantScreeningExpressionObsolete:
-      additionalProperties: false
       properties:
         expr:
           type: string
@@ -43597,7 +44368,6 @@ components:
       - name
       type: object
     QuantFqlExpressionObsolete:
-      additionalProperties: false
       properties:
         expr:
           type: string
@@ -43612,7 +44382,6 @@ components:
       - name
       type: object
     QuantUniversalScreenParameterObsolete:
-      additionalProperties: false
       properties:
         referenceName:
           type: string
@@ -43623,7 +44392,6 @@ components:
       - referenceName
       type: object
     QuantAllUniversalScreenParametersObsolete:
-      additionalProperties: false
       type: object
     OneOfQuantUniverse:
       discriminator:
@@ -43663,7 +44431,6 @@ components:
         $ref: '#/components/schemas/OneOfQuantFormulas'
       type: array
     QuantCalculationParameters:
-      additionalProperties: false
       example:
         formulas:
         - null
@@ -43682,7 +44449,6 @@ components:
           type: string
       type: object
     QuantCalculationMeta:
-      additionalProperties: false
       example:
         contentorganization: SimplifiedRow
         allowArrayData: true
@@ -43731,7 +44497,6 @@ components:
           type: string
       type: object
     QuantCalculationParametersRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -43755,7 +44520,6 @@ components:
           $ref: '#/components/schemas/QuantCalculationMeta'
       type: object
     SPARDateParameters:
-      additionalProperties: false
       description: The date parameters for SPAR calculation.
       example:
         enddate: enddate
@@ -43777,7 +44541,6 @@ components:
       - startdate
       type: object
     SPARCalculationParameters:
-      additionalProperties: false
       example:
         currencyisocode: currencyisocode
         componentid: componentid
@@ -43816,7 +44579,6 @@ components:
       - componentid
       type: object
     SPARCalculationParametersRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -43852,7 +44614,6 @@ components:
           $ref: '#/components/schemas/CalculationMeta'
       type: object
     PAComponentData:
-      additionalProperties: false
       example:
         currencyisocode: currencyisocode
         componentdetail: componentdetail
@@ -43923,11 +44684,11 @@ components:
           description: Currency ISO code for calculation.
           type: string
         componentdetail:
-          description: PA Storage type. It can be GROUPS or TOTALS or SECURITIES.
+          description: PA Storage type. It can be GROUPS or GROUPSALL or TOTALS or
+            SECURITIES.
           type: string
       type: object
     TemplatedPAComponentParameters:
-      additionalProperties: false
       example:
         parentTemplateId: parentTemplateId
         description: description
@@ -43988,7 +44749,6 @@ components:
       - parentTemplateId
       type: object
     TemplatedPAComponentParametersRoot:
-      additionalProperties: false
       example:
         data:
           parentTemplateId: parentTemplateId
@@ -44043,7 +44803,6 @@ components:
       - data
       type: object
     TemplatedPAComponentPostSummary:
-      additionalProperties: false
       example:
         parentTemplateId: parentTemplateId
         name: name
@@ -44063,7 +44822,6 @@ components:
           type: string
       type: object
     TemplatedPAComponentPostSummaryRoot:
-      additionalProperties: false
       example:
         data:
           parentTemplateId: parentTemplateId
@@ -44081,7 +44839,6 @@ components:
       - data
       type: object
     TemplatedPAComponentSummary:
-      additionalProperties: false
       example:
         parentTemplateId: parentTemplateId
         name: name
@@ -44098,7 +44855,6 @@ components:
           type: string
       type: object
     TemplatedPAComponentSummaryRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -44118,7 +44874,6 @@ components:
       - data
       type: object
     TemplatedPAComponentUpdateParameters:
-      additionalProperties: false
       example:
         parentTemplateId: parentTemplateId
         description: description
@@ -44172,7 +44927,6 @@ components:
           $ref: '#/components/schemas/PAComponentData'
       type: object
     TemplatedPAComponentUpdateParametersRoot:
-      additionalProperties: false
       example:
         data:
           parentTemplateId: parentTemplateId
@@ -44226,7 +44980,6 @@ components:
       - data
       type: object
     TemplatedPAComponent:
-      additionalProperties: false
       example:
         parentTemplateId: parentTemplateId
         name: name
@@ -44293,7 +45046,6 @@ components:
           type: string
       type: object
     TemplatedPAComponentRoot:
-      additionalProperties: false
       example:
         data:
           parentTemplateId: parentTemplateId
@@ -44352,7 +45104,6 @@ components:
       - data
       type: object
     UnlinkedPATemplateParameters:
-      additionalProperties: false
       example:
         templateTypeId: templateTypeId
         currencyisocode: currencyisocode
@@ -44443,7 +45194,8 @@ components:
           description: Currency ISO code for calculation.
           type: string
         componentdetail:
-          description: PA storage type. It can be GROUPS or TOTALS or SECURITIES.
+          description: PA storage type. It can be GROUPS or GROUPSALL or TOTALS or
+            SECURITIES.
           type: string
         content:
           $ref: '#/components/schemas/TemplateContentTypes'
@@ -44452,7 +45204,6 @@ components:
       - templateTypeId
       type: object
     UnlinkedPATemplateParametersRoot:
-      additionalProperties: false
       example:
         data:
           templateTypeId: templateTypeId
@@ -44516,7 +45267,6 @@ components:
       - data
       type: object
     UnlinkedPATemplatePostSummary:
-      additionalProperties: false
       example:
         name: name
         description: description
@@ -44537,7 +45287,6 @@ components:
           type: string
       type: object
     UnlinkedPATemplatePostSummaryRoot:
-      additionalProperties: false
       example:
         data:
           name: name
@@ -44554,7 +45303,6 @@ components:
       - data
       type: object
     UnlinkedPATemplateSummary:
-      additionalProperties: false
       example:
         name: name
         description: description
@@ -44571,7 +45319,6 @@ components:
           type: string
       type: object
     UnlinkedPATemplateSummaryRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -44590,7 +45337,6 @@ components:
       - data
       type: object
     UnlinkedPATemplateUpdateParameters:
-      additionalProperties: false
       example:
         currencyisocode: currencyisocode
         componentdetail: componentdetail
@@ -44673,13 +45419,13 @@ components:
           description: Currency ISO code for calculation.
           type: string
         componentdetail:
-          description: PA storage type. It can be GROUPS or TOTALS or SECURITIES.
+          description: PA storage type. It can be GROUPS or GROUPSALL or TOTALS or
+            SECURITIES.
           type: string
         content:
           $ref: '#/components/schemas/TemplateContentTypes'
       type: object
     UnlinkedPATemplateUpdateParametersRoot:
-      additionalProperties: false
       example:
         data:
           currencyisocode: currencyisocode
@@ -44741,7 +45487,6 @@ components:
       - data
       type: object
     UnlinkedPATemplate:
-      additionalProperties: false
       example:
         columns:
         - id: id
@@ -44839,7 +45584,8 @@ components:
           description: Currency ISO code for calculation.
           type: string
         componentdetail:
-          description: PA storage type. It can be GROUPS or TOTALS or SECURITIES.
+          description: PA storage type. It can be GROUPS or GROUPSALL or TOTALS or
+            SECURITIES.
           type: string
         content:
           $ref: '#/components/schemas/TemplateContentTypes'
@@ -44854,7 +45600,6 @@ components:
           type: string
       type: object
     UnlinkedPATemplateRoot:
-      additionalProperties: false
       example:
         data:
           columns:
@@ -44922,7 +45667,6 @@ components:
       - data
       type: object
     UnlinkedPATemplateCategoryAndType:
-      additionalProperties: false
       example:
         name: name
         category: category
@@ -44935,7 +45679,6 @@ components:
           type: string
       type: object
     UnlinkedPATemplateCategoryAndTypeRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -44953,7 +45696,6 @@ components:
       - data
       type: object
     UnlinkedPATemplateColumnDetails:
-      additionalProperties: false
       example:
         name: name
         id: id
@@ -44974,7 +45716,6 @@ components:
           type: array
       type: object
     UnlinkedPATemplateGroupDetails:
-      additionalProperties: false
       example:
         name: name
         id: id
@@ -44991,7 +45732,6 @@ components:
           type: string
       type: object
     UnlinkedPATemplateCategoryAndTypeDetails:
-      additionalProperties: false
       example:
         columns:
         - name: name
@@ -45040,7 +45780,6 @@ components:
           type: string
       type: object
     UnlinkedPATemplateCategoryAndTypeDetailsRoot:
-      additionalProperties: false
       example:
         data:
           columns:
@@ -45074,8 +45813,38 @@ components:
       required:
       - data
       type: object
+    VaultAttributionLoaderResponse:
+      example:
+        processId: processId
+        groupId: groupId
+        objectId: objectId
+      properties:
+        processId:
+          description: ProcessId.
+          type: string
+        groupId:
+          description: GroupId.
+          type: string
+        objectId:
+          description: ObjectId.
+          type: string
+      type: object
+    VaultAttributionLoaderResponseRoot:
+      example:
+        data:
+          processId: processId
+          groupId: groupId
+          objectId: objectId
+        meta: '{}'
+      properties:
+        data:
+          $ref: '#/components/schemas/VaultAttributionLoaderResponse'
+        meta:
+          type: object
+      required:
+      - data
+      type: object
     VaultCalculationParameters:
-      additionalProperties: false
       example:
         componentdetail: componentdetail
         componentid: componentid
@@ -45099,7 +45868,7 @@ components:
           type: string
         componentdetail:
           description: Component detail type for the Vault component. It can be GROUPS
-            or TOTALS or SECURITIES.
+            or GROUPSALL or TOTALS or SECURITIES.
           type: string
       required:
       - account
@@ -45107,7 +45876,6 @@ components:
       - configid
       type: object
     VaultCalculationParametersRoot:
-      additionalProperties: false
       example:
         data:
           key:
@@ -45133,6 +45901,13 @@ components:
           type: object
         meta:
           $ref: '#/components/schemas/CalculationMeta'
+      type: object
+    inline_object:
+      properties:
+        file:
+          format: binary
+          nullable: true
+          type: string
       type: object
   securitySchemes:
     Basic:

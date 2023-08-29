@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.SPARComponent;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -30,72 +31,45 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * PAIdentifier
+ * SPARComponentRoot
  */
 @JsonPropertyOrder({
-  PAIdentifier.JSON_PROPERTY_ID,
-  PAIdentifier.JSON_PROPERTY_HOLDINGSMODE
+  SPARComponentRoot.JSON_PROPERTY_DATA
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class PAIdentifier implements Serializable {
+public class SPARComponentRoot implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
-
-  public static final String JSON_PROPERTY_HOLDINGSMODE = "holdingsmode";
-  private String holdingsmode;
+  public static final String JSON_PROPERTY_DATA = "data";
+  private SPARComponent data;
 
 
-  public PAIdentifier id(String id) {
-    this.id = id;
+  public SPARComponentRoot data(SPARComponent data) {
+    this.data = data;
     return this;
   }
 
    /**
-   * User&#39;s FactSet account path OR benchmark.
-   * @return id
-  **/
-  @ApiModelProperty(required = true, value = "User's FactSet account path OR benchmark.")
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getId() {
-    return id;
-  }
-
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public PAIdentifier holdingsmode(String holdingsmode) {
-    this.holdingsmode = holdingsmode;
-    return this;
-  }
-
-   /**
-   * Holdings Mode can be B&amp;H, TBR, OMS , EXT or VLT.
-   * @return holdingsmode
+   * Get data
+   * @return data
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Holdings Mode can be B&H, TBR, OMS , EXT or VLT.")
-  @JsonProperty(JSON_PROPERTY_HOLDINGSMODE)
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getHoldingsmode() {
-    return holdingsmode;
+  public SPARComponent getData() {
+    return data;
   }
 
 
-  public void setHoldingsmode(String holdingsmode) {
-    this.holdingsmode = holdingsmode;
+  public void setData(SPARComponent data) {
+    this.data = data;
   }
 
 
   /**
-   * Return true if this PAIdentifier object is equal to o.
+   * Return true if this SPARComponentRoot object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -105,22 +79,20 @@ public class PAIdentifier implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PAIdentifier paIdentifier = (PAIdentifier) o;
-    return Objects.equals(this.id, paIdentifier.id) &&
-        Objects.equals(this.holdingsmode, paIdentifier.holdingsmode);
+    SPARComponentRoot spARComponentRoot = (SPARComponentRoot) o;
+    return Objects.equals(this.data, spARComponentRoot.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, holdingsmode);
+    return Objects.hash(data);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PAIdentifier {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    holdingsmode: ").append(toIndentedString(holdingsmode)).append("\n");
+    sb.append("class SPARComponentRoot {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

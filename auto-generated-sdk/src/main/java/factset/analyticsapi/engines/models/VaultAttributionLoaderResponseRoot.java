@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.VaultAttributionLoaderResponse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -30,72 +31,72 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * PAIdentifier
+ * VaultAttributionLoaderResponseRoot
  */
 @JsonPropertyOrder({
-  PAIdentifier.JSON_PROPERTY_ID,
-  PAIdentifier.JSON_PROPERTY_HOLDINGSMODE
+  VaultAttributionLoaderResponseRoot.JSON_PROPERTY_DATA,
+  VaultAttributionLoaderResponseRoot.JSON_PROPERTY_META
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class PAIdentifier implements Serializable {
+public class VaultAttributionLoaderResponseRoot implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  public static final String JSON_PROPERTY_DATA = "data";
+  private VaultAttributionLoaderResponse data;
 
-  public static final String JSON_PROPERTY_HOLDINGSMODE = "holdingsmode";
-  private String holdingsmode;
+  public static final String JSON_PROPERTY_META = "meta";
+  private Object meta;
 
 
-  public PAIdentifier id(String id) {
-    this.id = id;
+  public VaultAttributionLoaderResponseRoot data(VaultAttributionLoaderResponse data) {
+    this.data = data;
     return this;
   }
 
    /**
-   * User&#39;s FactSet account path OR benchmark.
-   * @return id
+   * Get data
+   * @return data
   **/
-  @ApiModelProperty(required = true, value = "User's FactSet account path OR benchmark.")
-  @JsonProperty(JSON_PROPERTY_ID)
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getId() {
-    return id;
+  public VaultAttributionLoaderResponse getData() {
+    return data;
   }
 
 
-  public void setId(String id) {
-    this.id = id;
+  public void setData(VaultAttributionLoaderResponse data) {
+    this.data = data;
   }
 
 
-  public PAIdentifier holdingsmode(String holdingsmode) {
-    this.holdingsmode = holdingsmode;
+  public VaultAttributionLoaderResponseRoot meta(Object meta) {
+    this.meta = meta;
     return this;
   }
 
    /**
-   * Holdings Mode can be B&amp;H, TBR, OMS , EXT or VLT.
-   * @return holdingsmode
+   * Get meta
+   * @return meta
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Holdings Mode can be B&H, TBR, OMS , EXT or VLT.")
-  @JsonProperty(JSON_PROPERTY_HOLDINGSMODE)
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_META)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getHoldingsmode() {
-    return holdingsmode;
+  public Object getMeta() {
+    return meta;
   }
 
 
-  public void setHoldingsmode(String holdingsmode) {
-    this.holdingsmode = holdingsmode;
+  public void setMeta(Object meta) {
+    this.meta = meta;
   }
 
 
   /**
-   * Return true if this PAIdentifier object is equal to o.
+   * Return true if this VaultAttributionLoaderResponseRoot object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -105,22 +106,22 @@ public class PAIdentifier implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PAIdentifier paIdentifier = (PAIdentifier) o;
-    return Objects.equals(this.id, paIdentifier.id) &&
-        Objects.equals(this.holdingsmode, paIdentifier.holdingsmode);
+    VaultAttributionLoaderResponseRoot vaultAttributionLoaderResponseRoot = (VaultAttributionLoaderResponseRoot) o;
+    return Objects.equals(this.data, vaultAttributionLoaderResponseRoot.data) &&
+        Objects.equals(this.meta, vaultAttributionLoaderResponseRoot.meta);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, holdingsmode);
+    return Objects.hash(data, meta);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PAIdentifier {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    holdingsmode: ").append(toIndentedString(holdingsmode)).append("\n");
+    sb.append("class VaultAttributionLoaderResponseRoot {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }

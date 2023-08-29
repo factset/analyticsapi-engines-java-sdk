@@ -133,7 +133,7 @@ public class VaultCalculationsApi {
   /**
    * Get all calculations
    * This endpoints returns all calculation requests.
-   * @param pageNumber  (required)
+   * @param pageNumber  (optional, default to 1)
     @return CalculationsSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
@@ -157,7 +157,7 @@ public class VaultCalculationsApi {
   /**
    * Get all calculations
    * This endpoints returns all calculation requests.
-   * @param pageNumber  (required)
+   * @param pageNumber  (optional, default to 1)
     * @return ApiResponse&lt;CalculationsSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
@@ -176,11 +176,6 @@ public class VaultCalculationsApi {
    */
   public ApiResponse<CalculationsSummaryRoot> getAllCalculationsWithHttpInfo(Integer pageNumber) throws ApiException {
     Object localVarPostBody = null;
-    
-    // verify the required parameter 'pageNumber' is set
-    if (pageNumber == null) {
-      throw new ApiException(400, "Missing the required parameter 'pageNumber' when calling getAllCalculations");
-    }
     
     // create path and map variables
     String localVarPath = "/analytics/engines/vault/v3/calculations";
