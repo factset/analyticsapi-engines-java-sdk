@@ -103,6 +103,8 @@ public class CommonParameters {
   public static QuantScreeningExpressionUniverse.UniverseTypeEnum QuantUniverseType = QuantScreeningExpressionUniverse.UniverseTypeEnum.EQUITY;
   public static String QuantSecurityExpr = "TICKER";
   public static String QuantScreeningExpr = "P_PRICE";
+
+  public static String QuantInvalidScreeningExpr = "FF_MKT_VAL(AN_R,0,RP,USD)";
   public static String QuantScreeningName = "Price (SCR)";
   public static String QuantFqlExpr = "P_PRICE";
   public static String QuantFqlName = "Price (SCR)";
