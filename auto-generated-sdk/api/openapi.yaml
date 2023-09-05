@@ -22267,7 +22267,7 @@ paths:
         \ with a frequency, we will be overriding the grouping saved to the original\
         \ component and also overriding \r\n    the default frequency of the Beginning\
         \ of Period to whatever we pass in the request body.\r\n    \r\n*   If we\
-        \ are overriding gouping frequency without overriding the group id it will\
+        \ are overriding grouping frequency without overriding the group id it will\
         \ not be applied to the default groupings saved to the original component.\r\
         \n\r\n*   Componentdetail supports securities, groups, groupsall, and totals\
         \ levels of granularity. However, if no value is passed, the default value\
@@ -23254,7 +23254,7 @@ paths:
         \ with a frequency, we will be overriding the grouping saved to the original\
         \ component and also overriding \r\n    the default frequency of the Beginning\
         \ of Period to whatever we pass in the request body.\r\n    \r\n*   If we\
-        \ are overriding gouping frequency without overriding the group id it will\
+        \ are overriding grouping frequency without overriding the group id it will\
         \ not be applied to the default groupings saved to the original component.\r\
         \n\r\n*   Componentdetail supports securities, groups, groupsall, and totals\
         \ levels of granularity. However, if no value is passed, the default value\
@@ -34323,7 +34323,7 @@ paths:
         \n\r\n*   If we are overriding the grouping with a frequency, we will be overriding\
         \ the grouping saved to the original component and also overriding \r\n  \
         \  the default frequency of the Beginning of Period to whatever we pass in\
-        \ the request body.\r\n    \r\n*   If we are overriding gouping frequency\
+        \ the request body.\r\n    \r\n*   If we are overriding grouping frequency\
         \ without overriding the group id it will not be applied to the default groupings\
         \ saved to the original component."
       operationId: createTemplatedPAComponents
@@ -35273,7 +35273,7 @@ paths:
         \ PA component.\r\n\r\n*   If we are overriding the grouping with a frequency,\
         \ we will be overriding the grouping saved to the original component and also\
         \ overriding \r\n    the default frequency of the Beginning of Period to whatever\
-        \ we pass in the request body.\r\n    \r\n*   If we are overriding gouping\
+        \ we pass in the request body.\r\n    \r\n*   If we are overriding grouping\
         \ frequency without overriding the group id it will not be applied to the\
         \ default groupings saved to the original component."
       operationId: updateTemplatedPAComponents
@@ -35889,7 +35889,7 @@ paths:
         \ PA component.\r\n\r\n*   If we are overriding the grouping with a frequency,\
         \ we will be overriding the grouping saved to the original component and also\
         \ \r\n    overriding the default frequency of the Beginning of Period to whatever\
-        \ we pass in the request body.\r\n    \r\n*   If we are overriding gouping\
+        \ we pass in the request body.\r\n    \r\n*   If we are overriding grouping\
         \ frequency without overriding the group id it will not be applied to the\
         \ default groupings saved to the original component."
       operationId: createUnlinkedPATemplates
@@ -36785,7 +36785,7 @@ paths:
         \n\r\n*   If we are overriding the grouping with a frequency, we will be overriding\
         \ the grouping saved to the original component and also overriding \r\n  \
         \  the default frequency of the Beginning of Period to whatever we pass in\
-        \ the request body.\r\n    \r\n*   If we are overriding gouping frequency\
+        \ the request body.\r\n    \r\n*   If we are overriding grouping frequency\
         \ without overriding the group id it will not be applied to the default groupings\
         \ saved to the original component."
       operationId: updateUnlinkedPATemplates
