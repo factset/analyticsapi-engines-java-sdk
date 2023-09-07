@@ -212,7 +212,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         DocumentsApi apiInstance = new DocumentsApi(defaultClient);
-        String path = ""; // String | The directory to get the documents in
+        String path = "Client:"; // String | The directory to get the documents in
         try {
             DocumentDirectoriesRoot result = apiInstance.getSPAR3Documents(path);
             System.out.println(result);
@@ -232,7 +232,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **path** | **String**| The directory to get the documents in | [default to ]
+ **path** | **String**| The directory to get the documents in |
 
 ### Return type
 

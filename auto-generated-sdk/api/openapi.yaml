@@ -11733,7 +11733,6 @@ paths:
         name: path
         required: true
         schema:
-          default: ""
           description: The directory to get the documents in
           example: 'Client:'
           type: string
