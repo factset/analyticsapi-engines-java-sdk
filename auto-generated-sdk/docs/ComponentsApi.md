@@ -214,7 +214,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         ComponentsApi apiInstance = new ComponentsApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier for a SPAR component
+        String id = "067F5DE2E2A11F9AD734594AA8957E11B633438D0FADFCCE0F423ABEF2FC5F1D"; // String | Unique identifier for a SPAR component
         try {
             SPARComponentRoot result = apiInstance.getSPARComponentById(id);
             System.out.println(result);

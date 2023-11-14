@@ -46,7 +46,7 @@ public class Example {
         DatesApi apiInstance = new DatesApi(defaultClient);
         String enddate = "-1AY"; // String | End Date
         String componentid = "801B800245E468A52AEBEC4BE31CFF5AF82F371DAEF5F158AC2E98C2FA324B46"; // String | Component Id
-        String account = "Account Name"; // String | Account ( Should be in Format - AccountName.ACCT )
+        String account = "Client:/Folder1/Folder2/AccountName.ACCT"; // String | Account ( Account Name ending with .ACCT or .ACTM )
         String startdate = "-3AY"; // String | Start Date
         try {
             DateParametersSummaryRoot result = apiInstance.convertPADatesToAbsoluteFormat(enddate, componentid, account, startdate);
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **enddate** | **String**| End Date |
  **componentid** | **String**| Component Id |
- **account** | **String**| Account ( Should be in Format - AccountName.ACCT ) |
+ **account** | **String**| Account ( Account Name ending with .ACCT or .ACTM ) |
  **startdate** | **String**| Start Date | [optional]
 
 ### Return type

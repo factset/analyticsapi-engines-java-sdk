@@ -8434,6 +8434,7 @@ paths:
         required: true
         schema:
           description: Unique identifier for a SPAR component
+          example: 067F5DE2E2A11F9AD734594AA8957E11B633438D0FADFCCE0F423ABEF2FC5F1D
           type: string
         style: simple
       responses:
@@ -10206,14 +10207,14 @@ paths:
           example: 801B800245E468A52AEBEC4BE31CFF5AF82F371DAEF5F158AC2E98C2FA324B46
           type: string
         style: form
-      - description: Account ( Should be in Format - AccountName.ACCT )
+      - description: Account ( Account Name ending with .ACCT or .ACTM )
         explode: true
         in: query
         name: account
         required: true
         schema:
-          description: Account ( Should be in Format - AccountName.ACCT )
-          example: Account Name
+          description: Account ( Account Name ending with .ACCT or .ACTM )
+          example: Client:/Folder1/Folder2/AccountName.ACCT
           type: string
         style: form
       responses:
@@ -11426,8 +11427,8 @@ paths:
         name: path
         required: true
         schema:
-          default: ""
           description: The directory to get the documents in
+          example: 'Client:'
           type: string
         style: simple
       responses:
@@ -12040,8 +12041,8 @@ paths:
         name: path
         required: true
         schema:
-          default: ""
           description: The directory to get the documents in
+          example: 'Client:'
           type: string
         style: simple
       responses:
@@ -43702,10 +43703,11 @@ components:
     CalculationsSummaryRoot:
       example:
         data:
-          requestTime: 2000-01-23T04:56:07.000+00:00
-          lastPollTime: 2000-01-23T04:56:07.000+00:00
-          units: 0
-          status: Queued
+          key:
+            requestTime: 2000-01-23T04:56:07.000+00:00
+            lastPollTime: 2000-01-23T04:56:07.000+00:00
+            units: 0
+            status: Queued
         meta:
           pagination:
             pageNumber: 6
@@ -43716,7 +43718,9 @@ components:
             totalCalculations: 5
       properties:
         data:
-          $ref: '#/components/schemas/CalculationsSummary'
+          additionalProperties:
+            $ref: '#/components/schemas/CalculationsSummary'
+          type: object
         meta:
           $ref: '#/components/schemas/PaginationMeta'
       required:

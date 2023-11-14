@@ -43,14 +43,19 @@ public class CalculationsSummaryRoot implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_DATA = "data";
-  private CalculationsSummary data;
+  private java.util.Map<String, CalculationsSummary> data = new java.util.HashMap<String, CalculationsSummary>();
 
   public static final String JSON_PROPERTY_META = "meta";
   private PaginationMeta meta;
 
 
-  public CalculationsSummaryRoot data(CalculationsSummary data) {
+  public CalculationsSummaryRoot data(java.util.Map<String, CalculationsSummary> data) {
     this.data = data;
+    return this;
+  }
+
+  public CalculationsSummaryRoot putDataItem(String key, CalculationsSummary dataItem) {
+    this.data.put(key, dataItem);
     return this;
   }
 
@@ -62,12 +67,12 @@ public class CalculationsSummaryRoot implements Serializable {
   @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public CalculationsSummary getData() {
+  public java.util.Map<String, CalculationsSummary> getData() {
     return data;
   }
 
 
-  public void setData(CalculationsSummary data) {
+  public void setData(java.util.Map<String, CalculationsSummary> data) {
     this.data = data;
   }
 
