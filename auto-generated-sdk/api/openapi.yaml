@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   contact:
-    email: testapi@factset.com
+    email: api@factset.com
     name: FactSet Research Systems
     url: https://developer.factset.com/contact
   description: Allow clients to fetch Analytics through APIs.
@@ -22283,6 +22283,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 1
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
