@@ -479,7 +479,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         PaCalculationsApi apiInstance = new PaCalculationsApi(defaultClient);
-        Integer xFactSetApiLongRunningDeadline = 1; // Integer | Long running deadline in seconds when only one unit is passed in the POST body.
+        Integer xFactSetApiLongRunningDeadline = 10; // Integer | Long running deadline in seconds when only one unit is passed in the POST body.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         PACalculationParametersRoot paCalculationParametersRoot = new PACalculationParametersRoot(); // PACalculationParametersRoot | Calculation Parameters
         try {
