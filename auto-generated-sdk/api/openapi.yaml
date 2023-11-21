@@ -9,7 +9,7 @@ info:
     name: Apache License, Version 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   title: Engines API
-  version: v3:[pa,spar,vault,pub,quant,fi,axp,afi,npo,bpm,fpo,others],v1:[fiab]
+  version: v3:[pa,spar,vault,pub,quant,fi,axp,afi,npo,bpm,fpo],v1:[fiab]
 externalDocs:
   description: API Documentation
   url: https://developer.factset.com/api-catalog/
@@ -647,6 +647,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -1567,6 +1568,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -2573,6 +2575,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -3493,6 +3496,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -4806,6 +4810,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -5726,6 +5731,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -13329,6 +13335,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -14401,6 +14408,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -15443,6 +15451,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -16363,6 +16372,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -20037,6 +20047,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -20957,6 +20968,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -23282,6 +23294,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -25043,6 +25056,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -26028,6 +26042,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -30402,6 +30417,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -31385,6 +31401,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -37620,6 +37637,284 @@ paths:
       - status-code: "200"
         response-type: UnlinkedPATemplateCategoryAndTypeDetailsRoot
       x-accepts: application/json
+  /analytics/engines/vault/v3/load/{batchId}:
+    post:
+      description: This endpoint loads Vault External Attributions.
+      operationId: vaultAttributionLoader
+      parameters:
+      - explode: false
+        in: path
+        name: batchId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/inline_object'
+        content:
+          multipart/form-data:
+            encoding:
+              file:
+                style: form
+            schema:
+              properties:
+                file:
+                  format: binary
+                  nullable: true
+                  type: string
+              type: object
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VaultAttributionLoaderResponseRoot'
+          description: Expected response, returns a status of operation along with
+            errors and warnings if found any.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+          description: Bad Request
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Missing or invalid authentication.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+        "403":
+          description: User is forbidden with current credentials
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "406":
+          description: Unsupported Accept header. Header needs to be set to application/json.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "429":
+          description: Rate limit reached. Wait till the time specified in Retry-After
+            header value to make further requests.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+            Retry-After:
+              description: Time to wait in seconds before making a new request as
+                the rate limit has reached.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          description: Server error. Log the X-DataDirect-Request-Key header to assist
+            in troubleshooting.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+        "503":
+          description: Request timed out. Retry the request in sometime.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              explode: false
+              schema:
+                description: FactSet's request key header.
+                type: string
+              style: simple
+            X-FactSet-Api-Request-Key:
+              description: Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              explode: false
+              schema:
+                description: Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+                type: string
+              style: simple
+      summary: Vault - External Attribution Loader
+      tags:
+      - Vault Attribution Loader
+      x-are-multiple-success-responses-different: false
+      x-success-response-types:
+      - status-code: "200"
+        response-type: VaultAttributionLoaderResponseRoot
+      x-contentType: multipart/form-data
+      x-accepts: application/json
   /analytics/engines/vault/v3/calculations:
     get:
       description: This endpoints returns all calculation requests.
@@ -37939,6 +38234,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -38922,6 +39218,7 @@ paths:
         name: X-FactSet-Api-Long-Running-Deadline
         required: false
         schema:
+          example: 10
           type: integer
         style: simple
       - description: Standard HTTP header.  Accepts max-stale.
@@ -40027,6 +40324,12 @@ paths:
         response-type: ObjectRoot
       x-accepts: application/json
 components:
+  requestBodies:
+    inline_object:
+      content:
+        multipart/form-data:
+          schema:
+            $ref: '#/components/schemas/inline_object'
   schemas:
     ReturnType:
       example:
@@ -45533,6 +45836,37 @@ components:
       required:
       - data
       type: object
+    VaultAttributionLoaderResponse:
+      example:
+        processId: processId
+        groupId: groupId
+        objectId: objectId
+      properties:
+        processId:
+          description: ProcessId.
+          type: string
+        groupId:
+          description: GroupId.
+          type: string
+        objectId:
+          description: ObjectId.
+          type: string
+      type: object
+    VaultAttributionLoaderResponseRoot:
+      example:
+        data:
+          processId: processId
+          groupId: groupId
+          objectId: objectId
+        meta: '{}'
+      properties:
+        data:
+          $ref: '#/components/schemas/VaultAttributionLoaderResponse'
+        meta:
+          type: object
+      required:
+      - data
+      type: object
     VaultCalculationParameters:
       example:
         componentdetail: componentdetail
@@ -45590,6 +45924,13 @@ components:
           type: object
         meta:
           $ref: '#/components/schemas/CalculationMeta'
+      type: object
+    inline_object:
+      properties:
+        file:
+          format: binary
+          nullable: true
+          type: string
       type: object
   securitySchemes:
     Basic:

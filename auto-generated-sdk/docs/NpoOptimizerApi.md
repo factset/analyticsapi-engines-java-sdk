@@ -378,7 +378,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         NpoOptimizerApi apiInstance = new NpoOptimizerApi(defaultClient);
-        Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
+        Integer xFactSetApiLongRunningDeadline = 10; // Integer | Long running deadline in seconds.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         NPOOptimizationParametersRoot npOOptimizationParametersRoot = new NPOOptimizationParametersRoot(); // NPOOptimizationParametersRoot | Optimization Parameters
         try {
@@ -467,7 +467,7 @@ public class Example {
 
         NpoOptimizerApi apiInstance = new NpoOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run NPO optimization endpoint
-        Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
+        Integer xFactSetApiLongRunningDeadline = 10; // Integer | Long running deadline in seconds.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         NPOOptimizationParametersRoot npOOptimizationParametersRoot = new NPOOptimizationParametersRoot(); // NPOOptimizationParametersRoot | Optimization Parameters
         try {

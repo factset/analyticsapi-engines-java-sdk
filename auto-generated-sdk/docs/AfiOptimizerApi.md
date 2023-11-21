@@ -378,7 +378,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         AfiOptimizerApi apiInstance = new AfiOptimizerApi(defaultClient);
-        Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
+        Integer xFactSetApiLongRunningDeadline = 10; // Integer | Long running deadline in seconds.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         AFIOptimizationParametersRoot afIOptimizationParametersRoot = new AFIOptimizationParametersRoot(); // AFIOptimizationParametersRoot | Optimization Parameters
         try {
@@ -467,7 +467,7 @@ public class Example {
 
         AfiOptimizerApi apiInstance = new AfiOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run AFI optimization endpoint
-        Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
+        Integer xFactSetApiLongRunningDeadline = 10; // Integer | Long running deadline in seconds.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         AFIOptimizationParametersRoot afIOptimizationParametersRoot = new AFIOptimizationParametersRoot(); // AFIOptimizationParametersRoot | Optimization Parameters
         try {

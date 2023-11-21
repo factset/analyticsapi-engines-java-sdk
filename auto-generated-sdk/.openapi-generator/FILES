@@ -223,6 +223,9 @@ docs/UnlinkedPATemplateSummaryRoot.md
 docs/UnlinkedPATemplateUpdateParameters.md
 docs/UnlinkedPATemplateUpdateParametersRoot.md
 docs/UnlinkedPaTemplatesApi.md
+docs/VaultAttributionLoaderApi.md
+docs/VaultAttributionLoaderResponse.md
+docs/VaultAttributionLoaderResponseRoot.md
 docs/VaultCalculationParameters.md
 docs/VaultCalculationParametersRoot.md
 docs/VaultCalculationsApi.md
@@ -283,6 +286,7 @@ src/main/java/factset/analyticsapi/engines/api/SparCalculationsApi.java
 src/main/java/factset/analyticsapi/engines/api/StrategyDocumentsApi.java
 src/main/java/factset/analyticsapi/engines/api/TemplatedPaComponentsApi.java
 src/main/java/factset/analyticsapi/engines/api/UnlinkedPaTemplatesApi.java
+src/main/java/factset/analyticsapi/engines/api/VaultAttributionLoaderApi.java
 src/main/java/factset/analyticsapi/engines/api/VaultCalculationsApi.java
 src/main/java/factset/analyticsapi/engines/auth/ApiKeyAuth.java
 src/main/java/factset/analyticsapi/engines/auth/Authentication.java
@@ -479,6 +483,8 @@ src/main/java/factset/analyticsapi/engines/models/UnlinkedPATemplateSummary.java
 src/main/java/factset/analyticsapi/engines/models/UnlinkedPATemplateSummaryRoot.java
 src/main/java/factset/analyticsapi/engines/models/UnlinkedPATemplateUpdateParameters.java
 src/main/java/factset/analyticsapi/engines/models/UnlinkedPATemplateUpdateParametersRoot.java
+src/main/java/factset/analyticsapi/engines/models/VaultAttributionLoaderResponse.java
+src/main/java/factset/analyticsapi/engines/models/VaultAttributionLoaderResponseRoot.java
 src/main/java/factset/analyticsapi/engines/models/VaultCalculationParameters.java
 src/main/java/factset/analyticsapi/engines/models/VaultCalculationParametersRoot.java
 src/main/java/factset/analyticsapi/engines/models/VaultComponent.java

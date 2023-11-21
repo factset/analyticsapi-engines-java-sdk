@@ -465,7 +465,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         SparCalculationsApi apiInstance = new SparCalculationsApi(defaultClient);
-        Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds when only one unit is passed in the POST body.
+        Integer xFactSetApiLongRunningDeadline = 10; // Integer | Long running deadline in seconds when only one unit is passed in the POST body.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         SPARCalculationParametersRoot spARCalculationParametersRoot = new SPARCalculationParametersRoot(); // SPARCalculationParametersRoot | Calculation Parameters
         try {
@@ -560,7 +560,7 @@ public class Example {
 
         SparCalculationsApi apiInstance = new SparCalculationsApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run SPAR calculation endpoint
-        Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds when only one unit is passed in the PUT body.
+        Integer xFactSetApiLongRunningDeadline = 10; // Integer | Long running deadline in seconds when only one unit is passed in the PUT body.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         SPARCalculationParametersRoot spARCalculationParametersRoot = new SPARCalculationParametersRoot(); // SPARCalculationParametersRoot | Calculation Parameters
         try {
