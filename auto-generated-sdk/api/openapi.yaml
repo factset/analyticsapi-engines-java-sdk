@@ -9,7 +9,7 @@ info:
     name: Apache License, Version 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   title: Engines API
-  version: v3:[pa,spar,vault,pub,quant,fi,axp,afi,npo,bpm,fpo],v1:[fiab]
+  version: v3:[pa,spar,vault,pub,quant,fi,axp,afi,npo,bpm,fpo,others],v1:[fiab]
 externalDocs:
   description: API Documentation
   url: https://developer.factset.com/api-catalog/
@@ -13329,7 +13329,8 @@ paths:
         the post body.
       operationId: postAndCalculate
       parameters:
-      - description: Long running deadline in seconds.
+      - description: Long running deadline in seconds. Example value is set to 10s.
+          Please update it as per requirement before triggering a calculation.
         explode: false
         in: header
         name: X-FactSet-Api-Long-Running-Deadline
@@ -14402,7 +14403,8 @@ paths:
             Run FI calculation endpoint
           type: string
         style: simple
-      - description: Long running deadline in seconds.
+      - description: Long running deadline in seconds. Example value is set to 10s.
+          Please update it as per requirement before triggering a calculation.
         explode: false
         in: header
         name: X-FactSet-Api-Long-Running-Deadline
@@ -15445,7 +15447,8 @@ paths:
         \ the strategy document."
       operationId: postAndOptimize
       parameters:
-      - description: Long running deadline in seconds.
+      - description: Long running deadline in seconds. Example value is set to 10s.
+          Please update it as per requirement before triggering a calculation.
         explode: false
         in: header
         name: X-FactSet-Api-Long-Running-Deadline
@@ -16366,7 +16369,8 @@ paths:
             Run FPO optimization endpoint
           type: string
         style: simple
-      - description: Long running deadline in seconds.
+      - description: Long running deadline in seconds. Example value is set to 10s.
+          Please update it as per requirement before triggering a calculation.
         explode: false
         in: header
         name: X-FactSet-Api-Long-Running-Deadline
@@ -20041,7 +20045,8 @@ paths:
         \ saved in the strategy document."
       operationId: postAndOptimize
       parameters:
-      - description: Long running deadline in seconds.
+      - description: Long running deadline in seconds. Example value is set to 10s.
+          Please update it as per requirement before triggering a calculation.
         explode: false
         in: header
         name: X-FactSet-Api-Long-Running-Deadline
@@ -20962,7 +20967,8 @@ paths:
             Run NPO optimization endpoint
           type: string
         style: simple
-      - description: Long running deadline in seconds.
+      - description: Long running deadline in seconds. Example value is set to 10s.
+          Please update it as per requirement before triggering a calculation.
         explode: false
         in: header
         name: X-FactSet-Api-Long-Running-Deadline
@@ -22289,7 +22295,8 @@ paths:
       operationId: postAndCalculate
       parameters:
       - description: Long running deadline in seconds when only one unit is passed
-          in the POST body.
+          in the POST body. Example value is set to 10s. Please update it as per requirement
+          before triggering a calculation.
         explode: false
         in: header
         name: X-FactSet-Api-Long-Running-Deadline
@@ -23288,7 +23295,8 @@ paths:
           type: string
         style: simple
       - description: Long running deadline in seconds when only one unit is passed
-          in the PUT body.
+          in the PUT body. Example value is set to 10s. Please update it as per requirement
+          before triggering a calculation
         explode: false
         in: header
         name: X-FactSet-Api-Long-Running-Deadline
@@ -25050,7 +25058,8 @@ paths:
       operationId: postAndCalculate
       parameters:
       - description: Long running deadline in seconds when only one unit is passed
-          in the POST body.
+          in the POST body. Example value is set to 10s. Please update it as per requirement
+          before triggering a calculation.
         explode: false
         in: header
         name: X-FactSet-Api-Long-Running-Deadline
@@ -26036,7 +26045,8 @@ paths:
           type: string
         style: simple
       - description: Long running deadline in seconds when only one unit is passed
-          in the PUT body.
+          in the PUT body. Example value is set to 10s. Please update it as per requirement
+          before triggering a calculation.
         explode: false
         in: header
         name: X-FactSet-Api-Long-Running-Deadline
@@ -30411,7 +30421,8 @@ paths:
       operationId: postAndCalculate
       parameters:
       - description: Long running deadline in seconds when only one unit is passed
-          in the POST body.
+          in the POST body. Example value is set to 10s. Please update it as per requirement
+          before triggering a calculation.
         explode: false
         in: header
         name: X-FactSet-Api-Long-Running-Deadline
@@ -31395,7 +31406,8 @@ paths:
           type: string
         style: simple
       - description: Long running deadline in seconds when only one unit is passed
-          in the PUT body.
+          in the PUT body. Example value is set to 10s. Please update it as per requirement
+          before triggering a calculation.
         explode: false
         in: header
         name: X-FactSet-Api-Long-Running-Deadline
@@ -38228,7 +38240,8 @@ paths:
       operationId: postAndCalculate
       parameters:
       - description: Long running deadline in seconds when only one unit is passed
-          in the POST body.
+          in the POST body. Example value is set to 10s. Please update it as per requirement
+          before triggering a calculation.
         explode: false
         in: header
         name: X-FactSet-Api-Long-Running-Deadline
@@ -39212,7 +39225,8 @@ paths:
           type: string
         style: simple
       - description: Long running deadline in seconds when only one unit is passed
-          in the PUT body.
+          in the PUT body. Example value is set to 10s. Please update it as per requirement
+          before triggering a calculation.
         explode: false
         in: header
         name: X-FactSet-Api-Long-Running-Deadline

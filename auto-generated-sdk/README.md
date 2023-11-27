@@ -3,7 +3,7 @@
 
 Engines API
 
-- API version: v3:[pa,spar,vault,pub,quant,fi,axp,afi,npo,bpm,fpo],v1:[fiab]
+- API version: v3:[pa,spar,vault,pub,quant,fi,axp,afi,npo,bpm,fpo,others],v1:[fiab]
 
 Allow clients to fetch Analytics through APIs.
 
