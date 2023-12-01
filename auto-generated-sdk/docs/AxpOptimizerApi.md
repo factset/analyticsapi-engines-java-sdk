@@ -378,7 +378,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         AxpOptimizerApi apiInstance = new AxpOptimizerApi(defaultClient);
-        Integer xFactSetApiLongRunningDeadline = 10; // Integer | Long running deadline in seconds.
+        Integer xFactSetApiLongRunningDeadline = 10; // Integer | Long running deadline in seconds. Example value is set to 10s. Please update it as per requirement before triggering a calculation.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         AxiomaEquityOptimizationParametersRoot axiomaEquityOptimizationParametersRoot = new AxiomaEquityOptimizationParametersRoot(); // AxiomaEquityOptimizationParametersRoot | Optimization Parameters
         try {
@@ -400,7 +400,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
+ **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. Example value is set to 10s. Please update it as per requirement before triggering a calculation. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **axiomaEquityOptimizationParametersRoot** | [**AxiomaEquityOptimizationParametersRoot**](AxiomaEquityOptimizationParametersRoot.md)| Optimization Parameters | [optional]
 
@@ -467,7 +467,7 @@ public class Example {
 
         AxpOptimizerApi apiInstance = new AxpOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run Axioma optimization endpoint
-        Integer xFactSetApiLongRunningDeadline = 10; // Integer | Long running deadline in seconds.
+        Integer xFactSetApiLongRunningDeadline = 10; // Integer | Long running deadline in seconds. Example value is set to 10s. Please update it as per requirement before triggering a calculation.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         AxiomaEquityOptimizationParametersRoot axiomaEquityOptimizationParametersRoot = new AxiomaEquityOptimizationParametersRoot(); // AxiomaEquityOptimizationParametersRoot | Optimization Parameters
         try {
@@ -490,7 +490,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| from url, provided from the location header in the Create and Run Axioma optimization endpoint |
- **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
+ **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. Example value is set to 10s. Please update it as per requirement before triggering a calculation. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **axiomaEquityOptimizationParametersRoot** | [**AxiomaEquityOptimizationParametersRoot**](AxiomaEquityOptimizationParametersRoot.md)| Optimization Parameters | [optional]
 

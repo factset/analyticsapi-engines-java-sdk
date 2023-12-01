@@ -389,7 +389,7 @@ public class BpmOptimizerApi {
   /**
    * Create and Run BPM optimization
    * This endpoint creates and runs BPM optimization specified in the POST body parameters.                Remarks:                * Any settings in POST body will act as a one-time override over the settings saved in the strategy document.
-   * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
+   * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. Example value is set to 10s. Please update it as per requirement before triggering a calculation. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param bpMOptimizationParametersRoot Optimization Parameters (optional)
     @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
@@ -416,7 +416,7 @@ public class BpmOptimizerApi {
   /**
    * Create and Run BPM optimization
    * This endpoint creates and runs BPM optimization specified in the POST body parameters.                Remarks:                * Any settings in POST body will act as a one-time override over the settings saved in the strategy document.
-   * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
+   * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. Example value is set to 10s. Please update it as per requirement before triggering a calculation. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param bpMOptimizationParametersRoot Optimization Parameters (optional)
     * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
@@ -484,7 +484,7 @@ if (cacheControl != null)
    * Create or Update BPM optimization and run it.
    * This endpoint updates and run the BPM optimization specified in the PUT body parameters. It also allows the creation of new BPM optimization with custom id.
    * @param id from url, provided from the location header in the Create and Run BPM optimization endpoint (required)
-   * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
+   * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. Example value is set to 10s. Please update it as per requirement before triggering a calculation. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param bpMOptimizationParametersRoot Optimization Parameters (optional)
     @return (For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)
@@ -513,7 +513,7 @@ if (cacheControl != null)
    * Create or Update BPM optimization and run it.
    * This endpoint updates and run the BPM optimization specified in the PUT body parameters. It also allows the creation of new BPM optimization with custom id.
    * @param id from url, provided from the location header in the Create and Run BPM optimization endpoint (required)
-   * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. (optional)
+   * @param xFactSetApiLongRunningDeadline Long running deadline in seconds. Example value is set to 10s. Please update it as per requirement before triggering a calculation. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param bpMOptimizationParametersRoot Optimization Parameters (optional)
     * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationInfoRoot)(For 201 status - ObjectRoot)

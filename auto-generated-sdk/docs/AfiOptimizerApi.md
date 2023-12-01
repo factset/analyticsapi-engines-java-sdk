@@ -378,7 +378,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         AfiOptimizerApi apiInstance = new AfiOptimizerApi(defaultClient);
-        Integer xFactSetApiLongRunningDeadline = 10; // Integer | Long running deadline in seconds.
+        Integer xFactSetApiLongRunningDeadline = 10; // Integer | Long running deadline in seconds. Example value is set to 10s. Please update it as per requirement before triggering a calculation.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         AFIOptimizationParametersRoot afIOptimizationParametersRoot = new AFIOptimizationParametersRoot(); // AFIOptimizationParametersRoot | Optimization Parameters
         try {
@@ -400,7 +400,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
+ **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. Example value is set to 10s. Please update it as per requirement before triggering a calculation. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **afIOptimizationParametersRoot** | [**AFIOptimizationParametersRoot**](AFIOptimizationParametersRoot.md)| Optimization Parameters | [optional]
 
@@ -467,7 +467,7 @@ public class Example {
 
         AfiOptimizerApi apiInstance = new AfiOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run AFI optimization endpoint
-        Integer xFactSetApiLongRunningDeadline = 10; // Integer | Long running deadline in seconds.
+        Integer xFactSetApiLongRunningDeadline = 10; // Integer | Long running deadline in seconds. Example value is set to 10s. Please update it as per requirement before triggering a calculation.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         AFIOptimizationParametersRoot afIOptimizationParametersRoot = new AFIOptimizationParametersRoot(); // AFIOptimizationParametersRoot | Optimization Parameters
         try {
@@ -490,7 +490,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| from url, provided from the location header in the Create and Run AFI optimization endpoint |
- **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
+ **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. Example value is set to 10s. Please update it as per requirement before triggering a calculation. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **afIOptimizationParametersRoot** | [**AFIOptimizationParametersRoot**](AFIOptimizationParametersRoot.md)| Optimization Parameters | [optional]
 
