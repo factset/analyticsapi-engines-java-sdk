@@ -259,7 +259,6 @@ Class | Method | HTTP request | Description
 *UnlinkedPaTemplatesApi* | [**getUnlinkedPATemplates**](docs/UnlinkedPaTemplatesApi.md#getUnlinkedPATemplates) | **GET** /analytics/engines/pa/v3/unlinked-templates | Get unlinked PA templates
 *UnlinkedPaTemplatesApi* | [**getUnlinkedPATemplatesById**](docs/UnlinkedPaTemplatesApi.md#getUnlinkedPATemplatesById) | **GET** /analytics/engines/pa/v3/unlinked-templates/{id} | Get unlinked PA template details by id
 *UnlinkedPaTemplatesApi* | [**updateUnlinkedPATemplates**](docs/UnlinkedPaTemplatesApi.md#updateUnlinkedPATemplates) | **PUT** /analytics/engines/pa/v3/unlinked-templates/{id} | Update unlinked PA template
-*VaultAttributionLoaderApi* | [**vaultAttributionLoader**](docs/VaultAttributionLoaderApi.md#vaultAttributionLoader) | **POST** /analytics/engines/vault/v3/load/{batchId} | Vault - External Attribution Loader
 *VaultCalculationsApi* | [**cancelCalculationById**](docs/VaultCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/vault/v3/calculations/{id} | Cancel Vault calculation by id
 *VaultCalculationsApi* | [**getAllCalculations**](docs/VaultCalculationsApi.md#getAllCalculations) | **GET** /analytics/engines/vault/v3/calculations | Get all calculations
 *VaultCalculationsApi* | [**getCalculationParameters**](docs/VaultCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/vault/v3/calculations/{id} | Get Vault calculation parameters by id
@@ -461,8 +460,6 @@ Class | Method | HTTP request | Description
  - [UnlinkedPATemplateSummaryRoot](docs/UnlinkedPATemplateSummaryRoot.md)
  - [UnlinkedPATemplateUpdateParameters](docs/UnlinkedPATemplateUpdateParameters.md)
  - [UnlinkedPATemplateUpdateParametersRoot](docs/UnlinkedPATemplateUpdateParametersRoot.md)
- - [VaultAttributionLoaderResponse](docs/VaultAttributionLoaderResponse.md)
- - [VaultAttributionLoaderResponseRoot](docs/VaultAttributionLoaderResponseRoot.md)
  - [VaultCalculationParameters](docs/VaultCalculationParameters.md)
  - [VaultCalculationParametersRoot](docs/VaultCalculationParametersRoot.md)
  - [VaultComponent](docs/VaultComponent.md)
