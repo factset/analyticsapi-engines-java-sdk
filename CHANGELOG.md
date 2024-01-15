@@ -1,3 +1,181 @@
+5.6.0 (16/01/2022)
+
+Supported API versions:
+* PA, SPAR, VAULT, PUB, AXP, BPM, FPO - V3
+* FIAB - V1
+
+Summmary:
+* Supporting new functionalities in pa,spar,vault,pub,quant and fi.
+
+Functionality Additions:
+* New Parameters are added in the FI Request.
+* 413 status code is added to Quant Reponse.
+* 'Warnings' are added as an enhancement to quant unit status response object.
+* In the Error response object new fields - code and title are added.
+* Added new end point for SPAR Product to get component details by Id.
+
+Breaking changes:
+* No changes.
+
+Bug Fixes:
+* Removed requiredfield attribute for pagenumber field parameter in GetAllCalculations End Point for pa,spar,vault,pub and quant.
+* Removed defaults values when the parameter field is required for look up end points for pa,spar,vault and strategy end points.
+* Updated the schema for GetAllCalculations End Point for pa,spar,vault,pub and quant.
+
+-----------------------
+
+5.5.0 (12/14/2022)
+
+Supported API versions:
+* PA, SPAR, VAULT, PUB, AXP, BPM, FPO - V3
+* FIAB - V1
+
+Summary:
+* Supporting new functionalities in Quant and FI.
+
+Breaking changes:
+* No changes.
+
+Functionality Additions:
+* Added new property "IsArrayReturnType" to FQL expression for Qaunt Request.
+* Added new property "Structured Products" for FI Request.
+
+Bug Fixes:
+* No changes.
+
+-----------------------
+
+
+5.4.0 (27/06/2022)
+
+Supported API versions:
+* PA, SPAR, VAULT, PUB, AXP, BPM, FPO - V3
+* FIAB - V1
+
+Summary:
+* New Functionality Additions.
+
+Breaking changes:
+* No changes.
+
+Functionality Additions:
+* Supporting new features/functionalities of the FI API.
+* Added new end point for GroupingFrequencies.
+* Added new endpoint for Pricing Sources.
+
+Bug Fixes:
+* No changes.
+
+-----------------------
+
+5.3.0 (24/03/2022)
+
+Supported API versions:
+* PA, SPAR, VAULT, PUB, AXP, BPM, FPO - V3
+* FIAB - V1
+
+Summary:
+* New Functionality Additions.
+
+Breaking changes:
+* No changes.
+
+Functionality Additions:
+* Added support for MarketEnviornment in the FI calculation parameters.
+* Added FI Discount curves endpoint.
+* Added support for overrideUniversalScreenCalendar for Quant Dates.
+
+Bug Fixes:
+* No changes.
+
+-----------------------
+
+5.2.1 (24/02/2022)
+
+Supported API versions:
+* PA, SPAR, VAULT, PUB, AXP, BPM, FPO - V3
+* FIAB - V1
+
+Summary:
+* Using latest stach-extensions package(internal dependency).
+
+Breaking changes:
+* No changes.
+
+Functionality Additions:
+* No changes.
+
+Bug Fixes:
+* No changes.
+
+-----------------------
+
+5.2.0 (01/07/2022)
+
+Supported API versions:
+* PA, SPAR, VAULT, PUB, AXP, BPM, FPO - V3
+* FIAB - V1
+
+Summary:
+* Supporting new functionalities in SPAR, FI, Quant APIs.
+
+Breaking changes:
+* No changes.
+
+Functionality Additions:
+* Supporting new features/functionalities of the FI API.
+* Supporting Currency Iso in the SPAR API.
+* Supporting Component Manager API.
+
+Bug Fixes:
+* Fixing the FPO POST body.
+* Fixing the Quant API.
+
+-----------------------
+
+5.1.0 (02/08/2021)
+
+Supported API versions:
+* PA, SPAR, VAULT, PUB, AXP, BPM, FPO - V3
+* FIAB - V1
+
+Summary:
+* Functionality additions and bug fixes.
+
+Breaking changes:
+* No changes.
+
+Functionality Additions:
+* Adding Quant and AFI API.
+* Adding support bearer token to support OAuth.
+* Fix to ignore unknown fields in the de-serialization of API response.
+
+Bug Fixes:
+* Fixing the FIAB invalid response data types.
+* Adding calculationid property to CalculationInfo response.
+
+-----------------------
+
+5.0.0 (25/05/2021)
+
+Supported API versions:
+* PA, SPAR, VAULT, PUB, AXP, BPM, FPO - V3
+* FIAB - V1
+
+Summary:
+* Adding support for caching options
+
+Breaking changes:
+* Added support for caching options with V3 API.
+
+Functionality Additions:
+* Added support for caching options with V3 API.
+
+Bug Fixes:
+* No changes
+
+-----------------------
+
 4.0.0 (10/08/2020)
 
 Supported API versions:
