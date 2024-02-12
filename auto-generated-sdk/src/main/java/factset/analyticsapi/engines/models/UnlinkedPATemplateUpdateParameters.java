@@ -315,11 +315,11 @@ public class UnlinkedPATemplateUpdateParameters implements Serializable {
   }
 
    /**
-   * PA storage type. It can be GROUPS or TOTALS or SECURITIES.
+   * PA storage type. It can be GROUPS or GROUPSALL or TOTALS or SECURITIES.
    * @return componentdetail
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "PA storage type. It can be GROUPS or TOTALS or SECURITIES.")
+  @ApiModelProperty(value = "PA storage type. It can be GROUPS or GROUPSALL or TOTALS or SECURITIES.")
   @JsonProperty(JSON_PROPERTY_COMPONENTDETAIL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

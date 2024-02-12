@@ -1,32 +1,33 @@
 
-# BenchmarksApi
+# VaultAttributionLoaderApi
 
 All URIs are relative to *https://api.factset.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getSPARBenchmarkById**](BenchmarksApi.md#getSPARBenchmarkById) | **GET** /analytics/engines/spar/v3/benchmarks | Get SPAR benchmark details
+[**vaultAttributionLoader**](VaultAttributionLoaderApi.md#vaultAttributionLoader) | **POST** /analytics/engines/vault/v3/load/{batchId} | Vault - External Attribution Loader
 
 
 
-## getSPARBenchmarkById
+## vaultAttributionLoader
 
-> SPARBenchmarkRoot getSPARBenchmarkById(id)
+> VaultAttributionLoaderResponseRoot vaultAttributionLoader(batchId, file)
 
-Get SPAR benchmark details
+Vault - External Attribution Loader
 
-This endpoint returns the details of a given SPAR benchmark identifier.
+This endpoint loads Vault External Attributions.
 
 ### Example
 
 ```java
+import java.io.File;
 // Import classes:
 import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.Configuration;
 import factset.analyticsapi.engines.auth.*;
 import factset.analyticsapi.engines.model.*;
-import factset.analyticsapi.engines.api.BenchmarksApi;
+import factset.analyticsapi.engines.api.VaultAttributionLoaderApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -42,13 +43,14 @@ public class Example {
         HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
         Bearer.setBearerToken("BEARER TOKEN");
 
-        BenchmarksApi apiInstance = new BenchmarksApi(defaultClient);
-        String id = "R.1000"; // String | Benchmark Identifier
+        VaultAttributionLoaderApi apiInstance = new VaultAttributionLoaderApi(defaultClient);
+        String batchId = "batchId_example"; // String | 
+        File file = new File("/path/to/file"); // File | 
         try {
-            SPARBenchmarkRoot result = apiInstance.getSPARBenchmarkById(id);
+            VaultAttributionLoaderResponseRoot result = apiInstance.vaultAttributionLoader(batchId, file);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling BenchmarksApi#getSPARBenchmarkById");
+            System.err.println("Exception when calling VaultAttributionLoaderApi#vaultAttributionLoader");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getClientErrorResponse());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -63,11 +65,12 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**| Benchmark Identifier |
+ **batchId** | **String**|  |
+ **file** | **File**|  | [optional]
 
 ### Return type
 
-[**SPARBenchmarkRoot**](SPARBenchmarkRoot.md)
+[**VaultAttributionLoaderResponseRoot**](VaultAttributionLoaderResponseRoot.md)
 
 ### Authorization
 
@@ -75,15 +78,14 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Expected response, returns the list of prefix and return types for the benchmark. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
-| **400** | Invalid benchmark identifier. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
-| **404** | Benchmark identifier not found. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
+| **200** | Expected response, returns a status of operation along with errors and warnings if found any. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
+| **400** | Bad Request |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
 | **401** | Missing or invalid authentication. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  |
 | **403** | User is forbidden with current credentials |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |
 | **406** | Unsupported Accept header. Header needs to be set to application/json. |  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  |

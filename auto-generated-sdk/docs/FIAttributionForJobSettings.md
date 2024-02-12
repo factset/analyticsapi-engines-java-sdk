@@ -1,15 +1,14 @@
 
 
-# QuantScreeningExpressionObsolete
+# FIAttributionForJobSettings
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**expr** | **String** |  | 
-**name** | **String** |  | 
-**dateOffset** | **String** |  |  [optional]
+**startDate** | **String** | Start Date |  [optional]
+**endDate** | **String** | End Date |  [optional]
 
 
 ## Implemented Interfaces

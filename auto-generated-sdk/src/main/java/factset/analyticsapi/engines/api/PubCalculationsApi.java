@@ -133,7 +133,7 @@ public class PubCalculationsApi {
   /**
    * Get all calculations
    * This endpoints returns all calculation requests.
-   * @param pageNumber  (required)
+   * @param pageNumber  (optional, default to 1)
     @return CalculationsSummaryRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
@@ -157,7 +157,7 @@ public class PubCalculationsApi {
   /**
    * Get all calculations
    * This endpoints returns all calculation requests.
-   * @param pageNumber  (required)
+   * @param pageNumber  (optional, default to 1)
     * @return ApiResponse&lt;CalculationsSummaryRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
@@ -176,11 +176,6 @@ public class PubCalculationsApi {
    */
   public ApiResponse<CalculationsSummaryRoot> getAllCalculationsWithHttpInfo(Integer pageNumber) throws ApiException {
     Object localVarPostBody = null;
-    
-    // verify the required parameter 'pageNumber' is set
-    if (pageNumber == null) {
-      throw new ApiException(400, "Missing the required parameter 'pageNumber' when calling getAllCalculations");
-    }
     
     // create path and map variables
     String localVarPath = "/analytics/engines/pub/v3/calculations";
@@ -488,7 +483,7 @@ public class PubCalculationsApi {
   /**
    * Create and Run Pub calculation
    * This endpoint runs the Pub calculation specified in the POST body parameters.  It can take one or more units as input.
-   * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
+   * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. Example value is set to 10s. Please update it as per requirement before triggering a calculation. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param pubCalculationParametersRoot Calculation Parameters (optional)
     @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - File)
@@ -516,7 +511,7 @@ public class PubCalculationsApi {
   /**
    * Create and Run Pub calculation
    * This endpoint runs the Pub calculation specified in the POST body parameters.  It can take one or more units as input.
-   * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. (optional)
+   * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the POST body. Example value is set to 10s. Please update it as per requirement before triggering a calculation. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param pubCalculationParametersRoot Calculation Parameters (optional)
     * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - File)
@@ -586,7 +581,7 @@ if (cacheControl != null)
    * Create or Update Pub calculation and run it.
    * This endpoint updates and run the Pub calculation specified in the PUT body parameters. This also allows creating new Pub calculations with custom ids.  It can take one or more units as input.    Remarks:    *   Start and and end date must be within the configuration&#39;s min and max date range
    * @param id from url, provided from the location header in the Create and Run Pub calculation endpoint (required)
-   * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
+   * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. Example value is set to 10s. Please update it as per requirement before triggering a calculation. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param pubCalculationParametersRoot Calculation Parameters (optional)
     @return (For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - File)
@@ -616,7 +611,7 @@ if (cacheControl != null)
    * Create or Update Pub calculation and run it.
    * This endpoint updates and run the Pub calculation specified in the PUT body parameters. This also allows creating new Pub calculations with custom ids.  It can take one or more units as input.    Remarks:    *   Start and and end date must be within the configuration&#39;s min and max date range
    * @param id from url, provided from the location header in the Create and Run Pub calculation endpoint (required)
-   * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. (optional)
+   * @param xFactSetApiLongRunningDeadline Long running deadline in seconds when only one unit is passed in the PUT body. Example value is set to 10s. Please update it as per requirement before triggering a calculation. (optional)
    * @param cacheControl Standard HTTP header.  Accepts max-stale. (optional)
    * @param pubCalculationParametersRoot Calculation Parameters (optional)
     * @return ApiResponse&lt;Object&gt;(For 202 status - CalculationStatusRoot)(For 200 status - CalculationStatusRoot)(For 201 status - File)

@@ -381,7 +381,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         FpoOptimizerApi apiInstance = new FpoOptimizerApi(defaultClient);
-        Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
+        Integer xFactSetApiLongRunningDeadline = 10; // Integer | Long running deadline in seconds. Example value is set to 10s. Please update it as per requirement before triggering a calculation.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         FPOOptimizationParametersRoot fpOOptimizationParametersRoot = new FPOOptimizationParametersRoot(); // FPOOptimizationParametersRoot | Optimization Parameters
         try {
@@ -403,7 +403,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
+ **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. Example value is set to 10s. Please update it as per requirement before triggering a calculation. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **fpOOptimizationParametersRoot** | [**FPOOptimizationParametersRoot**](FPOOptimizationParametersRoot.md)| Optimization Parameters | [optional]
 
@@ -470,7 +470,7 @@ public class Example {
 
         FpoOptimizerApi apiInstance = new FpoOptimizerApi(defaultClient);
         String id = "id_example"; // String | from url, provided from the location header in the Create and Run FPO optimization endpoint
-        Integer xFactSetApiLongRunningDeadline = 56; // Integer | Long running deadline in seconds.
+        Integer xFactSetApiLongRunningDeadline = 10; // Integer | Long running deadline in seconds. Example value is set to 10s. Please update it as per requirement before triggering a calculation.
         String cacheControl = "cacheControl_example"; // String | Standard HTTP header.  Accepts max-stale.
         FPOOptimizationParametersRoot fpOOptimizationParametersRoot = new FPOOptimizationParametersRoot(); // FPOOptimizationParametersRoot | Optimization Parameters
         try {
@@ -493,7 +493,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| from url, provided from the location header in the Create and Run FPO optimization endpoint |
- **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. | [optional]
+ **xFactSetApiLongRunningDeadline** | **Integer**| Long running deadline in seconds. Example value is set to 10s. Please update it as per requirement before triggering a calculation. | [optional]
  **cacheControl** | **String**| Standard HTTP header.  Accepts max-stale. | [optional]
  **fpOOptimizationParametersRoot** | [**FPOOptimizationParametersRoot**](FPOOptimizationParametersRoot.md)| Optimization Parameters | [optional]
 
