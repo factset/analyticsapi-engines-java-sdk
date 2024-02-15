@@ -25,14 +25,20 @@ Remarks:
 
 *   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.
 
+*   Account identifiers must have .ACCT or .ACTM extension or BENCH: prefix. Holdings mode can be optionally set for every account. 
+    Possible values for holdings mode are B&H (Buy and Hold), TBR (Transaction based returns), OMS (Order Management System), 
+    VLT (Vaulted returns) or EXT (External Returns Data). Default holdings mode value is B&H.
+
 *   Multi-horizon frequencies are not supported through this endpoint.
 
-*   Componentdetail supports securities, groups, and totals as well but if we don't pass anything that defaults to securities.
+*   Componentdetail supports securities, groups, groupsall, and totals levels of granularity. However, if no value is passed, the default value is 'securities'.
+    Additionally, while 'groupsall' returns all the group levels in the PA component,
+    setting componentdetail to 'groups' only returns the expanded or collapsed group levels within the PA component.
 
 *   If we are overriding the grouping with a frequency, we will be overriding the grouping saved to the original component and also overriding 
     the default frequency of the Beginning of Period to whatever we pass in the request body.
     
-*   If we are overriding gouping frequency without overriding the group id it will not be applied to the default groupings saved to the original component.
+*   If we are overriding grouping frequency without overriding the group id it will not be applied to the default groupings saved to the original component.
 
 ### Example
 
@@ -143,7 +149,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         TemplatedPaComponentsApi apiInstance = new TemplatedPaComponentsApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier for a templated PA component
+        String id = "01234567890123456789012345678901"; // String | Unique identifier for a templated PA component
         try {
             apiInstance.deleteTemplatedPAComponents(id);
         } catch (ApiException e) {
@@ -225,7 +231,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         TemplatedPaComponentsApi apiInstance = new TemplatedPaComponentsApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier for a templated PA component
+        String id = "01234567890123456789012345678901"; // String | Unique identifier for a templated PA component
         try {
             TemplatedPAComponentRoot result = apiInstance.getTemplatedPAComponentById(id);
             System.out.println(result);
@@ -308,7 +314,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         TemplatedPaComponentsApi apiInstance = new TemplatedPaComponentsApi(defaultClient);
-        String directory = "directory_example"; // String | Get templated PA components in path
+        String directory = "Personal:TemplatedPAComponents/"; // String | Get templated PA components in path
         try {
             TemplatedPAComponentSummaryRoot result = apiInstance.getTemplatedPAComponentsInPath(directory);
             System.out.println(result);
@@ -368,14 +374,20 @@ Remarks:
 
 *   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.
 
+*   Account identifiers must have .ACCT or .ACTM extension or BENCH: prefix. Holdings mode can be optionally set for every account. 
+    Possible values for holdings mode are B&H (Buy and Hold), TBR (Transaction based returns), OMS (Order Management System), 
+    VLT (Vaulted returns) or EXT (External Returns Data). Default holdings mode value is B&H. 
+
 *   Multi-horizon frequencies are not supported through this endpoint.
 
-*   Componentdetail supports securities, groups, and totals as well but if we don't pass anything that defaults to securities.
+*   Componentdetail supports securities, groups, groupsall, and totals levels of granularity. However, if no value is passed, the default value is 'securities'.
+    Additionally, while 'groupsall' returns all the group levels in the PA component,
+    setting componentdetail to 'groups' only returns the expanded or collapsed group levels within the PA component.
 
 *   If we are overriding the grouping with a frequency, we will be overriding the grouping saved to the original component and also overriding 
     the default frequency of the Beginning of Period to whatever we pass in the request body.
     
-*   If we are overriding gouping frequency without overriding the group id it will not be applied to the default groupings saved to the original component.
+*   If we are overriding grouping frequency without overriding the group id it will not be applied to the default groupings saved to the original component.
 
 ### Example
 
@@ -403,7 +415,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         TemplatedPaComponentsApi apiInstance = new TemplatedPaComponentsApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier for a templated PA component
+        String id = "01234567890123456789012345678901"; // String | Unique identifier for a templated PA component
         TemplatedPAComponentUpdateParametersRoot templatedPAComponentUpdateParametersRoot = new TemplatedPAComponentUpdateParametersRoot(); // TemplatedPAComponentUpdateParametersRoot | Request Parameters
         try {
             TemplatedPAComponentPostSummaryRoot result = apiInstance.updateTemplatedPAComponents(id, templatedPAComponentUpdateParametersRoot);

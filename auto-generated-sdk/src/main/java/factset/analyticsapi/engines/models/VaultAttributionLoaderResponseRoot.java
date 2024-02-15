@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.VaultAttributionLoaderResponse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -30,71 +31,72 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * QuantUniversalScreenParameterObsolete
+ * VaultAttributionLoaderResponseRoot
  */
 @JsonPropertyOrder({
-  QuantUniversalScreenParameterObsolete.JSON_PROPERTY_REFERENCE_NAME,
-  QuantUniversalScreenParameterObsolete.JSON_PROPERTY_NAME
+  VaultAttributionLoaderResponseRoot.JSON_PROPERTY_DATA,
+  VaultAttributionLoaderResponseRoot.JSON_PROPERTY_META
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class QuantUniversalScreenParameterObsolete implements Serializable {
+public class VaultAttributionLoaderResponseRoot implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_REFERENCE_NAME = "referenceName";
-  private String referenceName;
+  public static final String JSON_PROPERTY_DATA = "data";
+  private VaultAttributionLoaderResponse data;
 
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+  public static final String JSON_PROPERTY_META = "meta";
+  private Object meta;
 
 
-  public QuantUniversalScreenParameterObsolete referenceName(String referenceName) {
-    this.referenceName = referenceName;
+  public VaultAttributionLoaderResponseRoot data(VaultAttributionLoaderResponse data) {
+    this.data = data;
     return this;
   }
 
    /**
-   * Get referenceName
-   * @return referenceName
+   * Get data
+   * @return data
   **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_REFERENCE_NAME)
+  @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getReferenceName() {
-    return referenceName;
+  public VaultAttributionLoaderResponse getData() {
+    return data;
   }
 
 
-  public void setReferenceName(String referenceName) {
-    this.referenceName = referenceName;
+  public void setData(VaultAttributionLoaderResponse data) {
+    this.data = data;
   }
 
 
-  public QuantUniversalScreenParameterObsolete name(String name) {
-    this.name = name;
+  public VaultAttributionLoaderResponseRoot meta(Object meta) {
+    this.meta = meta;
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Get meta
+   * @return meta
   **/
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_META)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getName() {
-    return name;
+  public Object getMeta() {
+    return meta;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
+  public void setMeta(Object meta) {
+    this.meta = meta;
   }
 
 
   /**
-   * Return true if this QuantUniversalScreenParameterObsolete object is equal to o.
+   * Return true if this VaultAttributionLoaderResponseRoot object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -104,22 +106,22 @@ public class QuantUniversalScreenParameterObsolete implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    QuantUniversalScreenParameterObsolete quantUniversalScreenParameterObsolete = (QuantUniversalScreenParameterObsolete) o;
-    return Objects.equals(this.referenceName, quantUniversalScreenParameterObsolete.referenceName) &&
-        Objects.equals(this.name, quantUniversalScreenParameterObsolete.name);
+    VaultAttributionLoaderResponseRoot vaultAttributionLoaderResponseRoot = (VaultAttributionLoaderResponseRoot) o;
+    return Objects.equals(this.data, vaultAttributionLoaderResponseRoot.data) &&
+        Objects.equals(this.meta, vaultAttributionLoaderResponseRoot.meta);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(referenceName, name);
+    return Objects.hash(data, meta);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class QuantUniversalScreenParameterObsolete {\n");
-    sb.append("    referenceName: ").append(toIndentedString(referenceName)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class VaultAttributionLoaderResponseRoot {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }

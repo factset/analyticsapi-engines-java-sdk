@@ -30,72 +30,73 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * PAIdentifier
+ * FIAttributionForJobSettings
  */
 @JsonPropertyOrder({
-  PAIdentifier.JSON_PROPERTY_ID,
-  PAIdentifier.JSON_PROPERTY_HOLDINGSMODE
+  FIAttributionForJobSettings.JSON_PROPERTY_START_DATE,
+  FIAttributionForJobSettings.JSON_PROPERTY_END_DATE
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class PAIdentifier implements Serializable {
+public class FIAttributionForJobSettings implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  public static final String JSON_PROPERTY_START_DATE = "startDate";
+  private String startDate;
 
-  public static final String JSON_PROPERTY_HOLDINGSMODE = "holdingsmode";
-  private String holdingsmode;
+  public static final String JSON_PROPERTY_END_DATE = "endDate";
+  private String endDate;
 
 
-  public PAIdentifier id(String id) {
-    this.id = id;
+  public FIAttributionForJobSettings startDate(String startDate) {
+    this.startDate = startDate;
     return this;
   }
 
    /**
-   * User&#39;s FactSet account path OR benchmark.
-   * @return id
-  **/
-  @ApiModelProperty(required = true, value = "User's FactSet account path OR benchmark.")
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getId() {
-    return id;
-  }
-
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public PAIdentifier holdingsmode(String holdingsmode) {
-    this.holdingsmode = holdingsmode;
-    return this;
-  }
-
-   /**
-   * Holdings Mode can be B&amp;H, TBR, OMS , EXT or VLT.
-   * @return holdingsmode
+   * Start Date
+   * @return startDate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Holdings Mode can be B&H, TBR, OMS , EXT or VLT.")
-  @JsonProperty(JSON_PROPERTY_HOLDINGSMODE)
+  @ApiModelProperty(value = "Start Date")
+  @JsonProperty(JSON_PROPERTY_START_DATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getHoldingsmode() {
-    return holdingsmode;
+  public String getStartDate() {
+    return startDate;
   }
 
 
-  public void setHoldingsmode(String holdingsmode) {
-    this.holdingsmode = holdingsmode;
+  public void setStartDate(String startDate) {
+    this.startDate = startDate;
+  }
+
+
+  public FIAttributionForJobSettings endDate(String endDate) {
+    this.endDate = endDate;
+    return this;
+  }
+
+   /**
+   * End Date
+   * @return endDate
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "End Date")
+  @JsonProperty(JSON_PROPERTY_END_DATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getEndDate() {
+    return endDate;
+  }
+
+
+  public void setEndDate(String endDate) {
+    this.endDate = endDate;
   }
 
 
   /**
-   * Return true if this PAIdentifier object is equal to o.
+   * Return true if this FIAttributionForJobSettings object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -105,22 +106,22 @@ public class PAIdentifier implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PAIdentifier paIdentifier = (PAIdentifier) o;
-    return Objects.equals(this.id, paIdentifier.id) &&
-        Objects.equals(this.holdingsmode, paIdentifier.holdingsmode);
+    FIAttributionForJobSettings fiAttributionForJobSettings = (FIAttributionForJobSettings) o;
+    return Objects.equals(this.startDate, fiAttributionForJobSettings.startDate) &&
+        Objects.equals(this.endDate, fiAttributionForJobSettings.endDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, holdingsmode);
+    return Objects.hash(startDate, endDate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PAIdentifier {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    holdingsmode: ").append(toIndentedString(holdingsmode)).append("\n");
+    sb.append("class FIAttributionForJobSettings {\n");
+    sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
+    sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("}");
     return sb.toString();
   }

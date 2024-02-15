@@ -81,11 +81,11 @@ public class SPARIdentifier implements Serializable {
   }
 
    /**
-   * Benchmark return type.
+   * Account or benchmark return type.
    * @return returntype
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Benchmark return type.")
+  @ApiModelProperty(value = "Account or benchmark return type.")
   @JsonProperty(JSON_PROPERTY_RETURNTYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -105,11 +105,11 @@ public class SPARIdentifier implements Serializable {
   }
 
    /**
-   * Benchmark prefix.
+   * Account or benchmark prefix.
    * @return prefix
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Benchmark prefix.")
+  @ApiModelProperty(value = "Account or benchmark prefix.")
   @JsonProperty(JSON_PROPERTY_PREFIX)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

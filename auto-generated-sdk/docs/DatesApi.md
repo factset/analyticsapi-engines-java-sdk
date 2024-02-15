@@ -44,10 +44,10 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         DatesApi apiInstance = new DatesApi(defaultClient);
-        String enddate = "enddate_example"; // String | End Date
-        String componentid = "componentid_example"; // String | Component Id
-        String account = "account_example"; // String | Account
-        String startdate = "startdate_example"; // String | Start Date
+        String enddate = "-1AY"; // String | End Date
+        String componentid = "801B800245E468A52AEBEC4BE31CFF5AF82F371DAEF5F158AC2E98C2FA324B46"; // String | Component Id
+        String account = "Client:/Folder1/Folder2/AccountName.ACCT"; // String | Account ( Account Name ending with .ACCT or .ACTM )
+        String startdate = "-3AY"; // String | Start Date
         try {
             DateParametersSummaryRoot result = apiInstance.convertPADatesToAbsoluteFormat(enddate, componentid, account, startdate);
             System.out.println(result);
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **enddate** | **String**| End Date |
  **componentid** | **String**| Component Id |
- **account** | **String**| Account |
+ **account** | **String**| Account ( Account Name ending with .ACCT or .ACTM ) |
  **startdate** | **String**| Start Date | [optional]
 
 ### Return type

@@ -1,14 +1,13 @@
 
 
-# QuantUniversalScreenParameterObsolete
+# SPARComponentRoot
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**referenceName** | **String** |  | 
-**name** | **String** |  | 
+**data** | [**SPARComponent**](SPARComponent.md) |  |  [optional]
 
 
 ## Implemented Interfaces
