@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.factset.analyticsapi</groupId>
   <artifactId>engines-sdk</artifactId>
-  <version>5.5.0-rc.1</version>
+  <version>5.5.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +52,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.factset.analyticsapi:engines-sdk:5.5.0-rc.1"
+compile "com.factset.analyticsapi:engines-sdk:5.5.1"
 ```
 
 ### Others
@@ -65,7 +65,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/engines-sdk-5.5.0-rc.1.jar`
+- `target/engines-sdk-5.5.1.jar`
 - `target/lib/*.jar`
 
 ## Usage
