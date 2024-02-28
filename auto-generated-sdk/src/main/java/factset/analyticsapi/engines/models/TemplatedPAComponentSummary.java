@@ -1,6 +1,6 @@
 /*
  * Engines API
- * Allow clients to fetch Analytics through APIs.
+ * Allow clients to fetch Analytics through API.
  *
  * The version of the OpenAPI document: v3:[pa,spar,vault,pub,quant,fi,axp,afi,npo,bpm,fpo,others],v1:[fiab]
  * Contact: api@factset.com

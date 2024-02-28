@@ -4,7 +4,7 @@ info:
     email: api@factset.com
     name: FactSet Research Systems
     url: https://developer.factset.com/contact
-  description: Allow clients to fetch Analytics through APIs.
+  description: Allow clients to fetch Analytics through API.
   license:
     name: Apache License, Version 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0

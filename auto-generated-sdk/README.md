@@ -5,7 +5,7 @@ Engines API
 
 - API version: v3:[pa,spar,vault,pub,quant,fi,axp,afi,npo,bpm,fpo,others],v1:[fiab]
 
-Allow clients to fetch Analytics through APIs.
+Allow clients to fetch Analytics through API.
 
   For more information, please visit [https://developer.factset.com/contact](https://developer.factset.com/contact)
 
