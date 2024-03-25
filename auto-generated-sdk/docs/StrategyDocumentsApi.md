@@ -47,7 +47,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         StrategyDocumentsApi apiInstance = new StrategyDocumentsApi(defaultClient);
-        String path = ""; // String | The directory to get the strategy documents and sub-directories in
+        String path = "Client:"; // String | The directory to get the strategy documents and sub-directories in
         try {
             DocumentDirectoriesRoot result = apiInstance.getAxiomaEquityStrategyDocuments(path);
             System.out.println(result);
@@ -67,7 +67,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **path** | **String**| The directory to get the strategy documents and sub-directories in | [default to ]
+ **path** | **String**| The directory to get the strategy documents and sub-directories in |
 
 ### Return type
 
@@ -130,7 +130,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         StrategyDocumentsApi apiInstance = new StrategyDocumentsApi(defaultClient);
-        String path = ""; // String | The directory to get the strategy documents and sub-directories in
+        String path = "Client:"; // String | The directory to get the strategy documents and sub-directories in
         try {
             DocumentDirectoriesRoot result = apiInstance.getAxiomaFIStrategyDocuments(path);
             System.out.println(result);
@@ -150,7 +150,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **path** | **String**| The directory to get the strategy documents and sub-directories in | [default to ]
+ **path** | **String**| The directory to get the strategy documents and sub-directories in |
 
 ### Return type
 
@@ -213,7 +213,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         StrategyDocumentsApi apiInstance = new StrategyDocumentsApi(defaultClient);
-        String path = ""; // String | The directory to get the strategy documents and sub-directories in
+        String path = "Client:"; // String | The directory to get the strategy documents and sub-directories in
         try {
             DocumentDirectoriesRoot result = apiInstance.getBarraStrategyDocuments(path);
             System.out.println(result);
@@ -233,7 +233,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **path** | **String**| The directory to get the strategy documents and sub-directories in | [default to ]
+ **path** | **String**| The directory to get the strategy documents and sub-directories in |
 
 ### Return type
 
@@ -296,7 +296,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         StrategyDocumentsApi apiInstance = new StrategyDocumentsApi(defaultClient);
-        String path = ""; // String | The directory to get the strategy documents and sub-directories in
+        String path = "Client:"; // String | The directory to get the strategy documents and sub-directories in
         try {
             DocumentDirectoriesRoot result = apiInstance.getFPOStrategyDocuments(path);
             System.out.println(result);
@@ -316,7 +316,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **path** | **String**| The directory to get the strategy documents and sub-directories in | [default to ]
+ **path** | **String**| The directory to get the strategy documents and sub-directories in |
 
 ### Return type
 
@@ -379,7 +379,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         StrategyDocumentsApi apiInstance = new StrategyDocumentsApi(defaultClient);
-        String path = ""; // String | The directory to get the strategy documents and sub-directories in
+        String path = "Client:"; // String | The directory to get the strategy documents and sub-directories in
         try {
             DocumentDirectoriesRoot result = apiInstance.getNorthfieldStrategyDocuments(path);
             System.out.println(result);
@@ -399,7 +399,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **path** | **String**| The directory to get the strategy documents and sub-directories in | [default to ]
+ **path** | **String**| The directory to get the strategy documents and sub-directories in |
 
 ### Return type
 

@@ -69,6 +69,8 @@ docs/FIABCalculationStatus.md
 docs/FIABCalculationStatusSummary.md
 docs/FIABDateParameters.md
 docs/FIABIdentifier.md
+docs/FIAttributionForJobSettings.md
+docs/FIAttributionForSecurities.md
 docs/FIBalloonExtension.md
 docs/FIBankLoans.md
 docs/FICalculationParameters.md
@@ -186,6 +188,8 @@ docs/SPARBenchmark.md
 docs/SPARBenchmarkRoot.md
 docs/SPARCalculationParameters.md
 docs/SPARCalculationParametersRoot.md
+docs/SPARComponent.md
+docs/SPARComponentRoot.md
 docs/SPARDateParameters.md
 docs/SPARIdentifier.md
 docs/SparCalculationsApi.md
@@ -336,6 +340,8 @@ src/main/java/factset/analyticsapi/engines/models/FIABCalculationStatus.java
 src/main/java/factset/analyticsapi/engines/models/FIABCalculationStatusSummary.java
 src/main/java/factset/analyticsapi/engines/models/FIABDateParameters.java
 src/main/java/factset/analyticsapi/engines/models/FIABIdentifier.java
+src/main/java/factset/analyticsapi/engines/models/FIAttributionForJobSettings.java
+src/main/java/factset/analyticsapi/engines/models/FIAttributionForSecurities.java
 src/main/java/factset/analyticsapi/engines/models/FIBalloonExtension.java
 src/main/java/factset/analyticsapi/engines/models/FIBankLoans.java
 src/main/java/factset/analyticsapi/engines/models/FICalculationParameters.java
@@ -442,6 +448,8 @@ src/main/java/factset/analyticsapi/engines/models/SPARBenchmark.java
 src/main/java/factset/analyticsapi/engines/models/SPARBenchmarkRoot.java
 src/main/java/factset/analyticsapi/engines/models/SPARCalculationParameters.java
 src/main/java/factset/analyticsapi/engines/models/SPARCalculationParametersRoot.java
+src/main/java/factset/analyticsapi/engines/models/SPARComponent.java
+src/main/java/factset/analyticsapi/engines/models/SPARComponentRoot.java
 src/main/java/factset/analyticsapi/engines/models/SPARDateParameters.java
 src/main/java/factset/analyticsapi/engines/models/SPARIdentifier.java
 src/main/java/factset/analyticsapi/engines/models/TemplateContentTypes.java

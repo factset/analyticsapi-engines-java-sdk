@@ -43,7 +43,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         BenchmarksApi apiInstance = new BenchmarksApi(defaultClient);
-        String id = "id_example"; // String | Benchmark Identifier
+        String id = "R.1000"; // String | Benchmark Identifier
         try {
             SPARBenchmarkRoot result = apiInstance.getSPARBenchmarkById(id);
             System.out.println(result);

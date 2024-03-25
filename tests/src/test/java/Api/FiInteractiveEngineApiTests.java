@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import factset.analyticsapi.engines.models.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -14,14 +15,6 @@ import factset.analyticsapi.engines.ApiClient;
 import factset.analyticsapi.engines.ApiException;
 import factset.analyticsapi.engines.ApiResponse;
 import factset.analyticsapi.engines.api.FiCalculationsApi;
-import factset.analyticsapi.engines.models.FIBankLoans;
-import factset.analyticsapi.engines.models.FICalculationParameters;
-import factset.analyticsapi.engines.models.FICalculationParametersRoot;
-import factset.analyticsapi.engines.models.FIJobSettings;
-import factset.analyticsapi.engines.models.FIMunicipalBonds;
-import factset.analyticsapi.engines.models.FIMunicipalBondsForJobSettings;
-import factset.analyticsapi.engines.models.FISecurity;
-import factset.analyticsapi.engines.models.ObjectRoot;
 
 
 public class FiInteractiveEngineApiTests {
@@ -51,7 +44,12 @@ public class FiInteractiveEngineApiTests {
     
     final FIMunicipalBondsForJobSettings fimunicipalbondsforjobsettings = new FIMunicipalBondsForJobSettings();
     fimunicipalbondsforjobsettings.ignoreSinkingFund(true);
-    
+
+    final FIAttributionForSecurities fiAttributionForSecurities = new FIAttributionForSecurities();
+    fiAttributionForSecurities.setStartPrice(100.0);
+    fiAttributionForSecurities.setEndPrice(100.3668);
+    fiAttributionForSecurities.setPricingMethod(FIAttributionForSecurities.PricingMethodEnum.INPUTTED_PRICE);
+
     securities.setCalcFromMethod(CommonParameters.FICalcFromMethod);
     securities.setCalcFromValue(CommonParameters.FICalcFromValue);
     securities.setFace(CommonParameters.FIFaceValue);
@@ -60,16 +58,22 @@ public class FiInteractiveEngineApiTests {
     securities.setSymbol(CommonParameters.FISymbol);
     securities.setBankLoans(fibankloans);
     securities.setMunicipalBonds(fimunicipalbonds);
+    securities.setAttribution(fiAttributionForSecurities);
     parameters.addSecuritiesItem(securities);
 
     ArrayList<String> calc = new ArrayList<String>();
     calc.add(CommonParameters.FICalculations);
     parameters.setCalculations(calc);
 
+    final FIAttributionForJobSettings fiAttributionForJobSettings = new FIAttributionForJobSettings();
+    fiAttributionForJobSettings.setStartDate("20210611");
+    fiAttributionForJobSettings.setEndDate("20210611");
+
     final FIJobSettings jobSettings = new FIJobSettings();
     jobSettings.setAsOfDate(CommonParameters.FIAsOfDate);
     jobSettings.setBankLoans(fibankloans);
     jobSettings.setMunicipalBonds(fimunicipalbondsforjobsettings);
+    jobSettings.setAttribution(fiAttributionForJobSettings);
     parameters.setJobSettings(jobSettings);
 
     FICalculationParametersRoot fiCalcParam = new FICalculationParametersRoot();

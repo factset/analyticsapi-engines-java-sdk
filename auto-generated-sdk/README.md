@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.factset.analyticsapi</groupId>
   <artifactId>engines-sdk</artifactId>
-  <version>5.5.0</version>
+  <version>6.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +52,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.factset.analyticsapi:engines-sdk:5.5.0"
+compile "com.factset.analyticsapi:engines-sdk:6.0.0"
 ```
 
 ### Others
@@ -65,7 +65,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/engines-sdk-5.5.0.jar`
+- `target/engines-sdk-6.0.0.jar`
 - `target/lib/*.jar`
 
 ## Usage
@@ -119,7 +119,7 @@ public class AccountsApiExample {
         Bearer.setBearerToken("BEARER TOKEN");
 
         AccountsApi apiInstance = new AccountsApi(defaultClient);
-        String path = ""; // String | The directory to get the accounts and sub-directories in
+        String path = "Client:"; // String | The directory to get the accounts and sub-directories.
         try {
             AccountDirectoriesRoot result = apiInstance.getAccounts(path);
             System.out.println(result);
@@ -167,6 +167,7 @@ Class | Method | HTTP request | Description
 *ColumnsApi* | [**getPAColumns**](docs/ColumnsApi.md#getPAColumns) | **GET** /analytics/engines/pa/v3/columns | Get PA columns
 *ComponentsApi* | [**getPAComponentById**](docs/ComponentsApi.md#getPAComponentById) | **GET** /analytics/engines/pa/v3/components/{id} | Get PA component by id
 *ComponentsApi* | [**getPAComponents**](docs/ComponentsApi.md#getPAComponents) | **GET** /analytics/engines/pa/v3/components | Get PA components
+*ComponentsApi* | [**getSPARComponentById**](docs/ComponentsApi.md#getSPARComponentById) | **GET** /analytics/engines/spar/v3/components/{id} | Get SPAR component by id
 *ComponentsApi* | [**getSPARComponents**](docs/ComponentsApi.md#getSPARComponents) | **GET** /analytics/engines/spar/v3/components | Get SPAR components
 *ComponentsApi* | [**getVaultComponentById**](docs/ComponentsApi.md#getVaultComponentById) | **GET** /analytics/engines/vault/v3/components/{id} | Get Vault component by id
 *ComponentsApi* | [**getVaultComponents**](docs/ComponentsApi.md#getVaultComponents) | **GET** /analytics/engines/vault/v3/components | Get Vault components
@@ -320,6 +321,8 @@ Class | Method | HTTP request | Description
  - [FIABCalculationStatusSummary](docs/FIABCalculationStatusSummary.md)
  - [FIABDateParameters](docs/FIABDateParameters.md)
  - [FIABIdentifier](docs/FIABIdentifier.md)
+ - [FIAttributionForJobSettings](docs/FIAttributionForJobSettings.md)
+ - [FIAttributionForSecurities](docs/FIAttributionForSecurities.md)
  - [FIBalloonExtension](docs/FIBalloonExtension.md)
  - [FIBankLoans](docs/FIBankLoans.md)
  - [FICalculationParameters](docs/FICalculationParameters.md)
@@ -426,6 +429,8 @@ Class | Method | HTTP request | Description
  - [SPARBenchmarkRoot](docs/SPARBenchmarkRoot.md)
  - [SPARCalculationParameters](docs/SPARCalculationParameters.md)
  - [SPARCalculationParametersRoot](docs/SPARCalculationParametersRoot.md)
+ - [SPARComponent](docs/SPARComponent.md)
+ - [SPARComponentRoot](docs/SPARComponentRoot.md)
  - [SPARDateParameters](docs/SPARDateParameters.md)
  - [SPARIdentifier](docs/SPARIdentifier.md)
  - [TemplateContentTypes](docs/TemplateContentTypes.md)

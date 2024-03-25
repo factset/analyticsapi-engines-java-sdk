@@ -22,8 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import factset.analyticsapi.engines.models.CalculationsSummary;
-import factset.analyticsapi.engines.models.PaginationMeta;
+import factset.analyticsapi.engines.models.SPARComponent;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -32,30 +31,21 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * CalculationsSummaryRoot
+ * SPARComponentRoot
  */
 @JsonPropertyOrder({
-  CalculationsSummaryRoot.JSON_PROPERTY_DATA,
-  CalculationsSummaryRoot.JSON_PROPERTY_META
+  SPARComponentRoot.JSON_PROPERTY_DATA
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class CalculationsSummaryRoot implements Serializable {
+public class SPARComponentRoot implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String JSON_PROPERTY_DATA = "data";
-  private java.util.Map<String, CalculationsSummary> data = new java.util.HashMap<String, CalculationsSummary>();
-
-  public static final String JSON_PROPERTY_META = "meta";
-  private PaginationMeta meta;
+  private SPARComponent data;
 
 
-  public CalculationsSummaryRoot data(java.util.Map<String, CalculationsSummary> data) {
+  public SPARComponentRoot data(SPARComponent data) {
     this.data = data;
-    return this;
-  }
-
-  public CalculationsSummaryRoot putDataItem(String key, CalculationsSummary dataItem) {
-    this.data.put(key, dataItem);
     return this;
   }
 
@@ -63,46 +53,23 @@ public class CalculationsSummaryRoot implements Serializable {
    * Get data
    * @return data
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public java.util.Map<String, CalculationsSummary> getData() {
+  public SPARComponent getData() {
     return data;
   }
 
 
-  public void setData(java.util.Map<String, CalculationsSummary> data) {
+  public void setData(SPARComponent data) {
     this.data = data;
   }
 
 
-  public CalculationsSummaryRoot meta(PaginationMeta meta) {
-    this.meta = meta;
-    return this;
-  }
-
-   /**
-   * Get meta
-   * @return meta
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_META)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public PaginationMeta getMeta() {
-    return meta;
-  }
-
-
-  public void setMeta(PaginationMeta meta) {
-    this.meta = meta;
-  }
-
-
   /**
-   * Return true if this CalculationsSummaryRoot object is equal to o.
+   * Return true if this SPARComponentRoot object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -112,22 +79,20 @@ public class CalculationsSummaryRoot implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CalculationsSummaryRoot calculationsSummaryRoot = (CalculationsSummaryRoot) o;
-    return Objects.equals(this.data, calculationsSummaryRoot.data) &&
-        Objects.equals(this.meta, calculationsSummaryRoot.meta);
+    SPARComponentRoot spARComponentRoot = (SPARComponentRoot) o;
+    return Objects.equals(this.data, spARComponentRoot.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, meta);
+    return Objects.hash(data);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CalculationsSummaryRoot {\n");
+    sb.append("class SPARComponentRoot {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }

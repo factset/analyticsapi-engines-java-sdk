@@ -35,7 +35,8 @@ public class QuantInteractiveEngineTests {
         apiInstance = new QuantCalculationsApi(apiClient);
     }
 
-    private QuantCalculationParameters enginesApi_createUnitCalculation() throws ApiException {
+    private QuantCalculationParameters enginesApi_createUnitCalculation(boolean expectedWarningsInResponse) throws ApiException {
+
         QuantCalculationParameters quantItem = new QuantCalculationParameters();
 
         QuantFdsDate fdsDate = new QuantFdsDate();
@@ -56,7 +57,9 @@ public class QuantInteractiveEngineTests {
         OneOfQuantUniverse universe = new OneOfQuantUniverse(screeningExpressionUniverse);
 
         QuantScreeningExpression screeningExpression = new QuantScreeningExpression();
-        screeningExpression.expr(CommonParameters.QuantScreeningExpr);
+
+        String expr = expectedWarningsInResponse ? CommonParameters.QuantInvalidScreeningExpr : CommonParameters.QuantScreeningExpr;
+        screeningExpression.expr(expr);
         screeningExpression.name(CommonParameters.QuantScreeningName);
         screeningExpression.setSource(QuantScreeningExpression.SourceEnum.SCREENINGEXPRESSION);
 
@@ -75,7 +78,7 @@ public class QuantInteractiveEngineTests {
 
         return quantItem;
     }
-   
+
     private ApiResponse<File> GetCalculationResult(String[] location) throws ApiException {
         ApiResponse<File> resultResponse = null;
         try {
@@ -97,18 +100,18 @@ public class QuantInteractiveEngineTests {
         fdsDate.setFrequency(CommonParameters.QuantFrequency);
         fdsDate.setCalendar(CommonParameters.QuantCalender);
         fdsDate.setSource(QuantFdsDate.SourceEnum.FDSDATE);
-        
+
         OneOfQuantDates dates = new OneOfQuantDates(fdsDate);
-        
+
         List<String> identifiers = new ArrayList<String>();
         identifiers.add("03748R74");
         identifiers.add("S8112735");
-        
-        QuantIdentifierUniverse identifierUniverse = new QuantIdentifierUniverse();      
+
+        QuantIdentifierUniverse identifierUniverse = new QuantIdentifierUniverse();
         identifierUniverse.setUniverseType(QuantIdentifierUniverse.UniverseTypeEnum.EQUITY);
         identifierUniverse.setIdentifiers(identifiers);
         identifierUniverse.setSource(QuantIdentifierUniverse.SourceEnum.IDENTIFIERUNIVERSE);
-        
+
         OneOfQuantUniverse universe = new OneOfQuantUniverse(identifierUniverse);
 
         QuantScreeningExpression screeningExpression = new QuantScreeningExpression();
@@ -120,13 +123,13 @@ public class QuantInteractiveEngineTests {
         fqlExpression.setExpr(CommonParameters.QuantFqlExpr);
         fqlExpression.setName(CommonParameters.QuantFqlName);
         fqlExpression.setSource(QuantFqlExpression.SourceEnum.FQLEXPRESSION);
-        
+
         QuantFqlExpression fqlExpression_isArrayReturnType = new QuantFqlExpression();
         fqlExpression_isArrayReturnType.setExpr(CommonParameters.QuantFqlExpr_Price_Range);
         fqlExpression_isArrayReturnType.setName(CommonParameters.QuantFqlName_Price_Label);
         fqlExpression_isArrayReturnType.setIsArrayReturnType(true);
         fqlExpression_isArrayReturnType.setSource(QuantFqlExpression.SourceEnum.FQLEXPRESSION);
-        
+
         List<OneOfQuantFormulas> formulas = new ArrayList<OneOfQuantFormulas>();
         formulas.add(new OneOfQuantFormulas(screeningExpression));
         formulas.add(new OneOfQuantFormulas(fqlExpression));
@@ -187,6 +190,9 @@ public class QuantInteractiveEngineTests {
                     }
                 } while(resultStatusResponse.getStatusCode() == 202);
                 for(CalculationUnitStatus unitStatus : resultStatus.getData().getUnits().values()) {
+                    if(unitStatus.getWarnings()!=null){
+                        Assert.assertTrue("unitStatus with warnings should have a reason", (!unitStatus.getWarnings().get(0).isEmpty()));
+                    }
                     String[] location = unitStatus.getResult().split("/");
                     resultResponse = GetCalculationResult(location);
                     headers = resultResponse.getHeaders();
@@ -211,7 +217,17 @@ public class QuantInteractiveEngineTests {
     @Test
     public void enginesApiGetCalculationSuccess() throws ApiException, JsonProcessingException, InterruptedException {
     	try {
-            QuantCalculationParameters calculationUnit = enginesApi_createUnitCalculation();
+            QuantCalculationParameters calculationUnit = enginesApi_createUnitCalculation(false);
+            ProcessCalculations(calculationUnit);
+        } catch (ApiException e) {
+            CommonFunctions.handleException("EngineApi#runCalculation", e);
+        }
+    }
+
+    @Test
+    public void enginesApiGetCalculationSuccessWithwarnings() throws ApiException, JsonProcessingException, InterruptedException {
+        try {
+            QuantCalculationParameters calculationUnit = enginesApi_createUnitCalculation(true);
             ProcessCalculations(calculationUnit);
         } catch (ApiException e) {
             CommonFunctions.handleException("EngineApi#runCalculation", e);

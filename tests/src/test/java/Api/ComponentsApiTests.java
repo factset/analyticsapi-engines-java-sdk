@@ -129,4 +129,33 @@ public class ComponentsApiTests {
     }
   }
 
+  @Test
+  public void getBySPARComponentIdSuccess() throws ApiException {
+    ApiResponse<ComponentSummaryRoot> getSPARComponentsResponse = null;
+    apiClient = CommonFunctions.buildApiClient(CommonParameters.DefaultUsername, CommonParameters.DefaultPassword);
+    apiInstance = new ComponentsApi(apiClient);
+
+    try {
+      getSPARComponentsResponse = apiInstance.getSPARComponentsWithHttpInfo(CommonParameters.SPAR_DEFAULT_DOCUMENT);
+
+      Assert.assertTrue("Response should be 200 - Success", getSPARComponentsResponse.getStatusCode() == 200);
+      Assert.assertTrue("Response data should not be null.", getSPARComponentsResponse.getData().getData().size() != 0);
+    } catch (ApiException e) {
+      CommonFunctions.handleException("ComponentsApi#getSPARComponentsWithHttpInfo", e);
+    }
+
+    ApiResponse<SPARComponentRoot> getSPARByIdResponse = null;
+
+    try {
+      getSPARByIdResponse = apiInstance.getSPARComponentByIdWithHttpInfo(
+              getSPARComponentsResponse.getData().getData().entrySet().iterator().next().getKey());
+
+      Assert.assertTrue("Response should be 200 - Success", getSPARByIdResponse.getStatusCode() == 200);
+      Assert.assertTrue("Response data should not be null.", getSPARByIdResponse.getData() != null);
+      Assert.assertEquals("Response result should be of SPARComponent type.", getSPARByIdResponse.getData().getData().getClass(), SPARComponent.class);
+    } catch (ApiException e) {
+      CommonFunctions.handleException("ComponentsApi#getVaultComponentByIdWithHttpInfo", e);
+    }
+  }
+
 }

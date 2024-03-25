@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.FIAttributionForSecurities;
 import factset.analyticsapi.engines.models.FIBankLoans;
 import factset.analyticsapi.engines.models.FILoss;
 import factset.analyticsapi.engines.models.FIMunicipalBonds;
@@ -49,6 +50,7 @@ import factset.analyticsapi.engines.JSON;
   FISecurity.JSON_PROPERTY_MATRIX_SPREAD_ADJUSTMENT,
   FISecurity.JSON_PROPERTY_MATRIX_MULTIPLIER,
   FISecurity.JSON_PROPERTY_STRUCTURED_PRODUCTS,
+  FISecurity.JSON_PROPERTY_ATTRIBUTION,
   FISecurity.JSON_PROPERTY_CALC_FROM_METHOD,
   FISecurity.JSON_PROPERTY_CALC_FROM_VALUE,
   FISecurity.JSON_PROPERTY_FACE,
@@ -128,6 +130,9 @@ public class FISecurity implements Serializable {
 
   public static final String JSON_PROPERTY_STRUCTURED_PRODUCTS = "structuredProducts";
   private FIStructuredProductsForSecurities structuredProducts;
+
+  public static final String JSON_PROPERTY_ATTRIBUTION = "attribution";
+  private FIAttributionForSecurities attribution;
 
   public static final String JSON_PROPERTY_CALC_FROM_METHOD = "calcFromMethod";
   private String calcFromMethod;
@@ -423,6 +428,30 @@ public class FISecurity implements Serializable {
   }
 
 
+  public FISecurity attribution(FIAttributionForSecurities attribution) {
+    this.attribution = attribution;
+    return this;
+  }
+
+   /**
+   * Get attribution
+   * @return attribution
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_ATTRIBUTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public FIAttributionForSecurities getAttribution() {
+    return attribution;
+  }
+
+
+  public void setAttribution(FIAttributionForSecurities attribution) {
+    this.attribution = attribution;
+  }
+
+
   public FISecurity calcFromMethod(String calcFromMethod) {
     this.calcFromMethod = calcFromMethod;
     return this;
@@ -587,6 +616,7 @@ public class FISecurity implements Serializable {
         Objects.equals(this.matrixSpreadAdjustment, fiSecurity.matrixSpreadAdjustment) &&
         Objects.equals(this.matrixMultiplier, fiSecurity.matrixMultiplier) &&
         Objects.equals(this.structuredProducts, fiSecurity.structuredProducts) &&
+        Objects.equals(this.attribution, fiSecurity.attribution) &&
         Objects.equals(this.calcFromMethod, fiSecurity.calcFromMethod) &&
         Objects.equals(this.calcFromValue, fiSecurity.calcFromValue) &&
         Objects.equals(this.face, fiSecurity.face) &&
@@ -597,7 +627,7 @@ public class FISecurity implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(settlement, callMethod, referenceSecurity, bankLoans, municipalBonds, loss, prepay, matrixSpreadAdjustment, matrixMultiplier, structuredProducts, calcFromMethod, calcFromValue, face, faceType, symbol, discountCurve);
+    return Objects.hash(settlement, callMethod, referenceSecurity, bankLoans, municipalBonds, loss, prepay, matrixSpreadAdjustment, matrixMultiplier, structuredProducts, attribution, calcFromMethod, calcFromValue, face, faceType, symbol, discountCurve);
   }
 
   @Override
@@ -614,6 +644,7 @@ public class FISecurity implements Serializable {
     sb.append("    matrixSpreadAdjustment: ").append(toIndentedString(matrixSpreadAdjustment)).append("\n");
     sb.append("    matrixMultiplier: ").append(toIndentedString(matrixMultiplier)).append("\n");
     sb.append("    structuredProducts: ").append(toIndentedString(structuredProducts)).append("\n");
+    sb.append("    attribution: ").append(toIndentedString(attribution)).append("\n");
     sb.append("    calcFromMethod: ").append(toIndentedString(calcFromMethod)).append("\n");
     sb.append("    calcFromValue: ").append(toIndentedString(calcFromValue)).append("\n");
     sb.append("    face: ").append(toIndentedString(face)).append("\n");
