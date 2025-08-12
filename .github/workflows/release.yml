@@ -5,6 +5,8 @@ env:
   MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
   MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
   MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+  MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+  MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
 
 on:
   release:
@@ -22,9 +24,9 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-        server-id: ossrh
-        server-username: MAVEN_USERNAME
-        server-password: MAVEN_PASSWORD
+        server-id: central
+        server-username: MAVEN_CENTRAL_USERNAME
+        server-password: MAVEN_CENTRAL_PASSWORD
         gpg-private-key: ${{ env.MAVEN_GPG_PRIVATE_KEY }}
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
     
