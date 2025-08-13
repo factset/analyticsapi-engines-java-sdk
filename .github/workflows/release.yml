@@ -32,13 +32,11 @@ jobs:
     
     - name: Import GPG key
       run: |
-        echo "${{ secrets.MAVEN_GPG_PRIVATE_KEY }}" > private.key
-        gpg --batch --import private.key
+        echo "${{ secrets.MAVEN_GPG_PRIVATE_KEY }}" | gpg --batch --import
         echo 'pinentry-mode loopback' >> ~/.gnupg/gpg.conf
-        rm -f private.key
 
     - name: Build
       run: mvn -B package --file auto-generated-sdk/pom.xml
       
     - name: Publish to Apache Maven Central
-      run: cd auto-generated-sdk && mvn -Psign-artifacts verify deploy -Dgpg.passphrase="${{ secrets.MAVEN_GPG_PASSPHRASE }}"
+      run: cd auto-generated-sdk && mvn -Psign-artifacts verify deploy
