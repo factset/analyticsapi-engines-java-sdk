@@ -30,10 +30,10 @@ jobs:
         gpg-private-key: ${{ env.MAVEN_GPG_PRIVATE_KEY }}
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
     
-    - name: Import GPG key
-      run: |
-        echo "${{ secrets.MAVEN_GPG_PRIVATE_KEY }}" | gpg --batch --import
-        echo 'pinentry-mode loopback' >> ~/.gnupg/gpg.conf
+#    - name: Import GPG key
+#      run: |
+#        echo "${{ secrets.MAVEN_GPG_PRIVATE_KEY }}" | gpg --batch --import
+#        echo 'pinentry-mode loopback' >> ~/.gnupg/gpg.conf
 
     - name: Build
       run: mvn -B package --file auto-generated-sdk/pom.xml
