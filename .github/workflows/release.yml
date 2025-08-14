@@ -32,7 +32,10 @@ jobs:
         server-password: MAVEN_CENTRAL_PASSWORD
         gpg-private-key: ${{ env.MAVEN_GPG_PRIVATE_KEY }}
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
-    
+
+    - name: List GPG secret keys
+      run: gpg --list-secret-keys --keyid-format LONG
+
     - name: Build
       run: mvn -B package --file auto-generated-sdk/pom.xml
       
