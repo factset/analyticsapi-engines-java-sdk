@@ -9,7 +9,7 @@
     <url>https://github.com/factset/analyticsapi-engines-java-sdk</url>
     <description>SDK for FactSet Analytics Engines API</description>
     <distributionManagement>
-        <snapshotRepository>
+        <repository>
             <name>Central Portal Snapshots</name>
             <id>central-portal-snapshots</id>
             <url>https://central.sonatype.com/repository/maven-snapshots/</url>
@@ -19,7 +19,7 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
-        </snapshotRepository>
+        </repository>
     </distributionManagement>
     <scm>
         <connection>scm:git:git://github.com/factset/analyticsapi-engines-java-sdk.git</connection>
