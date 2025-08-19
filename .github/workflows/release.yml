@@ -12,10 +12,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-#    - name: Import GPG key
-#      run: |
-#        echo "${{ secrets.MAVEN_GPG_PRIVATE_KEY }}" | gpg --batch --import
-#        echo 'pinentry-mode loopback' >> ~/.gnupg/gpg.conf
+    - name: Import GPG key
+      run: |
+        echo "${{ secrets.MAVEN_GPG_PRIVATE_KEY }}" | gpg --batch --import
+        echo 'pinentry-mode loopback' >> ~/.gnupg/gpg.conf
       
     - name: Set up JDK
       uses: actions/setup-java@v4
