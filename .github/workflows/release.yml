@@ -17,6 +17,9 @@ jobs:
         echo "${{ secrets.MAVEN_GPG_PRIVATE_KEY }}" | gpg --batch --import
         echo 'pinentry-mode loopback' >> ~/.gnupg/gpg.conf
         
+    - name: Install xmllint
+      run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+        
     - name: Extract version from pom.xml
       id: get_version
       run: |
