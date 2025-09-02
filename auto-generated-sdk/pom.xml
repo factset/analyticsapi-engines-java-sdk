@@ -9,7 +9,7 @@
     <url>https://github.com/factset/analyticsapi-engines-java-sdk</url>
     <description>SDK for FactSet Analytics Engines API</description>
     <distributionManagement>
-        <repository>
+        <snapshotRepository>
             <name>Central Portal Snapshots</name>
             <id>central-portal-snapshots</id>
             <url>https://central.sonatype.com/repository/maven-snapshots/</url>
@@ -19,6 +19,14 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
+        </snapshotRepository>
+        <repository>
+            <name>Central Portal Releases</name>
+            <id>central</id>
+            <url>https://central.sonatype.com</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
         </repository>
     </distributionManagement>
     <scm>
@@ -102,9 +110,6 @@
                 <artifactId>central-publishing-maven-plugin</artifactId>
                 <version>0.8.0</version>
                 <extensions>true</extensions>
-                <configuration>
-                    <publishingServerId>central</publishingServerId>
-                </configuration>
             </plugin>
 
             <!-- attach test jar -->
@@ -236,6 +241,13 @@
                             	</configuration>
                             </execution>
                         </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
