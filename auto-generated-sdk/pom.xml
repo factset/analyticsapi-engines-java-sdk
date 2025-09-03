@@ -247,6 +247,7 @@
                         <artifactId>central-publishing-maven-plugin</artifactId>
                         <configuration>
                             <publishingServerId>central</publishingServerId>
+                            <waitUntil>validated</waitUntil>
                         </configuration>
                     </plugin>
                 </plugins>
