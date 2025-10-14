@@ -16,7 +16,7 @@ public class CommonParameters {
       && !System.getenv("ANALYTICS_API_URL").isEmpty() ? System.getenv("ANALYTICS_API_URL") : "https://api.factset.com";
 
   // PA values
-  public static final String PA_DEFAULT_DOCUMENT = "PA_DOCUMENTS:DEFAULT";
+  public static final String PA_DEFAULT_DOCUMENT = "PA3_DOCUMENTS:PA_API_DEFAULT_DOCUMENT-RBICS";
   public static final String PA_BENCHMARK_SP500 = "BENCH:SP50";
   public static final String PA_BENCHMARK_R1000 = "BENCH:R.1000";
   public static final String PA_START_DATE = "-3M";
@@ -30,17 +30,18 @@ public class CommonParameters {
   public static final String SPAR_BENCHMARK_RUSSELL_P_R1000 = "RUSSELL_P:R.2000";
   public static final String SPAR_BENCHMARK_RUSSELL_PREFIX = "RUSSELL";
   public static final String SPAR_BENCHMARK_RUSSELL_RETURN = "GTR";
+  public static final String SPARAccount = "client:/aapi/spar3_qa_test_document";
 
   // Vault values
-  public static final String VAULT_DEFAULT_DOCUMENT = "Client:/aapi/VAULT_QA_PI_DEFAULT_LOCKED";
-  public static final String VAULT_DEFAULT_ACCOUNT = "CLIENT:/BISAM/REPOSITORY/QA/SMALL_PORT.ACCT";
+  public static final String VAULT_DEFAULT_DOCUMENT = "CLIENT:/YETI/YETI-API-TEST";
+  public static final String VAULT_DEFAULT_ACCOUNT = "CLIENT:/YETI/YETI-API-TEST.ACCT";
   public static final String VAULT_SECONDARY_ACCOUNT = "CLIENT:/BISAM/REPOSITORY/QA/GLOBAL.ACCT";
-  public static final String VAULT_START_DATE_FIRST = "20180101";
-  public static final String VAULT_END_DATE_FIRST = "20180329";
+  public static final String VAULT_START_DATE_FIRST = "20211231";
+  public static final String VAULT_END_DATE_FIRST = "20220131";
   public static final String VAULT_FREQUENCY_DATE_MONTHLY = "Monthly";
 
   // Pub values
-  public static final String PUB_DEFAULT_DOCUMENT = "Client:/AAPI/Puma Test Doc.Pub_bridge_pdf";
+  public static final String PUB_DEFAULT_DOCUMENT = "Client:/AAPI/Puma Narrative Test.PUB_BRIDGE_PDF";
   public static final String PUB_DEFAULT_ACCOUNT = "BENCH:SP50";
   public static final String DEFAULT_LOOKUP_DIRECTORY = "client:";
 
