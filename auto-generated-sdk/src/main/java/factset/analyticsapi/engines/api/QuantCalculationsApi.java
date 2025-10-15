@@ -21,6 +21,10 @@ import java.io.File;
 import factset.analyticsapi.engines.models.ObjectRoot;
 import factset.analyticsapi.engines.models.QuantCalculationParametersRoot;
 
+/**
+ * @deprecated DEPRECATED! Use <a href="https://central.sonatype.com/search?q=com.factset.sdk&smo=true">Esdk's</a>.
+ */
+@Deprecated
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class QuantCalculationsApi {
   private ApiClient apiClient;

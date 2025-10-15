@@ -20,6 +20,10 @@ import factset.analyticsapi.engines.models.PAComponentRoot;
 import factset.analyticsapi.engines.models.SPARComponentRoot;
 import factset.analyticsapi.engines.models.VaultComponentRoot;
 
+/**
+ * @deprecated DEPRECATED! Use <a href="https://central.sonatype.com/search?q=com.factset.sdk&smo=true">Esdk's</a>.
+ */
+@Deprecated
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ComponentsApi {
   private ApiClient apiClient;

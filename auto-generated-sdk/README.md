@@ -1,3 +1,5 @@
+## 🚨 THIS PACKAGE IS DEPRECATED!
+Please use <https://central.sonatype.com/search?q=com.factset.sdk&smo=true> instead.
 
 # engines-sdk
 

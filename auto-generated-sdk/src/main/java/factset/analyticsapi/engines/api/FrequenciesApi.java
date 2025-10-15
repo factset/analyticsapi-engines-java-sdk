@@ -16,6 +16,10 @@ import java.io.File;
 
 import factset.analyticsapi.engines.models.FrequencyRoot;
 
+/**
+ * @deprecated DEPRECATED! Use <a href="https://central.sonatype.com/search?q=com.factset.sdk&smo=true">Esdk's</a>.
+ */
+@Deprecated
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class FrequenciesApi {
   private ApiClient apiClient;

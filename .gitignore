@@ -11,3 +11,4 @@ bin/
 .idea/
 output.pdf
 *.iml
+/auto-generated-sdk/src/main/java/.metadata
