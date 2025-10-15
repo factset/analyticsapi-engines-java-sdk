@@ -19,6 +19,10 @@ import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.NPOOptimizationParametersRoot;
 import factset.analyticsapi.engines.models.ObjectRoot;
 
+/**
+ * @deprecated DEPRECATED! Use <a href="https://central.sonatype.com/search?q=com.factset.sdk&smo=true">Esdk's</a>.
+ */
+@Deprecated
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class NpoOptimizerApi {
   private ApiClient apiClient;

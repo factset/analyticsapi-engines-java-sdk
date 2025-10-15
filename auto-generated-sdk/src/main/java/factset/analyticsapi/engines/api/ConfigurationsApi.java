@@ -18,6 +18,10 @@ import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.VaultConfigurationRoot;
 import factset.analyticsapi.engines.models.VaultConfigurationSummaryRoot;
 
+/**
+ * @deprecated DEPRECATED! Use <a href="https://central.sonatype.com/search?q=com.factset.sdk&smo=true">Esdk's</a>.
+ */
+@Deprecated
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class ConfigurationsApi {
   private ApiClient apiClient;

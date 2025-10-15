@@ -21,6 +21,10 @@ import factset.analyticsapi.engines.models.TemplatedPAComponentRoot;
 import factset.analyticsapi.engines.models.TemplatedPAComponentSummaryRoot;
 import factset.analyticsapi.engines.models.TemplatedPAComponentUpdateParametersRoot;
 
+/**
+ * @deprecated DEPRECATED! Use <a href="https://central.sonatype.com/search?q=com.factset.sdk&smo=true">Esdk's</a>.
+ */
+@Deprecated
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class TemplatedPaComponentsApi {
   private ApiClient apiClient;

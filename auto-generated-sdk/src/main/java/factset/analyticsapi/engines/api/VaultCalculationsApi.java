@@ -20,6 +20,10 @@ import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.ObjectRoot;
 import factset.analyticsapi.engines.models.VaultCalculationParametersRoot;
 
+/**
+ * @deprecated DEPRECATED! Use <a href="https://central.sonatype.com/search?q=com.factset.sdk&smo=true">Esdk's</a>.
+ */
+@Deprecated
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class VaultCalculationsApi {
   private ApiClient apiClient;

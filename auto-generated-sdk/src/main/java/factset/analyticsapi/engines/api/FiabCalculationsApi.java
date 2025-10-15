@@ -18,6 +18,10 @@ import factset.analyticsapi.engines.models.FIABCalculationParameters;
 import factset.analyticsapi.engines.models.FIABCalculationStatus;
 import factset.analyticsapi.engines.models.FIABCalculationStatusSummary;
 
+/**
+ * @deprecated DEPRECATED! Use <a href="https://central.sonatype.com/search?q=com.factset.sdk&smo=true">Esdk's</a>.
+ */
+@Deprecated
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class FiabCalculationsApi {
   private ApiClient apiClient;
