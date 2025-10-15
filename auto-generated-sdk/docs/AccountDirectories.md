@@ -2,6 +2,7 @@
 
 # AccountDirectories
 
+List of the accounts and directories.
 
 ## Properties
 

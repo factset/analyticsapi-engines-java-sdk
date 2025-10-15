@@ -2,6 +2,7 @@
 
 # CalculationStatus
 
+Details of the calculation.
 
 ## Properties
 

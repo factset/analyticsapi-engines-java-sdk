@@ -44,7 +44,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         ConfigurationsApi apiInstance = new ConfigurationsApi(defaultClient);
-        String id = "id_example"; // String | Vault configuration id to get the details of
+        String id = "e95ef921-b4d4-4bb7-93ba-60eca8e3247a"; // String | Vault configuration id to get the details of
         try {
             VaultConfigurationRoot result = apiInstance.getVaultConfigurationById(id);
             System.out.println(result);
@@ -127,7 +127,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         ConfigurationsApi apiInstance = new ConfigurationsApi(defaultClient);
-        String account = "account_example"; // String | Required account query parameter to filter configurations for a specific account
+        String account = "CLIENT:/MAC/DEMO/DEMO_PS_EQ_EM_COUNTRY_ALPHA.ACCT"; // String | Required account query parameter to filter configurations for a specific account
         try {
             VaultConfigurationSummaryRoot result = apiInstance.getVaultConfigurations(account);
             System.out.println(result);

@@ -30,8 +30,9 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * Currency
+ * Details of the currency.
  */
+@ApiModel(description = "Details of the currency.")
 @JsonPropertyOrder({
   Currency.JSON_PROPERTY_NAME
 })

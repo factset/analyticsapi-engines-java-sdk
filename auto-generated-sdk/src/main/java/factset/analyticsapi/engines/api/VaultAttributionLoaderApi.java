@@ -15,16 +15,17 @@ import java.util.Map;
 import java.io.File;
 
 import factset.analyticsapi.engines.models.ClientErrorResponse;
-import factset.analyticsapi.engines.models.DateParametersSummaryRoot;
+import java.io.File;
+import factset.analyticsapi.engines.models.VaultAttributionLoaderResponseRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class DatesApi {
+public class VaultAttributionLoaderApi {
   private ApiClient apiClient;
-  public DatesApi() {
+  public VaultAttributionLoaderApi() {
     this(Configuration.getDefaultApiClient());
   }
 
-  public DatesApi(ApiClient apiClient) {
+  public VaultAttributionLoaderApi(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
 
@@ -47,20 +48,17 @@ public class DatesApi {
   }
 
   /**
-   * Convert Vault dates to absolute format
-   * This endpoint converts the given start and end dates in FactSet date format to yyyymmdd format for a Vault calculation. For more information on FactSet date format, please refer to the Vault API documentation under the &#39;API Documentation&#39; section in the developer portal.
-   * @param enddate End Date (required)
-   * @param componentid Vault Component Id (required)
-   * @param account Account (required)
-   * @param startdate Start Date (optional)
-    @return DateParametersSummaryRoot
+   * Vault - External Attribution Loader
+   * This endpoint loads Vault External Attributions.
+   * @param batchId  (required)
+   * @param file  (optional)
+    @return VaultAttributionLoaderResponseRoot
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> Expected response, returns the converted dates in yyyymmdd format. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
-       <tr><td> 400 </td><td> Invalid query parameter or value is provided. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
-       <tr><td> 404 </td><td> vault Document or account not found. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 200 </td><td> Expected response, returns a status of operation along with errors and warnings if found any. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 400 </td><td> Bad Request </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 401 </td><td> Missing or invalid authentication. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
        <tr><td> 403 </td><td> User is forbidden with current credentials </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 406 </td><td> Unsupported Accept header. Header needs to be set to application/json. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
@@ -69,25 +67,22 @@ public class DatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
- public DateParametersSummaryRoot convertVaultDatesToAbsoluteFormat(String enddate, String componentid, String account, String startdate) throws ApiException {
-    return convertVaultDatesToAbsoluteFormatWithHttpInfo(enddate, componentid, account, startdate).getData();
+ public VaultAttributionLoaderResponseRoot vaultAttributionLoader(String batchId, File file) throws ApiException {
+    return vaultAttributionLoaderWithHttpInfo(batchId, file).getData();
   }
 
   /**
-   * Convert Vault dates to absolute format
-   * This endpoint converts the given start and end dates in FactSet date format to yyyymmdd format for a Vault calculation. For more information on FactSet date format, please refer to the Vault API documentation under the &#39;API Documentation&#39; section in the developer portal.
-   * @param enddate End Date (required)
-   * @param componentid Vault Component Id (required)
-   * @param account Account (required)
-   * @param startdate Start Date (optional)
-    * @return ApiResponse&lt;DateParametersSummaryRoot&gt;
+   * Vault - External Attribution Loader
+   * This endpoint loads Vault External Attributions.
+   * @param batchId  (required)
+   * @param file  (optional)
+    * @return ApiResponse&lt;VaultAttributionLoaderResponseRoot&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> Expected response, returns the converted dates in yyyymmdd format. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
-       <tr><td> 400 </td><td> Invalid query parameter or value is provided. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
-       <tr><td> 404 </td><td> vault Document or account not found. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 200 </td><td> Expected response, returns a status of operation along with errors and warnings if found any. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
+       <tr><td> 400 </td><td> Bad Request </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 401 </td><td> Missing or invalid authentication. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
        <tr><td> 403 </td><td> User is forbidden with current credentials </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
        <tr><td> 406 </td><td> Unsupported Accept header. Header needs to be set to application/json. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  * X-FactSet-Api-RateLimit-Limit - Number of allowed requests for the time window. <br>  * X-FactSet-Api-RateLimit-Remaining - Number of requests left for the time window. <br>  * X-FactSet-Api-RateLimit-Reset - Number of seconds remaining till rate limit resets. <br>  </td></tr>
@@ -96,26 +91,17 @@ public class DatesApi {
        <tr><td> 503 </td><td> Request timed out. Retry the request in sometime. </td><td>  * X-DataDirect-Request-Key - FactSet&#39;s request key header. <br>  * X-FactSet-Api-Request-Key - Key to uniquely identify an Analytics API request. Only available after successful authentication. <br>  </td></tr>
      </table>
    */
-  public ApiResponse<DateParametersSummaryRoot> convertVaultDatesToAbsoluteFormatWithHttpInfo(String enddate, String componentid, String account, String startdate) throws ApiException {
+  public ApiResponse<VaultAttributionLoaderResponseRoot> vaultAttributionLoaderWithHttpInfo(String batchId, File file) throws ApiException {
     Object localVarPostBody = null;
     
-    // verify the required parameter 'enddate' is set
-    if (enddate == null) {
-      throw new ApiException(400, "Missing the required parameter 'enddate' when calling convertVaultDatesToAbsoluteFormat");
-    }
-    
-    // verify the required parameter 'componentid' is set
-    if (componentid == null) {
-      throw new ApiException(400, "Missing the required parameter 'componentid' when calling convertVaultDatesToAbsoluteFormat");
-    }
-    
-    // verify the required parameter 'account' is set
-    if (account == null) {
-      throw new ApiException(400, "Missing the required parameter 'account' when calling convertVaultDatesToAbsoluteFormat");
+    // verify the required parameter 'batchId' is set
+    if (batchId == null) {
+      throw new ApiException(400, "Missing the required parameter 'batchId' when calling vaultAttributionLoader");
     }
     
     // create path and map variables
-    String localVarPath = "/analytics/engines/vault/v3/dates";
+    String localVarPath = "/analytics/engines/vault/v3/load/{batchId}"
+      .replaceAll("\\{" + "batchId" + "\\}", apiClient.escapeString(batchId.toString()));
 
     // query params
     java.util.List<Pair> localVarQueryParams = new java.util.ArrayList<Pair>();
@@ -123,34 +109,31 @@ public class DatesApi {
     java.util.Map<String, String> localVarCookieParams = new java.util.HashMap<String, String>();
     java.util.Map<String, Object> localVarFormParams = new java.util.HashMap<String, Object>();
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "startdate", startdate));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "enddate", enddate));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "componentid", componentid));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "account", account));
 
     
     
-    
+    if (file != null)
+      localVarFormParams.put("file", file);
+
     final String[] localVarAccepts = {
       "application/json"
     };
     final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
     final String[] localVarContentTypes = {
-      
+      "multipart/form-data"
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
     String[] localVarAuthNames = new String[] { "Basic", "Bearer" };
 
-    GenericType<DateParametersSummaryRoot> localVarReturnType = new GenericType<DateParametersSummaryRoot>() {};
+    GenericType<VaultAttributionLoaderResponseRoot> localVarReturnType = new GenericType<VaultAttributionLoaderResponseRoot>() {};
 
       Map<Integer, GenericType> returnTypeMap = new HashMap<Integer, GenericType>();
-        returnTypeMap.put(200, new GenericType<DateParametersSummaryRoot>(){});
+        returnTypeMap.put(200, new GenericType<VaultAttributionLoaderResponseRoot>(){});
         returnTypeMap.put(400, new GenericType<ClientErrorResponse>(){});
-        returnTypeMap.put(404, new GenericType<ClientErrorResponse>(){});
 	
-      return apiClient.<DateParametersSummaryRoot>invokeAPIWithReturnMap("DatesApi.convertVaultDatesToAbsoluteFormat", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+      return apiClient.<VaultAttributionLoaderResponseRoot>invokeAPIWithReturnMap("VaultAttributionLoaderApi.vaultAttributionLoader", localVarPath, "POST", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, returnTypeMap, false);
   }

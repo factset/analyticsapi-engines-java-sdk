@@ -31,8 +31,9 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * CalculationStatus
+ * Details of the calculation.
  */
+@ApiModel(description = "Details of the calculation.")
 @JsonPropertyOrder({
   CalculationStatus.JSON_PROPERTY_CALCULATIONID,
   CalculationStatus.JSON_PROPERTY_STATUS,

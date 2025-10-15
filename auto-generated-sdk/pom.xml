@@ -5,9 +5,9 @@
     <artifactId>engines-sdk</artifactId>
     <packaging>jar</packaging>
     <name>engines-sdk</name>
-    <version>6.2.0</version>
+    <version>6.3.0-rc.1</version>
     <url>https://github.com/factset/analyticsapi-engines-java-sdk</url>
-    <description>SDK for FactSet Analytics Engines API</description>
+    <description>DEPRECATED: This library is no longer maintained. Please use https://central.sonatype.com/search?q&#x3D;com.factset.sdk&amp;smo&#x3D;true instead.</description>
     <distributionManagement>
         <repository>
             <id>ossrh</id>

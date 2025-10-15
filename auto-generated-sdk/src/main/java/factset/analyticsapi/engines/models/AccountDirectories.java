@@ -30,8 +30,9 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * AccountDirectories
+ * List of the accounts and directories.
  */
+@ApiModel(description = "List of the accounts and directories.")
 @JsonPropertyOrder({
   AccountDirectories.JSON_PROPERTY_ACCOUNTS,
   AccountDirectories.JSON_PROPERTY_DIRECTORIES

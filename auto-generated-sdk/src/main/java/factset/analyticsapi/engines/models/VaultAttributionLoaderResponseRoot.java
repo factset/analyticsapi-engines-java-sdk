@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import factset.analyticsapi.engines.models.VaultAttributionLoaderResponse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -30,46 +31,72 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * Meta of the calculation unit.
+ * VaultAttributionLoaderResponseRoot
  */
-@ApiModel(description = "Meta of the calculation unit.")
 @JsonPropertyOrder({
-  CalculationUnitStatusMeta.JSON_PROPERTY_INFO
+  VaultAttributionLoaderResponseRoot.JSON_PROPERTY_DATA,
+  VaultAttributionLoaderResponseRoot.JSON_PROPERTY_META
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class CalculationUnitStatusMeta implements Serializable {
+public class VaultAttributionLoaderResponseRoot implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_INFO = "info";
-  private String info;
+  public static final String JSON_PROPERTY_DATA = "data";
+  private VaultAttributionLoaderResponse data;
+
+  public static final String JSON_PROPERTY_META = "meta";
+  private Object meta;
 
 
-  public CalculationUnitStatusMeta info(String info) {
-    this.info = info;
+  public VaultAttributionLoaderResponseRoot data(VaultAttributionLoaderResponse data) {
+    this.data = data;
     return this;
   }
 
    /**
-   * The Info URL of the calculation.
-   * @return info
+   * Get data
+   * @return data
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The Info URL of the calculation.")
-  @JsonProperty(JSON_PROPERTY_INFO)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_DATA)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getInfo() {
-    return info;
+  public VaultAttributionLoaderResponse getData() {
+    return data;
   }
 
 
-  public void setInfo(String info) {
-    this.info = info;
+  public void setData(VaultAttributionLoaderResponse data) {
+    this.data = data;
+  }
+
+
+  public VaultAttributionLoaderResponseRoot meta(Object meta) {
+    this.meta = meta;
+    return this;
+  }
+
+   /**
+   * Get meta
+   * @return meta
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_META)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Object getMeta() {
+    return meta;
+  }
+
+
+  public void setMeta(Object meta) {
+    this.meta = meta;
   }
 
 
   /**
-   * Return true if this CalculationUnitStatusMeta object is equal to o.
+   * Return true if this VaultAttributionLoaderResponseRoot object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -79,20 +106,22 @@ public class CalculationUnitStatusMeta implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CalculationUnitStatusMeta calculationUnitStatusMeta = (CalculationUnitStatusMeta) o;
-    return Objects.equals(this.info, calculationUnitStatusMeta.info);
+    VaultAttributionLoaderResponseRoot vaultAttributionLoaderResponseRoot = (VaultAttributionLoaderResponseRoot) o;
+    return Objects.equals(this.data, vaultAttributionLoaderResponseRoot.data) &&
+        Objects.equals(this.meta, vaultAttributionLoaderResponseRoot.meta);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(info);
+    return Objects.hash(data, meta);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CalculationUnitStatusMeta {\n");
-    sb.append("    info: ").append(toIndentedString(info)).append("\n");
+    sb.append("class VaultAttributionLoaderResponseRoot {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }

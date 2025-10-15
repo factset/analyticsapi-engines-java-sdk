@@ -31,8 +31,9 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * CalculationUnitStatus
+ * The status of the calculation as per FactSets API standards
  */
+@ApiModel(description = "The status of the calculation as per FactSets API standards")
 @JsonPropertyOrder({
   CalculationUnitStatus.JSON_PROPERTY_STATUS,
   CalculationUnitStatus.JSON_PROPERTY_ERRORS,
