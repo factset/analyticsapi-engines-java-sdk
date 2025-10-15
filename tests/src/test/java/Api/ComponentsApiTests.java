@@ -136,7 +136,7 @@ public class ComponentsApiTests {
     apiInstance = new ComponentsApi(apiClient);
 
     try {
-      getSPARComponentsResponse = apiInstance.getSPARComponentsWithHttpInfo(CommonParameters.SPAR_DEFAULT_DOCUMENT);
+      getSPARComponentsResponse = apiInstance.getSPARComponentsWithHttpInfo(CommonParameters.SPARAccount);
 
       Assert.assertTrue("Response should be 200 - Success", getSPARComponentsResponse.getStatusCode() == 200);
       Assert.assertTrue("Response data should not be null.", getSPARComponentsResponse.getData().getData().size() != 0);
