@@ -1,14 +1,15 @@
 
 
-# PACommentaryStatusRoot
+# QuantScreeningExpressionObsolete
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**PACommentaryStatus**](PACommentaryStatus.md) |  | 
-**meta** | **Object** |  |  [optional]
+**expr** | **String** |  | 
+**name** | **String** |  | 
+**dateOffset** | **String** |  |  [optional]
 
 
 ## Implemented Interfaces

@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import factset.analyticsapi.engines.models.PACommentary;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -31,72 +30,71 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * PACommentaryRoot
+ * QuantUniversalScreenParameterObsolete
  */
 @JsonPropertyOrder({
-  PACommentaryRoot.JSON_PROPERTY_DATA,
-  PACommentaryRoot.JSON_PROPERTY_META
+  QuantUniversalScreenParameterObsolete.JSON_PROPERTY_REFERENCE_NAME,
+  QuantUniversalScreenParameterObsolete.JSON_PROPERTY_NAME
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class PACommentaryRoot implements Serializable {
+public class QuantUniversalScreenParameterObsolete implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String JSON_PROPERTY_DATA = "data";
-  private PACommentary data;
+  public static final String JSON_PROPERTY_REFERENCE_NAME = "referenceName";
+  private String referenceName;
 
-  public static final String JSON_PROPERTY_META = "meta";
-  private Object meta;
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
 
 
-  public PACommentaryRoot data(PACommentary data) {
-    this.data = data;
+  public QuantUniversalScreenParameterObsolete referenceName(String referenceName) {
+    this.referenceName = referenceName;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * Get referenceName
+   * @return referenceName
   **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_DATA)
+  @JsonProperty(JSON_PROPERTY_REFERENCE_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public PACommentary getData() {
-    return data;
+  public String getReferenceName() {
+    return referenceName;
   }
 
 
-  public void setData(PACommentary data) {
-    this.data = data;
+  public void setReferenceName(String referenceName) {
+    this.referenceName = referenceName;
   }
 
 
-  public PACommentaryRoot meta(Object meta) {
-    this.meta = meta;
+  public QuantUniversalScreenParameterObsolete name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * Get meta
-   * @return meta
+   * Get name
+   * @return name
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_META)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Object getMeta() {
-    return meta;
+  public String getName() {
+    return name;
   }
 
 
-  public void setMeta(Object meta) {
-    this.meta = meta;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
   /**
-   * Return true if this PACommentaryRoot object is equal to o.
+   * Return true if this QuantUniversalScreenParameterObsolete object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -106,22 +104,22 @@ public class PACommentaryRoot implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PACommentaryRoot paCommentaryRoot = (PACommentaryRoot) o;
-    return Objects.equals(this.data, paCommentaryRoot.data) &&
-        Objects.equals(this.meta, paCommentaryRoot.meta);
+    QuantUniversalScreenParameterObsolete quantUniversalScreenParameterObsolete = (QuantUniversalScreenParameterObsolete) o;
+    return Objects.equals(this.referenceName, quantUniversalScreenParameterObsolete.referenceName) &&
+        Objects.equals(this.name, quantUniversalScreenParameterObsolete.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, meta);
+    return Objects.hash(referenceName, name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PACommentaryRoot {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
+    sb.append("class QuantUniversalScreenParameterObsolete {\n");
+    sb.append("    referenceName: ").append(toIndentedString(referenceName)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

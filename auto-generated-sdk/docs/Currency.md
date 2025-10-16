@@ -2,7 +2,6 @@
 
 # Currency
 
-Details of the currency.
 
 ## Properties
 

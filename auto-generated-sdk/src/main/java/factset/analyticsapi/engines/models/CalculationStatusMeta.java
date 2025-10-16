@@ -31,9 +31,8 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * Meta of calculation units in batch.
+ * CalculationStatusMeta
  */
-@ApiModel(description = "Meta of calculation units in batch.")
 @JsonPropertyOrder({
   CalculationStatusMeta.JSON_PROPERTY_UNITS
 })
@@ -59,11 +58,11 @@ public class CalculationStatusMeta implements Serializable {
   }
 
    /**
-   * List of calculation units in batch.
+   * Meta of calculation units in batch.
    * @return units
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "List of calculation units in batch.")
+  @ApiModelProperty(value = "Meta of calculation units in batch.")
   @JsonProperty(JSON_PROPERTY_UNITS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

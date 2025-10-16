@@ -2,7 +2,6 @@
 
 # CalculationUnitStatusMeta
 
-Meta of the calculation unit.
 
 ## Properties
 

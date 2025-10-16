@@ -30,9 +30,8 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * Meta of the calculation unit.
+ * CalculationUnitStatusMeta
  */
-@ApiModel(description = "Meta of the calculation unit.")
 @JsonPropertyOrder({
   CalculationUnitStatusMeta.JSON_PROPERTY_INFO
 })

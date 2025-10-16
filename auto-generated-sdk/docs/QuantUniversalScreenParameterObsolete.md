@@ -1,14 +1,14 @@
 
 
-# PACommentaryGetStatusRoot
+# QuantUniversalScreenParameterObsolete
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**PACommentaryGetStatus**](PACommentaryGetStatus.md) |  | 
-**meta** | **Object** |  |  [optional]
+**referenceName** | **String** |  | 
+**name** | **String** |  | 
 
 
 ## Implemented Interfaces

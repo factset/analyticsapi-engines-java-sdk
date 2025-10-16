@@ -30,36 +30,62 @@ import factset.analyticsapi.engines.JSON;
 
 
 /**
- * PACommentaryConfigurationSummary
+ * QuantScreeningExpressionObsolete
  */
 @JsonPropertyOrder({
-  PACommentaryConfigurationSummary.JSON_PROPERTY_NAME,
-  PACommentaryConfigurationSummary.JSON_PROPERTY_DIRECTORY
+  QuantScreeningExpressionObsolete.JSON_PROPERTY_EXPR,
+  QuantScreeningExpressionObsolete.JSON_PROPERTY_NAME,
+  QuantScreeningExpressionObsolete.JSON_PROPERTY_DATE_OFFSET
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
-public class PACommentaryConfigurationSummary implements Serializable {
+public class QuantScreeningExpressionObsolete implements Serializable {
   private static final long serialVersionUID = 1L;
+
+  public static final String JSON_PROPERTY_EXPR = "expr";
+  private String expr;
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
-  public static final String JSON_PROPERTY_DIRECTORY = "directory";
-  private String directory;
+  public static final String JSON_PROPERTY_DATE_OFFSET = "dateOffset";
+  private String dateOffset;
 
 
-  public PACommentaryConfigurationSummary name(String name) {
+  public QuantScreeningExpressionObsolete expr(String expr) {
+    this.expr = expr;
+    return this;
+  }
+
+   /**
+   * Get expr
+   * @return expr
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_EXPR)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getExpr() {
+    return expr;
+  }
+
+
+  public void setExpr(String expr) {
+    this.expr = expr;
+  }
+
+
+  public QuantScreeningExpressionObsolete name(String name) {
     this.name = name;
     return this;
   }
 
    /**
-   * PA commentary configuration name
+   * Get name
    * @return name
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "PA commentary configuration name")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getName() {
     return name;
@@ -71,32 +97,32 @@ public class PACommentaryConfigurationSummary implements Serializable {
   }
 
 
-  public PACommentaryConfigurationSummary directory(String directory) {
-    this.directory = directory;
+  public QuantScreeningExpressionObsolete dateOffset(String dateOffset) {
+    this.dateOffset = dateOffset;
     return this;
   }
 
    /**
-   * PA Commentary configuration directory
-   * @return directory
+   * Get dateOffset
+   * @return dateOffset
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "PA Commentary configuration directory")
-  @JsonProperty(JSON_PROPERTY_DIRECTORY)
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DATE_OFFSET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getDirectory() {
-    return directory;
+  public String getDateOffset() {
+    return dateOffset;
   }
 
 
-  public void setDirectory(String directory) {
-    this.directory = directory;
+  public void setDateOffset(String dateOffset) {
+    this.dateOffset = dateOffset;
   }
 
 
   /**
-   * Return true if this PACommentaryConfigurationSummary object is equal to o.
+   * Return true if this QuantScreeningExpressionObsolete object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -106,22 +132,24 @@ public class PACommentaryConfigurationSummary implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PACommentaryConfigurationSummary paCommentaryConfigurationSummary = (PACommentaryConfigurationSummary) o;
-    return Objects.equals(this.name, paCommentaryConfigurationSummary.name) &&
-        Objects.equals(this.directory, paCommentaryConfigurationSummary.directory);
+    QuantScreeningExpressionObsolete quantScreeningExpressionObsolete = (QuantScreeningExpressionObsolete) o;
+    return Objects.equals(this.expr, quantScreeningExpressionObsolete.expr) &&
+        Objects.equals(this.name, quantScreeningExpressionObsolete.name) &&
+        Objects.equals(this.dateOffset, quantScreeningExpressionObsolete.dateOffset);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, directory);
+    return Objects.hash(expr, name, dateOffset);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PACommentaryConfigurationSummary {\n");
+    sb.append("class QuantScreeningExpressionObsolete {\n");
+    sb.append("    expr: ").append(toIndentedString(expr)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    directory: ").append(toIndentedString(directory)).append("\n");
+    sb.append("    dateOffset: ").append(toIndentedString(dateOffset)).append("\n");
     sb.append("}");
     return sb.toString();
   }

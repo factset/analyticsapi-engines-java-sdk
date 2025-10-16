@@ -171,7 +171,6 @@ Class | Method | HTTP request | Description
 *ComponentsApi* | [**getSPARComponents**](docs/ComponentsApi.md#getSPARComponents) | **GET** /analytics/engines/spar/v3/components | Get SPAR components
 *ComponentsApi* | [**getVaultComponentById**](docs/ComponentsApi.md#getVaultComponentById) | **GET** /analytics/engines/vault/v3/components/{id} | Get Vault component by id
 *ComponentsApi* | [**getVaultComponents**](docs/ComponentsApi.md#getVaultComponents) | **GET** /analytics/engines/vault/v3/components | Get Vault components
-*ConfigurationsApi* | [**getPACommentaryConfigurations**](docs/ConfigurationsApi.md#getPACommentaryConfigurations) | **GET** /analytics/engines/pa/v3/commentary/configurations | Get PA commentary configurations in a directory
 *ConfigurationsApi* | [**getVaultConfigurationById**](docs/ConfigurationsApi.md#getVaultConfigurationById) | **GET** /analytics/engines/vault/v3/configurations/{id} | Get Vault configuration by id
 *ConfigurationsApi* | [**getVaultConfigurations**](docs/ConfigurationsApi.md#getVaultConfigurations) | **GET** /analytics/engines/vault/v3/configurations | Get Vault configurations
 *CurrenciesApi* | [**getCurrencies**](docs/CurrenciesApi.md#getCurrencies) | **GET** /analytics/lookups/v3/currencies | Get currencies
@@ -214,13 +213,10 @@ Class | Method | HTTP request | Description
 *NpoOptimizerApi* | [**postAndOptimize**](docs/NpoOptimizerApi.md#postAndOptimize) | **POST** /analytics/engines/npo/v3/optimizations | Create and Run NPO optimization
 *NpoOptimizerApi* | [**putAndOptimize**](docs/NpoOptimizerApi.md#putAndOptimize) | **PUT** /analytics/engines/npo/v3/optimizations/{id} | Create or Update NPO optimization and run it.
 *PaCalculationsApi* | [**cancelCalculationById**](docs/PaCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/pa/v3/calculations/{id} | Cancel PA calculation by id
-*PaCalculationsApi* | [**generatePAPortfolioCommentary**](docs/PaCalculationsApi.md#generatePAPortfolioCommentary) | **POST** /analytics/engines/pa/v3/calculations/{id}/units/{unitId}/commentary | Generate PA portfolio commentary by calculation and unit id.
 *PaCalculationsApi* | [**getAllCalculations**](docs/PaCalculationsApi.md#getAllCalculations) | **GET** /analytics/engines/pa/v3/calculations | Get all calculations
 *PaCalculationsApi* | [**getCalculationParameters**](docs/PaCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/pa/v3/calculations/{id} | Get PA calculation parameters by id
 *PaCalculationsApi* | [**getCalculationStatusById**](docs/PaCalculationsApi.md#getCalculationStatusById) | **GET** /analytics/engines/pa/v3/calculations/{id}/status | Get PA calculation status by id
 *PaCalculationsApi* | [**getCalculationUnitResultById**](docs/PaCalculationsApi.md#getCalculationUnitResultById) | **GET** /analytics/engines/pa/v3/calculations/{id}/units/{unitId}/result | Get PA calculation result by id
-*PaCalculationsApi* | [**getPAPortfolioCommentaryResultById**](docs/PaCalculationsApi.md#getPAPortfolioCommentaryResultById) | **GET** /analytics/engines/pa/v3/calculations/{id}/units/{unitId}/commentary/result | Get PA Portfolio commentary result by calculation and unit id.
-*PaCalculationsApi* | [**getPAPortfolioCommentaryStatusById**](docs/PaCalculationsApi.md#getPAPortfolioCommentaryStatusById) | **GET** /analytics/engines/pa/v3/calculations/{id}/units/{unitId}/commentary/status | Get PA portfolio commentary status by calculation and unit id.
 *PaCalculationsApi* | [**postAndCalculate**](docs/PaCalculationsApi.md#postAndCalculate) | **POST** /analytics/engines/pa/v3/calculations | Create and Run PA calculation
 *PaCalculationsApi* | [**putAndCalculate**](docs/PaCalculationsApi.md#putAndCalculate) | **PUT** /analytics/engines/pa/v3/calculations/{id} | Create or Update PA calculation and run it.
 *PricingSourcesApi* | [**getPAPricingSources**](docs/PricingSourcesApi.md#getPAPricingSources) | **GET** /analytics/engines/pa/v3/pricing-sources | Get PA pricing sources
@@ -263,7 +259,6 @@ Class | Method | HTTP request | Description
 *UnlinkedPaTemplatesApi* | [**getUnlinkedPATemplates**](docs/UnlinkedPaTemplatesApi.md#getUnlinkedPATemplates) | **GET** /analytics/engines/pa/v3/unlinked-templates | Get unlinked PA templates
 *UnlinkedPaTemplatesApi* | [**getUnlinkedPATemplatesById**](docs/UnlinkedPaTemplatesApi.md#getUnlinkedPATemplatesById) | **GET** /analytics/engines/pa/v3/unlinked-templates/{id} | Get unlinked PA template details by id
 *UnlinkedPaTemplatesApi* | [**updateUnlinkedPATemplates**](docs/UnlinkedPaTemplatesApi.md#updateUnlinkedPATemplates) | **PUT** /analytics/engines/pa/v3/unlinked-templates/{id} | Update unlinked PA template
-*VaultAttributionLoaderApi* | [**vaultAttributionLoader**](docs/VaultAttributionLoaderApi.md#vaultAttributionLoader) | **POST** /analytics/engines/vault/v3/load/{batchId} | Vault - External Attribution Loader
 *VaultCalculationsApi* | [**cancelCalculationById**](docs/VaultCalculationsApi.md#cancelCalculationById) | **DELETE** /analytics/engines/vault/v3/calculations/{id} | Cancel Vault calculation by id
 *VaultCalculationsApi* | [**getAllCalculations**](docs/VaultCalculationsApi.md#getAllCalculations) | **GET** /analytics/engines/vault/v3/calculations | Get all calculations
 *VaultCalculationsApi* | [**getCalculationParameters**](docs/VaultCalculationsApi.md#getCalculationParameters) | **GET** /analytics/engines/vault/v3/calculations/{id} | Get Vault calculation parameters by id
@@ -333,7 +328,6 @@ Class | Method | HTTP request | Description
  - [FICalculationParameters](docs/FICalculationParameters.md)
  - [FICalculationParametersRoot](docs/FICalculationParametersRoot.md)
  - [FICashflows](docs/FICashflows.md)
- - [FIConvertibleSettings](docs/FIConvertibleSettings.md)
  - [FIDiscountCurveInfo](docs/FIDiscountCurveInfo.md)
  - [FIDiscountCurveInfoRoot](docs/FIDiscountCurveInfoRoot.md)
  - [FIJobSettings](docs/FIJobSettings.md)
@@ -370,7 +364,6 @@ Class | Method | HTTP request | Description
  - [LinkedPATemplateSummaryRoot](docs/LinkedPATemplateSummaryRoot.md)
  - [LinkedPATemplateUpdateParameters](docs/LinkedPATemplateUpdateParameters.md)
  - [LinkedPATemplateUpdateParametersRoot](docs/LinkedPATemplateUpdateParametersRoot.md)
- - [Metadata](docs/Metadata.md)
  - [NPOOptimizationParameters](docs/NPOOptimizationParameters.md)
  - [NPOOptimizationParametersRoot](docs/NPOOptimizationParametersRoot.md)
  - [NPOOptimizerStrategy](docs/NPOOptimizerStrategy.md)
@@ -392,17 +385,6 @@ Class | Method | HTTP request | Description
  - [PACalculationParameters](docs/PACalculationParameters.md)
  - [PACalculationParametersRoot](docs/PACalculationParametersRoot.md)
  - [PACalculationPricingSource](docs/PACalculationPricingSource.md)
- - [PACommentary](docs/PACommentary.md)
- - [PACommentaryConfigurationSummary](docs/PACommentaryConfigurationSummary.md)
- - [PACommentaryConfigurationSummaryRoot](docs/PACommentaryConfigurationSummaryRoot.md)
- - [PACommentaryDate](docs/PACommentaryDate.md)
- - [PACommentaryGetStatus](docs/PACommentaryGetStatus.md)
- - [PACommentaryGetStatusRoot](docs/PACommentaryGetStatusRoot.md)
- - [PACommentaryParameters](docs/PACommentaryParameters.md)
- - [PACommentaryParametersRoot](docs/PACommentaryParametersRoot.md)
- - [PACommentaryRoot](docs/PACommentaryRoot.md)
- - [PACommentaryStatus](docs/PACommentaryStatus.md)
- - [PACommentaryStatusRoot](docs/PACommentaryStatusRoot.md)
  - [PAComponent](docs/PAComponent.md)
  - [PAComponentData](docs/PAComponentData.md)
  - [PAComponentRoot](docs/PAComponentRoot.md)
@@ -423,14 +405,22 @@ Class | Method | HTTP request | Description
  - [QuantCalculationParametersRoot](docs/QuantCalculationParametersRoot.md)
  - [QuantDate](docs/QuantDate.md)
  - [QuantDateList](docs/QuantDateList.md)
+ - [QuantDateListObsolete](docs/QuantDateListObsolete.md)
  - [QuantFdsDate](docs/QuantFdsDate.md)
+ - [QuantFdsDateObsolete](docs/QuantFdsDateObsolete.md)
  - [QuantFormula](docs/QuantFormula.md)
  - [QuantFqlExpression](docs/QuantFqlExpression.md)
+ - [QuantFqlExpressionObsolete](docs/QuantFqlExpressionObsolete.md)
  - [QuantIdentifierUniverse](docs/QuantIdentifierUniverse.md)
+ - [QuantIdentifierUniverseObsolete](docs/QuantIdentifierUniverseObsolete.md)
  - [QuantScreeningExpression](docs/QuantScreeningExpression.md)
+ - [QuantScreeningExpressionObsolete](docs/QuantScreeningExpressionObsolete.md)
  - [QuantScreeningExpressionUniverse](docs/QuantScreeningExpressionUniverse.md)
+ - [QuantScreeningExpressionUniverseObsolete](docs/QuantScreeningExpressionUniverseObsolete.md)
  - [QuantUniversalScreenParameter](docs/QuantUniversalScreenParameter.md)
+ - [QuantUniversalScreenParameterObsolete](docs/QuantUniversalScreenParameterObsolete.md)
  - [QuantUniversalScreenUniverse](docs/QuantUniversalScreenUniverse.md)
+ - [QuantUniversalScreenUniverseObsolete](docs/QuantUniversalScreenUniverseObsolete.md)
  - [QuantUniverse](docs/QuantUniverse.md)
  - [ReturnType](docs/ReturnType.md)
  - [SPARAccounts](docs/SPARAccounts.md)
@@ -443,7 +433,6 @@ Class | Method | HTTP request | Description
  - [SPARComponentRoot](docs/SPARComponentRoot.md)
  - [SPARDateParameters](docs/SPARDateParameters.md)
  - [SPARIdentifier](docs/SPARIdentifier.md)
- - [Section](docs/Section.md)
  - [TemplateContentTypes](docs/TemplateContentTypes.md)
  - [TemplatedPAComponent](docs/TemplatedPAComponent.md)
  - [TemplatedPAComponentParameters](docs/TemplatedPAComponentParameters.md)
@@ -471,8 +460,6 @@ Class | Method | HTTP request | Description
  - [UnlinkedPATemplateSummaryRoot](docs/UnlinkedPATemplateSummaryRoot.md)
  - [UnlinkedPATemplateUpdateParameters](docs/UnlinkedPATemplateUpdateParameters.md)
  - [UnlinkedPATemplateUpdateParametersRoot](docs/UnlinkedPATemplateUpdateParametersRoot.md)
- - [VaultAttributionLoaderResponse](docs/VaultAttributionLoaderResponse.md)
- - [VaultAttributionLoaderResponseRoot](docs/VaultAttributionLoaderResponseRoot.md)
  - [VaultCalculationParameters](docs/VaultCalculationParameters.md)
  - [VaultCalculationParametersRoot](docs/VaultCalculationParametersRoot.md)
  - [VaultComponent](docs/VaultComponent.md)

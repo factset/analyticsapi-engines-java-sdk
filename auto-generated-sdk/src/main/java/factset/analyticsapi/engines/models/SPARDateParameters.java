@@ -36,8 +36,7 @@ import factset.analyticsapi.engines.JSON;
 @JsonPropertyOrder({
   SPARDateParameters.JSON_PROPERTY_STARTDATE,
   SPARDateParameters.JSON_PROPERTY_ENDDATE,
-  SPARDateParameters.JSON_PROPERTY_FREQUENCY,
-  SPARDateParameters.JSON_PROPERTY_USEEACHPORTFOLIOINCEPTION
+  SPARDateParameters.JSON_PROPERTY_FREQUENCY
 })
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 public class SPARDateParameters implements Serializable {
@@ -51,9 +50,6 @@ public class SPARDateParameters implements Serializable {
 
   public static final String JSON_PROPERTY_FREQUENCY = "frequency";
   private String frequency;
-
-  public static final String JSON_PROPERTY_USEEACHPORTFOLIOINCEPTION = "useeachportfolioinception";
-  private Boolean useeachportfolioinception;
 
 
   public SPARDateParameters startdate(String startdate) {
@@ -125,30 +121,6 @@ public class SPARDateParameters implements Serializable {
   }
 
 
-  public SPARDateParameters useeachportfolioinception(Boolean useeachportfolioinception) {
-    this.useeachportfolioinception = useeachportfolioinception;
-    return this;
-  }
-
-   /**
-   * Use Each Portfolio Inception
-   * @return useeachportfolioinception
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Use Each Portfolio Inception")
-  @JsonProperty(JSON_PROPERTY_USEEACHPORTFOLIOINCEPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getUseeachportfolioinception() {
-    return useeachportfolioinception;
-  }
-
-
-  public void setUseeachportfolioinception(Boolean useeachportfolioinception) {
-    this.useeachportfolioinception = useeachportfolioinception;
-  }
-
-
   /**
    * Return true if this SPARDateParameters object is equal to o.
    */
@@ -163,13 +135,12 @@ public class SPARDateParameters implements Serializable {
     SPARDateParameters spARDateParameters = (SPARDateParameters) o;
     return Objects.equals(this.startdate, spARDateParameters.startdate) &&
         Objects.equals(this.enddate, spARDateParameters.enddate) &&
-        Objects.equals(this.frequency, spARDateParameters.frequency) &&
-        Objects.equals(this.useeachportfolioinception, spARDateParameters.useeachportfolioinception);
+        Objects.equals(this.frequency, spARDateParameters.frequency);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(startdate, enddate, frequency, useeachportfolioinception);
+    return Objects.hash(startdate, enddate, frequency);
   }
 
   @Override
@@ -179,7 +150,6 @@ public class SPARDateParameters implements Serializable {
     sb.append("    startdate: ").append(toIndentedString(startdate)).append("\n");
     sb.append("    enddate: ").append(toIndentedString(enddate)).append("\n");
     sb.append("    frequency: ").append(toIndentedString(frequency)).append("\n");
-    sb.append("    useeachportfolioinception: ").append(toIndentedString(useeachportfolioinception)).append("\n");
     sb.append("}");
     return sb.toString();
   }
