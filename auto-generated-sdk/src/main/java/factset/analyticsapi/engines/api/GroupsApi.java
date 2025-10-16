@@ -18,6 +18,10 @@ import factset.analyticsapi.engines.models.FrequencyRoot;
 import factset.analyticsapi.engines.models.GroupRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
+/**
+ * @deprecated DEPRECATED! Use <a href="https://central.sonatype.com/search?q=com.factset.sdk&smo=true">Esdk's</a>.
+ */
+@Deprecated
 public class GroupsApi {
   private ApiClient apiClient;
   public GroupsApi() {

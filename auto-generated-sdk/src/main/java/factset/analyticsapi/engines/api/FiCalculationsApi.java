@@ -20,6 +20,10 @@ import factset.analyticsapi.engines.models.FICalculationParametersRoot;
 import factset.analyticsapi.engines.models.ObjectRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
+/**
+ * @deprecated DEPRECATED! Use <a href="https://central.sonatype.com/search?q=com.factset.sdk&smo=true">Esdk's</a>.
+ */
+@Deprecated
 public class FiCalculationsApi {
   private ApiClient apiClient;
   public FiCalculationsApi() {

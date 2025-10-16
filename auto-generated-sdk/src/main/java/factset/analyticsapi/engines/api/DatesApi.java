@@ -18,6 +18,10 @@ import factset.analyticsapi.engines.models.ClientErrorResponse;
 import factset.analyticsapi.engines.models.DateParametersSummaryRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
+/**
+ * @deprecated DEPRECATED! Use <a href="https://central.sonatype.com/search?q=com.factset.sdk&smo=true">Esdk's</a>.
+ */
+@Deprecated
 public class DatesApi {
   private ApiClient apiClient;
   public DatesApi() {

@@ -21,6 +21,10 @@ import java.io.File;
 import factset.analyticsapi.engines.models.PubCalculationParametersRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
+/**
+ * @deprecated DEPRECATED! Use <a href="https://central.sonatype.com/search?q=com.factset.sdk&smo=true">Esdk's</a>.
+ */
+@Deprecated
 public class PubCalculationsApi {
   private ApiClient apiClient;
   public PubCalculationsApi() {

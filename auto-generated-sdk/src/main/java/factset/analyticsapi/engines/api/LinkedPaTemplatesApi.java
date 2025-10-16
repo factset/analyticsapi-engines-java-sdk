@@ -22,6 +22,10 @@ import factset.analyticsapi.engines.models.LinkedPATemplateSummaryRoot;
 import factset.analyticsapi.engines.models.LinkedPATemplateUpdateParametersRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
+/**
+ * @deprecated DEPRECATED! Use <a href="https://central.sonatype.com/search?q=com.factset.sdk&smo=true">Esdk's</a>.
+ */
+@Deprecated
 public class LinkedPaTemplatesApi {
   private ApiClient apiClient;
   public LinkedPaTemplatesApi() {
