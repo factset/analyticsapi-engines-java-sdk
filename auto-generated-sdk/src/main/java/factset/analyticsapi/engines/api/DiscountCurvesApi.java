@@ -19,7 +19,7 @@ import factset.analyticsapi.engines.models.FIDiscountCurveInfoRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 /**
- * @deprecated This library is deprecated.
+ * @deprecated This library is deprecated.Please use https://central.sonatype.com/search?q=com.factset.sdk&smo=true instead.
  */
 @Deprecated
 public class DiscountCurvesApi {
