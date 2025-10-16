@@ -21,7 +21,7 @@ import factset.analyticsapi.engines.models.ObjectRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 /**
- * @deprecated This library is deprecated. Please use https://central.sonatype.com/search?q=com.factset.sdk&smo=true instead.
+ * @deprecated This library is deprecated.
  */
 @Deprecated
 public class AfiOptimizerApi {
