@@ -19,7 +19,7 @@ import factset.analyticsapi.engines.models.PAPricingSourceRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 /**
- * @deprecated DEPRECATED! Use <a href="https://central.sonatype.com/search?q=com.factset.sdk&smo=true">Esdk's</a>.
+ * @deprecated This library is deprecated. Please use <a href="https://central.sonatype.com/search?q=com.factset.sdk&smo=true">Esdk's</a>.
  */
 @Deprecated
 public class PricingSourcesApi {
