@@ -333,7 +333,7 @@
         <junit-version>4.13.1</junit-version>
         <deprecated>true</deprecated>
         <deprecationMessage>
-            DEPRECATED: This library is no longer maintained. Please use https://central.sonatype.com/search?q=com.factset.sdk&smo=true instead.
+            DEPRECATED: This library is no longer maintained. Please use https://central.sonatype.com/search?q&#x3D;com.factset.sdk&amp;smo&#x3D;true instead.
         </deprecationMessage>
     </properties>
 </project>
