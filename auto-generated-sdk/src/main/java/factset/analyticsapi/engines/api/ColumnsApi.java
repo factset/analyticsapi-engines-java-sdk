@@ -19,6 +19,10 @@ import factset.analyticsapi.engines.models.ColumnRoot;
 import factset.analyticsapi.engines.models.ColumnSummaryRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
+/**
+ * @deprecated This library is deprecated.Please use https://central.sonatype.com/search?q=com.factset.sdk&smo=true instead.
+ */
+@Deprecated
 public class ColumnsApi {
   private ApiClient apiClient;
   public ColumnsApi() {

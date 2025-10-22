@@ -19,6 +19,10 @@ import factset.analyticsapi.engines.models.VaultConfigurationRoot;
 import factset.analyticsapi.engines.models.VaultConfigurationSummaryRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
+/**
+ * @deprecated This library is deprecated.Please use https://central.sonatype.com/search?q=com.factset.sdk&smo=true instead.
+ */
+@Deprecated
 public class ConfigurationsApi {
   private ApiClient apiClient;
   public ConfigurationsApi() {

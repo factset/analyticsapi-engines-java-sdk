@@ -21,6 +21,10 @@ import factset.analyticsapi.engines.models.SPARComponentRoot;
 import factset.analyticsapi.engines.models.VaultComponentRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
+/**
+ * @deprecated This library is deprecated.Please use https://central.sonatype.com/search?q=com.factset.sdk&smo=true instead.
+ */
+@Deprecated
 public class ComponentsApi {
   private ApiClient apiClient;
   public ComponentsApi() {

@@ -1,3 +1,5 @@
+## 🚨 THIS PACKAGE IS DEPRECATED!
+Please use <https://central.sonatype.com/search?q=com.factset.sdk&smo=true> instead.
 
 # engines-sdk
 
@@ -42,7 +44,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.factset.analyticsapi</groupId>
   <artifactId>engines-sdk</artifactId>
-  <version>6.2.0</version>
+  <version>6.3.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +54,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.factset.analyticsapi:engines-sdk:6.2.0"
+compile "com.factset.analyticsapi:engines-sdk:6.3.0"
 ```
 
 ### Others
@@ -65,7 +67,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/engines-sdk-6.2.0.jar`
+- `target/engines-sdk-6.3.0.jar`
 - `target/lib/*.jar`
 
 ## Usage
