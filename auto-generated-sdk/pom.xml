@@ -110,6 +110,9 @@
                 <artifactId>central-publishing-maven-plugin</artifactId>
                 <version>0.8.0</version>
                 <extensions>true</extensions>
+                <configuration>
+                    <deploymentName>${groupId}-${artifactId}-${version}</deploymentName>
+                </configuration>
             </plugin>
 
             <!-- attach test jar -->
