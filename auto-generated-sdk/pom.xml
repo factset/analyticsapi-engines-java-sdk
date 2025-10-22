@@ -7,7 +7,7 @@
     <name>engines-sdk</name>
     <version>6.3.0</version>
     <url>https://github.com/factset/analyticsapi-engines-java-sdk</url>
-    <description>DEPRECATED: This library is no longer maintained. Please use https://central.sonatype.com/search?q&#x3D;com.factset.sdk&amp;smo&#x3D;true instead.</description>
+    <description>DEPRECATED: This package is deprecated. Please use https://central.sonatype.com/search?q&#x3D;com.factset.sdk&amp;smo&#x3D;true instead.</description>
     <distributionManagement>
         <repository>
             <id>ossrh</id>
@@ -333,7 +333,7 @@
         <junit-version>4.13.1</junit-version>
         <deprecated>true</deprecated>
         <deprecationMessage>
-            DEPRECATED: This library is no longer maintained. Please use https://central.sonatype.com/search?q&#x3D;com.factset.sdk&amp;smo&#x3D;true instead.
+            DEPRECATED: This package is deprecated. Please use https://central.sonatype.com/search?q&#x3D;com.factset.sdk&amp;smo&#x3D;true instead.
         </deprecationMessage>
     </properties>
 </project>
