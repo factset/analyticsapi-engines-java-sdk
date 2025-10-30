@@ -20,6 +20,10 @@ import factset.analyticsapi.engines.models.NPOOptimizationParametersRoot;
 import factset.analyticsapi.engines.models.ObjectRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
+/**
+ * @deprecated This library is deprecated.Please use https://central.sonatype.com/search?q=com.factset.sdk&smo=true instead.
+ */
+@Deprecated
 public class NpoOptimizerApi {
   private ApiClient apiClient;
   public NpoOptimizerApi() {

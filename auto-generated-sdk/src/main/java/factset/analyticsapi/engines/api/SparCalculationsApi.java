@@ -21,6 +21,10 @@ import factset.analyticsapi.engines.models.ObjectRoot;
 import factset.analyticsapi.engines.models.SPARCalculationParametersRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
+/**
+ * @deprecated This library is deprecated.Please use https://central.sonatype.com/search?q=com.factset.sdk&smo=true instead.
+ */
+@Deprecated
 public class SparCalculationsApi {
   private ApiClient apiClient;
   public SparCalculationsApi() {

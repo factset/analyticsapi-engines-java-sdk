@@ -17,6 +17,10 @@ import java.io.File;
 import factset.analyticsapi.engines.models.CurrencyRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
+/**
+ * @deprecated This library is deprecated.Please use https://central.sonatype.com/search?q=com.factset.sdk&smo=true instead.
+ */
+@Deprecated
 public class CurrenciesApi {
   private ApiClient apiClient;
   public CurrenciesApi() {
