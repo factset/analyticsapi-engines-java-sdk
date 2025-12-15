@@ -26,11 +26,7 @@
             <url>https://central.sonatype.com</url>
             <releases>
                 <enabled>true</enabled>
-            </releases>
-        <repository>
-            <id>ossrh</id>
-            <name>Central Repository OSSRH</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            </releases>       
         </repository>
     </distributionManagement>
     <scm>
