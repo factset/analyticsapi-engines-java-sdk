@@ -19,7 +19,7 @@ import factset.analyticsapi.engines.models.DateParametersSummaryRoot;
 
 @javax.annotation.Generated(value = "CustomJavaClientCodegen")
 /**
- * @deprecated The Analytics SDK will be deprecated effective 31-Aug-2026. While we intend to provide limited security fixes till 31-Aug-2026, this SDK will be archived thereafter and will no longer receive updates or security patches. Please migrate to our Enterprise SDK, which is the long-term supported solution from FactSet. Please choose the appropriate API-specific Enterprise SDK from these search results: https://central.sonatype.com/search?q=com.factset.sdk&smo=true".
+ * @deprecated The Analytics SDK will be deprecated effective 31-Aug-2026. While we intend to provide limited security fixes till 31-Aug-2026, this SDK will be archived thereafter and will no longer receive updates or security patches. Please migrate to our Enterprise SDK, which is the long-term supported solution from FactSet. Please choose the appropriate API-specific Enterprise SDK from these search results: [enterprise-sdk](https://central.sonatype.com/search?q=com.factset.sdk&smo=true)".
  */
 @Deprecated
 public class DatesApi {
