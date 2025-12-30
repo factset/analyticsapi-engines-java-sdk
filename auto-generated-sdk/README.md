@@ -1,5 +1,5 @@
 ## 🚨 THIS PACKAGE IS DEPRECATED!
-Please use <https://central.sonatype.com/search?q=com.factset.sdk&smo=true> instead.
+The Analytics SDK will be deprecated effective 31-Aug-2026. While we intend to provide limited security fixes till 31-Aug-2026, this SDK will be archived thereafter and will no longer receive updates or security patches. Please migrate to our Enterprise SDK, which is the long-term supported solution from FactSet. Please choose the appropriate API-specific Enterprise SDK from these search results: [enterprise-sdk](https://central.sonatype.com/search?q&#x3D;com.factset.sdk&amp;smo&#x3D;true)
 
 # engines-sdk
 
@@ -44,7 +44,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.factset.analyticsapi</groupId>
   <artifactId>engines-sdk</artifactId>
-  <version>6.3.0</version>
+  <version>6.3.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -54,7 +54,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.factset.analyticsapi:engines-sdk:6.3.0"
+compile "com.factset.analyticsapi:engines-sdk:6.3.1"
 ```
 
 ### Others
@@ -67,7 +67,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/engines-sdk-6.3.0.jar`
+- `target/engines-sdk-6.3.1.jar`
 - `target/lib/*.jar`
 
 ## Usage
