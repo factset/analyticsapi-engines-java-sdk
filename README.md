@@ -3,7 +3,7 @@
 # Analytics API Engines Java SDK
 
 [![build](https://img.shields.io/github/workflow/status/factset/analyticsapi-engines-java-sdk/CI)](https://github.com/factset/analyticsapi-engines-java-sdk/actions?query=workflow%3ACI)
-[![maven](https://img.shields.io/maven-central/v/com.factset.analyticsapi/engines-sdk)](https://mvnrepository.com/artifact/com.factset.analyticsapi)
+[![maven](https://img.shields.io/maven-central/v/com.factset.analyticsapi/engines-sdk)](https://central.sonatype.com/artifact/com.factset.analyticsapi/engines-sdk/6.3.1/overview)
 ![API version](https://img.shields.io/badge/API-v2-blue)
 [![Apache-2 license](https://img.shields.io/badge/license-Apache2-brightgreen.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 ![Deprecated](https://img.shields.io/badge/status-deprecated-red)
