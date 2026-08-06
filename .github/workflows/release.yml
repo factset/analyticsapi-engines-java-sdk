@@ -12,6 +12,21 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Check deprecation date
+      run: |
+        DEPRECATION_DATE="2026-08-31"
+        CURRENT_DATE=$(date +%Y-%m-%d)
+
+        if [[ "$CURRENT_DATE" > "$DEPRECATION_DATE" ]]; then
+          echo "ERROR: SDK deprecation date has passed ($DEPRECATION_DATE)"
+          echo "Publishing to Maven Central is disabled after the deprecation date."
+          exit 1
+        fi
+
+        DAYS_REMAINING=$(( ($(date -d "$DEPRECATION_DATE" +%s) - $(date +%s)) / 86400 ))
+        echo "Days until deprecation: $DAYS_REMAINING"
+        echo "Publishing allowed"
+
     - name: Import GPG key
       run: |
         echo "${{ secrets.MAVEN_GPG_PRIVATE_KEY }}" | gpg --batch --import
